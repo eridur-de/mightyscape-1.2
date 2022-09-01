@@ -1,0 +1,13 @@
+*.pyc
+/.project
+/.pydevproject
+/.settings/org.eclipse.core.resources.prefs
+*.out
+extensions/.project
+extensions/fablabchemnitz/animate_order/drawing.svg
+extensions/fablabchemnitz/animate_order/animate_order.html
+extensions/fablabchemnitz/path2flex/DebugPath2Flex.txt
+extensions/fablabchemnitz/elliptical_cone_box/DebugEllConicBox.txt
+extensions/.pydevproject
+extensions/.settings/org.eclipse.core.resources.prefs
+extensions/000_Inkscape_Gallery
