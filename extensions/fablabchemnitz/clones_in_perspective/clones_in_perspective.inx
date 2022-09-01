@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Clones In Perspective</name>
+   <id>fablabchemnitz.de.clones_in_perspective</id>
+   <param max="256" name="num" type="int" gui-text="How many?">5</param>
+   <param max="0.9999" precision="4" name="ratio" type="float" gui-text="relative size">0.8</param>
+   <effect>
+      <object-type>all</object-type>
+      <effects-menu>
+         <submenu name="FabLab Chemnitz">
+            <submenu name="Shape/Pattern from existing Object(s)"/>
+         </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">clones_in_perspective.py</command>
+   </script>
+</inkscape-extension>

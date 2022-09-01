@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Bouwkamp Code",
+    "id": "fablabchemnitz.de.bouwkamp_code",
+    "path": "boukamp_code",
+    "dependent_extensions": null,
+    "original_name": "Bouwkamp code",
+    "original_id": "de.pascalwagler.inkscape.bouwkamp",
+    "license": "BSD-3-Clause License",
+    "license_url": "https://github.com/Wandmalfarbe/bouwkamp-code-generator/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/boukamp_code",
+    "fork_url": "https://github.com/Wandmalfarbe/bouwkamp-code-generator",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Bouwkamp+Code",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/Wandmalfarbe",
+      "github.com/eridur-de"
+    ]
+  }
+]

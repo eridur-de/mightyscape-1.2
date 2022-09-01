@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Tuckbox</name>
+    <id>fablabchemnitz.de.tuckbox</id>
+    <param name="type" type="optiongroup" appearance="combo" gui-text="Box type">
+        <option value="TUCKBOX">Tuckbox</option>
+        <option value="SLIPCASE">Slipcase/Deck band</option>
+        <option value="MATCHBOX">MatchBox</option>
+    </param>
+    <param name="num_flaps" type="int" min="1" max="2" gui-text="Number of Flaps">1</param>
+    <param name="deck_width" type="float" precision="1" min="5" max="1000" gui-text="Box width (mm)">63.5</param>
+    <param name="deck_height" type="float" precision="1" min="5" max="1000" gui-text="Box height (mm)">88</param>
+    <param name="deck_depth" type="float" precision="1" min="5" max="200" gui-text="Box depth (mm)">20</param>
+    <param name="box_allowance" type="float" precision="1" min="0" max="5" gui-text="Box allowance (mm)">1.5</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Paper/Cardboard Boxes" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">tuckbox.py</command>
+    </script>
+</inkscape-extension>

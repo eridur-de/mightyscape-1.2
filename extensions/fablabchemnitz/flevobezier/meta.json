@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Flevobézier",
+    "id": "fablabchemnitz.de.flevobezier",
+    "path": "flevobezier",
+    "dependent_extensions": null,
+    "original_name": "Flevobézier",
+    "original_id": "org.parclytaxel.inkscape.flevobezier",
+    "license": "MIT License",
+    "license_url": "https://gitlab.com/parclytaxel/Kinross/-/blob/master/licence",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/flevobezier",
+    "fork_url": "https://gitlab.com/parclytaxel/Kinross",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Flevobezier",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "gitlab.com/parclytaxel",
+      "github.com/eridur-de"
+    ]
+  }
+]

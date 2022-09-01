@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Lasercut Polygon</name>
+    <id>fablabchemnitz.de.lasercut_polygon</id>
+    <hbox>
+        <vbox>
+            <label appearance="header">Options</label>
+            <separator/>
+            <param name="unit" gui-text="Unit" type="optiongroup" appearance="combo">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+            </param>
+            <label appearance="header">Outer shape</label>
+            <param name="o_type" gui-text="Type" type="optiongroup" appearance="combo">
+                <option value="1">Circle</option>
+                <option value="2">Polygon</option>
+            </param>
+            <param name="o_radius" type="float" precision="3" min="0.0" max="10000.0" gui-text="Radius">1.0</param>
+            <param name="o_edges" type="int" min="3" max="100" gui-text="Edges">3</param>
+            <param name="o_r_type" type="optiongroup" appearance="combo" gui-text="Radius">
+                <option value="1">To edge</option>
+                <option value="2">To face</option>
+                <option value="3">Side length</option>
+            </param>
+            <param name="o_offset" type="float" precision="3" min="0.0" max="360.0" gui-text="Offset angle">0.0</param>
+            <label appearance="header">Inner shape</label>
+            <param name="i_type" gui-text="Type" type="optiongroup" appearance="combo">
+                <option value="1">None</option>
+                <option value="2">Circle</option>
+                <option value="3">Polygon</option>
+            </param>
+            <param name="i_radius" type="float" precision="3" min="0.0" max="10000.0" gui-text="Radius">1.0</param>
+            <param name="i_edges" type="int" min="3" max="100" gui-text="Edges">3</param>
+            <param name="i_r_type" gui-text="Radius" type="optiongroup" appearance="combo">
+                <option value="1">To edge</option>
+                <option value="2">To face</option>
+                <option value="3">Side length</option>
+            </param>
+            <param name="i_offset" type="float" precision="3" min="0.0" max="360.0" gui-text="Offset angle">0.0</param>
+        </vbox>
+        <spacer/>
+        <separator/>
+        <spacer/>
+        <vbox>
+            <label appearance="header">Material</label>
+            <separator/>
+            <param name="kerf" type="float" precision="3" min="0.0" max="10000.0" gui-text="Kerf (cut width)">0.1</param>
+            <param name="spacing" type="float" precision="3" min="0.0" max="10000.0" gui-text="Spacing">1</param>
+            <param name="color1" type="color" appearance="colorbutton" gui-text="Color inner">1923076095</param>
+            <param name="color2" type="color" appearance="colorbutton" gui-text="Color outer">4012452351</param>
+            <param name="speed" type="int" min="500" max="100000" gui-text="Speed">2500</param>
+            <param name="intensity" type="int" min="0" max="100" gui-text="Intensity">85</param>
+            <param name="pass_offset" type="int" min="0" max="100" gui-text="Pass offset">0</param>
+            <param name="displaylasertag" type="bool" gui-text="Display laser tag">false</param>
+            <param name="lasertag" type="string" gui-text="lasertag">=pass%n:%s:%i:%c=</param>
+        </vbox>
+    </hbox>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Shape/Pattern from Generator"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">lasercut_polygon.py</command>
+    </script>
+</inkscape-extension>

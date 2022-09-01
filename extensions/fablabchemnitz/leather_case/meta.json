@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Leather Case",
+    "id": "fablabchemnitz.de.leather_case",
+    "path": "leather_case",
+    "dependent_extensions": null,
+    "original_name": "Leather Case 1",
+    "original_id": "com.zerjio.inkscape.lcmp1",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/zerjillo/laserCutInkscapeExtensions/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/leather_case",
+    "fork_url": "https://github.com/zerjillo/laserCutInkscapeExtensions",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Leather+Case",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/zerjillo",
+      "github.com/eridur-de"
+    ]
+  }
+]

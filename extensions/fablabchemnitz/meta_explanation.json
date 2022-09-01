@@ -1,0 +1,22 @@
+/*This file contains plugin extra information per folder and is intended to give credits and information about sources, forking and documentation*/
+
+[
+  {
+    "name": "The readable name of the extension in menu",
+    "id": "The id which is used to store paramters in inkscape UI configuration",
+    "path": "the folder where the extensions is in",
+    "dependent_extension": "extensions which should be installed to because they are used by THIS extension",
+    "original_name": "the readble extension name which was assigned before putting it into MightyScape (origin)",
+    "original_id": "the id which was assigned before putting it into MightyScape (origin)",
+    "license": "the license, like GPL v2 or MIT",
+    "license_url": "the original URL where the license can be found",
+    "comment": "some extra information. Keep empty or set to 'null''",
+    "source_url": "the URL where the actual MightyScape data is put",
+    "fork_url": "the URL where the original data comes from, like github.com or gitlab.com",
+    "documentation_url": "the URL where MightyScape documentation can be found",
+    "inkscape_gallery_url": "the URL for the gallery location. Set to 'null' if it's not listed in the gallery",
+    "main_authors": [
+      "a comma separated list of authors which work(ed) on the extension. We use either an email address and/or pattern '<platform>/<user name or full name>:<mailbox@tl.domaind>'"
+    ]
+  }
+]

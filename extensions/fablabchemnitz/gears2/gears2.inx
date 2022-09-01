@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Gears2</name>
+    <id>fablabchemnitz.de.gears2</id>
+    <param name="tab" type="notebook">
+        <page name="Options" gui-text="Options">
+            <param name="teeth" type="int" min="6" max="500" gui-text="Number of teeth">24</param>
+            <param name="pressure_angle" type="float" min="1" max="40" gui-text="Pressure angle">20</param>
+            <param name="size_type" type="optiongroup" appearance="combo" gui-text="Size type">
+                <option value="1">Module (mm)</option>
+                <option value="2">Pitch diameter (inches)</option>
+                <option value="3">Diametral pitch (inches)</option>
+            </param>
+            <param name="size" type="float" min="0.01" max="500" gui-text="Size">5</param>
+            <param name="orientation" type="optiongroup" appearance="combo" gui-text="Gear orientation">
+                <option value="1">External</option>
+                <option value="2">Internal</option>
+            </param>
+        </page>
+        <page name="Help" gui-text="Help">
+            <label xml:space="preserve">
+Number of teeth: Exactly what it sounds like.
+
+Pressure angle: The angle in degrees of pressure between teeth in contact. The higher this is, the wider and more triangular the teeth will be. This can make them stronger but also less tolerant of manufacturing errors and misalignment. Common values are 14.5, 20 and 25.
+
+Size type: These are three common methods for determining the size of a gear. Module is the ratio of the pitch diameter in mm to the number of the teeth. Pitch diameter is the diameter in inches of the theoretical reference circle. Diametral pitch is the ratio of number of teeth to the pitch diameter in inches.
+
+Size: The value in the appropriate units for whichever size type was chosen.
+
+Orientation: External or internal. (Probably external.)
+
+This extension is based on gearUtils-03.js by Dr A.R.Collins.
+Latest version:  www.arc.id.au/gearDrawing.html
+</label>
+        </page>
+    </param>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Shape Generators">
+                <submenu name="Gears" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">gears2.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Apollonian Gasket</name>
+   <id>fablabchemnitz.de.apollonian_gasket</id>
+   <param name="active_tab" type="notebook">
+      <page name="settings" gui-text="Settings">
+         <param name="depth" type="int" min="2" max="10" gui-text="Depth" gui-description="Warning: high values might calculate really long!">3</param>
+         <param name="c1" type="float" min="0.1" max="10.0" precision="2" gui-text="c1">2.0</param>
+         <param name="c2" type="float" min="0.1" max="10.0" precision="2" gui-text="c2">3.0</param>
+         <param name="c3" type="float" min="0.1" max="10.0" precision="2" gui-text="c3">3.0</param>
+         <param name="shrink" type="bool" gui-text="shrink circles for cutting">true</param>
+         <param name="as_paths" type="bool" gui-text="draw svg:path instead svg:circle elements">true</param>
+
+      </page>
+      <page name="Usage" gui-text="Usage">
+         <label xml:space="preserve">Make an apollonian gasket:
+Depth = depth in search tree
+		
+c1,c2,c3 = curvatures of first 3 osculating circles</label>
+         <label appearance="url">https://en.wikipedia.org/wiki/Apollonian_gasket</label>
+      </page>
+   </param>
+   <effect>
+      <object-type>all</object-type>
+      <effects-menu>
+         <submenu name="FabLab Chemnitz Shape Generators">
+            <submenu name="Puzzles/Mazes/Nests"/>
+        </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">apollonian_gasket.py</command>
+   </script>
+</inkscape-extension>

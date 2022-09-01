@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Mutual Cut Line",
+    "id": "fablabchemnitz.de.mutual_cut_line",
+    "path": "mutual_cut_line",
+    "dependent_extensions": null,
+    "original_name": "Mutual Cut Line",
+    "original_id": "com.kacmarcik.pathmonkey.mutual_cut_line",
+    "license": "MIT License",
+    "license_url": "https://github.com/garykac/pathmonkey/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/mutual_cut_line",
+    "fork_url": "https://github.com/garykac/pathmonkey",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Mutual+Cut+Line",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/garykac",
+      "github.com/eridur-de"
+    ]
+  }
+]

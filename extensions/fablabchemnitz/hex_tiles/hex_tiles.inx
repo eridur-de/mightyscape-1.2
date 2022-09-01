@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Hex Tiles</name>
+    <id>fablabchemnitz.de.hex_tiles</id>
+    <param name="hex_diameter" type="float" precision="1" min="5" max="1000" gui-text="Hex Diameter (mm)">19</param>
+    <param name="hex_margin" type="float" precision="1" min="0" max="200" gui-text="Hex margin(mm)">2</param>
+    <param name="bleed_margin" type="float" precision="1" min="0" max="200" gui-text="Bleed margin(mm)">2</param>
+    <param name="page_margin" type="float" precision="1" min="0" max="200" gui-text="Page margin(mm)">15</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+			<submenu name="FabLab Chemnitz">
+				<submenu name="Grids/Guides"/>
+			</submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">hex_tiles.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Sheriff Star",
+    "id": "fablabchemnitz.de.sheriff_star",
+    "path": "sheriff_star",
+    "dependent_extensions": null,
+    "original_name": "Sheriff Star",
+    "original_id": "com.kacmarcik.pathmonkey.sheriff-star",
+    "license": "MIT License",
+    "license_url": "https://github.com/garykac/pathmonkey/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/sheriff_star",
+    "fork_url": "https://github.com/garykac/pathmonkey",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Sheriff+Star",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/garykac",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Gears</name>
+   <id>fablabchemnitz.de.gears</id>
+   <param name="active_tab" type="notebook">
+      <page name="Gear" gui-text="Gears">
+         <param name="teeth" type="int" min="3" max="1200" gui-text="Number of teeth (3..1200)">24</param>
+         <param name="dimension" type="float" min="0.0001" max="1000.0" precision="5" gui-text="Tooth size (Module, CP, DP)">1.0</param>
+         <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
+            <option value="mm">mm</option>
+            <option value="cm">cm</option>
+            <option value="in">in</option>
+            <option value="pt">pt</option>
+            <option value="px">px</option>
+         </param>
+         <param name="system" gui-text="Tooth system" type="optiongroup" appearance="combo">
+            <option value="MM">Module</option>
+            <option value="CP">Circular Pitch</option>
+            <option value="DP">Diametral Pitch</option>
+         </param>
+         <separator/>
+         <param name="angle" type="float" min="5.0" max="45.0" precision="1" gui-text="Pressure angle (5..45)">20.0</param>
+         <param name="centercross" type="bool" gui-text="Draw center cross">false</param>
+         <param name="pitchcircle" type="bool" gui-text="Draw pitch circle (for meshing)">false</param>
+         <param name="annotation" type="bool" gui-text="Draw annotation text">false</param>
+      </page>
+      <page name="advanced" gui-text="Advanced options">
+         <param name="clearance" type="float" min="0" max="100" precision="3" gui-text="Clearance (bottom)">0</param>
+         <param name="profile_shift" type="float" min="-50" max="50" precision="1" gui-text="Profile shift [% of module]">0</param>
+         <param name="internal_ring" type="bool" gui-text="Ring gear (Internal gear)">false</param>
+         <param name="mount_hole" type="float" min="0" max="100" precision="3" gui-text="Mount hole diameter">4.0</param>
+         <param name="spoke_count" type="int" min="0" max="100" gui-text="Number of spokes">3</param>
+         <param name="spoke_width" type="float" min=".01" max="1000" precision="3" gui-text="Spoke, rim (or ring) width">3.0</param>
+         <param name="mount_diameter" type="float" min=".01" max="1000" precision="3" gui-text="Mount support diameter">10.0</param>
+         <!-- unused parameter
+			<param name="holes-rounding"	type="float" min="0"    max="1000"	precision="5"	gui-text="Holes rounding">.5</param>
+	-->
+         <param name="accuracy" type="optiongroup" appearance="combo" gui-text="Tooth accuracy">
+            <option value="0">automatic</option>
+            <option value="20">20 points: best</option>
+            <option value="12">12 points: medium</option>
+            <option value="6">6 points: low</option>
+         </param>
+         <label>Use higher accuracy with lower tooth count. Set Number of spokes to 0 to disable. Set Mount hole diameter to 0 to disable.</label>
+      </page>
+      <page name="rack" gui-text="Rack">
+         <param name="draw_rack" type="bool" gui-text="Draw rack">false</param>
+         <param name="rack_teeth_length" type="int" min="1" max="500" gui-text="Rack length (teeth)">10</param>
+         <param name="rack_base_height" type="float" min="0.1" max="100" precision="3" gui-text="Height of base">5</param>
+         <param name="rack_base_tab" type="float" min="0" max="100" precision="3" gui-text="Length of end tab">5</param>
+         <label>The matching rack gear is drawn additionally and below the spur gear.</label>
+      </page>
+      <page name="Usage1" gui-text="Usage-core">
+         <label xml:space="preserve">Gears:
+
+Be sure to set the document properties to inches or mm if you want real-world dimensions.
+
+For gears to mesh - the size of the teeth on each gear must be the same.
+This is why tooth count and Circular Pitch or Metric Module is used to define gears and not radius.
+
+The Circular Pitch, p, is the distance between adjacent teeth around the Pitch Circle.
+  p = pi * D / z
+- where z is the number of teeth on a gear of pitch diameter D.
+The SI measure is the Module - which expresses the core ratio of Pitch Diameter to number of Teeth:
+  m = p / pi = D / z
+
+where:
+- Pitch Circle: Radius is equal to the distance from the center of the gear to the pitch point.
+- Pitch Point:  The point of tangency of the pitch circles of two meshing gears.
+			</label>
+      </page>
+      <page name="Usage2" gui-text="Usage-adv">
+         <label xml:space="preserve">Gears:
+Pressure angle [in degrees]. Usually 20. Historical: 14.5; High torque gears: 25.
+The higher the pressure angle, the stronger the teeth. With higher pressure angles, more effort is needed to turn the gears (due to friction).
+
+
+Caution: Undercut is currently not generated. E.g. a gear at pressure angle 20 deg and less than 17 teeth would either need a (negative!) profile shifting or will cause undercut. We only produce a warning.
+			</label>
+         <param name="undercut_alert" type="bool" gui-text="Confirm gear with undercut">true</param>
+      </page>
+   </param>
+   <effect>
+      <object-type>all</object-type>
+      <effects-menu>
+            <submenu name="FabLab Chemnitz Shape Generators">
+                <submenu name="Gears" />
+            </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">gears.py</command>
+   </script>
+</inkscape-extension>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Affine Spirals</name>
+   <id>fablabchemnitz.de.affine_spirals</id>
+   <param name="active-tab" type="notebook">
+      <page name="title" gui-text="Settings">
+         <param name="num_lines" type="int" min="1" max="100" gui-text="Depth">3</param>
+         <param name="num_petals" type="int" min="2" max="100" gui-text="petals">2</param>
+         <param name="shrink_ratio" type="float" min="0.01" max="0.99" precision="2" gui-text="shrink factor">0.8</param>
+         <param name="noses" type="bool" gui-text="Enabled noses">true</param>
+      </page>
+   </param>
+   <effect>
+      <object-type>all</object-type>
+      <effects-menu>
+         <submenu name="FabLab Chemnitz Shape Generators">
+            <submenu name="Puzzles/Mazes/Nests"/>
+        </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">affine_spirals.py</command>
+   </script>
+</inkscape-extension>

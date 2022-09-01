@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Convex Hull</name>
+    <id>fablabchemnitz.de.convex_hull</id>
+    <effect needs-live-preview="false">
+		<object-type>all</object-type>
+        <effects-menu>
+        <submenu name="FabLab Chemnitz">
+		    <submenu name="Shape/Pattern from existing Path(s)"/>
+		</submenu>
+        </effects-menu>       
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">convex_hull.py</command>
+    </script>
+</inkscape-extension>

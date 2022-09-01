@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Bouwkamp Code</name>
+    <id>fablabchemnitz.de.bouwkamp</id>
+	<param name="tab" type="notebook">
+		<page name="settings" gui-text="Settings">
+			<param name="bouwkamp_code" type="string" gui-text="Bouwkamp code:">21, 112, 112, [50, 35, 27], [8, 19], [15, 17, 11], [6, 24], [29, 25, 9, 2], [7, 18], [16], [42], [4, 37], [33]</param>
+			<param name="wrap_in_group" type="bool" gui-text="Wrap in group">true</param>
+		</page>
+		<page name="help" gui-text="Help">
+			<label xml:space="preserve">This Inkscape extension allows you to generate squared squares and squared rectangles from Bouwkamp codes and table codes.
+
+You can paste Bouwkamp codes with or without various formatting characters (like brackets) and convert them to the corresponding squares.
+</label>
+		</page>
+	</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+         <submenu name="FabLab Chemnitz Shape Generators">
+            <submenu name="Puzzles/Mazes/Nests"/>
+        </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">bouwkamp_code.py</command>
+    </script>
+</inkscape-extension>

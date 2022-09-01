@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Simple Registration",
+    "id": "fablabchemnitz.de.simple_registration",
+    "path": "simple_registration",
+    "dependent_extensions": null,
+    "original_name": "Simple Registration",
+    "original_id": "org.inkscape.inklinea.simple_registration",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitlab.com/inklinea/simple-registration/-/blob/main/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/simple_registration",
+    "fork_url": "https://gitlab.com/inklinea/simple-registration",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Simple+Registration",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "gitlab.com/inklinea",
+      "github.com/eridur-de"
+    ]
+  }
+]

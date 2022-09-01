@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Twist</name>
+    <id>fablabchemnitz.de.twist</id>
+    <label>Iteratively twist and self-inscribea polygon within itself. The number of twists is how many iterations to perform. The step ratio is the fractional distance along an edge to move each vertex.</label>
+    <param name="nSteps" type="int" min="1" max="100" gui-text="   Number of twists">8</param>
+    <param name="fRatio" type="float" min="-10" max="10" precision="5" gui-text="   Step ratio">0.15</param>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+              <submenu name="FabLab Chemnitz">
+                   <submenu name="Shape/Pattern from existing Path(s)"/>
+              </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">twist.py</command>
+    </script>
+</inkscape-extension>

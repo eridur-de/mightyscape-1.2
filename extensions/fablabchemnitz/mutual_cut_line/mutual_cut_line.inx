@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Mutual Cut Line</name>
+   <id>fablabchemnitz.de.mutual_cut_line</id>
+   <effect>
+      <object-type>path</object-type>
+      <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Paths - Cut/Intersect/Purge"/>
+            </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">mutual_cut_line.py</command>
+   </script>
+</inkscape-extension>

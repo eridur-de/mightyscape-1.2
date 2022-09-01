@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Netting",
+    "id": "fablabchemnitz.de.netting",
+    "path": "netting",
+    "dependent_extensions": null,
+    "original_name": "<unknown>",
+    "original_id": "<unknown>",
+    "license": "GNU GPL v2",
+    "license_url": "http://dp48069596.lolipop.jp/sd/scripts/script_inkscape/netting.zip",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/netting",
+    "fork_url": "http://dp48069596.lolipop.jp/sd/scripts/script_inkscape/netting.zip",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Netting",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "Sunabe Kazumichi",
+      "github.com/eridur-de"
+    ]
+  }
+]

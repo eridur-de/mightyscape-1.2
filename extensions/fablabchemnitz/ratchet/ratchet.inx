@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    Copyright (C) 2016 Kie Brooks
+    Distributed under GPLv3 or later
+    This file is part of draw_ratchet
+    version 0.1
+
+    draw_ratchet is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+    See the GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Ratchet</name>
+    <id>fablabchemnitz.de.ratchet</id>
+    <param name="teeth" type="int" min="2" max="300" gui-text="Number of teeth">12</param>
+    <param name="centre_hole" type="bool" gui-text="Centre hole">true</param>
+    <param name="centre_hole_diam" type="float" precision="3" min="0" max="50" gui-text="Centre hole size">1.000</param>
+    <param name="diam_in" type="float" precision="3" min="0" max="200" gui-text="Outside diameter">30.000</param>
+    <param name="diam_out" type="float" precision="3" min="0" max="200" gui-text="Inside diameter">28.000</param>
+    <param name="vtooth_shape" type="optiongroup" appearance="combo" gui-text="Vertical tooth line:">
+        <option value="straight">straight</option>
+        <option value="curve">curve</option>
+    </param>
+    <param name="htooth_shape" type="optiongroup" appearance="combo" gui-text="Horizontal tooth line:">
+        <option value="straight">straight</option>
+        <option value="curve">curve</option>
+    </param>
+    <label appearance="header">Author / License</label>
+    <label xml:space="preserve">written by Kie (inkscape@kitamura-studios.com)
+  Draw Ratchet Copyright (C) 2016 Kie Brooks
+  Distributed under GPLv3 or later
+
+  This is a simple extension to save time drawing ratchets.
+  </label>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Shape Generators">
+                <submenu name="Gears" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">ratchet.py</command>
+    </script>
+</inkscape-extension>

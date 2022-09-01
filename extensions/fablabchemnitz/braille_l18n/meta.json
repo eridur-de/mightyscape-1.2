@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Convert To Localized Braille",
+    "id": "fablabchemnitz.de.braille_l18n",
+    "path": "braille_l18n",
+    "dependent_extensions": null,
+    "original_name": "Convert to localized Braille",
+    "original_id": "org.inkscape.text.braille-l18n",
+    "license": "BSD-3-Clause License",
+    "license_url": "https://github.com/mondeja/inkscape-braille-l18n-ext/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/braille-l18n",
+    "fork_url": "https://github.com/mondeja/inkscape-braille-l18n-ext",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Convert+To+Localized+Braille",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/mondeja",
+      "github.com/eridur-de"
+    ]
+  }
+]

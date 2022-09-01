@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Bezier Envelope",
+    "id": "fablabchemnitz.de.bezier_envelope",
+    "path": "bezier_envelope",
+    "dependent_extensions": null,
+    "original_name": "Bezier Envelope",
+    "original_id": "de.gerrit_karius.envelope",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/shlomif/Bezier-Envelope-for-Inkscape/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/bezier_envelope",
+    "fork_url": "https://github.com/shlomif/Bezier-Envelope-for-Inkscape",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Bezier+Envelope",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/shlomif",
+      "github.com/eridur-de"
+    ]
+  }
+]

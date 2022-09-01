@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Slider Electrodes</name>
+    <id>fablabchemnitz.de.slider_electrodes</id>
+    <param name="count" type="int" gui-text="Number of electrodes:" min="1" max="50">5</param>
+    <param name="spikes" type="int" gui-text="Number of spikes:" min="1" max="10">5</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Shape Generators">
+                <submenu name="Streaks And Blobs" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">slider_electrodes.py</command>
+    </script>
+</inkscape-extension>

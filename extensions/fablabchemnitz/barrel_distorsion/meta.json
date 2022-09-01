@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Barrel Distortion",
+    "id": "fablabchemnitz.de.barrel_distorsion",
+    "path": "barrel_distorsion",
+    "dependent_extensions": null,
+    "original_name": "Distortion",
+    "original_id": "org.pub.dIstorsion",
+    "license": "MIT License",
+    "license_url": "https://github.com/ucuapps/InkscapeBarrelDistortion/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/barrel_distorsion",
+    "fork_url": "https://github.com/ucuapps/InkscapeBarrelDistortion",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Barrel+Distortion",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/ucuapps",
+      "github.com/eridur-de"
+    ]
+  }
+]

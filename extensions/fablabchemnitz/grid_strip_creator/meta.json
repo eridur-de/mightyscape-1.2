@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Grid Strip Creator (qlocktwo)",
+    "id": "fablabchemnitz.de.grid_strip_creator",
+    "path": "grid_strip_creator",
+    "dependent_extensions": null,
+    "original_name": "Grid strip creator",
+    "original_id": "org.inkscape.effect.gridstripcreator",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/fablabnbg/inkscape-gridstripcreator/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/grid_strip_creator",
+    "fork_url": "https://github.com/fablabnbg/inkscape-gridstripcreator",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55018608",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/fablabnbg",
+      "github.com/eridur-de"
+    ]
+  }
+]

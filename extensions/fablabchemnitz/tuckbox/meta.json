@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Tuckbox",
+    "id": "fablabchemnitz.de.tuckbox",
+    "path": "tuckbox",
+    "dependent_extensions": null,
+    "original_name": "Create Tuckbox",
+    "original_id": "phillips.effect.tuckbox",
+    "license": "GNU GPL v2",
+    "license_url": "https://sourceforge.net/p/razorfoss/svn/HEAD/tree/trunk/Inkscape/TuckboxExtension/CreateTuckbox.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/tuckbox",
+    "fork_url": "https://sourceforge.net/p/razorfoss/svn/HEAD/tree/trunk/Inkscape/TuckboxExtension/",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Tuckbox",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "Luke Phillips:lukerazor@hotmail.com",
+      "github.com/eridur-de"
+    ]
+  }
+]

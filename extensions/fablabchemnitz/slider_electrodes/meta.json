@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Slider Electrodes",
+    "id": "fablabchemnitz.de.slider_electrodes",
+    "path": "slider_electrodes",
+    "dependent_extensions": null,
+    "original_name": "Slider Electrodes",
+    "original_id": "org.inkscape.render.sliderelectrodes",
+    "license": "MIT License",
+    "license_url": "https://github.com/henningpohl/Inkscape-Slider-Electrode-Generator/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/slider_electrodes",
+    "fork_url": "https://github.com/henningpohl/Inkscape-Slider-Electrode-Generator",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Slider+Electrodes",
+    "inkscape_gallery_url": null, 
+    "main_authors": [
+      "github.com/henningpohl",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Eggmazing",
+    "id": "fablabchemnitz.de.eggmazing",
+    "path": "eggmazing",
+    "dependent_extensions": null,
+    "original_name": "Eggmazing",
+    "original_id": "command.eggbot.contributed.eggmazing",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/evil-mad/EggBot/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/eggmazing",
+    "fork_url": "https://github.com/evil-mad/EggBot/tree/master/inkscape_contributed",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Eggmazing",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/evil-mad",  
+      "github.com/oskay", 
+      "github.com/eridur-de"
+    ]
+  }
+]

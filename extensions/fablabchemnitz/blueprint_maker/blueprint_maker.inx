@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Blueprint Maker</name>
+    <id>fablabchemnitz.de.blueprint_maker</id>
+    <param name="palette" type="optiongroup" appearance="combo" gui-text="Palette:">
+        <option value="blueprint">Blueprint</option>
+        <option value="black">Screen</option>
+        <option value="white">Paper</option>
+        <option value="laser">Laser</option>
+    </param>
+    <param name="stroke_width" precision="4" type="float" min="0.001" max="10.000" gui-text="Line thickness:">1.000</param>
+    <param name="stroke_units" type="optiongroup" appearance="combo" gui-text="Line units:">
+        <option value="millimeters">mm</option>
+        <option value="centimeters">cm</option>
+        <option value="points">pt</option>
+        <option value="pixels">px</option>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Modify existing Path(s)"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">blueprint_maker.py</command>
+    </script>
+</inkscape-extension>

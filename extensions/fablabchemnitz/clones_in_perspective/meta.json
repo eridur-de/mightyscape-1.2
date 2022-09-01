@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Clones In Perspective",
+    "id": "fablabchemnitz.de.clones_in_perspective",
+    "path": "clones_in_perspective",
+    "dependent_extensions": null,
+    "original_name": "Clones in Perspective",
+    "original_id": "org.ekips.filter.clonesPerspective",
+    "license": "GNU GPL v2",
+    "license_url": "https://inkscape.org/de/~kurn/%E2%98%85clonesp",
+    "comment": "ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/clones_in_perspective",
+    "fork_url": "https://inkscape.org/de/~kurn/%E2%98%85clonesp",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Clones+In+Perspective",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "inkscape.org/kurn",
+      "github.com/eridur-de"
+    ]
+  }
+]

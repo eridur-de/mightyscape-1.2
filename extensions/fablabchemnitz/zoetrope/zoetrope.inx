@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Zoetrope</name>
+    <id>fablabchemnitz.de.zoetrope</id>
+    <param name="active-tab" type="notebook">
+        <page name="title" gui-text="Dimensions">
+            <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+                <option value="pt">pt</option>
+                <option value="px">px</option>
+            </param>
+            <param name="diameter" type="float" min="3" max="1200" gui-text="Diameter of final disk">12</param>
+            <param name="divisions" type="int" min="2" max="180" gui-text="Number of images around the outside" gui-description="(Image is always on the outer edge)">24</param>
+            <param name="height" type="float" min="0.5" max="600" gui-text="Height of image">3</param>
+            <param name="stroke_width" type="float" min="0.001" precision="2" max="12" gui-text="Width of lines">0.1</param>
+        </page>
+        <page name="pulse" gui-text="Trigger Ring">
+            <param name="trigger" type="bool" gui-text="Include trigger ring" gui-description="Draws a ring of black pulse markers.">true</param>
+            <param name="triggerradius" type="float" min="1" max="600" gui-text="Radius of trigger ring">3</param>
+            <param name="thick" type="float" min="0.1" max="100" gui-text="Thickness of trigger ring">3</param>
+            <param name="ratio" type="float" min="0.01" max="1" precision="2" gui-text="Trigger Ratio" gui-description="Ratio can define duration of trigger pulse.">0.1</param>
+            <param name="phase" type="float" min="0.0" max="1" precision="2" gui-text="Trigger Phase" gui-description="Phase is offset from division edge.">0.1</param>
+        </page>
+        <page name="image" gui-text="Image Distortion">
+            <label>Show Image template.</label>
+            <param name="template" type="bool" gui-text="Include Image and Distortion template">true</param>
+            <param name="dpi" type="int" min="10" max="600" gui-text="Example DPI to estimate image size">150</param>
+        </page>
+        <page name="Usage" gui-text="Help">
+            <label xml:space="preserve">This builds a Zoetrope for printing onto a spinning disk.
+Define the final Diameter of the disk and how many images
+appear around the circumference.
+
+Additionally a circle of black pulse markers can be printed
+to trigger a strobe. The width and phase of the markers can
+be adjusted. The ring can be set at any radius.
+
+Finally indicate dpi and draw a rectangular image template,
+This, along with the distorted reference, can be used in a
+paint program to prepare the images to fit on this Zoetrope.
+			</label>
+        </page>
+    </param>
+    <!-- classify which menu it appears under - can be new name -->
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Paper/Cardboard Boxes" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">zoetrope.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension
+    xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Simple Registration</name>
+    <id>fablabchemnitz.de.simple_registration</id>
+    <param name="simple_registration_notebook" type="notebook">
+        <page name="reg_page" gui-text="Reg Mark">
+            <param name="color_picker_reg_object" type="color" appearance="colorbutton" gui-text="Reg Mark Colour">0xff0000ff</param>
+            <param name="reg_mark_type" type="optiongroup" appearance="combo" gui-text="Registration Mark" gui-description="Registration Mark Design">
+                <option value="crosshair_path">Crosshair</option>
+                <option value="spiral_path">Spiral</option>
+                <option value="star_path">Star</option>
+                <option value="circle_path">Circle</option>
+                <option value="square_path">Square</option>
+            </param>
+            <param name="reg_mark_scale" type="float" min="-100" max="100" gui-text="Scale Marker" gui-description="Registration Marker Scale Factor">1</param>
+            <param name="reg_mark_x_shift" type="float" min="-100" max="100" gui-text="X_Shift" gui-description="Shift Registation mark X">10</param>
+            <param name="reg_mark_y_shift" type="float" min="-100" max="100" gui-text="Y_Shift" gui-description="Shift Registation mark Y">10</param>
+            <param name="correct_layer_transform_checkbox" type="bool" gui-text="Correct Layer Transform" gui-description="Correct For Existing Layer Transforms">true</param>
+        </page>
+        <page name="tick_page" gui-text="Ticks">
+            <param name="color_picker_tick" type="color" appearance="colorbutton" gui-text="Tick Colour">0x000000ff</param>
+            <param name="tick_color_random_checkbox" type="bool" gui-text="Random Tick Colour">false</param>
+            <param name="tick_text_labels_checkbox" type="bool" gui-text="Text Labels">true</param>
+            <param name="tick_text_label_font_size" type="float" min="-2" max="100" gui-text="Font Size" gui-description="Label Font Size">2</param>
+            <vbox>
+                <vbox>
+                    <param name="tick_type" type="optiongroup" appearance="combo" gui-text="Tick Type" gui-description="Tick Type">
+                        <!--<option value="chevron_path">Chevron</option>-->
+                        <option value="circle_path">Circle</option>
+                        <!--<option value="arc_path">Arc</option>-->
+                        <!--<option value="zigzag_path">Zig Zag</option>-->
+                        <!--<option value="square_path">Square</option>-->
+                    </param>
+                </vbox>
+                <vbox>
+                    <param name="tick_circle_radius" type="float" min="0.1" max="100" gui-text="Radius" gui-description="Circle Radius">20</param>
+                </vbox>
+            </vbox>
+            <vbox>
+                <hbox>
+                    <param name="tick_top_checkbox" type="bool" gui-text="Tick Top" gui-description="Ticks On The Top Edge">true</param>
+                    <param name="tick_left_checkbox" type="bool" gui-text="Tick Left" gui-description="Ticks On The Left Edge">true</param>
+                </hbox>
+                <hbox>
+                    <param name="tick_bottom_checkbox" type="bool" gui-text="Tick Bottom" gui-description="Ticks On The Bottom Edge">true</param>
+                    <param name="tick_right_checkbox" type="bool" gui-text="Tick Right" gui-description="Ticks On The Right Edge">true</param>
+                </hbox>
+            </vbox>
+        </page>
+        <page name="about_page" gui-text="About">
+            <label>
+                Simple Registration - An Inkscape Extension
+            </label>
+            <label>
+                Inkscape 1.1 +
+            </label>
+            <label appearance="url">https://inkscape.org/~inklinea/resources/=extension/</label>
+            <label xml:space="preserve">
+▶ z-order numbering
+
+▶ Can be tricked by layers which already have transforms applied - be aware
+        </label>
+        </page>
+    </param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Cutting/Plotting/Printing"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">simple_registration.py</command>
+    </script>
+</inkscape-extension>

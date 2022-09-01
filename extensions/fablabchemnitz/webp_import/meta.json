@@ -1,0 +1,21 @@
+[
+  {
+    "name": "WebP Import",
+    "id": "fablabchemnitz.de.webp_import",
+    "path": "webp_import",
+    "dependent_extensions": null,
+    "original_name": "WebP Import",
+    "original_id": "fablabchemnitz.de.webp_import",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
+    "comment": "Written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/webp_import",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/WebP+Import",
+    "inkscape_gallery_url": "https://inkscape.org/de/~MarioVoigt/%E2%98%85webp-import",
+    "main_authors": [
+      "inkscape.org/mono",
+      "github.com/eridur-de"
+    ]
+  }
+]

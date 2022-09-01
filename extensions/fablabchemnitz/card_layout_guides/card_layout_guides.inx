@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Cards Layout Guides</name>
+    <id>fablabchemnitz.de.card_layout_guides</id>
+    <param name="layout" type="optiongroup" appearance="combo" gui-text="Layout Type">
+        <option value="SIMPLE">Simple Grid</option>
+        <option value="FOLDING">Folding Grid</option>
+    </param>
+    <param name="card_width" type="float" precision="1" min="5" max="1000" gui-text="Card width (mm)">60</param>
+    <param name="card_height" type="float" precision="1" min="5" max="1000" gui-text="Card height (mm)">30</param>
+    <param name="orientation" type="optiongroup" appearance="combo" gui-text="Card Orientation">
+        <option value="HORIZONTAL">Horizontal</option>
+        <option value="VERTICAL">Vertical</option>
+    </param>
+    <param name="card_margin" type="float" precision="1" min="0" max="200" gui-text="Card margin(mm)">2</param>
+    <param name="bleed_margin" type="float" precision="1" min="0" max="200" gui-text="Bleed margin(mm)">2</param>
+    <param name="page_margin" type="float" precision="1" min="0" max="200" gui-text="Page margin(mm)">15</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+			<submenu name="FabLab Chemnitz">
+				<submenu name="Grids/Guides"/>
+			</submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">card_layout_guides.py</command>
+    </script>
+</inkscape-extension>

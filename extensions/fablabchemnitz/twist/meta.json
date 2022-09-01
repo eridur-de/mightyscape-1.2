@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Twist",
+    "id": "fablabchemnitz.de.twist",
+    "path": "twist",
+    "dependent_extensions": null,
+    "original_name": "Twist",
+    "original_id": "command.eggbot.contributed.twist",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/evil-mad/EggBot/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/twist",
+    "fork_url": "https://github.com/evil-mad/EggBot/tree/master/inkscape_contributed",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Twist",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/oskay",
+      "github.com/eridur-de"
+    ]
+  }
+]

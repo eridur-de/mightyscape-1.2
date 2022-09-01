@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Flash Burst</name>
+    <id>fablabchemnitz.de.flash_burst</id>
+    <param name="r1" type="int" min="1" max="20" gui-text="Radius - inner (min)">10</param>
+    <param name="r2" type="int" min="1" max="20" gui-text="Radius - inner (max)">10</param>
+    <separator />
+    <param name="R1" type="int" min="200" max="500" gui-text="Radius - outer (min)">350</param>
+    <param name="R2" type="int" min="200" max="500" gui-text="Radius - outer (max)">350</param>
+    <separator />
+    <param name="a1" type="int" min="1" max="45" gui-text="Angle (min)">5</param>
+    <param name="a2" type="int" min="1" max="45" gui-text="Angle (max)">10</param>
+    <separator />
+    <param name="ad1" type="int" min="1" max="10" gui-text="Angle delta (min)">3</param>
+    <param name="ad2" type="int" min="1" max="10" gui-text="Angle delta (max)">5</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Shape Generators">
+                <submenu name="Streaks And Blobs" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">flash_burst.py</command>
+    </script>
+</inkscape-extension>

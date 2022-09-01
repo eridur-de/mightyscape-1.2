@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Fibonacci Pattern</name>
+    <id>fablabchemnitz.de.fibonacci_pattern</id>
+	<param name="FirstRadius" type="int" min="1" max="500" gui-text="First Radius:">2</param>
+	<param name="LastRadius" type="int" min="1" max="500" gui-text="Last Radius:">5</param>
+	<param name="NumberOfNodes" type="int" min="200" max="2000" gui-text="Number of Nodes:">400</param>
+	<param name="SpreadFactor" type="int" min="1" max="100" gui-text="Spread Factor:">20</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+				<submenu name="Shape/Pattern from Generator"/>
+			</submenu>
+         </effects-menu>						    		
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">fibonacci_pattern.py</command>
+    </script>
+</inkscape-extension>

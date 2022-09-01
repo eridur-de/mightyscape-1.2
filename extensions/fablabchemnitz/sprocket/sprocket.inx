@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Sprocket</name>
+   <id>fablabchemnitz.de.sprocket</id>
+   <param name="teeth" type="int" min="6" max="360" gui-text="Number of teeth">24</param>
+   <param name="size" type="optiongroup" appearance="combo" gui-text="Chain size">
+      <option value="ANSI #25">ANSI #25</option>
+      <option value="ANSI #35">ANSI #35</option>
+      <option value="ANSI #40">ANSI #40</option>
+      <option value="ANSI #50">ANSI #50</option>
+      <option value="ANSI #60">ANSI #60</option>
+      <option value="ANSI #80">ANSI #80</option>
+      <option value="ANSI #100">ANSI #100</option>
+      <option value="ANSI #120">ANSI #120</option>
+      <option value="ANSI #140">ANSI #140</option>
+      <option value="ANSI #160">ANSI #160</option>
+      <option value="ANSI #180">ANSI #180</option>
+      <option value="ANSI #200">ANSI #200</option>
+      <option value="ANSI #240">ANSI #240</option>
+   </param>
+   <effect needs-live-preview="true">
+      <object-type>all</object-type>
+      <effects-menu>
+        <submenu name="FabLab Chemnitz Shape Generators">
+            <submenu name="Gears" />
+        </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">sprocket.py</command>
+   </script>
+</inkscape-extension>

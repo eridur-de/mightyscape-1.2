@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Zigzag Nodes</name>
+    <id>fablabchemnitz.de.zigzag_nodes</id>
+    <label>This effect shifts the nodes of the selected path alternately.</label>
+    <param name="radius" type="float" min="0.0" max="1000.0" gui-text="Maximum displacement, px">3.0</param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Shape/Pattern from existing Path(s)"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">zigzag_nodes.py</command>
+    </script>
+</inkscape-extension>

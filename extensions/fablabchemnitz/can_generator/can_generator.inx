@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Can Generator</name>
+    <id>fablabchemnitz.de.can_generator</id>
+    <param name="active-tab" type="notebook">
+        <page name="config" gui-text="Configuration">
+            <param name="diameter" type="int" min="3" max="1200" gui-text="Diameter of the can in mm">30</param>
+            <param name="overhang" type="int" min="0" max="1200" gui-text="Overhang of the can in mm">5</param>
+            <param name="height" type="int" min="3" max="1000" gui-text="Height of the can in mm">50</param>
+            <param name="angle" type="float" min="8" max="22.5" gui-text="Angle of the segments ( number of segments divisible by 2!)">22.5</param>
+            <param name="material" type="float" min="0.2" max="5" gui-text="Material thickness in mm">3.6</param>
+            <param name="bottom" type="bool" gui-text="Top and bottom?">false</param>
+        </page>
+        <page name="hilfe" gui-text="Hilfe">
+            <label xml:space="preserve">The idea of the can generator is to cut plywood so deep that it can be bent without breaking. From the bent wood the side of the can is formed. The lid is not completely round, but cut in segments. The number of segments corresponds to the cuts in the side of the can. For this purpose, the wood must be cut across the grain direction. The angle determines the number of segments. For example, 22.5 degrees gives 16 segments. Less should not be less.</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Finger-jointed/Tabbed Boxes" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">can_generator.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Parabola</name>
+    <id>fablabchemnitz.de.parabola</id>
+    <param name="tab" type="notebook">
+        <page name="common" gui-text="Basic Options">
+            <param name="height" type="int" min="100" max="1000" gui-text="Shape Height:">120</param>
+            <param name="width" type="int" min="100" max="1000" gui-text="Shape Width:">120</param>
+            <param name="seg_count" type="int" min="5" max="100" gui-text="Number of Line Segments:">25</param>
+            <param name="shape" type="optiongroup" appearance="combo" gui-text="Choose a Shape:">
+                        <option value="cross">Cross</option>
+                        <option value="square">Square</option>
+                        <option value="triangle">Triangle</option></param>
+            <spacer/>
+            <label>v1.1.0</label>
+        </page>
+        <page name="corners" gui-text="Corners">
+            <param name="c1" type="bool" gui-text="Corner 1">true</param>
+            <param name="c2" type="bool" gui-text="Corner 2">true</param>
+            <param name="c3" type="bool" gui-text="Corner 3">true</param>
+            <param name="c4" type="bool" gui-text="Corner 4 *">true</param>
+            <label>* Corner 4 doesn't apply to the Triangle Shape</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+         <submenu name="FabLab Chemnitz">
+            <submenu name="Shape/Pattern from Generator"/>
+         </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">parabola.py</command>
+    </script>
+</inkscape-extension>

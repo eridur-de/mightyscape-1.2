@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Lasercut Polygon",
+    "id": "fablabchemnitz.de.lasercut_polygon",
+    "path": "lasercut_polygon",
+    "dependent_extensions": null,
+    "original_name": "Polygon",
+    "original_id": "eu.flk.laser.polygon",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/ThoreMehr/inkscape-polygon/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/lasercut_polygon",
+    "fork_url": "https://github.com/ThoreMehr/inkscape-polygon",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Lasercut+Polygon",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/ThoreMehr",
+      "github.com/eridur-de"
+    ]
+  }
+]

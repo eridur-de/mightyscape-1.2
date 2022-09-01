@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>WebP Import</name>
+	<id>fablabchemnitz.de.webp_import</id>
+	<input>
+		<extension>.webp</extension>
+		<mimetype>image/webp</mimetype>
+		<filetypename>WebP Format (*.webp)</filetypename>
+		<filetypetooltip>Import WebP Format</filetypetooltip>
+	</input>
+	<script>
+		<command location="inx" interpreter="python">webp_import.py</command>
+	</script>
+</inkscape-extension>

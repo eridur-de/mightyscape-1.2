@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Sheriff Star</name>
+   <id>fablabchemnitz.de.sheriff_star</id>
+   <param name="tab" type="notebook">
+      <page name="settings" gui-text="Settings">
+         <param name="points" type="int" min="5" max="10" gui-text="Num Points">6</param>
+         <param name="star_tip_ratio" type="int" min="1" max="100" gui-text="Star Tip Circle Percentage">10</param>
+         <param name="inner_ratio" type="int" min="1" max="100" gui-text="Inner Circle Percentage">58</param>
+         <param name="show_inner_circle" type="bool" gui-text="Show Inner Circle">false</param>
+      </page>
+      <page name="help" gui-text="Help">
+         <label xml:space="preserve">This extension creates a sheriff star in the currently selected circle or ellipse.
+
+The outer vertices (points of the star) are connected through a point on the (usually hidden) inner circle. This inner connection point is located at an angle halfway between the angles of the two outer vertices. The radius of this inner circle is expressed as a percentage of the radius of the selected circle or ellipse.
+
+Small circles are placed at the tip of each point of the star. The radius of these small circles is expressed as a percentage of the selected circle's radius (for ellipses, the x-radius is used).
+
+The components that make up the star are left as separate objects so that additional processing can be performed.</label>
+      </page>
+   </param>
+   <effect>
+      <object-type>path</object-type>
+      <effects-menu>
+         <submenu name="FabLab Chemnitz">
+            <submenu name="Shape/Pattern from existing Object(s)"/>
+         </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">sheriff_star.py</command>
+   </script>
+</inkscape-extension>

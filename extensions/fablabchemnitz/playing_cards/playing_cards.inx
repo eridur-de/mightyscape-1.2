@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Playing Cards</name>
+    <id>fablabchemnitz.de.playing_cards</id>
+    <param name="pageName" type="notebook">
+        <page name="pageCards" gui-text="Cards">
+            <hbox>
+                <label>Width</label>
+                <spacer size="expand" />
+                <param name="cardWidth" type="float" min="0" max="1000" precision="3" gui-text=" ">2.5</param>
+                <param name="cardWidthUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="in">in</option>
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                </param>
+            </hbox>
+            <hbox>
+                <label>Height</label>
+                <spacer size="expand" />
+                <param name="cardHeight" type="float" min="0" max="1000" precision="3" gui-text=" ">3.5</param>
+                <param name="cardHeightUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="in">in</option>
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                </param>
+            </hbox>
+            <hbox>
+                <label>Bleed size</label>
+                <spacer size="expand" />
+                <param name="bleedSize" type="float" min="0" max="1000" precision="3" gui-text=" ">1</param>
+                <param name="bleedSizeUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                </param>
+            </hbox>
+        </page>
+        <page name="pageMargins" gui-text="Margins">
+            <hbox>
+                <label>Minimal distance between cards</label>
+                <spacer size="expand" />
+                <param name="minCardSpacing" type="float" min="0" max="1000" precision="3" gui-text=" ">0</param>
+                <param name="minCardSpacingUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                </param>
+            </hbox>
+            <hbox>
+                <label>Minimal distance between cards and fold line</label>
+                <spacer size="expand" />
+                <param name="minFoldLineSpacing" type="float" min="0" max="1000" precision="3" gui-text=" ">5</param>
+                <param name="minFoldLineSpacingUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                </param>
+            </hbox>
+            <hbox>
+                <label>Distance between crop marks and bleed</label>
+                <spacer size="expand" />
+                <param name="cropMarkSpacing" type="float" min="0" max="1000" precision="3" gui-text=" ">1</param>
+                <param name="cropMarkSpacingUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                </param>
+            </hbox>
+            <hbox>
+                <label>Page margin</label>
+                <spacer size="expand" />
+                <param name="pageMargin" type="float" min="0" max="1000" precision="3" gui-text=" ">5</param>
+                <param name="pageMarginUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                </param>
+            </hbox>
+            <hbox>
+                <label>Distance between cards and frame</label>
+                <spacer size="expand" />
+                <param name="frameSpacing" type="float" min="0" max="1000" precision="3" gui-text=" ">0</param>
+                <param name="frameSpacingUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                </param>
+            </hbox>
+        </page>
+        <page name="pageMarks" gui-text="Fold line">
+            <param name="foldLineType" gui-text="Fold line type" type="optiongroup" appearance="combo">
+                <option value="HorizontalFoldLine">Horizontal fold line</option>
+                <option value="VerticalFoldLine">Vertical fold line</option>
+                <option value="NoFoldLine">No fold line</option>
+            </param>
+        </page>
+        <page name="pageAlignment" gui-text="Alignment">
+            <param name="gridAligned" type="bool" gui-text="Align cards to grid">true</param>
+            <hbox>
+                <label>Grid spacing</label>
+                <spacer size="expand" />
+                <param name="gridSize" type="float" min="0" max="1000" precision="3" gui-text=" ">5</param>
+                <param name="gridSizeUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                </param>
+            </hbox>
+        </page>
+        <page name="pageVisibility" gui-text="Visibility">
+            <param name="drawGuides" type="bool" gui-text="Draw guides">true</param>
+            <param name="drawCards" type="bool" gui-text="Draw cards">true</param>
+            <param name="drawBleeds" type="bool" gui-text="Draw bleeds">true</param>
+            <param name="drawCropLines" type="bool" gui-text="Draw crop lines">true</param>
+            <param name="drawFoldLine" type="bool" gui-text="Draw fold line">true</param>
+            <param name="drawPageMargin" type="bool" gui-text="Draw page margin">false</param>
+            <param name="drawFrame" type="bool" gui-text="Draw frame">true</param>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Paper/Cardboard Boxes" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">playing_cards.py</command>
+    </script>
+</inkscape-extension>

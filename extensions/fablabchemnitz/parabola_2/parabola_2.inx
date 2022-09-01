@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Parabola 2</name>
+    <id>fablabchemnitz.de.parabola_2</id>
+    <param name="length" type="int" min="1" max="10000" gui-text="Side Length:">200</param>
+    <param name="segments" type="int" min="5" max="1000" gui-text="Number of Line Segments:">25</param>
+    <param name="shape" type="optiongroup" appearance="combo" gui-text="Choose a Shape:">
+        <option value="triangle">Triangle</option>
+        <option value="square">Square</option>
+        <option value="pentagon">Pentagon</option>
+        <option value="hexagon">Hexagon</option>
+        <option value="septagon">Septagon</option>
+        <option value="octagon">Octagon</option>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Shape/Pattern from Generator" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">parabola_2.py</command>
+    </script>
+</inkscape-extension>

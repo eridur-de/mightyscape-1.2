@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Hatch Fill",
+    "id": "fablabchemnitz.de.hatch_fill",
+    "path": "hatch_fill",
+    "dependent_extensions": null,
+    "original_name": "Hatch Fill 2",
+    "original_id": "command.dapperfu.inkscape_hatchfill2",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/dapperfu/inkscape_HatchFill2/blob/master/LICENSE",
+    "comment": "forked from https://github.com/evil-mad/EggBot/",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/hatch_fill",
+    "fork_url": "https://github.com/dapperfu/inkscape_HatchFill2",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Hatch+Fill",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/oskay",
+      "github.com/EmbeddedMan",
+      "github.com/Cabalist",
+      "github.com/mutoo",
+      "github.com/jrheard",
+      "github.com/dapperfu",
+      "github.com/eridur-de"
+    ]
+  }
+]

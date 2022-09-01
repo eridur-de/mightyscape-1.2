@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Can Generator",
+    "id": "fablabchemnitz.de.can_generator",
+    "path": "can_generator",
+    "dependent_extensions": null,
+    "original_name": "Dosengenerator",
+    "original_id": "githubacct.uniqueid.Dosengenerator",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/minirevollo/Inkscape-Dosen-Generator/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/can_generator",
+    "fork_url": "https://github.com/minirevollo/Inkscape-Dosen-Generator",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Can+Generator",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/minirevollo",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Split Bezier (Subdivide Path)",
+    "id": "fablabchemnitz.de.split_bezier",
+    "path": "split_bezier",
+    "dependent_extensions": null,
+    "original_name": "Subdivide Path",
+    "original_id": "subdivide.svg.bezier",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/Shriinivas/inkscapesubdivpath/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/split_bezier",
+    "fork_url": "https://github.com/Shriinivas/inkscapesubdivpath",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55018715",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/Shriinivas",
+      "github.com/eridur-de"
+    ]
+  }
+]
