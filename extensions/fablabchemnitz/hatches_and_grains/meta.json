@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Hatches And Grains",
+    "id": "fablabchemnitz.de.hatches_and_grains",
+    "path": "hatches_and_grains",
+    "dependent_extensions": null,
+    "original_name": "Hatches and grains",
+    "original_id": "carto",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitlab.com/marcjeanmougin/inkscape-carto-ext/-/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/hatches_and_grains",
+    "fork_url": "https://gitlab.com/marcjeanmougin/inkscape-carto-ext",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Hatches+And+Grains",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "gitlab.com/marcjeanmougin",
+      "github.com/eridur-de"
+    ]
+  }
+]

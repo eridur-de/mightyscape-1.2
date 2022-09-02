@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Polygon Side",
+    "id": "fablabchemnitz.de.polygon_side",
+    "path": "polygon_side",
+    "dependent_extensions": null,
+    "original_name": "Polygon Side",
+    "original_id": "org.inkscape.polygon_side",
+    "license": "GNU GPL v3",
+    "license_url": "https://inkscape.org/de/~inklinea/%E2%98%85polygon-side",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/polygon_side",
+    "fork_url": "https://inkscape.org/de/~inklinea/%E2%98%85polygon-side",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Polygon+Side",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "inkscape.org/inklinea",
+      "github.com/eridur-de"
+    ]
+  }
+]

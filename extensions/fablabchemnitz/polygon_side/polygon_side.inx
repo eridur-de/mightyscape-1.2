@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Polygon Side</name>
+    <id>fablabchemnitz.de.polygon_side</id>
+    <param name="number_of_sides" type="int" min="1" max="100" gui-text="Number of Sides">3</param>
+    <param name="length_of_sides" type="float" min="0.01" max="9999" gui-text="Length of Sides">25</param>
+    <param name="unit_choice" type="optiongroup" appearance="radio" gui-text="Units">
+        <option value="1">User</option>
+        <option value="2">Pixels</option>
+    </param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+         <submenu name="FabLab Chemnitz">
+            <submenu name="Shape/Pattern from Generator"/>
+         </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">polygon_side.py</command>
+    </script>
+</inkscape-extension>

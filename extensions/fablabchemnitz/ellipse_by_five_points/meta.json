@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Ellipse By Five Points (Replaced by LPE)",
+    "id": "fablabchemnitz.de.ellipse_by_five_points",
+    "path": "ellipse_by_five_points",
+    "dependent_extensions": null,
+    "original_name": "Ellipse by 5 Points",
+    "original_id": "org.pernsteiner.inkscape.ellipse_5pts",
+    "license": "BSD-2-Clause License",
+    "license_url": "http://www.pernsteiner.org/inkscape/ellipse_5pts/inkscape-ellipse_5pts-0.1.1.zip",
+    "comment": "bugfixed and ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/ellipse_by_five_points",
+    "fork_url": "http://www.pernsteiner.org/inkscape/ellipse_5pts/",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55019659",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "pernsteiner.org/Stuart Pernsteiner",
+      "github.com/eridur-de"
+    ]
+  }
+]

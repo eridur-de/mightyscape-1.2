@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>SpiroGraph</name>
+    <id>fablabchemnitz.de.spirograph</id>
+    <param name="curveType" type="optiongroup" appearance="combo" gui-text="Curve type:">
+        <option value="Epitrochoid">Epitrochoid</option>
+        <option value="Hypotrochoid">Hypotrochoid</option>
+    </param>
+    <label appearance="header">Curve parameters</label>
+    <param name="radius_R" type="int" min="0" max="1000" gui-text="Fixed circle radius (R):">10</param>
+    <param name="radius_r" type="int" min="-1000" max="1000" gui-text="Rolling circle radius (r):">5</param>
+    <param name="pencil_distance" type="int" min="-1000" max="1000" gui-text="Pencil distance¹ (d):">2</param>
+    <label>¹ use d=r for Epi/Hypocycloid.</label>
+    <label appearance="header">Plot parameters</label>
+    <param name="detailLevel" type="int" min="1" max="10" gui-text="Detail level:">1</param>
+    <param name="drawBaseCircles" type="bool" gui-text="Draw base circles">false</param>
+    <param name="animate" type="bool" gui-text="Animate">false</param>
+    <param type="path" name="directory" gui-text="Animation directory:" mode="folder"/>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Shape/Pattern from Generator"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">spirograph.py</command>
+    </script>
+</inkscape-extension>

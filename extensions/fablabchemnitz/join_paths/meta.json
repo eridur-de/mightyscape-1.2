@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Join Paths / Create Tabs And Dimples",
+    "id": "fablabchemnitz.de.join_paths",
+    "path": "join_paths",
+    "dependent_extensions": null,
+    "original_name": "Join Paths Optimized",
+    "original_id": "khema.optim.join.paths",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/Shriinivas/inkscapejoinpaths/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/join_paths",
+    "fork_url": "https://github.com/Shriinivas/inkscapejoinpaths",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55019193",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/Shriinivas",
+      "github.com/eridur-de"
+    ]
+  }
+]

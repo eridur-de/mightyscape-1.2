@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Paths To Lowlevel Strokes</name>
+    <id>fablabchemnitz.de.paths_to_lowlevel_strokes</id>
+    <param name="flattenbezier" type="bool" gui-text="Quantization (flatten bezier curves to polylines)">true</param> 
+    <param name="flatness" type="float" min="0.001" max="99999.000" precision="3" gui-text="Flatness (tolerance)" gui-description="Minimum flatness = 0.001. The smaller the value the more fine segments you will get.">0.100</param>
+    <param name="decimals" type="int" min="0" max="16" gui-text="Decimals" gui-description="Accuracy">3</param>
+    <param name="keep_style" type="bool" gui-text="Keep style">true</param> 
+    <effect needs-live-preview="true">
+        <object-type>path</object-type>
+		<effects-menu>
+         <submenu name="FabLab Chemnitz">
+	         <submenu name="Modify existing Path(s)"/>
+		</submenu>
+		</effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">paths_to_lowlevel_strokes.py</command>
+    </script>
+</inkscape-extension>

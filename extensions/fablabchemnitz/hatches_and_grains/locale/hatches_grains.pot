@@ -1,0 +1,110 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-28 11:33+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: hatches_grains.inx:3
+msgid "Hatches and grains"
+msgstr ""
+
+#: hatches_grains.inx:11
+msgid "Hatches"
+msgstr ""
+
+#: hatches_grains.inx:12
+msgid ""
+"\n"
+"Create standardized hatches to differentiate or prioritize cartographic "
+"objects.  \n"
+"  "
+msgstr ""
+
+#: hatches_grains.inx:16
+msgid "Hatches settings"
+msgstr ""
+
+#: hatches_grains.inx:18
+msgid "Sort of hatches:"
+msgstr ""
+
+#: hatches_grains.inx:23
+msgid "Orientation:"
+msgstr ""
+
+#: hatches_grains.inx:30
+msgid "Thickness:"
+msgstr ""
+
+#: hatches_grains.inx:37
+msgid "Spacing:"
+msgstr ""
+
+#: hatches_grains.inx:49 hatches_grains.inx:50
+msgid "Hatches color"
+msgstr ""
+
+#: hatches_grains.inx:55
+msgid "Grains"
+msgstr ""
+
+#: hatches_grains.inx:57
+msgid ""
+"\n"
+"Create standardized grains to differentiate or prioritize cartographic "
+"objects.\n"
+"  "
+msgstr ""
+
+#: hatches_grains.inx:61
+msgid "Grains settings"
+msgstr ""
+
+#: hatches_grains.inx:63
+msgid "Grains:"
+msgstr ""
+
+#: hatches_grains.inx:72
+msgid "Size:"
+msgstr ""
+
+#: hatches_grains.inx:79 hatches_grains.inx:80
+msgid "Grain color"
+msgstr ""
+
+#: hatches_grains.inx:86
+msgid "Information"
+msgstr ""
+
+#: hatches_grains.inx:87
+msgid ""
+"\n"
+"This mapping module is intended for the community of geographers and "
+"cartographers.\n"
+"\n"
+"It makes it possible to create visual variables like \"hatch\" or \"grain\" "
+"on surface or point implantation, in order to differentiate or prioritize "
+"the cartographic information.\n"
+"\n"
+"Laurent Porcheret \n"
+"Géographe - cartographe / Geographer - cartographer\n"
+"Sorbonne université - INSPE de Paris\n"
+"V.15.01.2020"
+msgstr ""
+
+#: hatches_grains.inx:102
+msgid "Cartography"
+msgstr ""

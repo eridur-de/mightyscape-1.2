@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Living Hinge (Fit To Rectangle)</name>
+    <id>fablabchemnitz.de.living_hinge</id>
+    <param name="direction" gui-text="Direction" type="optiongroup" appearance="combo">
+        <option value="y">vertical cuts</option>
+        <option value="x">horizontal cuts</option>
+    </param>
+    <param name="unit" gui-text="Unit" type="optiongroup" appearance="combo">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="in">in</option>
+        <option value="px">px</option>
+    </param>
+    <param name="cut_length" type="float" precision="2" gui-text="cut length (y)" min="1" max="1000">19.0</param>
+    <param name="gap_length" type="float" precision="2" gui-text="gap length (y)" min="1" max="1000">3.0</param>
+    <param name="sep_distance" type="float" precision="2" gui-text="separation distance (x)" min="1" max="1000">1.5</param>
+    <label xml:space="preserve">This extension renders the lines to make the cuts for a living hinge. The cuts run in the choosen direction.
+
+- direction: choose the direction of the cuts.
+- cut length: the length of each cut.
+- gap length: the separation between cut lines.
+- separation distance: the separation distance between adjacent sets of cut lines.
+
+The entered value for cut length will be adjusted so that an integer number of whole cut lines lies in the rectangle. The entered value for separation distance will be adjusted so that in integer number of cut lines lies in rectangle.</label>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Shape/Pattern from existing Object(s)"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">living_hinge.py</command>
+    </script>
+</inkscape-extension>

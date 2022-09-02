@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Offset Paths",
+    "id": "fablabchemnitz.de.offset_paths",
+    "path": "offset_paths",
+    "dependent_extensions": null,
+    "original_name": "Offset Paths",
+    "original_id": "fablabchemnitz.de.offset_paths",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
+    "comment": "based on https://github.com/TimeTravel-0/ofsplot",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/offset_paths",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Offset+Paths",
+    "inkscape_gallery_url": "https://inkscape.org/de/~MarioVoigt/%E2%98%85offset-paths",
+    "main_authors": [
+      "github.com/eridur-de"
+    ]
+  }
+]

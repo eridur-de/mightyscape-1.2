@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Insert Paper Template</name>
+    <id>fablabchemnitz.de.insert_paper_template</id>
+    <param name="papertype" type="optiongroup" appearance="combo" gui-text="Box type">
+        <option value="A5">A5</option>
+        <option value="A4">A4</option>
+        <option value="A3">A3</option>
+        <option value="A2">A2</option>
+        <option value="A1">A1</option>
+        <option value="A0">A0</option>
+        <option value="POKER">Poker Card</option>
+        <option value="BRIDGE">Bridge Card</option>
+        <option value="MINI_US">Mini American Card</option>
+        <option value="MINI_EU">Mini European Card</option>
+        <option value="TAROT">Tarot Card</option>
+    </param>
+    <param name="show_type" type="bool" gui-text="Include Label">true</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Grids/Guides"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">insert_paper_template.py</command>
+    </script>
+</inkscape-extension>

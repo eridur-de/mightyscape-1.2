@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Slic3r STL Input",
+    "id": "fablabchemnitz.de.slic3r_stl_input",
+    "path": "slic3r_stl_input",
+    "dependent_extensions": null,
+    "original_name": "STL Input",
+    "original_id": "com.github.jnweiger.inkscape.input.stl",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/jnweiger/inkscape-input-stl/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/slic3r_stl_input",
+    "fork_url": "https://github.com/jnweiger/inkscape-input-stl",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Slic3r+STL+Input",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/jnweiger",
+      "github.com/eridur-de"
+    ]
+  }
+]

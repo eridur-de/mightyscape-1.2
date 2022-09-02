@@ -1,0 +1,21 @@
+[
+  {
+    "name": "IFS Fractals",
+    "id": "fablabchemnitz.de.ifs_fractals",
+    "path": "ifs_fractals",
+    "dependent_extensions": null,
+    "original_name": "IFS",
+    "original_id": "org.inkscape.filter.ifs",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/dylex/inkscape-ifs/blob/master/ifs.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/ifs_fractals",
+    "fork_url": "https://github.com/dylex/inkscape-ifs",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/IFS+Fractals",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/dylex",
+      "github.com/eridur-de"
+    ]
+  }
+]
