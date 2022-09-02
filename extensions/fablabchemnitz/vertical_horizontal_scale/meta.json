@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Vertical / Horizontal Scale",
+    "id": "fablabchemnitz.de.vertical_horizontal_scale",
+    "path": "vertical_horizontal_scale",
+    "dependent_extensions": null,
+    "original_name": "Scale",
+    "original_id": "org.inkscape.render.render_scale",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/brathering82/inkscape/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/vertical_horizontal_scale",
+    "fork_url": "https://github.com/brathering82/inkscape",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55018500",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/brathering82",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>Set View Box</name>
+	<id>fablabchemnitz.de.set_view_box</id>
+	<effect>
+		<object-type>rect</object-type>
+		<effects-menu>
+			<submenu name="FabLab Chemnitz">
+				<submenu name="Transformations"/>
+			</submenu>
+		</effects-menu>
+	</effect>
+	<script>
+		<command location="inx" interpreter="python">set_view_box.py</command>
+	</script>
+</inkscape-extension>

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Draw Directions / Travel Moves",
+    "id": "fablabchemnitz.de.draw_directions_travel_moces",
+    "path": "draw_directions",
+    "dependent_extensions": null,
+    "original_name": "Draw Directions / Travel Moves",
+    "original_id": "fablabchemnitz.de.draw_directions_travel_moces",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
+    "comment": "Written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/draw_directions",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=120524682",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/eridur-de"
+    ]
+  }
+]

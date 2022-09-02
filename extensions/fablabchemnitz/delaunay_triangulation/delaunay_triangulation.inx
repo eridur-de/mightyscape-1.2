@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension
+	xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>Delaunay Triangulation</name>
+	<id>fablabchemnitz.de.delaunay_triangulation</id>
+	<param name="tab" type="notebook">
+		<page name="Options" gui-text="Options">
+			<param name="joggling" type="bool" gui-text="Support concavity and holes">false</param>
+			<param name="furthest" type="bool" gui-text="Use furthest-site triangulation">false</param>
+			<param name="elt_type" type="optiongroup" appearance="combo" gui-text="Object type to generate">
+				<option value="poly">Triangles</option>
+				<option value="line">Individual lines</option>
+			</param>
+			<spacer/>
+			<separator/>
+			<spacer/>
+			<hbox>
+				<param name="fill_type" type="optiongroup" appearance="combo" gui-text="Fill color source">
+					<option value="first_sel">Same as first object selected</option>
+					<option value="last_sel">Same as last object selected</option>
+					<option value="random">Random</option>
+					<option value="specified">Explicitly specified</option>
+				</param>
+				<param name="fill_color" type="color" appearance="colorbutton" gui-text=" " gui-description="Specific fill color">-1</param>
+			</hbox>
+			<hbox>
+				<param name="stroke_type" type="optiongroup" appearance="combo" gui-text="Stroke color source">
+					<option value="first_sel">Same as first object selected</option>
+					<option value="last_sel">Same as last object selected</option>
+					<option value="random">Random</option>
+					<option value="specified">Explicitly specified</option>
+				</param>
+				<param name="stroke_color" type="color" appearance="colorbutton" gui-text=" " gui-description="Specific stroke color">255</param>
+			</hbox>
+		</page>
+		<page name="Advanced" gui-text="Advanced">
+			<param name="qhull" type="string" gui-text="qhull options">Qbb Qc Qz Q12</param>
+			<label>If "Support concavity" is enabled on the Options tab, "QJ" will be prepended to the qhull options listed above. The default options are "Qbb Qc Qz Q12". The following website describes the available options.</label>
+			<label appearance="url">http://www.qhull.org/html/qhull.htm#options</label>
+		</page>
+		<page name="Help" gui-text="Help">
+			<label>This effect uses the Delaunay triangulation algorithm to create triangles from all of the points found in the selected objects.</label>
+		</page>
+	</param>
+	<effect>
+		<object-type>all</object-type>
+		<effects-menu>
+        <submenu name="FabLab Chemnitz">
+            <submenu name="Shape/Pattern from existing Path(s)"/>
+        </submenu>
+		</effects-menu>
+	</effect>
+	<script>
+		<command location="inx" interpreter="python">delaunay_triangulation.py</command>
+	</script>
+</inkscape-extension>

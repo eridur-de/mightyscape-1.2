@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Rounder</name>
+    <id>fablabchemnitz.de.rounder</id>
+    <param name="precision" type="int" min="0" max="20" gui-text="Rounding precision">2</param>
+    <param name="paths" type="bool" gui-text="Round nodes">true</param>
+    <param name="ctrl" type="bool" gui-text="Round handles">false</param>
+    <param name="along" type="bool" gui-text="Move handles following node movement">true</param>
+    <param name="half" type="bool" gui-text="Allow round to half if nearest">false</param>
+    <param name="strokewidth" type="bool" gui-text="Round stroke width">false</param>
+    <param name="widthheight" type="bool" gui-text="Round width and height">false</param>
+    <param name="position" type="bool" gui-text="Round position X and Y">false</param>
+    <param name="opacity" type="bool" gui-text="Round global opacity">false</param>
+    <param name="strokeopacity" type="bool" gui-text="Round stroke opacity">false</param>
+    <param name="fillopacity" type="bool" gui-text="Round fill opacity">false</param>
+    <spacer/>
+    <label>Please note: Rounder only applies to svg:path elements. You cannot use it for rectangle, circle, ellipsis, arc, polygon, line, polyline, etc.</label>
+    <label appearance="url">https://y.stadtfabrikanten.org/rounder</label>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Modify existing Path(s)"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">rounder.py</command>
+    </script>
+</inkscape-extension>

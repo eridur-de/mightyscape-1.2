@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Triangle</name>
+    <id>fablabchemnitz.de.triangle</id>
+    <param name="unit" type="optiongroup" appearance="combo" gui-text="Units:">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="px">px</option>
+        <option value="pt">pt</option>
+        <option value="pc">pc</option>
+        <option value="in">in</option>
+    </param>
+    <param name="s_a" type="float" min="0.01" max="10000" gui-text="Side Length a:">100.0</param>
+    <param name="s_b" type="float" min="0.01" max="10000" gui-text="Side Length b:">100.0</param>
+    <param name="s_c" type="float" min="0.01" max="10000" gui-text="Side Length c:">100.0</param>
+    <param name="a_a" type="float" min="0" max="180" gui-text="Angle a (deg):">60</param>
+    <param name="a_b" type="float" min="0" max="180" gui-text="Angle b (deg):">30</param>
+    <param name="a_c" type="float" min="0" max="180" gui-text="Angle c (deg):">90</param>
+    <param name="mode" type="optiongroup" appearance="combo" gui-text="Mode:">
+        <option value="3_sides">From Three Sides</option>
+        <option value="s_ab_a_c">From Sides a, b and Angle c</option>
+        <option value="s_ab_a_a">From Sides a, b and Angle a</option>
+        <option value="s_a_a_ab">From Side a and Angles a, b</option>
+        <option value="s_c_a_ab">From Side c and Angles a, b</option>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Shape/Pattern from Generator" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">triangle.py</command>
+    </script>
+</inkscape-extension>

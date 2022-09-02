@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Shirt Waist (Sara May Allington)</name>
+    <id>fablabchemnitz.de.shirt_waist</id>
+    <param name="m_unit" type="optiongroup" appearance="combo" gui-text="Select measurement: ">
+        <option value="Inches">Inches</option>
+        <option value="Centimeters">Centimeters</option>
+    </param>
+    <param name="m_front_waist_length" type="float" min="1.0" max="100.0" gui-text="Front Waist Length">15.0</param>
+    <param name="m_back_waist_length" type="float" min="1.0" max="100.0" gui-text="Back Waist Length">15.5</param>
+    <param name="m_neck_circumference" type="float" min="1.0" max="100.0" gui-text="Neck Circumference">13.5</param>
+    <param name="m_bust_circumference" type="float" min="1.0" max="100.0" gui-text="Bust Circumference">39.0</param>
+    <param name="m_waist_circumference" type="float" min="1.0" max="100.0" gui-text="Waist Circumference">25.0</param>
+    <param name="m_armscye_circumference" type="float" min="1.0" max="100.0" gui-text="Armscye Circumference">15.0</param>
+    <param name="m_across_back" type="float" min="1.0" max="100.0" gui-text="Across Back">13.5</param>
+    <param name="m_side" type="float" min="1.0" max="100.0" gui-text="Side">7.75</param>
+    <param name="m_upper_front_height" type="float" min="1.0" max="100.0" gui-text="Upper Front Height">10.75</param>
+    <param name="m_overarm_length" type="float" min="1.0" max="100.0" gui-text="Overarm Length">20.00</param>
+    <param name="m_elbow_height" type="float" min="1.0" max="100.0" gui-text="Elbow height - from wrist to elbow">9.50</param>
+    <param name="m_elbow_circumference" type="float" min="1.0" max="100.0" gui-text="Elbow Circumference">12.50</param>
+    <param name="m_hand_circumference" type="float" min="1.0" max="100.0" gui-text="Hand Circumference">8.00</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Dimensioning/Measuring"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">shirt_waist.py</command>
+    </script>
+</inkscape-extension>
