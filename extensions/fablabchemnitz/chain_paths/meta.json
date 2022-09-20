@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Chain Paths",
+    "id": "fablabchemnitz.de.chain_paths",
+    "path": "chain_paths",
+    "dependent_extensions": null,
+    "original_name": "Chain Paths",
+    "original_id": "com.github.fablabnbg.inskscape-chain-paths",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/fablabnbg/inkscape-chain-paths/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/chain_paths",
+    "fork_url": "https://github.com/fablabnbg/inkscape-chain-paths",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Chain+Paths",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/fablabnbg",
+      "github.com/eridur-de"
+    ]
+  }
+]
