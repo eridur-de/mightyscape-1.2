@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Split And Break Bezier At t</name>
+    <id>fablabchemnitz.de.split_and_break_bezier_at_t</id>
+    <param name="tab" type="notebook">
+        <page name="tab_settings" gui-text="Settings">
+            <param name="split_select" type="optiongroup" appearance="radio" gui-text="Split by" gui-description="Choose to split by length or percentage">
+                <option value="length">length</option>
+                <option value="t">percentage (t)</option>
+            </param>
+            <param name="unit" type="optiongroup" appearance="combo" gui-text="Units">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+                <option value="pt">pt</option>
+                <option value="px">px</option>
+                <option value="pc">pc</option>
+            </param>
+            <param name="target_length" type="float" min="0.0" precision="4" appearance="full" gui-text="Length">0.5000</param>
+            <param name="target_t" type="float" min="0.0001" max="0.9999" precision="4" appearance="full" gui-text="t">0.5000</param>
+            <param name="keep_start" type="bool" gui-text="Keep start">true</param>
+            <param name="keep_end" type="bool" gui-text="Keep end">true</param>
+            <param name="keep_seg" type="bool" gui-text="Keep only segment where trim applies" gui-description="A path can consist of more than one segment!">false</param>
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Split And Break Bezier At t</label>
+            <label>Splits a path at value t=0..1 (t=0.5 means 50%) or at a defined length with unit.
+Applies independently for each sub path in selection. Use 'Path > Reverse' to change the cutting direction.</label>
+            <label>2021 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/splitandbreakbezieratt</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+    </param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Paths - Cut/Intersect/Purge"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">split_and_break_bezier_at_t.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Random Delete",
+    "id": "fablabchemnitz.de.random_delete",
+    "path": "random_delete",
+    "dependent_extensions": null,
+    "original_name": "Random Delete",
+    "original_id": "fablabchemnitz.de.random_delete",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/LICENSE",
+    "comment": "Written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/random_delete",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Random+Delete",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/vmario89"
+    ]
+  }
+]

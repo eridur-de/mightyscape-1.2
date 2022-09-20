@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Source Code Text",
+    "id": "fablabchemnitz.de.source_code_text",
+    "path": "source_code_text",
+    "dependent_extensions": null,
+    "original_name": "Source Code Text",
+    "original_id": "org.henry.poster_text",
+    "license": "GNU GPL v2",
+    "license_url": "https://gitlab.com/inkscape/extensions/-/blob/master/LICENSE.txt",
+    "comment": "based on Lorem Ipsum extension",
+    "source_url": "",
+    "fork_url": "https://gist.github.com/om-henners/8c642c87b71daa3ea68222d40167edbc",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Source+Code+Text",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/om-henners",
+      "github.com/vmario89"
+    ]
+  }
+]
