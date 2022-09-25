@@ -441,6 +441,10 @@ class VerticalHorizontalScale(inkex.EffectExtension):
     def effect(self):
         scalefrom = self.options.scalefrom
         scaleto = self.options.scaleto
+        
+        if scalefrom - scaleto == 0:
+            inkex.utils.debug("Offset between number labels needs to be at least 1")
+            exit()
 
         scaleGroup = self.svg.get_current_layer().add(inkex.Group())
         groups = [None, None, None, None]

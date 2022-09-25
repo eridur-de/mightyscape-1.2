@@ -32,9 +32,11 @@ class KnobScale(inkex.EffectExtension):
         pars.add_argument("--radius", type=float, default=100.0, help="Knob radius")
         pars.add_argument("--linewidth", type=float, default=1)
         pars.add_argument("--angle", type=float, default=260.0, help="Angle of the knob scale in degrees")
+        pars.add_argument("--angle_shifting", type=float, default=0.0, help="Angle shifting")
         pars.add_argument("--draw_arc", type=inkex.Boolean, default='True')
         pars.add_argument("--draw_centering_circle", type=inkex.Boolean, default='False')
         pars.add_argument("--logarithmic_scale", type=inkex.Boolean, default='False', help="")
+        pars.add_argument("--invert", type=inkex.Boolean, default='False', help="")
         pars.add_argument("-u", "--units", default="px", help="units to measure size of knob")
 
         # Tick settings
@@ -74,10 +76,10 @@ class KnobScale(inkex.EffectExtension):
 
         text.set('style', str(inkex.Style(style)))
         parent.append(text)
-    def draw_knob_arc(self, radius, parent, angle, transform='' ):
+    def draw_knob_arc(self, radius, parent, angle, angle_shifting, transform='' ):
 
-        start_point_angle = (angle - pi)/2.0
-        end_point_angle = pi - start_point_angle
+        start_point_angle = angle_shifting + (angle - pi)/2.0
+        end_point_angle = pi - start_point_angle + angle_shifting*2
 
         style = {   'stroke'        : '#000000',
                     'stroke-width'  : str(self.options.linewidth),
@@ -161,6 +163,7 @@ class KnobScale(inkex.EffectExtension):
         self.x_offset = self.svg.unittouu(str(self.options.x) + self.options.units)
         self.y_offset = self.svg.unittouu(str(self.options.y) + self.options.units)
         angle = self.options.angle*pi/180.0
+        angle_shifting = self.options.angle_shifting*pi/180.0
         n_ticks = self.options.n_ticks
         n_subticks = self.options.n_subticks
         is_outer = True
@@ -173,8 +176,12 @@ class KnobScale(inkex.EffectExtension):
 
 
         # Labeling settings
-        start_num = self.options.start_value
-        end_num = self.options.stop_value
+        if self.options.invert is True:
+            end_num = self.options.start_value
+            start_num = self.options.stop_value    
+        else:
+            start_num = self.options.start_value
+            end_num = self.options.stop_value
         text_spacing = self.svg.unittouu(str(self.options.text_offset) + self.options.units)
         text_size = self.svg.unittouu(str(self.options.text_size) + self.options.units)
 
@@ -186,13 +193,13 @@ class KnobScale(inkex.EffectExtension):
             arc_radius = radius
 
         if self.options.draw_arc:
-            self.draw_knob_arc(arc_radius, parent, angle)
+            self.draw_knob_arc(arc_radius, parent, angle, angle_shifting)
 
         if self.options.draw_centering_circle:
             self.draw_centering_circle(arc_radius + tick_length + text_size + text_spacing, parent)
 
         if self.options.logarithmic_scale:
-            start_ticks_angle = 1.5*pi - 0.5*angle
+            start_ticks_angle = 1.5*pi - 0.5*angle + angle_shifting
             for tick in range(n_ticks):
                 self.draw_tick(radius, start_ticks_angle + angle*log(tick+1)/log(n_ticks),
                                     tick_length, parent)
@@ -218,7 +225,7 @@ class KnobScale(inkex.EffectExtension):
                                  subtick_length, parent)        
         else:
             ticks_delta = angle / (n_ticks - 1)
-            start_ticks_angle = 1.5*pi - 0.5*angle
+            start_ticks_angle = 1.5*pi - 0.5*angle + angle_shifting
 
             for tick in range(n_ticks):
                 self.draw_tick(radius, start_ticks_angle + ticks_delta*tick,
