@@ -9,13 +9,13 @@
     "license": "MIT License",
     "license_url": "https://github.com/thierry7100/ConeFlex/blob/master/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/box_maker_elliptical_cone",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/box_maker_elliptical_cone",
     "fork_url": "https://github.com/thierry7100/ConeFlex",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Elliptical+Cone",
     "inkscape_gallery_url": null,
     "main_authors": [
       "github.com/thierry7100",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

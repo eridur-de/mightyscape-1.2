@@ -15,7 +15,7 @@
     "license": "GNU GPL v2",
     "license_url": "https://github.com/paulh-rnd/TabbedBoxMaker/blob/master/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/boxmaker_tabbed",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/boxmaker_tabbed",
     "fork_url": "https://github.com/paulh-rnd/TabbedBoxMaker",
     "documentation_url": [
       "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Schroff",
@@ -27,7 +27,7 @@
       "github.com/jimmc",
       "github.com/jsleeio",
       "github.com/paulpce",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

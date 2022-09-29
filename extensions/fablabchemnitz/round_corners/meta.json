@@ -9,13 +9,13 @@
     "license": "GNU GPL v2",
     "license_url": "https://github.com/jnweiger/inkscape-round-corners/blob/main/LICENSE",
     "comment": "You can do nearly the same with Live Path Effect!",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/round_corners",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/round_corners",
     "fork_url": "https://github.com/jnweiger/inkscape-round-corners",
     "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=94175520",
     "inkscape_gallery_url": null,
     "main_authors": [
       "github.com/jnweiger",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

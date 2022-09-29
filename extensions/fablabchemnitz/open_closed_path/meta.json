@@ -9,13 +9,13 @@
     "license": "GNU GPL v2",
     "license_url": "https://gitlab.com/EllenWasbo/inkscape-extension-openpaths/-/blob/master/openClosedPath.py",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/open_closed_path",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/open_closed_path",
     "fork_url": "https://gitlab.com/EllenWasbo/inkscape-extension-openpaths",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Open+Closed+Path",
     "inkscape_gallery_url": null,
     "main_authors": [
       "gitlab.com/EllenWasbo",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

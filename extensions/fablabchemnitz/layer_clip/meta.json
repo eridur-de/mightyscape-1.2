@@ -9,14 +9,14 @@
     "license": "BSD-2-Clause License",
     "license_url": "https://gitlab.com/jczapla79/inkscape-extension-layer-clip/-/blob/master/clip.py",
     "comment": "Fixed and ported to Inkscape 1.2+ by Mario Voigt",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/layer_clip",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/layer_clip",
     "fork_url": "https://gitlab.com/jczapla79/inkscape-extension-layer-clip",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Layer+Clip",
     "inkscape_gallery_url": null,
     "main_authors": [
       "pernsteiger.org/Stuart Pernsteiner",
       "gitlab.com/jczapla79",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

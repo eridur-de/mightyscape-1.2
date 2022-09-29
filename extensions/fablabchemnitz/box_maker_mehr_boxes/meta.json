@@ -9,13 +9,13 @@
     "license": "GNU GPL v3",
     "license_url": "https://github.com/ThoreMehr/Mehr_BoxMaker/blob/master/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/box_maker_mehr_boxes",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/box_maker_mehr_boxes",
     "fork_url": "https://github.com/ThoreMehr/Mehr_BoxMaker",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Mehr+Boxes",
     "inkscape_gallery_url": null,
     "main_authors": [
       "github.com/ThoreMehr",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

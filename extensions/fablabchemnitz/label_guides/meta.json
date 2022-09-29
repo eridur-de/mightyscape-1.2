@@ -9,14 +9,14 @@
     "license": "GNU GPL v2",
     "license_url": "https://github.com/johnbeard/inkscape-label-guides/blob/master/COPYING",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/label_guides",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/label_guides",
     "fork_url": "https://github.com/johnbeard/inkscape-label-guides",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Label+Guides",
     "inkscape_gallery_url": null,
     "main_authors": [
       "github.com/johnbeard",
       "github.com/PaulSchulz",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

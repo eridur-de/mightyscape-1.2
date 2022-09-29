@@ -7,14 +7,14 @@
     "original_name": "fablabchemnitz.de.split_and_break_bezier_at_t",
     "original_id": "split_and_break_bezier_at_t",
     "license": "GNU GPL v3",
-    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/LICENSE",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
     "comment": "written by Mario Voigt",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/split_and_break_bezier_at_t",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/split_and_break_bezier_at_t",
     "fork_url": null,
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Split+And+Break+Bezier+At+t",
     "inkscape_gallery_url": "https://inkscape.org/de/~MarioVoigt/%E2%98%85split-and-break-bezier-at-t",
     "main_authors": [
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]
