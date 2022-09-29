@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Remove Duplicate Guides",
+    "id": "fablabchemnitz.de.remove_duplicate_guides",
+    "path": "remove_duplicate_guides",
+    "dependent_extensions": null,
+    "original_name": "Remove Duplicate Guides",
+    "original_id": "phillips.effect.removeduplicateguides",
+    "license": "GNU GPL v2",
+    "license_url": "https://sourceforge.net/p/razorfoss/svn/HEAD/tree/trunk/Inkscape/RemoveDuplicateGuides/RemoveDuplicateGuides.py",
+    "comment": "",
+    "source_url": "https://stadtfabrikanten.org/display/IFM/Remove+Duplicate+Guides",
+    "fork_url": "https://sourceforge.net/p/razorfoss/svn/HEAD/tree/trunk/Inkscape/RemoveDuplicateGuides",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Remove+Duplicate+Guides",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "Luke Phillips:lukerazor@hotmail.com",
+      "github.com/vmario89"
+    ]
+  }
+]

@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Label Guides</name>
+    <id>fablabchemnitz.de.label_guides</id>
+    <param name="units" type="optiongroup" appearance="combo" gui-text="Units:">
+        <option value="mm">mm</option>
+        <option value="in">inch</option>
+    </param>
+    <param name="preset_tab" type="notebook">
+        <page name="rrect" gui-text="Preset (Rounded Rect.)">
+            <param name="rrect_preset" type="optiongroup" appearance="combo" gui-text="Label preset:">
+                <option value="L7167">199.6 x 289.1mm Labels (1/sheet, A4) [L7167, LP1/199]</option>
+                <option value="L7168">199.6 x 143.5mm Labels (2/sheet, A4) [L7168, LP2/199]</option>
+                <option value="L7169">99.1 x 139mm Labels (4/sheet, A4) [L7169, LP4/99]</option>
+                <option value="L7701">192 x 62mm Lever Arch File Labels (4/sheet, A4) [L7701, LP4/192]</option>
+                <option value="L7171">200 x 60mm Lever Arch File Labels (4/sheet, A4) [L7171, LP4/200]</option>
+                <option value="L7166">99.1 x 93.1mm Labels (6/sheet, A4) [L7166, LP6/99]</option>
+                <option value="L4760">192 x 39mm Lever Arch File Labels (7/sheet, A4) [L4760, LP7/192]</option>
+                <option value="L7165">99.1 x 67.7mm Labels (8/sheet, A4) [L7165, LP8/99]</option>
+                <option value="L7664">70 x 71.8mm Diskette Labels (8/sheet, A4) [L7664, LP8/71]</option>
+                <option value="L7667">133 x 29.6mm Data Cartridge Labels (9/sheet, A4) [L7667, LP9/133]</option>
+                <option value="L7173">99.1 x 57mm Labels (10/sheet, A4) [L7173, LP10/99]</option>
+                <option value="J5103">38.1 x 135mm Smartstamp “Logo” Labels (10/sheet, A4) [J5103, LP10/38]</option>
+                <option value="L7666">70 x 52mm Labels (10/sheet, A4) [L7666, LP10/70]</option>
+                <option value="L7783">95.8 x 50.7mm Labels (10/sheet, A4) [L7783, LP10/96]</option>
+                <option value="L7164">63.5 x 72mm Labels (12/sheet, A4) [L7164, LP12/63]</option>
+                <option value="L7671">76.2 x 46.4mm Labels (12/sheet, A4) [L7671, LP12/76]</option>
+                <option value="L7177">99.1 x 42.3mm Labels (12/sheet, A4) [L7177, LP12/99]</option>
+                <option value="L7163">99.1 x 38.1mm Labels (14/sheet, A4) [L7163, LP14/99]</option>
+                <option value="L7668">59 x 50.9mm Labels (15/sheet, A4) [L7668, LP15/59]</option>
+                <option value="L7162">99.1 x 33.9mm Labels (16/sheet, A4) [L7162, LP16/99]</option>
+                <option value="L7674">145 x 17mm Labels (16/sheet, A4) [L7674, LP16/145]</option>
+                <option value="L7161">63.5 x 46.6mm Labels (18/sheet, A4) [L7161, LP18/63]</option>
+                <option value="L7172">100 x 30mm Labels (18/sheet, A4) [L7172, LP18/100]</option>
+                <option value="J5101">38.1 x 69mm Smartstamp “Bulk Print” Labels (20/sheet, A4) [J5101, LP20/38]</option>
+                <option value="L7160">63.5 x 38.1mm Labels (21/sheet, A4) [L7160, LP21/63]</option>
+                <option value="L7159">63.5 x 33.9mm Labels (24/sheet, A4) [L7159, LP24/63]</option>
+                <option value="L7665">72 x 21.15mm Labels (24/sheet, A4) [L7665, LP24/72]</option>
+                <option value="L7170">134 x 11mm Eurofolio Labels (24/sheet, A4) [L7170, LP24/134]</option>
+                <option value="L6011">63.5 x 29.6mm Labels (27/sheet, A4) [L6011, LP27/63]</option>
+                <option value="LP33_53">54 x 22mm Labels (33/sheet, A4) [LP33/53]</option>
+                <option value="LP36_49">48.9 x 29.6mm Labels (36/sheet, A4) [LP36/49]</option>
+                <option value="L7654">45.7 x 25.4mm Labels (40/sheet, A4) [L7654, LP40/45]</option>
+                <option value="L7636">45.7 x 21.2mm Labels (48/sheet, A4) [L7636, LP48/45]</option>
+                <option value="LP56_89">89 x 10mm Labels (56/sheet, A4) [LP56/89]</option>
+                <option value="L7651">38.1 x 21.2mm Labels (65/sheet, A4) [L7651, LP65/38]</option>
+                <option value="L7656">46 x 11.1mm Labels (84/sheet, A4) [L7656, LP84/46]</option>
+                <option value="L7658">25.4 x 10mm Labels (189/sheet, A4) [L7658, LP189/25]</option>
+                <option value="L7657">17.8 x 10mm Labels (270/sheet, A4) [L7657, LP270/18]</option>
+                <option value="LP6_95SQ">95 x 95mm Labels (6/sheet, A4) [LP6/95SQ]</option>
+                <option value="LP12_65SQ">65 x 65mm Labels (12/sheet, A4) [LP12/65SQ]</option>
+                <option value="LP15_51SQ">51 x 51mm Labels (15/sheet, A4) [LP15/51SQ]</option>
+                <option value="LP35_37SQ">37 x 37mm Labels (35/sheet, A4) [LP35/37SQ]</option>
+                <option value="LP70_25SQ">25 x 25mm Labels (70/sheet, A4) [LP70/25SQ]</option>
+            </param>
+            <param name="rrect_radius" type="float" min="0" max="100" gui-text="Corner Radius">1</param>
+        </page>
+        <page name="rect" gui-text="Preset (Square Rect.)">
+            <param name="rect_preset" type="optiongroup" appearance="combo" gui-text="Label preset:">
+                <option value="L7784">210 x 297mm Labels (1/sheet, A4) [L7784, LP1/210H,J,V]</option>
+                <option value="LP2_105">105 x 297mm Labels (2/sheet, A4) [LP2/105]</option>
+                <option value="3655">210 x 148.5mm Labels (2/sheet, A4) [3655, LP2/210]</option>
+                <option value="LP3_210">210 x 99mm Labels (3/sheet, A4) [LP3/210]</option>
+                <option value="3483">105 x 148.5mm Labels (4/sheet, A4) [3483, LP4/105]</option>
+                <option value="LP4_210">210 x 74.25mm Labels (4/sheet, A4) [LP4/210]</option>
+                <option value="LP6_70">70 x 148.5mm Labels (6/sheet, A4) [LP6/70]</option>
+                <option value="LP6_105">105 x 99mm Labels (6/sheet, A4) [LP6/105]</option>
+                <option value="3427">105 x 74.25mm Labels (8/sheet, A4) [3427, LP8/105]</option>
+                <option value="LP8_105S">105 x 70.7mm Labels (8/sheet, A4) [LP8/105S]</option>
+                <option value="LP10_105">105 x 59.4mm Labels (10/sheet, A4) [LP10/105]</option>
+                <option value="3425">105 x 57.55mm Labels (10/sheet, A4) [3425, LP10/105S]</option>
+                <option value="LP12_105">105 x 49.5mm Labels (12/sheet, A4) [LP12/105]</option>
+                <option value="3424">105 x 47.9mm Labels (12/sheet, A4) [3424, LP12/105S]</option>
+                <option value="3653">105 x 42.42mm Labels (14/sheet, A4) [3653, LP14/105]</option>
+                <option value="LP15_70">70 x 59.4mm Labels (15/sheet, A4) [LP15/70]</option>
+                <option value="LP15_70S">70 x 50.7mm Labels (15/sheet, A4) [LP15/70S]</option>
+                <option value="3484">105 x 37.12mm Labels (16/sheet, A4) [3484, LP16/105]</option>
+                <option value="3423">105 x 34.95mm Labels (16/sheet, A4) [3423, LP16/105S]</option>
+                <option value="3652">70 x 42.42mm Labels (21/sheet, A4) [3652, LP21/70]</option>
+                <option value="LP21_70S">70 x 38.1mm Labels (21/sheet, A4) [LP21/70S]</option>
+                <option value="3474">70 x 37.12mm Labels (24/sheet, A4) [3474, LP24/70]</option>
+                <option value="3422">70 x 34.95mm Labels (24/sheet, A4) [3422, LP24/70S]</option>
+                <option value="LP24_70LS">70 x 34mm Labels (24/sheet, A4) [LP24/70LS]</option>
+                <option value="3475">70 x 36mm Labels (24/sheet, A4) [3475, LP24/70SS]</option>
+                <option value="LP27_70S">70 x 31.95mm Labels (27/sheet, A4) [LP27/70S]</option>
+                <option value="3489">70 x 29.7mm Labels (30/sheet, A4) [3489, LP30/70]</option>
+                <option value="3421">70 x 25.4mm Labels (33/sheet, A4) [3421, LP33/70S]</option>
+                <option value="L7409">57 x 15mm Labels (51/sheet, A4) [L7409, LP51/57]</option>
+                <option value="LP56_52">52.5 x 21.21mm Labels (56/sheet, A4) [LP56/52]</option>
+            </param>
+        </page>
+        <page name="circ" gui-text="Preset (Round &amp; Oval)">
+            <param name="circ_preset" type="optiongroup" appearance="combo" gui-text="Label preset:">
+                <option value="LP2_115R">114.5mm Labels (2/sheet, A4) [LP2/115R]</option>
+                <option value="LP6_88R">88mm Labels (6/sheet, A4) [LP6/88R]</option>
+                <option value="LP6_85R">85mm Labels (6/sheet, A4) [LP6/85R]</option>
+                <option value="LP6_76R">76mm Labels (6/sheet, A4) [LP6/76R]</option>
+                <option value="C2244">72mm Labels (6/sheet, A4) [C2244, LP6/72R]</option>
+                <option value="LP8_69R">69mm Labels (8/sheet, A4) [LP8/69R]</option>
+                <option value="L7670">63.5mm Labels (12/sheet, A4) [L7670, LP12/64R]</option>
+                <option value="LP15_51R">51mm Labels (15/sheet, A4) [LP15/51R]</option>
+                <option value="LP24_45R">45mm Labels (24/sheet, A4) [LP24/45R]</option>
+                <option value="L7780">40mm Labels (24/sheet, A4) [L7780, LP24/40R]</option>
+                <option value="LP35_37R">37mm Labels (35/sheet, A4) [LP35/37R]</option>
+                <option value="LP35_35R">35mm Labels (35/sheet, A4) [LP35/35R]</option>
+                <option value="LP40_32R">32mm Labels (40/sheet, A4) [LP40/32R]</option>
+                <option value="LP54_29R">29mm Labels (54/sheet, A4) [LP54/29R]</option>
+                <option value="LP70_25R">25mm Labels (70/sheet, A4) [LP70/25R]</option>
+                <option value="LP117_19R">19mm Labels (117/sheet, A4) [LP117/19R]</option>
+                <option value="LP216_13R">13mm Labels (216/sheet, A4) [LP216/13R]</option>
+                <option value="LP2_195OV">195 x 138mm Labels (2/sheet, A4) [LP2/195OV]</option>
+                <option value="LP4_90OV">90 x 135mm Labels (4/sheet, A4) [LP4/90OV]</option>
+                <option value="LP8_90OV">90 x 62mm Labels (8/sheet, A4) [LP8/90OV]</option>
+                <option value="LP10_95OV">95 x 53mm Labels (10/sheet, A4) [LP10/95OV]</option>
+                <option value="LP14_95OV">95 x 34mm Labels (14/sheet, A4) [LP14/95OV]</option>
+                <option value="LP21_60OV">60 x 34mm Labels (21/sheet, A4) [LP21/60OV]</option>
+                <option value="LP32_40OV">40 x 30mm Labels (32/sheet, A4) [LP32/40OV]</option>
+                <option value="LP65_35OV">35.05 x 16mm Labels (65/sheet, A4) [LP65/35OV]</option>
+            </param>
+        </page>
+        <page name="custom" gui-text="Custom">
+            <label appearance="header">Custom Label Options</label>
+            <param name="margin_l" type="float" min="0" max="1000" gui-text="Left margin">8.5</param>
+            <param name="margin_t" type="float" min="0" max="1000" gui-text="Top margin">13</param>
+            <param name="size_x" type="float" min="0" max="1000" gui-text="Label X size">37</param>
+            <param name="size_y" type="float" min="0" max="1000" gui-text="Label Y size">37</param>
+            <param name="pitch_x" type="float" min="0" max="1000" gui-text="Label X pitch">39</param>
+            <param name="pitch_y" type="float" min="0" max="1000" gui-text="Label Y pitch">39</param>
+            <param name="count_x" type="int" min="0" max="1000" gui-text="Number Across">5</param>
+            <param name="count_y" type="int" min="0" max="1000" gui-text="Number Down">7</param>
+            <param name="shapes" type="optiongroup" appearance="combo" gui-text="Label Shapes:">
+                <option value="rect">Rectangle</option>
+                <option value="circle">Circle/Ellipse</option>
+            </param>
+        </page>
+    </param>
+    <label>Drawing Options</label>
+    <param name="delete_existing_guides" type="bool" gui-text="Delete existing guides">false</param>
+    <param name="draw_edge_guides" type="bool" gui-text="Draw label edge guides">true</param>
+    <param name="draw_centre_guides" type="bool" gui-text="Draw label centre guides">true</param>
+    <param name="inset" type="float" min="0" max="1000" gui-text="Guide inset">5</param>
+    <param name="draw_inset_guides" type="bool" gui-text="Draw label inset guides">true</param>
+    <param name="draw_shapes" type="bool" gui-text="Draw label shapes">true</param>
+    <param name="shape_inset" type="float" min="0" max="1000" gui-text="Shape inset">5</param>
+    <param name="draw_inset_shapes" type="bool" gui-text="Draw inset shapes">true</param>
+    <param name="set_page_size" type="bool" gui-text="Set page size (presets only)">false</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+				<submenu name="Grids/Guides"/>
+			</submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">label_guides.py</command>
+    </script>
+</inkscape-extension>

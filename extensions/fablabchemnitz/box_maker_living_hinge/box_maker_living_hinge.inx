@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Box Maker - Living Hinge</name>
+    <id>fablabchemnitz.de.box_maker_living_hinge</id>
+    <param name="hingeOpt" gui-text="Hinge Type" type="optiongroup" appearance="combo">
+        <option value="0">Standard parallel slit</option>
+        <option value="1">Single spiral</option>
+        <option value="2">Double spiral</option>
+        <option value="3">Parallel snake</option>
+        <option value="4">Perpendicular snake</option>
+        <option value="5">Double perpendicular snake</option>
+    </param>
+    <param name="unit" gui-text="Unit" type="optiongroup" appearance="combo">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="in">in</option>
+    </param>
+    <param name="inside" type="optiongroup" appearance="combo" gui-text="Box Dimensions">
+        <option value="1">Inside</option>
+        <option value="0">Outside</option>
+    </param>
+    <param name="length" type="float" precision="3" min="0.0" max="10000.0" gui-text="Length">40.0</param>
+    <param name="width" type="float" precision="3" min="0.0" max="10000.0" gui-text="Width">80.0</param>
+    <param name="height" type="float" precision="3" min="0.0" max="10000.0" gui-text="Height">50.0</param>
+    <param name="tab" type="float" precision="2" min="0.0" max="10000.0" gui-text="Minimum/Preferred Tab Width">6.0</param>
+    <param name="equal" type="optiongroup" appearance="combo" gui-text="Tab Width">
+        <option value="0">Fixed</option>
+        <option value="1">Proportional</option>
+    </param>
+    <param name="thickness" type="float" precision="2" min="0.0" max="10000.0" gui-text="Material Thickness">3.0</param>
+    <param name="kerf" type="float" precision="3" min="0.0" max="10000.0" gui-text="Kerf (cut width)">0.1</param>
+    <param name="clearance" type="float" precision="3" min="0.0" max="10000.0" gui-text="Clearance">0.01</param>
+    <param name="style" gui-text="Layout/Style" type="optiongroup" appearance="combo">
+        <option value="0">Diagrammatic</option>
+        <option value="1">In-line(compact)</option>
+    </param>
+    <param name="spacing" type="float" precision="2" min="0.0" max="10000.0" gui-text="Space Between Parts">1.0</param>
+    <param name="hingeThick" type="float" precision="3" min="0.0" max="10000.0" gui-text="Hinge remaining wood thickness">2.0</param>
+    <param name="thumbTab" type="float" precision="3" min="0.0" max="10000.0" gui-text="Lid thumb tab length (0 for no tab)">15.000</param>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Finger-jointed/Tabbed Boxes"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">box_maker_living_hinge.py</command>
+    </script>
+</inkscape-extension>
