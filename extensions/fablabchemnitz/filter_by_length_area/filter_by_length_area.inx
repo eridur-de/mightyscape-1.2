@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Filter By Length/Area</name>
+    <id>fablabchemnitz.de.filter_by_length_area</id>
+    <param name="tab" type="notebook">
+        <page name="tab_settings" gui-text="Filter By Length/Area">
+            <label appearance="header">General Settings</label>
+            <param name="debug" type="bool" gui-text="Enable debug">false</param>
+            <param name="apply_transformations" type="bool" gui-text="Apply transformations (requires separate extension)" gui-description="This will call the extension 'Apply Transformations'. Helps avoiding geometry shifting">false</param>
+            <param name="breakapart" type="bool" gui-text="Break apart selected path(s) into segments" gui-description="Performs CTRL + SHIFT + K to break paths into parts">true</param>
+            <param name="breakapart_total" type="bool" gui-text="Break segments to lines" gui-description="Gives the best results for nodes/&lt;interval&gt; filtering">true</param>
+            <hbox>
+                <vbox>
+                    <label appearance="header">Threshold</label>
+                    <param name="unit" gui-text="Unit" type="optiongroup" appearance="combo" gui-description="The unit applies to interval and thresholds">
+                        <option value="mm">mm</option>
+                        <option value="cm">cm</option>
+                        <option value="px">px</option>
+                        <option value="pt">pt</option>
+                        <option value="pc">pc</option>
+                        <option value="in">in</option>
+                    </param>
+                    <param name="nodes_interval" type="float" min="0.000" max="99999.000" precision="3" gui-text="Interval">10.000</param>
+                    <separator/>
+                    <param name="min_filter_enable" type="bool" gui-text="Enable filtering min.">false</param>
+                    <param name="min_threshold" type="float" min="0.000" precision="3" max="10000000.000" gui-text="Min. length or area">1.000</param>
+                    <param name="min_nodes" type="int" min="0" max="99999" gui-text="Min. nodes/&lt;interval&gt;">2</param>
+                    <param name="max_filter_enable" type="bool" gui-text="Enable filtering max.">false</param>
+                    <param name="max_threshold" type="float" min="0.000" precision="3"  max="10000000.000" gui-text="Max. length or area">10000000.000</param>
+                    <param name="max_nodes" type="int" min="0" max="99999" gui-text="Max. nodes/&lt;interval&gt;">10000000</param>
+                    <param name="precision" type="int" min="0" max="16" gui-text="Precision">3</param>
+                </vbox>
+                <separator/>
+                <vbox>
+                    <label appearance="header">Filter</label>
+                    <param name="measure" type="optiongroup" appearance="combo" gui-text="By">
+                        <option value="length">Length (Unit)</option>
+                        <option value="nodes">Nodes per length (Unit)</option>
+                        <option value="area">Area (Unit^2)</option>
+                    </param>
+                    <label appearance="header">Actions</label>
+                    <param name="delete" type="bool" gui-text="Delete">false</param>
+                    <hbox>
+                        <param name="color_mode" type="optiongroup" appearance="combo" gui-text="Color mode">
+                            <option value="none">None</option>
+                            <option value="colorize_rainbow">Colorize (Rainbow effect)</option>
+                            <option value="colorize_single">Colorize (Single color)</option>
+                        </param>
+                        <param name="color_single" type="color" appearance="colorbutton" gui-text="Single color">0xff00ffff</param>
+                    </hbox>
+                    <hbox>
+                        <param name="sort_by_value" type="bool" gui-text="Sort by value">false</param>
+                        <param name="reverse_sort_value" type="bool" gui-text="Reverse">false</param>
+                    </hbox>
+                    <hbox>
+                        <param name="sort_by_id" type="bool" gui-text="Sort by Id">false</param>
+                        <param name="reverse_sort_id" type="bool" gui-text="Reverse">false</param>
+                    </hbox>
+                    <param name="rename_ids" type="bool" gui-text="Rename (IDs)">false</param>
+                    <hbox>
+                        <param name="set_labels" type="bool" gui-text="Set labels" gui-description="Adds type and value to the element's label">false</param>
+                        <param name="remove_labels" type="bool" gui-text="Remove labels" gui-description="Remove labels (cleaning option for previous applications)">false</param>
+                    </hbox>
+                    <param name="group" type="bool" gui-text="Group elements">false</param>
+                    <param name="cleanup" type="bool" gui-text="Cleanup unused groups/layers" gui-description="This will call the extension 'Remove Empty Groups' if available">false</param>
+                </vbox>
+            </hbox>
+            <label appearance="header">Tips</label>
+            <label>Applies to paths only! Rectangles and other elements are not supported. If your selection is empty, the whole document will be parsed.
+If you did not enable any filter, the actions are applied either to the whole selection or the complete document too.</label>
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Filter By Length/Area</label>
+            <label>A tool to filter for paths by different filters. Allows multiple actions to perform on.</label>
+            <label>2020 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/filterbylengtharea</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Paths - Cut/Intersect/Purge"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">filter_by_length_area.py</command>
+    </script>
+</inkscape-extension>

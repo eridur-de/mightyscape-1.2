@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>Snap Object Points</name>
+	<id>fablabchemnitz.de.snap_object_points</id>
+	<param name="max_dist" type="float" min="1" max="9999" precision="2" gui-text="Maximum snap distance">25</param>
+	<param name="controls" type="bool" gui-text="Snap control points">true</param>
+	<param name="ends" type="bool" gui-text="Snap endpoints">true</param>
+	<param name="first_only" type="bool" gui-text="Modify only the first selected path">false</param>
+	<label>This effect snaps points in each selected object to nearby points in other selected objects.</label>
+    <effect>
+		<object-type>path</object-type>
+			<effects-menu>
+				<submenu name="FabLab Chemnitz">
+					<submenu name="Modify existing Path(s)"/>
+				</submenu>
+			</effects-menu>
+	</effect>
+	<script>
+		<command location="inx" interpreter="python">snap_object_points.py</command>
+	</script>
+</inkscape-extension>

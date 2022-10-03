@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Filter By Length/Area",
+    "id": "fablabchemnitz.de.filter_by_length_area",
+    "path": "filter_by_length_area",
+    "dependent_extensions": [
+      "apply_transformations",
+      "remove_empty_groups"
+    ],
+    "original_name": "Filter By Length/Area",
+    "original_id": "com.filter_by_length_area",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/filter_by_length_area",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=74645969",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/vmario89"
+    ]
+  }
+]

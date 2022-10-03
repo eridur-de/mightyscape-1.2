@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Scale To Size</name>
+    <id>fablabchemnitz.de.scale_to_size</id>
+    <param name="unit" gui-text="Unit" type="optiongroup" appearance="combo">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="in">in</option>
+        <option value="pt">pt</option>
+        <option value="px">px</option>
+    </param>
+    <param name="expected_size" type="float" precision="3" min="0.001" max="10000.000" gui-text="Expected size: ">100.000</param>
+    <param name="copies" type="int" min="0" max="99999" gui-text="Count of copies" gui-description="0 means just the original element is transformed.">0</param>
+    <param name="scale_increment" type="float" precision="3" min="-10000.000" max="10000.000" gui-text="Scale increment (in selected units): ">0.000</param>
+    <param name="scale_type" type="optiongroup" appearance="combo" gui-text="Scaling type:">
+        <option value="Horizontal">Horizontal</option>
+        <option value="Vertical">Vertical</option>
+        <option value="Uniform">Uniform</option>
+    </param>
+    <param name="keep_aspect" type="bool" gui-text="Keep aspect ratio" gui-description="Does not apply for uniform scaling.">true</param>
+    <label>This effect will measure the selected paths and scale them to have the given size. Does not work for objects (you need to convert)!</label>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Transformations" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">scale_to_size.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Dots To Path Points</name>
+    <id>fablabchemnitz.de.dots_to_path_points</id>
+    <param name="tab" type="notebook">
+        <page name="points" gui-text="Select Points">
+            <param type="bool" name="endpoints" gui-text="End Points">true</param>
+            <param type="bool" name="controlpoints" gui-text="Control Points">false</param>
+        </page>
+        <page name="usage" gui-text="Usage">
+            <label xml:space="preserve">
+This extension places an arbitrary object at the points
+of a path.
+
+Select two Objects:
+
+1. an object representing the path
+2. an object representing the dot
+
+The extension uses the SVG &lt;use&gt;-element which are
+linked to the second object. Changes of the shape of the
+source object changes the linked objects.
+            </label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+         <submenu name="FabLab Chemnitz">
+            <submenu name="Shape/Pattern from existing Path(s)"/>
+         </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">dots_to_path_points.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Convert Vertical/Horizontal To Line",
+    "id": "fablabchemnitz.de.convert_vertical_horizontal_to_line",
+    "path": "convert_vertical_horizontal_to_line",
+    "dependent_extensions": null,
+    "original_name": "Convert Vertical/Horizontal To Line",
+    "original_id": "fablabchemnitz.de.convert_vertical_horizontal_to_line",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/LICENSE",
+    "comment": "Written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/convert_vertical_horizontal_to_line",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=79626259",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/vmario89"
+    ]
+  }
+]

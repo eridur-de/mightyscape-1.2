@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>Edit Attributes</name>
+	<id>fablabchemnitz.de.edit_attributes</id>
+	<label>Edit value of attribute on selected elements.</label>
+	<label>For namespaces use {namespaceUrl}attributeName</label>
+	<param name="attributeName" type="string" gui-text="Name:"></param>
+	<param name="attributeValue" type="string" gui-text="Value: "></param>
+	<param name="mode" type="optiongroup" appearance="combo" gui-text="Operation on attribute"> 
+		<option value="set">Set</option>
+		<option value="append">Append</option>
+		<option value="prefix">Prefix</option>
+		<option value="subtract">Remove content</option>
+		<option value="remove">Remove attribute</option>
+	</param>
+	<effect>
+		<object-type>all</object-type>
+		<effects-menu>
+			<submenu name="FabLab Chemnitz">
+				<submenu name="Various"/>
+			</submenu>
+		</effects-menu>
+	</effect>
+	<script>
+		<command location="inx" interpreter="python">edit_attributes.py</command>
+	</script>
+</inkscape-extension>
