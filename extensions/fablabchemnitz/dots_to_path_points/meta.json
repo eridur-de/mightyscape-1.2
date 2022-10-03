@@ -9,13 +9,13 @@
     "license": "GNU GPL v3",
     "license_url": "https://github.com/chrille69/Inkscape-Extension-pathpoints2dots/blob/master/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/dots_to_path_points",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/dots_to_path_points",
     "fork_url": "https://github.com/chrille69/Inkscape-Extension-pathpoints2dots",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Dots+To+Path+Points",
     "inkscape_gallery_url": null,
     "main_authors": [
       "github.com/chrille69",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

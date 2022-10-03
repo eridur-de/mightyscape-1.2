@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Create</name>
+    <id>fablabchemnitz.de.table_create</id>
+    <param name="tab" type="notebook">
+        <page name="options" gui-text="Options">
+            <param name="cols" type="int" gui-text="The number of columns:">2</param>
+            <param name="rows" type="int" gui-text="The number of rows:">2</param>
+            <param name="width" type="string" gui-text="The width of the cell:">100mm</param>
+            <param name="height" type="string" gui-text="The height of the cell:">20mm</param>
+            <label>VERY IMPORTANT: You will notice that the newly created table does not contain text. In order to edit any cell's text, just select the cell and then from the Extensions menu select Table -&gt; Edit -&gt; Selected cells text</label>
+        </page>
+        <page name="help" gui-text="Help">
+            <label>This is the first step in using the table support. First create a table. You have to input the number of rows, the number of columns and the width and the height of each cell.  The width of the table will equal the number of columns times the width of each cell and the table height will equal the number of rows times the height of each cell. If you want to set a specific width and height for the table, after creating it, you just select it and then select from the Extensions menu -&gt; Table -&gt; Edit -&gt; Table width and height. For the width and height you can also input the measurement unit (mm, cm, in, px etc.). If you don't input any measurement unit, the size will be calculated in pixels. Do not use any space between the value and the unit.</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Table" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">table_create.py</command>
+    </script>
+</inkscape-extension>

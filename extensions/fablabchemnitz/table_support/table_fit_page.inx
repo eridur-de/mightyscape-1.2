@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Selected table to page</name>
+    <id>fablabchemnitz.de.table_fit_page</id>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Table">
+                    <submenu name="Fit" />
+                </submenu>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">table_fit_page.py</command>
+    </script>
+</inkscape-extension>

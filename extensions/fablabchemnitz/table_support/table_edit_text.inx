@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Selected cells text</name>
+    <id>fablabchemnitz.de.table_edit_text</id>
+    <param name="size" type="string" gui-text="The font size:">12px</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Table">
+                    <submenu name="Edit" />
+                </submenu>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">table_edit_text.py</command>
+    </script>
+</inkscape-extension>

@@ -9,13 +9,13 @@
     "license": "GNU GPL v3",
     "license_url": "https://inkscape.org/de/~jabiertxof/%E2%98%85stroke-color-as-fill",
     "comment": "ported to Inkscape v1 by Mario Voigt",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/stroke_color_as_fill",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/stroke_color_as_fill",
     "fork_url": "https://inkscape.org/de/~jabiertxof/%E2%98%85stroke-color-as-fill",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Stroke+Color+As+Fill",
     "inkscape_gallery_url": null,
     "main_authors": [
       "inkscape.org/jabiertxof",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

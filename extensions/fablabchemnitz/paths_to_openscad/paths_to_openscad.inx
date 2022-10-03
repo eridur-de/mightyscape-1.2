@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Paths To OpenSCAD</name>
+   <id>fablabchemnitz.de.paths_to_openscad</id>
+   <param name="tab" type="notebook">
+      <page name="splash" gui-text="Paths to OpenSCAD">
+         <param type="path" name="fname" gui-text="Output file" mode="file_new" filetypes="scad" gui-description="Use '{NAME}.scad' here to use the name from svg.">{NAME}.scad</param>
+         <param name="zsize" type="float" min="0" max="1000" precision="2" gui-text="Depth (Z) [mm]" gui-description="Default 3D extrude depth (when no zsize is parsed from an svg object).">5.0</param>
+         <param name="parsedesc" type="bool" gui-text="Description parsing" gui-description="Read the extruded zsize, zoffset, scale per svg object from its description or ID. See the Extrusion Syntax tab for details.">true</param>
+         <param name="scadview" type="bool" gui-text="View in OpenSCAD" gui-description="Start OpenSCAD to view the 3D-model.">false</param>
+         <param name="scad2stl" type="bool" gui-text="Convert to STL" gui-description="Also save an .stl file next to the specified output file.">false</param>
+         <param name="stlpost" type="bool" gui-text="STL post processing" gui-description="Start e.g. a slicer after converting to STL. See the Commands tab for details.">false</param>
+         <param name="stlmodule" type="bool" gui-text="Only create a module">false</param>
+      </page>
+      <page name="tuning" gui-text="Tuning">
+         <param name="smoothness" type="float" min="0.0001" max="5" precision="4" gui-text="Smoothing" gui-description="Used when rendering curves. Smaller values are smoother. Range: 0.0001 to 5">0.2</param>
+         <param type="float" name="chamfer" min="0.0" gui-text="Add chamfer radius [mm]">0</param>
+         <param name="chamfer_fn" type="optiongroup" appearance="combo" gui-text="Chamfer precision ($fn)">
+            <option value="4">4: Rough (fast)</option>
+            <option value="12">12: Medium (slow)</option>
+            <option value="16">16: Fine (slower)</option>
+            <option value="32">32: Perfekt (slowest)</option>
+         </param>
+         <label appearance="header">Outline Mode</label>
+         <label>Objects are extruded into 3D either in normal mode, or in outline mode. Normally filled areas are extruded, ignoring the line width. Objects with no fill are rendered in outline mode. Note: the 'Scale: XX %' instruction has no effect in outline mode.</label>
+         <param name="min_line_width" type="float" min="0.1" max="10" gui-text="Minimum line width [mm]">1.0</param>
+         <param type="float" name="line_width_scale_perc" min="1" max="10000" gui-text="Scale line width [%]">100.0</param>
+         <param name="line_fn" type="optiongroup" appearance="combo" gui-text="Line width precision ($fn)">
+            <option value="4">4: Rough (fast)</option>
+            <option value="8">8: Medium (slow)</option>
+            <option value="16">16: Fine (slower)</option>
+            <option value="32">32: Perfekt (slowest)</option>
+         </param>
+         <param name="force_line" type="bool" gui-text="Force outline mode, ignore fill">false</param>
+         <spacer/>
+      </page>
+      <page name="commands" gui-text="Commands">
+         <label>Placeholders: You can use "{NAME}.scad" for the OpenSCAD file to read as specified as 'Output file' in the main tab. You can use "{NAME}.stl" for an STL file to write.</label>
+         <param name="scadviewcmd" type="string" gui-text="View in OpenSCAD:" gui-description="Is only started, if no command of the same name is running. Always started non-blocking. A running OpenSCAD automatically picks up changed file content">openscad "{NAME}.scad"</param>
+         <param name="scad2stlcmd" type="string" gui-text="Convert to STL:" gui-description="Automatically run, when STL postprocessing is requested.">openscad "{NAME}.scad" -o "{NAME}.stl"</param>
+         <param name="stlpostcmd" type="string" gui-text="STL postprocessing:" gui-description="Append an '&amp;' for non-blocking.">cura "{NAME}.stl" &amp;</param>
+      </page>
+      <page name="extrusion" gui-text="Extrusion Syntax">
+         <label xml:space="preserve">The depth (Z-Axis) and other parameters can be defined through an svg object's description. The menu 'Object-&gt;Object Properties ...' (Shift-Ctrl-O) shows details of one selected object.
+
+If an object's ID is in either name_XXX_mm or name_XXXmm
+format, then XXX is translated into zsize in millimeters.
+Use . or _ as separator for a decimal number.
+Note that all whitespace or comma are saved as '_' in ID.
+    </label>
+         <label appearance="header">Syntax for the object property description</label>
+         <label xml:space="preserve">Depth: 10 mm
+  Linear extrusion length (or Z-Size)) of the object.
+
+Antimatter: true
+  Object is part of the difference set, which is
+  cut away from all other objects.
+
+Offset: 4.5 mm
+  Move an object upwards to create a balcony (or window).
+
+Taper: 90 %           or           Taper: 120,60 %
+  Scale the object along its Z-axis. The bottom surface always
+  is as drawn, but the top surface is scaled to this value.
+  If two values are given (separated by Komma), different
+  scaling applies along X- and Y-axis.
+
+Parameters in the objects take precedence over groups.</label>
+      </page>
+      <page name="info" gui-text="About ...">
+         <label xml:space="preserve">
+This extension converts Inkscape paths to extruded polygons in OpenSCAD. Before using, some objects must firat be converted to paths with the "Path &gt; Object to Path" menu item.
+
+Inkscape's units of pixels are converted to millimeters using the SVG standard's definition of 96 px = 1 inch = 25.4 mm. (Before inkscape 0.92 the standard was 90 px per inch, Adobe products often use 75 px per inch)
+
+Dan Newman (dan newman @ mtbaldy us)
+Josef Skladanka (jskladan @ redhat com)
+Juergen Weigert (juergen @ fabmail org)
+
+Find updates at</label>
+<label appearance="url">https://github.com/fablabnbg/inkscape-paths2openscad/releases</label>
+      </page>
+   </param>
+   <effect needs-live-preview="false">
+      <object-type>all</object-type>
+      <effects-menu>
+         <submenu name="FabLab Chemnitz">
+            <submenu name="Import/Export/Transfer"/>
+         </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">paths_to_openscad.py</command>
+   </script>
+</inkscape-extension>

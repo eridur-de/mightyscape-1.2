@@ -9,13 +9,13 @@
     "license": "GNU GPL v2",
     "license_url": "https://github.com/nicolaromano/triangulate/blob/master/triangulation.py",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/image_triangulation",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/image_triangulation",
     "fork_url": "https://github.com/nicolaromano/triangulate",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Image+Triangulation",
     "inkscape_gallery_url": null,
     "main_authors": [
       "github.com/nicolaromano",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

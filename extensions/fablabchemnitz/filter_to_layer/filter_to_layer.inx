@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Filter To Layer</name>
+    <id>fablabchemnitz.de.filter_to_layer</id>
+    <param name="type" type="optiongroup" appearance="radio" gui-text="Filter to current layer:">
+        <option>Add</option>
+        <option>Remove</option>
+    </param>
+    <label>Filter from selected item: Apply only for the future draws and for selected item. Problem: you can't add more live effects to elements.</label>
+    <effect needs-document="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Groups and Layers"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">filter_to_layer.py</command>
+    </script>
+</inkscape-extension>

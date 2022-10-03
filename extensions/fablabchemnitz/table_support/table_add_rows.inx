@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Rows</name>
+    <id>fablabchemnitz.de.table_add_rows</id>
+    <param name="number" type="int" gui-text="The number of rows to add:">1</param>
+    <param name="where" type="optiongroup" appearance="radio" gui-text="Before or after the selected rows:">
+        <option value="before">Before</option>
+        <option value="after">After</option>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Table">
+                    <submenu name="Add" />
+                </submenu>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">table_add_rows.py</command>
+    </script>
+</inkscape-extension>

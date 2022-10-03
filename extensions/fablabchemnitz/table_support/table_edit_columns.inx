@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Selected columns width</name>
+    <id>fablabchemnitz.de.table_edit_columns</id>
+    <param name="width" type="string" gui-text="Input the new width:">10mm</param>
+    <!--param name="keep" type="bool" gui-text="Keep the table original height">false</param-->
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Table">
+                    <submenu name="Edit" />
+                </submenu>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">table_edit_columns.py</command>
+    </script>
+</inkscape-extension>

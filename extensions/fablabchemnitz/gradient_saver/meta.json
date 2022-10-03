@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Gradient Saver",
+    "id": "fablabchemnitz.de.gradient_saver",
+    "path": "gradient_saver",
+    "dependent_extensions": null,
+    "original_name": "Gradient Saver",
+    "original_id": "id.artemtech.gradient_saver",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/artemtech/inkscape-gradient-saver/blob/inkscape-1.0/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/gradient_saver",
+    "fork_url": "https://github.com/artemtech/inkscape-gradient-saver/",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Gradient+Saver",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/artemtech",
+      "github.com/eridur-de"
+    ]
+  }
+]

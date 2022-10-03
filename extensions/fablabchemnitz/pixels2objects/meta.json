@@ -9,13 +9,13 @@
     "license": "GNU GPL v3",
     "license_url": "https://inkscape.org/~pakin/%E2%98%85pixels-to-objects",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/pixels2objects",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/pixels2objects",
     "fork_url": "https://inkscape.org/~pakin/%E2%98%85pixels-to-objects",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Pixels+To+Objects",
     "inkscape_gallery_url": null,
     "main_authors": [
       "inkscape.org/pakin",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

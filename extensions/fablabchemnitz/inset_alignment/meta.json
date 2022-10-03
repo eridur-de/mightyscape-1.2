@@ -9,13 +9,13 @@
     "license": "GNU GPL v2",
     "license_url": "https://sourceforge.net/p/razorfoss/svn/HEAD/tree/trunk/Inkscape/InsetAlignmentExtension/InsetAlignment.py",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/inset_alignment",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/inset_alignment",
     "fork_url": "https://sourceforge.net/p/razorfoss/svn/HEAD/tree/trunk/Inkscape/InsetAlignmentExtension/",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Inset+Alignment",
     "inkscape_gallery_url": null,
     "main_authors": [
       "Luke Phillips:lukerazor@hotmail.com",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

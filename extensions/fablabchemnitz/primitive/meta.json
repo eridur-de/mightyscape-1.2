@@ -7,14 +7,14 @@
     "original_name": "Primitive (Michael Fogleman)",
     "original_id": "fablabchemnitz.de.primitive",
     "license": "GNU GPL v3",
-    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/LICENSE",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/primitive",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/primitive",
     "fork_url": "https://github.com/fogleman/primitive",
     "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=78807580",
     "inkscape_gallery_url": "https://inkscape.org/~MarioVoigt/%E2%98%85primitive-for-inkscape",
     "main_authors": [
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]
