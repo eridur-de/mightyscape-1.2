@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Purge Pointy Paths</name>
+    <id>fablabchemnitz.de.purge_pointy_paths</id>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Paths - Cut/Intersect/Purge" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">purge_pointy_paths.py</command>
+    </script>
+</inkscape-extension>

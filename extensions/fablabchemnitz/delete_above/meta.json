@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Delete Above",
+    "id": "fablabchemnitz.de.delete_above",
+    "path": "delete_above",
+    "dependent_extensions": null,
+    "original_name": "Delete Above",
+    "original_id": "com.galvanist.sw.plugins.deleteabove",
+    "license": "BSD-3-Clause License",
+    "license_url": "https://github.com/glvnst/cruft/blob/master/delete_above/LICENSE.txt",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/delete_above",
+    "fork_url": "https://github.com/glvnst/cruft/tree/master/delete_above",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Delete+Above",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/glvnst",
+      "github.com/eridur-de"
+    ]
+  }
+]

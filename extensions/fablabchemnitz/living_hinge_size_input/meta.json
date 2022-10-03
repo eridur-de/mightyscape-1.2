@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Living Hinge (Size Input)",
+    "id": "fablabchemnitz.de.living_hinge_size_input",
+    "path": "living_hinge_size_input",
+    "dependent_extensions": null,
+    "original_name": "Bend Wood Cuts Pattern",
+    "original_id": "com.zerjio.inkscape.bwcp",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/zerjillo/laserCutInkscapeExtensions/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/living_hinge_size_input",
+    "fork_url": "https://github.com/zerjillo/laserCutInkscapeExtensions",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55019631",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/zerjillo",
+      "github.com/eridur-de"
+    ]
+  }
+]

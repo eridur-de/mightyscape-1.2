@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Set CSS Class On Elements</name>
+    <id>fablabchemnitz.de.set_css_class</id>
+    <label>Set a CSS class on the selected elements. Their current inline styles will be removed.</label>
+    <param name="name" type="string" gui-text="CSS class name:">class1</param>
+    <param name="clear_styles" type="bool" gui-text="clear inline styling">true</param>
+    <effect needs-live-preview="false">
+        <object-type>all</object-type>
+        <effects-menu>
+         <submenu name="FabLab Chemnitz">
+            <submenu name="Various"/>
+         </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">set_css_class.py</command>
+    </script>
+</inkscape-extension>

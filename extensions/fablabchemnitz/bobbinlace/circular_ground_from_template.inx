@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Bobbin Lace - Circular Ground from Template</name>
+   <id>fablabchemnitz.de.bobbinlace.circular_ground_from_template</id>
+   <label appearance="header">Wrap lace pattern found in template file around a circle.</label>
+   <label>Note: Drawing can become quite large when "Number of copies around circle" is small or "Diameter" of inside circle is large.</label>
+   <param name="file" type="path" gui-text="Template file name (full path):" mode="file" filetypes="txt">./templates/</param>
+   <label appearance="header">Grid description</label>
+   <hbox indent="1">
+      <param name="angle" type="float" precision="1" min="30" max="89" gui-text="Angle (degrees):">45.0</param>
+   </hbox>
+   <hbox indent="1">
+      <param name="cols" type="int" min="3" max="1000" gui-text="Number of copies around circle:">30</param>
+   </hbox>
+   <label appearance="header">Patch description</label>
+   <hbox indent="1">
+      <param name="diameter" type="float" precision="2" min="0.1" max="1000" gui-text="Inner circle diameter:">50</param>
+      <param name="diamunits" gui-text=" " type="optiongroup" appearance="combo">
+         <option value="mm">mm</option>
+         <option value="cm">cm</option>
+         <option value="in">in</option>
+         <option value="px">px</option>
+         <option value="pt">pt</option>
+      </param>
+   </hbox>
+   <hbox indent="1">
+      <param name="rows" type="int" min="1" max="1000" gui-text="Number of circles:">3</param>
+   </hbox>
+   <label appearance="header">Line Appearance</label>
+   <hbox indent="1">
+      <param name="linewidth" type="float" precision="2" min="0.01" max="1000" gui-text="Width:">1</param>
+      <param name="lineunits" gui-text=" " type="optiongroup" appearance="combo">
+         <option value="px">px</option>
+         <option value="mm">mm</option>
+         <option value="cm">cm</option>
+         <option value="in">in</option>
+         <option value="pt">pt</option>
+      </param>
+   </hbox>
+   <hbox indent="1">
+      <param name="linecolor" type="color" appearance="colorbutton" gui-text="Color:">255</param>
+   </hbox>
+   <effect needs-live-preview="true">
+      <object-type>all</object-type>
+      <effects-menu>
+         <submenu name="FabLab Chemnitz">
+            <submenu name="Grids/Guides"/>
+         </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">circular_ground_from_template.py</command>
+   </script>
+</inkscape-extension>

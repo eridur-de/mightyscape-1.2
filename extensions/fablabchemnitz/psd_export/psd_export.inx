@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Photoshop PSD Export</name>
+    <id>fablabchemnitz.de.psd_export</id>
+    <param name="guides" type="bool" gui-text="Save Guides">false</param>
+    <param name="grid" type="bool" gui-text="Save Grid">false</param>
+    <param name="background" type="bool" gui-text="Save background color">false</param>
+    <param name="dpi" type="float" min="1" max="3000" gui-text="File Resolution">96</param>
+    <output>
+        <extension>.psd</extension>
+        <mimetype>application/x-psd</mimetype>
+        <filetypename>Photoshop PSD (*.psd)</filetypename>
+        <filetypetooltip>Photoshop PSD (*.psd)</filetypetooltip>
+        <dataloss>true</dataloss>
+    </output>
+    <script>
+        <command location="inx" interpreter="python">psd_export.py</command>
+        <helper_extension>org.inkscape.output.svg.inkscape</helper_extension>
+    </script>
+</inkscape-extension>

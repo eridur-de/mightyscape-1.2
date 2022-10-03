@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Eraser Layer</name>
+    <id>fablabchemnitz.de.eraser_layer</id>
+    <effect needs-document="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Groups and Layers"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">eraser_layer.py</command>
+    </script>
+</inkscape-extension>

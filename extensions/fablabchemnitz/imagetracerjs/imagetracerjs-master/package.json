@@ -1,0 +1,39 @@
+{
+  "name": "imagetracerjs",
+  "version": "1.2.6",
+  "description": "raster image tracer and vectorizer, bitmap to SVG converter",
+  "main": "imagetracer_v1.2.6.js",
+  "scripts": {
+    "test": "node ./nodecli/nodecli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jankovicsandras/imagetracerjs.git"
+  },
+  "keywords": [
+    "image",
+    "tracer",
+    "tracing",
+    "vector",
+    "raster",
+    "vectorize",
+    "vectorizing",
+    "convert",
+    "conversion",
+    "converting",
+    "tracing",
+    "bitmap",
+    "svg",
+    "bmp",
+    "png",
+    "jpg",
+    "jpeg",
+    "gif"
+  ],
+  "author": "András Jankovics",
+  "license": "Unlicense",
+  "bugs": {
+    "url": "https://github.com/jankovicsandras/imagetracerjs/issues"
+  },
+  "homepage": "https://github.com/jankovicsandras/imagetracerjs#readme"
+}

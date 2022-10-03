@@ -1,0 +1,24 @@
+[
+  {
+    "name": "<various>",
+    "id": "fablabchemnitz.de.bobbinlace.<various>",
+    "path": "bobbinlace",
+    "dependent_extensions": null,
+    "original_name": "<various>",
+    "original_id": "tesselace.<various>",
+    "license": "GNU GPL v3 / Simplified BSD License",
+    "license_url": "https://d-bl.github.io/inkscape-bobbinlace/",
+    "comment": "Mixed licenses",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/bobbinlace",
+    "fork_url": "https://github.com/d-bl/inkscape-bobbinlace",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Bobbin+Lace",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/d-bl",
+      "github.com/veronika",
+      "github.com/Neon22",
+      "github.com/jo-pol",
+      "github.com/eridur-de"
+    ]
+  }
+]
