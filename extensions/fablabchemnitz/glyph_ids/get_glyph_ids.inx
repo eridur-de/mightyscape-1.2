@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Glyph IDs - Get</name>
+    <id>fablabchemnitz.de.glyph_ids.get_glyph_ids</id>
+    <param type="notebook" name="tab">
+        <page name="getGlyphIDs" gui-text="Glyph IDs - Get">
+            <label>Get all glyph ids (all path ids in layer with id = glyph) and combine to a string.</label>
+            <label>This string will be saved into a text element in a new layer 'glyphIds'.</label>
+            <label>Use this string when setting the ids (Glyph IDs - set) before generating your new font as the ids might get lost during path operations</label>
+        </page>
+        <page name="help" gui-text="Information">
+        <label appearance="header">For more information</label>
+        <label appearance="url">https://gitlab.com/EllenWasbo/inkscape-extension-getsetGlyphIDs</label>
+        <label>and</label>
+        <label appearance="url">http://cutlings.wasbo.net/inkscape-extension-automate-glyph-ids/</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Text" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">get_glyph_ids.py</command>
+    </script>
+</inkscape-extension>

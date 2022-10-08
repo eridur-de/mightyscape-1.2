@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Path Intersections",
+    "id": "fablabchemnitz.de.path_intersections",
+    "path": "path_intersections",
+    "dependent_extensions": null,
+    "original_name": "<unknown>",
+    "original_id": "<unknown>",
+    "license": "GNU GPL v2",
+    "license_url": "https://python.hotexamples.com/de/site/file?hash=0x3005162b28d022be32458df2259016982d4fcd5657f8339f79e63614a0b5494d&fullName=precut.py&project=starshipfactory/precut",
+    "comment": "",
+    "source_url": "",
+    "fork_url": "https://python.hotexamples.com/de/site/file?hash=0x3005162b28d022be32458df2259016982d4fcd5657f8339f79e63614a0b5494d&fullName=precut.py&project=starshipfactory/precut",
+    "documentation_url": "",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/starshipfactory",
+      "github.com/eridur-de"
+    ]
+  }
+]
