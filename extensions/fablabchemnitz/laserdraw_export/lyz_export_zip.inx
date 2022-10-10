@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>LaserDraw Export (zip)</name>
+   <id>fablabchemnitz.de.laserdraw_export.zip</id>
+   <!--
+    <param name="area_select" type="optiongroup" appearance="combo" gui-text="Area: ">
+    <option value="page_area">Page Area (use for engrave and cut)</option>
+    <option value="object_area">Object Area (for single operations only)</option>
+    </param>
+    -->
+   <label>Formatting can be used to break a design into separate cutting and engraving files. Red lines indicate cutting, blue lines indicate engraving, black indicates raster engraving.</label>
+   <!--
+    <param name="cut_select" type="optiongroup" appearance="combo" gui-text="Type: ">
+    <option value="vector_red"> Vector Cuts (export red lines)                      </option>
+    <option value="vector_blue"> Vector Engrave (export blue lines)                  </option>
+    <option value="raster"  > Raster Engrave (export everything else)             </option>
+    <option value="all"     > All (export vectors and raster engrave to one file) </option>
+    <option value="image"   > Image (export all items as raster)                  </option>
+    </param>
+    -->
+   <param name="resolution" type="int" min="100" max="1000" gui-text="Raster Image Resolution">1000</param>
+   <param name="margin" type="float" precision="1" min="0" max="9999" gui-text="Laser Draw Margin Size">2.0</param>
+   <param name="txt2paths" type="bool" gui-text="Convert Text to Paths">false</param>
+   <!--
+    <param name="texthelp" type="description">
+    Depending on your Inkscape version the internal resolution need to be 72, 90 or 96 to get the properly scaled output.</param>
+    <param name="inkscape_version" type="int" min="72" max="96" gui-text="Inkscape Internal Resolution">1</param>
+    -->
+   <param name="inkscape_version" type="optiongroup" appearance="combo" gui-text="Inkscape Version:">
+      <option value="100">1.00 or Newer</option>
+      <option value="92">0.92 to 0.99</option>
+      <option value="91">0.91 or Older</option>
+   </param>
+   <output>
+      <extension>.zip</extension>
+      <mimetype>application/x-zip</mimetype>
+      <filetypename>Laser Draw LYZ (ZIP)(*.zip)</filetypename>
+      <filetypetooltip>LaserDraw LYZ Output Zipped</filetypetooltip>
+      <dataloss>true</dataloss>
+   </output>
+   <script>
+      <command location="inx" interpreter="python">lyz_export.py</command>
+      <helper_extension>org.inkscape.output.svg.inkscape</helper_extension>
+   </script>
+</inkscape-extension>

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "JPEG Export",
+    "id": "fablabchemnitz.de.jpeg_export",
+    "path": "jpeg_export",
+    "dependent_extensions": null,
+    "original_name": "JPEG Export",
+    "original_id": "id.giac.export.jpg",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/giacmir/Inkscape-JPEG-export-extension/blob/master/jpegexport.py",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/jpeg_export",
+    "fork_url": "https://github.com/giacmir/Inkscape-JPEG-export-extension",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/JPEG+Export",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/giacmir",
+      "github.com/eridur-de"
+    ]
+  }
+]

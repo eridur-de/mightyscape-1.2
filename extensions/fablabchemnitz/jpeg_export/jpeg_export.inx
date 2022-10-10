@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>JPEG Export</name>
+    <id>fablabchemnitz.de.jpeg_export</id>
+    <param name="path" type="path" gui-text="Export path" gui-description="Full path to your file, e.g. 'C:\Users\Username\Documents\myimage.jpg'" filetypes="jpg" mode="file_new">C:\Users\</param>
+    <param name="bgcol" type="string" gui-text="Background color (leave blank for white)" gui-description="Background color hex code, e.g. '#abc123'"></param>
+    <param name="quality" type="int" min="0" max="100" gui-text="Quality %" gui-description="JPG compression quality">100</param>
+    <param name="density" type="int" min="30" max="2400" gui-text="Resolution (ppi)" gui-description="Recommended: 90 (screens) or 300 (print)">90</param>
+    <param name="page" type="bool" gui-text="Export whole page" gui-description="If checked, the whole page will be exported, else the selection.">true</param>
+    <param name="fast" type="bool" gui-text="Fast export (suggested)" gui-description="Will use an approximate bounding box. If unchecked, export will take longer.">true</param>
+    <label appearance="header">Usage</label>
+    <label xml:space="preserve">Select the objects in the drawing that you wish to export, or make a check at "Export whole page".
+      
+Enter a name for your JPG file (with full path) and choose a background color for the exported image (JPG format does not support transparency). 
+      
+Leave background color field blank for white.
+
+This extension requires that imagemagick is installed, more info and download at http://www.imagemagick.org.</label>
+    <effect needs-live-preview="false">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Import/Export/Transfer"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">jpeg_export.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Raster Perspective",
+    "id": "fablabchemnitz.de.raster_perspective",
+    "path": "raster_perspective",
+    "dependent_extensions": null,
+    "original_name": "Perspective",
+    "original_id": "org.test.filter.imagePerspective",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/s1291/InkRasterPerspective/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/raster_perspective",
+    "fork_url": "https://github.com/s1291/InkRasterPerspective",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Raster+Perspective",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/s1291"
+    ]
+  }
+]

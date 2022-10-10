@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Raster Perspective</name>
+    <id>fablabchemnitz.de.raster_perspective</id>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Transformations"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">raster_perspective.py</command>
+    </script>
+</inkscape-extension>

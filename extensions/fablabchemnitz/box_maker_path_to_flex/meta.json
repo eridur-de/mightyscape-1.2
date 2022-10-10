@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Box Maker - Path To Flex",
+    "id": "fablabchemnitz.de.box_maker_path_to_flex",
+    "path": "box_maker_path_to_flex",
+    "dependent_extensions": null,
+    "original_name": "Paths To Flex",
+    "original_id": "fr.fablab-lannion.inkscape.Path2Flex",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/thierry7100/Path2flex/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/box_maker_path_to_flex",
+    "fork_url": "https://github.com/thierry7100/Path2flex",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Path+To+Flex",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/thierry7100",
+      "github.com/eridur-de"
+    ]
+  }
+]
