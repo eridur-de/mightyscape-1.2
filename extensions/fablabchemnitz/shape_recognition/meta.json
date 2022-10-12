@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Shape Recognition (Unstable)",
+    "id": "fablabchemnitz.de.shape_recognition",
+    "path": "shape_recognition",
+    "dependent_extensions": null,
+    "original_name": "Shape recognition",
+    "original_id": "qpad",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitlab.com/qpad/InkShapeReco/-/blob/master/shapereco.py",
+    "comment": "I am not sure where i got the latest code from. I searched across the web.",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/shape_recognition",
+    "fork_url": "https://gitlab.com/qpad/InkShapeReco",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Shape+Recognition",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "gitlab.com/qpad",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>Import Attributes</name>
+	<id>fablabchemnitz.de.import_attributes</id>
+	<label>Uses lines in text file to edit attributes of elements.</label>
+	<label>Line: 'elementID,attributeName,attributeValue'.</label>
+	<label>For namespaces use {namespaceUrl}attributeName</label>	
+	<param name="data" type="path" gui-text="Data file:" mode="file" filetypes="txt,csv"/>
+	<effect>
+		<object-type>all</object-type>
+		<effects-menu>
+			<submenu name="FabLab Chemnitz">
+				<submenu name="Various"/>
+			</submenu>
+		</effects-menu>
+	</effect>
+	<script>
+		<command location="inx" interpreter="python">import_attributes.py</command>
+	</script>
+</inkscape-extension>

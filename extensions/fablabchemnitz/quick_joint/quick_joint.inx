@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Quick Joint</name>
+    <id>fablabchemnitz.de.quick_joint</id>
+    <label xml:space="preserve">Adding box joint tabs or slots to selected object!</label>
+    <label xml:space="preserve">Version 0.3</label>
+    <param name="activetab" type="notebook">
+        <page name="tabpage" gui-text="Tabs">
+            <param name="side" type="int" min="0" max="512" gui-text="Side:">0</param>
+            <param name="numtabs" type="int" min="1" max="512" gui-text="Number of tabs:">1</param>
+        </page>
+        <page name="slotpage" gui-text="Slots">
+            <param name="numslots" type="int" min="1" max="512" gui-text="Number of slots:">1</param>
+        </page>
+    </param>
+    <param name="thickness" type="float" min="0.0" max="1000.0" precision="3" gui-text="Material thickness:">3.0</param>
+    <param name="kerf" type="float" min="0.0" max="1000.0" precision="5" gui-text="Laser kerf:">0.14</param>
+    <param name="units" type="optiongroup" appearance="combo" gui-text="Units:">
+        <option value="mm">mm</option>
+        <option value="px">px</option>
+        <option value="pt">pt</option>
+        <option value="in">in</option>
+        <option value="cm">cm</option>
+    </param>
+    <param name="edgefeatures" type="bool" gui-text="Features on edges">false</param>
+    <param name="flipside" type="bool" gui-text="Flip side">false</param>
+    <effect needs-live-preview="true">
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Finger-jointed/Tabbed Boxes" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">quick_joint.py</command>
+    </script>
+</inkscape-extension>

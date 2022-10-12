@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Replace Color And Alpha</name>
+    <id>fablabchemnitz.de.replace_color_and_alpha</id>
+    <param name="from_color" type="string" max_length="8" gui-text="Replace color (RRGGBB and optional AA): #">000000</param>
+    <param name="to_color" type="string" max_length="8" gui-text="By color (RRGGBBAA): #">000000</param>
+    <effect needs-document="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Colors/Gradients/Filters"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">replace_color_and_alpha.py</command>
+    </script>
+</inkscape-extension>

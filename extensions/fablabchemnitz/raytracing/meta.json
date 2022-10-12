@@ -1,0 +1,21 @@
+[
+  {
+    "name": "<various>",
+    "id": "fablabchemnitz.de.raytracing.<various>",
+    "path": "raytracing",
+    "dependent_extensions": null,
+    "original_name": "<various>",
+    "original_id": "damienBloch/inkscape-raytracing/<various>",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/damienBloch/inkscape-raytracing/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/raytracing",
+    "fork_url": "https://github.com/damienBloch/inkscape-raytracing",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Ray+Tracing",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/damienBloch",
+      "github.com/eridur-de"
+    ]
+  }
+]

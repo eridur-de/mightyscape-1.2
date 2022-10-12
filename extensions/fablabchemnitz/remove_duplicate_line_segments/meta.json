@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Remove Duplicate Lines",
+    "id": "fablabchemnitz.de.remove_duplicate_lines",
+    "path": "remove_duplicate_lines",
+    "dependent_extensions": null,
+    "original_name": "Remove duplicate lines",
+    "original_id": "EllenWasbo.cutlings.RemoveDuplicateLines",
+    "license": "GNU GPL v2",
+    "license_url": "https://gitlab.com/EllenWasbo/inkscape-extension-removeduplicatelines/-/blob/main/removeDuplicateLines.py",
+    "comment": "Might supersede 'Purge Duplicate Path Segments' extension",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/remove_duplicate_lines",
+    "fork_url": "https://gitlab.com/EllenWasbo/inkscape-extension-removeduplicatelines",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Remove+Duplicate+Lines",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "gitlab.com/EllenWasbo",
+      "github.com/eridur-de"
+    ]
+  }
+]

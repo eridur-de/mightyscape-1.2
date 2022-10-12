@@ -30,6 +30,7 @@ class SnapObjectPoints(inkex.EffectExtension):
 
     def add_arguments(self, pars):
         pars.add_argument('--max_dist', type=float, default=25.0, help='Maximum distance to be considered a "nearby" point')
+        pars.add_argument('--unit', default="mm", help='Distance unit')
         pars.add_argument('--controls', type=inkex.Boolean, default=True, help='Snap control points')
         pars.add_argument('--ends', type=inkex.Boolean, default=True, help='Snap endpoints')
         pars.add_argument('--first_only', type=inkex.Boolean, default=True, help='Modify only the first selected path')
@@ -48,7 +49,7 @@ class SnapObjectPoints(inkex.EffectExtension):
     def _find_nearest(self, pid, x0, y0, other_points):
         '''Find the nearest neighbor to a given point, and return the midpoint
         of the given point and its neighbor.'''
-        max_dist2 = self.options.max_dist**2  # Work with squares instead of wasting time on square roots.
+        max_dist2 = self.svg.unittouu(str(self.options.max_dist**2) + self.options.unit) # Work with squares instead of wasting time on square roots.
         bx, by = x0, y0          # Best new point
         best_dist2 = max_dist2   # Minimal distance observed from (x0, y0)
         for k, pts in other_points.items():

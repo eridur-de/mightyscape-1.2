@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Cleanup Styles</name>
+    <id>fablabchemnitz.de.cleanup_styles</id>
+    <param name="tab" type="notebook">
+        <page name="tab_settings" gui-text="Settings">
+			<param name="dedicated_style_attributes" gui-text="Handling of dedicated style attributes" gui-description="We delete dedicated attributes like 'fill' or 'stroke'. Please choose an option what should happen with those properties." type="optiongroup" appearance="combo">
+			   <option value="prefer_composed">Catch dedicated, but prefer composed (master) style</option>
+			   <option value="prefer_dedicated">Catch dedicated and prefer over composed (master) style</option>
+			   <option value="ignore">Ignore dedicated</option>
+			</param>
+			<param name="stroke_width_override" type="bool" gui-text="Override stroke width">false</param>
+			<param name="stroke_width" type="float" precision="3" min="0.0000" max="5.000" gui-text="Stroke width">0.100</param>
+			<param name="stroke_width_units" gui-text="Units" type="optiongroup" appearance="combo">
+			   <option value="px">px</option>
+			   <option value="pt">pt</option>
+			   <option value="in">in</option>
+			   <option value="cm">cm</option>
+			   <option value="mm">mm</option>
+			</param>
+			<param name="stroke_opacity_override" type="bool" gui-text="Override stroke opacity">false</param>
+			<param name="stroke_opacity" type="float" precision="1" min="0.0" max="100.0" gui-text="Stroke opacity (%)">100.0</param>
+            <param name="reset_opacity" type="bool" gui-text="Reset opacity value in style attribute" gui-description="Reset stroke style attribute 'opacity'. Do not mix up with 'fill-opacity' and 'stroke-opacity'">true</param>
+			<param name="reset_stroke_attributes" type="bool" gui-text="Reset stroke* values in style attribute" gui-description="Remove 'stroke-dasharray', 'stroke-dashoffset', 'stroke-linejoin', 'stroke-linecap', 'stroke-miterlimit' from style attribute">true</param>
+			<param name="reset_fill_attributes" type="bool" gui-text="Reset fill* values style attribute" gui-description="Sets 'fill:none;fill-opacity:1;' to style attribute">true</param>
+			<param name="apply_hairlines" type="bool" gui-text="Add additional hairline definition to style" gui-description="Adds 'vector-effect:non-scaling-stroke;' and '-inkscape-stroke:hairline;' Hint: stroke-width is kept in background. All hairlines still have a valued width.">true</param>
+			<param name="apply_black_strokes" type="bool" gui-text="Apply black strokes where strokes missing" gui-description="Adds 'stroke:#000000;' to style attribute">true</param>
+			<param name="remove_group_styles" type="bool" gui-text="Remove styles from groups" gui-description="Remove style attributes from parent groups. So we have styles directly at the level of visivle nodes!">false</param>
+            <param name="harmonize_colors" type="bool" gui-text="Harmonize colors" gui-description="Round up colors to the next 'full color'. Example: make rgb(253,0,0) to rgb(255,0,0) to receive clear red color.">false</param>
+            <param name="allow_half_tones" type="bool" gui-text="Allow half-tone colors" gui-description="Allow rounding up to half-tone colors">false</param>
+			<separator/>
+			<label>This extension works on current selection or for complete document</label>
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Cleanup Styles</label>
+            <label>This extension is useful for adjusting the stroke width and opacity of large groups. Usually for good laser cutting the line width has to match a maximum width to be recognized as a hairline. Additionally often opacity issues cause that lines are missed by laser cutter.</label>
+            <label>2020 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/cleanupstyles</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+    </param>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Colors/Gradients/Filters"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">cleanup_styles.py</command>
+    </script>
+</inkscape-extension>

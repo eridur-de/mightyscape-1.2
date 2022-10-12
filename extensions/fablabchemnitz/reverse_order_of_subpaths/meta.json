@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Reverse Order Of Subpaths",
+    "id": "fablabchemnitz.de.reverse_order_of_subpaths",
+    "path": "reverse_order_of_subpaths",
+    "dependent_extensions": null,
+    "original_name": "Reverse order of subpaths",
+    "original_id": "EllenWasbo.cutlings.reverse_order_subpaths",
+    "license": "GNU GPL v2",
+    "license_url": "https://gitlab.com/EllenWasbo/inkscape-extension-reverse-order-of-subpaths/-/blob/master/reverse_order_subpaths.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/reverse_order_of_subpaths",
+    "fork_url": "https://gitlab.com/EllenWasbo/inkscape-extension-reverse-order-of-subpaths/",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Reverse+Order+Of+Subpaths",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "gitlab.com/EllenWasbo",
+      "github.com/eridur-de"
+    ]
+  }
+]

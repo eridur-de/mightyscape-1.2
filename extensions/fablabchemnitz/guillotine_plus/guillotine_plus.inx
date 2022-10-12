@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Guillotine Plus</name>
+    <id>fablabchemnitz.de.guillotine_plus</id>
+    <param name="directory" type="path" mode="folder" gui-text="Directory to save images to:">~/</param>
+    <param name="image" type="string" gui-text="Image name (without extension):">guillotined</param>
+	<param name="dpi" type="int" gui-text="DPI" min="1" max="10000">300</param> 
+    <param name="ignore" type="bool" gui-text="Ignore these settings and use export hints">false</param>
+    <effect needs-live-preview="false">
+        <object-type>all</object-type>
+            <effects-menu>
+				<submenu name="FabLab Chemnitz">
+					<submenu name="Import/Export/Transfer"/>
+				</submenu>
+           </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">guillotine_plus.py</command>
+    </script>
+</inkscape-extension>

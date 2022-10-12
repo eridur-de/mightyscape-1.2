@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Color Harmony",
+    "id": "fablabchemnitz.de.color_harmony",
+    "path": "color_harmony",
+    "dependent_extensions": null,
+    "original_name": "Color harmony",
+    "original_id": "de.vektorrascheln.color_harmony",
+    "license": "GNU GPL v2",
+    "license_url": "https://gitlab.com/moini_ink/color-harmony/-/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/color_harmony",
+    "fork_url": "https://gitlab.com/moini_ink/color-harmony",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Color+Harmony",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "gitlab.com/moini_ink",
+      "github.com/eridur-de"
+    ]
+  }
+]

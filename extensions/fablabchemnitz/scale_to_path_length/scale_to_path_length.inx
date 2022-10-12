@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Scale To Path Length</name>
+    <id>fablabchemnitz.de.scale_to_path_length</id>
+    <param name="scaleFrom" type="optiongroup" appearance="combo" gui-text="Scale From:">
+        <option value="center">Center</option>
+        <option value="topLeft">Top Left</option>
+        <option value="topRight">Top Right</option>
+        <option value="bottomLeft">Bottom Left</option>
+        <option value="bottomRight">Bottom Right</option>
+    </param>
+    <param name="scale" type="float" precision="3" min="0.000" max="9999999.000" gui-text="Scale Factor:">1.000</param>
+    <param name="precision" type="int" min="0" max="10" gui-text="Precision:">5</param>
+    <param name="override_selection" type="bool" gui-text="Use entered length" gui-description="Use a custom length instead using the length of the first object in selection">false</param>			
+	<param name="custom_length" type="float" min="0.001" max="9999999.000" precision="3" gui-text="Custom length">100.000</param>
+	<param name="unit" type="optiongroup" appearance="combo" gui-text="Units">
+		<option value="mm">mm</option>
+		<option value="cm">cm</option>
+		<option value="in">in</option>
+		<option value="pt">pt</option>
+		<option value="px">px</option>
+		<option value="pc">pc</option>
+	</param>
+    <spacer/>
+    <label>This effect makes the length of all the destination paths the same as that of the source path (or your custom desired input length), while maintaining their shapes. The source is the topmost path in the selection. Precision field denotes the number of significant digits, to which the length is rounded. </label>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Transformations"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">scale_to_path_length.py</command>
+    </script>
+</inkscape-extension>

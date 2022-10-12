@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Low Poly 2</name>
+    <id>fablabchemnitz.de.low_poly_2</id>
+    <effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz">
+            <submenu name="Shape/Pattern from existing Object(s)"/>
+        </submenu>
+    </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">low_poly_2.py</command>
+    </script>
+</inkscape-extension>

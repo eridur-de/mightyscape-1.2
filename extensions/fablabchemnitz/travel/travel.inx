@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Travel</name>
+    <id>fablabchemnitz.de.travel</id>
+    <param name="active-tab" type="notebook">
+        <page name="options" gui-text="Options">
+            <param name="x_scale" type="float" max="10000" precision="3" gui-text="X scale:">1</param>
+            <param name="y_scale" type="float" max="10000" precision="3" gui-text="Y scale:">1</param>
+            <param name="t_start" type="float" max="10000" min="-10000" precision="4" gui-text="start time">0</param>
+            <param name="t_end" type="float" max="10000" min="-10000" precision="4" gui-text="end time">1</param>
+            <label appearance="header">Specify one of the following:</label>
+            <param name="n_steps" type="int" max="1000" gui-text="number of steps">11</param>
+            <param name="fps" type="float" max="1000" precision="3" gui-text="fps">0</param>
+            <param name="dt" type="float" max="1000" precision="5" gui-text="time interval">0</param>
+            <label appearance="header">Enter Python-interpretable equations as function of t.</label>
+            <param name="x_eqn" type="string" gui-text="x(t) = ">t</param>
+            <param name="y_eqn" type="string" gui-text="y(t) = ">0</param>
+            <param name="x_size_eqn" type="string" gui-text="x_size(t) = ">1</param>
+            <param name="y_size_eqn" type="string" gui-text="y_size(t) = ">1</param>
+            <param name="theta_eqn" type="string" gui-text="theta(t) (in degrees) = ">0</param>
+        </page>
+        <page name="help" gui-text="Help">
+            <label>Copy an object along a precise parametric trajectory. See</label>
+            <label appearance="url">https://github.com/rkp8000/inkscape-travel</label>
+            <label>for instructions and usage examples.</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Shape/Pattern from existing Path(s)"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">travel.py</command>
+    </script>
+</inkscape-extension>

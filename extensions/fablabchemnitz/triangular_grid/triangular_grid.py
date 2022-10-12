@@ -29,25 +29,6 @@ import inkex
 from lxml import etree
 from math import *
 
-def draw_SVG_line(x1, y1, x2, y2, width, stroke, name, parent):
-    style = { 'stroke': stroke, 'stroke-width':str(width), 'fill': 'none' }
-    line_attribs = {'style':str(inkex.Style(style)),
-                    inkex.addNS('label','inkscape'):name,
-                    'd':'M '+str(x1)+','+ str(y1) +' L '+ str(x2) + ',' + str(y2)}
-    etree.SubElement(parent, inkex.addNS('path','svg'), line_attribs )
-    
-def draw_SVG_rect(x,y,w,h, width, stroke, fill, name, parent):
-    style = { 'stroke': stroke, 'stroke-width':str(width), 'fill':fill}
-    rect_attribs = {'style':str(inkex.Style(style)),
-                    inkex.addNS('label','inkscape'):name,
-                    'x':str(x), 'y':str(y), 'width':str(w), 'height':str(h)}
-    etree.SubElement(parent, inkex.addNS('rect','svg'), rect_attribs )
-
-def colorString(pickerColor):
-    longcolor = int(pickerColor) & 0xFFFFFF00
-    return '#' + format(longcolor >> 8, '06X')
-
-
 class TriangularGrid(inkex.EffectExtension):
     
     def add_arguments(self, pars):
@@ -120,8 +101,7 @@ class TriangularGrid(inkex.EffectExtension):
                 end_y = border_points[right][y]
         return [[start_x,start_y],[end_x, end_y]]
 
-    def drawAngledGridLine (self, x1, y1, theta, thickness, color, 
-                            label, groupName):
+    def drawAngledGridLine (self, x1, y1, theta, width, color, label, groupName):
         end_points = self.trimmed_coords(x1, y1, theta)
         x_start = end_points[0][0]
         y_start = end_points[0][1]
@@ -131,9 +111,25 @@ class TriangularGrid(inkex.EffectExtension):
         if (x_end >= 0 and x_end <= self.xmax and
             y_end >= 0 and y_end <= self.ymax and
             (y_start != y_end and x_start != x_end)):
-            draw_SVG_line(x_start, y_start,
-                          x_end, y_end,
-                          thickness, colorString(color), label, groupName)
+            self.draw_SVG_line(x_start, y_start, x_end, y_end, width, self.colorString(color), label, groupName)
+
+    def draw_SVG_line(self, x1, y1, x2, y2, width, stroke, name, parent):
+        style = { 'stroke': stroke, 'stroke-width':self.svg.unittouu(str(width) + "px"), 'fill': 'none' }
+        line_attribs = {'style': str(inkex.Style(style)),
+            inkex.addNS('label','inkscape'):name,
+            'd':'M '+ str(x1)+','+ str(y1) +' L '+ str(x2) + ',' + str(y2)}
+        etree.SubElement(parent, inkex.addNS('path','svg'), line_attribs )
+        
+    def draw_SVG_rect(self, x,y,w,h, width, stroke, fill, name, parent):
+        style = { 'stroke': stroke, 'stroke-width':self.svg.unittouu(str(width) + "px"), 'fill': fill}
+        rect_attribs = {'style': str(inkex.Style(style)),
+            inkex.addNS('label','inkscape'): name,
+            'x': str(x), 'y': str(y), 'width': str(w), 'height': str(h)}
+        etree.SubElement(parent, inkex.addNS('rect','svg'), rect_attribs )
+    
+    def colorString(self, pickerColor):
+        longcolor = int(pickerColor) & 0xFFFFFF00
+        return '#' + format(longcolor >> 8, '06X')
 
     def effect(self):
         
@@ -149,9 +145,9 @@ class TriangularGrid(inkex.EffectExtension):
         t = 'translate(' + str( self.svg.namedview.center[0]- self.xmax/2.0) + ',' + \
                            str( self.svg.namedview.center[1]- self.ymax/2.0) +  ')'
         g_attribs = {inkex.addNS('label','inkscape'):'Grid_Triangular:Size' + \
-                     str( self.options.x_divs)+'x'+str(self.options.y_divs) +
-             ':Angle'+str( self.options.grid_angle ),
-                     'transform':t }
+                     str( self.options.x_divs) + 'x' + str(self.options.y_divs) +
+             ':Angle' + str( self.options.grid_angle ),
+                     'transform': t }
         grid = etree.SubElement(self.svg.get_current_layer(), 'g', g_attribs)
         
         #Group for major x gridlines
@@ -184,9 +180,9 @@ class TriangularGrid(inkex.EffectExtension):
             g_attribs = {inkex.addNS('label','inkscape'):'SubMinorNegGridlines'}
             mmingln = etree.SubElement(grid, 'g', g_attribs)
         
-        draw_SVG_rect(0, 0, self.xmax, self.ymax, 
+        self.draw_SVG_rect(0, 0, self.xmax, self.ymax, 
                       self.options.border_th,
-                      colorString(self.options.border_color), 'none',
+                      self.colorString(self.options.border_color), 'none',
                       'Border', grid) #border rectangle
         
         sd  = self.options.subdivs #sub divs per div
@@ -198,25 +194,25 @@ class TriangularGrid(inkex.EffectExtension):
         for i in range(0, self.options.x_divs): #Major x divisons
             if i>0: #dont draw first line (we made a proper border)
         # Draw the vertical line
-                draw_SVG_line(dx*i, 0,
+                self.draw_SVG_line(dx*i, 0,
                               dx*i,self.ymax,
                               self.options.major_th,
-                  colorString(self.options.major_color),
+                  self.colorString(self.options.major_color),
                               'MajorDiv'+str(i), majglx)
 
             for j in range (0, sd):
                 if j>0: #not for the first loop (this loop is for the subsubdivs before the first subdiv)
-                   draw_SVG_line(dx*(i+j/float(sd)), 0,
+                   self.draw_SVG_line(dx*(i+j/float(sd)), 0,
                                  dx*(i+j/float(sd)), self.ymax,
                                  self.options.subdiv_th,
-                     colorString(self.options.subdiv_color),
+                     self.colorString(self.options.subdiv_color),
                                  'MinorDiv'+str(i)+':'+str(j), minglx)
                     
                 for k in range (1, ssd): #subsub divs
-                   draw_SVG_line(dx*(i+(j*ssd+k)/((float(sd)*ssd))) , 0,
+                   self.draw_SVG_line(dx*(i+(j*ssd+k)/((float(sd)*ssd))) , 0,
                                  dx*(i+(j*ssd+k)/((float(sd)*ssd))) , self.ymax,
                                  self.options.subsubdiv_th,
-                     colorString(self.options.subsubdiv_color),
+                     self.colorString(self.options.subsubdiv_color),
                                  'SubminorDiv'+str(i)+':'+str(j)+':'+str(k), mminglx)
          
         #DO THE VERTICAL DIVISONS========================================

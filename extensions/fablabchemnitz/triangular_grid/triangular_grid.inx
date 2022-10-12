@@ -27,7 +27,7 @@
             <param name="major_th" type="float" min="0" max="1000" gui-text="Thickness [px]">2</param>
         </page>
         <page name="minor" gui-text="Minor divisions">
-            <param name="subdiv_color" type="color" gui-text="Color">#ffff00ff</param>
+            <param name="subdiv_color" type="color" gui-text="Color">#ff00ffff</param>
             <param name="subdiv_th" type="float" min="0" max="1000" gui-text="Thickness [px]">2</param>
         </page>
         <page name="subminor" gui-text="Subminor divisions">

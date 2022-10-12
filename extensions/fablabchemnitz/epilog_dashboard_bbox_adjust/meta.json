@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Epilog Dashboard BBox Adjust",
+    "id": "fablabchemnitz.de.epilog_dashboard_bbox_adjust",
+    "path": "epilog_dashboard_bbox_adjust",
+    "dependent_extensions": [
+      "apply_transformations"
+    ],
+    "original_name": "Epilog Dashboard BBox Adjust",
+    "original_id": "fablabchemnitz.de.epilog_dashboard_bbox_adjust",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
+    "comment": "Written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/epilog_dashboard_bbox_adjust",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Epilog+Dashboard+BBox+Adjust",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/eridur-de"
+    ]
+  }
+]

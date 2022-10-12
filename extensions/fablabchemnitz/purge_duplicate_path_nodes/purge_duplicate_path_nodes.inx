@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Purge Duplicate Path Nodes</name>
+    <id>fablabchemnitz.de.purge_duplicate_path_nodes</id>
+    <param type="notebook" name="tab">
+        <page name="options" gui-text="Options">
+            <label>Remove duplicate nodes from selected paths.</label>
+            <param name="minUse" type="bool" gui-text="Interpolate nodes of segments with total length less than specified length">false</param>
+            <param name="minlength" indent="4" type="float" precision="2" min="0" max="9999" gui-text="Minimum segment length">0.01</param>
+            <param name="joinEnd" type="bool" gui-text="Close subpaths where start and end node have a distance of less than">false</param>
+            <param name="maxdist" indent="4" type="float" precision="2" min="0" max="9999" gui-text="Limit">0.01</param>
+            <param name="joinEndSub" type="bool" gui-text="Join end nodes of separate subpaths where distance less than">false</param>
+            <param name="maxdist2" indent="4" type="float" precision="2" min="0" max="9999" gui-text="Limit">0.01</param>
+            <param name="allowReverse" indent="4" type="bool" gui-text="Allow reversing direction of subpaths">true</param>
+            <param name="optionJoin" indent="4" type="optiongroup" appearance="combo" gui-text="Join subpaths by">
+                <option value="1">interpolating nodes</option>
+                <option value="2">adding straight line segment</option>
+            </param>
+            <label>Unit as defined in document (File-&gt;Document Properties).</label>
+        </page>
+        <page name="help" gui-text="Information">
+            <label xml:space="preserve">
+Originally created to clean up paths for cutters/plotters removing excessive nodes or small gaps.
+
+Remove duplicate nodes (with exact same coordinates will always be performed.
+To join paths, make sure that the paths to consider are already combined (subpath of the same path).
+To combine paths, select them and press Ctrl+K.</label> 
+            <label appearance="header">For more information</label>
+            <label appearance="url">https://gitlab.com/EllenWasbo/inkscape-extension-removeduplicatenodes</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Paths - Cut/Intersect/Purge" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">purge_duplicate_path_nodes.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Replace Color And Alpha",
+    "id": "fablabchemnitz.de.replace_color_and_alpha",
+    "path": "replace_color_and_alpha",
+    "dependent_extensions": null,
+    "original_name": "Replace color and alpha",
+    "original_id": "com.www.marker.es.ReplaceColorAlpha",
+    "license": "GNU GPL v2",
+    "license_url": "https://inkscape.org/de/~jabiertxof/%E2%98%85color-and-alpha-replace",
+    "comment": "ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/replace_color_and_alpha",
+    "fork_url": "https://inkscape.org/de/~jabiertxof/%E2%98%85color-and-alpha-replace",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Replace+Color+And+Alpha",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "inkscape.org/jabiertxof",
+      "github.com/eridur-de"
+    ]
+  }
+]

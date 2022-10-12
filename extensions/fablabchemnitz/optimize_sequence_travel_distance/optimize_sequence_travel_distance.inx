@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Optimize Sequence: Travel Distances</name>
+    <id>fablabchemnitz.de.optimize_sequence_travel_distance</id>
+    <label appearance="header">AxiDraw Plot Optimization Tool</label>
+    <label>This utility will re-order objects within each layer of your document, to reduce pen-up travel distance and time.</label>
+    <param name="reordering" gui-text="Group Handling" type="optiongroup" appearance="radio">
+        <option value="2">Reorder within groups</option>
+        <option value="1">Preserve groups</option>
+        <option value="3">Break apart groups</option>
+    </param>
+    <param name="preview_rendering" type="bool" gui-text="Preview rendering">false</param>
+    <label>v 2.6. Copyright 2020, Evil Mad Scientist</label>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Paths - Join/Order" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">optimize_sequence_travel_distance.py</command>
+    </script>
+</inkscape-extension>

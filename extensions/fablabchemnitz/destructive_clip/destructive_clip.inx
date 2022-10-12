@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Destructive Clip</name>
+    <id>fablabchemnitz.de.destructive_clip</id>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Paths - Cut/Intersect/Purge" />
+            </submenu>
+        </effects-menu>
+        <menu-tip>"Destructively" clip selected paths using the topmost as clipping path</menu-tip>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">destructive_clip.py</command>
+    </script>
+</inkscape-extension>
