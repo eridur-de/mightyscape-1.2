@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Guilloche Contour</name>
+    <id>fablabchemnitz.de.guilloche_creations.guilloche_contour</id>
+    <param name="contourFunction" type="optiongroup" appearance="combo" gui-text="Function">
+        <option value="line">Line</option>
+        <option value="sin">Sin</option>
+        <option value="cos">Cos</option>
+        <option value="env1">Env1</option>
+        <option value="env2">Env2</option>
+        <option value="env3">Env3</option>
+        <option value="env4">Env4</option>
+        <option value="env5">Env5</option>
+        <option value="env6">Env6</option>
+        <option value="env7">Env7</option>
+        <option value="env8">Env8</option>
+        <option value="env9">Env9</option>
+        <option value="env10">Env10</option>
+        <option value="env11">Env11</option>
+        <option value="env12">Env12</option>
+    </param>
+    <param name="tab" type="notebook">
+        <page name="contour" gui-text="Contour">
+            <param name="frequency" type="int" min="1" max="100" gui-text="Frequency:">10</param>
+            <param name="amplitude" type="int" min="-15" max="15" gui-text="Amplitude:">1</param>
+            <param name="phaseOffset" type="int" min="-100" max="100" gui-text="Phase offset:">0</param>
+            <param name="offset" type="int" min="-100" max="100" gui-text="Offset:">0</param>
+            <param name="nodes" type="int" min="2" max="1000" gui-text="Number of nodes:">20</param>
+            <param name="remove" type="bool" gui-text="Remove control object">false</param>
+            <param name="strokeColor" type="color" gui-text="Stroke color"></param>
+        </page>
+        <page name="function" gui-text="Function">
+            <param name="amplitude1" type="float" min="-10.0" max="10.0" precision="2" gui-text="Amplitude 1:">0.0</param>
+            <param name="phase1" type="int" min="-100" max="100" gui-text="Phase offset 1:">0</param>
+            <param name="amplitude2" type="float" min="-10.0" max="10.0" precision="2" gui-text="Amplitude 2:">0.0</param>
+            <param name="phase2" type="int" min="-100" max="100" gui-text="Phase offset 2:">0</param>
+            <param name="amplitude3" type="float" min="-10.0" max="10.0" precision="2" gui-text="Amplitude 3:">0.0</param>
+            <param name="phase3" type="int" min="-100" max="100" gui-text="Phase offset 3:">0</param>
+            <param name="amplitude4" type="float" min="-10.0" max="10.0" precision="2" gui-text="Amplitude 4:">0.0</param>
+            <param name="phase4" type="int" min="-100" max="100" gui-text="Phase offset 4:">0</param>
+            <param name="amplitude5" type="float" min="-10.0" max="10.0" precision="2" gui-text="Amplitude 5:">0.0</param>
+            <param name="phase5" type="int" min="-100" max="100" gui-text="Phase offset 5:">0</param>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Modify existing Path(s)"/>
+            </submenu>
+        </effects-menu>            
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">guilloche_contour.py</command>
+    </script>
+</inkscape-extension>
