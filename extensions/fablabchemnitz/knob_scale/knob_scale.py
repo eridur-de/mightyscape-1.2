@@ -60,7 +60,6 @@ class KnobScale(inkex.EffectExtension):
         # Create text element
         text = etree.Element(inkex.addNS('text','svg'))
         text.text = textvalue
-
         # Set text position to center of document.
         text.set('x', str(self.x_offset + radius*cos(angular_position)))
         text.set('y', str(self.y_offset + radius*sin(angular_position) + text_size/2))
@@ -70,8 +69,7 @@ class KnobScale(inkex.EffectExtension):
                 'text-align' : 'center',
                  'text-anchor': 'middle',
                  'alignment-baseline' : 'central',
-                 'font-size' : str(text_size),
-                 'vertical-align' : 'middle'
+                 'font-size' : str(text_size)
                  }
 
         text.set('style', str(inkex.Style(style)))

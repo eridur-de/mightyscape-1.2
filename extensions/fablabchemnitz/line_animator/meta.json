@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Line Animator",
+    "id": "fablabchemnitz.de.line_animator",
+    "path": "line_animator",
+    "dependent_extensions": null,
+    "original_name": "Line Animator",
+    "original_id": "vektorrascheln.contributed.animation.line_animator",
+    "license": "GNU GPL v2",
+    "license_url": "https://gitlab.com/Moini/ink_line_animator/-/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/line_animator",
+    "fork_url": "https://gitlab.com/Moini/ink_line_animator",
+    "documentation_url": "",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "gitlab.com/Moini",
+      "github.com/vmario89"
+    ]
+  }
+]

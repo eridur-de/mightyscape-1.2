@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="200px"
+	 height="90px" viewBox="0 0 200 90" enable-background="new 0 0 200 90" xml:space="preserve">
+<g id="Layout">
+	<g id="time">
+		<polyline fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" points="5,73 190,73 
+			185.25,70 185.25,71.75 		"/>
+		<text transform="matrix(1 0 0 1 88.6001 86.5)" font-family="'MyriadPro-Regular'" font-size="12">time</text>
+	</g>
+</g>
+<g id="Scenarios">
+	<g id="async" display="none">
+		<g id="timeline_3_" display="inline">
+			<path fill="#4D4D4D" d="M195,6c0,0.55-0.45,1-1,1H6C5.45,7,5,6.55,5,6V4c0-0.55,0.45-1,1-1h188c0.55,0,1,0.45,1,1V6z"/>
+			<path fill="#4D4D4D" d="M195,13c0,0.55-0.45,1-1,1H6c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h188c0.55,0,1,0.45,1,1V13z"/>
+			<path fill="#4D4D4D" d="M195,20c0,0.55-0.45,1-1,1H6c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h188c0.55,0,1,0.45,1,1V20z"/>
+			<path fill="#4D4D4D" d="M195,27c0,0.55-0.45,1-1,1H6c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h188c0.55,0,1,0.45,1,1V27z"/>
+			<path fill="#4D4D4D" d="M195,34c0,0.55-0.45,1-1,1H6c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h188c0.55,0,1,0.45,1,1V34z"/>
+		</g>
+		<g id="duration_3_" display="inline">
+			<rect x="5" y="52.75" fill="#D36281" width="190" height="4"/>
+			<line fill="none" stroke="#D36281" stroke-miterlimit="10" x1="5" y1="56.75" x2="5" y2="5"/>
+			<line fill="none" stroke="#D36281" stroke-miterlimit="10" x1="195" y1="56.75" x2="195" y2="33"/>
+		</g>
+	</g>
+	<g id="oneByOne">
+		<g id="timeline_2_">
+			<path fill="#4D4D4D" d="M43,6c0,0.55-0.45,1-1,1H6C5.45,7,5,6.55,5,6V4c0-0.55,0.45-1,1-1h36c0.55,0,1,0.45,1,1V6z"/>
+			<path fill="#4D4D4D" d="M81,13c0,0.55-0.45,1-1,1H44c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h36c0.55,0,1,0.45,1,1V13z"/>
+			<path fill="#4D4D4D" d="M119,20c0,0.55-0.45,1-1,1H82c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h36c0.55,0,1,0.45,1,1V20z"/>
+			<path fill="#4D4D4D" d="M157,27c0,0.55-0.45,1-1,1h-36c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h36c0.55,0,1,0.45,1,1V27z"/>
+			<path fill="#4D4D4D" d="M195,34c0,0.55-0.45,1-1,1h-36c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h36c0.55,0,1,0.45,1,1V34z"/>
+		</g>
+		<g id="duration_2_" display="none">
+			<rect x="43" y="52.75" display="inline" fill="#D36281" width="38" height="4"/>
+			<line display="inline" fill="none" stroke="#D36281" stroke-miterlimit="10" x1="43" y1="56.75" x2="43" y2="12"/>
+			<line display="inline" fill="none" stroke="#D36281" stroke-miterlimit="10" x1="81" y1="56.75" x2="81" y2="12"/>
+		</g>
+	</g>
+	<g id="delayed">
+		<g id="timeline_1_" display="none">
+			<path display="inline" fill="#4D4D4D" d="M132,6c0,0.55-0.45,1-1,1H6C5.45,7,5,6.55,5,6V4c0-0.55,0.45-1,1-1h125
+				c0.55,0,1,0.45,1,1V6z"/>
+			<path display="inline" fill="#4D4D4D" d="M147.75,13c0,0.55-0.45,1-1,1h-125c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h125
+				c0.55,0,1,0.45,1,1V13z"/>
+			<path display="inline" fill="#4D4D4D" d="M163.5,20c0,0.55-0.45,1-1,1h-125c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h125
+				c0.55,0,1,0.45,1,1V20z"/>
+			<path display="inline" fill="#4D4D4D" d="M179.25,27c0,0.55-0.45,1-1,1h-125c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h125
+				c0.55,0,1,0.45,1,1V27z"/>
+			<path display="inline" fill="#4D4D4D" d="M195,34c0,0.55-0.45,1-1,1H69c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h125
+				c0.55,0,1,0.45,1,1V34z"/>
+		</g>
+		<g id="duration">
+			<rect x="5" y="52.75" fill="#D36281" width="190" height="4"/>
+			<line fill="none" stroke="#D36281" stroke-miterlimit="10" x1="5" y1="56.75" x2="5" y2="5"/>
+			<line fill="none" stroke="#D36281" stroke-miterlimit="10" x1="195" y1="56.75" x2="195" y2="33"/>
+		</g>
+		<g id="delay" display="none">
+			<rect x="5" y="45.75" display="inline" fill="#5AA8C5" width="63" height="4"/>
+			<line display="inline" fill="none" stroke="#5AA8C5" stroke-miterlimit="10" x1="5" y1="49.75" x2="5" y2="5"/>
+			<line display="inline" fill="none" stroke="#5AA8C5" stroke-miterlimit="10" x1="68" y1="49.75" x2="68" y2="33"/>
+		</g>
+	</g>
+	<g id="custom" display="none">
+		<g id="timeline" display="inline">
+			<path fill="#4D4D4D" d="M24,6c0,0.55-0.45,1-1,1H6C5.45,7,5,6.55,5,6V4c0-0.55,0.45-1,1-1h17c0.55,0,1,0.45,1,1V6z"/>
+			<path fill="#4D4D4D" d="M79,13c0,0.55-0.45,1-1,1H42c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h36c0.55,0,1,0.45,1,1V13z"/>
+			<path fill="#4D4D4D" d="M88,20c0,0.55-0.45,1-1,1H51c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h36c0.55,0,1,0.45,1,1V20z"/>
+			<path fill="#4D4D4D" d="M195,27c0,0.55-0.45,1-1,1h-17c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h17c0.55,0,1,0.45,1,1V27z"/>
+			<path fill="#4D4D4D" d="M195,34c0,0.55-0.45,1-1,1h-93c-0.55,0-1-0.45-1-1v-2c0-0.55,0.45-1,1-1h93c0.55,0,1,0.45,1,1V34z"/>
+		</g>
+		<g id="duration_1_" display="inline">
+			<rect x="41" y="52.75" fill="#D36281" stroke="#D36281" stroke-miterlimit="10" width="38" height="4"/>
+			<g>
+				<g>
+					<line fill="none" stroke="#D36281" stroke-miterlimit="10" x1="41" y1="56.75" x2="41" y2="55.75"/>
+					
+						<line fill="none" stroke="#D36281" stroke-miterlimit="10" stroke-dasharray="2.0357,2.0357" x1="41" y1="53.714" x2="41" y2="14.018"/>
+					<line fill="none" stroke="#D36281" stroke-miterlimit="10" x1="41" y1="13" x2="41" y2="12"/>
+				</g>
+			</g>
+			<g>
+				<g>
+					<line fill="none" stroke="#D36281" stroke-miterlimit="10" x1="79" y1="56.75" x2="79" y2="55.75"/>
+					
+						<line fill="none" stroke="#D36281" stroke-miterlimit="10" stroke-dasharray="2.0357,2.0357" x1="79" y1="53.714" x2="79" y2="14.018"/>
+					<line fill="none" stroke="#D36281" stroke-miterlimit="10" x1="79" y1="13" x2="79" y2="12"/>
+				</g>
+			</g>
+		</g>
+	</g>
+</g>
+</svg>

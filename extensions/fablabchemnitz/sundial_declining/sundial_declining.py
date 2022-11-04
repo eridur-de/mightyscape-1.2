@@ -67,7 +67,7 @@ class sundialDeclining(inkex.EffectExtension):
             text = etree.Element(inkex.addNS('text','svg'))
             text.set('x', str(x)) 
             text.set('y', str(y))
-            style = {'text-align' : 'center', 'font-family': str(font) ,'text-anchor': 'middle', 'alignment-baseline' : 'central', 'font-size' : str(text_size), 'vertical-align' : 'middle'}
+            style = {'text-align' : 'center', 'font-family': str(font) ,'text-anchor': 'middle', 'alignment-baseline' : 'central', 'font-size' : str(text_size)}
             text.set('style', str(inkex.Style(style)))
             text.text = textvalue
             parent.append(text)

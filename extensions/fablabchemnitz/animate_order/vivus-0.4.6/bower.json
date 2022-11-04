@@ -1,0 +1,16 @@
+{
+  "name": "vivus",
+  "description": "JavaScript library to make drawing animation on SVG",
+  "main": "dist/vivus.js",
+  "licence": "MIT",
+  "ignore": [
+    "assets/",
+    "src/",
+    "test/",
+    ".gitignore",
+    ".jshintrc",
+    "gulpfile.js",
+    "index.html",
+    "package.json"
+  ]
+}

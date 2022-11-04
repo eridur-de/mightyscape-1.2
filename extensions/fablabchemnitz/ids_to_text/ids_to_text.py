@@ -67,7 +67,6 @@ class IdsToText(inkex.EffectExtension):
             tspan_element = text_element.add(inkex.Tspan())
             tspan_element.set('sodipodi:role', 'line')
             styles = {'text-align': 'center',
-                      'vertical-align': 'bottom',
                       'text-anchor': 'middle',
                       'font-size': str(self.options.fontsize) + 'px',
                       'font-weight': self.options.fontweight,

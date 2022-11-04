@@ -1,0 +1,35 @@
+{
+  "name": "vivus",
+  "version": "0.4.6",
+  "description": "JavaScript library to make drawing animation on SVG",
+  "main": "dist/vivus.js",
+  "scripts": {
+    "test": "karma start test/karma.conf.js",
+    "serve": "python -m SimpleHTTPServer 8844",
+    "lint": "./node_modules/eslint/bin/eslint.js src test",
+    "build": "npm run build-raw && npm run build-min",
+    "build-raw": "node src/_build.js > dist/vivus.js",
+    "build-min": "uglifyjs dist/vivus.js -o dist/vivus.min.js -c -m --source-map"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maxwellito/vivus.git"
+  },
+  "author": "maxwellito",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/maxwellito/vivus/issues"
+  },
+  "homepage": "https://github.com/maxwellito/vivus",
+  "engine": {
+    "node": ">=0.10.22"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.3",
+    "karma": "^4.0.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.2",
+    "karma-jasmine": "^2.0.1",
+    "uglify-js": "^3.5.2"
+  }
+}
