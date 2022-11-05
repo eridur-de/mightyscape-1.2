@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Guitar Fretboard",
+    "id": "fablabchemnitz.de.guitar_fretboard",
+    "path": "guitar_fretboard",
+    "dependent_extensions": null,
+    "original_name": "Guitar Fretboard",
+    "original_id": "org.inkscape.render.Guitar-Fretboard",
+    "license": "MIT License",
+    "license_url": "https://github.com/tomate44/GuitarFretboard/blob/main/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/guitar_fretboard",
+    "fork_url": "https://github.com/tomate44/GuitarFretboard",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Guitar+Fretboard",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/tomate44",
+      "github.com/vmario89"
+    ]
+  }
+]

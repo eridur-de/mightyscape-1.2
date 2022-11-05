@@ -29,6 +29,8 @@ from lxml import etree
 from subprocess import Popen, PIPE
 import shutil
 from shutil import copy2
+import inkex.command
+
 
 def contains_text(nodes):
     for node in nodes:
@@ -39,22 +41,16 @@ def contains_text(nodes):
 
 def convert_objects_to_paths(file, document):
     tempfile = os.path.splitext(file)[0] + "-prepare.svg"
-    # tempfile is needed here only because we want to force the extension to be .svg
-    # so that we can open and close it silently
     copy2(file, tempfile)
-
-    command = "inkscape " + tempfile + ' --actions="EditSelectAllInAllLayers;EditUnlinkClone;ObjectToPath;FileSave;FileQuit"'
-
-    if shutil.which('xvfb-run'):
-        command = 'xvfb-run -a ' + command
-
-    p = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
-    (out, err) = p.communicate()
-
-    if p.returncode != 0:
-        inkex.errormsg("Failed to convert objects to paths. Continued without converting.")
-        inkex.errormsg(out)
-        inkex.errormsg(err)
+    actions_list = []
+    actions_list.append("select-all")
+    actions_list.append("clone-unlink-recursive")
+    actions_list.append("object-to-path")
+    actions = ";".join(actions_list)
+    cli_output = inkex.command.inkscape(tempfile, "--export-overwrite", actions=actions)
+    if len(cli_output) > 0:
+        self.msg("Inkscape returned the following output when trying to run the file export; the file export may still have worked:")
+        self.msg(cli_output)
         return document.getroot()
     else:
         return etree.parse(tempfile).getroot()

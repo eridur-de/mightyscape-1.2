@@ -128,25 +128,7 @@ def which(program, extraPaths=[]):
                     .format(repr(program), repr(pathlist), os.path.realpath(__file__)))
 
 
-def inkscape_version():
-    """Return Inkscape version number as float, e.g. version "0.92.4" --> return: float 0.92"""
-    version = subprocess.check_output([INKSCAPEBIN, "--version"],  stderr=subprocess.DEVNULL).decode('ASCII', 'ignore')
-    assert version.startswith("Inkscape ")
-    match = re.match("Inkscape ([0-9]+\.[0-9]+).*", version)
-    assert match is not None
-    version_float = float(match.group(1))
-    return version_float
-    
-
-
-# Strip SVG to only contain selected elements, convert objects to paths, unlink clones
-# Inkscape version: takes care of special cases where the selected objects depend on non-selected ones.
-# Examples are linked clones, flowtext limited to a shape and linked flowtext boxes (overflow into the next box).
-#
-# Inkscape is called with certain "verbs" (gui actions) to do the required cleanup
-# The idea is similar to http://bazaar.launchpad.net/~nikitakit/inkscape/svg2sif/view/head:/share/extensions/synfig_prepare.py#L181 , but more primitive - there is no need for more complicated preprocessing here
 def stripSVG_inkscape(src, dest, elements):
-    version = inkscape_version()
     
     # create temporary file for opening with inkscape.
     # delete this file later so that it will disappear from the "recently opened" list.
@@ -156,89 +138,46 @@ def stripSVG_inkscape(src, dest, elements):
     import shutil
     shutil.copyfile(src, tmpfile)
 
+    # Inkscape 1.2 (released 2022)
+    # inkscape --export-overwrite --actions=action1;action2...
+    # (see inkscape --help, inkscape --action-list)
+    # (for debugging, you can look at the intermediate state by running inkscape --with-gui --actions=... my_filename.svg)
+    # Note that it is (almost?) impossible to find a sequence that works in all cases.
+    # Cases to consider:
+    # - selecting whole groups
+    # - selecting objects within a group
+    # - selecting across groups/layers (e.g., enter group, select something, then Shift-click to select things from other layers)
+    # Difficulties with Inkscape:
+    # - "invert selection" does not behave as expected in all these cases,
+    #   for example if a group is selected then inverting can select the elements within.
+    # - Inkscape has a wonderful --export-id commandline switch, but it only works correctly with one ID
 
-    if version < 1:
-        # inkscape 0.92 long-term-support release. Will be in Linux distributions until 2025 or so
-        # Selection commands: select items, invert selection, delete
-        selection = []
-        for el in elements:
-            selection += ["--select=" + el]
-
-        if len(elements) > 0:
-            # selection += ["--verb=FitCanvasToSelection"] # TODO add a user configuration option whether to keep the page size (and by this the position relative to the page)
-            selection += ["--verb=EditInvertInAllLayers", "--verb=EditDelete"]
-
-
-        hidegui = ["--without-gui"]
-
-        # currently this only works with gui because of a bug in inkscape: https://bugs.launchpad.net/inkscape/+bug/843260
-        hidegui = []
-
-        command = [INKSCAPEBIN] + hidegui + [tmpfile, "--verb=UnlockAllInAllLayers", "--verb=UnhideAllInAllLayers"] + selection + ["--verb=EditSelectAllInAllLayers", "--verb=EditUnlinkClone", "--verb=ObjectToPath", "--verb=FileSave", "--verb=FileQuit"]
-    elif version < 1.2:
-        # Inkscape 1.0 (released ca 2020) or 1.1
-        # inkscape --select=... --verbs=...
-        # (see inkscape --help, inkscape --verb-list)
-        command = [INKSCAPEBIN, tmpfile, "--batch-process"]
-        verbs = ["ObjectToPath", "UnlockAllInAllLayers"]
-        if elements: # something is selected
-            # --select=object1,object2,object3,...
-            command += ["--select=" + ",".join(elements)]
-        else:
-            verbs += ["EditSelectAllInAllLayers"]
-        verbs += ["UnhideAllInAllLayers", "EditInvertInAllLayers", "EditDelete", "EditSelectAllInAllLayers", "EditUnlinkClone", "ObjectToPath", "FileSave"]
-        # --verb=action1;action2;...
-        command += ["--verb=" + ";".join(verbs)]
-        
-        
-        DEBUG = False
-        if DEBUG:
-            # Inkscape sometimes silently ignores wrong verbs, so we need to double-check that everything's right
-            for verb in verbs:
-                verb_list = [line.split(":")[0] for line in subprocess.check_output([INKSCAPEBIN, "--verb-list"], stderr=subprocess.DEVNULL).split("\n")]
-                if verb not in verb_list:
-                    inkex.utils.debug("Inkscape does not have the verb '{}'. Please report this as a VisiCut bug.".format(verb))
+    # Solution:
+    actions = ["unlock-all"]
+    if elements:
+        # something was selected when calling the plugin.
+        # -> Recreate that selection
+        # - select objects
+        actions += ["select-by-id:" + ",".join(elements)]
     else:
-        # Inkscape 1.2 (released 2022)
-        # inkscape --export-overwrite --actions=action1;action2...
-        # (see inkscape --help, inkscape --action-list)
-        # (for debugging, you can look at the intermediate state by running inkscape --with-gui --actions=... my_filename.svg)
-        # Note that it is (almost?) impossible to find a sequence that works in all cases.
-        # Cases to consider:
-        # - selecting whole groups
-        # - selecting objects within a group
-        # - selecting across groups/layers (e.g., enter group, select something, then Shift-click to select things from other layers)
-        # Difficulties with Inkscape:
-        # - "invert selection" does not behave as expected in all these cases,
-        #   for example if a group is selected then inverting can select the elements within.
-        # - Inkscape has a wonderful --export-id commandline switch, but it only works correctly with one ID
+        # - select all
+        actions += ["select-all:all"]
+    # - convert to path
+    actions +=  ["clone-unlink", "object-to-path"]
+    if elements:
+        # ensure that only the selection is exported:
+        # - create group of selection
+        actions += ["selection-group"]
+        # - set group ID to a known value. Use a pseudo-random value to avoid collisions
+        target_group_id = "TARGET-GROUP-" + "".join(random.sample(string.ascii_lowercase, 20))
+        actions += ["object-set-attribute:id," + target_group_id]
+        # - set export options: use only the target group ID, nothing else
+        actions += ["export-id-only:true", "export-id:" + target_group_id]
+    # - do export (keep position on page)
+    actions += ["export-area-page"]
 
-        # Solution:
-        actions = ["unlock-all"]
-        if elements:
-            # something was selected when calling the plugin.
-            # -> Recreate that selection
-            # - select objects
-            actions += ["select-by-id:" + ",".join(elements)]
-        else:
-            # - select all
-            actions += ["select-all:all"]
-        # - convert to path
-        actions +=  ["clone-unlink", "object-to-path"]
-        if elements:
-            # ensure that only the selection is exported:
-            # - create group of selection
-            actions += ["selection-group"]
-            # - set group ID to a known value. Use a pseudo-random value to avoid collisions
-            target_group_id = "TARGET-GROUP-" + "".join(random.sample(string.ascii_lowercase, 20))
-            actions += ["object-set-attribute:id," + target_group_id]
-            # - set export options: use only the target group ID, nothing else
-            actions += ["export-id-only:true", "export-id:" + target_group_id]
-        # - do export (keep position on page)
-        actions += ["export-area-page"]
-
-        command = [INKSCAPEBIN, tmpfile, "--export-overwrite", "--actions=" + ";".join(actions)]
-        
+    command = [INKSCAPEBIN, tmpfile, "--export-overwrite", "--actions=" + ";".join(actions)]
+    
     try:
         #sys.stderr.write(" ".join(command))
         # run inkscape, buffer output

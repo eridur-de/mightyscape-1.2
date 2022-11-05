@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Clip Out",
+    "id": "fablabchemnitz.de.clip_out",
+    "path": "clip_out",
+    "dependent_extensions": null,
+    "original_name": "Clip Out",
+    "original_id": "org.inkscape.inklinea.clip_out",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitlab.com/inklinea/clip-out/-/blob/main/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/clip_out",
+    "fork_url": "https://gitlab.com/inklinea/clip-out",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Clip+Out",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/vmario89"
+    ]
+  }
+]

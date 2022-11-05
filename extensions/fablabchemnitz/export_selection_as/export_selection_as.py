@@ -165,14 +165,11 @@ class ExportObject(inkex.EffectExtension):
 
         template.append(group)
         svg_out = os.path.join(tempfile.gettempdir(), svg_filename)
-
+        
         if self.options.wrap_transform is False:
-            #self.load(inkscape_command(template.tostring(), select=GROUP_ID, verbs=['SelectionUnGroup;FileSave'])) #fails due to new bug
-            
-            #workaround
             self.save_document(template, svg_out) #export recent file
             actions_list=[]
-            actions_list.append("SelectionUnGroup")
+            actions_list.append("selection-ungroup")
             actions_list.append("export-type:svg")
             actions_list.append("export-filename:{}".format(svg_out))
             actions_list.append("export-do") 

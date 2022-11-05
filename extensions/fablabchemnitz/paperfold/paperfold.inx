@@ -67,7 +67,7 @@
         <page name="tab_about" gui-text="About">
             <label appearance="header">Paperfold for Inkscape</label>
             <label>Paperfold is another flattener for triangle mesh files, heavily based on paperfoldmodels by Felix Scholz aka felixfeliz. Possible input files are STL, Wavefront OBJ, PLY and OFF.</label>
-            <label>2020 - 2021 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <label>2020 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/paperfold</label>

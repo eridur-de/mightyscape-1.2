@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Create Links (Breakaway Connectors)</name>
+    <id>fablabchemnitz.de.create_links</id>
+    <param name="tab" type="notebook">
+        <page name="tab_settings" gui-text="Settings">
+			<hbox>
+				<vbox>
+					<param name="path_types" type="optiongroup" appearance="combo" gui-text="Apply for">
+						<option value="open_paths">open paths</option>
+						<option value="closed_paths">closed paths</option>
+						<option value="both">both</option>
+					</param>
+					<param name="creationtype" type="optiongroup" appearance="combo" gui-text="Creation">
+						<option value="use_existing">Existing dash style from element</option>
+						<option value="custom_dashpattern">Custom dash pattern</option>
+						<option value="entered_values">Render by unit and link settings</option>
+					</param>
+					<label appearance="header">Creation: Link Settings</label>
+                    <param name="creationunit" type="optiongroup" appearance="combo" gui-text="Creation Units">
+                        <option value="mm">mm</option>
+                        <option value="cm">cm</option>
+                        <option value="in">in</option>
+                        <option value="pt">pt</option>
+                        <option value="px">px</option>
+                        <option value="pc">pc</option>
+                        <option value="percent">%</option>
+                    </param>
+					<param name="link_count" type="int" min="1" max="9999" gui-text="Link count">1</param>
+					<param name="link_multiplicator" type="int" min="0" max="9999" gui-text="Link multiplicator" gui-description="If set, we create a set of multiple gaps of same size next to the main gap">0</param>
+					<param name="length_link" type="float" min="0.000" max="9999.000" precision="3" gui-text="Link length (the length of the gap)">1.000</param>
+					<param name="link_offset" type="float" min="-9999.000" max="9999.000" precision="3" appearance="full" gui-text="Link offset (+/-)" gui-description="If you selected '%' as creation unit, enter values 0..100. The link will be placed in the middle">0.000</param>
+                    <param name="switch_pattern" type="bool" gui-text="Swap links with dashes" gui-description="If enabled, we use gap length as dash length (switches the dasharray pattern).">false</param>
+                    <param name="weakening_mode" type="bool" gui-text="Weakening mode" gui-description="If enabled, we colorize the swap links in #0000ff (blue) and disable the option 'Keep selected elements'">false</param>
+					<label appearance="header">Creation: Custom Dash Pattern Settings</label>
+					<param name="custom_dasharray_value" type="string" gui-text="Dash pattern" gui-description="A list of separated lengths that specify the lengths of alternating dashes and gaps. Input only accepts numbers. It ignores percentages or other characters.">10 5.5 2.0 2.0</param>
+					<param name="custom_dashoffset_value" type="float" min="-9999.000" max="9999.000" precision="3" gui-text="Link offset (+/-)">0.000</param>
+				</vbox>
+                <separator/>	
+				<vbox>
+					<label appearance="header">General Settings</label>
+					<param name="length_filter" type="bool" gui-text="Enable path length filtering">false</param>
+					<param name="length_filter_value" type="float" min="0.000" max="9999.000" precision="3" gui-text="Paths with length more than">0.000</param>
+					<param name="length_filter_unit" type="optiongroup" appearance="combo" gui-text="Length filter unit">
+						<option value="mm">mm</option>
+						<option value="cm">cm</option>
+						<option value="in">in</option>
+						<option value="pt">pt</option>
+						<option value="px">px</option>
+						<option value="pc">pc</option>
+					</param>
+					<param name="keep_selected" type="bool" gui-text="Keep selected elements">false</param>
+					<param name="no_convert" type="bool" gui-text="Do not create output path(s) (cosmetic style only)">false</param>
+					<param name="breakapart" type="bool" gui-text="Break apart output path(s) into segments" gui-description="Performs CTRL + SHIFT + K to break the new output path into it's parts. Recommended to enable because default break apart of Inkscape might produce pointy paths.">true</param>
+					<param name="show_info" type="bool" gui-text="Print length, pattern and filtering information/errors" gui-description="Warning: might freeze Inkscape forever if you have a lot of nodes because we create too much print output. Use for debugging only!">false</param>
+					<param name="skip_errors" type="bool" gui-text="Skip errors">false</param>
+				</vbox>
+			</hbox>
+			<separator/>
+            <label>Pro tip: Use 'Keep selected elements' to create links as usual (but with a copy). Then, as second step, work with the 'Swap links' and 'Weakening mode' options on the original element selection to create extra lasercutter weakening lines for better breaking out the parts later after processing.</label>
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Create Links</label>
+            <label>A utility to create links, also known as tabs, breakaway connectors or bridges. Intended to use with laser cutters.</label>
+            <label>2021 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/createlinks</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+	</param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+        <submenu name="FabLab Chemnitz">
+            <submenu name="Paths - Cut/Intersect/Purge"/>
+        </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">create_links.py</command>
+    </script>
+</inkscape-extension>

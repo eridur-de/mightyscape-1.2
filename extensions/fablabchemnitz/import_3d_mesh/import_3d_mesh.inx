@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Import 3D Mesh</name>
+    <id>fablabchemnitz.de.import_3d_mesh</id>
+    <param name="tab" type="notebook">
+        <page name="common" gui-text="Model file">
+            <param name="input_choice" type="optiongroup" appearance="combo" gui-text="Input choice">
+                <option value="default">Available default object</option>
+                <option value="custom">Custom input file</option>
+            </param>
+            <param name="obj" type="optiongroup" appearance="combo" gui-text="Available default objects">
+                <option value="cube">Cube</option>
+                <option value="trunc_cube">Truncated Cube</option>
+                <option value="snub_cube">Snub Cube</option>
+                <option value="cuboct">Cuboctahedron</option>
+                <option value="tet">Tetrahedron</option>
+                <option value="trunc_tet">Truncated Tetrahedron</option>
+                <option value="oct">Octahedron</option>
+                <option value="trunc_oct">Truncated Octahedron</option>
+                <option value="icos">Icosahedron</option>
+                <option value="trunc_icos">Truncated Icosahedron</option>
+                <option value="small_triam_icos">Small Triambic Icosahedron</option>
+                <option value="dodec">Dodecahedron</option>
+                <option value="trunc_dodec">Truncated Dodecahedron</option>
+                <option value="snub_dodec">Snub Dodecahedron</option>
+                <option value="great_dodec">Great Dodecahedron</option>
+                <option value="great_stel_dodec">Great Stellated Dodecahedron</option>
+            </param>
+            <param name="spec_file" type="path" gui-text="Custom input file" filetypes="obj,off,ply,stl" mode="file">/your/object/file.stl</param>
+            <param name="cw_wound" type="bool" gui-text="Clockwise wound object">false</param>
+            <param name="scl" type="float" min="0" max="10000" gui-text="Scaling factor:">100</param>
+        </page>
+        <page name="view" gui-text="View">
+            <param name="r1_ax" type="optiongroup" appearance="combo" gui-text="Rotate around:">
+                <option value="x">X-Axis</option>
+                <option value="y">Y-Axis</option>
+                <option value="z">Z-Axis</option>
+            </param>
+            <param name="r1_ang" type="float" min="-360" max="360" appearance="full" gui-text="Rotation (deg):">0</param>
+            <param name="r2_ax" type="optiongroup" appearance="combo" gui-text="Then rotate around:">
+                <option value="x">X-Axis</option>
+                <option value="y">Y-Axis</option>
+                <option value="z">Z-Axis</option>
+            </param>
+            <param name="r2_ang" type="float" min="-360" max="360" appearance="full" gui-text="Rotation (deg):">0</param>
+            <param name="r3_ax" type="optiongroup" appearance="combo" gui-text="Then rotate around:">
+                <option value="x">X-Axis</option>
+                <option value="y">Y-Axis</option>
+                <option value="z">Z-Axis</option>
+            </param>
+            <param name="r3_ang" type="float" min="-360" max="360" appearance="full" gui-text="Rotation (deg):">0</param>
+            <param name="r4_ax" type="optiongroup" appearance="combo" gui-text="Then rotate around:">
+                <option value="x">X-Axis</option>
+                <option value="y">Y-Axis</option>
+                <option value="z">Z-Axis</option>
+            </param>
+            <param name="r4_ang" type="float" min="-360" max="360" appearance="full" gui-text="Rotation (deg):">0</param>
+            <param name="r5_ax" type="optiongroup" appearance="combo" gui-text="Then rotate around:">
+                <option value="x">X-Axis</option>
+                <option value="y">Y-Axis</option>
+                <option value="z">Z-Axis</option>
+            </param>
+            <param name="r5_ang" type="float" min="-360" max="360" appearance="full" gui-text="Rotation (deg):">0</param>
+            <param name="r6_ax" type="optiongroup" appearance="combo" gui-text="Then rotate around:">
+                <option value="x">X-Axis</option>
+                <option value="y">Y-Axis</option>
+                <option value="z">Z-Axis</option>
+            </param>
+            <param name="r6_ang" type="float" min="-360" max="360" appearance="full" gui-text="Rotation (deg):">0</param>
+        </page>
+        <page name="style" gui-text="Style">
+            <hbox>
+                <vbox>
+                <param name="fill_color" type="color" gui-text="Fill color">1943148287</param>
+                </vbox>
+                <separator/>
+                <vbox>
+                <param name="s_opac" type="int" min="0" max="100" appearance="full" gui-text="Stroke opacity (%):">100</param>
+                <param name="th" type="float" min="0" max="100" gui-text="Stroke width (px):">2</param>
+                <param name="shade" type="bool" gui-text="Shading" gui-description="Only works for 'Faces' in 'Show' option">true</param>
+                <param name="lv_x" type="float" min="-100" max="100" appearance="full" gui-text="Light X:">1</param>
+                <param name="lv_y" type="float" min="-100" max="100" appearance="full" gui-text="Light Y:">1</param>
+                <param name="lv_z" type="float" min="-100" max="100" appearance="full" gui-text="Light Z:">-2</param>
+                <param name="show" type="optiongroup" appearance="combo" gui-text="Show:">
+                    <option value="fce">Faces</option>
+                    <option value="edg">Edges</option>
+                    <option value="vtx">Vertices</option>
+                </param>
+                <param name="back" type="bool" gui-text="Draw back-facing polygons" gui-description="Only works for 'Faces' in 'Show' option and enabled 'Shading' option">false</param>
+                <param name="z_sort" type="optiongroup" appearance="combo" gui-text="Z-sort faces by:">
+                    <option value="max">Maximum</option>
+                    <option value="min">Minimum</option>
+                    <option value="cent">Centroid</option>
+                </param>
+                </vbox>
+            </hbox>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Import/Export/Transfer"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">import_3d_mesh.py</command>
+    </script>
+</inkscape-extension>

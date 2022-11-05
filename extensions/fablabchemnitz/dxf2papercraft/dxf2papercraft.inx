@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>DXF 2 Papercraft</name>
+    <id>fablabchemnitz.de.dxf2papercraft</id>
+	 <param name="tab" type="notebook">
+		<page name="tab_settings" gui-text="DXF 2 Papercraft">
+			<label appearance="header">Unfolding settings</label>
+			<param name="nomerge" type="bool" gui-text="No merging of faces into single polygon">false</param>
+			<param name="number" type="bool" gui-text="Print face numbers (labels)" gui-description="Disable this if you want to split custom faces">false</param>
+			<param name="divide" type="bool" gui-text="Draw each face separate">false</param>
+			<param name="overlap" type="bool" gui-text="Allow overlapping faces in cut-out sheet">false</param>
+			<param name="hide" type="bool" gui-text="Hide glue tabs. Does not work if 'Print face numbers (labels)' is activated">false</param>
+			<param name="force" type="bool" gui-text="Force glue tabs, even if intersecting faces">false</param>
+			<param name="split" type="string" gui-text="Comma separated list of face numbers to disconnect from the rest" gui-description="Enable face numbers tp have a view on it. If face number option is activated the splitting will not be performed!"></param>
+			<param name="strategy" type="optiongroup" appearance="combo" gui-text="Generation strategy">
+			   <option value="0">Draw smallest polygon first</option>
+			   <option value="1">Draw largest first </option>
+			   <option value="2">As ordered in file</option>
+			   <option value="3">Keep adjacent faces continuous</option>
+			   <option value="4">Stretch 2D layout wide</option>
+			   <option value="5">Keep layout dense</option>
+			</param>
+			<separator/>
+			<label appearance="header">General</label>
+			<param name="resizetoimport" type="bool" gui-text="Resize the canvas to the imported drawing's bounding box">true</param>
+			<param name="extraborder" type="float" precision="3" gui-text="Add extra border around fitted canvas">0.0</param>
+			<param name="extraborder_units" type="optiongroup" appearance="combo" gui-text="Border offset units">
+			   <option value="mm">mm</option>
+			   <option value="cm">cm</option>
+			   <option value="in">in</option>
+			   <option value="pt">pt</option>
+			   <option value="px">px</option>
+			</param>
+			<param name="scalefactor" type="float" precision="3" min="0.0001" max="10000.0" gui-text="Manual scale factor" gui-description="default is 1.0">1.0</param>
+			<separator/>
+			<label appearance="header">Input File</label>
+			<param name="inputfile" type="path" gui-text=" " gui-description="The model to unfold" filetypes="dxf" mode="file">/your/dxf/file</param>
+		</page>
+		<page name="tab_about" gui-text="About">
+			<label appearance="header">DXF 2 Papercraft</label>
+			<label>Unfold and import DXF into InkScape using dxf2papercraft. This is some kind of wrapper extension utilizing kabeja to convert the dxf output from dxf2papercraft into SVG. To make it work you need to install at least java.</label>
+			<label>2020 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+			<spacer/>
+			<label appearance="header">Online Documentation</label>
+			<label appearance="url">https://y.stadtfabrikanten.org/dxf2papercraft</label>
+			<spacer/>
+			<label appearance="header">Contributing</label>
+			<label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+			<label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+			<spacer/>
+			<label appearance="header">Third Party Modules</label>
+			<label appearance="url">http://dxf2papercraft.sourceforge.net</label>
+			<label appearance="url">http://kabeja.sourceforge.net</label>
+			<spacer/>
+			<label appearance="header">MightyScape Extension Collection</label>
+			<label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+			<label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+		</page>
+		<page name="tab_donate" gui-text="Donate">
+			<label appearance="header">Coffee + Pizza</label>
+			<label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+			<spacer/>			
+			<label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+			<label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+			<spacer/>
+			<label>Thanks for using our extension and helping us!</label>
+			<image>../000_about_fablabchemnitz.svg</image>
+		</page>
+	</param>
+    <effect needs-live-preview="true">
+      <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+				<submenu name="Papercraft Flatteners"/>
+			</submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">dxf2papercraft.py</command>
+    </script>
+</inkscape-extension>
