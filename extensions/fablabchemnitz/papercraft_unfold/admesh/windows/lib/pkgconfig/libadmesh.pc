@@ -1,0 +1,11 @@
+prefix=/usr/x86_64-w64-mingw32/sys-root/mingw
+exec_prefix=/usr/x86_64-w64-mingw32/sys-root/mingw
+libdir=/usr/x86_64-w64-mingw32/sys-root/mingw/lib
+includedir=/usr/x86_64-w64-mingw32/sys-root/mingw/include
+
+Name: libadmesh
+Description: Library for woring with admesh
+Version: 0.98.3
+Libs: -L${libdir} -ladmesh
+Libs.private:
+Cflags: -I${includedir}

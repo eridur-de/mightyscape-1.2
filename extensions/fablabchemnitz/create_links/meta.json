@@ -7,14 +7,14 @@
     "original_name": "Create Links (Breakaway Connectors)",
     "original_id": "fablabchemnitz.de.create_links",
     "license": "GNU GPL v3",
-    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/LICENSE",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
     "comment": "Written by Mario Voigt",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/create_links",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/create_links",
     "fork_url": null,
     "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=104923235",
     "inkscape_gallery_url": "https://inkscape.org/~MarioVoigt/%E2%98%85create-links-breakaway-connectors",
     "main_authors": [
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

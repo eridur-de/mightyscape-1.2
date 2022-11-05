@@ -9,13 +9,13 @@
     "license": "GNU GPL v2",
     "license_url": "https://github.com/jnweiger/inkscape-input-stl/blob/master/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/slic3r_stl_input",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/slic3r_stl_input",
     "fork_url": "https://github.com/jnweiger/inkscape-input-stl",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Slic3r+STL+Input",
     "inkscape_gallery_url": "https://inkscape.org/de/~MarioVoigt/%E2%98%85slic3r-stl-input",
     "main_authors": [
       "github.com/jnweiger",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

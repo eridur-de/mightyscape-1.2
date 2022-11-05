@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Roland CutStudio *.eps Export",
+    "id": "fablabchemnitz.de.roland_cutstudio_eps_export",
+    "path": "roland_cutstudio_eps_export",
+    "dependent_extensions": null,
+    "original_name": "Open in CutStudio",
+    "original_id": "roland_custudio.export",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/mgmax/inkscape-roland-cutstudio/blob/master/roland_cutstudio.py",
+    "comment": "dirty ripp-off (Mario Voigt) from better designed Roland Cutstudio Export by Max Gaukler",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/roland_cutstudio_eps_export",
+    "fork_url": "https://github.com/mgmax/inkscape-roland-cutstudio",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/MightyScape+1.X+-+Extensions+Overview",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/mgmax",
+      "github.com/eridur-de"
+    ]
+  }
+]

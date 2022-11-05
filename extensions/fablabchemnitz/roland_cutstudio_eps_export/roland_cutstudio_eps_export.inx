@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <name>Roland CutStudio *.eps Export</name>
+  <id>fablabchemnitz.de.roland_cutstudio_eps_export</id>
+    <output>
+        <extension>.eps</extension>
+        <mimetype>application/postscript</mimetype>
+        <filetypename>Roland CutStudio compatible (*.eps)</filetypename>
+        <filetypetooltip>Desktop Cutting Plotter</filetypetooltip>
+        <dataloss>true</dataloss>
+    </output>
+  <script>
+    <command location="inx" interpreter="python">roland_cutstudio_eps_export.py</command>
+  </script>
+</inkscape-extension>

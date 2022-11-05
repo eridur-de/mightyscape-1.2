@@ -215,9 +215,10 @@ class Incadiff(inkex.EffectExtension):
                 j -= 1
                 self.actions_list.append("select-by-id:"+top_path)
                 self.actions_list.append("duplicate")
-                self.actions_list.append("select-by-id:" + id_list[j])
+                self.actions_list.append("select-by-id:"+id_list[j])
                 self.actions_list.append("path-difference")
                 self.actions_list.append("unselect-by-id:"+top_path)
+                self.actions_list.append("unselect-by-id:"+id_list[j])
             if nb_shapes > 20:
                 self.run_cmd(tempfile)
                 self.actions_list = []

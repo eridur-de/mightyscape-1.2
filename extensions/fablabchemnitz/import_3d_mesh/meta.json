@@ -9,13 +9,13 @@
     "license": "GNU GPL v2",
     "license_url": "https://gitlab.com/inkscape/extensions/-/blob/master/LICENSE.txt",
     "comment": "modified version of 3D Polyhedron extension",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/import_3d_mesh",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/import_3d_mesh",
     "fork_url": "https://gitlab.com/inkscape/extensions",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Import+3D+Mesh",
     "inkscape_gallery_url": null,
     "main_authors": [
       "John Beard:john.j.beard@gmail.com",        
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

@@ -9,13 +9,13 @@
     "license": "GNU GPL v2",
     "license_url": "https://github.com/incaya/incadiff/blob/main/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/incadiff",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/incadiff",
     "fork_url": "https://github.com/incaya/incadiff",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Incadiff",
     "inkscape_gallery_url": null,
     "main_authors": [
       "github.com/incaya",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

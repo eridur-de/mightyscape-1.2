@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Papercraft Unfold</name>
+    <id>fablabchemnitz.de.papercraft_unfold</id>
+	<param name="tab" type="notebook">
+		<page name="tab_general" gui-text="Input / General">
+		    <param name="inputfile" type="path" gui-text="Input File" gui-description="The model to unfold" filetypes="obj,off,ply,stl" mode="file">/your/beautiful/3dmodel/file</param>
+		    <param name="generatelabels" type="bool" gui-text="Generate labels for edges">true</param>
+		    <param name="resizetoimport" type="bool" gui-text="Resize the canvas to the imported drawing's bounding box">true</param>
+		    <param name="extraborder" type="float" precision="3" gui-text="Add extra border around fitted canvas">0.0</param>
+		    <param name="extraborder_units" type="optiongroup" appearance="combo" gui-text="Border offset units">
+		       <option value="mm">mm</option>
+		       <option value="cm">cm</option>
+		       <option value="in">in</option>
+		       <option value="pt">pt</option>
+		       <option value="px">px</option>
+		    </param>
+		    <param name="show_fstl" type="bool" gui-text="Show converted (and fixed) STL in fstl Viewer">true</param>
+        </page>
+		<page name="tab_meshfixing" gui-text="Mesh Fixing / Adjusting (ADMesh)">
+		    <param name="exact" type="bool" gui-text="Only check for perfectly matched edges">true</param>
+		    <param name="nearby" type="bool" gui-text="Find and connect nearby facets. Correct bad facets">true</param>
+		    <param name="tolerance" type="float" min="0.0" max="10000.0" precision="4" gui-text="Initial tolerance to use for nearby check">0.0</param>
+		    <param name="iterations" type="int" min="1" max="1000" gui-text="Number of iterations for nearby check">1</param>
+		    <param name="increment" type="float" min="0.0" max="10000.0" precision="4" gui-text="Amount to increment tolerance after iteration">0.0</param>
+		    <param name="remove_unconnected" type="bool" gui-text="Remove facets that have 0 neighbors">true</param>
+		    <param name="fill_holes" type="bool" gui-text="Add facets to fill holes">true</param>
+		    <param name="normal_directions" type="bool" gui-text="Check and fix direction of normals (ie cw, ccw)">true</param>
+		    <param name="reverse_all" type="bool" gui-text="Reverse the directions of all facets and normals">true</param>
+		    <param name="normal_values" type="bool" gui-text="Check and fix normal values">true</param>
+			<separator/>
+		    <param name="xy_mirror" type="bool" gui-text="XY-Mirror">false</param>
+		    <param name="yz_mirror" type="bool" gui-text="YZ-Mirror">false</param>
+		    <param name="xz_mirror" type="bool" gui-text="XZ-Mirror">false</param>
+		    <param name="scale" type="float" min="0.0001" max="10000.0" precision="4" gui-text="Scale">1.0</param>
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Papercraft Unfold</label>
+            <label>This project is a (fragile) toolchain to allow importing different models to create triangle mesh based flattenings. This extension also uses ADMesh to repair STL and to generate a binary STL file. The fstl Viewer is used to have a checky view on the file. osresearch/papercraft finally flattens the binary STL file and creates the desired output.</label>
+            <label>2020 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/papercraftunfold</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">Third Party Modules</label>
+            <label appearance="url">https://github.com/osresearch/papercraft</label>
+            <label appearance="url">https://github.com/fstl-app/fstl</label>
+            <label appearance="url">https://github.com/admesh/admesh</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+    </param>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Papercraft Flatteners"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">papercraft_unfold.py</command>
+    </script>
+</inkscape-extension>

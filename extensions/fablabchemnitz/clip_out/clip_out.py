@@ -120,7 +120,7 @@ def command_line_call(self):
 
     # Get crop settings
     if self.options.canvas_to_selection == 'true':
-        canvas_to_selection = 'FitCanvasToSelection;'
+        canvas_to_selection = 'fit-canvas-to-selection;'
         is_cropped = 'cropped_'
     else:
         canvas_to_selection = ''
@@ -173,7 +173,7 @@ def command_line_call(self):
                                                                                              '_' + my_object_id + '_' + is_cropped + timestamp_suffix + '.png')
 
                     export_png_actions = my_actions + f'select-by-id:{my_background_id}; \
-                    selection-stack-down; \
+                    selection-bottom; \
                     select-by-id:{my_background_id},{my_object_id}; \
                     select-invert; \
                     delete-selection; \
@@ -199,13 +199,13 @@ def command_line_call(self):
                     select-invert; \
                     delete-selection; \
                     select-by-id:{image_frame_id}; \
-                    selection-stack-down; \
+                    selection-bottom; \
                     unselect-by-id:{image_frame_id}; \
                     select-by-id:{image_frame_id},{my_object_id}; \
                     path-difference; \
                     unselect-by-id:{image_frame_id},{my_object_id}; \
                     select-by-id:{my_background_id}; \
-                    selection-stack-down; \
+                    selection-bottom; \
                     select-all; \
                     object-set-clip; \
                     select-all; \
@@ -247,7 +247,7 @@ def command_line_call(self):
             path-combine; \
             select-clear; \
             select-by-id:{my_background_id}; \
-            selection-stack-down; \
+            selection-bottom; \
             select-clear; \
             select-all; \
             object-set-clip; \
@@ -270,13 +270,13 @@ def command_line_call(self):
             path-combine; \
             select-clear; \
             select-by-id:{image_frame_id}; \
-            selection-stack-down; \
+            selection-bottom; \
             select-all; \
             unselect-by-id:{my_background_id}; \
             path-difference; \
             select-clear; \
             select-by-id:{my_background_id}; \
-            selection-stack-down; \
+            selection-bottom; \
             select-all; \
             object-set-clip; \
             select-all; \

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Parallel Translation",
+    "id": "fablabchemnitz.de.parallel_translation",
+    "path": "parallel_translation",
+    "dependent_extensions": null,
+    "original_name": "Parallel Translation",
+    "original_id": "org.inkscape.parallel-translation_extension",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/chris0371/parallel-translation_extension/blob/main/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/parallel_translation",
+    "fork_url": "https://github.com/chris0371/parallel-translation_extension",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Parallel+Translation",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/chris0371",
+      "github.com/eridur-de"
+    ]
+  }
+]
