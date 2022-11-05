@@ -9,13 +9,13 @@
     "license": "GNU LGPL v3",
     "license_url": "https://github.com/t-oster/VisiCut/blob/master/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/visicut",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/visicut",
     "fork_url": "https://github.com/t-oster/VisiCut/tree/master/tools/inkscape_extension",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Open+in+VisiCut",
     "inkscape_gallery_url": null,
     "main_authors": [
       "github.com/t-oster",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

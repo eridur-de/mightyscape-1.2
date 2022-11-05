@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Styles To Layers</name>
+    <id>fablabchemnitz.de.styles_to_layers</id>
+    <param name="tab" type="notebook">
+        <page name="tab_settings" gui-text="Settings">
+            <param name="separateby" gui-text="Separate by" type="optiongroup" appearance="combo">
+               <option value="element_tag">Element tag</option>
+               <option value="stroke">Stroke color</option>
+               <option value="stroke_width">Stroke width</option>
+               <option value="stroke_hairline">Stroke hairline</option>
+               <option value="stroke_opacity">Stroke opacity</option>
+               <option value="fill">Fill color</option>
+               <option value="fill_opacity">Fill opacity</option>
+            </param>
+            <param name="sortcolorby" gui-text="Sort colors by" type="optiongroup" appearance="combo" gui-description="This option only applies to stroke color and fill color">
+               <option value="hexval">Hex value</option>
+               <option value="hue">Hue</option>
+               <option value="saturation">Saturation</option>
+               <option value="luminance">Luminance</option>
+            </param>
+            <param name="subdividethreshold" type="int" min="1" max="9999" gui-text="Number of sub layers" gui-description="A min/max range of the selected style type value will be calculated and you retrieve a set of layer (coarse grouping) with sub-layers (fine grouping). If you have less calculated sub layers than this threshold it will be limited automatically.">1</param>
+            <param name="decimals" type="int" min="0" max="10" gui-text="Decimal tolerance" gui-description="The more decimals the more distinct layers you will get. This only applies for the sub layers (threshold > 1)">1</param>
+            <param name="apply_transformations" type="bool" gui-text="Apply transformations (requires separate extension)" gui-description="This will call the extension 'Apply Transformations'. Helps avoiding geometry shifting">false</param>
+            <param name="cleanup"  type="bool" gui-text="Cleanup all unused groups/layers (requires separate extension)" gui-description="This will call the extension 'Remove Empty Groups' if available">true</param>
+            <param name="put_unfiltered"  type="bool" gui-text="Put unfiltered elements to a separate layer">false</param>
+            <param name="show_info"  type="bool" gui-text="Show elements which have no style attributes to filter">false</param>
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Styles To Layers</label>
+            <label>This extension will re-layer your selected items or the whole document according to their style values (stroke or fill). The filtering applies only to style attribute of the elements. It does not filter for stroke or fill if they are set separately (dedicated attributes). It will also NOT apply to svg:style classes. You can use the separate 'Cleanup Styles' extension to migrate these separated attributes into style attribute.</label>
+            <label>2020 - 2021 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/stylestolayers</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Groups and Layers"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">styles_to_layers.py</command>
+    </script>
+</inkscape-extension>

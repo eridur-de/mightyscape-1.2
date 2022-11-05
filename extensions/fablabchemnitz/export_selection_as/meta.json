@@ -9,13 +9,13 @@
     "license": "MIT License",
     "license_url": "https://github.com/mireq/inkscape-export-selection-as-svg/blob/master/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/export_selection_as",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/export_selection_as",
     "fork_url": "https://github.com/mireq/inkscape-export-selection-as-svg",
     "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=104923223",
     "inkscape_gallery_url": null,
     "main_authors": [
       "github.com/mireq",  
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]

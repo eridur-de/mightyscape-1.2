@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Line Sorting</name>
+    <id>fablabchemnitz.de.vpype_linesorting</id>
+	<param name="tab" type="notebook">
+		<page name="tab_settings_linesort" gui-text="vpypetools Line Sorting">
+            <image>vpype_logo.svg</image>		
+			<label>Sort lines to minimize travel distances.</label>
+			<param name="linesort" type="bool" gui-hidden="true">true</param>
+			<param name="linesort_no_flip" type="bool" gui-text="Disable flipping" gui-description="Disable reversing stroke direction for optimization '--no-flip'">false</param>
+		</page>
+		<page name="tab_settings_general" gui-text="General Settings">
+			<label appearance="header">Input (InkScape to vpype)</label>
+			<param name="input_handling" type="optiongroup" appearance="radio" gui-text="Input/Layer handling">
+			   <option value="layers">Multilayer/document (all layers/complete document)</option>
+			   <option value="paths">Singlelayer/paths (a single layer/paths in selection or all paths in document)</option>
+			</param>
+		    <param name="flattenbezier" type="bool" gui-text="Quantization (flatten bezier curves to polylines)" gui-description="Convert bezier curves to polylines. Automatically enabled if 'Multilayer/document' (quantization parameter)">true</param>	
+			<param name="flatness" type="float" min="0.001" max="99999.000" precision="3" gui-text="Flatness (tolerance)" gui-description="Minimum flatness = 0.001. The smaller the value the more fine segments you will get. This value is also used by option 'simplify'">0.100</param>
+			<param name="decimals" type="int" min="0" max="16" gui-text="Decimals" gui-description="Accuracy for imported lines' coordinates into vpype. Does not work for 'Multilayer/document'">3</param>
+			<param name="simplify" type="bool" gui-text="Simplify geometry" gui-description="Reduces significantly the number of segments used to approximate the curve while still guaranteeing an accurate conversion, but may increase the execution time. Does not work for 'Singlelayer/paths'">false</param>
+			<param name="parallel" type="bool" gui-text="Parallelize Simplify geometry" gui-description="Enables multiprocessing for the SVG conversion. This is recommended ONLY when using 'Simplify geometry' on large SVG files with many curved elements. Does not work for 'Singlelayer/paths'">false</param>			
+			<spacer/>
+			<label appearance="header">Validation (vpype pipeline)</label>
+		 	<param name="output_show" type="bool" gui-text="Preview only (debug output)" gui-description="This will open a separate window showing the finished SVG data. If enabled output, is not applied to InkScape canvas (only for preview)!">false</param>
+		 	<param name="output_show_points" type="bool" gui-text="Enable point display in viewer">false</param>
+		 	<param name="output_stats" type="bool" gui-text="Show conversion statistics" gui-description="Show output statistics before/after conversion. Helps to find out length savings.">false</param>
+			<spacer/>
+			<label appearance="header">Output (vpype to InkScape)</label>
+		 	<param name="output_trajectories" type="bool" gui-text="Import travel trajectories" gui-description="Add paths for the travel trajectories">false</param>
+		 	<param name="keep_objects" type="bool" gui-text="Keep original objects" gui-description="If false, original (selected) objects will be removed">false</param>
+		 	<param name="strokes_to_paths" type="bool" gui-text="Auto-convert low-level strokes to paths" gui-description="Recommended option. Performs 'Path' > 'Stroke to Path' (CTRL + ALT + C) to convert vpype converted lines back to regular path objects. Warning: increases import time significantly.">true</param>
+			<param name="use_style_of_first_element" type="bool" gui-text="Use style of first element in layer" gui-description="If enabled the first element in selection is scanned and we apply it's style to all imported vpype lines (but not for trajectories). Does not work for 'Multilayer/document'">true</param>	
+			<param name="lines_stroke_width" type="float" min="0.001" max="99999.000" precision="3" gui-text="Stroke width of tooling lines (px)" gui-description="Gets overwritten if 'Use style of first selected element' is enabled">1.000</param>	
+			<param name="trajectories_stroke_width" type="float" min="0.001" max="99999.000" precision="3" gui-text="Stroke width of trajectory lines (px)">1.000</param>
+		</page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">vpypetools Line Sorting</label>
+            <label>2021 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/vpypetools</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">Third Party Modules</label>
+            <label appearance="url">https://github.com/abey79/vpype</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+	</param>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+		<effects-menu>
+         <submenu name="FabLab Chemnitz">
+	         <submenu name="vpype Tools"/>
+		</submenu>
+		</effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">vpypetools.py</command>
+    </script>
+</inkscape-extension>

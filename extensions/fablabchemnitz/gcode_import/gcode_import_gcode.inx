@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>GCode Import (*.gcode)</name>
+    <id>fablabchemnitz.de.gcode_import.gcode</id>
+    <param name="tab" type="notebook">
+        <page name="options" gui-text="Options">
+            <param name="mode" type="optiongroup" appearance="combo" gui-text="GCode Import Mode">
+                <option value="vcarve">V-Carve</option>
+                <option value="standard">Standard</option>
+                <option value="laser">Laser</option>
+            </param>
+            <label appearance="header">V-Carve Settings</label>
+            <param name="v_angle" indent="1" type="float" min="0.001" max="179" precision="0" gui-text="Included (full) angle, degrees">90</param>
+            <param name="v_top" indent="1" type="float" min="-9999" max="9999" precision="3" gui-text="Z value at top of stock">0</param>
+            <param name="v_step" indent="1" type="float" min="0.001" max="9999" precision="3" gui-text="Curve interpolation step size">0</param>
+            <label appearance="header">Standard Mode Settings</label>
+            <param name="tool_diameter" indent="1" type="float" min="0.001" max="999.999" precision="3" gui-text="Path width / tool diameter">6.35</param>
+            <label appearance="header">General Options</label>
+            <param name="units" indent="1" type="optiongroup" appearance="combo" gui-text="Units (in this import dialog)">
+                <option value="mm">mm</option>
+                <option value="in">in</option>
+            </param>
+            <param name="z_axis" indent="1" type="optiongroup" appearance="combo" gui-text="Z-Axis (except V-Carve)">
+                <option value="ignore">Ignore Z axis data.</option>
+                <option value="group">Group by Z if able.</option>
+                <option value="label">Group by Z, with labels.</option>
+            </param>
+        </page>
+        <page name="help" gui-text="Help">
+            <label xml:space="preserve">
+- This is intended to enable hobby CNC users to recover 
+  geometry from G-code files in order to reconstitute
+  SVG design files.
+- Importing G-code for 3D printing is not an intended target.
+- Importing G-code will not result in an immediately
+  usable SVG, but with some manipulation, cromulent
+  results may be achieved.
+  
+- All individual moves are processed at constant Z
+  except in V-carve mode, which requires Z data.
+- Any K parameters for G2/G3 arcs are summarily ignored.
+- Importing a fully 3D carve is unlikely to give a useful result.</label>
+        </page>
+    </param>
+    <input>
+        <extension>.gcode</extension>
+        <mimetype>application/x-gcode</mimetype>
+        <filetypename>GCode File (*.gcode)</filetypename>
+        <filetypetooltip>Import GCode File</filetypetooltip>
+    </input>
+    <script>
+        <command location="inx" interpreter="python">gcode_import.py</command>
+    </script>
+</inkscape-extension>

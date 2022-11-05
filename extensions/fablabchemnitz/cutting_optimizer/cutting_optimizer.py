@@ -55,7 +55,6 @@ class CuttingOptimizer(inkex.EffectExtension):
         
         elements = self.svg.selected
         if len(elements) > 0: #if selection is existing, then we export only selected items to a new svg, which is then going to be processed. Otherwise we process the whole SVG document
-            extra_param = None
             template = self.svg.copy()
             for child in template.getchildren():
                 if child.tag == '{http://www.w3.org/2000/svg}defs':
@@ -81,7 +80,7 @@ class CuttingOptimizer(inkex.EffectExtension):
             actions_list.append("export-filename:{}".format(svg_out))
             actions_list.append("export-do") 
             actions = ";".join(actions_list)
-            cli_output = inkscape(svg_out, extra_param, actions=actions) #process recent file
+            cli_output = inkscape(svg_out, actions=actions) #process recent file
             if len(cli_output) > 0:
                 self.msg("Inkscape returned the following output when trying to run the file export; the file export may still have worked:")
                 self.msg(cli_output)

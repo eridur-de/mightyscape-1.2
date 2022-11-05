@@ -66,8 +66,6 @@ class ExportObject(inkex.EffectExtension):
         scale_factor = self.svg.unittouu("1px")
         
         svg_export = self.options.export_svg
-        #extra_param = "--batch-process"
-        extra_param = None
         
         if self.options.export_svg is False and \
             self.options.export_dxf is False and \
@@ -179,7 +177,7 @@ class ExportObject(inkex.EffectExtension):
             actions_list.append("export-filename:{}".format(svg_out))
             actions_list.append("export-do") 
             actions = ";".join(actions_list)
-            cli_output = inkscape(svg_out, extra_param, actions=actions) #process recent file
+            cli_output = inkscape(svg_out, actions=actions) #process recent file
             if len(cli_output) > 0:
                 self.msg("Inkscape returned the following output when trying to run the file export; the file export may still have worked:")
                 self.msg(cli_output)
@@ -217,7 +215,7 @@ class ExportObject(inkex.EffectExtension):
                 inkex.utils.debug("%d %s %s" % (proc.returncode, stdout, stderr))
 
         if self.options.export_pdf is True:    
-            cli_output = inkscape(os.path.join(tempfile.gettempdir(), svg_filename), extra_param, actions='export-pdf-version:1.5;export-text-to-path;export-filename:{file_name};export-do'.format(file_name=os.path.join(export_dir, filename_base + '.pdf')))
+            cli_output = inkscape(os.path.join(tempfile.gettempdir(), svg_filename), actions='export-pdf-version:1.5;export-text-to-path;export-filename:{file_name};export-do'.format(file_name=os.path.join(export_dir, filename_base + '.pdf')))
             if len(cli_output) > 0:
                 self.msg("Inkscape returned the following output when trying to run the file export; the file export may still have worked:")
                 self.msg(cli_output)
@@ -236,7 +234,7 @@ class ExportObject(inkex.EffectExtension):
             actions_list.append("export-filename:{}".format(png_export))
             actions_list.append("export-do") 
             actions = ";".join(actions_list)
-            cli_output = inkscape(os.path.join(tempfile.gettempdir(), svg_filename), extra_param, actions=actions)
+            cli_output = inkscape(os.path.join(tempfile.gettempdir(), svg_filename), actions=actions)
             if len(cli_output) > 0:
                 self.msg("Inkscape returned the following output when trying to run the file export; the file export may still have worked:")
                 self.msg(cli_output)
@@ -256,7 +254,7 @@ class ExportObject(inkex.EffectExtension):
             actions_list.append("export-filename:{}".format(png_export))
             actions_list.append("export-do") 
             actions = ";".join(actions_list)
-            cli_output = inkscape(os.path.join(tempfile.gettempdir(), svg_filename), extra_param, actions=actions)
+            cli_output = inkscape(os.path.join(tempfile.gettempdir(), svg_filename), actions=actions)
             if len(cli_output) > 0:
                 self.msg("Inkscape returned the following output when trying to run the file export; the file export may still have worked:")
                 self.msg(cli_output)         
