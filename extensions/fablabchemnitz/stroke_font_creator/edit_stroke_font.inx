@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Custom Stroke Font - Edit Stroke Font</name>
+    <id>fablabchemnitz.de.stroke_font_creator.edit_stroke_font</id>
+    <param name="tab" type="notebook">
+        <page name="editStrokeFont" gui-text="Edit Stroke Font">
+            <param name="fontName" type="optiongroup" appearance="combo" gui-text="Font:">
+                <option value="Custom-Script">Custom-Script</option>
+                <option value="Custom-Square Italic">Custom-Square Italic</option>
+                <option value="Custom-Square Normal">Custom-Square Normal</option>
+                <option value="Hershey-Astrology">Hershey-Astrology</option>
+                <option value="Hershey-Cyrillic">Hershey-Cyrillic</option>
+                <option value="Hershey-Gothic English">Hershey-Gothic English</option>
+                <option value="Hershey-Gothic German">Hershey-Gothic German</option>
+                <option value="Hershey-Gothic Italian">Hershey-Gothic Italian</option>
+                <option value="Hershey-Greek 1-stroke">Hershey-Greek 1-stroke</option>
+                <option value="Hershey-Greek medium">Hershey-Greek medium</option>
+                <option value="Hershey-Japanese">Hershey-Japanese</option>
+                <option value="Hershey-Markers">Hershey-Markers</option>
+                <option value="Hershey-Math (lower)">Hershey-Math (lower)</option>
+                <option value="Hershey-Math (upper)">Hershey-Math (upper)</option>
+                <option value="Hershey-Meteorology">Hershey-Meteorology</option>
+                <option value="Hershey-Music">Hershey-Music</option>
+                <option value="Hershey-Sans 1-stroke">Hershey-Sans 1-stroke</option>
+                <option value="Hershey-Sans bold">Hershey-Sans bold</option>
+                <option value="Hershey-Script 1-stroke">Hershey-Script 1-stroke</option>
+                <option value="Hershey-Script 1-stroke (alt)">Hershey-Script 1-stroke (alt)</option>
+                <option value="Hershey-Script medium">Hershey-Script medium</option>
+                <option value="Hershey-Serif bold">Hershey-Serif bold</option>
+                <option value="Hershey-Serif bold italic">Hershey-Serif bold italic</option>
+                <option value="Hershey-Serif medium">Hershey-Serif medium</option>
+                <option value="Hershey-Serif medium italic">Hershey-Serif medium italic</option>
+                <option value="Hershey-Symbolic">Hershey-Symbolic</option>
+            </param>
+            <param name="rowCnt" type="int" min="1" max="999999" gui-text="No of Rows:">5</param>
+            <param name="fontSize" type="int" min="5" max="999999" gui-text="Font Size:">1000</param>
+            <label>This extension overwrites the current document</label>
+        </page>
+        <page name="desc" gui-text="Help">
+            <label xml:space="preserve">Inkscape extension for editing a stroke font.</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Text"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">edit_stroke_font.py</command>
+    </script>
+</inkscape-extension>

@@ -13,23 +13,19 @@ class EditAttributes(inkex.EffectExtension):
 		if not self.options.attributeName: # if attributeName is not given
 			inkex.errormsg("Attribute name not given")
 			return
-		if not self.options.attributeValue: # required to make proper behaviour
-			inkex.errormsg("Please define proper attribute value")
-			return
+		if self.options.attributeValue is None:
+			self.options.attributeValue = ''
 
 		elements = self.svg.selected.values()
 		for el in elements:
-			currentAtt = el.attrib.get(self.options.attributeName)
-			if currentAtt is None:
-				currentAtt = ""
 			if self.options.mode == "set":
 				el.set(self.options.attributeName, self.options.attributeValue)
 			elif self.options.mode == "append":
 				el.attrib[self.options.attributeName] = currentAtt + self.options.attributeValue
 			elif self.options.mode == "prefix":
 				el.attrib[self.options.attributeName] = self.options.attributeValue + currentAtt
-			elif self.options.mode == "subtract":
-				el.attrib[self.options.attributeName] = currentAtt.replace(self.options.attributeValue, "")
+			elif self.options.mode == "clear":
+				el.attrib[self.options.attributeName] = ''
 			elif self.options.mode == "remove":
 				if self.options.attributeName in el.attrib:
 					del el.attrib[self.options.attributeName]

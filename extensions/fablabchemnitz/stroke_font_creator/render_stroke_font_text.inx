@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Custom Stroke Font - Render Text</name>
+    <id>fablabchemnitz.de.stroke_font_creator.render_text</id>
+    <param name="tab" type="notebook">
+        <page name="splash" gui-text="Render Text">
+            <param name="text" type="string" gui-text="Text:" />
+            <param name="filePath" type="string" gui-text="Text File:" />
+            <param name="action" type="optiongroup" appearance="combo" gui-text="Action: ">
+                <option value="renderText">Render the text</option>
+                <option value="renderFile">Render text from file</option>
+                <option value="renderTable">Render font glyph table</option>
+            </param>
+            <param name="fontName" type="optiongroup" appearance="combo" gui-text="Font:">
+                <option value="Custom-Script">Custom-Script</option>
+                <option value="Custom-Square Italic">Custom-Square Italic</option>
+                <option value="Custom-Square Normal">Custom-Square Normal</option>
+                <option value="Hershey-Astrology">Hershey-Astrology</option>
+                <option value="Hershey-Cyrillic">Hershey-Cyrillic</option>
+                <option value="Hershey-Gothic English">Hershey-Gothic English</option>
+                <option value="Hershey-Gothic German">Hershey-Gothic German</option>
+                <option value="Hershey-Gothic Italian">Hershey-Gothic Italian</option>
+                <option value="Hershey-Greek 1-stroke">Hershey-Greek 1-stroke</option>
+                <option value="Hershey-Greek medium">Hershey-Greek medium</option>
+                <option value="Hershey-Japanese">Hershey-Japanese</option>
+                <option value="Hershey-Markers">Hershey-Markers</option>
+                <option value="Hershey-Math (lower)">Hershey-Math (lower)</option>
+                <option value="Hershey-Math (upper)">Hershey-Math (upper)</option>
+                <option value="Hershey-Meteorology">Hershey-Meteorology</option>
+                <option value="Hershey-Music">Hershey-Music</option>
+                <option value="Hershey-Sans 1-stroke">Hershey-Sans 1-stroke</option>
+                <option value="Hershey-Sans bold">Hershey-Sans bold</option>
+                <option value="Hershey-Script 1-stroke">Hershey-Script 1-stroke</option>
+                <option value="Hershey-Script 1-stroke (alt)">Hershey-Script 1-stroke (alt)</option>
+                <option value="Hershey-Script medium">Hershey-Script medium</option>
+                <option value="Hershey-Serif bold">Hershey-Serif bold</option>
+                <option value="Hershey-Serif bold italic">Hershey-Serif bold italic</option>
+                <option value="Hershey-Serif medium">Hershey-Serif medium</option>
+                <option value="Hershey-Serif medium italic">Hershey-Serif medium italic</option>
+                <option value="Hershey-Symbolic">Hershey-Symbolic</option>
+                <!-- ##! dynamically generated portion [end] -->
+            </param>
+            <param name="fontSize" type="float" min="1" max="999999" gui-text="Font Size:">20</param>
+            <param name="charSpacing" type="float" min="0" max="100" gui-text="Char Spacing:">1</param>
+            <param name="wordSpacing" type="float" min="0" max="100" gui-text="Word Spacing:">1</param>
+            <param name="lineSpacing" type="float" min="0" max="100" gui-text="Line Spacing:">1.5</param>
+            <param name="flowInBox" type="bool" gui-text="Flow Text in Selected Boxes:">true</param>
+            <param name="margin" type="float" min="-999999" max="999999" gui-text="Margin:">5</param>
+            <param name="hAlignment" type="optiongroup" appearance="combo" gui-text="Horizontal Alignment:">
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+                <option value="center">Center</option>
+                <option value="justified">Justified</option>
+            </param>
+            <param name="vAlignment" type="optiongroup" appearance="combo" gui-text="Vertical Alignment:">
+                <option value="none">None</option>
+                <option value="top">Top</option>
+                <option value="bottom">Bottom</option>
+                <option value="center">Center</option>
+            </param>
+            <param name="expandDir" type="optiongroup" appearance="combo" gui-text="Create Extended Rectangles:">
+                <option value="none">None</option>
+                <option value="x">Horizontal Direction</option>
+                <option value="y">Vertical Direction</option>
+            </param>
+            <param name="expandDist" type="float" min="0" max="100" gui-text="Extended Rectangle Offset:">1</param>
+        </page>
+        <page name="info" gui-text="Help">
+            <label xml:space="preserve">This extension renders given text using the selected stroke font.
+
+Action can be one of the following:
+- 'Render the text' renders the text from the Text input box
+   (Use \n in the input string to start a new line of text)
+- 'Render text from file' renders the text from the file specified in the Text File input box
+- 'Render font glyph table' displays all the available glyphs of the given font
+  along with the license information
+
+If the 'Flow Text in Selected Boxes' option is selected, the text is fit into the selected rectangle objects with 
+specified margin and justification. The rectangles are filled in their z order. If a single word cannot fit within the 
+given width, it's broken into smaller components.
+
+If there are errors, please ensure the font data files exist in the strokefontdata folder and 
+the font list is synchronized.</label>
+        </page>
+    </param>
+    <effect needs-live-preview="true" needs-document="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Text"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">render_stroke_font_text.py</command>
+    </script>
+</inkscape-extension>

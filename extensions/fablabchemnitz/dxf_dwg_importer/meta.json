@@ -1,0 +1,20 @@
+[
+  {
+    "name": "DXF/DWG Importer",
+    "id": "fablabchemnitz.de.dxf_dwg_importer",
+    "path": "dxf_dwg_importer",
+    "dependent_extensions": null,
+    "original_name": "DXF/DWG Importer",
+    "original_id": "fablabchemnitz.de.dxf_dwg_importer",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/LICENSE",
+    "comment": "Written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/dxf_dwg_importer",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=78807535",
+    "inkscape_gallery_url": "https://inkscape.org/~MarioVoigt/%E2%98%85dxfdwg-importer",
+    "main_authors": [
+      "github.com/vmario89"
+    ]
+  }
+]

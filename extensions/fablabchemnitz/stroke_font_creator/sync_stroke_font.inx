@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Custom Stroke Font - Synchronize Font List</name>
+    <id>fablabchemnitz.de.stroke_font_creator.sync_stroke_font</id>
+    <effect needs-live-preview="false">
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Text"/>
+            </submenu>
+        </effects-menu>
+   </effect>
+    <script>
+        <command location="inx" interpreter="python">sync_stroke_font.py</command>
+    </script>
+</inkscape-extension>

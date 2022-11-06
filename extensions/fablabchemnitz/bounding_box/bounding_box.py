@@ -15,29 +15,30 @@ class BoundingBox(inkex.EffectExtension):
         pars.add_argument('--split', type = inkex.Boolean, default = True, help = 'Handle selection as group')
       
     def drawBBox(self, bbox):
-        so = self.options
-        offset = self.svg.unittouu(str(so.offset) + so.unit)
-        if self.options.box:
-            attribs = {
-                'style' : str(inkex.Style({'stroke':'#ff0000','stroke-width':str(self.svg.unittouu("1px")),'fill':'none'})),
-                'x'     : str(bbox.left - offset),
-                'y'     : str(bbox.top - offset),
-                'width' : str(bbox.width + 2 * offset),
-                'height': str(bbox.height + 2 * offset),
-                'ry'    : str(self.options.corner_radius),
-                'rx'    : str(self.options.corner_radius)
-            }
-            etree.SubElement(self.svg.get_current_layer(), inkex.addNS('rect','svg'), attribs)
-		    	
-        if self.options.circle:			    	
-            attribs = {
-                'style': str(inkex.Style({'stroke':'#ff0000','stroke-width':str(self.svg.unittouu("1px")),'fill':'none'})),
-                'cx'   : str(bbox.center_x),
-                'cy'   : str(bbox.center_y),
-                #'r'   : str(bbox.width / 2 + offset),
-                'r'    : str(math.sqrt((bbox.width + 2 * offset)* (bbox.width + 2 * offset) + (bbox.height + 2 * self.options.offset) * (bbox.height + 2 * self.options.offset)) / 2),
-            }
-            etree.SubElement(self.svg.get_current_layer(), inkex.addNS('circle','svg'), attribs)
+        if bbox is not None: #bbox might be None in case of shape elements like pointy paths
+            so = self.options
+            offset = self.svg.unittouu(str(so.offset) + so.unit)
+            if self.options.box:
+                attribs = {
+                    'style' : str(inkex.Style({'stroke':'#ff0000','stroke-width':str(self.svg.unittouu("1px")),'fill':'none'})),
+                    'x'     : str(bbox.left - offset),
+                    'y'     : str(bbox.top - offset),
+                    'width' : str(bbox.width + 2 * offset),
+                    'height': str(bbox.height + 2 * offset),
+                    'ry'    : str(self.options.corner_radius),
+                    'rx'    : str(self.options.corner_radius)
+                }
+                etree.SubElement(self.svg.get_current_layer(), inkex.addNS('rect','svg'), attribs)
+    		    	
+            if self.options.circle:			    	
+                attribs = {
+                    'style': str(inkex.Style({'stroke':'#ff0000','stroke-width':str(self.svg.unittouu("1px")),'fill':'none'})),
+                    'cx'   : str(bbox.center_x),
+                    'cy'   : str(bbox.center_y),
+                    #'r'   : str(bbox.width / 2 + offset),
+                    'r'    : str(math.sqrt((bbox.width + 2 * offset)* (bbox.width + 2 * offset) + (bbox.height + 2 * self.options.offset) * (bbox.height + 2 * self.options.offset)) / 2),
+                }
+                etree.SubElement(self.svg.get_current_layer(), inkex.addNS('circle','svg'), attribs)
      
       
     def effect(self):

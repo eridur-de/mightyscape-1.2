@@ -10,7 +10,7 @@
 		<option value="set">Set</option>
 		<option value="append">Append</option>
 		<option value="prefix">Prefix</option>
-		<option value="subtract">Remove content</option>
+        <option value="clear">Clear content</option>
 		<option value="remove">Remove attribute</option>
 	</param>
 	<effect>
