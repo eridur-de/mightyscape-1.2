@@ -114,8 +114,8 @@ class inkpacking(inkex.EffectExtension):
 
         box_id = self.svg.get_unique_id('box')
         self.box = g = etree.SubElement(self.svg.get_current_layer(), 'g', {'id':box_id})
-        cut_line_style = str(inkex.Style(({ 'stroke': '#000000', 'fill': 'none', 'stroke-width':'0.3px' })))
-        engrave_line_style = str(inkex.Style(({ 'stroke': '#ff0000', 'fill': 'none', 'stroke-width':'0.3px' })))
+        cut_line_style = str(inkex.Style(({ 'stroke': '#000000', 'fill': 'none', 'stroke-width':'1px' })))
+        engrave_line_style = str(inkex.Style(({ 'stroke': '#ff0000', 'fill': 'none', 'stroke-width':'1px' })))
 
         gflapoffy = (gflapsize / sin( (gflapangle /  360) * 6.28  )) * sin( ((90 - gflapangle) / 360 ) * 6.28)
 
