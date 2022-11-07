@@ -9,13 +9,13 @@
     "license": "MIT License",
     "license_url": "https://github.com/juanfran/svgo-inkscape/blob/master/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/svgo_output",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/svgo_output",
     "fork_url": "https://github.com/juanfran/svgo-inkscape/",
     "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55019653",
     "inkscape_gallery_url": null,
     "main_authors": [
       "github.com/juanfran",
-      "github.com/vmario89"
+      "github.com/eridur-de"
     ]
   }
 ]
