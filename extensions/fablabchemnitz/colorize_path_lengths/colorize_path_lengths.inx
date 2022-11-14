@@ -7,13 +7,13 @@
         <option value="path_slantselection">Slant selection</option>
     </param>
     <label>Unit for lengths is px</label>
-    <param name="len1" type="float" gui-text="Len1: red                       &lt;" min="1" max="100">12</param>
-    <param name="len2" type="float" gui-text="Len2: green                   &lt; =" min="1" max="100">25</param>
-    <param name="len3" type="float" gui-text="Len3: greenyellow         &lt; =" min="1" max="100">40</param>
-    <param name="len4" type="float" gui-text="Len4: skyblue                &lt; =" min="1" max="100">60</param>
-    <param name="len5" type="float" gui-text="Len5: blue                      &gt;" min="1" max="100">60</param>
-    <param name="hor" type="float" gui-text="hor: red                         &lt; (H/W)" min="0.01" max="100">0.1</param>
-    <param name="ver" type="float" gui-text="ver: blue                        &gt;" min="1" max="100">10</param>
+    <param name="len1" type="float" gui-text="Len1: red                       &lt;" min="1" max="99999">12</param>
+    <param name="len2" type="float" gui-text="Len2: green                   &lt; =" min="1" max="99999">25</param>
+    <param name="len3" type="float" gui-text="Len3: greenyellow         &lt; =" min="1" max="99999">40</param>
+    <param name="len4" type="float" gui-text="Len4: skyblue                &lt; =" min="1" max="99999">60</param>
+    <param name="len5" type="float" gui-text="Len5: blue                      &gt;" min="1" max="99999">60</param>
+    <param name="hor" type="float" gui-text="hor: red                         &lt; (H/W)" min="0.01" max="99999">0.1</param>
+    <param name="ver" type="float" gui-text="ver: blue                        &gt;" min="1" max="99999">10</param>
     <effect>
         <object-type>path</object-type>
         <effects-menu>

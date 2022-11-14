@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Bendy Straw</name>
+    <id>org.inkscape.Origami_patterns.cylindrical_bendy</id>
+    <param name="active-tab" type="notebook">
+        <page name="title" gui-text="Options">
+            <param name="pattern_type" type="optiongroup" appearance="combo" gui-text="Type of pattern:">
+                <option value="origami">Origami regular</option>
+                <option value="origami_bent">Origami bent</option>
+                <option value="kirigami1">Kirigami mode 1</option>
+                <option value="kirigami2">Kirigami mode 2</option>
+            </param>
+            <label>------------------------------------------------------------</label>
+            <param name="n" type="int" min="3" max="25" gui-text="Number of sides of polygon">6</param>
+            <param name="lines" type="int" min="1" max="100" gui-text="Number of cells">3</param>
+            <label>------------------------------------------------------------</label>
+            <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of bigger polygon">25.0</param>
+            <param name="radial_ratio" type="float" max="1.0" min="0.0001" precision="3" gui-text="Ratio small radius/big radius">0.75</param>
+            <label>------------------------------------------------------------</label>
+            <param name="parameter_type" type="optiongroup" appearance="combo" gui-text="Parameter:">
+                <option value="angles">Angles (alpha1, alpha2)</option>
+                <option value="heights">Heights (h1, h2)</option>
+            </param>
+            <param name="alpha1" type="int" min="5" max="90" gui-text="Angle of superior cone (alpha1)">45</param>
+            <param name="alpha2" type="int" min="5" max="90" gui-text="Angle of inferior cone (alpha2)">35</param>
+            <param name="h1" type="float" min="0" max="200.0" precision="3" gui-text="Height of superior cone (h1)">1</param>
+            <param name="h2" type="float" min="0" max="200.0" precision="3" gui-text="Height of inferior cone (h2)">2</param>
+            <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+                <option value="pt">pt</option>
+                <option value="px">px</option>
+            </param>
+            <label>As published in: https://doi.org/10.1115/1.4052222</label>
+            <param name="simulation_mode" type="bool" gui-text="Simulation mode">true</param>
+        </page>
+        <page name="extra" gui-text="Extra">
+            <param name="add_attachment" type="bool" gui-text="Add attachments?">false</param>
+            <label>------------------------------------------------------------</label>
+            <param name="base_height" type="float" max="10000" precision="3" gui-text="Height of base">5.0</param>
+            <param name="add_base_slot" type="bool" gui-text="Add base slots?">false</param>
+            <param name="center_base_slot" type="bool" gui-text="Center base slots?">false</param>
+            <param name="base_slot_height" type="float" max="10000" precision="3" gui-text="Height of base slot">3.0</param>
+            <param name="base_slot_width" type="float" max="10000" precision="3" gui-text="Width of base slow">3.0</param>
+            <label>------------------------------------------------------------</label>
+            <param name="distance" type="float" max="10000" precision="3" gui-text="Distance between cells">3.0</param>
+            <param name="add_distance_slot" type="bool" gui-text="Add slots between cells?">false</param>
+            <param name="distance_slot_height" type="float" max="10000" precision="3" gui-text="Height of slots between cells">3.0</param>
+            <param name="distance_slot_width" type="float" max="10000" precision="3" gui-text="Width of slots between cells">3.0</param>
+        </page>
+        <page name="mountains" gui-text="Mountains">
+            <param name="mountain_bool" type="bool" gui-text="Draw mountains?">true</param>
+            <param name="mountain_bool_only" type="bool" gui-text="Draw ONLY mountains?">false</param>
+            <param name="mountain_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
+            <param name="mountain_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Mountain dash + gap length">1</param>
+            <param name="mountain_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Mountain dash duty cycle">0.5</param>
+            <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of mountain strokes">0.1</param>
+            <param name="mountain_stroke_color" type="color" gui-text="Mountain creases color: ">4278190335</param>
+        </page>
+        <page name="valleys" gui-text="Valleys">
+            <param name="valley_bool" type="bool" gui-text="Draw valley?">true</param>
+            <param name="valley_bool_only" type="bool" gui-text="Draw ONLY valleys?">false</param>
+            <param name="valley_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
+            <param name="valley_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Valley dash + gap length">1</param>
+            <param name="valley_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Valley dash duty cycle">0.25</param>
+            <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of valley strokes">0.1</param>
+            <param name="valley_stroke_color" type="color" gui-text="Valley creases color: ">65535</param>
+        </page>
+        <page name="cuts" gui-text="Cuts">
+            <param name="cut_bool" type="bool" gui-text="Draw cuts?">true</param>
+            <param name="cut_dashes_bool" type="bool" gui-text="Dashed strokes?">false</param>
+            <param name="cut_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Cut dash + gap length">1</param>
+            <param name="cut_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Cut dash duty cycle">0.25</param>
+            <param name="cut_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of cut strokes">0.1</param>
+            <param name="cut_stroke_color" type="color" gui-text="Cut creases color: ">16711935</param>
+        </page>
+        <page name="edge" gui-text="Edge">
+            <param name="edge_bool" type="bool" gui-text="Draw edges?">true</param>
+            <param name="edge_bool_only" type="bool" gui-text="Draw ONLY edges?">false</param>
+            <param name="edge_single_path" type="bool" gui-text="Edges as single path?">true</param>
+            <param name="edge_dashes_bool" type="bool" gui-text="Dashed strokes?">false</param>
+            <param name="edge_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Edge dash + gap length">1</param>
+            <param name="edge_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Edge dash duty cycle">0.25</param>
+            <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of edge strokes">0.1</param>
+            <param name="edge_stroke_color" type="color" gui-text="Edge color: ">255</param>
+        </page>
+        <page name="vertices" gui-text="Vertices">
+            <param name="vertex_bool" type="bool" gui-text="Draw vertices?">true</param>
+            <param name="vertex_bool_only" type="bool" gui-text="Draw ONLY vertices?">false</param>
+            <param name="vertex_base_outer_bool" type="bool" gui-text="Outer base vertices?">true</param>
+            <param name="vertex_base_inner_bool" type="bool" gui-text="Other base vertices?">true</param>
+            <param name="vertex_radius_outer_bool" type="bool" gui-text="Outer radius vertices?">true</param>
+            <param name="vertex_radius_inner_bool" type="bool" gui-text="Inner radius vertices?">true</param>
+            <param name="vertex_radius" type="float" min="0.01" max="50" appearance="full" gui-text="Radius of vertices">0.1</param>
+            <param name="vertex_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of vertex strokes">0.1</param>
+            <param name="vertex_stroke_color" type="color" gui-text="Vertices\' color: ">255</param>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="Origami Patterns">
+                <submenu name="Cylindrical" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">OrigamiPatterns/Cylindrical_Bendy.py</command>
+    </script>
+</inkscape-extension>

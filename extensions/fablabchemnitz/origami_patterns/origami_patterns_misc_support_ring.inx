@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>* Support ring</name>
+    <id>org.inkscape.Origami_patterns.support_ring</id>
+    <param name="active-tab" type="notebook">
+        <page name="options" gui-text="Options">
+            <param name="sides" type="int" min="3" max="100" gui-text="Number of polygon sides">6</param>
+            <param name="radius_external" type="float" max="10000" precision="3" gui-text="Pattern radius:">10.0</param>
+            <param name="inverted" type="bool" gui-text="Invert hook direction?">false</param>
+            <param name="single_stroke" type="bool" gui-text="Single stroke?">true</param>
+            <label>------------------------------------------------------------</label>
+            <param name="connector_length" type="float" max="10000" precision="3" gui-text="Connector length:">3.0</param>
+            <param name="connector_thickness" type="float" max="10000" precision="3" gui-text="Connector thickness:">3.0</param>
+            <param name="head_length" type="float" max="10000" precision="3" gui-text="Head extra length:">1.0</param>
+            <param name="head_thickness" type="float" max="10000" precision="3" gui-text="Head extra thickness:">1.0</param>
+            <label>------------------------------------------------------------</label>
+            <param name="radius_draw" type="bool" gui-text="Draw internal radius? (or external, if inverted)">true</param>
+            <param name="radius_ratio" type="float" min="0" max="0.9" precision="3" gui-text="Radial ratio:">0.5</param>
+            <param name="radius_type" type="optiongroup" appearance="combo" gui-text="Internal radius type:">
+                <option value="polygonal">Polygonal</option>
+                <option value="circular">Circular</option>
+            </param>
+            <label>------------------------------------------------------------</label>
+            <label>Length must be at least the thickness of the origami material + the thickness of the belt.</label>
+            <label>For an OpenSCAD simple implementation of the belt, see Origami_Patterns/Support_Ring_Belt.</label>
+            <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+                <option value="pt">pt</option>
+                <option value="px">px</option>
+            </param>
+        </page>
+        <page name="mountains" gui-text="Strokes">
+            <param name="mountain_dashes_bool" type="bool" gui-text="Dashed strokes?">false</param>
+            <param name="mountain_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Dash + gap length">1</param>
+            <param name="mountain_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Dash duty cycle">0.5</param>
+            <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of strokes">0.1</param>
+            <param name="mountain_stroke_color" type="color" gui-text="Strokes color: ">4278190335</param>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="Origami Patterns">
+                <submenu name="Cylindrical" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">OrigamiPatterns/SupportRing.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "J Tech Photonics Laser Tool",
+    "id": "fablabchemnitz.de.j_tech_photonics_laser_tool",
+    "path": "j_tech_photonics_laser_tool",
+    "dependent_extensions": null,
+    "original_name": "J Tech Community Laser Tool",
+    "original_id": "community.jtechphotonics.com",
+    "license": "GNU GPL v2",
+    "license_url": "https://jtechphotonics.com/Downloads/Inkscape/JTP-Laser-Tool_v1.1-beta_ink1.0.zip",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X/src/branch/master/extensions/fablabchemnitz/j_tech_photonics_laser_tool",
+    "fork_url": "https://github.com/JTechPhotonics/J-Tech-Photonics-Laser-Tool",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/J+Tech+Photonics+Laser+Tool",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/JTechPhotonics",
+      "github.com/PadLex",
+      "github.com/odaki",
+      "github.com/themanyone",
+      "github.com/drewler",
+      "github.com/nineff",
+      "github.com/4cello",
+      "github.com/dapperfu",
+      "github.com/nmeurer",
+      "github.com/aspeteRakete",
+      "github.com/vmario89"
+    ]
+  }
+]
