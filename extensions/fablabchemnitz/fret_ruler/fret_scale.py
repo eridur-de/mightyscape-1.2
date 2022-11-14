@@ -5,6 +5,7 @@
 ### fret scale calculation code
 
 from math import log, floor
+import inkex
 
 def fret_calc_ratio(length, howmany, ratio):
 	" given the ratio between notes, calc distance between frets "
@@ -16,7 +17,7 @@ def fret_calc_ratio(length, howmany, ratio):
 		distances.append(prev+distance)
 		length -= distance
 		prev += distance
-		# print "%02d  %6.4f  %s" %(i, prev, distance)
+		# inkex.utils.debug("%02d  %6.4f  %s" %(i, prev, distance))
 	return distances
 
 def fret_calc_root2(length, howmany, numtones=12):
@@ -27,7 +28,7 @@ def fret_calc_root2(length, howmany, numtones=12):
 		# d = s-(s/ (2^ (n/12)))
 		distance = length - (length / (pow(2, (i+1)/(float(numtones))) ))
 		distances.append(distance)
-		# print "%02d  %6.4f" %(i, distance)
+		# inkex.utils.debug("%02d  %6.4f" %(i, distance))
 	return distances
 
 def fret_calc_scala(length, howmany, scala_notes):
@@ -57,15 +58,16 @@ def parse_scala(scala, filename, verbose=True):
 	notes = []
 	ratios = []
 	error = False
-	# print scala
+	# inkex.utils.debug(scala)
 	for line in scala:
 		try:
 			# take out leading and trailing spaces - get everything up to first space if exists
 			line = line.strip() # hold onto this for when we need the description
 			first = line.split()[0] # first element in the line
-			# print line
+			#inkex.utils.debug(line)
+			#inkex.utils.debug(first)
 			if first and first[0] != "!": # ignore all blank and comment lines
-				if not description:
+				if description != "":
 					# expecting description line first
 					# may contain unprintable characters - force into unicode
 					description = unicode(line, errors='ignore')
@@ -85,14 +87,17 @@ def parse_scala(scala, filename, verbose=True):
 					else:
 						ratios.append(int(first))
 		except:
-			error = "ERROR: Failed to load "+filename
+			error = "ERROR: Failed to load " + filename
+			#inkex.utils.debug(error)
+		#inkex.utils.debug(ratios)
+
 	#
 	if verbose:
-		print ("Found:", description)
-		print ("",numnotes, "notes found.")
+		inkex.utils.debug("Found:", description)
+		inkex.utils.debug("",numnotes, "notes found.")
 		for n,r in zip(notes,ratios):
-			print (" %4.4f : %s"%(r, n))
-		print (" check: indicated=found : %d=%d"%(numnotes,len(notes)))
+			inkex.utils.debug(" %4.4f : %s"%(r, n))
+		inkex.utils.debug(" check: indicated=found : %d=%d"%(numnotes,len(notes)))
 	if error:
 		return [error, numnotes, notes, ratios]
 	else:
@@ -101,13 +106,15 @@ def parse_scala(scala, filename, verbose=True):
 def read_scala(filename, verbose=False):
 	" read and parse scala file into interval ratios "
 	try:
-		inf = open(filename, 'rB')
+		inf = open(filename, 'r')
 		content = inf.readlines()
 		inf.close()
 		flag = verbose
 		# if filename.find("dyadic") > -1: flag = True
 		return parse_scala(content, filename, flag)
-	except:
+	except Exception as e:
+		inkex.utils.debug("ERROR: Failed to load " + filename)
+		inkex.utils.debug(e)
 		return ["ERROR: Failed to load "+filename, 2, [1], [1.01]]
 
 		
@@ -206,13 +213,13 @@ class Neck(object):
 		# if treble - move self.frets
 		# if bass, add offset as calculated
 		treble = self.frets
-		# print treble
+		# inkex.utils.debug(treble)
 		if self.method == 'scala':
 			bass = self.calc_fret_offsets(bass_scale, len(self.frets), method=self.method, scala_filename=self.scala)
 		else:
 			bass = self.calc_fret_offsets(bass_scale, len(self.frets), method=self.method, numtones=self.notes_in_scale)
 		offset = 0 if vertical_fret ==0 else bass[vertical_fret - 1] - treble[vertical_fret - 1]
-		# print "offset", offset, "bass",bass
+		# inkex.utils.debug("offset", offset, "bass",bass)
 		if offset > 0:
 			# shift treble
 			for i in range(len(treble)):
@@ -249,9 +256,9 @@ class Neck(object):
 		#
 		mid_tpos = tpos_f0 + (tpos_f1 - tpos_f0)/2
 		mid_bpos = bpos_f0 + (bpos_f1 - bpos_f0)/2
-		# print fret_index, y_factor
-		# print " %4.2f %4.2f %4.2f"% (tpos_f0, tpos_f1, mid_tpos)
-		# print " %4.2f %4.2f %4.2f"% (bpos_f0, bpos_f1, mid_bpos)
+		# inkex.utils.debug(fret_index, y_factor)
+		# inkex.utils.debug(" %4.2f %4.2f %4.2f"% (tpos_f0, tpos_f1, mid_tpos))
+		# inkex.utils.debug(" %4.2f %4.2f %4.2f"% (bpos_f0, bpos_f1, mid_bpos))
 		# the mid_xx positions are self.nut_width apart
 		return [mid_tpos + (mid_bpos-mid_tpos)*y_factor, width_offset/self.nut_width*1.5]
 
@@ -293,10 +300,10 @@ class Neck(object):
 	def show_frets(self):
 		" pretty print "
 		for i,d in enumerate(self.frets):
-			print ("%2d: %4.4f" %(i+1,d))
+			inkex.utils.debug ("%2d: %4.4f" %(i+1,d))
 		if self.bass_frets:
 			for i,d in enumerate(self.bass_frets):
-				print ("%2d: %4.4f" %(i+1,d))
+				inkex.utils.debug ("%2d: %4.4f" %(i+1,d))
 
 	def compare_methods(self, howmany, verbose=True):
 		" show differences in length for the main methods (not scala) "
@@ -306,16 +313,16 @@ class Neck(object):
 		n = Neck(30) # long one to maximise errors
 		for method in methods:
 			distances.append(n.calc_fret_offsets(n.length, howmany, method))
-			# print distances[-1]
+			# inkex.utils.debug(distances[-1])
 		for i in range(1, len(methods)):
 			differences.append( [a-b for (a,b) in zip(distances[0], distances[i])] )
 		if verbose:
-			print("Differences from 12root2")
+			inkex.utils.debug("Differences from 12root2")
 			for i,m in enumerate(methods[1:]):
-				print ("\nMethod = %s\n  " %(m))
+				inkex.utils.debug ("\nMethod = %s\n  " %(m))
 				for d in differences[i]:
-					print ("%2.3f " %(d))
-			print("")
+					inkex.utils.debug ("%2.3f " %(d))
+			inkex.utils.debug("")
 		# package
 		combined = []
 		for i,m in enumerate(methods[1:]):
@@ -333,28 +340,28 @@ if __name__ == "__main__":
 	n = Neck(24)
 	f = n.calc_fret_offsets(n.length, 12, '12root2')
 	n.show_frets()
-	print (n)
+	inkex.utils.debug(n)
 	errors = n.compare_methods(22, False)
 	for m,e,d in errors:
-		print ("for method '%s': max difference from 12Root2 = %4.3f%s (on highest fret)"%(m,e, n.units))
+		inkex.utils.debug("for method '%s': max difference from 12Root2 = %4.3f%s (on highest fret)"%(m,e, n.units))
 	#
 	n = Neck(24)
 	f = n.calc_fret_offsets(n.length, 22, 'scala', scala_filename='scales/diat_chrom.scl')
 	n.show_frets()
-	print ("Fanning")
+	inkex.utils.debug("Fanning")
 	# n.set_fanned(25,0)
 	# n.show_frets()
-	# print n
-	# print n.description
-	# print n.scala
-	# print n.scala_notes
-	# print n.scala_ratios
+	# inkex.utils.debug(n)
+	# inkex.utils.debug(n.description)
+	# inkex.utils.debug(n.scala)
+	# inkex.utils.debug(n.scala_notes)
+	# inkex.utils.debug(n.scala_ratios)
 
 	# similar to scale=10 to scale = 9.94 but slightly diff neaer the nut.
 
 	# scala_notes = read_scala("scales/alembert2.scl")#, True)
-	# print "Notes=",len(scala_notes[-1]), scala_notes[1]
-	# for d in fret_calc_scala(24, scala_notes[-1]): print d
+	# inkex.utils.debug("Notes=",len(scala_notes[-1]), scala_notes[1])
+	# for d in fret_calc_scala(24, scala_notes[-1]): inkex.utils.debug(d)
 
 	# test load all scala files
 	# import os
@@ -362,21 +369,19 @@ if __name__ == "__main__":
 	# files = os.listdir(probable_dir)
 	# for f in files:
 		# fname = probable_dir+f
-		# # print f
+		# # inkex.utils.debug(f)
 		# data = read_scala(fname)
-		# # print "     ",data[0]
+		# # inkex.utils.debug("     ",data[0])
 		# if data[0][:5] == "ERROR":
-			# print "!!!!    ERROR",fname
+			# inkex.utils.debug("!!!!    ERROR",fname)
 
 	## freq conversion
-	print("")
 	for f in [440,443,456,457, 500,777, 1086]:
-		print (f, freq_to_note(f))
+		inkex.utils.debug(f, freq_to_note(f))
 
 	## fanned frets
-	# print
 	# for f in [1,11]:
-		# print n.find_mid_point(f,-0.75) 
+		# inkex.utils.debug(n.find_mid_point(f,-0.75))
 
 	# get to this eventually
 	string_compensation = [

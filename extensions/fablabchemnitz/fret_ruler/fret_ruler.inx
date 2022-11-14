@@ -22,7 +22,7 @@
             <label>Next two, only if named method has been selected.</label>
             <hbox>
                <param name="nth" type="int" min="2" max="50" gui-text="(Method=Nth Root of 2): Notes in Scale:">0</param>
-               <param name="scala_filename" type="string" gui-text="(Method=Scala): Scala filename:">12tet</param>
+               <param name="scala_filename" type="string" gui-text="(Method=Scala): Scala filename:">fj-12tet</param>
             </hbox>
          </vbox>
          <label>Dimensions:</label>

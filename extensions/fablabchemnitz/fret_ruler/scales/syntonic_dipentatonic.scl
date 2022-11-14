@@ -1,0 +1,17 @@
+! syntonic_dipentatonic.scl
+Syntonic Dipentatonic Step-Nested Scale
+! SNS ((2/1, 3/2)[5], 10/9)[10]
+! 5L 2m 3s = (10/9, 16/15, 81/80)
+! Mode -3: sLMLsLMLsL
+10
+!
+81/80 
+9/8 
+6/5 
+4/3 
+27/20 
+3/2 
+8/5 
+16/9 
+9/5 
+2/1

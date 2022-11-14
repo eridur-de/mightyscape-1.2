@@ -1,0 +1,21 @@
+! porcutone_13-limit_supermagic.scl
+13-limit Supermagic tempered porcutone chromatic as a 3-SN scale
+! 12-note No-7 Supermagic+ tempered Step-Nested Scale
+! SNS (2/1, 3/2, 6/5: 100/99)[12]
+! TE tuned
+! 7L 1m 4s = ((27/25~12/11~13/12~35/32, 25/24~27/26~33/32, 250/243~40/39~55/54~64/63~121/120)) = (145.47082c, 58.39270c, 30.85183c)
+! Mode -3: sLLsLmLsLLsL
+12
+!
+30.852
+176.323
+321.793
+352.645
+498.116
+556.509
+701.98
+732.831
+878.302
+1023.773
+1054.625
+1200.096

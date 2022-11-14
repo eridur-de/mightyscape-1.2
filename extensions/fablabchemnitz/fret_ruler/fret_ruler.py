@@ -78,7 +78,7 @@ class FretRuler(inkex.EffectExtension):
         pars.add_argument('--method', default='12th Root of 2', help="Method to calculate scale")
         pars.add_argument('--draw_style', default='Ruler', help="How to draw the Ruler/NEck")
         pars.add_argument("--nth",  type=int,default=12, help="For different number of notes in a scale")
-        pars.add_argument('--scala_filename', default='12tet', help="Name of file in scales directory")
+        pars.add_argument('--scala_filename', default='fj-12tet', help="Name of file in scales directory")
         pars.add_argument("--units", default="in", help="The units of entered dimensions")
         pars.add_argument("--length", type=float, default=25.5, help="Length of the Scale (and Ruler)")
         pars.add_argument("--width", type=float, default=1.5, help="Width of the Ruler (= Nut if drawing a neck)")
