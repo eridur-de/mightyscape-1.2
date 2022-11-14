@@ -981,7 +981,7 @@ class PathsToOpenSCAD(inkex.EffectExtension):
                     y = float(node.get("y", "0"))
                     # Note: the transform has already been applied
                     if (x != 0) or (y != 0):
-                        matNew2 = matNew * Transform("translate(%f,%f)" % (x, y))
+                        matNew2 = matNew @ Transform("translate(%f,%f)" % (x, y))
                     else:
                         matNew2 = matNew
                     v = node.get("visibility", v)
@@ -1230,7 +1230,7 @@ class PathsToOpenSCAD(inkex.EffectExtension):
                 if parent_transform is None:
                     return tr
                 else:
-                    return parent_transform * tr
+                    return parent_transform @ tr
         else:
             return self.docTransform
 
