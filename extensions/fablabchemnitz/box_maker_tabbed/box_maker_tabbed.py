@@ -351,7 +351,6 @@ class BoxMaker(inkex.EffectExtension):
     pars.add_argument('--hairline',type=int,default=0,help='Line Thickness')
     pars.add_argument('--thickness',type=float,default=10,help='Thickness of Material')
     pars.add_argument('--kerf',type=float,default=0.5,help='Kerf (width) of cut')
-    pars.add_argument('--clearance',type=float,default=0.01,help='Clearance of joints')
     pars.add_argument('--style',type=int,default=25,help='Layout/Style')
     pars.add_argument('--spacing',type=float,default=25,help='Part Spacing')
     pars.add_argument('--boxtype',type=int,default=25,help='Box type')
