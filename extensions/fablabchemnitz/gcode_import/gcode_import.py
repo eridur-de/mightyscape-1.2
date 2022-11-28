@@ -296,7 +296,6 @@ class ImportGCode:
         R = None
         results = commands.findall(comments.sub('',line))
         if not line.startswith(";"):
-            inkex.utils.debug(results)
 
             for (code,val) in results:
                 v = float(val)
