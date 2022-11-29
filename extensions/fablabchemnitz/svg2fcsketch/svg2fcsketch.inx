@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>FreeCAD Sketch Export</name>
+    <id>fablabchemnitz.de.svg2fcsketch</id>
+    <param name="tab" type="notebook">
+        <page name="fcstd" gui-text="Settings">
+            <param name="expose-internal-geometry" type="bool" gui-text="Expose internal geometry" gui-description="Switch internal geometry of splines and ellipses to visible when editing.">true</param>
+            <param name="ids" type="string" gui-text="IDs to export (all if empty):" gui-description="A comma separated list of IDs to export (Default: everything)"></param>
+            <label>(C) 2018 Jürgen Weigert (juergen@fabmail.org) and contributors.</label>
+            <label>For updates, praise or bug reports please refer to</label>
+            <label appearance="url">https://github.com/jnweiger/inkscape-svg2fcsketch</label>
+            <label>Version 0.8</label>
+        </page>
+    </param>
+    <output>
+        <extension>.fcstd</extension>
+        <mimetype>text/plain</mimetype>
+        <filetypename>FreeCAD-0.20 Sketch (*.fcstd)</filetypename>
+        <filetypetooltip>Export path objects to a FreeCAD sketch file</filetypetooltip>
+        <dataloss>true</dataloss>
+    </output>
+    <script>
+        <command location="inx" interpreter="python">svg2fcsketch.py</command>
+    </script>
+</inkscape-extension>
