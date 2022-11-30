@@ -37,7 +37,7 @@ class boxesPyWrapper(inkex.GenerateExtension):
             os.remove(box_file) #remove previously generated box file at the beginning
 
         boxes_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'boxes', 'scripts')
-        cmd = os.path.join(boxes_dir, 'boxes') #the boxes python file (without .py ending)       
+        cmd = 'python ' + os.path.join(boxes_dir, 'boxes') #the boxes python file (without .py ending) - we add python at the beginning to support Windows too    
         for arg in vars(self.options):
             if arg != "output" and arg != "ids" and arg != "selected_nodes":
                 #inkex.utils.debug(str(arg) + " = " + str(getattr(self.options, arg)))
