@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>Console2</name>
+<id>info.festi.boxes.py.Console2</id>
+<param name="generator" type="string" gui-hidden="true">console2</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="Console2">
+        <param name="x" type="float" precision="2" max="9999" gui-text="x" gui-description="inner width in mm (unless outside selected)">100</param>
+        <param name="y" type="float" precision="2" max="9999" gui-text="y" gui-description="inner depth in mm (unless outside selected)">100</param>
+        <param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="inner height in mm (unless outside selected)">100</param>
+      <param name="bottom_edge" type="enum" gui-text="bottom_edge" gui-description="edge type for bottom edge">
+        <item value="F">F Finger Joint (opposing side)</item>
+        <item value="h">h Edge (parallel Finger Joint Holes)</item>
+        <item value="s">s Stackable (bottom, finger joint holes)</item>
+        <item value="e">e Straight Edge</item>
+      </param>
+        <param name="outside" type="bool" gui-text="outside" gui-description="treat sizes as outside measurements that include the walls">false</param>
+        <param name="front_height" type="float" precision="2" max="9999" gui-text="front_height" gui-description="height of the front below the panel (in mm)">30</param>
+        <param name="angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle of the front panel (90°=upright)">50</param>
+        <param name="removable_backwall" type="bool" gui-text="removable_backwall" gui-description="have latches at the backwall">true</param>
+        <param name="removable_panel" type="bool" gui-text="removable_panel" gui-description="The panel is held by tabs and can be removed">true</param>
+        <param name="glued_panel" type="bool" gui-text="glued_panel" gui-description="the panel is glued and not held by finger joints">true</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place in mm (not supported everywhere)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (zero to disable)">100</param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description='burn correction in mm (bigger values for tighter fit). Use BurnTest in "Parts and Samples" to find the right value.'>0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Finger Joints">
+        <param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
+        <param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+            <option value="rectangular">rectangular</option>
+            <option value="springs">springs</option>
+    </param>
+        <param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="maximum space at the start and end in multiple of normal spaces">0.5</param>
+        <param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge">1.0</param>
+        <param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers">2.0</param>
+        <param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out">0.0</param>
+        <param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers">2.0</param>
+        <param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes">1.0</param>
+    </page>
+    <page name="tab_3" gui-text="Stackable Edges">
+        <param name="Stackable_angle" type="int" max="9999" gui-text="angle" gui-description="inside angle of the feet">60</param>
+        <param name="Stackable_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the feet">2.0</param>
+        <param name="Stackable_holedistance" type="float" precision="2" max="9999" gui-text="holedistance" gui-description="distance from finger holes to bottom edge">1.0</param>
+        <param name="Stackable_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of the feet">4.0</param>
+    </page>
+    <page name="tab_4" gui-text="Example">
+        <image>./Console2-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/Console2</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Boxes"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

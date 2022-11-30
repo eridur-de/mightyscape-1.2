@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>SlatwallWrenchHolder</name>
+<id>info.festi.boxes.py.SlatwallWrenchHolder</id>
+<param name="generator" type="string" gui-hidden="true">slatwallwrenchholder</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="SlatwallWrenchHolder">
+        <param name="x" type="float" precision="2" max="9999" gui-text="x" gui-description="inner width in mm">100</param>
+        <param name="depth" type="float" precision="2" max="9999" gui-text="depth" gui-description="depth of the sides (in mm)">30.0</param>
+        <param name="number" type="int" max="9999" gui-text="number" gui-description="number of wrenches (in mm)">11</param>
+        <param name="min_width" type="float" precision="2" max="9999" gui-text="min_width" gui-description="width of smallest wrench (in mm)">8.0</param>
+        <param name="max_width" type="float" precision="2" max="9999" gui-text="max_width" gui-description="width of largest wrench (in mm)">25.0</param>
+        <param name="min_strength" type="float" precision="2" max="9999" gui-text="min_strength" gui-description="strength of smallest wrench (in mm)">3.0</param>
+        <param name="max_strength" type="float" precision="2" max="9999" gui-text="max_strength" gui-description="strength of largest wrench (in mm)">5.0</param>
+        <param name="extra_distance" type="float" precision="2" max="9999" gui-text="extra_distance" gui-description="additional distance between wrenches (in mm)">0.0</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place in mm (not supported everywhere)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (zero to disable)">100</param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description='burn correction in mm (bigger values for tighter fit). Use BurnTest in "Parts and Samples" to find the right value.'>0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Finger Joints">
+        <param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
+        <param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+            <option value="rectangular">rectangular</option>
+            <option value="springs">springs</option>
+    </param>
+        <param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="maximum space at the start and end in multiple of normal spaces">2.0</param>
+        <param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge">1.0</param>
+        <param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers">2.0</param>
+        <param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out">0.0</param>
+        <param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers">2.0</param>
+        <param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes">1.0</param>
+    </page>
+    <page name="tab_3" gui-text="SlatWallEdges">
+        <param name="SlatWall_bottom_hook" type="optiongroup" appearance="combo" gui-text="bottom_hook" gui-description='"spring", "stud" or "none"'>
+            <option value="hook">hook</option>
+            <option value="spring">spring</option>
+            <option value="stud">stud</option>
+            <option value="none">none</option>
+    </param>
+        <param name="SlatWall_hook_depth" type="float" precision="2" max="9999" gui-text="hook_depth" gui-description="horizontal width of the hook">4.0</param>
+        <param name="SlatWall_pitch" type="float" precision="2" max="9999" gui-text="pitch" gui-description="vertical spacing of slots middle to middle (in mm)">101.6</param>
+        <param name="SlatWall_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge">1.0</param>
+        <param name="SlatWall_hook_extra_height" type="float" precision="2" max="9999" gui-text="hook_extra_height" gui-description="space surrounding connectors (in multiples of thickness)">2.0</param>
+    </page>
+    <page name="tab_4" gui-text="Example">
+        <image>./SlatwallWrenchHolder-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/SlatwallWrenchHolder</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="SlatWall"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

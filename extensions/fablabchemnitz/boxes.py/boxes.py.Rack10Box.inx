@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>Rack10Box</name>
+<id>info.festi.boxes.py.Rack10Box</id>
+<param name="generator" type="string" gui-hidden="true">rack10box</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="Rack10Box">
+        <param name="depth" type="float" precision="2" max="9999" gui-text="depth" gui-description="inner depth in mm">100.0</param>
+        <param name="height" type="optiongroup" appearance="combo" gui-text="height" gui-description="height in rack units">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+    </param>
+        <param name="triangle" type="float" precision="2" max="9999" gui-text="triangle" gui-description="Sides of the triangles holding the lid in mm">25.0</param>
+        <param name="d1" type="float" precision="2" max="9999" gui-text="d1" gui-description="Diameter of the inner lid screw holes in mm">2.0</param>
+        <param name="d2" type="float" precision="2" max="9999" gui-text="d2" gui-description="Diameter of the lid screw holes in mm">3.0</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place in mm (not supported everywhere)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (zero to disable)">100</param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description='burn correction in mm (bigger values for tighter fit). Use BurnTest in "Parts and Samples" to find the right value.'>0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Finger Joints">
+        <param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
+        <param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+            <option value="rectangular">rectangular</option>
+            <option value="springs">springs</option>
+    </param>
+        <param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="maximum space at the start and end in multiple of normal spaces">0.5</param>
+        <param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge">1.0</param>
+        <param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers">2.0</param>
+        <param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out">0.0</param>
+        <param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers">2.0</param>
+        <param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes">1.0</param>
+    </page>
+    <page name="tab_3" gui-text="Example">
+        <image>./Rack10Box-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/Rack10Box</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Boxes"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

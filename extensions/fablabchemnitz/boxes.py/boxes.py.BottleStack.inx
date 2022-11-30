@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>BottleStack</name>
+<id>info.festi.boxes.py.BottleStack</id>
+<param name="generator" type="string" gui-hidden="true">bottlestack</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="BottleStack">
+        <param name="diameter" type="float" precision="2" max="9999" gui-text="diameter" gui-description="diameter of the bottles in mm">80</param>
+        <param name="number" type="int" max="9999" gui-text="number" gui-description="number of bottles to hold in the bottom row">3</param>
+        <param name="depth" type="float" precision="2" max="9999" gui-text="depth" gui-description="depth of the stand along the base of the bottles">80</param>
+        <param name="double" type="bool" gui-text="double" gui-description="two pieces that can be combined to up to double the width">true</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place in mm (not supported everywhere)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (zero to disable)">100</param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description='burn correction in mm (bigger values for tighter fit). Use BurnTest in "Parts and Samples" to find the right value.'>0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Example">
+        <image>./BottleStack-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/BottleStack</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Misc"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

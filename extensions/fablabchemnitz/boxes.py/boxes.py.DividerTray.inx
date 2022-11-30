@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>DividerTray</name>
+<id>info.festi.boxes.py.DividerTray</id>
+<param name="generator" type="string" gui-hidden="true">dividertray</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="DividerTray">
+        <param name="sx" type="string" gui-text="sx" gui-description="sections left to right in mm. See --sy for format">50*3</param>
+        <param name="sy" type="string" gui-text="sy" gui-description='sections back to front in mm. Possible formats: overallwidth/numberof sections e.g. "250/5"; sectionwidth*numberofsections e.g. "50*5"; section widths separated by ":" e.g. "30:25.5:70'>50*3</param>
+        <param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="inner height in mm (unless outside selected)">100.0</param>
+        <param name="outside" type="bool" gui-text="outside" gui-description="treat sizes as outside measurements that include the walls">true</param>
+        <param name="slot_depth" type="float" precision="2" max="9999" gui-text="slot_depth" gui-description="depth of the slot in mm">20</param>
+        <param name="slot_angle" type="float" precision="2" max="9999" gui-text="slot_angle" gui-description="angle at which slots are generated, in degrees. 0° is vertical.">0</param>
+        <param name="slot_radius" type="float" precision="2" max="9999" gui-text="slot_radius" gui-description="radius of the slot entrance in mm">2</param>
+        <param name="slot_extra_slack" type="float" precision="2" max="9999" gui-text="slot_extra_slack" gui-description="extra slack (in addition to thickness and kerf) for slot width to help insert dividers">0.2</param>
+        <param name="divider_bottom_margin" type="float" precision="2" max="9999" gui-text="divider_bottom_margin" gui-description="margin between box's bottom and divider's">0</param>
+        <param name="divider_upper_notch_radius" type="float" precision="2" max="9999" gui-text="divider_upper_notch_radius" gui-description="divider's notch's upper radius">1</param>
+        <param name="divider_lower_notch_radius" type="float" precision="2" max="9999" gui-text="divider_lower_notch_radius" gui-description="divider's notch's lower radius">8</param>
+        <param name="divider_notch_depth" type="float" precision="2" max="9999" gui-text="divider_notch_depth" gui-description="divider's notch's depth">15</param>
+        <param name="left_wall" type="bool" gui-text="left_wall" gui-description="generate wall on the left side">true</param>
+        <param name="right_wall" type="bool" gui-text="right_wall" gui-description="generate wall on the right side">true</param>
+        <param name="bottom" type="bool" gui-text="bottom" gui-description="generate wall on the bottom">false</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place in mm (not supported everywhere)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (zero to disable)">100</param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description='burn correction in mm (bigger values for tighter fit). Use BurnTest in "Parts and Samples" to find the right value.'>0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Finger Joints">
+        <param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
+        <param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+            <option value="rectangular">rectangular</option>
+            <option value="springs">springs</option>
+    </param>
+        <param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="maximum space at the start and end in multiple of normal spaces">2.0</param>
+        <param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge">1.0</param>
+        <param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers">2.0</param>
+        <param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out">0.0</param>
+        <param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers">2.0</param>
+        <param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes">1.0</param>
+    </page>
+    <page name="tab_3" gui-text="Example">
+        <image>./DividerTray-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/DividerTray</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Trays and Drawer Inserts"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

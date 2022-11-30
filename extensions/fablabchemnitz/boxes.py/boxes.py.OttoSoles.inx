@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>OttoSoles</name>
+<id>info.festi.boxes.py.OttoSoles</id>
+<param name="generator" type="string" gui-hidden="true">ottosoles</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="OttoSoles">
+        <param name="x" type="float" precision="2" max="9999" gui-text="x" gui-description="inner width in mm">56.0</param>
+        <param name="y" type="float" precision="2" max="9999" gui-text="y" gui-description="inner depth in mm">36.0</param>
+        <param name="width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of sole stripe">4.0</param>
+        <param name="chamfer" type="float" precision="2" max="9999" gui-text="chamfer" gui-description="chamfer at the corners">5.0</param>
+        <param name="num" type="int" max="9999" gui-text="num" gui-description="number of soles">2</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place in mm (not supported everywhere)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (zero to disable)">100</param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description='burn correction in mm (bigger values for tighter fit). Use BurnTest in "Parts and Samples" to find the right value.'>0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Example">
+        <image>./OttoSoles-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/OttoSoles</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Misc"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

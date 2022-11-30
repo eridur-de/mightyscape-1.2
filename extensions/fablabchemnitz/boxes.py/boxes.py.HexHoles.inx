@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>HexHoles</name>
+<id>info.festi.boxes.py.HexHoles</id>
+<param name="generator" type="string" gui-hidden="true">hexholes</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="HexHoles">
+        <param name="width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of the hole pattern (in mm)">100.0</param>
+        <param name="height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the hole pattern (in mm)">100.0</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place in mm (not supported everywhere)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (zero to disable)">100</param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description='burn correction in mm (bigger values for tighter fit). Use BurnTest in "Parts and Samples" to find the right value.'>0.1</param>
+    </page>
+    <page name="tab_2" gui-text="hexagonal hole patterns">
+        <param name="HexHoles_diameter" type="float" precision="2" max="9999" gui-text="diameter" gui-description="diameter of the holes">10.0</param>
+        <param name="HexHoles_distance" type="float" precision="2" max="9999" gui-text="distance" gui-description="distance between the holes">3.0</param>
+        <param name="HexHoles_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="currently only supported style">
+            <option value="circle">circle</option>
+    </param>
+    </page>
+    <page name="tab_3" gui-text="Example">
+        <image>./HexHoles-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/HexHoles</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Hole patterns"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>
