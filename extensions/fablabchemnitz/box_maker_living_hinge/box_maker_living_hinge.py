@@ -27,171 +27,167 @@ import math
 from lxml import etree
 import math
 
-def drawS(XYstring):         # Draw lines from a list
-  name='part'
-  style = { 'stroke': '#000000', 'fill': 'none' }
-  drw = {'style': str(inkex.Style(style)),inkex.addNS('label','inkscape'):name,'d':XYstring}
-  etree.SubElement(parent, inkex.addNS('path','svg'), drw )
-  return
-
-def draw_SVG_ellipse(centerx, centery, radiusx, radiusy, start_end):
-
-    style = {   'stroke'        : '#000000',
-                'fill'          : 'none'            }
-    ell_attribs = {'style': str(inkex.Style(style)),
-        inkex.addNS('cx','sodipodi')        :str(centerx),
-        inkex.addNS('cy','sodipodi')        :str(centery),
-        inkex.addNS('rx','sodipodi')        :str(radiusx),
-        inkex.addNS('ry','sodipodi')        :str(radiusy),
-        inkex.addNS('start','sodipodi')     :str(start_end[0]),
-        inkex.addNS('end','sodipodi')       :str(start_end[1]),
-        inkex.addNS('open','sodipodi')      :'true',    #all ellipse sectors we will draw are open
-        inkex.addNS('type','sodipodi')      :'arc',
-        'transform'                         :''
-            }
-
-    ell = etree.SubElement(parent, inkex.addNS('path','svg'), ell_attribs )
-
-#draw an SVG line segment between the given (raw) points
-def draw_SVG_line( x1, y1, x2, y2, parent):
-    style = { 'stroke': '#000000', 'fill': 'none' }
-
-    line_attribs = {'style' :  str(inkex.Style(style)),
-                    'd' : 'M '+str(x1)+','+str(y1)+' L '+str(x2)+','+str(y2)}
-
-    line = etree.SubElement(parent, inkex.addNS('path','svg'), line_attribs )
-
-def EllipseCircumference(a, b):
-   """
-   Compute the circumference of an ellipse with semi-axes a and b.
-   Require a >= 0 and b >= 0.  Relative accuracy is about 0.5^53.
-   """
-   import math
-   x, y = max(a, b), min(a, b)
-   digits = 53; tol = math.sqrt(math.pow(0.5, digits))
-   if digits * y < tol * x: return 4 * x
-   s = 0; m = 1
-   while x - y > tol * y:
-      x, y = 0.5 * (x + y), math.sqrt(x * y)
-      m *= 2; s += m * math.pow(x - y, 2)
-   return math.pi * (math.pow(a + b, 2) - s) / (x + y)
-
-"""
-Gives you a list of points that make up a box.
-
-Returns string suitable for input to drawS
-"""
-def box(sx, sy,ex, ey, leaveLeftSideOpen = False):
-  s=[]
-  s='M '+str(sx)+','+str(sy)+' '
-  s+='L '+str(ex)+','+str(sy)+' '
-  s+='L '+str(ex)+','+str(ey)+' '
-  s+='L '+str(sx)+','+str(ey)+' '
-  if not leaveLeftSideOpen:
-    s+='L '+str(sx)+','+str(sy)+' '
-  return s
-
-"""
-Side function is used to render any of the sides so needs all this functionality:
- isLongSide -- long sides without tabs (for cover),
- truncate -- partial sides for the elipse
- gap -- extend the tabs on the curved side for ease of movement
- thumbTab -- Render individual boxes for slots instead of one continuous line
-
-isTab is used to specify the male/female designation for a side so they mesh properly. Otherwise the tabs
-would be in the same spot for opposing sides, instead of interleaved.
-
-Returns a list of lines to draw.
-"""
-def side(rx,ry,sox,soy,eox,eoy,tabVec,length, dirx, diry, isTab, isLongSide, truncate = False, gap = False, thumbTab = False):
-  #       root startOffset endOffset tabVec length  direction  isTab
-
-  #Long side length= length+((math.pi*(length/2))/4
-  tmpLength = 0
-  correctionLocal = correction
-  if gap:
-      correctionLocal = (correction)
-  if isLongSide > 0:
-      tmpLength = length
-      length = isLongSide
-
-  divs=int(length/nomTab)  # divisions
-  if not divs%2: divs-=1   # make divs odd
-  if isLongSide < 0: 
-      divs = 1
-      
-  divs=float(divs)
-  tabs=(divs-1)/2          # tabs for side
-  
-  if isLongSide < 0:
-      divs = 1
-      tabWidth = length
-      gapWidth = 0
-  elif equalTabs:
-      gapWidth=tabWidth=length/divs
-  else:
-      tabWidth=nomTab
-      gapWidth=(length-tabs*nomTab)/(divs-tabs)
-    
-  if isTab:                 # kerf correction
-      gapWidth-=correctionLocal 
-      tabWidth+=correctionLocal 
-      first=correctionLocal/2
-  else:
-      gapWidth+=correctionLocal 
-      tabWidth-=correctionLocal 
-      first=-correctionLocal/2
-
-  s=[] 
-  firstVec=0; secondVec=tabVec
-  if gap:
-      secondVec *= 2
-  dirxN=0 if dirx else 1 # used to select operation on x or y
-  diryN=0 if diry else 1
-  (Vx,Vy)=(rx+sox*thickness,ry+soy*thickness)
-  s='M '+str(Vx)+','+str(Vy)+' '
-
-  if dirxN: Vy=ry # set correct line start
-  if diryN: Vx=rx
-
-  if isLongSide > 0: #LongSide is a side without tabs for a portion.
-      length = tmpLength
-      divs=int((Z/2)/nomTab)
-      if not divs%2: divs-=1
-      divs = float(divs)
-
-  # generate line as tab or hole using:
-  #   last co-ord:Vx,Vy ; tab dir:tabVec  ; direction:dirx,diry ; thickness:thickness
-  #   divisions:divs ; gap width:gapWidth ; tab width:tabWidth
-  for n in range(1,int(divs)):
-    if n%2:
-      Vx=Vx+dirx*gapWidth+dirxN*firstVec+first*dirx
-      Vy=Vy+diry*gapWidth+diryN*firstVec+first*diry
-      s+='L '+str(Vx)+','+str(Vy)+' '
-      Vx=Vx+dirxN*secondVec
-      Vy=Vy+diryN*secondVec
-      s+='L '+str(Vx)+','+str(Vy)+' '
-    else:
-      Vxs = Vx
-      Vys = Vy
-      Vx=Vx+dirx*tabWidth+dirxN*firstVec
-      Vy=Vy+diry*tabWidth+diryN*firstVec
-      s+='L '+str(Vx)+','+str(Vy)+' '
-      Vx=Vx+dirxN*secondVec
-      Vy=Vy+diryN*secondVec
-      s+='L '+str(Vx)+','+str(Vy)+' '
-      if thumbTab:
-          drawS(box(Vxs,Vys,Vx,Vy))
-    (secondVec,firstVec)=(-secondVec,-firstVec) # swap tab direction
-    first=0
-  if not truncate: 
-    s+='L '+str(rx+eox*thickness+dirx*length)+','+str(ry+eoy*thickness+diry*length)+' '
-  else: #Truncate specifies that a side is incomplete in preperation for a curve
-    s+='L '+str(rx+eox*thickness+dirx*(length/2))+','+str(ry+eoy*thickness+diry*(length/2))+' '
-  return s
-
-#God class. Makes poor design, but not much object oriented in this guy...
 class BoxMakerLivingHinge(inkex.EffectExtension):
+    
+    def drawS(self, XYstring):         # Draw lines from a list
+      name='part'
+      style = { 'stroke': '#000000', 'stroke-width': self.svg.unittouu('1px'), 'fill': 'none' }
+      drw = {'style': str(inkex.Style(style)),inkex.addNS('label','inkscape'):name,'d':XYstring}
+      etree.SubElement(parent, inkex.addNS('path','svg'), drw )
+      return
+
+    def draw_SVG_ellipse(self, centerx, centery, radiusx, radiusy, start_end):
+        style = { 'stroke': '#000000', 'stroke-width': self.svg.unittouu('1px'), 'fill': 'none' }
+        ell_attribs = {'style': str(inkex.Style(style)),
+            inkex.addNS('cx','sodipodi')        :str(centerx),
+            inkex.addNS('cy','sodipodi')        :str(centery),
+            inkex.addNS('rx','sodipodi')        :str(radiusx),
+            inkex.addNS('ry','sodipodi')        :str(radiusy),
+            inkex.addNS('start','sodipodi')     :str(start_end[0]),
+            inkex.addNS('end','sodipodi')       :str(start_end[1]),
+            inkex.addNS('open','sodipodi')      :'true',    #all ellipse sectors we will draw are open
+            inkex.addNS('type','sodipodi')      :'arc',
+            'transform'                         :''
+                }
+        ell = etree.SubElement(parent, inkex.addNS('path','svg'), ell_attribs )
+    
+    #draw an SVG line segment between the given (raw) points
+    def draw_SVG_line(self, x1, y1, x2, y2, parent):
+        style = { 'stroke': '#000000', 'stroke-width': self.svg.unittouu('1px'), 'fill': 'none' }
+        line_attribs = {'style' :  str(inkex.Style(style)),
+                        'd' : 'M '+str(x1)+','+str(y1)+' L '+str(x2)+','+str(y2)}
+        line = etree.SubElement(parent, inkex.addNS('path','svg'), line_attribs )
+    
+    def EllipseCircumference(self, a, b):
+       """
+       Compute the circumference of an ellipse with semi-axes a and b.
+       Require a >= 0 and b >= 0.  Relative accuracy is about 0.5^53.
+       """
+       import math
+       x, y = max(a, b), min(a, b)
+       digits = 53; tol = math.sqrt(math.pow(0.5, digits))
+       if digits * y < tol * x: return 4 * x
+       s = 0; m = 1
+       while x - y > tol * y:
+          x, y = 0.5 * (x + y), math.sqrt(x * y)
+          m *= 2; s += m * math.pow(x - y, 2)
+       return math.pi * (math.pow(a + b, 2) - s) / (x + y)
+    
+    """
+    Gives you a list of points that make up a box.
+    
+    Returns string suitable for input to drawS
+    """
+    def box(self, sx, sy,ex, ey, leaveLeftSideOpen = False):
+      s=[]
+      s='M '+str(sx)+','+str(sy)+' '
+      s+='L '+str(ex)+','+str(sy)+' '
+      s+='L '+str(ex)+','+str(ey)+' '
+      s+='L '+str(sx)+','+str(ey)+' '
+      if not leaveLeftSideOpen:
+        s+='L '+str(sx)+','+str(sy)+' '
+      return s
+    
+    """
+    Side function is used to render any of the sides so needs all this functionality:
+     isLongSide -- long sides without tabs (for cover),
+     truncate -- partial sides for the elipse
+     gap -- extend the tabs on the curved side for ease of movement
+     thumbTab -- Render individual boxes for slots instead of one continuous line
+    
+    isTab is used to specify the male/female designation for a side so they mesh properly. Otherwise the tabs
+    would be in the same spot for opposing sides, instead of interleaved.
+    
+    Returns a list of lines to draw.
+    """
+    def side(self, rx,ry,sox,soy,eox,eoy,tabVec,length, dirx, diry, isTab, isLongSide, truncate = False, gap = False, thumbTab = False):
+      #       root startOffset endOffset tabVec length  direction  isTab
+    
+      #Long side length= length+((math.pi*(length/2))/4
+      tmpLength = 0
+      correctionLocal = correction
+      if gap:
+          correctionLocal = (correction)
+      if isLongSide > 0:
+          tmpLength = length
+          length = isLongSide
+    
+      divs=int(length/nomTab)  # divisions
+      if not divs%2: divs-=1   # make divs odd
+      if isLongSide < 0: 
+          divs = 1
+          
+      divs=float(divs)
+      tabs=(divs-1)/2          # tabs for side
+      
+      if isLongSide < 0:
+          divs = 1
+          tabWidth = length
+          gapWidth = 0
+      elif equalTabs:
+          gapWidth=tabWidth=length/divs
+      else:
+          tabWidth=nomTab
+          gapWidth=(length-tabs*nomTab)/(divs-tabs)
+        
+      if isTab:                 # kerf correction
+          gapWidth-=correctionLocal 
+          tabWidth+=correctionLocal 
+          first=correctionLocal/2
+      else:
+          gapWidth+=correctionLocal 
+          tabWidth-=correctionLocal 
+          first=-correctionLocal/2
+    
+      s=[] 
+      firstVec=0; secondVec=tabVec
+      if gap:
+          secondVec *= 2
+      dirxN=0 if dirx else 1 # used to select operation on x or y
+      diryN=0 if diry else 1
+      (Vx,Vy)=(rx+sox*thickness,ry+soy*thickness)
+      s='M '+str(Vx)+','+str(Vy)+' '
+    
+      if dirxN: Vy=ry # set correct line start
+      if diryN: Vx=rx
+    
+      if isLongSide > 0: #LongSide is a side without tabs for a portion.
+          length = tmpLength
+          divs=int((Z/2)/nomTab)
+          if not divs%2: divs-=1
+          divs = float(divs)
+    
+      # generate line as tab or hole using:
+      #   last co-ord:Vx,Vy ; tab dir:tabVec  ; direction:dirx,diry ; thickness:thickness
+      #   divisions:divs ; gap width:gapWidth ; tab width:tabWidth
+      for n in range(1,int(divs)):
+        if n%2:
+          Vx=Vx+dirx*gapWidth+dirxN*firstVec+first*dirx
+          Vy=Vy+diry*gapWidth+diryN*firstVec+first*diry
+          s+='L '+str(Vx)+','+str(Vy)+' '
+          Vx=Vx+dirxN*secondVec
+          Vy=Vy+diryN*secondVec
+          s+='L '+str(Vx)+','+str(Vy)+' '
+        else:
+          Vxs = Vx
+          Vys = Vy
+          Vx=Vx+dirx*tabWidth+dirxN*firstVec
+          Vy=Vy+diry*tabWidth+diryN*firstVec
+          s+='L '+str(Vx)+','+str(Vy)+' '
+          Vx=Vx+dirxN*secondVec
+          Vy=Vy+diryN*secondVec
+          s+='L '+str(Vx)+','+str(Vy)+' '
+          if thumbTab:
+              self.drawS(self.box(Vxs,Vys,Vx,Vy))
+        (secondVec,firstVec)=(-secondVec,-firstVec) # swap tab direction
+        first=0
+      if not truncate: 
+        s+='L '+str(rx+eox*thickness+dirx*length)+','+str(ry+eoy*thickness+diry*length)+' '
+      else: #Truncate specifies that a side is incomplete in preperation for a curve
+        s+='L '+str(rx+eox*thickness+dirx*(length/2))+','+str(ry+eoy*thickness+diry*(length/2))+' '
+      return s
+
+
     
     def add_arguments(self, pars):
         pars.add_argument('--unit',default='mm',help='Measure Units')
@@ -241,14 +237,14 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
 
         for n in range(0,horizontalSlots+1):
             if n%2:  #odd, exterior slot (slot should go all the way to the part edge)
-                draw_SVG_line(Sx + (space * n), Sy, Sx + (space * n), Sy+(height/4)-(solidGap/2), grp)
-                draw_SVG_line(Sx + (space * n), Sy+(height/4)+(solidGap/2), Sx + (space * n), Ey-(height/4)-(solidGap/2), grp)
-                draw_SVG_line(Sx + (space * n), Ey-(height/4)+(solidGap/2), Sx + (space * n), Ey, grp)
+                self.draw_SVG_line(Sx + (space * n), Sy, Sx + (space * n), Sy+(height/4)-(solidGap/2), grp)
+                self.draw_SVG_line(Sx + (space * n), Sy+(height/4)+(solidGap/2), Sx + (space * n), Ey-(height/4)-(solidGap/2), grp)
+                self.draw_SVG_line(Sx + (space * n), Ey-(height/4)+(solidGap/2), Sx + (space * n), Ey, grp)
 
             else:
                 #even, interior slot (slot shoud not touch edge of part)
-                draw_SVG_line(Sx + (space * n), Sy+solidGap, Sx + (space * n), Sy+(height/2)-(solidGap/2), grp)
-                draw_SVG_line(Sx + (space * n), Ey-(height/2)+(solidGap/2), Sx + (space * n), Ey-solidGap, grp)
+                self.draw_SVG_line(Sx + (space * n), Sy+solidGap, Sx + (space * n), Sy+(height/2)-(solidGap/2), grp)
+                self.draw_SVG_line(Sx + (space * n), Ey-(height/2)+(solidGap/2), Sx + (space * n), Ey-solidGap, grp)
 
     """
     The sprial based designs are built from multiple calls of this function. 
@@ -280,13 +276,13 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
 
         for n in range(0,horizontalSlots):
             newX = (((space/2) + (space*n)) * reverse)
-            draw_SVG_line((centerX -  newX), centerY + (space/2) + (space * n), (centerX - newX ), centerY - (space * 1.5) - (space * n), grp)
+            self.draw_SVG_line((centerX -  newX), centerY + (space/2) + (space * n), (centerX - newX ), centerY - (space * 1.5) - (space * n), grp)
             if horizontalSlots - 1 != n: #Last line in center should be omited
-                draw_SVG_line((centerX - (space + (space/2 * -reverse)) - (space*n) ), centerY - (space * 1.5) - (space * n), (centerX + (space + (space/2 * reverse)) + (space*n) ), centerY - (space * 1.5) - (space * n), grp)
+                self.draw_SVG_line((centerX - (space + (space/2 * -reverse)) - (space*n) ), centerY - (space * 1.5) - (space * n), (centerX + (space + (space/2 * reverse)) + (space*n) ), centerY - (space * 1.5) - (space * n), grp)
 
-            draw_SVG_line((centerX + newX ), centerY - (space/2) - (space * n), (centerX + newX ), centerY + (space * 1.5) + (space * n), grp)
+            self.draw_SVG_line((centerX + newX ), centerY - (space/2) - (space * n), (centerX + newX ), centerY + (space * 1.5) + (space * n), grp)
             if horizontalSlots - 1 != n: #Last line in center should be omited
-                draw_SVG_line((centerX + (space + (space/2 * -reverse)) + (space*n) ), centerY + (space * 1.5) + (space * n), (centerX - (space + (space/2 * reverse)) - (space*n) ), centerY + (space * 1.5) + (space * n), grp)
+                self.draw_SVG_line((centerX + (space + (space/2 * -reverse)) + (space*n) ), centerY + (space * 1.5) + (space * n), (centerX - (space + (space/2 * reverse)) - (space*n) ), centerY + (space * 1.5) + (space * n), grp)
 
     """
     The snake based designs are built from multiple calls of this function. 
@@ -324,20 +320,20 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
         for n in range(1 - skew,horizontalSlots + skew):
             if not rotate:
                 if (n+mirror)%2:
-                    draw_SVG_line(Sx + (space * n), Sy + solidGap, Sx + (space * n), Ey, grp)
+                    self.draw_SVG_line(Sx + (space * n), Sy + solidGap, Sx + (space * n), Ey, grp)
                 else:
-                    draw_SVG_line(Sx + (space * n), Sy, Sx + (space * n), Ey - solidGap, grp)
+                    self.draw_SVG_line(Sx + (space * n), Sy, Sx + (space * n), Ey - solidGap, grp)
             else:
                 if (n+mirror)%2:
-                    draw_SVG_line(Sx + solidGap, Sy + (space * n), Ex, Sy + (space * n), grp)
+                    self.draw_SVG_line(Sx + solidGap, Sy + (space * n), Ex, Sy + (space * n), grp)
                 else:
-                    draw_SVG_line(Sx, Sy + (space * n), Ex - solidGap, Sy + (space * n), grp)
+                    self.draw_SVG_line(Sx, Sy + (space * n), Ex - solidGap, Sy + (space * n), grp)
         if rotate and not mirror:
-            draw_SVG_line(Sx, Sy, Sx, Ey - space, grp)
-            draw_SVG_line(Ex, Sy + space, Ex, Ey, grp)
+            self.draw_SVG_line(Sx, Sy, Sx, Ey - space, grp)
+            self.draw_SVG_line(Ex, Sy + space, Ex, Ey, grp)
         elif mirror:
-            draw_SVG_line(Sx, Sy + space, Sx, Ey, grp)
-            draw_SVG_line(Ex, Sy, Ex, Ey - space, grp)
+            self.draw_SVG_line(Sx, Sy + space, Sx, Ey, grp)
+            self.draw_SVG_line(Ex, Sy, Ex, Ey - space, grp)
 
     def effect(self):
         global parent,nomTab,equalTabs,thickness,correction, Z, unit 
@@ -427,7 +423,7 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
                             #center middle row
                     [(2,0,0,1),(2,0,0,1),X,Y,0b0000,0],
                             #right middle row
-                    [(3,1,0,1),(2,0,0,1),Z+(EllipseCircumference(X/2, Z/2)/4)+thickness,Y,0b1011,1],
+                    [(3,1,0,1),(2,0,0,1),Z+(self.EllipseCircumference(X/2, Z/2)/4)+thickness,Y,0b1011,1],
                             #center top row
                     [(2,0,0,1),(1,0,0,0),X,Z,0b0010,-1]]
         elif layout==1: # Inline(compact) Layout
@@ -439,7 +435,6 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
                     [(3,1,0,1),(1,0,0,0),X,Z,0b1000,-2],
                     [(4,2,0,1),(1,0,0,0),X,Z,0b0010,-1],
                     #Long piece w/ hinge  
-                    [(5,3,0,1),(1,0,0,0),Z+(EllipseCircumference(X/2, Z/2)/4)+thickness,Y,0b1011,1]
                     ]
 
         for piece in pieces: # generate and draw each piece of the box
@@ -462,50 +457,50 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
             
             # generate and draw the sides of each piece
             if piece[5] != -1:
-                drawS(side(x,y,d,a,-b,a,-thickness if a else thickness,dx,1,0,a,longSide))          # side a (top)
+                self.drawS(self.side(x,y,d,a,-b,a,-thickness if a else thickness,dx,1,0,a,longSide))          # side a (top)
             else:
-                drawS(side(x,y,d,a,-b,a,-thickness if a else thickness,dx/2,1,0,a,-1))          # side a (top) when the top participates in a curve
+                self.drawS(self.side(x,y,d,a,-b,a,-thickness if a else thickness,dx/2,1,0,a,-1))          # side a (top) when the top participates in a curve
 
             if piece[5] != -1 and piece[5] != 1:
-                drawS(side(x+dx+skew,y,-b,a,-b,-c,thickness if b else -thickness,dy,0,1,b,shortSide, False if piece[5] != -2 else True, False if piece[5] != 1 else True))     # side b (right) except for side with living hinge or curves
+                self.drawS(self.side(x+dx+skew,y,-b,a,-b,-c,thickness if b else -thickness,dy,0,1,b,shortSide, False if piece[5] != -2 else True, False if piece[5] != 1 else True))     # side b (right) except for side with living hinge or curves
             elif piece[5] == -1:
-                drawS(side(x+dx+skew,y+dy,-b,-c,-b,a,thickness if b else -thickness,dy,0,-1,b,shortSide, True))     # side b (right) when the right side participates in a curve
+                self.drawS(self.side(x+dx+skew,y+dy,-b,-c,-b,a,thickness if b else -thickness,dy,0,-1,b,shortSide, True))     # side b (right) when the right side participates in a curve
             else: 
                 #It is a cardnal sin to compare floats, so assume <0.0005 is 0 since the front end only gives you 3 digits of precision
                 if float(0.0005) <= float(self.options.thumbTab):
-                    side(x+dx+skew,y,-b,a,-b,-c,thickness if b else -thickness,dy,0,1,b,shortSide, False, True, True) #The one call to side that doesn't actually draw. Instead, side draws boxes on its own
-                    drawS(box(x+dx+skew,y+thickness,x+dx+skew+self.svg.unittouu( thumbTab + unit ),y+dy-thickness, True))
+                    self.side(x+dx+skew,y,-b,a,-b,-c,thickness if b else -thickness,dy,0,1,b,shortSide, False, True, True) #The one call to side that doesn't actually draw. Instead, side draws boxes on its own
+                    self.drawS(self.box(x+dx+skew,y+thickness,x+dx+skew+self.svg.unittouu( thumbTab + unit ),y+dy-thickness, True))
                 else:
-                    drawS(side(x+dx+skew,y,-b,a,-b,-c,thickness if b else -thickness,dy,0,1,b,shortSide, False, True)) #side b (right) on the right side of a living hinge
+                    self.drawS(self.side(x+dx+skew,y,-b,a,-b,-c,thickness if b else -thickness,dy,0,1,b,shortSide, False, True)) #side b (right) on the right side of a living hinge
 
 
             if piece[5] != -2:
-                drawS(side(x,y+dy,d,-c,-b,-c,thickness if c else -thickness,dx,1,0,c,longSide)) # side c (bottom)
+                self.drawS(self.side(x,y+dy,d,-c,-b,-c,thickness if c else -thickness,dx,1,0,c,longSide)) # side c (bottom)
             else:
-                drawS(side(x,y+dy,d,-c,-b,-c,thickness if c else -thickness,dx/2,1,0,c,-1)) # side c (bottom) when the bottom participates in a curve
+                self.drawS(self.side(x,y+dy,d,-c,-b,-c,thickness if c else -thickness,dx/2,1,0,c,-1)) # side c (bottom) when the bottom participates in a curve
 
-            drawS(side(x,y+dy,d,-c,d,a,-thickness if d else thickness,dy,0,-1,d,0))      # side d (left)
+            self.drawS(self.side(x,y+dy,d,-c,d,a,-thickness if d else thickness,dy,0,-1,d,0))      # side d (left)
 
             if piece[5] < 0:
-                draw_SVG_ellipse(x+(dx/2), y+(dy/2), (dx/2), (dy/2), [(1.5*math.pi), 0] if piece[5] == -1 else [0, 0.5*math.pi]) #draw the curve
+                self.draw_SVG_ellipse(x+(dx/2), y+(dy/2), (dx/2), (dy/2), [(1.5*math.pi), 0] if piece[5] == -1 else [0, 0.5*math.pi]) #draw the curve
 
             if piece[5] == 1: #Piece should contain a living hinge
                 if hingeOpt == 0: #Traditional parallel slit
-                    self.livingHinge2(x+(Z/2), y, x+(Z/2)+(EllipseCircumference(X/2, Z/2)/4), y + (dy), hingeThick)
+                    self.livingHinge2(x+(Z/2), y, x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + (dy), hingeThick)
                 elif hingeOpt == 1: #Single spiral
                     if not inside:
-                        self.livingHinge3(x+(Z/2), y+thickness, x+(Z/2)+(EllipseCircumference(X/2, Z/2)/4), y + dy - thickness, 1, hingeThick)
+                        self.livingHinge3(x+(Z/2), y+thickness, x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + dy - thickness, 1, hingeThick)
                     else:
-                        self.livingHinge3(x+(Z/2), y + 2*thickness, x+(Z/2)+(EllipseCircumference(X/2, Z/2)/4), y + dy - 2*thickness, 1, hingeThick)
+                        self.livingHinge3(x+(Z/2), y + 2*thickness, x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + dy - 2*thickness, 1, hingeThick)
 
                 elif hingeOpt == 2: #Double spiral
-                    self.livingHinge3(x+(Z/2), y+thickness, x+(Z/2)+(EllipseCircumference(X/2, Z/2)/4), y + (dy/2), 1, hingeThick)
-                    self.livingHinge3(x+(Z/2), y+(dy/2), x+(Z/2)+(EllipseCircumference(X/2, Z/2)/4), y + dy - thickness, -1, hingeThick)
+                    self.livingHinge3(x+(Z/2), y+thickness, x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + (dy/2), 1, hingeThick)
+                    self.livingHinge3(x+(Z/2), y+(dy/2), x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + dy - thickness, -1, hingeThick)
                 elif hingeOpt == 3 or hingeOpt == 4: #Both snake-based designs
-                    self.livingHinge4(x+(Z/2), y, x+(Z/2)+(EllipseCircumference(X/2, Z/2)/4), y + (dy), False if hingeOpt == 3 else True, 0, hingeThick)
+                    self.livingHinge4(x+(Z/2), y, x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + (dy), False if hingeOpt == 3 else True, 0, hingeThick)
                 elif hingeOpt == 5: #Double snake design
-                    self.livingHinge4(x+(Z/2), y, x+(Z/2)+EllipseCircumference(X/2, Z/2)/4, y + (dy/2) + thickness, True, 0, hingeThick) #Add thickness as a cheat so design 4 doesn't have to know if it's a short or long variant
-                    self.livingHinge4(x+(Z/2), y + (dy/2) - thickness, (x+(Z/2)+(EllipseCircumference(X/2, Z/2)/4)), y + dy, True, 1, hingeThick) 
+                    self.livingHinge4(x+(Z/2), y, x+(Z/2)+self.EllipseCircumference(X/2, Z/2)/4, y + (dy/2) + thickness, True, 0, hingeThick) #Add thickness as a cheat so design 4 doesn't have to know if it's a short or long variant
+                    self.livingHinge4(x+(Z/2), y + (dy/2) - thickness, (x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4)), y + dy, True, 1, hingeThick) 
            
 if __name__ == '__main__':
     BoxMakerLivingHinge().run()
