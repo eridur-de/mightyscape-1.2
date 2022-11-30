@@ -57,7 +57,7 @@ class boxesPyWrapper(inkex.GenerateExtension):
                 #fix behaviour of "original" arg which does not correctly gets interpreted if set to false
                 if arg == "original" and str(getattr(self.options, arg)) == "false":
                     continue
-                if arg in ("input_file", "tab", "labels"):
+                if arg in ("input_file", "tab"):
                     continue
                 else:
                     cmd += ' --' + arg + ' "' + str(getattr(self.options, arg)) + '"'
