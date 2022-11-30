@@ -44,11 +44,12 @@ class boxesPyWrapper(inkex.GenerateExtension):
                 #fix behaviour of "original" arg which does not correctly gets interpreted if set to false
                 if arg == "original" and str(getattr(self.options, arg)) == "false":
                     continue
-                if arg in ("input_file", "tab"):
+                if arg in ("input_file", "tab", "labels"):
                     continue
                 else:
-                    cmd += " --" + arg + " " + str(getattr(self.options, arg))
-        cmd += " --output " + box_file + " " + box_file #we need to add box_file string twice in a row. Otherwise program executable throws an error
+                    cmd += ' --' + arg + ' "' + str(getattr(self.options, arg)) + '"'
+                    #cmd += ' --' + arg + '="' + str(getattr(self.options, arg)) + '"'
+        cmd += " --output=" + box_file + " "
         cmd = cmd.replace("boxes --generator", "boxes")
         
         # run boxes with the parameters provided
