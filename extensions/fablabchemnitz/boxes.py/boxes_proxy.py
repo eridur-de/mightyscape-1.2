@@ -14,6 +14,7 @@ License: GNU GPL v3
 """
 import inkex
 import sys
+import subprocess
 import os
 from lxml import etree
 import tempfile
@@ -53,8 +54,18 @@ class boxesPyWrapper(inkex.GenerateExtension):
         cmd = cmd.replace("boxes --generator", "boxes")
         
         # run boxes with the parameters provided
-        with os.popen(cmd, "r") as boxes:
-            result = boxes.read()
+        #with os.popen(cmd, "r") as boxes:
+        #    result = boxes.read()
+        
+        try:
+            proc = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        except OSError as e:
+            raise OSError("{0}\nCommand failed: errno={1} {2}".format(' '.join(cmd), e.errno, e.strerror))
+        stdout, stderr = proc.communicate()
+        if stdout.decode('utf-8') != "":
+            inkex.utils.debug("stdout: {}".format(stdout.decode('utf-8')))
+            inkex.utils.debug("stderr: {}".format(stderr.decode('utf-8')))
+            exit(1)
         
         # check output existence
         try:
