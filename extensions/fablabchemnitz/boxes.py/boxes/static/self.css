@@ -1,0 +1,188 @@
+@import 'fonts.css';
+@import 'normalize.css';
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+html {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+a {
+    text-decoration: none;
+    color: #5F584A;
+}
+
+.menu li {
+    color: #666;
+    list-style-type: none;
+}
+
+li a, a h1 {
+    text-decoration: none;
+    color: #333;
+}
+
+
+body {
+    min-width: 996px;
+}
+
+h1 {
+    font-family: 'Bungee Shade', cursive;
+    font-size: 3em;
+}
+
+h2 {
+    font-family: 'Luckiest Guy', cursive;
+
+    font-size: 2.5em;
+}
+
+h3 {
+    padding: 5px;
+    padding-left: 15px;
+    margin: 0px;
+}
+
+h3::before {
+    font-family: system-ui, 'Segoe UI', 'Arial';
+    content: "▶ ";
+}
+
+h3.open::before {
+    font-family: system-ui, 'Segoe UI', 'Arial';
+    content: "▼ ";
+}
+
+h3:hover {
+    background-color: #333;
+    color: #eee;
+    border-radius: 10px;
+}
+
+table {
+    margin-left: 30px;
+}
+
+table tr p {
+    display: inline;
+}
+
+/* Container */
+
+.container {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    padding-bottom: 15px;
+    width: 996px;
+    border-radius: 30px;
+    box-shadow: 0 0 5px 0 #333333;
+
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+audio,
+canvas,
+img,
+video {
+    vertical-align: middle;
+}
+
+
+/*
+ * Clear after each row
+ */
+.clear {
+    clear: both;
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.description img {
+    width: 100%;
+}
+
+.footer {
+    box-shadow: none;
+    text-align: center;
+    margin-top: 0px;
+}
+
+.footer ul {
+    margin-top: 0px;
+}
+
+.footer ul li {
+    list-style-type: circle;
+    display: inline-block;
+    font-size: 0.9em;
+}
+
+.footer ul li a {
+    color: #555;
+    margin-right: 10px;
+}
+
+img[id|=sample] {
+    position: fixed;
+    bottom: 100px;
+    right: calc(50% - 498px);
+}
+
+.menu ul {
+    padding-left: 5px;
+}
+
+.menu ul li {
+    padding: 5px 5px 5px 10px;
+}
+
+.menu ul li:hover {
+    background-color: #333;
+    color: #eee;
+    border-radius: 10px;
+}
+
+.menu ul li:hover a {
+    color: #bbb;
+}
+
+.menu ul li span {
+    display: none;
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #333;
+    margin-left: 10px;
+}
+
+.menu ul li:hover span {
+    display: inline-block;
+}
+
+.menu h3 {
+    cursor: pointer;
+}
+
+textarea {
+    font-family: monospace;
+}
