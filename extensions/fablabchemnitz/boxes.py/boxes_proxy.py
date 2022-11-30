@@ -38,7 +38,19 @@ class boxesPyWrapper(inkex.GenerateExtension):
             os.remove(box_file) #remove previously generated box file at the beginning
 
         boxes_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'boxes', 'scripts')
-        cmd = 'python ' + os.path.join(boxes_dir, 'boxes') #the boxes python file (without .py ending) - we add python at the beginning to support Windows too    
+        
+        PYTHONBIN = "python"
+        if os.name=="nt": #we want to omit using the python executable delivered by inkscape. we use our own installation from %PATH%
+            pathlist=list(reversed(os.environ["PATH"].split(os.pathsep)))
+            for path in pathlist:
+                if "Python" in (str(path)): #if Python subdirectory is inside, theres a chance to have a correct installation
+                    #inkex.utils.debug(path)
+                    path = os.path.join(path, "python.exe")
+                    if os.path.isfile(path) and os.access(path, os.X_OK):
+                        #inkex.utils.debug(path)
+                        PYTHONBIN = path
+                              
+        cmd = PYTHONBIN + ' ' + os.path.join(boxes_dir, 'boxes') #the boxes python file (without .py ending) - we add python at the beginning to support Windows too    
         for arg in vars(self.options):
             if arg != "output" and arg != "ids" and arg != "selected_nodes":
                 #inkex.utils.debug(str(arg) + " = " + str(getattr(self.options, arg)))
@@ -59,11 +71,11 @@ class boxesPyWrapper(inkex.GenerateExtension):
         
         try:
             proc = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            proc.wait()
         except OSError as e:
             raise OSError("{0}\nCommand failed: errno={1} {2}".format(' '.join(cmd), e.errno, e.strerror))
         stdout, stderr = proc.communicate()
-        if stdout.decode('utf-8') != "":
-            inkex.utils.debug("stdout: {}".format(stdout.decode('utf-8')))
+        if stderr.decode('utf-8') != "":
             inkex.utils.debug("stderr: {}".format(stderr.decode('utf-8')))
             exit(1)
         
