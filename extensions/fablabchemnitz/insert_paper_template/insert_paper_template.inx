@@ -3,12 +3,18 @@
     <name>Insert Paper Template</name>
     <id>fablabchemnitz.de.insert_paper_template</id>
     <param name="papertype" type="optiongroup" appearance="combo" gui-text="Box type">
+        <option value="A6">A6</option>
         <option value="A5">A5</option>
         <option value="A4">A4</option>
         <option value="A3">A3</option>
         <option value="A2">A2</option>
         <option value="A1">A1</option>
         <option value="A0">A0</option>
+        <option value="B6">B6</option>
+        <option value="B5">B5</option>
+        <option value="C6">C6</option>
+        <option value="C5">C5</option>
+        <option value="DIN_LANG">DIN lang</option>
         <option value="POKER">Poker Card</option>
         <option value="BRIDGE">Bridge Card</option>
         <option value="MINI_US">Mini American Card</option>
