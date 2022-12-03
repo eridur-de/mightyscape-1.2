@@ -1040,7 +1040,7 @@ class PathsToOpenSCAD(inkex.EffectExtension):
                 a.append(["L", [x2, y2]])
                 self.getPathVertices(a, node, matNew)
 
-            elif node.TAG in ["polygon", "polyline"]:
+            elif node.tag in ["polygon", "polyline"]:
 
                 # Convert
                 #
@@ -1414,7 +1414,6 @@ module chamfer_sphere(rad=chamfer, res=chamfer_fn)
                 try:
                     with subprocess.Popen(cmd, shell=True, stdin=tty, stdout=tty, stderr=tty) as proc:
                         proc.wait()
-                        tty.close()
                 except OSError as e:
                     raise OSError("%s failed: errno=%d %s" % (cmd, e.errno, e.strerror))
                 try:
