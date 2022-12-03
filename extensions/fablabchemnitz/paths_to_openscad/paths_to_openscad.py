@@ -1073,7 +1073,7 @@ class PathsToOpenSCAD(inkex.EffectExtension):
                         first = False
                     else:
                         d.append(["L", coords])
-                if node.TAG == "polygon":
+                if node.tag == "polygon":
                     d.append(["Z", []])
                 self.getPathVertices(d, node, matNew)
 
