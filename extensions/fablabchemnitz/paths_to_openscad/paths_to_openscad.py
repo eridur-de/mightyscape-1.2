@@ -1408,11 +1408,7 @@ module chamfer_sphere(rad=chamfer, res=chamfer_fn)
                 pass
             if not running:
                 try:
-                    tty = open("/dev/tty", "w")
-                except Exception:
-                    tty = subprocess.PIPE
-                try:
-                    with subprocess.Popen(cmd, shell=True, stdin=tty, stdout=tty, stderr=tty) as proc:
+                    with subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as proc:
                         proc.wait()
                 except OSError as e:
                     raise OSError("%s failed: errno=%d %s" % (cmd, e.errno, e.strerror))
