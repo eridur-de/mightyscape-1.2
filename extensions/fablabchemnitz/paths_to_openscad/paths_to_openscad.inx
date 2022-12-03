@@ -37,7 +37,7 @@
       <page name="commands" gui-text="Commands">
          <label>Placeholders: You can use "{NAME}.scad" for the OpenSCAD file to read as specified as 'Output file' in the main tab. You can use "{NAME}.stl" for an STL file to write.</label>
          <param name="scadviewcmd" type="string" gui-text="View in OpenSCAD:" gui-description="Is only started, if no command of the same name is running. Always started non-blocking. A running OpenSCAD automatically picks up changed file content">openscad "{NAME}.scad"</param>
-         <param name="scad2stlcmd" type="string" gui-text="Convert to STL:" gui-description="Automatically run, when STL postprocessing is requested.">openscad "{NAME}.scad" -o "{NAME}.stl"</param>
+         <param name="scad2stlcmd" type="string" gui-text="Convert to STL:" gui-description="Automatically run, when STL postprocessing is requested.">openscad "{NAME}.scad" --export-format binstl -o "{NAME}.stl"</param>
          <param name="stlpostcmd" type="string" gui-text="STL postprocessing:" gui-description="Append an '&amp;' for non-blocking.">cura "{NAME}.stl" &amp;</param>
       </page>
       <page name="extrusion" gui-text="Extrusion Syntax">
