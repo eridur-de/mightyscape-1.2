@@ -11,12 +11,17 @@
         <param name="shaftwidth" type="float" precision="2" max="9999" gui-text="shaftwidth" gui-description="width of the shaft">5.0</param>
     </page>
     <page name="tab_1" gui-text="Default">
-        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material">3.0</param>
-        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place in mm (not supported everywhere)">0.0</param>
-        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures">false</param>
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
         <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
-        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (zero to disable)">100</param>
-        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description='burn correction in mm (bigger values for tighter fit). Use BurnTest in "Parts and Samples" to find the right value.'>0.1</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+            <option value="loop">loop</option>
+            <option value="corner">corner</option>
+            <option value="backarc">backarc</option>
+    </param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
     </page>
     <page name="tab_2" gui-text="Example">
         <image>./LaserHoldfast-thumb.jpg</image>

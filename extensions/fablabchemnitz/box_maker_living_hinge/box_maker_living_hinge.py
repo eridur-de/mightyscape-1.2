@@ -30,10 +30,9 @@ import math
 class BoxMakerLivingHinge(inkex.EffectExtension):
     
     def drawS(self, XYstring):         # Draw lines from a list
-      name='part'
       style = { 'stroke': '#000000', 'stroke-width': self.svg.unittouu('1px'), 'fill': 'none' }
-      drw = {'style': str(inkex.Style(style)),inkex.addNS('label','inkscape'):name,'d':XYstring}
-      etree.SubElement(parent, inkex.addNS('path','svg'), drw )
+      drw = {'style': str(inkex.Style(style)), 'd':XYstring}
+      etree.SubElement(parent, inkex.addNS('path','svg'), drw)
       return
 
     def draw_SVG_ellipse(self, centerx, centery, radiusx, radiusy, start_end):
@@ -190,21 +189,21 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
 
     
     def add_arguments(self, pars):
-        pars.add_argument('--unit',default='mm',help='Measure Units')
-        pars.add_argument('--inside',type=int,default=0,help='Int/Ext Dimension')
-        pars.add_argument('--length',type=float,default=100,help='Length of Box')
-        pars.add_argument('--width',type=float,default=100,help='Width of Box')
-        pars.add_argument('--height',type=float,default=100,help='Height of Box')
-        pars.add_argument('--tab',type=float,default=25,help='Nominal Tab Width')
-        pars.add_argument('--equal',type=int,default=0,help='Equal/Prop Tabs')
-        pars.add_argument('--thickness',type=float,default=10,help='Thickness of Material')
-        pars.add_argument('--kerf',type=float,default=0.5,help='Kerf (width) of cut')
-        pars.add_argument('--clearance',type=float,default=0.01,help='Clearance of joints')
-        pars.add_argument('--style',type=int,default=25,help='Layout/Style')
-        pars.add_argument('--spacing',type=float,default=25,help='Part Spacing')
-        pars.add_argument('--hingeOpt',type=int,default=0,help='Hinge type')
-        pars.add_argument('--hingeThick',type=float,default=0,help='Hinge thickness')
-        pars.add_argument('--thumbTab',default=0,help='Add a thumb tab')
+        pars.add_argument('--unit', default='mm', help='Measure Units')
+        pars.add_argument('--inside', type=int, default=0, help='Int/Ext Dimension')
+        pars.add_argument('--length', type=float, default=100, help='Length of Box')
+        pars.add_argument('--width', type=float, default=100, help='Width of Box')
+        pars.add_argument('--height', type=float, default=100, help='Height of Box')
+        pars.add_argument('--tab', type=float, default=25, help='Nominal Tab Width')
+        pars.add_argument('--equal', type=int, default=0, help='Equal/Prop Tabs')
+        pars.add_argument('--thickness', type=float, default=10, help='Thickness of Material')
+        pars.add_argument('--kerf', type=float, default=0.5, help='Kerf (width) of cut')
+        pars.add_argument('--clearance', type=float, default=0.01, help='Clearance of joints')
+        pars.add_argument('--style', type=int, default=25, help='Layout/Style')
+        pars.add_argument('--spacing', type=float, default=25, help='Part Spacing')
+        pars.add_argument('--hingeOpt', type=int, default=0, help='Hinge type')
+        pars.add_argument('--hingeThick', type=float, default=0, help='Hinge thickness')
+        pars.add_argument('--thumbTab', default=0, help='Add a thumb tab')
         		
     """
     Traditional multi-slit design.
@@ -336,23 +335,18 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
             self.draw_SVG_line(Ex, Sy, Ex, Ey - space, grp)
 
     def effect(self):
-        global parent,nomTab,equalTabs,thickness,correction, Z, unit 
+        global parent, nomTab, equalTabs, thickness, correction, Z, unit 
         
-            # Get access to main SVG document element and get its dimensions.
+        # Get access to main SVG document element and get its dimensions.
         svg = self.document.getroot()
         
-            # Get the attibutes:
+        # Get the attibutes:
         widthDoc  = self.svg.unittouu(svg.get('width'))
         heightDoc = self.svg.unittouu(svg.get('height'))
 
-            # Create a new layer.
-        layer = etree.SubElement(svg, 'g')
-        layer.set(inkex.addNS('label', 'inkscape'), 'newlayer')
-        layer.set(inkex.addNS('groupmode', 'inkscape'), 'layer')
+        parent = etree.SubElement(self.svg.get_current_layer(), 'g')
         
-        parent=self.svg.get_current_layer()
-        
-            # Get script's option values.
+        # Get script's option values.
         unit=self.options.unit
         inside=self.options.inside
         X = self.svg.unittouu( str(self.options.length)  + unit )
