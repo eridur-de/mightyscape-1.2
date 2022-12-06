@@ -542,24 +542,25 @@ class Paperfold(inkex.EffectExtension):
         #########################################################
         if self.options.printTriangleNumbers is True:
             for face in mesh.faces():
+                faceNr = str(face.idx() + 1)
                 centroid = mesh.calc_face_centroid(face) 
-                textFaceGroup = inkex.Group(id=uniqueMainId + "-textFace-" + str(face.idx()))
+                textFaceGroup = inkex.Group(id=uniqueMainId + "-textFace-" + faceNr)
                 
                 circle = textFaceGroup.add(Circle(cx="{:0.6f}".format(centroid[0]), cy="{:0.6f}".format(centroid[1]), r="{:0.6f}".format(fontsize)))
-                circle.set('id', uniqueMainId + "-textFaceCricle-" + str(face.idx()))
+                circle.set('id', uniqueMainId + "-textFaceCircle-" + faceNr)
                 circle.set("style", "stroke:#000000;stroke-width:{:0.6f}".format(strokewidth/2) + ";fill:none")
                 
-                text = textFaceGroup.add(TextElement(id=uniqueMainId + "-textFaceNumber-" + str(face.idx())))
+                text = textFaceGroup.add(TextElement(id=uniqueMainId + "-textFaceNumber-" + faceNr))
                 text.set("x", "{:0.6f}".format(centroid[0]))
                 text.set("y", "{:0.6f}".format(centroid[1] + fontsize / 3))
                 text.set("font-size", "{:0.6f}".format(fontsize))
                 text.set("style", "stroke-width {:0.6f}".format(textStrokeWidth) + ";text-anchor:middle;text-align:center")
                 
-                tspan = text.add(Tspan(id=uniqueMainId + "-textFaceNumberTspan-" + str(face.idx())))
+                tspan = text.add(Tspan(id=uniqueMainId + "-textFaceNumberTspan-" + faceNr))
                 tspan.set("x", "{:0.6f}".format(centroid[0]))
                 tspan.set("y", "{:0.6f}".format(centroid[1] + fontsize / 3))
                 tspan.set("style", "stroke-width {:0.6f}".format(textStrokeWidth) + ";text-anchor:middle;text-align:center")
-                tspan.text = str(face.idx())
+                tspan.text = faceNr
                 textFacesGroup.append(textFaceGroup)
       
         #########################################################
@@ -651,7 +652,8 @@ class Paperfold(inkex.EffectExtension):
             if self.options.flipLabels is True:
                 rotation += 180
     
-            text = textEdgesGroup.add(TextElement(id=uniqueMainId + "-edgeNumber-" + str(edge.idx())))
+            edgeNr = str(edge.idx() + 1)
+            text = textEdgesGroup.add(TextElement(id=uniqueMainId + "-edgeNumber-" + edgeNr))
             text.set("x", "{:0.6f}".format(position[0]))
             text.set("y", "{:0.6f}".format(position[1]))
             text.set("font-size", "{:0.6f}".format(fontsize))
@@ -664,7 +666,7 @@ class Paperfold(inkex.EffectExtension):
             tspan.set("style", "stroke-width {:0.6f}".format(textStrokeWidth) + ";text-anchor:middle;text-align:center")
             tspanText = []
             if self.options.printGluePairNumbers is True and not isFoldingEdge[edge.idx()]:
-                tspanText.append(str(glueNumber[edge.idx()]))
+                tspanText.append(str(glueNumber[edge.idx()] + 1))
             if self.options.printAngles is True and dihedralAngle != 0.0:
                 tspanText.append("{:0.2f}°".format(dihedralAngle))
             if self.options.printLengths is True:
