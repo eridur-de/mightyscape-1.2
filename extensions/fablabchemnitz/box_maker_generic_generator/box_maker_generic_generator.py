@@ -1,13 +1,22 @@
 #!/usr/bin/env python3
+# coding: utf8
 
-# We will use the inkex module with the predefined Effect base class.
-import inkex
-# The simplestyle module provides functions for style parsing.
-
-import simplestyle
+from enum import Flag
 import math
-from th_inkscape_path import *
+from numbers import Real
+from operator import pos
+import os.path
+from typing import List
+from more_itertools import last
+
+from numpy import False_
+import inkex
+import re
 from lxml import etree
+from inkex import paths
+from inkex import bezier
+from th_inkscape_path import *
+
 
 #Constants defined here
 WoodHingeSize = 3               #To be multiplied by thickness 
@@ -611,7 +620,7 @@ class NotchLine:
                 #Draw only first half of notch line,i.e. end will be at the middle of segment
                 self.EndX = (self.StartX + self.EndX) / 2
                 self.EndY = (self.StartY + self.EndY) / 2
-                self.nb_finger_joint = (self.nb_finger_joint // 2 ) + 1     #Previous number was odd (2n+1), new notch count = n + 1, as last one will be half notch
+                self.nb_finger_joint = int(self.nb_finger_joint // 2 ) + 1     #Previous number was odd (2n+1), new notch count = n + 1, as last one will be half notch
                 self.end_line_joint_x =   self.start_line_joint_x +  ((self.nb_finger_joint-0.5)*finger_joint_size)*math.cos(angle)         #Quit line at end of last notch
                 self.end_line_joint_y =   self.start_line_joint_y +  ((self.nb_finger_joint-0.5)*finger_joint_size)*math.sin(angle)         #Quit line at end of last notch
                 if (self.nb_finger_joint%2) == 0 and self.StartStatus:
@@ -630,7 +639,7 @@ class NotchLine:
                 #Draw only second half of notch line,i.e. Start will be at the middle of segment
                 self.StartX = (self.StartX + self.EndX) / 2
                 self.StartY = (self.StartY + self.EndY) / 2
-                self.nb_finger_joint = (self.nb_finger_joint // 2 ) + 1    #Previous number was odd (2n+1), new notch count = n+1 , as first one with half notch for the first one
+                self.nb_finger_joint = int(self.nb_finger_joint // 2 ) + 1    #Previous number was odd (2n+1), new notch count = n+1 , as first one with half notch for the first one
                 #Draw the first half notch as a shift from start position
                 self.start_line_joint_x = self.StartX - 0.5*finger_joint_size*math.cos(angle)
                 self.start_line_joint_y = self.StartY - 0.5*finger_joint_size*math.sin(angle)
@@ -828,7 +837,7 @@ class FlexLines:
         elif Height+2*thickness < 150:
             nSegmentFlex = 3
         else:
-            nSegmentFlex = Height+2*thickness // 50
+            nSegmentFlex = int((Height+2*thickness) // 50)
         #Then compute distance between flex lines. The basic idea is to have a minimum of 15 lines per corner, with lines distant at least of 1mm
         #But also ensure that distance between lines is at most at 2mm 
         round_distance = Radius*math.pi/2
@@ -1537,7 +1546,7 @@ class BoxFace:
                  +' n_slot='+str(n_slot)+'  slot_size='+str(slot_size)+" Delta_Pos="+str(DeltaHolePosition)+'\n')
         for i in range(1, n_slot):
             #For each wall, draw holes corresponding at each notch on zbox
-            for j in range((l_NotchLine.nb_finger_joint)//2):
+            for j in range(int(l_NotchLine.nb_finger_joint//2)):
                 drawHole(self.path, i*(slot_size+thickness) - DeltaHolePosition -thickness, StartHole + j*Spacing, thickness, l_NotchLine.JointSize, burn)
 
         #Close the path if asked
@@ -2056,125 +2065,40 @@ class BoxFace:
 
 
     
-class GenericBox(inkex.Effect):
+class GenericBox(inkex.EffectExtension):
     """
     Creates a new layer with the drawings for a parametrically generated box.
     """
-    def __init__(self):
-        ''' 
-        init for all parameters
-        '''
-        inkex.Effect.__init__(self)
+    def add_arguments(self, pars):
         self.knownUnits = ['in', 'pt', 'px', 'mm', 'cm', 'm', 'km', 'pc', 'yd', 'ft']
-
-        self.arg_parser.add_argument('--unit', action = 'store',
-          type = str, dest = 'unit', default = 'mm',
-          help = 'Unit, should be one of ')
-
-        self.arg_parser.add_argument('--thickness', action = 'store',
-          type = float, dest = 'thickness', default = '3.0',
-          help = 'Material thickness')
-
-        self.arg_parser.add_argument('--lid_type', action = 'store',
-          type = str, dest = 'lid_type', default = 'Simple',
-          help = 'Box lid style ')
-
-        self.arg_parser.add_argument('--n_slot_x', action = 'store',
-          type = int, dest = 'n_slot_x', default = '2',
-          help = 'Number of columns of slots')
-
-        self.arg_parser.add_argument('--n_slot_y', action = 'store',
-          type = int, dest = 'n_slot_y', default = '2',
-          help = 'Number of rows of slots')
-
-        self.arg_parser.add_argument('--h_slot', action = 'store',
-          type = int, dest = 'h_slot', default = '100',
-          help = 'Height of slots (%)')
-
-        self.arg_parser.add_argument('--z', action = 'store',
-          type = float, dest = 'z', default = '40.0',
-          help = "box height")
-
-        self.arg_parser.add_argument('--y', action = 'store',
-          type = float, dest = 'y', default = '60.0',
-          help = "box depth")
-
-        self.arg_parser.add_argument('--x', action = 'store',
-          type = float, dest = 'x', default = '40.0',
-          help = "box width")
-
-        self.arg_parser.add_argument('--z_lid', action = 'store',
-          type = float, dest = 'z_lid', default = '20.0',
-          help = 'lid height')
-
-        self.arg_parser.add_argument('--z_dome_lid', action = 'store',
-          type = float, dest = 'z_dome_lid', default = '20.0',
-          help = 'dome lid height')
-
-        self.arg_parser.add_argument('--SkipFlexLines', action = 'store',
-          type = inkex.Boolean, dest = 'SkipFlexLines', default = 'true',
-          help = 'Skip flex lines when possible')
-
-        self.arg_parser.add_argument('--radius_lid', action = 'store',
-          type = float, dest = 'radius_lid', default = '50.0',
-          help = 'Radius of rounded lid')
-
-        self.arg_parser.add_argument('--burn', action = 'store',
-          type = float, dest = 'burn', default = '0.1',
-          help = 'laser burn size')
-
-        self.arg_parser.add_argument('--StraigthCorners', action = 'store',
-          type = inkex.Boolean, dest = 'StraigthCorners', default = 'true',
-          help = 'Straight corners')
-
-        self.arg_parser.add_argument('--back_left_radius', action = 'store',
-          type = float, dest = 'back_left_radius', default = '10.0',
-          help = 'Radius of top left rounded corner')
-
-        self.arg_parser.add_argument('--back_right_radius', action = 'store',
-          type = float, dest = 'back_right_radius', default = '10.0',
-          help = 'Radius of top right rounded corner')
-
-        self.arg_parser.add_argument('--front_left_radius', action = 'store',
-          type = float, dest = 'front_left_radius', default = '10.0',
-          help = 'Radius of bottom left rounded corner')
-
-        self.arg_parser.add_argument('--front_right_radius', action = 'store',
-          type = float, dest = 'front_right_radius', default = '10.0',
-          help = 'Radius of bottom right rounded corner')
-
-        self.arg_parser.add_argument('--AutoSize', action = 'store',
-          type = inkex.Boolean, dest = 'AutoSizeJoints', default = 'true',
-          help = 'Size of finger joints computed from box dimlensions')
-
-        self.arg_parser.add_argument('--x_joint', action = 'store',
-          type = float, dest = 'x_joint', default = '10.0',
-          help = 'Size of finger joints in X direction')
-
-        self.arg_parser.add_argument('--y_joint', action = 'store',
-          type = float, dest = 'y_joint', default = '10.0',
-          help = 'Size of finger joints in Y direction')
-
-        self.arg_parser.add_argument('--z_joint', action = 'store',
-          type = float, dest = 'z_joint', default = '10.0',
-          help = 'Size of finger joints in Z direction')
-
-        self.arg_parser.add_argument('--Topic', action = 'store',
-          type = str, dest = 'TopicPage', 
-          help = 'Size of finger joints in Z direction')
-
+        pars.add_argument('--as_layer', type=inkex.Boolean, default=False, help='Layer or group')
+        pars.add_argument('--unit', default='mm', help='Unit, should be one of ')
+        pars.add_argument('--thickness', type=float, default=3.0, help='Material thickness')
+        pars.add_argument('--lid_type', default='Simple', help='Box lid style ')
+        pars.add_argument('--n_slot_x', type=int, default=2, help='Number of columns of slots')
+        pars.add_argument('--n_slot_y', type=int, default=2, help='Number of rows of slots')
+        pars.add_argument('--h_slot', type=int, default=100, help='Height of slots (%)')
+        pars.add_argument('--z', type=float, default=40.0,help="box height")
+        pars.add_argument('--y', type=float, default=60.0, help="box depth")
+        pars.add_argument('--x', type=float,  default=40.0, help="box width")
+        pars.add_argument('--z_lid', type=float, default=20.0, help='lid height')
+        pars.add_argument('--z_dome_lid', type=float, default=20.0, help='dome lid height')
+        pars.add_argument('--SkipFlexLines', type=inkex.Boolean, default=True, help='Skip flex lines when possible')
+        pars.add_argument('--radius_lid', type=float, default=50.0, help='Radius of rounded lid')
+        pars.add_argument('--burn', type=float, dest='burn', default=0.1, help='laser burn size')
+        pars.add_argument('--StraigthCorners', type=inkex.Boolean, dest='StraigthCorners', default=True, help='Straight corners')
+        pars.add_argument('--back_left_radius', type=float, default=10.0, help='Radius of top left rounded corner')
+        pars.add_argument('--back_right_radius', type=float, default=10.0, help='Radius of top right rounded corner')
+        pars.add_argument('--front_left_radius', type=float, default=10.0, help='Radius of bottom left rounded corner')
+        pars.add_argument('--front_right_radius', type=float, default=10.0, help='Radius of bottom right rounded corner')
+        pars.add_argument('--AutoSizeJoints', type=inkex.Boolean, default=True, help='Size of finger joints computed from box dimlensions')
+        pars.add_argument('--x_joint', type=float, default=10.0, help='Size of finger joints in X direction')
+        pars.add_argument('--y_joint', type=float, default=10.0, help='Size of finger joints in Y direction')
+        pars.add_argument('--z_joint', type=float, default=10.0, help='Size of finger joints in Z direction')
+        pars.add_argument('--Topic')
 
         self.BoundingBox = [0, 0, 0, 0]
         self.HingeList = []
-        
-    try:
-        inkex.Effect.unittouu   # unitouu has moved since Inkscape 0.91
-    except AttributeError:
-        try:
-            def unittouu(self, unit):
-                return inkex.unittouu(unit)
-        except AttributeError:
-            pass
 
     def UpdateBoundingBox(self, Face):
         if Face.BoundingBox[0] < self.BoundingBox[0]:
@@ -2194,42 +2118,39 @@ class GenericBox(inkex.Effect):
         These positions are NOT sensitive to burn factor. The burn factor should be added later if needed
         '''
         NPos = []
-        if size_slot < 25:
+        if size_slot < 50:
             #Small size, only one notch 
             i_notch_number = 1
+            notch_number = 3
             notch_size = size_slot / 3 # Notch is center aligned
-        elif size_slot < 50:
-            #Medium size, draw 5mm notches
-            notch_number = size_slot / 5
-            if (notch_number % 2) == 0:
-                notch_number -= 1           #should be odd
-            notch_size = size_slot / notch_number
-            i_notch_number = int(notch_number // 2)
         elif size_slot < 120:
-            #Medium high size, draw 10mm notches
-            notch_number = size_slot / 10
+            #Medium size, draw 15mm notches
+            notch_number = int(size_slot / 15)
             if (notch_number % 2) == 0:
                 notch_number -= 1           #should be odd
             notch_size = size_slot / notch_number
             i_notch_number = int(notch_number // 2)
         elif size_slot < 200:
-            #Medium high size, draw 20mm notches
-            notch_number = size_slot / 20
+            #Medium high size, draw 25mm notches
+            notch_number = int(size_slot / 25)
             if (notch_number % 2) == 0:
                 notch_number -= 1           #should be odd
             notch_size = size_slot / notch_number
             i_notch_number = int(notch_number // 2)
         else:
-            #Large size, draw 30mm notches
-            notch_number = size_slot / 30
+            #Large size, draw 40mm notches
+            notch_number = int(size_slot / 40)
             if (notch_number % 2) == 0:
                 notch_number -= 1           #should be odd
             notch_size = size_slot / notch_number
             i_notch_number = int(notch_number // 2)
+        #Compute initial shift. Add this shift to reach symetrical notches within each slot
+        Shift = (size_slot - notch_size * notch_number) / 2
+        DebugMsg("CalcNotchPos: Size_slot="+str(size_slot)+", notch_number="+str(notch_number)+", notch_size="+str(notch_size)+", Shift="+str(Shift)+'\n')
         for j in range(n_slot):
             #For each slot
             for i in range(i_notch_number):
-                NPos.append((j*(size_slot+thickness)+notch_size+2*i*notch_size, notch_size, j))        #Add a tuple with 3 elements for start, size of notch and group number
+                NPos.append((j*(size_slot+thickness)+notch_size+2*i*notch_size + Shift, notch_size, j))        #Add a tuple with 3 elements for start, size of notch and group number
         return NPos
 
     def ComputeJointSize(self, xbox, ybox, zbox, back_left_radius, back_right_radius, front_right_radius, front_left_radius):
@@ -2750,9 +2671,6 @@ class GenericBox(inkex.Effect):
 
 
     def effect(self):
-        """
-        Draws a card box box, based on provided parameters
-        """
         global burn, thickness
         
         # input sanity check
@@ -2762,7 +2680,6 @@ class GenericBox(inkex.Effect):
             error = True
 
         if error:
-            CloseDebugFile()
             exit()
 
         self.n_slot_x = self.options.n_slot_x
@@ -2817,10 +2734,13 @@ class GenericBox(inkex.Effect):
         docWidth = self.svg.unittouu(svg.get('width'))
         docHeigh = self.svg.unittouu(svg.attrib['height'])
 
-        layer = etree.SubElement(svg, 'g')
-        layer.set(inkex.addNS('label', 'inkscape'), 'Generic Box')
-        layer.set(inkex.addNS('groupmode', 'inkscape'), 'layer')
-        self.group = etree.SubElement(layer, 'g')
+        if self.options.as_layer is True:
+            layer = etree.SubElement(self.svg.get_current_layer(), 'g')
+            layer.set(inkex.addNS('label', 'inkscape'), 'Generic Box')
+            layer.set(inkex.addNS('groupmode', 'inkscape'), 'layer')
+            self.group = etree.SubElement(layer, 'g')
+        else:
+            self.group = etree.SubElement(self.svg.get_current_layer(), 'g')
         OpenDebugFile()
         
         HasLid = False
@@ -3498,5 +3418,4 @@ class GenericBox(inkex.Effect):
 
 
 # Create effect instance and apply it.
-effect = GenericBox()
-effect.run()
+effect = GenericBox().run()

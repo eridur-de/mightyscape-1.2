@@ -12,10 +12,11 @@
 				<option value="px">px</option>
 				<option value="pc">pc</option>
 			</param>
-			<label appearance="header">External dimensions for the box</label>
+			<label appearance="header">Internal box dimensions</label>
 			<param name="x" type="float" min="10.0" max="1000.0" gui-text="width">80.0</param>
 			<param name="y" type="float" min="10.0" max="1000.0" gui-text="depth">60.0</param>
 			<param name="z" type="float" min="10.0" max="1000.0" gui-text="height">40.0</param>
+            <label appearance="header">Material</label>
 			<param name="thickness" type="float" min="1.0" max="10.0" gui-text="thickness of material">3.0</param>
 			<param name="burn" type="float" min="0.0" max="2.0" gui-text="Burn factor">0.1</param>
 		</page>
@@ -49,12 +50,14 @@
             <param name="h_slot" type="int" min="40" max="100" gui-text="Height of slots (%)">1</param>
 		</page>
 		<page name="Joints" gui-text="Joints">
-			<param name="AutoSize" type="bool" gui-text="Finger size computed from box dimensions">true</param>
+			<param name="AutoSizeJoints" type="bool" gui-text="Finger size computed from box dimensions">true</param>
 			<param name="x_joint" type="float" min="1.0" max="100.0" gui-text="Finger size for joints in X direction">5.0</param>
 			<param name="y_joint" type="float" min="1.0" max="100.0" gui-text="Finger size for joints in Y direction">5.0</param>
 			<param name="z_joint" type="float" min="1.0" max="100.0" gui-text="Finger size for joints in Z direction">5.0</param>
 		</page>
-	</param>	
+	</param>
+	<separator/>
+    <param name="as_layer" type="bool" gui-text="Output on new layer">false</param>
 	<effect>
 		<object-type>all</object-type>
 		<effects-menu>
