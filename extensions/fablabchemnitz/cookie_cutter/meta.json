@@ -1,0 +1,21 @@
+[
+  {
+    "name": "OpenSCAD Cookie Cutter Export",
+    "id": "fablabchemnitz.de.cookie_cutter",
+    "path": "cookie_cutte",
+    "dependent_extensions": null,
+    "original_name": "OpenSCAD Cookie Cutter Export",
+    "original_id": "mobi.omegacentauri.cookiecutter",
+    "license": "MIT License",
+    "license_url": "https://inkscape.org/~arpruss/%E2%98%85openscad-cookie-cutter-file-output",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/cookie_cutter",
+    "fork_url": "https://github.com/arpruss/gcodeplot",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/OpenSCAD+cookie+cutter+file+output",
+    "inkscape_gallery_url": null,
+    "main_authors": [
+      "github.com/arpruss",
+      "github.com/eridur-de"
+    ]
+  }
+]

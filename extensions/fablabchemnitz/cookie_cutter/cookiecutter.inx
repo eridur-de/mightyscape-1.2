@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>OpenSCAD Cookie Cutter Export</name>
+    <id>fablabchemnitz.de.cookie_cutter</id>
+    <output>
+        <extension>.scad</extension>
+        <mimetype>text/plain</mimetype>
+        <filetypename>OpenSCAD cookie cutter file (*.scad)</filetypename>
+        <filetypetooltip>Export an OpenSCAD cookie cutter file</filetypetooltip>
+        <dataloss>true</dataloss>
+    </output>
+    <script>
+        <command location="inx" interpreter="python">svg2cookiecutter.py</command>
+    </script>
+</inkscape-extension>
