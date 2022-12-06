@@ -4,32 +4,41 @@
     <id>fablabchemnitz.de.box_maker_mehr_boxes</id>
     <param name="page" type="notebook">
         <page name="page_1" gui-text="Sizes">
-            <param name="unit" gui-text="Unit" type="optiongroup" appearance="combo">
-                <option value="mm">mm</option>
-                <option value="cm">cm</option>
-                <option value="in">in</option>
-            </param>
-            <label appearance="header">Size Options</label>
-            <param name="inside" type="optiongroup" appearance="combo" gui-text="Box Dimensions">
-                <option value="1">Inside</option>
-                <option value="0">Outside</option>
-            </param>
-            <param name="X_size" type="float" precision="2" min="0.0" max="1000000.0" gui-text="X axis lenght">100.0</param>
-            <param name="Y_size" type="float" precision="2" min="0.0" max="1000000.0" gui-text="Y axis lenght">100.0</param>
-            <param name="Z_size" type="float" precision="2" min="0.0" max="1000000.0" gui-text="Z axis lenght">100.0</param>
-            <label appearance="header">Tab Options</label>
-            <param name="tab_mode" gui-text="Tab Mode" type="optiongroup" appearance="combo">
-                <option value="number">amount</option>
-                <option value="size">size</option>
-            </param>
-            <param name="tab_size" type="float" precision="2" min="0.0" max="10000.0" gui-text="target tab size">4.0</param>
-            <param name="X_tabs" type="int" min="0" max="100000" gui-text="Tabs in X axis">3</param>
-            <param name="Y_tabs" type="int" min="0" max="100000" gui-text="Tabs in Y axis">3</param>
-            <param name="Z_tabs" type="int" min="0" max="100000" gui-text="Tabs in Z axis">3</param>
-            <label appearance="header">Material Options</label>
-            <param name="thickness" type="float" precision="2" min="0.0" max="10000.0" gui-text="Material Thickness">4.0</param>
-            <param name="kerf" type="float" precision="3" min="0.0" max="10000.0" gui-text="Beam diameter">0.2</param>
-            <param name="spaceing" type="float" precision="2" min="0.0" max="10000.0" gui-text="Space Between Parts">1.0</param>
+            <hbox>
+                <vbox>
+                    <param name="unit" gui-text="Unit" type="optiongroup" appearance="combo">
+                        <option value="mm">mm</option>
+                        <option value="cm">cm</option>
+                        <option value="in">in</option>
+                    </param>
+                    <label appearance="header">Size Options</label>
+                    <param name="inside" type="optiongroup" appearance="combo" gui-text="Box Dimensions">
+                        <option value="1">Inside</option>
+                        <option value="0">Outside</option>
+                    </param>
+                    <label appearance="header">Material Options</label>
+                    <param name="thickness" type="float" precision="2" min="0.0" max="10000.0" gui-text="Material Thickness">4.0</param>
+                    <param name="kerf" type="float" precision="3" min="0.0" max="10000.0" gui-text="Beam diameter">0.2</param>
+                    <param name="spacing" type="float" precision="2" min="0.0" max="10000.0" gui-text="Space Between Parts">1.0</param>
+                </vbox>
+                <spacer/>
+                <vbox>
+                    <param name="X_size" type="float" precision="2" min="0.0" max="1000000.0" gui-text="X axis lenght">100.0</param>
+                    <param name="Y_size" type="float" precision="2" min="0.0" max="1000000.0" gui-text="Y axis lenght">100.0</param>
+                    <param name="Z_size" type="float" precision="2" min="0.0" max="1000000.0" gui-text="Z axis lenght">100.0</param>
+                    <label appearance="header">Tab Options</label>
+                    <param name="tab_mode" gui-text="Tab Mode" type="optiongroup" appearance="combo">
+                        <option value="number">amount</option>
+                        <option value="size">size</option>
+                    </param>
+                    <label>... for Tab Mode "size"</label>
+                    <param name="tab_size" type="float" precision="2" min="0.0" max="10000.0" gui-text="target tab size">4.0</param>
+                    <label>... for Tab Mode "amount"</label>
+                    <param name="X_tabs" type="int" min="0" max="100000" gui-text="Tabs in X axis">3</param>
+                    <param name="Y_tabs" type="int" min="0" max="100000" gui-text="Tabs in Y axis">3</param>
+                    <param name="Z_tabs" type="int" min="0" max="100000" gui-text="Tabs in Z axis">3</param>
+                </vbox>
+            </hbox>
         </page>
         <page name="page_2" gui-text="Draw sides">
             <param name="d_top" type="bool" gui-text="Draw top side (XxY)">true</param>

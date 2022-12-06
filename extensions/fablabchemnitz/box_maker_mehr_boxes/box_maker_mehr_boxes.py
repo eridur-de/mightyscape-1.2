@@ -29,14 +29,14 @@ class mehr_box_maker(inkex.EffectExtension):
     pars.add_argument('--page',default='page_1')
     pars.add_argument('--unit',default='mm')
     pars.add_argument('--inside')
-    pars.add_argument('--X_size',type=float,default='0.0')
-    pars.add_argument('--Y_size',type=float,default='0.0')
-    pars.add_argument('--Z_size',type=float,default='0.0')
+    pars.add_argument('--X_size',type=float,default=0.0)
+    pars.add_argument('--Y_size',type=float,default=0.0)
+    pars.add_argument('--Z_size',type=float,default=0.0)
     pars.add_argument('--tab_mode',default='number')
-    pars.add_argument('--tab_size',type=float,default='0.0')
-    pars.add_argument('--X_tabs',type=int,default='0')
-    pars.add_argument('--Y_tabs',type=int,default='0')
-    pars.add_argument('--Z_tabs',type=int,default='0')   
+    pars.add_argument('--tab_size',type=float,default=0.0)
+    pars.add_argument('--X_tabs',type=int,default=0)
+    pars.add_argument('--Y_tabs',type=int,default=0)
+    pars.add_argument('--Z_tabs',type=int,default=0)   
     pars.add_argument('--d_top',type=inkex.Boolean,default=True)
     pars.add_argument('--d_bottom',type=inkex.Boolean,default=True)
     pars.add_argument('--d_left',type=inkex.Boolean,default=True)
@@ -45,7 +45,7 @@ class mehr_box_maker(inkex.EffectExtension):
     pars.add_argument('--d_back',type=inkex.Boolean,default=True)
     pars.add_argument('--thickness',type=float,default=4,help='Thickness of Material')
     pars.add_argument('--kerf',type=float,default=0.2)
-    pars.add_argument('--spaceing',type=float,default=1) 
+    pars.add_argument('--spacing',type=float,default=1) 
     pars.add_argument('--X_compartments',type=int,default=1)
     pars.add_argument('--X_divisions')
     pars.add_argument('--X_mode')
@@ -59,7 +59,7 @@ class mehr_box_maker(inkex.EffectExtension):
     thickness=self.svg.unittouu(str(self.options.thickness)+self.options.unit)
     kerf=self.svg.unittouu(str(self.options.kerf)+self.options.unit)/2#kerf is diameter in UI and radius in lib
     
-    spaceing=self.svg.unittouu(str(self.options.spaceing)+self.options.unit)
+    spacing=self.svg.unittouu(str(self.options.spacing)+self.options.unit)
     XYZ=[self.svg.unittouu(str(self.options.X_size)+self.options.unit),self.svg.unittouu(str(self.options.Y_size)+self.options.unit),self.svg.unittouu(str(self.options.Z_size)+self.options.unit)]
 
     if(self.options.inside=='0'):#if the sizes are outside sizes reduce the size by thickness if the side gets drawn
@@ -114,7 +114,9 @@ class mehr_box_maker(inkex.EffectExtension):
       Tabs_XYZ=[self.options.X_tabs,self.options.Y_tabs,self.options.Z_tabs]
     else:#compute apropriate number of tabs for the edges
       tab_size=float(self.svg.unittouu(str(self.options.tab_size)+self.options.unit))
-      Tabs_XYZ=[max(1,int(XYZ[0]/(tab_size))/2),max(1,int(XYZ[1]/(tab_size))/2),max(1,int(XYZ[2]/(tab_size))/2)]
+      Tabs_XYZ=[int(max(1,int(XYZ[0]/(tab_size))/2)),
+                int(max(1,int(XYZ[1]/(tab_size))/2)),
+                int(max(1,int(XYZ[2]/(tab_size))/2))]
 
 #top and bottom plate
     tabs_tb=(Tabs_XYZ[0] if self.options.d_back else 0,Tabs_XYZ[1] if self.options.d_right else 0,Tabs_XYZ[0] if self.options.d_front else 0,Tabs_XYZ[1] if self.options.d_left else 0)
@@ -149,40 +151,40 @@ class mehr_box_maker(inkex.EffectExtension):
     X_offset=0
     Y_offset=0
     if(self.options.d_top):
-      Plate_tb.draw([X_offset+spaceing,spaceing],["#000000","#ff0000"],self.svg.get_current_layer())#drawing a plate using black for the outline and red for holes
-      X_offset+=Plate_tb.AABB[0]+spaceing
+      Plate_tb.draw([X_offset+spacing,spacing],["#000000","#ff0000"],self.svg.get_current_layer())#drawing a plate using black for the outline and red for holes
+      X_offset+=Plate_tb.AABB[0]+spacing
       Y_offset=max(Y_offset,Plate_tb.AABB[1])
     if(self.options.d_bottom):
-      Plate_tb.draw([X_offset+spaceing,spaceing],["#000000","#ff0000"],self.svg.get_current_layer())
-      X_offset+=Plate_tb.AABB[0]+spaceing
+      Plate_tb.draw([X_offset+spacing,spacing],["#000000","#ff0000"],self.svg.get_current_layer())
+      X_offset+=Plate_tb.AABB[0]+spacing
       Y_offset=max(Y_offset,Plate_tb.AABB[1])
       
     if(self.options.d_left):
-      Plate_lr.draw([X_offset+spaceing,spaceing],["#000000","#ff0000"],self.svg.get_current_layer())
-      X_offset+=Plate_lr.AABB[0]+spaceing
+      Plate_lr.draw([X_offset+spacing,spacing],["#000000","#ff0000"],self.svg.get_current_layer())
+      X_offset+=Plate_lr.AABB[0]+spacing
       Y_offset=max(Y_offset,Plate_lr.AABB[1])
     if(self.options.d_right):
-      Plate_lr.draw([X_offset+spaceing,spaceing],["#000000","#ff0000"],self.svg.get_current_layer())
-      X_offset+=Plate_lr.AABB[0]+spaceing
+      Plate_lr.draw([X_offset+spacing,spacing],["#000000","#ff0000"],self.svg.get_current_layer())
+      X_offset+=Plate_lr.AABB[0]+spacing
       Y_offset=max(Y_offset,Plate_lr.AABB[1])
       
     if(self.options.d_front):
-      Plate_fb.draw([X_offset+spaceing,spaceing],["#000000","#ff0000"],self.svg.get_current_layer())
-      X_offset+=Plate_fb.AABB[0]+spaceing
+      Plate_fb.draw([X_offset+spacing,spacing],["#000000","#ff0000"],self.svg.get_current_layer())
+      X_offset+=Plate_fb.AABB[0]+spacing
       Y_offset=max(Y_offset,Plate_fb.AABB[1])
     if(self.options.d_back):
-      Plate_fb.draw([X_offset+spaceing,spaceing],["#000000","#ff0000"],self.svg.get_current_layer())
-      X_offset+=Plate_fb.AABB[0]+spaceing
+      Plate_fb.draw([X_offset+spacing,spacing],["#000000","#ff0000"],self.svg.get_current_layer())
+      X_offset+=Plate_fb.AABB[0]+spacing
       Y_offset=max(Y_offset,Plate_fb.AABB[1])
     X_offset=0
     for i in range(self.options.X_compartments-1):
-      Plate_xc.draw([X_offset+spaceing,spaceing+Y_offset],["#000000","#ff0000"],self.svg.get_current_layer())
-      X_offset+=Plate_xc.AABB[0]+spaceing
+      Plate_xc.draw([X_offset+spacing,spacing+Y_offset],["#000000","#ff0000"],self.svg.get_current_layer())
+      X_offset+=Plate_xc.AABB[0]+spacing
     X_offset=0
-    Y_offset+=spaceing+Plate_xc.AABB[1]
+    Y_offset+=spacing+Plate_xc.AABB[1]
     for i in range(self.options.Y_compartments-1):
-      Plate_yc.draw([X_offset+spaceing,spaceing+Y_offset],["#000000","#ff0000"],self.svg.get_current_layer())
-      X_offset+=Plate_yc.AABB[0]+spaceing
+      Plate_yc.draw([X_offset+spacing,spacing+Y_offset],["#000000","#ff0000"],self.svg.get_current_layer())
+      X_offset+=Plate_yc.AABB[0]+spacing
     
 if __name__ == '__main__':
     mehr_box_maker().run()
