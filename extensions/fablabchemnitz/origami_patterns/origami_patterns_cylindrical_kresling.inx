@@ -8,10 +8,10 @@
                 <option value="regular">Regular</option>
                 <option value="mirrowed">Mirror odd cells</option>
             </param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="rows" type="int" min="1" max="100" gui-text="Number of cells">3</param>
             <param name="sides" type="int" min="3" max="100" gui-text="Number of polygon sides">6</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="measure_value" type="float" max="10000" precision="3" gui-text="Measure value:">10.0</param>
             <param name="measure_type" type="optiongroup" appearance="combo" gui-text="Measure type:">
                 <option value="a">Polygon side (a)</option>
@@ -30,7 +30,7 @@
                 <option value="px">px</option>
             </param>
             <param name="simulation_mode" type="bool" gui-text="Simulation mode">true</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="parameter_type" type="optiongroup" appearance="combo" gui-text="Parameter type:">
                 <option value="angle_ratio">Angle ratio (lambda)</option>
                 <option value="radial_ratio">Radial ratio</option>
@@ -42,7 +42,7 @@
         </page>
         <page name="slots" gui-text="Slots">
             <param name="extra_column" type="bool" gui-text="Extra column?">false</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="add_base_slot" type="bool" gui-text="Add base slots?">false</param>
             <param name="base_slot_position" type="optiongroup" appearance="combo" gui-text="Base slot position:">
                 <option value="-1">Top</option>
@@ -52,7 +52,7 @@
             <param name="base_height" type="float" max="10000" precision="3" gui-text="Height of base">5.0</param>
             <param name="base_slot_height" type="float" max="10000" precision="3" gui-text="Height of base slot">3.0</param>
             <param name="base_slot_width" type="float" max="10000" precision="3" gui-text="Width of base slow">3.0</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="add_middle_slot" type="bool" gui-text="Add slots between cells?">false</param>
             <param name="middle_slot_position" type="optiongroup" appearance="combo" gui-text="Middle slot position:">
                 <option value="-1">Top</option>
@@ -111,8 +111,10 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="Origami Patterns">
-                <submenu name="Cylindrical" />
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Origami Patterns">
+                    <submenu name="Cylindrical" />
+                </submenu>
             </submenu>
         </effects-menu>
     </effect>

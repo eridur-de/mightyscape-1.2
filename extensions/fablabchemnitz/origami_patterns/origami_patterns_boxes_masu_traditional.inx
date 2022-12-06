@@ -54,8 +54,10 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="Origami Patterns">
-                <submenu name="Boxes" />
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Origami Patterns">
+                    <submenu name="Boxes" />
+                </submenu>
             </submenu>
         </effects-menu>
     </effect>

@@ -7,7 +7,6 @@ Only the first segment of a multi-segment line will be used.
 '''
 import inkex
 from inkex.paths import Path
-import simplepath
 from math import *
 from lxml import etree
 

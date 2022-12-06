@@ -62,7 +62,6 @@ class ExponentialDistort(inkex.EffectExtension):
         return x
 
     def computeBBox(self, pts):
-        """ 'improved' version of simplepath.computeBBox, this one includes b-spline handles."""
         xmin = None
         xmax = None
         ymin = None

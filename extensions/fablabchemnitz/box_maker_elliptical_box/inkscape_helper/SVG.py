@@ -1,5 +1,4 @@
 import inkex
-import simplestyle
 from lxml import etree
 
 def _format_1st(command, is_absolute):

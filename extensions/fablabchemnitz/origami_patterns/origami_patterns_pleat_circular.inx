@@ -14,7 +14,7 @@
             </param>
             <param name="ratio" type="float" min="0" max="1" precision="3" gui-text="Opening ratio">0.4</param>
             <param name="rings" type="int" min="3" max="100" gui-text="Number of rings">15</param>
-            <label>------------------------------</label>
+            <separator/>
             <param name="simulation_mode" type="bool" gui-text="Simulation mode">true</param>
             <label>To simulate with OrigamiSimulator, semicreases (or facet creases) must be added to properly simulate paper, and the circles must be approximated as polygons.</label>
             <param name="sides" type="int" min="10" max="100" gui-text="Number of sides for polygon approximating half circle">20</param>
@@ -67,8 +67,10 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="Origami Patterns">
-                <submenu name="Pleat folds" />
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Origami Patterns">
+                    <submenu name="Pleat folds" />
+                </submenu>
             </submenu>
         </effects-menu>
     </effect>

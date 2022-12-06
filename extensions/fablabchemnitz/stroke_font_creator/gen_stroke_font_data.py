@@ -68,28 +68,6 @@ def transformedParsedPath(elem):
     pp = getParsedPath(elem.get('d'))
     return pp
 
-    # Following bloc takes care of the special condition where guides are transformed
-    # TODO: Make it working for 1.0
-
-    # ~ try:
-        # ~ transf = elem.get('transform')
-        # ~ mat = parseTransform(transf)
-        
-        # ~ #pp format [['M',[x1,y1]],['L',[x2,y2]]]
-        # ~ for dElem in pp:
-            # ~ for i in range(1, len(dElem)):
-                # ~ param = dElem[i]
-                # ~ t1 = [[param[x], param[x+1]] for x in range(0, len(param), 2)]
-                # ~ for t1Elem in t1:
-                    # ~ simpletransform.applyTransformToPoint(mat, t1Elem)
-                # ~ dElem[i] = [x for l in t1 for x in l]
-        # ~ elem.set('d', simplepath.formatPath(pp))        
-    # ~ except:
-        # ~ #Don't break
-        # ~ pass
-    
-    # ~ return pp
-
 def updateFontData(strokeFontData, glyphPathElems, hGuides, lvGuides, rvGuides, rightOffsetType):    
     for elem in glyphPathElems:
         char = elem.get(CommonDefs.idAttribName)

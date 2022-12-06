@@ -88,7 +88,7 @@ def addPath(newList, refnode):
     return ele
 
 def reformatList( listOfPaths):
-    """ Returns a SVG paths list (same format as simplepath.parsePath) from a list of Path objects
+    """ Returns a SVG paths list from a list of Path objects
      - Segments in paths are added in the new list
      - simple Path are retrieved from the original refSVGPathList and put in the new list (thus preserving original bezier curves)
     """

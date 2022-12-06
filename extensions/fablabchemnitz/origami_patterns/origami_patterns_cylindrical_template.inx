@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <name>* Cylindrical template effect</name>
+    <name>Cylindrical template effect</name>
     <id>org.inkscape.Origami_patterns.cylindrical_template</id>
     <param name="active-tab" type="notebook">
         <page name="options" gui-text="Options">
-            <label>------------------------------------</label>
+            <separator/>
             <label>Minimum necessary parameters for Cylindrical origami types :</label>
             <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of cylinder">10.0</param>
             <param name="sides" type="int" min="3" max="25" gui-text="Number of sides of polygon">6</param>
             <param name="rows" type="int" min="1" max="100" gui-text="Number of cells">3</param>
-            <label>-------------------------------------</label>
+            <separator/>
             <param name="length" type="float" max="10000" precision="3" gui-text="Length">10.0</param>
             <param name="angle" type="int" min="0" max="45" gui-text="Rotation angle (degree)">0</param>
             <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
@@ -24,7 +24,7 @@
         </page>
         <page name="slots" gui-text="Slots">
             <param name="extra_column" type="bool" gui-text="Extra column?">false</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="add_base_slot" type="bool" gui-text="Add base slots?">false</param>
             <param name="base_slot_position" type="optiongroup" appearance="combo" gui-text="Base slot position:">
                 <option value="-1">Top</option>
@@ -34,7 +34,7 @@
             <param name="base_height" type="float" max="10000" precision="3" gui-text="Height of base">5.0</param>
             <param name="base_slot_height" type="float" max="10000" precision="3" gui-text="Height of base slot">3.0</param>
             <param name="base_slot_width" type="float" max="10000" precision="3" gui-text="Width of base slow">3.0</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="add_middle_slot" type="bool" gui-text="Add slots between cells?">false</param>
             <param name="middle_slot_position" type="optiongroup" appearance="combo" gui-text="Middle slot position:">
                 <option value="-1">Top</option>
@@ -84,8 +84,10 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="Origami Patterns">
-                <submenu name="Cylindrical" />
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Origami Patterns">
+                    <submenu name="Template submenu" />
+                </submenu>
             </submenu>
         </effects-menu>
     </effect>

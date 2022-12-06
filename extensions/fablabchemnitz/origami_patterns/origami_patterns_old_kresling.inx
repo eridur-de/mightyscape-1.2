@@ -8,10 +8,10 @@
                 <option value="regular">Regular</option>
                 <option value="mirrowed">Mirror odd cells</option>
             </param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="lines" type="int" min="1" max="100" gui-text="Number of cells">3</param>
             <param name="sides" type="int" min="3" max="100" gui-text="Number of polygon sides">6</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="measure_value" type="float" max="10000" precision="3" gui-text="Measure value:">10.0</param>
             <param name="measure_type" type="optiongroup" appearance="combo" gui-text="Measure type:">
                 <option value="a">Polygon side (a)</option>
@@ -29,7 +29,7 @@
                 <option value="pt">pt</option>
                 <option value="px">px</option>
             </param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="parameter_type" type="optiongroup" appearance="combo" gui-text="Parameter type:">
                 <option value="angle_ratio">Angle ratio (lambda)</option>
                 <option value="radial_ratio">Radial ratio</option>
@@ -43,7 +43,7 @@
         <page name="extraoptions" gui-text="Extra Options">
             <param name="add_attachment" type="bool" gui-text="Add one more facet to close tower?">false</param>
             <param name="attachment_percentage" type="float" min="0" max="100" precision="1" appearance="full" gui-text="Length percentage of extra facet">100</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
         </page>
         <page name="mountains" gui-text="Mountain creases">
             <param name="mountain_bool" type="bool" gui-text="Draw mountains?">true</param>
@@ -84,8 +84,10 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="Origami Patterns">
-                <submenu name="Deprecated" />
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Origami Patterns">
+                    <submenu name="Deprecated" />
+                </submenu>
             </submenu>
         </effects-menu>
     </effect>

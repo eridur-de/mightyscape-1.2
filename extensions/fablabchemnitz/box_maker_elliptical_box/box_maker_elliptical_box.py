@@ -4,10 +4,8 @@ from inkscape_helper.Coordinate import Coordinate
 import inkscape_helper.Effect as eff
 import inkscape_helper.SVG as svg
 from inkscape_helper.Ellipse import Ellipse
-
 from inkscape_helper.Line import Line
 from inkscape_helper.EllipticArc import EllipticArc
-
 from math import *
 import inkex
 

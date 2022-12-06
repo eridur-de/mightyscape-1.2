@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 
 import warnings
 import sys
@@ -9,8 +9,6 @@ import subprocess
 import tempfile
 import shutil
 import copy
-
-from simplestyle import *
 from copy import deepcopy
 from io import BytesIO
 from lxml import etree

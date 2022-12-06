@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 '''
 shapes_1.py
 
@@ -20,7 +20,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA
 
 updated for inkscape 1.0
 '''
-import os, sys, tempfile, webbrowser, math, inkex, simplestyle, simpletransform
+import os, sys, tempfile, webbrowser, math, inkex
 from lxml import etree
 
 def info(s, newLine="\n"):

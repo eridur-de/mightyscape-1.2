@@ -13,10 +13,10 @@
                 <option value="magic_ball">Magic ball</option>
             </param>
             <param name="phase_shift" type="bool" gui-text="Shift phase?">false</param>
-            <label>------------------------------</label>
+            <separator/>
             <param name="lines" type="int" min="1" max="100" gui-text="Number of lines">8</param>
             <param name="columns" type="int" min="1" max="100" gui-text="Number of columns">16</param>
-            <label>------------------------------</label>
+            <separator/>
             <param name="length" type="float" max="10000" precision="3" gui-text="Length of grid square">10.0</param>
             <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
                 <option value="mm">mm</option>
@@ -68,7 +68,9 @@ The Magic ball is a different design that inverts both the upper half of the fir
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="Origami Patterns" />
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Origami Patterns"/>
+            </submenu>
         </effects-menu>
     </effect>
     <script>

@@ -2,9 +2,6 @@
 
 # We will use the inkex module with the predefined Effect base class.
 import inkex
-# The simplestyle module provides functions for style parsing.
-
-import simplestyle
 import math
 from lxml import etree
 

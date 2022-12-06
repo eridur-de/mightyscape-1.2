@@ -27,7 +27,6 @@ import inkex
 import sys
 from inkex.paths import Path
 
-
 class DestructiveClip(inkex.EffectExtension):
 
     def __init__(self):

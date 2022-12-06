@@ -5,28 +5,9 @@ Defines a path and what it is supposed to be (mountain, valley, edge)
 
 """
 
-import inkex        # Required
-import simplestyle  # will be needed here for styles support
-
-# compatibility hack
-try:
-    from lxml import etree
-    inkex.etree = etree
-except:
-    pass
-
+import inkex
 from math import sin, cos, pi, sqrt
-
-# compatibility hack for formatStyle
-def format_style(style):
-    try:
-        return str(inkex.Style(style)) # new
-    except:
-        return simplestyle.formatStyle(style) # old
-# def format_style(style):
-    # return simplestyle.formatStyle(style)
-
-
+from lxml import etree
 
 class Path:
     """ Class that defines an svg stroke to be drawn in Inkscape
@@ -166,7 +147,7 @@ class Path:
         - Draws strokes defined on "path_tree" to "group"
         - Inputs:
         -- path_tree [nested list] of Path instances
-        -- group [inkex.etree.SubElement]
+        -- group [etree.SubElement]
         -- styles_dict [dict] containing all styles for path_tree
         """
     @staticmethod
@@ -178,7 +159,7 @@ class Path:
                 if len(subpath) == 1:
                     subgroup = group
                 else:
-                    subgroup = inkex.etree.SubElement(group, 'g')
+                    subgroup = etree.SubElement(group, 'g')
                 Path.draw_paths_recursively(subpath, subgroup, styles_dict)
             else:
                 # ~ if subpath.style != 'n':
@@ -192,16 +173,16 @@ class Path:
                         if subpath.closed:
                             path = path + 'L{},{} Z'.format(*points[0])
 
-                        attribs = {'style': format_style(styles_dict[subpath.style]),
+                        attribs = {'style': str(inkex.Style(styles_dict[subpath.style])),
                                    'd': path,
                                    'opacity': str(subpath.fold_angle/180)}
-                        inkex.etree.SubElement(group, inkex.addNS('path', 'svg'), attribs)
+                        etree.SubElement(group, inkex.addNS('path', 'svg'), attribs)
                     else:
-                        attribs = {'style': format_style(styles_dict[subpath.style]),
+                        attribs = {'style': str(inkex.Style(styles_dict[subpath.style])),
                                    'cx': str(subpath.points[0][0]), 'cy': str(subpath.points[0][1]),
                                    'r': str(subpath.radius),
                                    'opacity': str(subpath.fold_angle/180)}
-                        inkex.etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
+                        etree.SubElement(group, inkex.addNS('circle', 'svg'), attribs)
 
     @classmethod
     def get_average_point(cls, paths):

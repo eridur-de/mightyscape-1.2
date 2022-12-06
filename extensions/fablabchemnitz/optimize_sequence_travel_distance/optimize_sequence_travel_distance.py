@@ -36,7 +36,6 @@ import sys
 from lxml import etree
 import inkex
 import simpletransform
-import simplestyle
 import plot_utils
 
 """

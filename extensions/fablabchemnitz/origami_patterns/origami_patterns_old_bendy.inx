@@ -10,13 +10,13 @@
                 <option value="kirigami1">Kirigami mode 1</option>
                 <option value="kirigami2">Kirigami mode 2</option>
             </param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="n" type="int" min="3" max="25" gui-text="Number of sides of polygon">6</param>
             <param name="lines" type="int" min="1" max="100" gui-text="Number of cells">3</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of bigger polygon">25.0</param>
             <param name="radial_ratio" type="float" max="1.0" min="0.0001" precision="3" gui-text="Ratio small radius/big radius">0.75</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="parameter_type" type="optiongroup" appearance="combo" gui-text="Parameter:">
                 <option value="angles">Angles (alpha1, alpha2)</option>
                 <option value="heights">Heights (h1, h2)</option>
@@ -37,13 +37,13 @@
         </page>
         <page name="extra" gui-text="Extra">
             <param name="add_attachment" type="bool" gui-text="Add attachments?">false</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="base_height" type="float" max="10000" precision="3" gui-text="Height of base">5.0</param>
             <param name="add_base_slot" type="bool" gui-text="Add base slots?">false</param>
             <param name="center_base_slot" type="bool" gui-text="Center base slots?">false</param>
             <param name="base_slot_height" type="float" max="10000" precision="3" gui-text="Height of base slot">3.0</param>
             <param name="base_slot_width" type="float" max="10000" precision="3" gui-text="Width of base slow">3.0</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="distance" type="float" max="10000" precision="3" gui-text="Distance between cells">3.0</param>
             <param name="add_distance_slot" type="bool" gui-text="Add slots between cells?">false</param>
             <param name="distance_slot_height" type="float" max="10000" precision="3" gui-text="Height of slots between cells">3.0</param>
@@ -96,8 +96,10 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="Origami Patterns">
-                <submenu name="Deprecated" />
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Origami Patterns">
+                    <submenu name="Deprecated" />
+                </submenu>
             </submenu>
         </effects-menu>
     </effect>

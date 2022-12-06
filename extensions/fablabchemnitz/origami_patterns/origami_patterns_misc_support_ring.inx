@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <name>* Support ring</name>
+    <name>Support ring</name>
     <id>org.inkscape.Origami_patterns.support_ring</id>
     <param name="active-tab" type="notebook">
         <page name="options" gui-text="Options">
@@ -8,19 +8,19 @@
             <param name="radius_external" type="float" max="10000" precision="3" gui-text="Pattern radius:">10.0</param>
             <param name="inverted" type="bool" gui-text="Invert hook direction?">false</param>
             <param name="single_stroke" type="bool" gui-text="Single stroke?">true</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="connector_length" type="float" max="10000" precision="3" gui-text="Connector length:">3.0</param>
             <param name="connector_thickness" type="float" max="10000" precision="3" gui-text="Connector thickness:">3.0</param>
             <param name="head_length" type="float" max="10000" precision="3" gui-text="Head extra length:">1.0</param>
             <param name="head_thickness" type="float" max="10000" precision="3" gui-text="Head extra thickness:">1.0</param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <param name="radius_draw" type="bool" gui-text="Draw internal radius? (or external, if inverted)">true</param>
             <param name="radius_ratio" type="float" min="0" max="0.9" precision="3" gui-text="Radial ratio:">0.5</param>
             <param name="radius_type" type="optiongroup" appearance="combo" gui-text="Internal radius type:">
                 <option value="polygonal">Polygonal</option>
                 <option value="circular">Circular</option>
             </param>
-            <label>------------------------------------------------------------</label>
+            <separator/>
             <label>Length must be at least the thickness of the origami material + the thickness of the belt.</label>
             <label>For an OpenSCAD simple implementation of the belt, see Origami_Patterns/Support_Ring_Belt.</label>
             <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
@@ -42,8 +42,10 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="Origami Patterns">
-                <submenu name="Cylindrical" />
+            <submenu name="FabLab Chemnitz Boxes/Papercraft">
+                <submenu name="Origami Patterns">
+                    <submenu name="Cylindrical" />
+                </submenu>
             </submenu>
         </effects-menu>
     </effect>

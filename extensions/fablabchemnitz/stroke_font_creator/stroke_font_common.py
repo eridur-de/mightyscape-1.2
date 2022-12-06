@@ -24,33 +24,16 @@ import sys, os, fileinput, re, locale
 from inkex import errormsg, addNS, NSS
 from xml.dom.minidom import parse, Document
 from math import ceil
-
-# TODO: Find inkscape version
-try:
-    from lxml import etree
-    from inkex import Style, Boolean
-    from inkex.paths import Path, CubicSuperPath, Transform
-    from inkex import bezier
-    ver = 1.0 
-except:
-    from inkex import etree
-    import simplestyle, cubicsuperpath, simplepath, simpletransform
-    from cubicsuperpath import CubicSuperPath
-    ver = 0.92
-    try:
-        from simpletransform import computePointInNode
-        oldVersion = False
-    except:
-        oldVersion = True # older than 0.92
+from lxml import etree
+from inkex import Style, Boolean
+from inkex.paths import Path, CubicSuperPath, Transform
+from inkex import bezier
 
 # sys path already includes the module folder
 from stroke_font_manager import CharData, getFontNames, xAscent, \
     xDescent, xCapHeight, xXHeight, xSpaceROff, xFontId, xSize
 
 class CommonDefs:
-    inkVer = ver
-    pyVer = sys.version_info.major
-
     # inx filed that have the font list to be synchronized
     inxFilesWithDynFont = ['render_stroke_font_text.inx', 'edit_stroke_font.inx']
 
@@ -68,10 +51,6 @@ class CommonDefs:
     if(encoding == 'cp0' or encoding is None):
         encoding = locale.getpreferredencoding()
 
-
-######### Function variants for 1.0 and 0.92 - Start ##########
-
-# Used only in 0.92
 def getPartsFromCubicSuper(csp):
     parts = []
     for subpath in csp:
@@ -86,131 +65,70 @@ def getPartsFromCubicSuper(csp):
     return parts
 
 def formatStyle(styleStr):
-    if(CommonDefs.inkVer == 1.0):
-        return str(Style(styleStr))
-    else:
-        return simplestyle.formatStyle(styleStr)
+    return str(Style(styleStr))
+
 
 def getCubicSuperPath(d = None):
-    if(CommonDefs.inkVer == 1.0):
-        if(d == None): return CubicSuperPath([])
-        return CubicSuperPath(Path(d).to_superpath())
-    else:
-        if(d == None): return []
-        return CubicSuperPath(simplepath.parsePath(d))
-
+    if(d == None): return CubicSuperPath([])
+    return CubicSuperPath(Path(d).to_superpath())
 def getCubicLength(csp):
-    if(CommonDefs.inkVer == 1.0):
-        return bezier.csplength(csp)[1]
-    else:
-        parts = getPartsFromCubicSuper(cspath)
-        curveLen = 0
-        for i, part in enumerate(parts):
-            for j, seg in enumerate(part):
-                curveLen += bezmisc.bezierlengthSimpson((seg[0], seg[1], seg[2], seg[3]), \
-                tolerance = tolerance)
-        return curveLen
+    return bezier.csplength(csp)[1]
+
 
 def getCubicBoundingBox(csp):
-    if(CommonDefs.inkVer == 1.0):
-        bbox = csp.to_path().bounding_box()
-        return bbox.left, bbox.right, bbox.top, bbox.bottom
-    else:
-        return simpletransform.refinedBBox(csp)
+    bbox = csp.to_path().bounding_box()
+    return bbox.left, bbox.right, bbox.top, bbox.bottom
 
 def formatSuperPath(csp):
-    if(CommonDefs.inkVer == 1.0):
-        return csp.__str__()
-    else:
-        return cubicsuperpath.formatPath(csp)
+    return csp.__str__()
+
 
 def getParsedPath(d):
-    if(CommonDefs.inkVer == 1.0):
-        # Copied from Path.to_arrays for compatibility
-        return [[seg.letter, list(seg.args)] for seg in Path(d).to_absolute()]
-    else:
-        return simplepath.parsePath(d)
+    return [[seg.letter, list(seg.args)] for seg in Path(d).to_absolute()]
 
 def applyTransform(mat, csp):
-    if(CommonDefs.inkVer == 1.0):
-        csp.transform(mat)
-    else:
-        simpletransform.applyTransformToPath(mat, csp)
+    csp.transform(mat)
+
 
 def getTranslatedPath(d, posX, posY):
-    if(CommonDefs.inkVer == 1.0):
-        path = Path(d)
-        path.translate(posX, posY, inplace = True)
-        return path.to_superpath().__str__()
-    else:
-        path = simplepath.parsePath(d)
-        simplepath.translatePath(path, posX, posY)
-        return simplepath.formatPath(path)
+    path = Path(d)
+    path.translate(posX, posY, inplace = True)
+    return path.to_superpath().__str__()
 
 def getTransformMat(matAttr):
-    if(CommonDefs.inkVer == 1.0):
-        return Transform(matAttr)
-    else:
-        return simpletransform.parseTransform(matAttr)
+    return Transform(matAttr)
 
 def getCurrentLayer(effect):
-    if(CommonDefs.inkVer == 1.0):
-        return effect.svg.get_current_layer()
-    else:
-        return effect.current_layer
+    return effect.svg.get_current_layer()
+
 
 def getViewCenter(effect):
-    if(CommonDefs.inkVer == 1.0):
-        return effect.svg.namedview.center
-    else:
-        return effect.view_center
+    return effect.svg.namedview.center
 
 def computePtInNode(vc, layer):
-    if(CommonDefs.inkVer == 1.0):
-        # ~ return (-Transform(layer.transform * mat)).apply_to_point(vc)
-        return (-layer.transform).apply_to_point(vc)
-    else:
-        if(oldVersion):
-            return list(vc)
-        else:
-            return computePointInNode(list(vc), layer)
+    return (-layer.transform).apply_to_point(vc)
 
 def getSelectedElements(effect):
-    if(CommonDefs.inkVer == 1.0):
-        return effect.svg.selected
-    else:
-        return effect.selected
+    return effect.svg.selected
+
 
 def getEtree():
     return  etree
 
 def getAddFnTypes(effect):
-    if(CommonDefs.inkVer == 1.0): 
-        addFn = effect.arg_parser.add_argument
-        typeFloat = float
-        typeInt = int
-        typeString = str
-        typeBool = Boolean
-    else: 
-        addFn = effect.OptionParser.add_option
-        typeFloat = 'float'
-        typeInt = 'int'
-        typeString = 'string'
-        typeBool = 'inkbool'
+    addFn = effect.arg_parser.add_argument
+    typeFloat = float
+    typeInt = int
+    typeString = str
+    typeBool = Boolean
 
     return addFn, typeFloat, typeInt, typeString, typeBool
 
 def runEffect(effect):
-    if(CommonDefs.inkVer == 1.0): effect.run()
-    else: effect.affect()
+    effect.run()
     
-######### Function variants for 1.0 and 0.92 - End ##########
-
 def getDecodedChars(chars):
-    if(CommonDefs.pyVer == 2):
-        return chars.decode(CommonDefs.encoding)
-    else: #if?
-        return chars
+    return chars
 
 def indentStr(cnt):
     ostr = ''
@@ -238,21 +156,14 @@ def syncFontList(extPath):
             for line in fileinput.input(xf, inplace = True):
                 if sectMarker in line:
                     if(sectMarkerLine != None):
-                        if(CommonDefs.pyVer == 3):
-                            # For some reasons python2 giving syntax error without eval
-                            eval("print(getXMLItemsStr(sectMarkerLine, sectMarker, fontNames), end = '')")
-                        else:
-                            print(getXMLItemsStr(sectMarkerLine, sectMarker, fontNames)),
+                        eval("print(getXMLItemsStr(sectMarkerLine, sectMarker, fontNames), end = '')")
 
                         sectMarkerLine = None
                     else:
                         sectMarkerLine = line
                 else:
                     if(sectMarkerLine == None):
-                        if(CommonDefs.pyVer == 3):
-                            eval("print(line, end = '')")
-                        else:
-                            print(line),
+                        eval("print(line, end = '')")
 
     except Exception as e:
         errormsg('Error updating font list...\n' + str(e))
@@ -316,16 +227,14 @@ def createTempl(callback, effect, extraInfo, rowCnt, glyphCnt, \
         currLayers = svg.xpath('//svg:g', namespaces = NSS)
         for layer in currLayers:
             # Note: getparent()
-            parentLayer = layer.getparent() if(CommonDefs.inkVer == 1.0) \
-                else effect.getParentNode(layer)
+            parentLayer = layer.getparent()
 
             if(parentLayer != None):
                 parentLayer.remove(layer)
 
         currExtraElems = svg.xpath('//svg:' + CommonDefs.fontOtherInfo, namespaces = NSS)
         for elem in currExtraElems:
-            parentElem = elem.getparent() if(CommonDefs.inkVer == 1.0) \
-                else effect.getParentNode(elem)
+            parentElem = elem.getparent()
             parentElem.remove(elem)
 
         extraInfoElem = etree.SubElement(svg, CommonDefs.fontOtherInfo)
@@ -352,7 +261,7 @@ def createTempl(callback, effect, extraInfo, rowCnt, glyphCnt, \
         editLayer.set(addNS('label', 'inkscape'), 'Glyphs')
         editLayer.set(addNS('groupmode', 'inkscape'), 'layer')
         editLayer.set('id', 'glyph')#TODO: How to make this dynamic?
-        view = svg.namedview if CommonDefs.inkVer == 1.0 else effect.getNamedView() 
+        view = svg.namedview
         view.set(addNS('current-layer', 'inkscape'), editLayer.get('id'))
 
         for row in range(0, rowCnt):

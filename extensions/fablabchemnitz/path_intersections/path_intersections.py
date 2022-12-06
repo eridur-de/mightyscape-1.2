@@ -53,7 +53,7 @@ What do we want to check?
         * then, when doing intersections, remove the `boundary`
           from the intersection set, because two adjacent
           segments from a subpath always intersect in their boundary
-     * handle the commands M, Z, L, C, Q, A (parsed via simplepath)
+     * handle the commands M, Z, L, C, Q, A
         * M: moveto
         * Z: closepath (straight closing line)
         * L: lineto

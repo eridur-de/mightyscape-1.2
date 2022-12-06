@@ -1,4 +1,4 @@
-#! /usr/bin/env python
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Helper functions
@@ -6,10 +6,11 @@ Helper functions
 """
 import os
 from abc import abstractmethod
+from Path import Path
+import inkex
+from lxml import etree
 
-from Path import Path, inkex, simplestyle
-
-class Pattern(inkex.Effect):
+class Pattern(inkex.EffectExtension):
     """ Class that inherits inkex.Effect and further specializes it for different
     Patterns generation
 
@@ -21,7 +22,7 @@ class Pattern(inkex.Effect):
                            'v' : valley_style,
                            'e' : edge_style}
 
-    topgroup: inkex.etree.SubElement
+    topgroup: etree.SubElement
             Top Inkscape group element
 
     path_tree: nested list 
@@ -88,13 +89,6 @@ class Pattern(inkex.Effect):
             self.int = "int"
             self.float = "float"
             self.bool = "inkbool"
-
-        # Two ways to get debug info:
-        # OR just use inkex.debug(string) instead...
-        try:
-            self.tty = open("/dev/tty", 'w')
-        except:
-            self.tty = open(os.devnull, 'w')  # '/dev/null' for POSIX, 'nul' for Windows.
 
         self.add_argument('-u', '--units', type=self.str, default='mm')
 
@@ -225,7 +219,7 @@ class Pattern(inkex.Effect):
 
         # add the group to the document's current layer
         if type(self.path_tree) == list and len(self.path_tree) != 1:
-            self.topgroup = inkex.etree.SubElement(self.get_layer(), 'g', g_attribs)
+            self.topgroup = etree.SubElement(self.get_layer(), 'g', g_attribs)
         else:
             self.topgroup = self.get_layer()
 
@@ -242,12 +236,7 @@ class Pattern(inkex.Effect):
 
     # compatibility hack, "affect()" is replaced by "run()"
     def draw(self):
-        try:
-            self.run() # new
-        except:
-            self.affect() # old
-        # close(self.tty)
-        self.tty.close()
+        self.run() # new
 
     # compatibility hack
     def get_layer(self):
@@ -346,11 +335,11 @@ class Pattern(inkex.Effect):
                      'fill': '#F6921E', 'font-family': 'Bitstream Vera Sans,sans-serif',
                      'text-anchor': 'middle', 'text-align': 'center'}
         line_attribs = {inkex.addNS('label','inkscape'): 'Annotation',
-                       'style': simplestyle.formatStyle(line_style),
+                       'style': inkex.Style(line_style),
                        'x': str(position[0]),
                        'y': str((position[1] + text_height) * 1.2)
                        }
-        line = inkex.etree.SubElement(node, inkex.addNS('text','svg'), line_attribs)
+        line = etree.SubElement(node, inkex.addNS('text','svg'), line_attribs)
         line.text = text
 
            
@@ -370,9 +359,3 @@ class Pattern(inkex.Effect):
                 return inkex.unittouu(str(1.0) + self.options.units)
             except AttributeError:
                 return self.unittouu(str(1.0) + self.options.units)
-
-
-
-
-
-
