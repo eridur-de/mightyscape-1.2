@@ -18,19 +18,18 @@ import subprocess
 import os
 from lxml import etree
 import tempfile
+import argparse
 
 class boxesPyWrapper(inkex.GenerateExtension):
 
     def add_arguments(self, pars):
-        args = sys.argv[1:] 
+        args = sys.argv[1:]      
         for arg in args:
             key=arg.split("=")[0]
             if len(arg.split("=")) == 2:
                 value=arg.split("=")[1]
-                try:
+                if key != "--id": #ignore duplicate id arg, which will throw error if an element is selected
                     pars.add_argument(key, default=key)
-                except:
-                    pass #ignore duplicate id arg
 
     def generate(self):
         box_file = os.path.join(tempfile.gettempdir(), "box.svg")
@@ -52,7 +51,7 @@ class boxesPyWrapper(inkex.GenerateExtension):
                               
         cmd = PYTHONBIN + ' ' + os.path.join(boxes_dir, 'boxes') #the boxes python file (without .py ending) - we add python at the beginning to support Windows too    
         for arg in vars(self.options):
-            if arg != "output" and arg != "ids" and arg != "selected_nodes":
+            if arg not in ("output", "ids", "selected_nodes"):
                 #inkex.utils.debug(str(arg) + " = " + str(getattr(self.options, arg)))
                 #fix behaviour of "original" arg which does not correctly gets interpreted if set to false
                 if arg == "original" and str(getattr(self.options, arg)) == "false":
