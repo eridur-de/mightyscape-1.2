@@ -38,3 +38,60 @@
                 <option value="Hershey-Serif medium">Hershey-Serif medium</option>
                 <option value="Hershey-Serif medium italic">Hershey-Serif medium italic</option>
                 <option value="Hershey-Symbolic">Hershey-Symbolic</option>
+                <!-- ##! dynamically generated portion [end] -->
+            </param>
+            <param name="fontSize" type="float" min="1" max="999999" gui-text="Font Size:">20</param>
+            <param name="charSpacing" type="float" min="0" max="100" gui-text="Char Spacing:">1</param>
+            <param name="wordSpacing" type="float" min="0" max="100" gui-text="Word Spacing:">1</param>
+            <param name="lineSpacing" type="float" min="0" max="100" gui-text="Line Spacing:">1.5</param>
+            <param name="flowInBox" type="bool" gui-text="Flow Text in Selected Boxes:">true</param>
+            <param name="margin" type="float" min="-999999" max="999999" gui-text="Margin:">5</param>
+            <param name="hAlignment" type="optiongroup" appearance="combo" gui-text="Horizontal Alignment:">
+                <option value="left">Left</option>
+                <option value="right">Right</option>
+                <option value="center">Center</option>
+                <option value="justified">Justified</option>
+            </param>
+            <param name="vAlignment" type="optiongroup" appearance="combo" gui-text="Vertical Alignment:">
+                <option value="none">None</option>
+                <option value="top">Top</option>
+                <option value="bottom">Bottom</option>
+                <option value="center">Center</option>
+            </param>
+            <param name="expandDir" type="optiongroup" appearance="combo" gui-text="Create Extended Rectangles:">
+                <option value="none">None</option>
+                <option value="x">Horizontal Direction</option>
+                <option value="y">Vertical Direction</option>
+            </param>
+            <param name="expandDist" type="float" min="0" max="100" gui-text="Extended Rectangle Offset:">1</param>
+        </page>
+        <page name="info" gui-text="Help">
+            <label xml:space="preserve">This extension renders given text using the selected stroke font.
+
+Action can be one of the following:
+- 'Render the text' renders the text from the Text input box
+   (Use \n in the input string to start a new line of text)
+- 'Render text from file' renders the text from the file specified in the Text File input box
+- 'Render font glyph table' displays all the available glyphs of the given font
+  along with the license information
+
+If the 'Flow Text in Selected Boxes' option is selected, the text is fit into the selected rectangle objects with 
+specified margin and justification. The rectangles are filled in their z order. If a single word cannot fit within the 
+given width, it's broken into smaller components.
+
+If there are errors, please ensure the font data files exist in the strokefontdata folder and 
+the font list is synchronized.</label>
+        </page>
+    </param>
+    <effect needs-live-preview="true" needs-document="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Text"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">render_stroke_font_text.py</command>
+    </script>
+</inkscape-extension>
