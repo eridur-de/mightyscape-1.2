@@ -350,7 +350,7 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
         unit=self.options.unit
         inside=self.options.inside
         X = self.svg.unittouu( str(self.options.length)  + unit )
-        Y = self.svg.unittouu( str(self.options.width) + unit )
+        Y = self.svg.unittouu( str(self.options.width)   + unit )
         Z = self.svg.unittouu( str(self.options.height)  + unit )
         thickness = self.svg.unittouu( str(self.options.thickness)  + unit )
         nomTab = self.svg.unittouu( str(self.options.tab) + unit )
@@ -417,7 +417,7 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
                             #center middle row
                     [(2,0,0,1),(2,0,0,1),X,Y,0b0000,0],
                             #right middle row
-                    [(3,1,0,1),(2,0,0,1),Z+(self.EllipseCircumference(X/2, Z/2)/4)+thickness,Y,0b1011,1],
+                    [(3,1,0,1),(2,0,0,1),Z/2+(self.EllipseCircumference(X/2, Z/2)/4) + X/2,Y,0b1011,1],
                             #center top row
                     [(2,0,0,1),(1,0,0,0),X,Z,0b0010,-1]]
         elif layout==1: # Inline(compact) Layout
@@ -425,10 +425,12 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
                     [(1,0,0,0),(1,0,0,0),X,Y,0b0000,0],
                     #Front panel
                     [(2,1,0,0),(1,0,0,0),Z,Y,0b1111,0],
-                    #Sides with curves
+                    #Side with curves #1
                     [(3,1,0,1),(1,0,0,0),X,Z,0b1000,-2],
+                    #Side with curves #2
                     [(4,2,0,1),(1,0,0,0),X,Z,0b0010,-1],
-                    #Long piece w/ hinge  
+                    #Long piece w/ hinge
+                    [(5,3,0,1),(1,0,0,0),Z/2+(self.EllipseCircumference(X/2, Z/2)/4) + X/2,Y,0b1011,1]
                     ]
 
         for piece in pieces: # generate and draw each piece of the box
@@ -450,7 +452,7 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
                 shortSide = Z   
             
             # generate and draw the sides of each piece
-            if piece[5] != -1:
+            if piece[5] != -1:                     
                 self.drawS(self.side(x,y,d,a,-b,a,-thickness if a else thickness,dx,1,0,a,longSide))          # side a (top)
             else:
                 self.drawS(self.side(x,y,d,a,-b,a,-thickness if a else thickness,dx/2,1,0,a,-1))          # side a (top) when the top participates in a curve
@@ -460,7 +462,7 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
             elif piece[5] == -1:
                 self.drawS(self.side(x+dx+skew,y+dy,-b,-c,-b,a,thickness if b else -thickness,dy,0,-1,b,shortSide, True))     # side b (right) when the right side participates in a curve
             else: 
-                #It is a cardnal sin to compare floats, so assume <0.0005 is 0 since the front end only gives you 3 digits of precision
+                #It is a cardinal sin to compare floats, so assume <0.0005 is 0 since the front end only gives you 3 digits of precision
                 if float(0.0005) <= float(self.options.thumbTab):
                     self.side(x+dx+skew,y,-b,a,-b,-c,thickness if b else -thickness,dy,0,1,b,shortSide, False, True, True) #The one call to side that doesn't actually draw. Instead, side draws boxes on its own
                     self.drawS(self.box(x+dx+skew,y+thickness,x+dx+skew+self.svg.unittouu( thumbTab + unit ),y+dy-thickness, True))
@@ -485,8 +487,8 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
                     if not inside:
                         self.livingHinge3(x+(Z/2), y+thickness, x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + dy - thickness, 1, hingeThick)
                     else:
-                        self.livingHinge3(x+(Z/2), y + 2*thickness, x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + dy - 2*thickness, 1, hingeThick)
-
+                        self.livingHinge3(x+(Z/2), y + 2*thickness, x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + dy - 2*thickness, 1, hingeThick)#
+            
                 elif hingeOpt == 2: #Double spiral
                     self.livingHinge3(x+(Z/2), y+thickness, x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + (dy/2), 1, hingeThick)
                     self.livingHinge3(x+(Z/2), y+(dy/2), x+(Z/2)+(self.EllipseCircumference(X/2, Z/2)/4), y + dy - thickness, -1, hingeThick)
