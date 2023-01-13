@@ -417,7 +417,7 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
                             #center middle row
                     [(2,0,0,1),(2,0,0,1),X,Y,0b0000,0],
                             #right middle row
-                    [(3,1,0,1),(2,0,0,1),Z/2+(self.EllipseCircumference(X/2, Z/2)/4) + X/2,Y,0b1011,1],
+                    [(3,1,0,1),(2,0,0,1),Z/2+(self.EllipseCircumference(X/2, Z/2)/4) + X/2 - thickness,Y,0b1011,1],
                             #center top row
                     [(2,0,0,1),(1,0,0,0),X,Z,0b0010,-1]]
         elif layout==1: # Inline(compact) Layout
@@ -430,7 +430,7 @@ class BoxMakerLivingHinge(inkex.EffectExtension):
                     #Side with curves #2
                     [(4,2,0,1),(1,0,0,0),X,Z,0b0010,-1],
                     #Long piece w/ hinge
-                    [(5,3,0,1),(1,0,0,0),Z/2+(self.EllipseCircumference(X/2, Z/2)/4) + X/2,Y,0b1011,1]
+                    [(5,3,0,1),(1,0,0,0),Z/2+(self.EllipseCircumference(X/2, Z/2)/4) + X/2 - thickness,Y,0b1011,1]
                     ]
 
         for piece in pieces: # generate and draw each piece of the box
