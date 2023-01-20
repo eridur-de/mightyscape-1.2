@@ -52,8 +52,17 @@ class ReplaceColorAndAlpha(inkex.EffectExtension):
     except Exception as e:
         inkex.utils.debug(e)
         pass
-    svg = self.document.getroot()
-    for element in svg.iter("*"):
+    
+    elements = []
+    if self.svg.selected:
+        for id, node in self.svg.selected.items():
+            elements.append(node)
+    else:
+        svg = self.document.getroot()
+        for svg_element in svg.iter("*"):
+            elements.append(svg_element)
+            
+    for element in elements:
         style = element.get('style')
         if style:
             if (style.lower().find('fill:#'+fr[:6]) != -1 and len(fr) == 6) or (style.lower().find('fill-opacity:'+alphaFr[:4]) != -1 and len(fr)==8 and style.lower().find('fill:#'+fr[:6]) != -1):
@@ -69,13 +78,13 @@ class ReplaceColorAndAlpha(inkex.EffectExtension):
             if (style.lower().find('stroke:#'+fr[:6]) != -1 and len(fr) == 6) or (style.lower().find('stroke:#'+fr[:6]) != -1 and style.lower().find('stroke-opacity:'+alphaFr[:4]) != -1 and len(fr)==8):
                 style = re.sub('stroke-opacity:.*?(;|$)',
                 '\\1',
-                style) 
+                style)
                 style = re.sub(r'stroke:#.*?(;|$)',
                 'stroke:#' + to[:6] + '\\1',
                 style) 
                 style = style + ";stroke-opacity:" + alphaTo
                 element.set('style',style)
-    sys.stdout = saveout
+        sys.stdout = saveout
     
 if __name__ == '__main__':
     ReplaceColorAndAlpha().run()
