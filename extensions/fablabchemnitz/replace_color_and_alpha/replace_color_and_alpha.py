@@ -44,12 +44,13 @@ class ReplaceColorAndAlpha(inkex.EffectExtension):
     fr = self.options.from_color.strip('"').strip('#').lower()
     try:
         alphaFr = str(float(int(self.options.from_color.strip('"').strip('#').lower()[-2:], 16))/255.0)
-    except:zz
+    except:
         pass
     to = self.options.to_color.strip('"').strip('#').lower()
     try:
         alphaTo = str(float(int(self.options.to_color.strip('"').strip('#').lower()[-2:], 16))/255.0)
-    except:
+    except Exception as e:
+        inkex.utils.debug(e)
         pass
     svg = self.document.getroot()
     for element in svg.iter("*"):
@@ -65,7 +66,6 @@ class ReplaceColorAndAlpha(inkex.EffectExtension):
                 
                 style = style + ";fill-opacity:" + alphaTo
                 element.set('style',style)
-
             if (style.lower().find('stroke:#'+fr[:6]) != -1 and len(fr) == 6) or (style.lower().find('stroke:#'+fr[:6]) != -1 and style.lower().find('stroke-opacity:'+alphaFr[:4]) != -1 and len(fr)==8):
                 style = re.sub('stroke-opacity:.*?(;|$)',
                 '\\1',
