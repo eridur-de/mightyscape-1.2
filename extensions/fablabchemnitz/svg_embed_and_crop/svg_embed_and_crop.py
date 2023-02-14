@@ -14,18 +14,13 @@ class EmbedAndCrop(inkex.EffectExtension):
 		
 		cp = os.path.dirname(os.path.abspath(__file__)) + "/svg_embed_and_crop/*"
 		output_file = self.options.input_file + ".cropped"
-		
 		cmd = 'java -cp "' + cp + '" "edu.emory.cellbio.svg.EmbedAndCropInkscapeEntry" "' + self.options.input_file + '" -o "' + output_file + '"'
 		with subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as proc:
 			proc.wait()
 			stdout, stderr = proc.communicate()
 			if stderr.decode('utf-8') != "":
+				inkex.utils.debug("Error output:")
 				inkex.utils.debug(stderr.decode('utf-8'))
-		#cli_output = command.call('java', '-cp', cp, 'edu.emory.cellbio.svg.EmbedAndCropInkscapeEntry', self.options.input_file, "-o", output_file)
-		#if len(cli_output) > 0:
-		#	self.debug(_("Inkscape extension returned the following output:"))
-		#	self.debug(cli_output)
-
 		if not os.path.exists(output_file):
 			raise inkex.AbortExtension("Plugin cancelled")
 		stream = open(output_file, 'r')
