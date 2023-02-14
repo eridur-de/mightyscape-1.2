@@ -15,7 +15,7 @@
     "fork_url": "the URL where the original data comes from, like github.com or gitlab.com",
     "documentation_url": "the URL where MightyScape documentation can be found",
     "inkscape_gallery_url": "the URL for the gallery location. Set to 'null' if it's not listed in the gallery",
-    "main_authors": [
+    "contributors": [
       "a comma separated list of authors which work(ed) on the extension. We use either an email address and/or pattern '<platform>/<user name or full name>:<mailbox@tl.domaind>'"
     ]
   }

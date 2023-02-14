@@ -13,7 +13,7 @@
     "fork_url": "https://gitlab.com/EllenWasbo/inkscape-extension-removeduplicatenodes",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Purge+Duplicate+Path+Nodes",
     "inkscape_gallery_url": null,
-    "main_authors": [
+    "contributors": [
       "gitlab.com/EllenWasbo",
       "github.com/eridur-de"
     ]

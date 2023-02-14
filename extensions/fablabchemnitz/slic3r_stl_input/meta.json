@@ -13,7 +13,7 @@
     "fork_url": "https://github.com/jnweiger/inkscape-input-stl",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Slic3r+STL+Input",
     "inkscape_gallery_url": "https://inkscape.org/de/~MarioVoigt/%E2%98%85slic3r-stl-input",
-    "main_authors": [
+    "contributors": [
       "github.com/jnweiger",
       "github.com/eridur-de"
     ]

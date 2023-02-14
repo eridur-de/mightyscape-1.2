@@ -13,7 +13,7 @@
     "fork_url": "https://gitlab.com/EllenWasbo/inkscape-extension-openpaths",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Open+Closed+Path",
     "inkscape_gallery_url": null,
-    "main_authors": [
+    "contributors": [
       "gitlab.com/EllenWasbo",
       "github.com/eridur-de"
     ]

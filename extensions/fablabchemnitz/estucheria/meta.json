@@ -13,7 +13,7 @@
     "fork_url": "https://gitlab.com/aljurado/packaging-inkscape-extensions",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Estucheria",
     "inkscape_gallery_url": null,
-    "main_authors": [
+    "contributors": [
       "gitlab.com/aljurado",
       "github.com/eridur-de"
     ]

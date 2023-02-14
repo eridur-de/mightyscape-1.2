@@ -13,7 +13,7 @@
     "fork_url": "https://gitlab.com/christoph.fink/inkscape-extension-colour-label",
     "documentation_url": "https://stadtfabrikanten.org/display/IFM/Label+Feature+With+Fill+Color",
     "inkscape_gallery_url": null,
-    "main_authors": [
+    "contributors": [
       "gitlab.com/christoph.fink",
       "github.com/eridur-de"
     ]
