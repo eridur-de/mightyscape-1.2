@@ -35,8 +35,8 @@ echo $AGGLOMERATED_JSON | jq -r '.[]|{license}|.[]' | sort | uniq -c
 
 
 echo "--> show unique list of involved contributors (thanks/credits):"
-#echo $AGGLOMERATED_JSON | jq -r '.[]|{main_authors}|.[]|.[]' | sort | uniq -c
-echo $AGGLOMERATED_JSON | jq -r '.[]|{main_authors}|.[]|.[]' | sort | uniq
+#echo $AGGLOMERATED_JSON | jq -r '.[]|{contributors}|.[]|.[]' | sort | uniq -c
+echo $AGGLOMERATED_JSON | jq -r '.[]|{contributors}|.[]|.[]' | sort | uniq
 
 
 #show extensions which are in gallery
