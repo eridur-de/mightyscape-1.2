@@ -1,5 +1,7 @@
 # MightyScape for Inkscape 1.2
 
+<img title="" src="./extensions/fablabchemnitz/000_Mightyscape.svg" alt="" data-align="left">
+
 In short: A maintained extension collection for Inkscape 1.2, working on Windows and Linux. There are **237 extension folders** with **432 .inx files** inside. We also take part at https://inkscape.org/gallery/=extension/ (with single extension uploads).
 
 # About MightyScape
@@ -16,26 +18,26 @@ At least this repo will help to bring alife some good things and will show hidde
 
 # Licensing and credits
 
-   * This is not a repository to steal the work of others. The credits go to each developer, maintainer, commiter, issue reporter and so on. Please have a look at the meta.json in each directory to get information about licenses and authors for each extension.
-   * All plugins are open source licensed and are GNU GPL compatible. See https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses for more details.
-   * All plugins were taken from each git repo's master branch (if git/svn available). There might exist some development branches, fork branches or issue comments which might resolve some issues or enhance functionality of provided plugins. To check for recent github forks use https://techgaun.github.io
-   * A mass of plugins were fixed by ourselves in countless hours
-   * Credits for creation of the MightyScape project: Mario Voigt / FabLab Chemnitz
+* This is not a repository to steal the work of others. The credits go to each developer, maintainer, commiter, issue reporter and so on. Please have a look at the meta.json in each directory to get information about licenses and authors for each extension.
+* All plugins are open source licensed and are GNU GPL compatible. See https://www.gnu.org/licenses/license-list.html#GPLCompatibleLicenses for more details.
+* All plugins were taken from each git repo's master branch (if git/svn available). There might exist some development branches, fork branches or issue comments which might resolve some issues or enhance functionality of provided plugins. To check for recent github forks use https://techgaun.github.io
+* A mass of plugins were fixed by ourselves in countless hours
+* Credits for creation of the MightyScape project: Mario Voigt / FabLab Chemnitz
 
 # Used software for development
 
-   * Gitea and Github for hosting this
-   * LiClipse for code and git committing
-   * regular Python installation (both Linux and Windows)
+* Gitea and Github for hosting this
+* LiClipse for code and git committing
+* regular Python installation (both Linux and Windows)
 
 # Requirements / Tested environment
 
-   * tested with Inkscape
-       * Fedora 37: Inkscape 1.2.2 (b0a8486541, 2022-12-01)
-       * Windows 10 (@KVM/QEMU): Inkscape 1.2.1 (9c6d41e410, 2022-07-14)
-   * tested using Python 3.10 / 3.11 64 Bit
-   * some extensions require custom Python installation/modules. See documentation at our FabLab Chemnitz Wiki (see below).
-   * some extensions require additional commands, packages or other installers (see documentation too).
+* tested with Inkscape
+  * Fedora 37: Inkscape 1.2.2 (b0a8486541, 2022-12-01)
+  * Windows 10 (@KVM/QEMU): Inkscape 1.2.1 (9c6d41e410, 2022-07-14)
+* tested using Python 3.10 / 3.11 64 Bit
+* some extensions require custom Python installation/modules. See documentation at our FabLab Chemnitz Wiki (see below).
+* some extensions require additional commands, packages or other installers (see documentation too).
 
 # Installation way 1: with git dependencies
 
@@ -44,12 +46,14 @@ The structure of this repo is intended the be easy. Just copy the complete Might
 # Installation way 2: with zip archives (mirrors)
 
 If you only want to download single parts of MightyScape, use one of the following mirrors:
+
 * https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2-zipmirror
 * https://github.com/eridur-de/mightyscape-1.2-zipmirror
 
 # Issues, questions, documentation, examples
 
 This repo has two remotes:
+
 * https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2 (root repo origin from our organization)
 * https://github.com/eridur-de/mightyscape-1.2 (repo for **public collaboration**) 
 
@@ -59,7 +63,7 @@ You find a lot of documentation at the sub pages of https://y.stadtfabrikanten.o
 
 # Support us by a small donation
 
-<img src="./extensions/fablabchemnitz/000_about_fablabchemnitz.svg">
+<img title="" src="./extensions/fablabchemnitz/000_about_fablabchemnitz.svg" alt="" data-align="left">
 
 We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.
 
@@ -69,4 +73,3 @@ https://y.stadtfabrikanten.org/donate
 Each penny helps us to keep this project alive.
 
 **Thanks for using our extension and helping us!**
-
