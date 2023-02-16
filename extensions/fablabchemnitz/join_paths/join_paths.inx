@@ -71,7 +71,7 @@ distance of their closest end point to the previous curve.
 Additionally it allows to create different tabs / dimples for lasercutting.
 
 This extension is originally based on 'Join Paths Optimized' by Shriinivas.</label>
-            <label>2021 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <label>2021 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/joinpaths</label>

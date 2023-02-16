@@ -34,7 +34,7 @@
         <page name="tab_about" gui-text="About">
             <label appearance="header">Cleanup Styles</label>
             <label>This extension is useful for adjusting the stroke width and opacity of large groups. Usually for good laser cutting the line width has to match a maximum width to be recognized as a hairline. Additionally often opacity issues cause that lines are missed by laser cutter.</label>
-            <label>2020 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <label>2020 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/cleanupstyles</label>

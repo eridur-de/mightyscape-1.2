@@ -52,7 +52,7 @@
         <page name="tab_about" gui-text="About">
             <label appearance="header">Imagetracer.js</label>
             <label>imagetracerjs - Simple raster image tracer and vectorizer written in JavaScript, ported to Inkscape. It will vectorize your beautiful image into a more beautiful SVG trace with separated infills(break apart into single surfaces like a puzzle).</label>
-            <label>2020 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <label>2020 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/imagetracerjs</label>

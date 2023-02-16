@@ -85,7 +85,7 @@
             <label appearance="header">Ungrouper And Element Migrator/Filter</label>
             <label>Running this extension works for current selection or if nothing is selected for whole document. It allows to flatten elements into one group and to drop elements while processing.</label>
             <label>Unchecked elements will be dropped, if you selected a filter mode. Groups with transformations might puzzle anywhere. Please run "apply transformations" extension before to avoid this.</label>
-            <label>2020 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <label>2020 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/migrategroups</label>
