@@ -143,13 +143,19 @@ class Primitive (inkex.EffectExtension):
  
                         # new parse the SVG file and insert it as new group into the current document tree
                         doc = etree.parse(exportfile + ".svg").getroot()
+                        x = node.get('x')
+                        if x is None:
+                            x = "0"
+                        y = node.get('y')
+                        if y is None:
+                            y = "0"
                             
-                        newGroup = self.document.getroot().add(inkex.Group())          
+                        newGroup = self.document.getroot().add(inkex.Group())        
                         newGroup.attrib['transform'] = "matrix({:0.6f}, 0, 0, {:0.6f}, {:0.6f}, {:0.6f})".format(
                             float(node.get('width')) / float(doc.get('width')),
                             float(node.get('height')) / float(doc.get('height')),
-                            float(node.get('x')) + x_offset,
-                            float(node.get('y')) + y_offset
+                            float(x) + x_offset,
+                            float(y) + y_offset
                             )
                         
                         for children in doc:
