@@ -263,6 +263,10 @@ class LineShading(inkex.EffectExtension):
         newpath.set('style', str(inkex.Style(s)))            
         x = node.get('x')
         y = node.get('y')
+        if x is None:
+            x = "0"
+        if y is None:
+            y = "0"
         t = 'translate('+ x +','+ y +')'
         newpath.set('transform', t)
         image_w = float(node.get('width'))
