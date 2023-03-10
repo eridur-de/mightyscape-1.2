@@ -146,7 +146,7 @@ Tips:
         <page name="tab_about" gui-text="About">
             <label appearance="header">Contour Scanner And Trimmer</label>
             <label>A utility to scan, flatten, split and trim lines.</label>
-            <label>2020 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <label>2020 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/contourscannerandtrimmer</label>

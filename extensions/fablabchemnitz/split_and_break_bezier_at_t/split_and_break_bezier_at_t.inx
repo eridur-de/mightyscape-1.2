@@ -26,7 +26,7 @@
             <label appearance="header">Split And Break Bezier At t</label>
             <label>Splits a path at value t=0..1 (t=0.5 means 50%) or at a defined length with unit.
 Applies independently for each sub path in selection. Use 'Path > Reverse' to change the cutting direction.</label>
-            <label>2021 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <label>2021 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/splitandbreakbezieratt</label>

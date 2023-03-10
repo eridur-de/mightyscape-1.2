@@ -37,7 +37,7 @@
 		<page name="tab_about" gui-text="About">
 			<label appearance="header">Plycutter</label>
 			<label>A wrapper for Plycutter, utilizing kabeja to convert the DXF output to SVG. To make it work you need to install at least java and the plycutter python module from github.</label>
-			<label>2021 - 2022 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+			<label>2021 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
 			<spacer/>
 			<label appearance="header">Online Documentation</label>
 			<label appearance="url">https://y.stadtfabrikanten.org/plycutter</label>
