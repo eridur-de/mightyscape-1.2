@@ -40,7 +40,7 @@ def groupdraw(s, XYstrings, colors)  :
     grp = etree.SubElement(parent, 'g', grp_attribs)#the group to put everything in
     name='part'
     for i in range(len(XYstrings)):
-        style = { 'stroke': colors[i], 'fill': 'none' }
+        style = { 'stroke': colors[i], 'stroke-width': s.svg.unittouu("1px"), 'fill': 'none' }
         drw = {'style':str(inkex.Style(style)),inkex.addNS('label','inkscape'):name+str(i),'d':XYstrings[i]}
         etree.SubElement(grp, inkex.addNS('path','svg'), drw )
     return
