@@ -112,6 +112,8 @@ There are two places where Inkscape extensions can be located by default, either
 | Linux (Ubuntu, Fedora) | `~/.config/inkscape/extensions/` | `/usr/share/inkscape/extensions/`       |
 | Windows                | `%AppData%\inkscape\extensions\` | `C:\Program Files\inkscape\extensions\` |
 
+Please also refer to the [official documentation](https://inkscape-manuals.readthedocs.io/en/latest/extensions.html#installing-extensions).
+
 ## Installation way 1: with git dependencies (preferred way)
 
 **On Linux this might look like:**
@@ -121,7 +123,7 @@ dnf install python3-devel #this might be required on Fedora
 cd  ~/.config/inkscape/extensions/
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 python -m pip install --upgrade pip #upgrade pip first
-pip install --upgrade  --quiet --no-cache-dir -r ~/.config/inkscape/extensions/requirements.txt
+pip install --upgrade --quiet --no-cache-dir -r ~/.config/inkscape/extensions/requirements.txt
 ```
 
 **On Windows this might look like:**
@@ -131,10 +133,10 @@ cd %AppData%\inkscape\extensions\
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 cd %AppData%\..\Local\Programs\Python\Python310\Scripts
 python -m pip install --upgrade pip #upgrade pip first
-pip install --upgrade  --quiet --no-cache-dir -r %AppData%\inkscape\extensions\requirements.txt
+pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\requirements.txt
 ```
 
-**Note about git handling**: You can also download the whole git project as .zip or .tar.gz bundled archive and then place it to your target directory. This way you can ignore installing git on your system yet. You can convert that directory to the git-way using the [upgrade extension]([mightyscape-1.2/about_upgrade_mightyscape an master - mightyscape-1.2 - FabLab Chemnitz - Gitea: Git with a cup of tea](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/about_upgrade_mightyscape)) later on.
+**Note about git handling**: You can also download the whole git project as .zip or .tar.gz bundled archive and then place it to your target directory. This way you can ignore installing git on your system yet. You can convert that directory to the git-way using the [upgrade extension](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/about_upgrade_mightyscape)) later on.
  <img title="" src="./docs/images/zip-download.png" alt="" data-align="left">
 
 ## Installation way 2: with zip archives (mirrors)
@@ -144,7 +146,7 @@ If you only want to download single parts of MightyScape, use one of the followi
 * https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2-zipmirror
 * https://github.com/eridur-de/mightyscape-1.2-zipmirror
 
-You can put the extracted files into your local or global Inkscape extension directory. Please refer to the [official documentation](https://inkscape-manuals.readthedocs.io/en/latest/extensions.html#installing-extensions).
+You can put the extracted files into your local or global Inkscape extension directory.
 
 ## Upgrading MightyScape
 
