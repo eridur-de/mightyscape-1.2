@@ -30,51 +30,41 @@ At least this repo will help to bring alife some good things and will show hidde
 * LiClipse for code and git committing
 * regular Python installation (both Linux and Windows)
 
-# Requirements / Tested environment
+# Tested environment
 
 * tested with Inkscape
   * Fedora 37: Inkscape 1.2.2 (b0a8486541, 2022-12-01)
   * Windows 10 (@KVM/QEMU): Inkscape 1.2.1 (9c6d41e410, 2022-07-14)
 * tested using Python 3.10 / 3.11 64 Bit
-* some extensions require custom Python installation/modules. See documentation at our FabLab Chemnitz Wiki (see below).
-* some extensions require additional commands, packages or other installers (see documentation too).
 
 # Structure
 
-The structure of this repo is intended the be easy. Just copy the complete MightyScape folder (or the particular folders you want) to your Inkscape's extension directory. You will find redundancies in this repo like node.exe (NodeJS). We did it this way to give easy possibilty to only pick the extensions you want. MightyScape does not work with any releases or feature branches.
+The structure of this repo is intended the be easy. MightyScape does not work with any releases or feature branches. Just copy the complete MightyScape folder (or the particular folders you want) to your Inkscape's extension directory. You will find redundancies in this repo like node.exe (NodeJS). We did it this way to give easy possibilty to only pick the extensions you want.
 
 # Installation
 
 Please read this first before opening issues! This documentation does not maintain any progressive information about installing or handling Inkscape itself.
 
 ## Unsupported Inkscape versions
-
-MightyScape **does not support the snap version** and also **no** **[AppImage]([https://inkscape.org/release/inkscape-dev/gnulinux/appimage/dl](https://inkscape.org/release/inkscape-dev/gnulinux/appimage/dl/))** version of Inkscape. The snap edition comes with restrictions, letting a lot of extensions fail to work. The reason is missing access to external python interpreter.s Libraries like openmesh or pyclipper cannot be used this way. The AppImage version will fail for a lot extension too, because subprocesses from the AppImage have no acccess to `/tmp `directory. You can still install MightyScape with snap or AppImage version but beware to get different errors. Feel free to contribute solutions to fix these issues.
-
-### Supported Inkscape versions
-
-MightyScape supports
-
-- Windows
-  
-  - Inkscape portable (from zip or tar.gz)
-  
-  - regular installation with MSI Setup
-
 - Linux
-  
+  - MightyScape **does not support the snap version** and also **no** **[AppImage]([https://inkscape.org/release/inkscape-dev/gnulinux/appimage/dl](https://inkscape.org/release/inkscape-dev/gnulinux/appimage/dl/))** version of Inkscape. The snap edition comes with restrictions, letting a lot of extensions fail to work. The reason is missing access to external python interpreters. Libraries like `openmesh` or `pyclipper` cannot be used this way. The AppImage version will fail for a lot extension too, because subprocesses from the AppImage have no acccess to `/tmp` directory. You can still install MightyScape with snap or AppImage version but beware to get different errors. Feel free to contribute solutions to fix these issues.
+- Windows
+  - Windows App Store (this was not tested yet)
+
+## Supported Inkscape versions
+- Windows
+  - portable
+  - regular installation with MSI Setup
+- Linux
   - regular installation from package manager like dnf/yum or apt
-    
     `sudo apt install inkscape #Ubuntu`
     `sudo dnf install inkscape #Fedora`
-
 - MacOS
-  
   - this was never tested. We are sorry!
 
 ## Installation of prerequisites - python interpreter
 
-MightyScape relies on the Python interpreter which is used by the OS. As we need to install some external dependencies (python modules, partially with C bindings), we cannot rely on the bundled Python version, which comes with Inkscape. For this reason we need to adjust the main configuration of inkscape to apply this change.
+MightyScape relies on the Python interpreter which is used by the OS. As we need to install some external dependencies (python modules, partially with C bindings), we cannot rely on the bundled Python version, which comes with Inkscape. For this reason we need to adjust the main configuration of inkscape to apply this change by adding `python-interpreter`.
 **Note:** Using a custom Python environment on Windows wil make the official Inkscape Extensions Manager impossible to run. The reason is the library `pygobject`.
 
 **On Linux this might look like:**
@@ -82,9 +72,6 @@ MightyScape relies on the Python interpreter which is used by the OS. As we need
 ```
 vim ~/.config/inkscape/preferences.xml
 ```
-
-Add the following line in the section id="extensions":
-
 ```
   <group
      id="extensions"
@@ -105,16 +92,16 @@ notepad %appdata%\inkscape\preferences.xml
 
 **Notes for Windows users:** 
 
-* If you get a nasty popup window each time you are executing an extension, please check if you really use pythonw.exe. Do not use python.exe.
+* If you get a nasty popup window each time you are executing an extension, please double check if you really use `pythonw.exe`. Do not use `python.exe`.
 * You can download and install Python for Windows from https://www.python.org/downloads/windows
-* please double check for the correct enviroment variable adjustment. python.exe has to be in `%PATH%`
+* please review for correct enviroment variable adjustments. `python.exe` has to be in `%PATH%`
 
 ## Installation of prerequisites - additional python modules
 
 The following extra libraries are required for some of the extensions within the MightyScape package. Those are listed in our [requirements.txt](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/requirements.txt) file. We are installing them together with MightyScape in the next section.
 
 
-**Note:** if openmesh fails to install, please see [Paperfold](https://stadtfabrikanten.org/display/IFM/Paperfold) for more details about installing it
+**Note:** if `openmesh` fails to install, please see [Paperfold](https://stadtfabrikanten.org/display/IFM/Paperfold) for more details about installing it.
 
 ## Installation dirs
 
@@ -133,6 +120,8 @@ There are two places where Inkscape extensions can be located by default, either
 dnf install python3-devel #this might be required on Fedora
 cd  ~/.config/inkscape/extensions/
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
+python -m pip install --upgrade pip #upgrade pip first
+pip install --upgrade  --quiet --no-cache-dir -r ~/.config/inkscape/extensions/requirements.txt
 ```
 
 **On Windows this might look like:**
@@ -157,7 +146,7 @@ If you only want to download single parts of MightyScape, use one of the followi
 
 You can put the extracted files into your local or global Inkscape extension directory. Please refer to the [official documentation](https://inkscape-manuals.readthedocs.io/en/latest/extensions.html#installing-extensions).
 
-## ## Upgrading MightyScape
+## Upgrading MightyScape
 
 There are two ways to upgrade MightyScape. Choose from:
 
