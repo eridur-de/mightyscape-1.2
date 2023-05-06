@@ -119,11 +119,11 @@ Please also refer to the [official documentation](https://inkscape-manuals.readt
 **On Linux this might look like:**
 
 ```
-dnf install python3-devel #this might be required on Fedora
+sudo dnf install python3-devel #this might be required on Fedora
 cd  ~/.config/inkscape/extensions/
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 python -m pip install --upgrade pip #upgrade pip first
-pip install --upgrade --quiet --no-cache-dir -r ~/.config/inkscape/extensions/requirements.txt
+pip install --upgrade --quiet --no-cache-dir -r ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
 ```
 
 **On Windows this might look like:**
@@ -133,7 +133,7 @@ cd %AppData%\inkscape\extensions\
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 cd %AppData%\..\Local\Programs\Python\Python310\Scripts
 python -m pip install --upgrade pip #upgrade pip first
-pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\requirements.txt
+pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
 ```
 
 **Note about git handling**: You can also download the whole git project as .zip or .tar.gz bundled archive and then place it to your target directory. This way you can ignore installing git on your system yet. You can convert that directory to the git-way using the [upgrade extension](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/about_upgrade_mightyscape)) later on.
