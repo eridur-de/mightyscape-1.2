@@ -1,0 +1,35 @@
+debugpy
+lxml
+moderngl
+numpy
+networkx 
+openmesh
+opencv-python
+pyclipper
+pillow 
+scipy 
+scour 
+shapely 
+svg-to-gcode 
+svgpathtools 
+vpype 
+vpype-dxf 
+GitPython #required by mightyscape updater extension
+wheel 
+pytesseract
+cairosvg
+PyQt5
+PySide6
+brother_ql #required by iventory_sticker extension
+cssselect #required by boxes.py and mightyscape updater extension
+affine #required by boxes.py extension
+
+#vpype occult plugin setup
+git+https://github.com/abey79/occult.git#egg=occult
+
+#vpype deduplicate plugin setup
+tqdm
+git+https://github.com/LoicGoulefert/deduplicate.git#egg=deduplicate
+
+#plycutter
+git+https://github.com/tjltjl/plycutter.git
