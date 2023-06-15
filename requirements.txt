@@ -3,7 +3,6 @@ lxml
 moderngl
 numpy
 networkx 
-openmesh
 opencv-python
 pyclipper
 pillow 
@@ -14,15 +13,20 @@ svg-to-gcode
 svgpathtools 
 vpype 
 vpype-dxf 
-GitPython #required by mightyscape updater extension
+#GitPython required by mightyscape updater extension
+GitPython
 wheel 
 pytesseract
 cairosvg
 PyQt5
 PySide6
-brother_ql #required by iventory_sticker extension
-cssselect #required by boxes.py and mightyscape updater extension
-affine #required by boxes.py extension
+#brother_ql required by iventory_sticker extension
+brother_ql 
+#cssselect required by boxes.py and mightyscape updater extension
+cssselect
+#affine required by boxes.py extension
+affine
+openmesh
 
 #vpype occult plugin setup
 git+https://github.com/abey79/occult.git#egg=occult
