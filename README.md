@@ -124,7 +124,7 @@ cd  ~/.config/inkscape/extensions/
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 python -m pip install --upgrade pip #upgrade pip first
 pip install --upgrade --quiet --no-cache-dir -r ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
-cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | xargs -n 1 pip install --upgrade --quiet --no-cache-dir #use this in case the previous command failed (skip errors)
+cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 pip install --upgrade --quiet --no-cache-dir #use this in case the previous command failed (skip errors)
 ```
 
 **On Windows this might look like:**
