@@ -43,6 +43,7 @@ class ApplyTransformations(inkex.EffectExtension):
             style = element.attrib.get('style')
             style = dict(Style.parse_str(style))
             update = False
+
             if 'stroke-width' in style:
                 try:
                     stroke_width = self.svg.unittouu(style.get('stroke-width')) / self.svg.unittouu("1px")
@@ -54,6 +55,18 @@ class ApplyTransformations(inkex.EffectExtension):
 
             if update:
                 element.attrib['style'] = Style(style).to_str()
+        if 'stroke-width' in element.attrib:
+            style = element.attrib.get('style')
+            style = dict(Style.parse_str(style))
+            update = False
+
+            try:
+                stroke_width = self.svg.unittouu(element.attrib.get('stroke-width')) / self.svg.unittouu("1px")
+                stroke_width *= math.sqrt(abs(transf.a * transf.d - transf.b * transf.c))
+                element.attrib['stroke-width'] = str(stroke_width)
+                update = True
+            except AttributeError as e:
+                pass
 
     def recursiveFuseTransform(self, element, transf=[[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]):
 
