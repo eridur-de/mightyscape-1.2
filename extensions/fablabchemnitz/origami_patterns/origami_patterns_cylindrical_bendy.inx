@@ -101,7 +101,9 @@
         <object-type>all</object-type>
         <effects-menu>
             <submenu name="FabLab Chemnitz Boxes/Papercraft">
-                <submenu name="Paper/Cardboard Boxes" />
+                <submenu name="Origami Patterns">
+                    <submenu name="Cylindrical" />
+                </submenu>
             </submenu>
         </effects-menu>
     </effect>
