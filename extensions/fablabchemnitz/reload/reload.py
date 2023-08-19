@@ -17,8 +17,8 @@ class Reload(inkex.EffectExtension):
         if currentDoc == "":
             self.msg("Your document is not saved as a permanent file yet. Cannot reload.")
             exit(1)
-        
-        originalRoot = self.document.getroot()   
+
+        originalRoot = self.document.getroot()
         originalNamedview = self.svg.namedview
         originalDefs = originalRoot.find("{http://www.w3.org/2000/svg}defs")
         originalRoot.clear() #drop all children and attributes from root
@@ -33,24 +33,26 @@ class Reload(inkex.EffectExtension):
             except Exception as e:
                 inkex.utils.debug("Malformed file: {}".format(e))
                 exit(1)
-      
+
         copyRoot = doc.getroot()
         copyNamedview = copyRoot.find(inkex.addNS('namedview', 'sodipodi'))
         copyDefs = copyRoot.find("{http://www.w3.org/2000/svg}defs")
         for child in copyRoot.getchildren():
             originalRoot.append(child)
-        
+
         #update all attributes in originalSVG
         for copyAttrib in copyRoot.attrib:
             originalRoot.attrib[copyAttrib] = copyRoot.attrib[copyAttrib]
 
         #update all attributes in originalNamedview
-        for copyAttrib in copyNamedview.attrib:
-            originalNamedview.attrib[copyAttrib] = copyNamedview.attrib[copyAttrib]
-               
+        if copyNamedview is not None:
+            for copyAttrib in copyNamedview.attrib:
+                originalNamedview.attrib[copyAttrib] = copyNamedview.attrib[copyAttrib]
+
         #update all attributes in originalDefs
-        for copyAttrib in copyDefs.attrib:
-            originalDefs.attrib[copyAttrib] = copyDefs.attrib[copyAttrib]
+        if copyDefs is not None:
+            for copyAttrib in copyDefs.attrib:
+                originalDefs.attrib[copyAttrib] = copyDefs.attrib[copyAttrib]
 
 if __name__ == '__main__':
     Reload().run()
