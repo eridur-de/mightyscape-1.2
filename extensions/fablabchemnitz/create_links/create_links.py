@@ -40,7 +40,7 @@ from inkex.bezier import csplength
 
 
 class LinksCreator(inkex.EffectExtension):
-    
+
     def add_arguments(self, pars):
         pars.add_argument("--tab")
         pars.add_argument("--path_types", default="closed_paths", help="Apply for closed paths, open paths or both")
@@ -53,7 +53,7 @@ class LinksCreator(inkex.EffectExtension):
         pars.add_argument("--switch_pattern", type=inkex.Boolean, default=False, help="If enabled, we use gap length as dash length (switches the dasharray pattern")
         pars.add_argument("--weakening_mode", type=inkex.Boolean, default=False, help="If enabled, we colorize the swap links in #0000ff (blue) and disable the option 'Keep selected elements'")
         pars.add_argument("--custom_dasharray_value", default="", help="A list of separated lengths that specify the lengths of alternating dashes and gaps. Input only accepts numbers. It ignores percentages or other characters.")
-        pars.add_argument("--custom_dashoffset_value", type=float, default=0.000, help="Link offset (+/-)")       
+        pars.add_argument("--custom_dashoffset_value", type=float, default=0.000, help="Link offset (+/-)")
         pars.add_argument("--length_filter", type=inkex.Boolean, default=False, help="Enable path length filtering")
         pars.add_argument("--length_filter_value", type=float, default=0.000, help="Paths with length more than")
         pars.add_argument("--length_filter_unit", default="mm", help="Length filter unit")
@@ -69,7 +69,7 @@ class LinksCreator(inkex.EffectExtension):
         if element.tag == inkex.addNS('path','svg'):
             parent = element.getparent()
             idx = parent.index(element)
-            idSuffix = 0  
+            idSuffix = 0
             raw = element.path.to_arrays()
             subPaths, prev = [], 0
             for i in range(len(raw)): # Breaks compound paths into simple paths
@@ -96,7 +96,7 @@ class LinksCreator(inkex.EffectExtension):
         return breakelements
 
     def effect(self):
-        def createLinks(element):   
+        def createLinks(element):
             elementParent = element.getparent()
             path = element.path.to_arrays() #to_arrays() is deprecated. How to make more modern?
             pathIsClosed = False
@@ -105,14 +105,14 @@ class LinksCreator(inkex.EffectExtension):
                 (path[-1][0] == 'C' and path[0][1] == [path[-1][1][-2], path[-1][1][-1]]) \
                 :  #if first is last point the path is also closed. The "Z" command is not required
                 pathIsClosed = True
-                
+
             if self.options.path_types == 'open_paths' and pathIsClosed is True:
                 return #skip this loop iteration
             elif self.options.path_types == 'closed_paths' and pathIsClosed is False:
                 return #skip this loop iteration
             elif self.options.path_types == 'both':
                 pass
-                         
+
             # if keeping is enabled we make of copy of the current element and insert it while modifying the original ones. We could also delete the original and modify a copy...
             if self.options.keep_selected is True and self.options.weakening_mode is False:
                 parent = element.getparent()
@@ -123,7 +123,7 @@ class LinksCreator(inkex.EffectExtension):
             # we measure the length of the path to calculate the required dash configuration
             csp = element.path.transform(element.composed_transform()).to_superpath()
             slengths, stotal = csplength(csp) #get segment lengths and total length of path in document's internal unit
-           
+
             if self.options.length_filter is True:
                 if stotal < self.svg.unittouu(str(self.options.length_filter_value) + self.options.length_filter_unit):
                     if self.options.show_info is True: self.msg("element " + element.get('id') + " is shorter than minimum allowed length of {:1.3f} {}. Path length is {:1.3f} {}".format(self.options.length_filter_value, self.options.length_filter_unit, stotal, self.options.creationunit))
@@ -135,28 +135,28 @@ class LinksCreator(inkex.EffectExtension):
                 length_link = self.svg.unittouu(str(self.options.length_link) + self.options.creationunit)
 
             dashes = [] #central dashes array
-            
+
             if self.options.creationtype == "entered_values":
                 dash_length = ((stotal - length_link * self.options.link_count) / self.options.link_count) - 2 * length_link * self.options.link_multiplicator
                 dashes.append(dash_length)
-                dashes.append(length_link)                  
+                dashes.append(length_link)
                 for i in range(0, self.options.link_multiplicator):
                     dashes.append(length_link) #stroke (=gap)
                     dashes.append(length_link) #gap
-                    
+
                 if self.options.switch_pattern is True:
                     dashes = dashes[::-1] #reverse the array
-                    
+
                 #validate dashes. May not be negative (dash or gap cannot be longer than the path itself). Otherwise Inkscape will freeze forever. Reason: rendering issue
-                if any(dash <= 0.0 for dash in dashes) == True: 
+                if any(dash <= 0.0 for dash in dashes) == True:
                     if self.options.show_info is True: self.msg("element " + element.get('id') + ": Error! Dash array may not contain negative numbers: " + ' '.join(format(dash, "1.3f") for dash in dashes) + ". Path skipped. Maybe it's too short. Adjust your link count, multiplicator and length accordingly, or set to unit '%'")
                     return False if self.options.skip_errors is True else exit(1)
-               
+
                 if self.options.creationunit == "percent":
                     stroke_dashoffset = (self.options.link_offset / 100.0 * stotal) - length_link/2
-                else:         
+                else:
                     stroke_dashoffset = self.svg.unittouu(str(self.options.link_offset) + self.options.creationunit)
-                    
+
                 if self.options.switch_pattern is True:
                     stroke_dashoffset = stroke_dashoffset + ((self.options.link_multiplicator * 2) + 1)  * length_link
 
@@ -177,7 +177,7 @@ class LinksCreator(inkex.EffectExtension):
                 except:
                     if self.options.show_info is True: self.msg("element " + element.get('id') + ": No dash style to continue with.")
                     return False if self.options.skip_errors is True else exit(1)
-                           
+
             if self.options.creationtype == "custom_dashpattern":
                 stroke_dashoffset = self.options.custom_dashoffset_value
                 try:
@@ -226,20 +226,20 @@ class LinksCreator(inkex.EffectExtension):
                     self.msg(" * (calculated) offset: {:1.3f} {}".format(self.svg.uutounit(stroke_dashoffset, self.options.creationunit), self.options.creationunit))
                     if self.options.creationtype == "entered_values":
                         self.msg(" * (calculated) gap length: {:1.3f} {}".format(length_link, self.options.creationunit))
-                if self.options.creationtype == "entered_values":        
+                if self.options.creationtype == "entered_values":
                     self.msg(" * total gaps = {}".format(self.options.link_count))
                 self.msg(" * (calculated) dash/gap pattern: {} ({})".format(stroke_dasharray, self.svg.unit))
-     
-            # Conversion step (split cosmetic path into real segments)    
+
+            # Conversion step (split cosmetic path into real segments)
             if self.options.no_convert is False:
-                style = element.style #get the style again, but this time as style class    
-                    
-                gaps = []    
+                style = element.style #get the style again, but this time as style class
+
+                gaps = []
                 new = []
                 for sub in element.path.to_superpath():
                     idash = 0
                     dash = dashes[0]
-                    length = float(stroke_dashoffset)
+                    length = abs(float(stroke_dashoffset))
                     while dash < length:
                         length = length - dash
                         idash = (idash + 1) % len(dashes)
@@ -262,19 +262,19 @@ class LinksCreator(inkex.EffectExtension):
                             new.append([sub[i]])
                         else:
                             new[-1].append(sub[i])
-                        i += 1  
-                     
+                        i += 1
+
                 #filter pointy subpaths
                 final_new = []
                 for sub in new:
                     if len(sub) > 1:
                         final_new.append(sub)
-                        
+
                 style.pop('stroke-dasharray')
                 element.pop('sodipodi:type')
                 element.path = CubicSuperPath(final_new)
                 element.style = style
-                
+
                 # break apart the combined path to have multiple elements
                 if self.options.breakapart is True:
                     breakOutputelements = None
@@ -284,7 +284,7 @@ class LinksCreator(inkex.EffectExtension):
                         breakApartGroup.append(breakOutputelement)
                         #self.msg(replacedelement.get('id'))
                         #self.svg.selection.set(replacedelement.get('id')) #update selection to split paths segments (does not work, so commented out)
-                        
+
         if len(self.svg.selected) > 0:
             for element in self.svg.selection.values():
                 #at first we need to break down combined elements to single path, otherwise dasharray cannot properly be applied
@@ -295,6 +295,6 @@ class LinksCreator(inkex.EffectExtension):
         else:
             self.msg('Please select some paths first.')
             return
-        
+
 if __name__ == '__main__':
     LinksCreator().run()
