@@ -40,31 +40,31 @@ def draw_SVG_ellipse(rx, ry, cx, cy, parent, start_end=(0,2*math.pi),transform='
     ell = etree.SubElement(parent, inkex.addNS('path','svg'), ell_attribs )
 
 # This is the workhorse, it draws the circle based on which node number
-def drawKthCircle(k,firstRadius,lastRadius,numNodes,spreadFactor,parent):
+def drawKthCircle(k,firstRadius, lastRadius, numNodes, spreadFactor, parent):
     # Use golden circle phi
     phi = (math.sqrt(5) - 1)/2
-    
+
     # Calculate the node radius
     growth = lastRadius - firstRadius
-    nodeRadius = firstRadius + growth*float(k - 1)/float(numNodes)
-    
+    nodeRadius = firstRadius + growth * float(k - 1) / float(numNodes)
+
     # Calculate X and Y from theta = 2 pi phi k and radius = sqrt(k)
     r = spreadFactor * math.sqrt(k)
-    theta = 2*math.pi*phi*k
+    theta = 2 * math.pi * phi * k
 
     # use simple trig to get cx and cy
     x = r * math.cos(theta)
     y = r * math.sin(theta)
 
     # Add the px to the size
-    nodeRadiusTxt = "%spx"%nodeRadius
-    
+    nodeRadiusTxt = "%spx" % nodeRadius
+
     # Draw the node
-    draw_SVG_ellipse(nodeRadiusTxt,nodeRadiusTxt,x,y,parent)
+    draw_SVG_ellipse(nodeRadiusTxt, nodeRadiusTxt , x, y, parent)
 
 
 class FibonacciPattern(inkex.EffectExtension):
-    
+
     def add_arguments(self, pars):
         pars.add_argument("-f", "--FirstRadius", type=int, default="5", help="The radius of the first layer of circles in pixels.")
         pars.add_argument("-l", "--LastRadius", type=int, default="10", help="The radius of the last layer of circles in pixels.")
@@ -72,15 +72,15 @@ class FibonacciPattern(inkex.EffectExtension):
         pars.add_argument("-s", "--SpreadFactor",type=int, default="10", help="This will create a larger spread between the nodes from the center.")
 
     def effect(self):
-        # Foreach Node
+
+        group = self.document.getroot().add(inkex.Group(id="fibonacci-pattern-" + self.svg.get_unique_id("")))
         for k in range(1,self.options.NumberOfNodes):
-            # Draw the circle
             drawKthCircle(k,
                 self.options.FirstRadius,
                 self.options.LastRadius,
                 self.options.NumberOfNodes,
                 self.options.SpreadFactor,
-                self.svg.get_current_layer())
-            
+                group)
+
 if __name__ == '__main__':
     FibonacciPattern().run()
