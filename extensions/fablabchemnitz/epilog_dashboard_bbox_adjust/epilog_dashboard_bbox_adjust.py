@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-Extension for InkScape 1.0
+Extension for InkScape 1.3
 Features
 - This tool is a helper to adjust the document border including an offset value, which is added. 
 Sending vector data to Epilog Dashboard often results in trimmed paths. This leads to wrong geometry where the laser misses to cut them.
@@ -10,14 +10,12 @@ So we add a default (small) amount of 1.0 doc units to expand the document's can
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 21.04.2021
-Last patch: 12.10.2022
+Last patch: 21.08.2023
 License: GNU GPL v3
 
-#known bugs:
+#known bugs/todo:
 - viewbox/width/height do not correctly apply if documents only contain an object (not a path). After converting it to path it works. Seems to be a bbox problem
-- note from 07.05.2021: seems if the following order is viewBox/width/height, or width/height/viewBox, the units are not respected. So me mess around a little bit
-
-#Todo
+- note from 07.05.2021: seems if the following order is viewBox/width/height, or width/height/viewBox, the units are not respected. So we mess around a little bit
 - add some way to handle translations properly
 
 '''
@@ -130,6 +128,11 @@ class EpilogDashboardBboxAdjust(inkex.EffectExtension):
             for element in self.document.getroot().iter("*"):
                 if isinstance (element, inkex.ShapeElement) and element.tag != inkex.addNS('g', 'svg'):
                     ebbox = element.bounding_box()
+                    #inkex.utils.debug("{:02f} < {:02f} {}".format(ebbox.right, viewBoxXmin, ebbox.right < viewBoxXmin))
+                    #inkex.utils.debug("{:02f} > {:02f} {}".format(ebbox.left, viewBoxXmax, ebbox.left > viewBoxXmax))
+                    #inkex.utils.debug("{:02f} < {:02f} {}".format(ebbox.top, viewBoxYmin, ebbox.top < viewBoxYmin))
+                    #inkex.utils.debug("{:02f} > {:02f} {}".format(ebbox.bottom, viewBoxYmax, ebbox.bottom > viewBoxYmax))
+
                     #self.msg("{} | bbox: left = {:0.3f} right = {:0.3f} top = {:0.3f} bottom = {:0.3f}".format(element.get('id'), ebbox.left, ebbox.right, ebbox.top, ebbox.bottom))
                     #check if the element's bbox is inside the view canvas. If not: delete it!
                     if ebbox.right  < viewBoxXmin or \

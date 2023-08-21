@@ -15,7 +15,9 @@
             <param name="machine_size" gui-text="Machine/Size (mm)" type="optiongroup" appearance="combo">
                 <option value="406x305">406 x 305 mm (Zing 16)</option>
                 <option value="610x305">610 x 305 mm (Zing 24 / Fusion Edge 12)</option>    
+                <option value="610x610">610 x 610 mm (Fusion Pro 24)</option>
                 <option value="812x508">812 x 508 mm (Fusion Pro 32 / Fusion M2 32)</option>
+                <option value="914x610">914 x 610 mm (Fusion Pro 36)</option>
                 <option value="1016x711">1016 x 711 mm (Fusion M2 40)</option>
                 <option value="1219x914">1219 x 914 mm (Fusion Pro 48)</option>
             </param>
