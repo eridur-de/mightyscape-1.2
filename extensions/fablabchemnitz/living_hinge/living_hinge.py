@@ -72,7 +72,6 @@ class LivingHinge(inkex.EffectExtension):
     # get selected nodes
     if self.svg.selected:
       # put lines on the current layer
-      parent = self.svg.get_current_layer()
       for id, element in self.svg.selection.filter(Rectangle).items():
       #        inkex.utils.debug("id:" + id)
       #         for key in node.attrib.keys():
@@ -90,7 +89,7 @@ class LivingHinge(inkex.EffectExtension):
           s = s + "M %s, %s L %s, %s " % (line['x1'], line['y1'], line['x2'], line['y2'])
         style = { 'stroke': '#000000', 'fill': 'none', 'stroke-width': self.svg.unittouu("0.1 mm")}
         drw = {'style':str(inkex.Style(style)), 'd': s}
-        hinge = etree.SubElement(parent, inkex.addNS('path', 'svg'), drw)
+        hinge = etree.SubElement(element.getparent(), inkex.addNS('path', 'svg'), drw)
         desc = etree.SubElement(hinge, inkex.addNS('desc', 'svg'))
         desc.text = "Hinge cut parameters: actual(requested)\n" \
           "cut length: %.2f %s (%.2f %s)\n" \
