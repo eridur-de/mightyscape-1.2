@@ -4,6 +4,8 @@
 	<id>fablabchemnitz.de.epilog_dashboard_bbox_adjust</id>
     <param name="tab" type="notebook">
         <page name="tab_settings" gui-text="Settings">
+            <label appearance="header">Note on selection</label>
+            <label>The extension result is different depending on item selection. If selection is empty, whole document is processed!</label>
             <param name="apply_transformations" type="bool" gui-text="Apply transformations (requires separate extension)" gui-description="This will call the extension 'Apply Transformations'. Helps avoiding geometry shifting">false</param>
             <param name="offset" type="float" min="0.0" max="1000.0" precision="3" gui-text="XY Offset (mm) from top left corner">1.0</param>
             <param name="removal" gui-text="Element removal" type="optiongroup" appearance="combo" gui-description="Remove all elements outside the bounding box or selection. PObjects partially outside the canvas will be dropped too in case you selected 'outside of canvas'">

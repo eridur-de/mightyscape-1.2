@@ -118,12 +118,6 @@ class EpilogDashboardBboxAdjust(inkex.EffectExtension):
         self.document.getroot().attrib['viewBox'] = f'{viewBoxXmin} {viewBoxYmin} {viewBoxXmax} {viewBoxYmax}'
         self.document.getroot().attrib['height'] = height
         
-        # translate all elements to fit the adjusted viewBox
-        mat = Transform("translate(%f, %f)" % (-bbox.left,-bbox.top))
-        for element in self.document.getroot().iter("*"):
-            if isinstance (element, inkex.ShapeElement) and element.tag != inkex.addNS('g', 'svg'):
-                element.transform = Transform(mat) @ element.composed_transform()
-
         if self.options.removal == "outside_canvas":
             for element in self.document.getroot().iter("*"):
                 if isinstance (element, inkex.ShapeElement) and element.tag != inkex.addNS('g', 'svg'):
@@ -132,7 +126,6 @@ class EpilogDashboardBboxAdjust(inkex.EffectExtension):
                     #inkex.utils.debug("{:02f} > {:02f} {}".format(ebbox.left, viewBoxXmax, ebbox.left > viewBoxXmax))
                     #inkex.utils.debug("{:02f} < {:02f} {}".format(ebbox.top, viewBoxYmin, ebbox.top < viewBoxYmin))
                     #inkex.utils.debug("{:02f} > {:02f} {}".format(ebbox.bottom, viewBoxYmax, ebbox.bottom > viewBoxYmax))
-
                     #self.msg("{} | bbox: left = {:0.3f} right = {:0.3f} top = {:0.3f} bottom = {:0.3f}".format(element.get('id'), ebbox.left, ebbox.right, ebbox.top, ebbox.bottom))
                     #check if the element's bbox is inside the view canvas. If not: delete it!
                     if ebbox.right  < viewBoxXmin or \
@@ -142,21 +135,25 @@ class EpilogDashboardBboxAdjust(inkex.EffectExtension):
                         if self.options.debug is True:
                             self.msg("Removing {} {}".format(element.get('id'), ebbox))
                         element.delete()
-
-        elif self.options.removal == "outside_selection":
+        if self.options.removal == "outside_selection":
             if len(self.svg.selected) == 0:
                 inkex.utils.debug("Your selection is empty but you have chosen the option to remove all elements outside selection!")
                 return
-            
             allElements = []
             for selected in self.svg.selection:
                 allElements = self.getElementChildren(selected, allElements)
-            
             for element in self.document.getroot().iter("*"):
                 if element not in allElements and isinstance (element, inkex.ShapeElement) and element.tag != inkex.addNS('g', 'svg'):
                     if self.options.debug is True:
                         self.msg("Removing {}".format(element.get('id')))
                     element.delete()
+                    
+        # translate all remaining elements to fit the adjusted viewBox
+        mat = Transform("translate(%f, %f)" % (-bbox.left,-bbox.top))
+        for element in self.document.getroot().iter("*"):
+            if isinstance (element, inkex.ShapeElement) and element.tag != inkex.addNS('g', 'svg'):
+                element.transform = Transform(mat) @ element.composed_transform()
+   
 
 if __name__ == '__main__':
     EpilogDashboardBboxAdjust().run()
