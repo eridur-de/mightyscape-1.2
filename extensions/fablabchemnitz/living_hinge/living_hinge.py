@@ -73,11 +73,11 @@ class LivingHinge(inkex.EffectExtension):
     if self.svg.selected:
       # put lines on the current layer
       parent = self.svg.get_current_layer()
-      for id, node in self.svg.selection.filter(Rectangle).items():
+      for id, element in self.svg.selection.filter(Rectangle).items():
       #        inkex.utils.debug("id:" + id)
       #         for key in node.attrib.keys():
-      #           inkex.utils.debug(key + ": " + node.get(key))
-        bbox = node.bounding_box()
+      #           inkex.utils.debug(key + ": " + element.get(key))
+        bbox = element.bounding_box()
 
         # calculate the cut lines for the hinge
         if (dir=="y"):
@@ -206,6 +206,8 @@ class LivingHinge(inkex.EffectExtension):
     #round p to the nearest integer
     p = round(p)
     #compute the new l that will result in p cuts in the x-direction.
+    if p == 0:
+        p = 1 #avoid divison by zero
     l = (dx-d)/p - d
 
     # use dd as a starting guess. Adjust it so that we get an even integer number of cut lines in the y-direction.
