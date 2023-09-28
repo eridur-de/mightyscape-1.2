@@ -90,7 +90,7 @@ for number and size, as well as some specific to each type.
         pars.add_argument("--honp", type=inkex.Boolean, help="Enable scratches")
         pars.add_argument("--hsize", type=float, default=2.0, help="Size of scratches")
         pars.add_argument("--hgrow", type=float, default=0.0, help="Grow scratches with distance")
-        pars.add_argument("--hnum", type= float, default=0.2, help="Number of scratches")
+        pars.add_argument("--hnum", type= int, default=10, help="Number of scratches")
         pars.add_argument("--hrad", type=inkex.Boolean, default=False, help="Angle scratches toward center")
         pars.add_argument("--hang", type= float, default=90.0, help="Angle from radius")
         pars.add_argument("--hcurve", type= float, default=0.0, help="Change angle with distance")
@@ -98,12 +98,12 @@ for number and size, as well as some specific to each type.
         pars.add_argument("--conp", type=inkex.Boolean, default=True, help="Enable chips")
         pars.add_argument("--csize", type= float, default=1.0, help="Size of chips")
         pars.add_argument("--cgrow", type= float, default=0.0, help="Grow chips with distance")
-        pars.add_argument("--cnum", type= float, default=1.0, help="Number of chips")
+        pars.add_argument("--cnum", type= int, default=10, help="Number of chips")
         pars.add_argument("--cgrad", type=inkex.Boolean, default=False, help="Use density gradient")
         pars.add_argument("--sonp", type=inkex.Boolean, default=True, help="Enable specks")
         pars.add_argument("--ssize", type= float, default=1.0, help="Size of specks")
         pars.add_argument("--sgrow", type= float, default=0.0, help="Grow specks with distance")
-        pars.add_argument("--snum", type= float, default=10.0, help="Number of specks")
+        pars.add_argument("--snum", type= int, default=10, help="Number of specks")
         pars.add_argument("--sgrad", type=inkex.Boolean, default=False, help="Use density gradient")
         pars.add_argument("--Nmain", "--Overall")
 		
@@ -124,7 +124,7 @@ for number and size, as well as some specific to each type.
             'ry' :   ry,
             'size' : self.options.mainSize * self.options.hsize,
             'enable' : self.options.honp,
-            'num' :  int( self.options.mainNum * self.options.hnum ),
+            'num' :  self.options.mainNum * self.options.hnum,
             'grow' : self.options.hgrow,
             'radial' : self.options.hrad,
             'ang' : self.options.hang,
@@ -141,7 +141,7 @@ for number and size, as well as some specific to each type.
             'ry' :   ry,
             'size' : self.options.mainSize * self.options.csize,
             'enable' : self.options.conp,
-            'num' :  int( self.options.mainNum * self.options.cnum ),
+            'num' :  self.options.mainNum * self.options.cnum,
             'grow' : self.options.cgrow,
             'radial' : False,
             'ang' : False,
@@ -158,7 +158,7 @@ for number and size, as well as some specific to each type.
             'ry' :   ry,
             'size' : self.options.mainSize * self.options.ssize,
             'enable' : self.options.sonp,
-            'num' :  int( self.options.mainNum * self.options.snum ),
+            'num' :  self.options.mainNum * self.options.snum,
             'grow' : self.options.sgrow,
             'radial' : False,
             'ang' : False,

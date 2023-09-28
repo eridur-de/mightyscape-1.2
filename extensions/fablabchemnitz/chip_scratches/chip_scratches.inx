@@ -8,31 +8,31 @@
             <param name="pgsizep" type="bool" gui-text="Default rectangle to page size?">true</param>
             <param name="rx" type="int" max="10000" gui-text="Width">1000</param>
             <param name="ry" type="int" max="10000" gui-text="Height">1000</param>
-            <param name="mainSize" type="float" max="100.0" gui-text="Size of objects">1.0</param>
-            <param name="mainNum" type="int" max="5000" gui-text="Number of objects">200</param>
+            <param name="mainSize" type="float" max="100.0" precision="3" gui-text="Size of objects (scale factor)">1.000</param>
+            <param name="mainNum" type="int" max="5000" gui-text="Number of objects (acts as multiplicator)">1</param>
         </page>
         <page name="Scratches" gui-text="Scratches">
             <param name="honp" type="bool" gui-text="Enable scratches">true</param>
-            <param name="hsize" type="float" max="100.0" min="-100.0" gui-text="Size of scratches">2.0</param>
-            <param name="hgrow" type="float" max="100.0" min="-100.0" gui-text="Grow scratches with distance">0.0</param>
-            <param name="hnum" type="float" max="100.0" gui-text="Number of scratches">0.2</param>
+            <param name="hsize" type="float" max="100.0" min="-100.0" precision="3" gui-text="Size of scratches">2.000</param>
+            <param name="hgrow" type="float" max="100.0" min="-100.0" precision="3" gui-text="Grow scratches with distance">0.000</param>
+            <param name="hnum" type="int" max="100.0" gui-text="Number of scratches">10</param>
             <param name="hrad" type="bool" gui-text="Angle scratches toward center">false</param>
-            <param name="hang" type="float" max="180.0" min="-180.0" gui-text="Angle from radius">90.</param>
-            <param name="hcurve" type="float" max="100.0" min="-100.0" gui-text="Change angle with distance">0.0</param>
+            <param name="hang" type="float" max="180.0" min="-180.0" precision="3" gui-text="Angle from radius">90.00</param>
+            <param name="hcurve" type="float" max="100.0" min="-100.0" precision="3" gui-text="Change angle with distance">0.000</param>
             <param name="hgrad" type="bool" gui-text="Use density gradient">false</param>
         </page>
         <page name="Chips" gui-text="Chips">
             <param name="conp" type="bool" gui-text="Enable chips">true</param>
-            <param name="csize" type="float" max="100.0" min="-100.0" gui-text="Size of chips">1.0</param>
-            <param name="cgrow" type="float" max="100.0" min="-100.0" gui-text="Grow chips with distance">0.0</param>
-            <param name="cnum" type="float" max="100.0" gui-text="Number of chips">1.0</param>
+            <param name="csize" type="float" max="100.0" min="-100.0" precision="3" gui-text="Size of chips">1.000</param>
+            <param name="cgrow" type="float" max="100.0" min="-100.0" precision="3" gui-text="Grow chips with distance">0.000</param>
+            <param name="cnum" type="int" max="100.0" gui-text="Number of chips">10</param>
             <param name="cgrad" type="bool" gui-text="Use density gradient">false</param>
         </page>
         <page name="Specks" gui-text="Specks">
             <param name="sonp" type="bool" gui-text="Enable specks">true</param>
-            <param name="ssize" type="float" max="100.0" min="-100.0" gui-text="Size of specks">1.0</param>
-            <param name="sgrow" type="float" max="100.0" min="-100.0" gui-text="Grow specks with distance">0.0</param>
-            <param name="snum" type="float" max="100.0" gui-text="Number of specks">10.0</param>
+            <param name="ssize" type="float" max="100.0" min="-100.0" precision="3" gui-text="Size of specks">1.000</param>
+            <param name="sgrow" type="float" max="100.0" min="-100.0" precision="3" gui-text="Grow specks with distance">0.000</param>
+            <param name="snum" type="int" max="100.0" gui-text="Number of specks">10</param>
             <param name="sgrad" type="bool" gui-text="Use density gradient">false</param>
         </page>
     </param>
