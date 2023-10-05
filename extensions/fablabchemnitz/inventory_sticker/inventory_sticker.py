@@ -36,6 +36,7 @@ from inkex.command import inkscape
 import re
 import subprocess
 from subprocess import Popen, PIPE
+from tkinter import Tk, font
 
 INVALID_BIT = 2
 
@@ -374,6 +375,16 @@ class InventorySticker(inkex.Effect):
         pars.add_argument("--print_device", default="04f9:2044")     
         
     def effect(self):
+        globalFont = "Miso"
+        misoAvailable = False
+        root = Tk()
+        for f in font.families():
+            if f.lower() == globalFont.lower():
+                misoAvailable = True
+                break
+        if misoAvailable is False:
+            inkex.errormsg("Warning: " + globalFont + " Font could not be found. Did you properly install the font? Please note: Stickers will look malformed!")
+        
         # Adjust the document view for the desired sticker size
         root = self.svg.getElement("//svg:svg")
 
@@ -484,7 +495,7 @@ class InventorySticker(inkex.Effect):
                                 "text-anchor": "left", 
                                 "vertical-align" : "bottom",
                                 #style: inline-size required for text wrapping inside box; letter spacing is required to remove the additional whitespaces. The letter spacing depends to the selected font family (Miso)
-                                "style": str(inkex.Style({"fill": "#000000", "writing-mode": "horizontal-tb", "inline-size": str(inline_size) + "px", "stroke": "none", "font-family": "Miso", "font-weight": "bold", "letter-spacing": "-3.66px"})) 
+                                "style": str(inkex.Style({"fill": "#000000", "writing-mode": "horizontal-tb", "inline-size": str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "bold", "letter-spacing": "-3.66px"})) 
                             }
                         )
                         objectName.set("id", "objectName_Id" + sticker_id)
@@ -503,7 +514,7 @@ class InventorySticker(inkex.Effect):
                                 "text-align" : "left", 
                                 "text-anchor": "left", 
                                 "vertical-align" : "bottom",
-                                "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": "Miso", "font-weight": "bold"})) #inline-size required for text wrapping
+                                "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "bold"})) #inline-size required for text wrapping
                             }
                         )
                         objectId.set("id", "objectId_Id" + sticker_id)
@@ -521,7 +532,7 @@ class InventorySticker(inkex.Effect):
                                 "text-align" : "right", 
                                 "text-anchor": "right", 
                                 "vertical-align" : "bottom",
-                                "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": "Miso", "font-weight": "300"})) #inline-size required for text wrapping
+                                "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "300"})) #inline-size required for text wrapping
                             }
                         )
                         owner.set("id", "owner_Id" + sticker_id)
@@ -539,7 +550,7 @@ class InventorySticker(inkex.Effect):
                                 "text-align" : "right", 
                                 "text-anchor": "right", 
                                 "vertical-align" : "bottom",
-                                "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": "Miso", "font-weight": "bold"})) #inline-size required for text wrapping
+                                "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "bold"})) #inline-size required for text wrapping
                             }
                         )
                         levelText.set("id", "level_Id" + sticker_id)
