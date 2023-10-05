@@ -4,10 +4,14 @@
     <id>fablabchemnitz.de.chip_scratches</id>
     <param type="notebook" name="Nmain">
         <page name="Overall" gui-text="Overall">
-            <!-- Dummy line for index. Nmain  Current index tab "page"  -->
-            <param name="pgsizep" type="bool" gui-text="Default rectangle to page size?">true</param>
+            <param name="rtype" type="optiongroup" appearance="combo" gui-text="Size">
+                <option value="rect_from_pgsize">Rectangle from page size</option>
+                <option value="rect_from_xy">Rectangle from width and height</option>
+                <option value="rect_from_selection">Rectangle from selection</option>
+            </param>
             <param name="rx" type="int" max="10000" gui-text="Width">1000</param>
             <param name="ry" type="int" max="10000" gui-text="Height">1000</param>
+            <separator/>
             <param name="mainSize" type="float" max="100.0" precision="3" gui-text="Size of objects (scale factor)">1.000</param>
             <param name="mainNum" type="int" max="5000" gui-text="Number of objects (acts as multiplicator)">1</param>
             <param name="allInOneGroup" type="bool" gui-text="Put all items into one group">true</param>

@@ -2,6 +2,7 @@
 
 import math
 import inkex
+from inkex import Rectangle
 import random
 from lxml import etree
 
@@ -82,7 +83,7 @@ randomly and scattered randomly across the page. Controls
 for number and size, as well as some specific to each type.
     """
     def add_arguments(self, pars):
-        pars.add_argument("--pgsizep", type=inkex.Boolean, default=True, help="Default rectangle to page size?")
+        pars.add_argument("--rtype", default="rect_from_pgsize", help="Default rectangle to page size?")
         pars.add_argument("--rx", type=int, default=1000, help="Width")
         pars.add_argument("--ry", type=int, default=1000, help="Height")
         pars.add_argument("--mainSize", type= float, default=1.0, help="Size of objects")
@@ -108,14 +109,7 @@ for number and size, as well as some specific to each type.
         pars.add_argument("--sgrad", type=inkex.Boolean, default=False, help="Use density gradient")
         pars.add_argument("--Nmain", "--Overall")
 		
-    def effect(self):
-        # Get access to main SVG document element and get its dimensions.
-        if self.options.pgsizep:
-            rx = self.svg.unittouu(self.svg.get('width'))
-            ry = self.svg.unittouu(self.svg.attrib['height'])
-        else:
-            rx = self.options.rx
-            ry = self.options.ry
+    def effect(self):       
         parent = self.document.getroot()
         aiog = self.options.allInOneGroup
         uniqId = self.svg.get_unique_id('chipscratches-')
@@ -124,9 +118,73 @@ for number and size, as well as some specific to each type.
         if aiog is True:
             group = parent.add(inkex.Group(id=uniqId))
 
-#Create scratches
-
-        pdic = {
+        x=0 #offset x
+        y=0 #ffset y
+        if self.options.rtype == "rect_from_pgsize":
+            rx = self.svg.unittouu(self.svg.attrib['width'])
+            ry = self.svg.unittouu(self.svg.attrib['height'])
+        elif self.options.rtype == "rect_from_xy":
+            rx = self.options.rx
+            ry = self.options.ry
+        elif self.options.rtype == "rect_from_selection":
+            if self.svg.selected:
+              for element in self.svg.selection.filter(Rectangle):
+                bbox = element.bounding_box()
+                rx = bbox.width
+                ry = bbox.height
+                x = bbox.left
+                y = bbox.top
+                pdic_scratches = {
+                    'x' :   x,
+                    'y' :   y,
+                    'rx' :   rx,
+                    'ry' :   ry,
+                    'size' : self.options.mainSize * self.options.hsize,
+                    'enable' : self.options.honp,
+                    'num' :  self.options.mainNum * self.options.hnum,
+                    'grow' : self.options.hgrow,
+                    'radial' : self.options.hrad,
+                    'ang' : self.options.hang,
+                    'curve' : self.options.hcurve,
+                    'grad' : self.options.hgrad,
+                    }
+                pdic_chips = {
+                    'x' :   x,
+                    'y' :   y,
+                    'rx' :   rx,
+                    'ry' :   ry,
+                    'size' : self.options.mainSize * self.options.csize,
+                    'enable' : self.options.conp,
+                    'num' :  self.options.mainNum * self.options.cnum,
+                    'grow' : self.options.cgrow,
+                    'radial' : False,
+                    'ang' : False,
+                    'curve' : False,
+                    'grad' : self.options.cgrad,
+                    }
+                pdic_specks = {
+                    'x' :   x,
+                    'y' :   y,
+                    'rx' :   rx,
+                    'ry' :   ry,
+                    'size' : self.options.mainSize * self.options.ssize,
+                    'enable' : self.options.sonp,
+                    'num' :  self.options.mainNum * self.options.snum,
+                    'grow' : self.options.sgrow,
+                    'radial' : False,
+                    'ang' : False,
+                    'curve' : False,
+                    'grad' : self.options.sgrad,
+                    }
+                draw(group if aiog is True else parent.add(inkex.Group(id='scratches-' + scId)), scratches, pdic_scratches)
+                draw(group if aiog is True else parent.add(inkex.Group(id='chips-' + scId)), chips, pdic_chips)
+                draw(group if aiog is True else parent.add(inkex.Group(id='specks-' + scId)), specks, pdic_specks)
+            else:
+              inkex.utils.debug("No rectangle(s) have been selected.")
+            
+        pdic_scratches = {
+            'x' :   x,
+            'y' :   y,
             'rx' :   rx,
             'ry' :   ry,
             'size' : self.options.mainSize * self.options.hsize,
@@ -138,13 +196,9 @@ for number and size, as well as some specific to each type.
             'curve' : self.options.hcurve,
             'grad' : self.options.hgrad,
             }
-        
-        draw(group if aiog is True else parent.add(inkex.Group(id='scratches-' + scId)), scratches, pdic)
-
-#Create chips
-
-
-        pdic = {
+        pdic_chips = {
+            'x' :   x,
+            'y' :   y,
             'rx' :   rx,
             'ry' :   ry,
             'size' : self.options.mainSize * self.options.csize,
@@ -156,12 +210,9 @@ for number and size, as well as some specific to each type.
             'curve' : False,
             'grad' : self.options.cgrad,
             }
-        draw(group if aiog is True else parent.add(inkex.Group(id='chips-' + scId)), chips, pdic)
-
-#Create specks
-
-
-        pdic = {
+        pdic_specks = {
+            'x' :   x,
+            'y' :   y,
             'rx' :   rx,
             'ry' :   ry,
             'size' : self.options.mainSize * self.options.ssize,
@@ -173,7 +224,12 @@ for number and size, as well as some specific to each type.
             'curve' : False,
             'grad' : self.options.sgrad,
             }
-        draw(group if aiog is True else parent.add(inkex.Group(id='specks-' + scId)), specks, pdic)
+        draw(group if aiog is True else parent.add(inkex.Group(id='scratches-' + scId)), scratches, pdic_scratches)
+        draw(group if aiog is True else parent.add(inkex.Group(id='chips-' + scId)), chips, pdic_chips)
+        draw(group if aiog is True else parent.add(inkex.Group(id='specks-' + scId)), specks, pdic_specks)
+
+def createDict():
+    return
 
 def draw(group, obj, pdic) :
     if not pdic['enable'] :
@@ -183,7 +239,8 @@ def draw(group, obj, pdic) :
         f = lambda x: math.sqrt(x)
     else:
         f = lambda x: x
-
+    x = pdic['x']
+    y = pdic['y']
     rx = pdic['rx']
     ry = pdic['ry']
     fmstyle = str(inkex.Style({"fill" : "#000000"}))
@@ -193,8 +250,10 @@ def draw(group, obj, pdic) :
     #Curves 90 going from the center to the edge (long dim.) if parm = 1.0
     curve = pdic['curve'] * 0.5 * math.pi / mrmax
 
-    ctrs = [(rx * f(random.random()) , ry * random.random())
-            for i in range(pdic['num'])]
+    ctrs = [(
+                x + rx * f(random.random()) , 
+                y + ry * f(random.random())
+            ) for i in range(pdic['num'])]
     zp = 2 + 3 * int(random.random()*len(obj) / 3 )
     for ctr in ctrs :
         path = etree.Element(inkex.addNS('path','svg'))
