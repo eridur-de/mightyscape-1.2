@@ -180,6 +180,7 @@ for number and size, as well as some specific to each type.
                 draw(group if aiog is True else parent.add(inkex.Group(id='specks-' + scId)), specks, pdic_specks)
             else:
               inkex.utils.debug("No rectangle(s) have been selected.")
+              exit(1)
             
         pdic_scratches = {
             'x' :   x,
