@@ -112,11 +112,6 @@ for number and size, as well as some specific to each type.
     def effect(self):       
         parent = self.document.getroot()
         aiog = self.options.allInOneGroup
-        uniqId = self.svg.get_unique_id('chipscratches-')
-        scId =self.svg.get_unique_id('')
-        
-        if aiog is True:
-            group = parent.add(inkex.Group(id=uniqId))
 
         x=0 #offset x
         y=0 #ffset y
@@ -176,6 +171,10 @@ for number and size, as well as some specific to each type.
                     'curve' : False,
                     'grad' : self.options.sgrad,
                     }
+                uniqId = self.svg.get_unique_id('chipscratches-')
+                scId =self.svg.get_unique_id('')
+                if aiog is True:
+                    group = parent.add(inkex.Group(id=uniqId))
                 draw(group if aiog is True else parent.add(inkex.Group(id='scratches-' + scId)), scratches, pdic_scratches)
                 draw(group if aiog is True else parent.add(inkex.Group(id='chips-' + scId)), chips, pdic_chips)
                 draw(group if aiog is True else parent.add(inkex.Group(id='specks-' + scId)), specks, pdic_specks)
@@ -224,6 +223,10 @@ for number and size, as well as some specific to each type.
             'curve' : False,
             'grad' : self.options.sgrad,
             }
+        uniqId = self.svg.get_unique_id('chipscratches-')
+        scId =self.svg.get_unique_id('')
+        if aiog is True:
+            group = parent.add(inkex.Group(id=uniqId))
         draw(group if aiog is True else parent.add(inkex.Group(id='scratches-' + scId)), scratches, pdic_scratches)
         draw(group if aiog is True else parent.add(inkex.Group(id='chips-' + scId)), chips, pdic_chips)
         draw(group if aiog is True else parent.add(inkex.Group(id='specks-' + scId)), specks, pdic_specks)
