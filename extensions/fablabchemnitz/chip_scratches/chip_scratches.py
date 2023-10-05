@@ -87,7 +87,8 @@ for number and size, as well as some specific to each type.
         pars.add_argument("--ry", type=int, default=1000, help="Height")
         pars.add_argument("--mainSize", type= float, default=1.0, help="Size of objects")
         pars.add_argument("--mainNum", type=int, default=200, help="Number of objects")
-        pars.add_argument("--honp", type=inkex.Boolean, help="Enable scratches")
+        pars.add_argument("--allInOneGroup", type=inkex.Boolean, default=False, help="Put all items into one group")
+        pars.add_argument("--honp", type=inkex.Boolean, default=True, help="Enable scratches")
         pars.add_argument("--hsize", type=float, default=2.0, help="Size of scratches")
         pars.add_argument("--hgrow", type=float, default=0.0, help="Grow scratches with distance")
         pars.add_argument("--hnum", type= int, default=10, help="Number of scratches")
@@ -116,6 +117,12 @@ for number and size, as well as some specific to each type.
             rx = self.options.rx
             ry = self.options.ry
         parent = self.document.getroot()
+        aiog = self.options.allInOneGroup
+        uniqId = self.svg.get_unique_id('chipscratches-')
+        scId =self.svg.get_unique_id('')
+        
+        if aiog is True:
+            group = parent.add(inkex.Group(id=uniqId))
 
 #Create scratches
 
@@ -131,7 +138,8 @@ for number and size, as well as some specific to each type.
             'curve' : self.options.hcurve,
             'grad' : self.options.hgrad,
             }
-        draw( scratches, parent, pdic)
+        
+        draw(group if aiog is True else parent.add(inkex.Group(id='scratches-' + scId)), scratches, pdic)
 
 #Create chips
 
@@ -148,7 +156,7 @@ for number and size, as well as some specific to each type.
             'curve' : False,
             'grad' : self.options.cgrad,
             }
-        draw( chips, parent, pdic)
+        draw(group if aiog is True else parent.add(inkex.Group(id='chips-' + scId)), chips, pdic)
 
 #Create specks
 
@@ -165,17 +173,15 @@ for number and size, as well as some specific to each type.
             'curve' : False,
             'grad' : self.options.sgrad,
             }
-        draw( specks, parent, pdic)
+        draw(group if aiog is True else parent.add(inkex.Group(id='specks-' + scId)), specks, pdic)
 
-def draw( obj, parent, pdic) :
+def draw(group, obj, pdic) :
     if not pdic['enable'] :
         return
 
-    group = etree.SubElement(parent, 'g')
-
     if pdic['grad'] :
         f = lambda x: math.sqrt(x)
-    else :
+    else:
         f = lambda x: x
 
     rx = pdic['rx']
