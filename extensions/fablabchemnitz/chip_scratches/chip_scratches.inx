@@ -14,6 +14,7 @@
             <separator/>
             <param name="mainSize" type="float" max="100.0" precision="3" gui-text="Size of objects (scale factor)">1.000</param>
             <param name="mainNum" type="int" max="5000" gui-text="Number of objects (acts as multiplicator)">1</param>
+            <param name="randomize" type="bool" gui-text="Randomize number of objects">true</param>
             <param name="allInOneGroup" type="bool" gui-text="Put all items into one group">true</param>
         </page>
         <page name="Scratches" gui-text="Scratches">

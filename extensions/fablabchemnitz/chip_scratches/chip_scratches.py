@@ -107,6 +107,7 @@ for number and size, as well as some specific to each type.
         pars.add_argument("--sgrow", type= float, default=0.0, help="Grow specks with distance")
         pars.add_argument("--snum", type= int, default=10, help="Number of specks")
         pars.add_argument("--sgrad", type=inkex.Boolean, default=False, help="Use density gradient")
+        pars.add_argument("--randomize", type=inkex.Boolean, default=False, help="Randomize number of objects")
         pars.add_argument("--Nmain", "--Overall")
 		
     def effect(self):       
@@ -142,6 +143,7 @@ for number and size, as well as some specific to each type.
                     'ang' : self.options.hang,
                     'curve' : self.options.hcurve,
                     'grad' : self.options.hgrad,
+                    'randomize': self.options.randomize,
                     }
                 pdic_chips = {
                     'x' :   x,
@@ -156,6 +158,7 @@ for number and size, as well as some specific to each type.
                     'ang' : False,
                     'curve' : False,
                     'grad' : self.options.cgrad,
+                    'randomize': self.options.randomize,
                     }
                 pdic_specks = {
                     'x' :   x,
@@ -170,6 +173,7 @@ for number and size, as well as some specific to each type.
                     'ang' : False,
                     'curve' : False,
                     'grad' : self.options.sgrad,
+                    'randomize': self.options.randomize,
                     }
                 uniqId = self.svg.get_unique_id('chipscratches-')
                 scId =self.svg.get_unique_id('')
@@ -182,55 +186,59 @@ for number and size, as well as some specific to each type.
               inkex.utils.debug("No rectangle(s) have been selected.")
               exit(1)
             
-        pdic_scratches = {
-            'x' :   x,
-            'y' :   y,
-            'rx' :   rx,
-            'ry' :   ry,
-            'size' : self.options.mainSize * self.options.hsize,
-            'enable' : self.options.honp,
-            'num' :  self.options.mainNum * self.options.hnum,
-            'grow' : self.options.hgrow,
-            'radial' : self.options.hrad,
-            'ang' : self.options.hang,
-            'curve' : self.options.hcurve,
-            'grad' : self.options.hgrad,
-            }
-        pdic_chips = {
-            'x' :   x,
-            'y' :   y,
-            'rx' :   rx,
-            'ry' :   ry,
-            'size' : self.options.mainSize * self.options.csize,
-            'enable' : self.options.conp,
-            'num' :  self.options.mainNum * self.options.cnum,
-            'grow' : self.options.cgrow,
-            'radial' : False,
-            'ang' : False,
-            'curve' : False,
-            'grad' : self.options.cgrad,
-            }
-        pdic_specks = {
-            'x' :   x,
-            'y' :   y,
-            'rx' :   rx,
-            'ry' :   ry,
-            'size' : self.options.mainSize * self.options.ssize,
-            'enable' : self.options.sonp,
-            'num' :  self.options.mainNum * self.options.snum,
-            'grow' : self.options.sgrow,
-            'radial' : False,
-            'ang' : False,
-            'curve' : False,
-            'grad' : self.options.sgrad,
-            }
-        uniqId = self.svg.get_unique_id('chipscratches-')
-        scId =self.svg.get_unique_id('')
-        if aiog is True:
-            group = parent.add(inkex.Group(id=uniqId))
-        draw(group if aiog is True else parent.add(inkex.Group(id='scratches-' + scId)), scratches, pdic_scratches)
-        draw(group if aiog is True else parent.add(inkex.Group(id='chips-' + scId)), chips, pdic_chips)
-        draw(group if aiog is True else parent.add(inkex.Group(id='specks-' + scId)), specks, pdic_specks)
+        if aiog is False: #otherwise we have a lot of duplicates!
+            pdic_scratches = {
+                'x' :   x,
+                'y' :   y,
+                'rx' :   rx,
+                'ry' :   ry,
+                'size' : self.options.mainSize * self.options.hsize,
+                'enable' : self.options.honp,
+                'num' :  self.options.mainNum * self.options.hnum,
+                'grow' : self.options.hgrow,
+                'radial' : self.options.hrad,
+                'ang' : self.options.hang,
+                'curve' : self.options.hcurve,
+                'grad' : self.options.hgrad,
+                'randomize': self.options.randomize,
+                }
+            pdic_chips = {
+                'x' :   x,
+                'y' :   y,
+                'rx' :   rx,
+                'ry' :   ry,
+                'size' : self.options.mainSize * self.options.csize,
+                'enable' : self.options.conp,
+                'num' :  self.options.mainNum * self.options.cnum,
+                'grow' : self.options.cgrow,
+                'radial' : False,
+                'ang' : False,
+                'curve' : False,
+                'grad' : self.options.cgrad,
+                'randomize': self.options.randomize,
+                }
+            pdic_specks = {
+                'x' :   x,
+                'y' :   y,
+                'rx' :   rx,
+                'ry' :   ry,
+                'size' : self.options.mainSize * self.options.ssize,
+                'enable' : self.options.sonp,
+                'num' :  self.options.mainNum * self.options.snum,
+                'grow' : self.options.sgrow,
+                'radial' : False,
+                'ang' : False,
+                'curve' : False,
+                'grad' : self.options.sgrad,
+                'randomize': self.options.randomize,
+                }
+            uniqId = self.svg.get_unique_id('chipscratches-')
+            scId =self.svg.get_unique_id('')
+            if aiog is True:
+                group = parent.add(inkex.Group(id=uniqId))
+            draw(group if aiog is True else parent.add(inkex.Group(id='scratches-' + scId)), scratches, pdic_scratches)
+            draw(group if aiog is True else parent.add(inkex.Group(id='chips-' + scId)), chips, pdic_chips)
+            draw(group if aiog is True else parent.add(inkex.Group(id='specks-' + scId)), specks, pdic_specks)
 
 def createDict():
     return
@@ -253,11 +261,14 @@ def draw(group, obj, pdic) :
     mrmax = mrx if mrx > mry else mry
     #Curves 90 going from the center to the edge (long dim.) if parm = 1.0
     curve = pdic['curve'] * 0.5 * math.pi / mrmax
-
+    if pdic['randomize'] is True:
+        cnt = (random.randint(0, int(pdic['num'])))
+    else:
+        cnt = pdic['num']
     ctrs = [(
                 x + rx * f(random.random()) , 
                 y + ry * f(random.random())
-            ) for i in range(pdic['num'])]
+            ) for i in range(cnt)]
     zp = 2 + 3 * int(random.random()*len(obj) / 3 )
     for ctr in ctrs :
         path = etree.Element(inkex.addNS('path','svg'))
