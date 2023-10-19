@@ -28,13 +28,10 @@ class InsertPaperTemplate(inkex.EffectExtension):
 	
 	def add_arguments(self, pars):
 		pars.add_argument('-p', '--papertype')
-		pars.add_argument('-s', '--show_type')
-
-		### colour ###
-		self.StrokeWidthMM = 0.25
-		self.FontSize = "11px"
+		pars.add_argument('-s', '--show_type', type=inkex.Boolean, default=True)
 
 	def effect(self):
+
 		self.Group = etree.SubElement(self.svg.get_current_layer(), inkex.addNS('g','svg'), {} )
 
 		papertypes = {}
@@ -65,15 +62,15 @@ class InsertPaperTemplate(inkex.EffectExtension):
 	def CreateTemplate(self, label, width, height, colour):
 		x = 0
 		y = 0
-		self._CreateRectangleInMillimetres(width-self.StrokeWidthMM, height-self.StrokeWidthMM, x, y, colour)
-		if self.options.show_type == "true":
+		self._CreateRectangleInMillimetres(width, height, x, y, colour)
+		if self.options.show_type is True:
 			self._CreateText(label, x + width/2 , y + height/2)
 
 	def _CreateText(self, labelText, x, y):
 		style = {'stroke': '#000000',
-			'stroke-width': self.MMtoUU(self.StrokeWidthMM),
+			'stroke-width': self.MMtoUU(0.25),
 			'fill' : '#000000',
-			'font-size' : self.FontSize,
+			'font-size' : "11px",
 			'text-align' : 'center',
 			'text-anchor' : 'middle'
 			}
@@ -86,7 +83,7 @@ class InsertPaperTemplate(inkex.EffectExtension):
 		self.Group.append(text)
 
 	def _CreateRectangleInMillimetres(self, width, height, x, y, color):
-		style = {'stroke': '#000000', 'stroke-width': self.MMtoUU(self.StrokeWidthMM), 'fill' : color}
+		style = {'stroke': '#000000', 'stroke-width': self.MMtoUU(0.25), 'fill' : color}
 		attribs = {'style': str(inkex.Style(style)), 'height': self.MMtoUU(height), 'width': self.MMtoUU(width), 'x': self.MMtoUU(x), 'y': self.MMtoUU(y)}
 		etree.SubElement(self.Group, inkex.addNS('rect','svg'), attribs )
 
@@ -94,9 +91,7 @@ class InsertPaperTemplate(inkex.EffectExtension):
 		if hasattr(self.svg, "unittouu"):
 			return str(self.svg.unittouu("{0}mm".format(mmval)))
 		else:
-			MM_TO_PIXELS = 1
-
-			return str(MM_TO_PIXELS * mmval)
+			return str(mmval)
 
 if __name__ == '__main__':
 	InsertPaperTemplate().run()
