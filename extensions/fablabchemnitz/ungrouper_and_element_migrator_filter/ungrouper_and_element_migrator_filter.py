@@ -73,6 +73,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         pars.add_argument("--pattern",        type=inkex.Boolean, default=True)
         pars.add_argument("--rdfRDF",         type=inkex.Boolean, default=True)
         pars.add_argument("--ccWork",         type=inkex.Boolean, default=True)
+        pars.add_argument("--page",           type=inkex.Boolean, default=True)
 
     
     def effect(self):
@@ -110,6 +111,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         namespace.append("{http://www.w3.org/2000/svg}flowPara")                      if self.options.flowPara       else ""
         namespace.append("{http://www.w3.org/2000/svg}marker")                        if self.options.marker         else ""
         namespace.append("{http://www.w3.org/2000/svg}pattern")                       if self.options.pattern        else ""
+        namespace.append("{http://www.inkscape.org/namespaces/inkscape}page")         if self.options.page           else ""
         namespace.append("{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}guide") if self.options.guide          else ""
         namespace.append("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF")          if self.options.rdfRDF         else ""
         namespace.append("{http://creativecommons.org/ns#}Work")                      if self.options.ccWork         else ""

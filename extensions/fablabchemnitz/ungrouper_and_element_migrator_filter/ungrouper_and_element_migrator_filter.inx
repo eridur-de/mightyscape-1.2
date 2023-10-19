@@ -50,6 +50,7 @@
         					<param name="mask" type="bool" gui-text="mask">true</param>
         					<param name="marker" type="bool" gui-text="marker">true</param>
                             <param name="metadata" type="bool" gui-text="metadata">true</param>
+                            <param name="page" type="bool" gui-text="inkscape:page">true</param>
                         </vbox>
                     <spacer/>
                         <vbox>
