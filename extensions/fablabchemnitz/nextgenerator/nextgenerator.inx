@@ -8,7 +8,7 @@
             <param gui-text="CSV file:" gui-description="A file with comma-separated values, one line per exported file. The first line contains the column names. Put quotation marks around your variables if they contain a comma." name="csv_file" type="path" mode="file" filetypes="csv">/path/to/file.csv</param>
             <spacer />
             <label>Non-text values to replace (see Help tab):</label>
-            <param name="extra-vars" type="string" gui-text="⁣" />
+            <param name="extra-vars" type="string" gui-text="&#8291;"></param>
             <param gui-text="Number of sets in the template:" gui-description="How many datasets fit into one template file - e.g. if you have an A4 page with 8 visitor badges for 8 different persons which use the same variable names, choose '8'. See 'Help' tab for more info." name="num_sets" type="int" min="1" max="10000">1</param>
             <spacer />
             <separator />
@@ -23,7 +23,11 @@
             </param>
             <param gui-text="DPI (for PNG and filters):" gui-description="The resolution for your exported raster images" name="dpi" type="int" min="1" max="10000">300</param>
             <param gui-text="File name pattern:" gui-description="The pattern for the names of the generated files. If 'Number of sets' is 1, it should contain at least one unique column variable (in the form of '%VAR_my_variable_name%'), or a unique combination of column variables, so new files won't overwrite those that have already been generated. Do not include the file extension, it will be added automatically. If 'Number of sets' is greater than 1, use any name you like. The exported files will be numbered automatically." name="file_pattern" type="string">%VAR_my_variable_name%</param>
+            <param gui-text="Merge output PDF files into one PDF file" gui-description="When outputting to PDF format, merge the resulting files into a single, multi-page PDF file. Requires ghostscript (https://ghostscript.com) to be installed."
+               name="merge_pdf" type="bool">false</param>
             <param gui-text="Save in:" gui-description="The name of the folder where the generated images should be saved" name="output_folder" type="path" mode="folders">/tmp</param>
+            <param gui-text="Limit to first output file" gui-description="This is for testing purpose only. Savely check the output before creating hundreds of files."
+               name="limit_output" type="bool">false</param>
         </page>
         <page name="help" gui-text="Help">
             <param name="helptabs" type="notebook">
@@ -47,7 +51,7 @@ Also make sure to use a variable only exactly once per set. If you do not adhere
         </page>
         <page name="about" gui-text="About">
             <label appearance="header">NextGenerator</label>
-            <label indent="1">Version 1.1.1</label>
+            <label indent="1">Version 1.6</label>
             <spacer />
             <label xml:space="preserve">An Inkscape extension to automatically replace values (text, attribute values) in an SVG file and to then export the result to various file formats. This is useful e.g. for generating images for name badges and other similar items.
 
@@ -56,6 +60,7 @@ This extension is a Python rewrite of the Generator bash script extension by Aur
     </param>
     <effect needs-live-preview="false">
         <object-type>all</object-type>
+        <menu-tip>Automatically replace values and export the result.</menu-tip>
         <effects-menu>
             <submenu name="FabLab Chemnitz">
                 <submenu name="Import/Export/Transfer" />
