@@ -88,6 +88,7 @@ class FilterByLengthArea(inkex.EffectExtension):
                 subPaths = subPaths[::-1]
                     
             for subpath in subPaths:
+                inkex.utils.debug(subpath)
                 #self.msg(subpath)
                 replacedelement = copy.copy(element)
                 oldId = replacedelement.get('id')
@@ -129,16 +130,27 @@ class FilterByLengthArea(inkex.EffectExtension):
         elements = []
         if len(self.svg.selected) > 0:
             for element in self.svg.selection.values():
-                elements.extend(self.breakContours(element, None))
+                if self.options.breakapart is True:
+                    elements.append(self.breakContours(element, None))
+                else:
+                    elements.append(element)
         else:
             data = self.document.xpath("//svg:path", namespaces=inkex.NSS)
             for element in data:
-                elements.extend(self.breakContours(element, None))
-
+                if self.options.breakapart is True:
+                    elements.append(self.breakContours(element, None))
+                else:
+                    elements.append(element)
+        
+        if len(elements) == 0:
+            inkex.utils.debug("No paths to process...")
+            exit(1)
+            
         if so.debug is True: 
             inkex.utils.debug("Collecting svg:path elements ...")
+
+        for element in elements:
             
-        for element in elements: 
             # additional option to apply transformations. As we clear up some groups to form new layers, we might lose translations, rotations, etc.
             if so.apply_transformations is True and applyTransformationsAvailable is True:
                 apply_transformations.ApplyTransformations().recursiveFuseTransform(element) 
