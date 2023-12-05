@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Label Guides",
+    "id": "fablabchemnitz.de.label_guides",
+    "path": "label_guides",
+    "dependent_extensions": null,
+    "original_name": "Label Guides",
+    "original_id": "org.inkscape.effect.labelguides",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/johnbeard/inkscape-label-guides/blob/master/COPYING",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/label_guides",
+    "fork_url": "https://github.com/johnbeard/inkscape-label-guides",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Label+Guides",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/johnbeard",
+      "github.com/PaulSchulz",
+      "github.com/eridur-de"
+    ]
+  }
+]

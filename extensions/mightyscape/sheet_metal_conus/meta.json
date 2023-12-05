@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Sheet Metal Conus",
+    "id": "fablabchemnitz.de.sheet_metal_conus",
+    "path": "sheet_metal_conus",
+    "dependent_extensions": null,
+    "original_name": "Sheet Metal Conus",
+    "original_id": "sheet_metal_conus",
+    "license": "GNU LGPL v3",
+    "license_url": "https://github.com/quirxi/SheetMetalCone/blob/master/LICENSE.md",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/sheet_metal_conus",
+    "fork_url": "https://github.com/quirxi/SheetMetalCone",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Sheet+Metal+Conus",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/quirxi",
+      "github.com/Neon22",
+      "github.com/eridur-de"
+    ]
+  }
+]

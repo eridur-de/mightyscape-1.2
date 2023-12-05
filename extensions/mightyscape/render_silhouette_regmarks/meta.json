@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Silhouette Cameo Registration Marks",
+    "id": "fablabchemnitz.de.render_silhouette_regmarks",
+    "path": "render_silhouette_regmarks",
+    "dependent_extensions": null,
+    "original_name": "Classic",
+    "original_id": "org.inkscape.render.silhouette-regmarks",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/miLORD1337/silhouette-regmarks/blob/main/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/render_silhouette_regmarks",
+    "fork_url": "https://github.com/miLORD1337/silhouette-regmarks",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Silhouette+Cameo+Registration+Marks",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/miLORD1337",
+      "github.com/eridur-de"
+    ]
+  }
+]

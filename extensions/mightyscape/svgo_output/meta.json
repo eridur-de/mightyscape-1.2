@@ -1,0 +1,21 @@
+[
+  {
+    "name": "SVGO Output",
+    "id": "fablabchemnitz.de.svgo_output",
+    "path": "svgo_output",
+    "dependent_extensions": null,
+    "original_name": "SVGO Output",
+    "original_id": "org.inkscape.output.svgo",
+    "license": "MIT License",
+    "license_url": "https://github.com/juanfran/svgo-inkscape/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/svgo_output",
+    "fork_url": "https://github.com/juanfran/svgo-inkscape/",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55019653",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/juanfran",
+      "github.com/eridur-de"
+    ]
+  }
+]

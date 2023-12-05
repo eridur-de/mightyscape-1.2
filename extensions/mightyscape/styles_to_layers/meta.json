@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Styles To Layers",
+    "id": "fablabchemnitz.de.styles_to_layers",
+    "path": "styles_to_layers",
+    "dependent_extensions": [
+      "apply_transformations",
+      "remove_empty_groups"
+    ],
+    "original_name": "Styles To Layers",
+    "original_id": "fablabchemnitz.de.styles_to_layers",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
+    "comment": "written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/styles_to_layers",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Styles+To+Layers",
+    "inkscape_gallery_url": "https://inkscape.org/de/~MarioVoigt/%E2%98%85styles-to-layers",
+    "contributors": [
+      "github.com/eridur-de"
+    ]
+  }
+]

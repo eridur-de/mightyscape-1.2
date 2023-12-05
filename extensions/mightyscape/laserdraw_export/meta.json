@@ -1,0 +1,21 @@
+[
+  {
+    "name": "LaserDraw Export (<various>)",
+    "id": "fablabchemnitz.de.laserdraw_export.<various>",
+    "path": "laserdraw_export",
+    "dependent_extensions": null,
+    "original_name": "LaserDraw (LaserDRW) <various>",
+    "original_id": "com.scorchworks.output.<various>",
+    "license": "GNU GPL v2",
+    "license_url": "https://www.scorchworks.com/LaserDRW_extension/LaserDRW_extension-0.06.zip",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/laserdraw_export",
+    "fork_url": "https://www.scorchworks.com/LaserDRW_extension/LaserDRW_extension-0.06.zip",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55019345",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "scorchworks.com",
+      "github.com/eridur-de"
+    ]
+  }
+]

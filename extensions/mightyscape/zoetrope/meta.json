@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Zoetrope",
+    "id": "fablabchemnitz.de.zoetrope",
+    "path": "zoetrope",
+    "dependent_extensions": null,
+    "original_name": "Zoetrope",
+    "original_id": "neon22.zoetrope",
+    "license": "MIT License",
+    "license_url": "https://github.com/Neon22/inkscape-Zoetrope/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/zoetrope",
+    "fork_url": "https://github.com/Neon22/inkscape-Zoetrope",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Zoetrope",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/Neon22",
+      "github.com/eridur-de"
+    ]
+  }
+]

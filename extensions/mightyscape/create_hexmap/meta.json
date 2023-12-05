@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Create Hexmap",
+    "id": "fablabchemnitz.de.create_hexmap",
+    "path": "create_hexmap",
+    "dependent_extensions": null,
+    "original_name": "Create Hexmap",
+    "original_id": "pelles.effect.hexmap",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/lifelike/hexmapextension/blob/master/README.org",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/create_hexmap",
+    "fork_url": "https://github.com/lifelike/hexmapextension",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Create+Hexmap",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/lifelike",
+      "github.com/pmjdebruijn",
+      "github.com/UnicodingUnicorn",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Generate Palette",
+    "id": "fablabchemnitz.de.generate_palette",
+    "path": "generate_palette",
+    "dependent_extensions": null,
+    "original_name": "Generate",
+    "original_id": "hardpixel.eu.generate_palette",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/olibia/inkscape-generate-palette/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/generate_palette",
+    "fork_url": "https://github.com/olibia/inkscape-generate-palette",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Generate+Palette",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/olibia",
+      "github.com/opsaaaaa",
+      "github.com/deslomator",
+      "github.com/dclemmon",
+      "github.com/speleo3",
+      "github.com/eridur-de"
+    ]
+  }
+]

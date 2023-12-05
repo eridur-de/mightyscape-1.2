@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Inset Alignment",
+    "id": "fablabchemnitz.de.inset_alignment",
+    "path": "inset_alignment",
+    "dependent_extensions": null,
+    "original_name": "Inset Alignment",
+    "original_id": "phillips.effect.insetalignment",
+    "license": "GNU GPL v2",
+    "license_url": "https://sourceforge.net/p/razorfoss/svn/HEAD/tree/trunk/Inkscape/InsetAlignmentExtension/InsetAlignment.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/inset_alignment",
+    "fork_url": "https://sourceforge.net/p/razorfoss/svn/HEAD/tree/trunk/Inkscape/InsetAlignmentExtension/",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Inset+Alignment",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "Luke Phillips:lukerazor@hotmail.com",
+      "github.com/eridur-de"
+    ]
+  }
+]

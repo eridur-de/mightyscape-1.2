@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Box Maker - Living Hinge",
+    "id": "fablabchemnitz.de.box_maker_living_hinge",
+    "path": "box_maker_living_hinge",
+    "dependent_extensions": null,
+    "original_name": "",
+    "original_id": "eu.twot.render.livinghinge",
+    "license": "GNU GPL v3",
+    "license_url": "https://www.reidb.net/code/LICENSE.txt",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/box_maker_living_hinge",
+    "fork_url": "https://www.reidb.net/code/LivingHinge.zip",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Living+Hinge",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "Elliot White:elliot@twot.eu",
+      "reidb.net/Reid Borsuk:reid.borsuk@live.com",
+      "github.com/eridur-de"
+    ]
+  }
+]

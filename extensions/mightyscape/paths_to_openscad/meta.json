@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Paths To OpenSCAD",
+    "id": "fablabchemnitz.de.paths_to_openscad",
+    "path": "paths_to_openscad",
+    "dependent_extensions": null,
+    "original_name": "aths to OpenSCAD<",
+    "original_id": "command.extrude.openscad",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/fablabnbg/inkscape-paths2openscad/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/paths_to_openscad",
+    "fork_url": "https://github.com/fablabnbg/inkscape-paths2openscad",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Paths+to+OpenSCAD",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/l0b0",
+      "github.com/fablabnbg",
+      "github.com/eridur-de"
+    ]
+  }
+]

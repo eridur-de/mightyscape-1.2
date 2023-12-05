@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Convex Hull",
+    "id": "fablabchemnitz.de.convex_hull",
+    "path": "convex_hull",
+    "dependent_extensions": null,
+    "original_name": "ConvexHull",
+    "original_id": "org.simarilius.filter.ConvexHull",
+    "license": "MIT License",
+    "license_url": " https://github.com/flengyel/REST/blob/master/quickhull.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/convex_hull",
+    "fork_url": "https://gist.github.com/kohlerm/0337f7c64df42f21f96405b3f8e895f2",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Convex+Hull",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/flengyel",
+      "github.com/kohlerm",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,6 +1,6 @@
 # MightyScape for Inkscape 1.2
 
-<img title="" src="./extensions/fablabchemnitz/000_Mightyscape.svg" alt="" data-align="left">
+<img title="" src="./extensions/mightyscape/000_Mightyscape.svg" alt="" data-align="left">
 
 In short: A maintained extension collection for Inkscape 1.2, working on Windows and Linux. There are **237 extension folders** with **432 .inx files** inside. We also take part at https://inkscape.org/gallery/=extension/ (with single extension uploads).
 
@@ -137,7 +137,7 @@ python -m pip install --upgrade pip #upgrade pip first
 pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
 ```
 
-**Note about git handling**: You can also download the whole git project as .zip or .tar.gz bundled archive and then place it to your target directory. This way you can ignore installing git on your system yet. You can convert that directory to the git-way using the [upgrade extension](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/about_upgrade_mightyscape)) later on.
+**Note about git handling**: You can also download the whole git project as .zip or .tar.gz bundled archive and then place it to your target directory. This way you can ignore installing git on your system yet. You can convert that directory to the git-way using the [upgrade extension](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/about_upgrade_mightyscape)) later on.
  <img title="" src="./docs/images/zip-download.png" alt="" data-align="left">
 
 ## Installation way 2: with zip archives (mirrors)
@@ -186,7 +186,7 @@ You find a lot of documentation at the sub pages of https://y.stadtfabrikanten.o
 
 # Support us by a small donation
 
-<img title="" src="./extensions/fablabchemnitz/000_about_fablabchemnitz.svg" alt="" data-align="left">
+<img title="" src="./extensions/mightyscape/000_about_fablabchemnitz.svg" alt="" data-align="left">
 
 We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.
 

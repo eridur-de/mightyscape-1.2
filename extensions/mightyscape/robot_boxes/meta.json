@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Robot Boxes",
+    "id": "fablabchemnitz.de.robot_boxes",
+    "path": "robot_boxes",
+    "dependent_extensions": null,
+    "original_name": "Robot Boxes",
+    "original_id": "robotbox",
+    "license": "Apache-2.0 License",
+    "license_url": "https://github.com/sadr0b0t/box4robot/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/robot_boxes",
+    "fork_url": "https://github.com/sadr0b0t/box4robot",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Robot+Boxes",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/sadr0b0t",
+      "github.com/eridur-de"
+    ]
+  }
+]

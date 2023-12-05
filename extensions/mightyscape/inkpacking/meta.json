@@ -1,0 +1,21 @@
+[
+  {
+    "name": "InkPACKING",
+    "id": "fablabchemnitz.de.inkpacking",
+    "path": "inkpacking",
+    "dependent_extensions": null,
+    "original_name": "InkPACKING",
+    "original_id": "org.inkscape.inkpacking",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/Moini/inkpacking/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/inkpacking",
+    "fork_url": "https://github.com/Moini/inkpacking",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/InkPACKING",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/Moini",
+      "github.com/eridur-de"
+    ]
+  }
+]

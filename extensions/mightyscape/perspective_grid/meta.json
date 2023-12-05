@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Perspective Grid",
+    "id": "fablabchemnitz.de.perspective_grid",
+    "path": "perspective_grid",
+    "dependent_extensions": null,
+    "original_name": "Perspective Grid",
+    "original_id": "grid.perspective",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/cds4/inkscape-grids/blob/master/grid_perspect2.py",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/perspective_grid",
+    "fork_url": "https://github.com/cds4/inkscape-grids",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Perspective+Grid",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/cds4",
+      "github.com/eridur-de"
+    ]
+  }
+]

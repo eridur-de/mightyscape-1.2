@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Eraser Layer",
+    "id": "fablabchemnitz.de.eraser_laser",
+    "path": "eraser_laser",
+    "dependent_extensions": null,
+    "original_name": "Erase Layer",
+    "original_id": "org.inkscape.erase.layer",
+    "license": "GNU GPL v2",
+    "license_url": "https://inkscape.org/~jabiertxof/%E2%98%85eraser-layer",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/eraser_laser",
+    "fork_url": "https://inkscape.org/~jabiertxof/%E2%98%85eraser-layer",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Eraser+Layer",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/jabiertxof",
+      "github.com/eridur-de"
+    ]
+  }
+]

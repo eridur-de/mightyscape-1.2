@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Frame Animation Sequence",
+    "id": "fablabchemnitz.de.frame_animation_sequence",
+    "path": "frame_animation_sequence",
+    "dependent_extensions": null,
+    "original_name": "Animate Extension",
+    "original_id": "org.inkscape.katkitty.animate",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/yttiktak/inkscape_extension_animate/blob/main/AnimationExtension.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/frame_animation_sequence",
+    "fork_url": "https://github.com/yttiktak/inkscape_extension_animate",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Frame+Animation+Sequence",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/yttiktak",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Number Subpaths",
+    "id": "fablabchemnitz.de.number_subpaths",
+    "path": "number_subpaths",
+    "dependent_extensions": null,
+    "original_name": "Number Subpaths",
+    "original_id": "org.inkscape.filter.number_subpaths",
+    "license": "GNU GPL v2",
+    "license_url": "https://gitlab.com/EllenWasbo/inkscape-extension-number-subpaths/-/blob/master/path_number_subpaths.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/number_subpaths",
+    "fork_url": "https://gitlab.com/EllenWasbo/inkscape-extension-number-subpaths",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Number+Subpaths",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "gitlab.com/EllenWasbo",
+      "github.com/eridur-de"
+    ]
+  }
+]
