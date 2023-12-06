@@ -17,8 +17,9 @@ You can paste Bouwkamp codes with or without various formatting characters (like
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-         <submenu name="FabLab Chemnitz Shape Generators">
-            <submenu name="Puzzles/Mazes/Nests"/>
+         <submenu name="MightyScape">
+            <submenu name="Shape Generators">
+                <submenu name="Puzzles/Mazes/Nests"/>
         </submenu>
         </effects-menu>
     </effect>

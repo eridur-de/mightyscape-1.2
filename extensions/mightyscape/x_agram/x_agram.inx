@@ -23,7 +23,7 @@ The components that make up the x-agram are left as separate objects so that add
     <effect>
         <object-type>path</object-type>
         <effects-menu>
-        <submenu name="FabLab Chemnitz">
+        <submenu name="MightyScape">
             <submenu name="Shape/Pattern from existing Object(s)"/>
         </submenu>
         </effects-menu>

@@ -37,8 +37,9 @@ Latest version:  www.arc.id.au/gearDrawing.html
     <effect needs-live-preview="true">
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz Shape Generators">
-                <submenu name="Gears" />
+            <submenu name="MightyScape">
+                <submenu name="Shape Generators">
+                    <submenu name="Gears" />
             </submenu>
         </effects-menu>
     </effect>

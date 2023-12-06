@@ -29,7 +29,7 @@ Enter 0 in Space Width field if you don't want to change the existing value.</la
     <effect needs-live-preview="false">
         <object-type>path</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Text"/>
             </submenu>
         </effects-menu>

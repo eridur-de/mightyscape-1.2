@@ -11,8 +11,9 @@
     <effect needs-live-preview="true">
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz Shape Generators">
-                <submenu name="Puzzles/Mazes/Nests" />
+            <submenu name="MightyScape">
+                <submenu name="Shape Generators">
+                    <submenu name="Puzzles/Mazes/Nests" />
             </submenu>
         </effects-menu>
     </effect>

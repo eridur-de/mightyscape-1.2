@@ -98,7 +98,7 @@ notepad %appdata%\inkscape\preferences.xml
 
 ## Installation of prerequisites - additional python modules
 
-The following extra libraries are required for some of the extensions within the MightyScape package. Those are listed in our [requirements.txt](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/requirements.txt) file. We are installing them together with MightyScape in the next section.
+The following extra libraries are required for some of the extensions within the MightyScape package. Those are listed in our [requirements.txt](https://github.com/alextrical/mightyscape-1.2/raw/master/requirements.txt) file. We are installing them together with MightyScape in the next section.
 
 
 **Note:** if `openmesh` fails to install, please see [Paperfold](https://stadtfabrikanten.org/display/IFM/Paperfold) for more details about installing it.
@@ -121,7 +121,7 @@ Please also refer to the [official documentation](https://inkscape-manuals.readt
 ```
 sudo dnf install python3-devel #this might be required on Fedora
 cd  ~/.config/inkscape/extensions/
-git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
+git clone https://github.com/alextrical/mightyscape-1.2.git
 python -m pip install --upgrade pip #upgrade pip first
 pip install --upgrade --quiet --no-cache-dir -r ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
 cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 pip install --upgrade --quiet --no-cache-dir #use this in case the previous command failed (skip errors)
@@ -131,7 +131,7 @@ cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d'
 
 ```
 cd %AppData%\inkscape\extensions\
-git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
+git clone https://github.com/alextrical/mightyscape-1.2.git
 cd %AppData%\..\Local\Programs\Python\Python310\Scripts
 python -m pip install --upgrade pip #upgrade pip first
 pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt

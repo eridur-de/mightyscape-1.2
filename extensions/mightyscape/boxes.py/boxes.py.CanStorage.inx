@@ -87,8 +87,9 @@
 <effect>
     <object-type>all</object-type>
     <effects-menu>
-        <submenu name="FabLab Chemnitz Boxes.py">
-            <submenu name="Misc"/>
+        <submenu name="MightyScape">
+            <submenu name="Boxes.py">
+                <submenu name="Misc"/>
         </submenu>
     </effects-menu>
 </effect>

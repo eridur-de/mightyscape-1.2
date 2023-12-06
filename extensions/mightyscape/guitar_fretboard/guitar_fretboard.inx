@@ -11,7 +11,7 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Music"/></submenu>
         </effects-menu>
     </effect>

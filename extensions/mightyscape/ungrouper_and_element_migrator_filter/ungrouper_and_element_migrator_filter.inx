@@ -113,7 +113,7 @@
     <effect needs-live-preview="true">
         <object-type>path</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Groups and Layers"/>
             </submenu>
         </effects-menu>

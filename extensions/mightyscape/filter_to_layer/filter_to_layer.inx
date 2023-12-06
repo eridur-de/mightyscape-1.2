@@ -10,7 +10,7 @@
     <effect needs-document="true">
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Groups and Layers"/>
             </submenu>
         </effects-menu>

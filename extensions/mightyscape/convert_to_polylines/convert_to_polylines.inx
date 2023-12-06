@@ -5,7 +5,7 @@
     <effect>
       <object-type>path</object-type>
       <effects-menu>
-        <submenu name="FabLab Chemnitz">
+        <submenu name="MightyScape">
             <submenu name="Modify existing Path(s)"/>
         </submenu>
       </effects-menu>

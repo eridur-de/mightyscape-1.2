@@ -41,7 +41,7 @@ lenght. Recognizes rectangles, circle and ellipses.</label>
     <effect>
         <object-type>path</object-type>
         <effects-menu>
-			<submenu name="FabLab Chemnitz">
+			<submenu name="MightyScape">
 				<submenu name="Tracing/Images/Edge Detection"/>
 			</submenu>
         </effects-menu>

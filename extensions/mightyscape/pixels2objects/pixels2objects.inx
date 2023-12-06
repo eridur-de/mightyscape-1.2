@@ -29,7 +29,7 @@ or deterministically.</label>
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Tracing/Images/Edge Detection"/>
             </submenu>
         </effects-menu>

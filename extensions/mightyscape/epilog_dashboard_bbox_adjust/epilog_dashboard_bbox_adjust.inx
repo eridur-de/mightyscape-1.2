@@ -56,7 +56,7 @@
 	<effect needs-document="true" needs-live-preview="true">
 		<object-type>all</object-type>
 		<effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Transformations" />
             </submenu>
 		</effects-menu>

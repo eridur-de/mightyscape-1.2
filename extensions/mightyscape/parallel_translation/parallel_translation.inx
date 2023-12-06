@@ -78,7 +78,7 @@ Alignment groups shall contain an object to mark its 'rotation center'. The exte
     <effect>
         <object-type>path</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Transformations"/>
             </submenu>
         </effects-menu>

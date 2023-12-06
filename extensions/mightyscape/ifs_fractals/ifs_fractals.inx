@@ -69,7 +69,7 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
 				<submenu name="Shape/Pattern from existing Object(s)"/>
 			</submenu>
         </effects-menu>

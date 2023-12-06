@@ -5,7 +5,7 @@
     <effect needs-document="true" needs-live-preview="false">
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Paths - Cut/Intersect/Purge" />
             </submenu>
         </effects-menu>

@@ -86,7 +86,7 @@ the font list is synchronized.</label>
     <effect needs-live-preview="true" needs-document="true">
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Text"/>
             </submenu>
         </effects-menu>

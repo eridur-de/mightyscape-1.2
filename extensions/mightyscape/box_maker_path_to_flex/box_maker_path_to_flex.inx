@@ -18,8 +18,9 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz Boxes/Papercraft">
-                <submenu name="Finger-jointed/Tabbed Boxes"/>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Finger-jointed/Tabbed Boxes"/>
             </submenu>
         </effects-menu>
     </effect>

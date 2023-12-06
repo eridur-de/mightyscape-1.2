@@ -145,7 +145,7 @@ org.inkscape.color.black_and_white</label>
         <object-type>all</object-type>
         <!--object-type>path</object-type-->
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Various"/>
             </submenu>
         </effects-menu>

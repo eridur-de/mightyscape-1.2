@@ -70,8 +70,9 @@
     <effect needs-live-preview="true">
       <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz Boxes/Papercraft">
-				<submenu name="Papercraft Flatteners"/>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+    				<submenu name="Papercraft Flatteners"/>
 			</submenu>
         </effects-menu>
     </effect>

@@ -42,8 +42,9 @@
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz Shape Generators">
-                <submenu name="Scales" />
+            <submenu name="MightyScape">
+                <submenu name="Shape Generators">
+                    <submenu name="Scales" />
             </submenu>
         </effects-menu>
     </effect>

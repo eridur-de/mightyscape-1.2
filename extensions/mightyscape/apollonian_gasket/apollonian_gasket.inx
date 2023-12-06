@@ -23,8 +23,9 @@ c1,c2,c3 = curvatures of first 3 osculating circles</label>
    <effect>
       <object-type>all</object-type>
       <effects-menu>
-         <submenu name="FabLab Chemnitz Shape Generators">
-            <submenu name="Puzzles/Mazes/Nests"/>
+         <submenu name="MightyScape">
+            <submenu name="Shape Generators">
+               <submenu name="Puzzles/Mazes/Nests"/>
         </submenu>
       </effects-menu>
    </effect>

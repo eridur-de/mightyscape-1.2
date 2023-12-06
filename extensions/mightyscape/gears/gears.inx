@@ -83,8 +83,9 @@ Caution: Undercut is currently not generated. E.g. a gear at pressure angle 20 d
    <effect>
       <object-type>all</object-type>
       <effects-menu>
-            <submenu name="FabLab Chemnitz Shape Generators">
-                <submenu name="Gears" />
+            <submenu name="MightyScape">
+               <submenu name="Shape Generators">
+                  <submenu name="Gears" />
             </submenu>
       </effects-menu>
    </effect>

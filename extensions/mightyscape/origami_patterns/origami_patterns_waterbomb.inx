@@ -68,8 +68,9 @@ The Magic ball is a different design that inverts both the upper half of the fir
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz Boxes/Papercraft">
-                <submenu name="Origami Patterns"/>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Origami Patterns"/>
             </submenu>
         </effects-menu>
     </effect>

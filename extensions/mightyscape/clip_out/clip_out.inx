@@ -37,7 +37,7 @@ at least once before using ( will not work on an unsaved svg )
     <effect needs-live-preview="false">
         <object-type>path</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Import/Export/Transfer"/>
             </submenu>
         </effects-menu>

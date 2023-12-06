@@ -36,7 +36,7 @@
     <effect needs-live-preview="false">
         <object-type>path</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Animation"/>
             </submenu>
         </effects-menu>

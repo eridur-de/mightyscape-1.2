@@ -41,8 +41,9 @@
 <effect>
     <object-type>all</object-type>
     <effects-menu>
-        <submenu name="FabLab Chemnitz Boxes.py">
-            <submenu name="Unstable"/>
+        <submenu name="MightyScape">
+            <submenu name="Boxes.py">
+                <submenu name="Unstable"/>
         </submenu>
     </effects-menu>
 </effect>

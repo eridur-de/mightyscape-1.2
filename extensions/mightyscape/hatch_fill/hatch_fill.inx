@@ -36,7 +36,7 @@ The Tolerance parameter affects how precisely the hatches try to fill the input 
     <effect needs-live-preview="true">
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Shape/Pattern from existing Path(s)"/>
             </submenu>
         </effects-menu>

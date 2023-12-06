@@ -19,7 +19,7 @@ This extension requires that imagemagick is installed, more info and download at
     <effect needs-live-preview="false">
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Import/Export/Transfer"/>
             </submenu>
         </effects-menu>

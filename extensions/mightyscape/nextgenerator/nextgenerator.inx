@@ -62,7 +62,7 @@ This extension is a Python rewrite of the Generator bash script extension by Aur
         <object-type>all</object-type>
         <menu-tip>Automatically replace values and export the result.</menu-tip>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Import/Export/Transfer" />
             </submenu>
         </effects-menu>

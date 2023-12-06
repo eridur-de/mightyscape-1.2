@@ -82,8 +82,9 @@ Brazil - 2009</label>
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz Boxes/Papercraft">
-                <submenu name="Paper/Cardboard Boxes" />
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Paper/Cardboard Boxes" />
             </submenu>
         </effects-menu>
     </effect>

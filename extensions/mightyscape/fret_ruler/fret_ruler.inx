@@ -164,7 +164,7 @@ Typical ruler set: 7.25, 9.5, 10, 12, 14, 15, 16, 20
    <effect needs-live-preview="true">
         <object-type>path</object-type>
         <effects-menu>
-           <submenu name="FabLab Chemnitz">
+           <submenu name="MightyScape">
                 <submenu name="Music"/>
             </submenu>
         </effects-menu>

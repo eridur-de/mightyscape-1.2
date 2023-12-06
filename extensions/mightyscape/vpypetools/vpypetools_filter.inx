@@ -72,7 +72,7 @@
     <effect needs-live-preview="true">
         <object-type>all</object-type>
 		<effects-menu>
-         <submenu name="FabLab Chemnitz">
+         <submenu name="MightyScape">
 	         <submenu name="vpype Tools"/>
 		</submenu>
 		</effects-menu>

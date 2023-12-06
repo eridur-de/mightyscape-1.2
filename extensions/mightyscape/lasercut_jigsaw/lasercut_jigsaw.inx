@@ -68,7 +68,8 @@ Adjust Notch size and Randomization to avoid overlapping lines:
     <effect>
         <object-type>all</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz Shape Generators">
+            <submenu name="MightyScape">
+            <submenu name="Shape Generators">
                 <submenu name="Puzzles/Mazes/Nests" />
             </submenu>
         </effects-menu>

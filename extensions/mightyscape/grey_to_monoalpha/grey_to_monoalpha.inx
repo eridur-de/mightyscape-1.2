@@ -36,7 +36,7 @@
     <effect>
         <object-type>path</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Colors/Gradients/Filters"/>
             </submenu>
         </effects-menu>

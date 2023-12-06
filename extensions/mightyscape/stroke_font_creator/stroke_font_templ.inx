@@ -38,7 +38,7 @@ In Space Width field enter the width of blank space between rendered words. This
     <effect>
         <object-type>path</object-type>
         <effects-menu>
-            <submenu name="FabLab Chemnitz">
+            <submenu name="MightyScape">
                 <submenu name="Text"/>
             </submenu>
         </effects-menu>
