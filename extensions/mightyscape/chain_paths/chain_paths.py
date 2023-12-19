@@ -179,7 +179,7 @@ class ChainPaths(inkex.EffectExtension):
     for id, node in self.svg.selected.items():
       path_d = CubicSuperPath(Path(node.get('d')))
       # ATTENTION: for parsePath() it is the same, if first and last point coincide, or if the path is really closed.
-      path_closed = True if re.search("z\s*$", node.get('d')) else False
+      path_closed = True if re.search(r'z\s*$', node.get('d')) else False
       new = []
       cur_idx = -1
       for chain in path_d:
