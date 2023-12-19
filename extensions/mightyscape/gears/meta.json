@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Gears",
+    "id": "fablabchemnitz.de.gears",
+    "path": "gears",
+    "dependent_extensions": null,
+    "original_name": "Gear-dev",
+    "original_id": "com.gihub.jnweiger.inkscape-gears-dev",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/ssentinel/inkscape-gears-dev/blob/master/gears-dev.py",
+    "comment": "fork of https://github.com/jnweiger/inkscape-gears-dev",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/gears",
+    "fork_url": "https://github.com/ssentinel/inkscape-gears-dev",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Gears",
+    "inkscape_gallery_url": null,
+    "contributors": [   
+      "github.com/ssentinel",
+      "github.com/Neon22",
+      "github.com/jnweiger",
+      "github.com/eggsactly",
+      "github.com/eridur-de"
+    ]
+  }
+]

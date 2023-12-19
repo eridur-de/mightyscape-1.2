@@ -1,0 +1,21 @@
+[
+  {
+    "name": "DXF 2 Papercraft",
+    "id": "fablabchemnitz.de.dxf2papercraft",
+    "path": "dxf2papercraft",
+    "dependent_extensions": null,
+    "original_name": "DXF 2 Papercraft",
+    "original_id": "fablabchemnitz.de.dxf2papercraft",
+    "license": "GNU GPL v3",
+    "license_url": "https://sourceforge.net/projects/dxf2papercraft/files/dxf2papercraft_v0.2.tgz/download",
+    "comment": "Written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/dxf2papercraft",
+    "fork_url": "",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/DXF+2+Papercraft",
+    "inkscape_gallery_url": "https://inkscape.org/~MarioVoigt/%E2%98%85dxf2papercraft",
+    "contributors": [
+      "sourceforge.net/haenselmann",
+      "github.com/eridur-de"
+    ]
+  }
+]

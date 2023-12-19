@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Maze</name>
+    <id>fablabchemnitz.de.maze</id>
+    <param name="verti" type="int" min="2" max="1000" gui-text="Height (cells)">20</param>
+    <param name="horiz" type="int" min="2" max="1000" gui-text="Length (cells)">20</param>
+    <param name="size" type="float" max="100.0" gui-text="Cell Size">10.0</param>
+     <param name="cell_units" gui-text="Cell units" type="optiongroup" appearance="combo">
+        <option value="px">px</option>
+        <option value="pt">pt</option>
+        <option value="in">in</option>
+        <option value="cm">cm</option>
+        <option value="mm">mm</option>
+     </param>
+    <param name="width" type="float" gui-text="Line Width">1.0</param>
+    <param name="algo" type="optiongroup" appearance="combo" gui-text="Algorithm">
+        <option value="kruskal">Kruskal</option>
+        <option value="recursive_backtrack">Recursive Backtrack</option>
+        <option value="empty">Empty</option>
+        <option value="full">Full</option>
+    </param>
+    <label>This script will generate a maze according to a certain algorithm.</label>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Shape Generators">
+                    <submenu name="Puzzles/Mazes/Nests" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">maze.py</command>
+    </script>
+</inkscape-extension>

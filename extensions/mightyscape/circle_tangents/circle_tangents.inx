@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>Circle Tangents (Replaced by Snap Objects Feature)</name>
+	<id>fablabchemnitz.de.circle_tangents</id>
+	<param name="position" type="optiongroup" appearance="combo" gui-text="Outer or inner?">
+		<option value="inner">Inner</option>
+		<option value="outer">Outer</option>
+	</param>
+	<param name="selector" type="optiongroup" appearance="combo" gui-text="Which tangents?">
+		<option value="first">First</option>
+		<option value="second">Second</option>
+		<option value="both">Both</option>
+	</param>
+    <param name="use_style_from_first" type="bool" gui-text="Use style from first selected">true</param>
+	<effect>
+		<object-type>all</object-type>
+		<effects-menu>
+            <submenu name="MightyScape">
+			    <submenu name="Paths - Join/Order"/>
+			</submenu>
+		</effects-menu>
+	</effect>
+	<script>
+		<command location="inx" interpreter="python">circle_tangents.py</command>
+	</script>
+</inkscape-extension>

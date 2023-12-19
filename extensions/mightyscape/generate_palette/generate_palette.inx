@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Generate Palette</name>
+    <id>fablabchemnitz.de.generate_palette</id>
+    <label>Select a set of objects and create a custom color palette.</label>
+    <label appearance="header">Palette Properties</label>
+    <label>Palette Name</label>
+    <param name="name" type="string" gui-text=" " />
+    <vbox>
+        <param name="property" type="optiongroup" appearance="combo" gui-text="Color Property">
+            <option value="fill">Fill Color</option>
+            <option value="stroke">Stroke Color</option>
+            <option value="both">Both</option>
+        </param>
+    </vbox>
+    <label appearance="header">Options</label>
+    <param name="default" type="bool" gui-text="Include default grays">false</param>
+    <param name="replace" type="bool" gui-text="Replace existing palette">false</param>
+    <param name="sort" type="optiongroup" appearance="combo" gui-text="Sort colors">
+        <option value="selection">Selection / Z-index</option>
+        <option value="hsl">By HSL values</option>
+        <option value="rgb">By RGB values</option>
+        <option value="x_location">X Location</option>
+        <option value="y_location">Y Location</option>
+    </param>
+    <spacer />
+    <hbox>
+        <image>info.svg</image>
+        <label>Don't forget to restart Inkscape</label>
+    </hbox>
+    <effect needs-live-preview="false">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Colors/Gradients/Filters"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">generate_palette.py</command>
+    </script>
+</inkscape-extension>

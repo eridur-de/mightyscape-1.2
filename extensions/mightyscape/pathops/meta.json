@@ -1,0 +1,22 @@
+[
+  {
+    "name": "<various>",
+    "id": "fablabchemnitz.de.pathops_<various>",
+    "path": "pathops",
+    "dependent_extensions": null,
+    "original_name": "<various>",
+    "original_id": "su-v/org.inkscape.effect.path.<various>",
+    "license": "GNU GPL v2",
+    "license_url": "https://gitlab.com/moini_ink/inx-pathops/-/blob/master/COPYING",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/pathops",
+    "fork_url": "https://gitlab.com/moini_ink/inx-pathops",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/PathOps",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "gitlab.com/su-v",
+      "gitlab.com/moini_ink",
+      "github.com/eridur-de"
+    ]
+  }
+]

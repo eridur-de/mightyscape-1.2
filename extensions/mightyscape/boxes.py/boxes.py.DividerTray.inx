@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>DividerTray</name>
+<id>info.festi.boxes.py.DividerTray</id>
+<param name="generator" type="string" gui-hidden="true">dividertray</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="DividerTray">
+        <param name="sx" type="string" gui-text="sx" gui-description="sections left to right in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">50*3</param>
+        <param name="sy" type="string" gui-text="sy" gui-description="sections back to front in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">50*3</param>
+        <param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="inner height in mm (unless outside selected)">100.0</param>
+        <param name="outside" type="bool" gui-text="outside" gui-description="treat sizes as outside measurements [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#outside)">true</param>
+        <param name="notches_in_wall" type="bool" gui-text="notches_in_wall" gui-description="generate the same notches on the walls that are on the dividers">true</param>
+        <param name="left_wall" type="bool" gui-text="left_wall" gui-description="generate wall on the left side">true</param>
+        <param name="right_wall" type="bool" gui-text="right_wall" gui-description="generate wall on the right side">true</param>
+        <param name="bottom" type="bool" gui-text="bottom" gui-description="generate wall on the bottom">false</param>
+        <param name="handle" type="bool" gui-text="handle" gui-description="add handle to the bottom">false</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+            <option value="loop">loop</option>
+            <option value="corner">corner</option>
+            <option value="backarc">backarc</option>
+    </param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Finger Joints">
+        <param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
+        <param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+            <option value="rectangular">rectangular</option>
+            <option value="springs">springs</option>
+            <option value="barbs">barbs</option>
+            <option value="snap">snap</option>
+    </param>
+        <param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="space at the start and end in multiple of normal spaces">2.0</param>
+        <param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+        <param name="FingerJoint_extra_length" type="float" precision="2" max="9999" gui-text="extra_length" gui-description="extra material to grind away burn marks (multiples of thickness)">0.0</param>
+        <param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers (multiples of thickness)">2.0</param>
+        <param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out (multiples of thickness)">0.0</param>
+        <param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">2.0</param>
+        <param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
+    </page>
+    <page name="tab_3" gui-text="HandleEdge">
+        <param name="HandleEdge_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height above the wall in mm">20.0</param>
+        <param name="HandleEdge_hole_height" type="float" precision="2" max="9999" gui-text="hole_height" gui-description="height of hole(s) in percentage of maximum hole height (handle height - 2 * material thickness)">75.0</param>
+        <param name="HandleEdge_hole_width" type="string" gui-text="hole_width" gui-description="width of hole(s) in percentage of maximum hole width (width of edge - (n+1) * material thickness)">40:40</param>
+        <param name="HandleEdge_on_sides" type="bool" gui-text="on_sides" gui-description="added to side panels if checked, to front and back otherwise (only used with top_edge parameter)">true</param>
+        <param name="HandleEdge_radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="radius of corners in mm">10.0</param>
+        <param name="HandleEdge_outset" type="float" precision="2" max="9999" gui-text="outset" gui-description="extend the handle along the length of the edge (multiples of thickness)">1.0</param>
+    </page>
+    <page name="tab_4" gui-text="Divider Slots">
+        <param name="Slot_angle" type="int" max="9999" gui-text="angle" gui-description="angle at which slots are generated, in degrees. 0° is vertical.">0</param>
+        <param name="Slot_depth" type="int" max="9999" gui-text="depth" gui-description="depth of the slot in mm">20</param>
+        <param name="Slot_extra_slack" type="float" precision="2" max="9999" gui-text="extra_slack" gui-description="extra slack (in addition to thickness and kerf) to help insert dividers in mm">0.2</param>
+        <param name="Slot_radius" type="int" max="9999" gui-text="radius" gui-description="radius of the slot entrance in mm">2</param>
+    </page>
+    <page name="tab_5" gui-text="Notches on the Dividers">
+        <param name="Notch_depth" type="int" max="9999" gui-text="depth" gui-description="depth">15</param>
+        <param name="Notch_lower_radius" type="int" max="9999" gui-text="lower_radius" gui-description="lower_radius">8</param>
+        <param name="Notch_upper_radius" type="int" max="9999" gui-text="upper_radius" gui-description="upper_radius">1</param>
+    </page>
+    <page name="tab_6" gui-text="Dividers">
+        <param name="Divider_bottom_margin" type="int" max="9999" gui-text="bottom_margin" gui-description="margin between box's bottom and divider's in mm">0</param>
+        <param name="Divider_play" type="float" precision="2" max="9999" gui-text="play" gui-description="play to avoid them clamping onto the walls (in multiples of thickness)">0.05</param>
+    </page>
+    <page name="tab_7" gui-text="Example">
+        <image>./DividerTray-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/DividerTray</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="MightyScape">
+            <submenu name="Boxes.py">
+                <submenu name="Trays and Drawer Inserts"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

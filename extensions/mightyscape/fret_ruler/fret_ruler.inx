@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Fret Ruler</name>
+   <id>fablabchemnitz.de.fret_ruler</id>
+   <param name="active-tab" type="notebook">
+      <page name="ruler" gui-text="Ruler ">
+         <vbox>
+            <label>Draw a Ruler for stringed instrument Necks.</label>
+            <param name="draw_style" gui-text="Draw Style" type="optiongroup" appearance="combo">
+               <option value="ruler">Ruler</option>
+               <option value="template">Router Template</option>
+               <option value="neck">Neck</option>
+            </param>
+            <param name="method" gui-text="Calculation Method" type="optiongroup" appearance="combo">
+               <option value="12root2">12th Root of 2</option>
+               <option value="18">18</option>
+               <option value="17.817">17.817</option>
+               <option value="17.835">17.835</option>
+               <option value="scala">Scala</option>
+               <option value="Nroot2">Nth Root of 2</option>
+            </param>
+            <label>Next two, only if named method has been selected.</label>
+            <hbox>
+               <param name="nth" type="int" min="2" max="50" gui-text="(Method=Nth Root of 2): Notes in Scale:">0</param>
+               <param name="scala_filename" type="string" gui-text="(Method=Scala): Scala filename:">fj-12tet</param>
+            </hbox>
+         </vbox>
+         <label>Dimensions:</label>
+         <param name="units" gui-text="Units for following dimensions" type="optiongroup" appearance="combo">
+            <option value="in">in</option>
+            <option value="mm">mm</option>
+         </param>
+         <param name="length" type="float" min="1" max="1000.0" precision="2" gui-text="Scale Length in units (Ruler length)">25.5</param>
+         <param name="width" type="float" min="0.5" max="1000.0" precision="2" gui-text="Width (Nut) in units">1.35</param>
+         <param name="frets" type="int" min="2" max="500" gui-text="Number of frets to draw">18</param>
+         <label>Fanned:</label>
+         <param name="fanned" type="bool" gui-text="Fanned fret style (Treble and Bass scale lengths)">false</param>
+         <hbox>
+            <param name="basslength" type="float" min="1" max="1000.0" precision="2" gui-text="Bass Scale Length">25.5</param>
+            <param name="perpendicular" type="int" min="0" max="500" gui-text="Perpendicular Fret">7</param>
+         </hbox>
+         <label>Styles:</label>
+         <param name="linewidth" type="float" min="0.01" max="2.0" precision="2" gui-text="Width of lines (mm)">0.1</param>
+         <param name="notch_width" type="float" min="0.0001" max="4.0" precision="4" gui-text="(Router template) Width of Fret notches">0.125</param>
+         <hbox>
+            <param name="annotate" type="bool" gui-text="Fret numbering">true</param>
+            <param name="centerline" type="bool" gui-text="Centerline">true</param>
+         </hbox>
+      </page>
+      <page name="neck" gui-text="Neck ">
+         <label>Extra parameters to draw the Neck.</label>
+         <param name="constant_width" type="bool" gui-text="Constant width (=Nut)">false</param>
+         <param name="width_bridge" type="float" min="0.5" max="1000.0" precision="2" gui-text="OR: Width (at Bridge) in units">2.0</param>
+         <param name="show_markers" type="bool" gui-text="Show Markers">false</param>
+         <param name="markers" type="string" gui-text="Marked frets:">3,5,7,10,12,12,15</param>
+         <param name="nutcomp" type="bool" gui-text="Include Nut Compensation">false</param>
+         <param name="nutcomp_value" gui-text="Preset values" type="optiongroup" appearance="combo">
+            <option value="0.012">0.012in (0.30mm)</option>
+            <option value="0.014">0.014in (0.36mm)</option>
+            <option value="manual">Manual</option>
+         </param>
+         <param name="nutcomp_manual" type="string" gui-text="Manual nut compensation distance">0.014</param>
+      </page>
+      <page name="curvature" gui-text="Curvature ">
+         <label>Additional Neck Curvature Ruler</label>
+         <param name="show_curves" type="bool" gui-text="Show neck curvature ruler">true</param>
+         <param name="neck_radius" type="float" min="4" max="100.0" precision="2" gui-text="Radius of Neck curvature in units">9.75</param>
+         <param name="arc_length" type="float" min="1" max="100.0" precision="2" gui-text="Arc Length (units)">5</param>
+         <param name="block_mode" type="bool" gui-text="Draw as a block (vs finger)">true</param>
+         <param name="arc_height" type="float" min="0.1" max="50.0" precision="2" gui-text="Height of the Arc(units)">0.5</param>
+         <param name="string_spacing" type="float" min="0.1" max="20.0" precision="2" gui-text="String separation(for finger style) (units)">0.3</param>
+         <label xml:space="preserve">Print or Metal Lasercut as a thin radius guide,
+or export to Openscad to make a longer 3d printed neck support or sanding block.
+Sizes:
+See Help Curve Tab
+			</label>
+      </page>
+      <page name="filters" gui-text="Scala ">
+         <label>This is a helper tab. It does not contribute to drawing the Fret Ruler/Neck.</label>
+         <label>It shows you all the scala files matching the search filters below. Enter the filename on the first tab.</label>
+         <label>This search only works if you can see this tab.</label>
+         <label>There may be &gt;4000 scala files. So choose wisely.</label>
+         <param name="filter_tones" type="bool" gui-text="Filter by number of tones in a scale.">true</param>
+         <param name="scale" type="int" min="2" max="1000" gui-text="Notes in a scale:">12</param>
+         <param name="filter_label" type="bool" gui-text="Filter by word in title / internal description.">true</param>
+         <param name="keywords" type="string" gui-text="Key word:">diatonic</param>
+      </page>
+      <page name="help" gui-text="Help ">
+         <label xml:space="preserve">USE:
+Export as PDF, print in Poster mode for full scale drawing.
+Glue onto fretboard and cut - or lasercut Router template.</label>
+         <label xml:space="preserve">Methods:
+12th Root of 2 - 'preferred' method for even temperment scales.
+Note: 12th Root of 2 and the 17.817 give identical results.
+17.835 is similar (unrounded calculation) to 17.817, and has max 0.2mm difference in a 24 inch scale.
+
+Markers:
+Fret markers are located at different positions based on instrument tuning. (Double entry draws two markers) 
+E.g. for Ukulele these are common variants:
+[3,5,7,10,12,12] (17 frets),
+[3,5,7,7,10], [5,7,10], [5,7,12]
+[5,7,10,12,15] (19 frets)
+
+Nut Compensation:
+Moves the Nut forward a small amount, so that fret1 can have better intonation if Nut shape tuned per string.
+
+Scala filenames:
+Are in the scala subdirectory of inkscape extensions. More(&gt;4000) at www.huygens-fokker.org/scala
+
+Neck Curvature Ruler:
+Necks can have one radius (e.g. 7.25) at the nut and a wider radius (e.g. 12) at the body.
+This called a Conical radius (incorrectly a compound radius). It enables easier single string control at the Nut and chords nearer the body.
+			</label>
+      </page>
+      <page name="help2" gui-text="Help Lengths">
+         <label xml:space="preserve">Fretboard lengths:
+Guitar scale lengths are usually between 24" and 26".
+Bass scale lengths generally stay between 30" to 36".
+Common scale lengths:
+Banjo - 26_3/16 (665.2mm)
+Mandolin - 13_7/8 (335mm)
+Ukulele concert - 15 (381mm)
+Ukulele soprano - 13_3/4 (349.25mm)
+Ukulele tenor - 17_3/32 (434.2mm)
+Ukulele Baritone - 20_1/8 (511.2mm)
+Fender Jaguar - 24 (609.60mm)
+Fender Stratocaster/Telecaster - 25.5 (647.70mm)
+Fender Jazz Bass - 34 (863.60mm)
+Rickenbacker - 24.75 (628.65mm)
+Rickenbacker bass - 33.25 (844.55mm)
+Gibson Les Paul - 24.75 (628.65mm)
+Gibson - 24.625, 24.563, 25.3 (625.48, 623.9, 642.62mm)
+Paul Reed Smith - 25 (635mm)
+Hofner Beatle Bass - 30 (762mm)
+Martin - 24.9, 25.34 (632.5, 643.64mm)
+PRS - 25 (635mm)
+Baritone - 27.67 (702.82mm)
+Short scale bass - 30 (762mm)
+Classical guitar 25.6, 26 (650, 660mm)
+Baritone guitar 28.5, 30.2 (724, 767mm)</label>
+      </page>
+      <page name="help3" gui-text="Help Curves">
+         <label xml:space="preserve">Sizes:
+Ukulele - typically flat
+Guitars - 7.25 to 20inches (Classical is flat)
+Violins,Cellos - typically have compound radii to accomodate natural finger reach.
+
+Typical ruler set: 7.25, 9.5, 10, 12, 14, 15, 16, 20
+
+- Fender strat vintage - 7.25 (184.1mm)
+- Fender strat modern - 9.5 (241mm)
+- Gibson - 12 (305mm)
+- Danelectro - 14 (355mm)
+- Ibanez RG,S - 15.75-17 (400-430mm)
+- Ibanez Artcore, SZ - 12 (305mm)
+- PRS - 10 (254mm), 11.5 (292mm)
+- Jackson - 16 (406mm)
+- Typical electric - 9.5-10 (241-254mm)
+- Typical electric + FloydRose Bridge - 10 (254mm)
+- Martin Acoustic - 16 (406.4mm)
+- Violin - 42mm</label>
+      </page>
+   </param>
+   <effect needs-live-preview="true">
+        <object-type>path</object-type>
+        <effects-menu>
+           <submenu name="MightyScape">
+                <submenu name="Music"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">fret_ruler.py</command>
+    </script>
+</inkscape-extension>

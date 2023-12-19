@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Reload",
+    "id": "fablabchemnitz.de.reload",
+    "path": "reload",
+    "dependent_extensions": null,
+    "original_name": "Reload",
+    "original_id": "fablabchemnitz.de.reload",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
+    "comment": "Written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/reload",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Reload",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/eridur-de"
+    ]
+  }
+]

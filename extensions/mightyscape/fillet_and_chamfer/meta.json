@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Fillet And Chamfer (Replaced by LPE)",
+    "id": "fablabchemnitz.de.fillet_and_chamfer",
+    "path": "fillet_and_chamfer",
+    "dependent_extensions": null,
+    "original_name": "Fillet and Chamfer",
+    "original_id": "org.ekips.filter.filletchamfer",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/taoari/inkscape-filletandchamfer/blob/master/filletchamfer.py",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/fillet_and_chamfer",
+    "fork_url": "https://github.com/taoari/inkscape-filletandchamfer",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55019889",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/taoari",  
+      "github.com/eridur-de"
+    ]
+  }
+]

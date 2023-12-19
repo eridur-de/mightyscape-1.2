@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Incadiff",
+    "id": "fablabchemnitz.de.incadiff",
+    "path": "incadiff",
+    "dependent_extensions": null,
+    "original_name": "Incadiff",
+    "original_id": "org.incaya.incadiff",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/incaya/incadiff/blob/main/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/incadiff",
+    "fork_url": "https://github.com/incaya/incadiff",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Incadiff",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/incaya",
+      "github.com/eridur-de"
+    ]
+  }
+]

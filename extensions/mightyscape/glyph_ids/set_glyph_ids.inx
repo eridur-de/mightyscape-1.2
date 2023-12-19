@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Glyph IDs - Set</name>
+    <id>fablabchemnitz.de.glyph_ids.set_glyph_ids</id>
+    <param type="notebook" name="tab">
+        <page name="setGlyphIDs" gui-text="Glyph IDs - set">
+            <label>Id for each selected path will be set to one single character within the given string below.</label>
+            <label>The path ids are set ordered from left to right (bounding box).</label>
+            <param name="characters" type="string" gui-text="Characters:">abc</param>
+        </page>
+        <page name="help" gui-text="Information">
+        <label appearance="header">For more information</label>
+        <label appearance="url">https://gitlab.com/EllenWasbo/inkscape-extension-getsetGlyphIDs</label>
+        <label>and</label>
+        <label appearance="url">http://cutlings.wasbo.net/inkscape-extension-automate-glyph-ids/</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Text" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">set_glyph_ids.py</command>
+    </script>
+</inkscape-extension>

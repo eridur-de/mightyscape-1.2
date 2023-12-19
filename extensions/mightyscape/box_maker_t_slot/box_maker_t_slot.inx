@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Box Maker - T-Slot</name>
+    <id>fablabchemnitz.de.box_maker_t_slot</id>
+    <param name="unit" gui-text="Unit" type="optiongroup" appearance="combo">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="in">in</option>
+    </param>
+    <param name="inside" type="optiongroup" appearance="combo" gui-text="Box Dimensions">
+        <option value="1">Inside</option>
+        <option value="0">Outside</option>
+    </param>
+    <param name="length" type="float" precision="3" min="0.0" max="10000.0" gui-text="Length">80.0</param>
+    <param name="width" type="float" precision="3" min="0.0" max="10000.0" gui-text="Width">80.0</param>
+    <param name="depth" type="float" precision="3" min="0.0" max="10000.0" gui-text="Height">80.0</param>
+    <param name="tab" type="float" precision="2" min="0.0" max="10000.0" gui-text="Minimum/Prefered Tab Width">10.0</param>
+    <param name="equal" type="optiongroup" appearance="combo" gui-text="Tab Width">
+        <option value="0">Fixed</option>
+        <option value="1">Proportional</option>
+    </param>
+    <param name="thickness" type="float" precision="2" min="0.0" max="10000.0" gui-text="Material Thickness">6.0</param>
+    <param name="kerf" type="float" precision="3" min="0.0" max="10000.0" gui-text="Kerf (cut width)">0.0</param>
+    <param name="clearance" type="float" precision="3" min="0.0" max="10000.0" gui-text="Clearance">0.05</param>
+    <param name="style" gui-text="Layout/Style" type="optiongroup" appearance="combo">
+        <option value="1">Diagramatic</option>
+        <option value="2">3 piece</option>
+        <option value="3">Inline(compact)</option>
+        <option value="4">Diag Alternate Tabs</option>
+    </param>
+    <param name="spacing" type="float" precision="2" min="0.0" max="10000.0" gui-text="Space Between Parts">5.0</param>
+    <param name="screw_length" type="float" precision="2" min="0.0" max="10000.0" gui-text="Screw Length">12</param>
+    <param name="screw_diameter" type="float" precision="2" min="0.0" max="10000.0" gui-text="Screw Diameter">3</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Finger-jointed/Tabbed Boxes"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">box_maker_t_slot.py</command>
+    </script>
+</inkscape-extension>

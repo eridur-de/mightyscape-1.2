@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Rotations - Minimum Bounding Box Area</name>
+    <id>fablabchemnitz.de.rotations_minimum_bounding_box_area</id>
+    <param name="precision" type="int" min="1" max="72000" gui-text="Precision (steps):" gui-description="Default is 360">360</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Transformations" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">rotations_minimum_bounding_box_area.py</command>
+    </script>
+</inkscape-extension>

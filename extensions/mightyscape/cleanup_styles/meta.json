@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Cleanup Styles",
+    "id": "fablabchemnitz.de.cleanup_styles",
+    "path": "cleanup_styles",
+    "dependent_extensions": null,
+    "original_name": "Cleanup",
+    "original_id": "com.attoparsec.filter.cleanup",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/attoparsec/inkscape-extensions/blob/master/cleanup.py",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/cleanup_styles",
+    "fork_url": "https://github.com/attoparsec/inkscape-extensions",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Cleanup+Styles",
+    "inkscape_gallery_url": "https://inkscape.org/de/~MarioVoigt/%E2%98%85cleanup-styles",
+    "contributors": [
+      "github.com/attoparsec",
+      "github.com/eridur-de"
+    ]
+  }
+]

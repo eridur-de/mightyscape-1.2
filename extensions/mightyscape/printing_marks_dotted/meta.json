@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Printing Marks Dotted",
+    "id": "fablabchemnitz.de.printing_marks_dotted",
+    "path": "printing_marks_dotted",
+    "dependent_extensions": null,
+    "original_name": "Printing Marks Dotted",
+    "original_id": "org.inkscape.printing.marks.dotted",
+    "license": "GNU GPL v2",
+    "license_url": "https://inkscape.org/~jabiertxof/%E2%98%85printing-marks-dotted",
+    "comment": "ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/printing_marks_dotted",
+    "fork_url": "https://inkscape.org/~jabiertxof/%E2%98%85printing-marks-dotted",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Printing+Marks+Dotted",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/jabiertxof",
+      "github.com/eridur-de"
+    ]
+  }
+]

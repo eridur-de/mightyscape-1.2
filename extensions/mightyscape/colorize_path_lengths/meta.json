@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Colorize Path Lengths/Slants",
+    "id": "fablabchemnitz.de.colorize_path_lengths",
+    "path": "colorize_path_lengths",
+    "dependent_extensions": null,
+    "original_name": "<unknown>",
+    "original_id": "<unknown>",
+    "license": "GNU GPL v2",
+    "license_url": "http://dp48069596.lolipop.jp/sd/scripts/script_inkscape/pathselection.zip",
+    "comment": "ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/colorize_path_lengths",
+    "fork_url": "http://dp48069596.lolipop.jp/sd/scripts/script_inkscape/pathselection.zip",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55019108",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "Sunabe Kazumichi",
+      "github.com/eridur-de"
+    ]
+  }
+]

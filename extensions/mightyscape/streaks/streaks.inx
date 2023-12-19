@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Streaks</name>
+    <id>fablabchemnitz.de.streaks</id>
+    <param type="notebook" name="Nmain">
+        <page name="top" gui-text="Color">
+            <label appearance="header">Fills a box with a texture made of vertical line segments.</label>
+            <param name="strokeColor" type="color" appearance="colorbutton" gui-text="Line color">255</param>
+            <separator/>
+            <param name="strokeWidth" type="int" gui-text="Line width (px)">2</param>
+        </page>
+        <page name="main" gui-text="Main">
+            <param max="256" name="blur" type="int" gui-text="Blur">2</param>
+            <param max="1000" name="linno" type="int" gui-text="# of columns">50</param>
+            <param name="xrand" type="bool" gui-text="Lines randomized">true</param>
+            <separator/>
+            <param name="pagep" type="bool" gui-text="Default box to page size?">true</param>
+            <param max="10000" name="cusx" type="int" gui-text="Custom size x">500</param>
+            <param max="10000" name="cusy" type="int" gui-text="Custom size y">500</param>
+        </page>
+        <page name="vert" gui-text="Each column">
+            <param min="1" max="256" name="segLen" type="int" gui-text="# of segments">8</param>
+            <param name="yrand" type="bool" gui-text="Lengths randomized">true</param>
+            <param name="dashp" type="bool" gui-text="Use dashes?">true</param>
+            <param name="blankp" type="bool" gui-text="Use blanks?">true</param>
+            <param name="dotp" type="bool" gui-text="Use dots?">true</param>
+            <param max="1000" name="dots" type="int" gui-text="Dots per height">100</param>
+            <label>This sets the size of a dot relative to the total height. Higher is shorter.</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Shape Generators">
+                    <submenu name="Streaks And Blobs" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">streaks.py</command>
+    </script>
+</inkscape-extension>

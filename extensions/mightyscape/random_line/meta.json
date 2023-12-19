@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Random Line",
+    "id": "fablabchemnitz.de.random_line",
+    "path": "random_line",
+    "dependent_extensions": null,
+    "original_name": "Random Line",
+    "original_id": "org.inkscape.render.randomline",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/opensourcebear/inkscape-extension-random-line/blob/main/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/random_line",
+    "fork_url": "https://github.com/opensourcebear/inkscape-extension-random-line",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Random+Line",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/opensourcebear",
+      "github.com/eridur-de"
+    ]
+  }
+]

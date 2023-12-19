@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Silhouette Cameo Registration Marks</name>
+    <id>fablabchemnitz.de.silhouette_cameo_registration_marks</id>
+    <param name="regwidth" type="float" min="0.0" max="10000" gui-text="X mark distance [mm]">180</param>
+    <param name="reglength" type="float" min="0.0" max="10000" gui-text="Y mark distance [mm]">230</param>
+    <param name="regoriginx" type="float" min="10.0" max="10000" gui-text="Position of regmark from document left [mm]">15</param>
+    <param name="regoriginy" type="float" min="10.0" max="10000" gui-text="Position of regmark from document top [mm]">20</param>
+    <label>Distance of the registration mark edges</label>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Cutting/Plotting/Printing"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">render_silhouette_regmarks.py</command>
+    </script>
+</inkscape-extension>

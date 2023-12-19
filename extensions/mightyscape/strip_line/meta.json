@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Strip Line",
+    "id": "fablabchemnitz.de.strip_line",
+    "path": "strip_line",
+    "dependent_extensions": null,
+    "original_name": "ストリップライン",
+    "original_id": "miffy.sora.stripline",
+    "license": "MIT License",
+    "license_url": "https://github.com/miffysora/Inkscape/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/strip_line",
+    "fork_url": "https://github.com/miffysora/Inkscape",
+    "documentation_url": "",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/miffysora",
+      "github.com/eridur-de"
+    ]
+  }
+]

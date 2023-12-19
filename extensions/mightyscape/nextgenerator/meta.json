@@ -1,0 +1,22 @@
+[
+  {
+    "name": "NextGenerator",
+    "id": "fablabchemnitz.de.nextgenerator",
+    "path": "nextgenerator",
+    "dependent_extensions": null,
+    "original_name": "NextGenerator",
+    "original_id": "de.vektorrascheln.extension.next_gen",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitlab.com/Moini/nextgenerator/-/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/nextgenerator",
+    "fork_url": "https://gitlab.com/Moini/nextgenerator",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/NextGenerator",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "Aurélio A. Heckert",  
+      "gitlab.com/Moini",
+      "github.com/eridur-de"
+    ]
+  }
+]

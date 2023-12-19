@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Polyhedra</name>
+    <id>fablabchemnitz.de.polyhedra</id>
+    <param name="poly" gui-text="Polyhedra to render net for" type="optiongroup" appearance="combo">
+        <option value="Tetrahedron"                >Platonic - Tetrahedron</option>
+        <option value="Cube"                       >Platonic - Cube</option>
+        <option value="Octahedron"                 >Platonic - Octahedron</option>
+        <option value="Dodecahedron"               >Platonic - Dodecahedron</option>
+        <option value="Icosahedron"                >Platonic - Icosahedron</option>
+        <option value="TruncatedTetrahedron"       >Archimedean - Truncated Tetrahedron</option>
+        <option value="TruncatedCube"              >Archimedean - Truncated Cube</option>
+        <option value="TruncatedOctahedron"        >Archimedean - Truncated Octahedron</option>
+        <option value="TruncatedDodecahedron"      >Archimedean - Truncated Dodecahedron</option>
+        <option value="TruncatedIcosahedron"       >Archimedean - Truncated Icosahedron</option>
+        <option value="Cuboctahedron"              >Archimedean - Cuboctahedron</option>
+        <option value="Icosidodecahedron"          >Archimedean - Icosidodecahedron</option>
+        <option value="SmallRhombicosidodecahedron">Archimedean - Small Rhombicosidodecahedron</option>
+        <option value="SmallRhombicuboctahedron"   >Archimedean - Small Rhombicuboctahedron</option>
+        <option value="GreatRhombicosidodecahedron">Archimedean - Great Rhombicosidodecahedron</option>
+        <option value="GreatRhombicuboctahedron"   >Archimedean - Great Rhombicuboctahedron</option>
+        <option value="SnubCube"                   >Archimedean - Snub Cube</option>
+        <option value="SnubDodecahedron"           >Archimedean - Snub Dodecahedron</option>
+        <option value="DeltoidalHexecontahedron"   >Archimedean Dual - Deltoidal Hexecontahedron</option>
+        <option value="DeltoidalIcositetrahedron"  >Archimedean Dual - Deltoidal Icositetrahedron</option>
+        <option value="DisdyakisDodecahedron"      >Archimedean Dual - Disdyakis Dodecahedron</option>
+        <option value="DisdyakisTriacontahedron"   >Archimedean Dual - Disdyakis Triacontahedron</option>
+        <option value="PentagonalIcositetrahedron" >Archimedean Dual - Pentagonal Icositetrahedron</option>
+        <option value="PentagonalHexecontahedron"  >Archimedean Dual - Pentagonal Hexecontahedron</option>
+        <option value="PentakisDodecahedron"       >Archimedean Dual - Pentakis Dodecahedron</option>
+        <option value="RhombicDodecahedron"        >Archimedean Dual - Rhombic Dodecahedron</option>
+        <option value="RhombicTriacontahedron"     >Archimedean Dual - Rhombic Triacontahedron</option>
+        <option value="SmallTriakisOctahedron"     >Archimedean Dual - Small Triakis Octahedron</option>
+        <option value="TetrakisHexahedron"         >Archimedean Dual - Tetrakis Hexahedron</option>
+        <option value="TriakisIcosahedron"         >Archimedean Dual - Triakis Icosahedron</option>
+        <option value="TriakisTetrahedron"         >Archimedean Dual - Triakis Tetrahedron</option>
+        <option value="ElongatedDodecahedron"      >Other - ElongatedDodecahedron</option>
+        <option value="MathematicaPolyhedron"      >Other - MathematicaPolyhedron</option>
+    </param>
+    <param name="size" type="float" min="1.0" max="1000.0" gui-text="length of first edge">100.0</param>
+    <param name="unit" type="optiongroup" appearance="combo" gui-text="Units">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="in">in</option>
+        <option value="pt">pt</option>
+        <option value="px">px</option>
+        <option value="pc">pc</option>
+    </param>
+    <param name="tabs" type="optiongroup" appearance="combo" gui-text="Tab style">
+        <option value="0">Tab and Slot</option>
+        <option value="1">Double Tabs</option>
+        <option value="2">Single Tabs</option>
+        <option value="3">None</option>
+    </param>
+    <param name="material_thickness" type="float" min="0.01" max="1000.0" gui-text="material thickness">1.0</param>
+    <label>Hint: Stroke widths within the generated output may differ. Please adjust manually (reason: scale transforms)</label>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Paper/Cardboard Boxes" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">polyhedra.py</command>
+    </script>
+</inkscape-extension>

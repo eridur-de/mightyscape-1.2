@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Exponential Distort",
+    "id": "fablabchemnitz.de.exponential_distort",
+    "path": "exponential_distort",
+    "dependent_extensions": null,
+    "original_name": "Exponential Distort",
+    "original_id": "com.github.jnweiger.inkscape.exponential.distort",
+    "license": "MIT License",
+    "license_url": "https://github.com/jnweiger/inkscape-exponential-distort/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/exponential_distort",
+    "fork_url": "https://github.com/jnweiger/inkscape-exponential-distort",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Exponential+Distort",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/jnweiger",
+      "github.com/eridur-de"
+    ]
+  }
+]

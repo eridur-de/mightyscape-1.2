@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Parallel Translation</name>
+    <id>fablabchemnitz.de.parallel_translation</id>
+    <param name="tab" type="notebook">
+        <page name="info" gui-text="Info">
+            <label xml:space="preserve">Parallel-Translation v1.0 (c) 2021 Christian Vogt
+This extension allows parallel translations and alignment operations of selected straight lines. These lines can be simple path objects (with only start- and end-node) or line segments of larger path objects.
+
+To show information about the selected paths/lines, use this tab.
+To apply the translation to all selcted paths/lines, use the 'Translation' tab.
+To align a group to a path/line, use the 'Group-Alignment' tab.
+To turn a line/path into a alignment group, use the 'Obj-to-Group' tab.
+
+Alignment groups shall contain an object to mark its 'rotation center'. The extension identifies this object by its fill-color. To setup this color, use the 'Group-Alignment' tab. During alignment, the 'rotation center' of the group is placed onto the middle of the selected path/line, and the group is rotated around this center.
+      </label>
+        </page>
+        <page name="translation" gui-text="Translation">
+            <param name="copyMode" type="optiongroup" appearance="combo" gui-text="Movement is applied to:">
+                <option value="none">just the object (no copy)</option>
+                <option value="copy">a copy of the object</option>
+                <option value="obj">the object keeping a copy</option>
+            </param>
+            <hbox>
+                <label>Distance to move:</label>
+                <spacer size="expand" />
+                <param name="distance" type="float" precision="3" min="-9999" max="9999" gui-text=" ">0</param>
+                <param name="distUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="px">px</option>
+                    <option value="pt">pt</option>
+                    <option value="in">in</option>
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="pc">pc</option>
+                </param>
+            </hbox>
+            <param name="reverse" type="bool" gui-text="Translate in opposite direction">false</param>
+            <hbox>
+                <param name="useFixedAngle" type="bool" gui-text="Use a fixed translation angle of:">false</param>
+                <spacer size="expand" />
+                <param name="fixedAngle" type="float" precision="2" min="-360" max="360" gui-text=" ">0</param>
+                <label>degrees</label>
+            </hbox>
+        </page>
+        <page name="align" gui-text="Group-Alignment">
+            <param name="copyModeA" type="optiongroup" appearance="combo" gui-text="Alignment is applied to:">
+                <option value="none">just the group (no copy)</option>
+                <option value="copy">a copy of the group</option>
+                <option value="obj">the group keeping a copy</option>
+            </param>
+            <param name="lengthModeA" type="optiongroup" appearance="combo" gui-text="Group width adjustment method:" gui-description="Selects how the group width shall be adjusted to match the path length">
+                <option value="none">no adjustment</option>
+                <option value="scale">stretch/resize the group</option>
+                <option value="endpoints">adjust line endpoints</option>
+            </param>
+            <param name="endpTol" type="int" min="0" max="49" appearance="full" gui-text="Endpoint tolerance" gui-description="Affects which nodes are moved in 'adjust line endpoints'-mode. This is the maximal distance of a node to the groups edge in order to be moved (in percentage of the groups width)">15</param>
+            <param name="colorA" type="color" appearance="colorbutton" gui-text="Rotation center object fill color:" gui-description="Fill color of the object that marks the groups rotation center.">0x20f020ff</param>
+            <param name="rmFromGroup" type="bool" gui-text="Remove rotation center object from aligned group">false</param>
+            <param name="reverseA" type="bool" gui-text="Rotate group by an additional angle of 180 degrees" gui-description="This may be handy in case the start- and end-node of the controlling path are reversed.">false</param>
+        </page>
+        <page name="group" gui-text="Obj-to-Goup">
+            <hbox>
+                <label>Rotation center object size:</label>
+                <spacer size="expand" />
+                <param name="ctSize" type="float" precision="3" min="-9999" max="9999" gui-text=" ">1</param>
+                <param name="ctSzUnit" type="optiongroup" appearance="combo" gui-text=" ">
+                    <option value="px">px</option>
+                    <option value="pt">pt</option>
+                    <option value="in">in</option>
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="pc">pc</option>
+                </param>
+            </hbox>
+            <param name="reverseG" type="bool" gui-text="Rotate group by an additional angle of 180 degrees" gui-description="This may be handy in case the start- and end-node of the controlling path segment are reversed.">false</param>
+        </page>
+    </param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Transformations"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">parallel_translation.py</command>
+    </script>
+</inkscape-extension>

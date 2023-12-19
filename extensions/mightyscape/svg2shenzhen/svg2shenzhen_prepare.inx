@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Svg2Shenzhen - Prepare Document</name>
+    <id>fablabchemnitz.de.svg2shenzhen_prepare</id>
+	<label>Prepare document for Kicad Export</label>
+    <param name="docwidth" type="float" min="0.0" max="100000.0" gui-text="Document width (mm)">100</param>
+    <param name="docheight" type="float" min="0.0" max="100000.0" gui-text="Document height (mm)">100</param>
+    <effect needs-live-preview="false">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Import/Export/Transfer"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">svg2shenzhen/prepare.py</command>
+    </script>
+</inkscape-extension>

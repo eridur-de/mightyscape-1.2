@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Duplicate + Reverse + Join</name>
+    <id>fablabchemnitz.de.duplicate_reverse_join</id>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Paths - Join/Order" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">duplicate_reverse_join.py</command>
+    </script>
+</inkscape-extension>

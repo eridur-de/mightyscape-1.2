@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Hatches And Grains</name>
+    <id>fablabchemnitz.de.hatches_and_grains</id>
+    <param name="tab" type="notebook">
+        <page name="splash" gui-text="Hatches">
+            <label>Create standardized hatches to differentiate or prioritize cartographic objects.</label>
+            <label appearance="header">Hatches settings</label>
+            <param name="type" type="optiongroup" appearance="combo" gui-text="Sort of hatches:">
+                <option value="h">Continuous</option>
+                <option value="d">Discontinuous</option>
+            </param>
+            <param name="angle" type="optiongroup" appearance="combo" gui-text="Orientation:">
+                <option value="0">―</option>
+                <option value="135">⟋</option>
+                <option value="90">|</option>
+                <option value="45">⟍</option>
+            </param>
+            <param name="thickness" type="optiongroup" appearance="combo" gui-text="Thickness:">
+                <option value="1">1px</option>
+                <option value="3">3px</option>
+                <option value="5">5px</option>
+            </param>
+            <param name="spacing" type="optiongroup" appearance="combo" gui-text="Spacing:">
+                <option value="8">8px</option>
+                <option value="10">10px</option>
+                <option value="12">12px</option>
+                <option value="15">15px</option>
+                <option value="20">20px</option>
+                <option value="25">25px</option>
+                <option value="30">30px</option>
+                <option value="40">40px</option>
+                <option value="50">50px</option>
+            </param>
+            <label appearance="header">Hatches color</label>
+            <param name="hcolor" type="color" gui-text="Hatches color" />
+        </page>
+        <page name="grains_page" gui-text="Grains">
+            <label>Create standardized grains to differentiate or prioritize cartographic objects.</label>
+            <label appearance="header">Grains settings</label>
+            <param name="type_grain" type="optiongroup" appearance="combo" gui-text="Grains:">
+                <option value="grain_v">V</option>
+                <option value="grain_m">ʌ</option>
+                <option value="grain_p">+</option>
+                <option value="grain_x">X</option>
+                <option value="grain_c">○</option>
+                <option value="grain_r">●</option>
+            </param>
+            <param name="size" type="optiongroup" appearance="combo" gui-text="Size:">
+                <option value="1">Very small</option>
+                <option value="2">Small</option>
+                <option value="3">Medium</option>
+                <option value="4">Large</option>
+            </param>
+            <label appearance="header">Grain color</label>
+            <param name="gcolor" type="color" gui-text="Grain color" />
+        </page>
+        <page name="info" gui-text="Information">
+            <label xml:space="preserve">
+This mapping module is intended for the community of geographers and cartographers.
+
+It makes it possible to create visual variables like "hatch" or "grain" on surface or point implantation, in order to differentiate or prioritize the cartographic information.
+
+Laurent Porcheret 
+Géographe - cartographe / Geographer - cartographer
+Sorbonne université - INSPE de Paris
+V.15.01.2020</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Shape/Pattern from existing Object(s)"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">hatches_and_grains.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Eggmazing</name>
+    <id>fablabchemnitz.de.eggmazing</id>
+    <param name="mazeSize" type="optiongroup" appearance="combo" gui-text="Maze dimensions (w x h):">
+        <option value="SMALL">Small (32 x 6)</option>
+        <option value="MEDIUM">Medium (64 x 12)</option>
+        <option value="LARGE">Large (96 x 18)</option>
+        <option value="XLARGE">Extra large (128 x 24)</option>
+    </param>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Shape Generators">
+                    <submenu name="Puzzles/Mazes/Nests" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">eggmazing.py</command>
+    </script>
+</inkscape-extension>

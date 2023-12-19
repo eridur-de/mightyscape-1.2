@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Simple Frame",
+    "id": "fablabchemnitz.de.simple_frame",
+    "path": "simple_frame",
+    "dependent_extensions": null,
+    "original_name": "Simple Frame",
+    "original_id": "org.inkscape.estucheria.caja4p",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/redentis/inkscape-extensions/blob/main/papercraft_frame.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/simple_frame",
+    "fork_url": "https://github.com/redentis/inkscape-extensions",
+    "documentation_url": "",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/redentis",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Box Maker - Elliptical Cone</name>
+    <id>fablabchemnitz.de.box_maker_elliptical_cone</id>
+    <param name="unit" type="optiongroup" appearance="combo" gui-text="Unit">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="in">in</option>
+        <option value="pt">pt</option>
+        <option value="px">px</option>
+        <option value="pc">pc</option>
+    </param>
+    <param name="thickness" type="float" min="1.0" max="10.0" gui-text="Material thickness">3.0</param>
+    <param name="d1" type="float" min="30.0" max="1000.0" gui-text="Smallest ellipse diameter (longest axis)">60.0</param>
+    <param name="d2" type="float" min="29.0" max="1000.0" gui-text="Largest ellipse diameter (longest axis)">90.0</param>
+    <param name="eccentricity" type="float" min="0.01" max="1.0" gui-text="Ellipse eccentricity, ratio minor vs major axis">0.5</param>
+    <param name="zc" type="float" min="15.0" max="1000.0" gui-text="Cone height">50.0</param>
+    <param name="notch_interval" type="int" min="2" max="10" gui-text="Interval between notches, integer in mm">2</param>
+    <param name="cut_position" type="int" min="0" max="360" gui-text="Cut position angle in degrees">0</param>
+    <param name="inner_size" type="bool" gui-text="Internal dimensions">true</param>
+    <param name="Mode_Debug" type="bool" gui-text="Debugging information output">true</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Finger-jointed/Tabbed Boxes"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">box_maker_elliptical_cone.py</command>
+    </script>
+</inkscape-extension>

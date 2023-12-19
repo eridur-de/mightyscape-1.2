@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Glyph IDs - <various>",
+    "id": "fablabchemnitz.de.glyph_ids.<various>",
+    "path": "Glyph IDs - <various>",
+    "dependent_extensions": null,
+    "original_name": "<various>",
+    "original_id": "EllenWasbo.cutlings.",
+    "license": "GNU GPL v2",
+    "license_url": "https://gitlab.com/EllenWasbo/inkscape-extension-getsetGlyphIDs/-/blob/master/getGlyphIDs.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/glyph_ids",
+    "fork_url": "https://gitlab.com/EllenWasbo/inkscape-extension-getsetGlyphIDs",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Glyph+IDs",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "gitlab.com/EllenWasbo",
+      "github.com/eridur-de"
+    ]
+  }
+]

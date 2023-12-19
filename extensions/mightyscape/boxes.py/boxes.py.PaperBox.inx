@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>PaperBox</name>
+<id>info.festi.boxes.py.PaperBox</id>
+<param name="generator" type="string" gui-hidden="true">paperbox</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="PaperBox">
+        <param name="x" type="float" precision="2" max="9999" gui-text="x" gui-description="inner width in mm">100.0</param>
+        <param name="y" type="float" precision="2" max="9999" gui-text="y" gui-description="inner depth in mm">100.0</param>
+        <param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="inner height in mm">100.0</param>
+        <param name="design" type="optiongroup" appearance="combo" gui-text="design" gui-description="different design for paper consumption optimization. The tuckbox also has locking cut for its lid.">
+            <option value="automatic">automatic</option>
+            <option value="widebox">widebox</option>
+            <option value="tuckbox">tuckbox</option>
+    </param>
+        <param name="lid_heigth" type="float" precision="2" max="9999" gui-text="lid_heigth" gui-description="Height of the lid (part which goes inside the box)">15</param>
+        <param name="lid_radius" type="float" precision="2" max="9999" gui-text="lid_radius" gui-description="Angle, in radius, of the round corner of the lid">7</param>
+        <param name="lid_sides" type="float" precision="2" max="9999" gui-text="lid_sides" gui-description="Width of the two sides upon which goes the lid">20</param>
+        <param name="margin" type="float" precision="2" max="9999" gui-text="margin" gui-description="Margin for the glued sides">0</param>
+        <param name="mark_length" type="float" precision="2" max="9999" gui-text="mark_length" gui-description="Length of the folding outside mark">1.5</param>
+        <param name="tab_angle_rad" type="float" precision="2" max="9999" gui-text="tab_angle_rad" gui-description="Angle (in radian) of the sides which are to be glued inside the box">0.07982998571223732</param>
+        <param name="finger_hole_diameter" type="float" precision="2" max="9999" gui-text="finger_hole_diameter" gui-description="Diameter of the hole to help catch the lid">15</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+            <option value="loop">loop</option>
+            <option value="corner">corner</option>
+            <option value="backarc">backarc</option>
+    </param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Example">
+        <image>./PaperBox-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/PaperBox</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="MightyScape">
+            <submenu name="Boxes.py">
+                <submenu name="Misc"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

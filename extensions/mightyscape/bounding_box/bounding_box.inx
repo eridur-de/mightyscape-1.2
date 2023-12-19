@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Bounding Box</name>
+    <id>fablabchemnitz.de.bounding_box</id>
+    <label>Draws bounding boxes around selected objects, useful for debugging. Author: Pawel Mosakowski. Modded by Mario Voigt.</label>
+    <param name="unit" gui-text="Unit" type="optiongroup" appearance="combo" gui-description="The unit applies to interval and thresholds">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="px">px</option>
+        <option value="pt">pt</option>
+        <option value="pc">pc</option>
+        <option value="in">in</option>
+    </param>
+    <param name="offset" min="-10000.000" max="10000.000" precision="3" type="float" gui-text="Offset from object (all directions)">0.000</param>
+    <param name="corner_radius" type="float" min="0.000" precision="3" max="10000.000" gui-text="Corner radius" gui-description="Only applies for box type">0.000</param>
+    <separator/>
+    <param name="box" type="bool" gui-text="Draw boxes">true</param>
+    <param name="circle" type="bool" gui-text="Draw circles">false</param>
+    <separator/>
+    <param name="split" type="bool" gui-text="Handle selection as group">true</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Shape/Pattern from existing Path(s)"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">bounding_box.py</command>
+    </script>
+</inkscape-extension>

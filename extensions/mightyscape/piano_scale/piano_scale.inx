@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Piano Scale</name>
+    <id>fablabchemnitz.de.piano_scale</id>
+    <param name="firstNote" type="string" gui-text="First note">C1</param>
+    <param name="lastNote" type="string" gui-text="Last note">B2</param>
+    <param name="keynote" type="string" gui-text="Key note">C1</param>
+    <param name="tab" type="notebook">
+        <page name="direct" gui-text="Direct intervals">
+            <param name="intervals" type="string" gui-text="Intervals">2212221</param>
+        </page>
+        <page name="scale" gui-text="Scale">
+            <param name="scale" type="optiongroup" appearance="combo" gui-text="Musical scale">
+                <option value="0">Ionian</option>
+                <option value="1">Dorian</option>
+                <option value="2">Phrygian</option>
+                <option value="3">Lydian</option>
+                <option value="4">Mixolydian</option>
+                <option value="5">Aeolian</option>
+                <option value="6">Locrian</option>
+            </param>
+        </page>
+        <page name="helpSheet" gui-text="Help sheet">
+            <param name="helpSheet" type="optiongroup" appearance="combo" gui-text="Help sheet">
+                <option value="0">Ionian scale</option>
+                <option value="1">Dorian scale</option>
+                <option value="2">Phrygian scale</option>
+                <option value="3">Lydian scale</option>
+                <option value="4">Mixolydian scale</option>
+                <option value="5">Aeolian scale</option>
+                <option value="6">Locrian scale</option>
+            </param>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+         <submenu name="MightyScape">
+            <submenu name="Music"/>
+         </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">piano_scale.py</command>
+    </script>
+</inkscape-extension>

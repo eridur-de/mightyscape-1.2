@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>OCR (Image To Text)</name>
+    <id>fablabchemnitz.de.ocr</id>
+    <label>OCR might fail on different languages. Ensure you have installed the proper tesseract language data packages.</label>
+    <param name="lang" gui-text="Language" type="optiongroup" appearance="combo">
+        <option value="afr">afr (Afrikaans)</option>
+        <option value="amh">amh (Amharic)</option>
+        <option value="ara">ara (Arabic)</option>
+        <option value="asm">asm (Assamese)</option>
+        <option value="aze">aze (Azerbaijani)</option>
+        <option value="aze_cyrl">aze_cyrl (Azerbaijani - Cyrilic)</option>
+        <option value="bel">bel (Belarusian)</option>
+        <option value="ben">ben (Bengali)</option>
+        <option value="bod">bod (Tibetan)</option>
+        <option value="bos">bos (Bosnian)</option>
+        <option value="bre">bre (Breton)</option>
+        <option value="bul">bul (Bulgarian)</option>
+        <option value="cat">cat (Catalan; Valencian)</option>
+        <option value="ceb">ceb (Cebuano)</option>
+        <option value="ces">ces (Czech)</option>
+        <option value="chi_sim">chi_sim (Chinese - Simplified)</option>
+        <option value="chi_tra">chi_tra (Chinese - Traditional)</option>
+        <option value="chr">chr (Cherokee)</option>
+        <option value="cos">cos (Corsican)</option>
+        <option value="cym">cym (Welsh)</option>
+        <option value="dan">dan (Danish)</option>
+        <option value="dan_frak">dan_frak (Danish - Fraktur  (contrib))</option>
+        <option value="deu">deu (German)</option>
+        <option value="deu_frak">deu_frak (German - Fraktur  (contrib))</option>
+        <option value="dzo">dzo (Dzongkha)</option>
+        <option value="ell">ell (Greek, Modern  (1453-))</option>
+        <option value="eng">eng (English)</option>
+        <option value="enm">enm (English, Middle  (1100-1500))</option>
+        <option value="epo">epo (Esperanto)</option>
+        <option value="equ">equ (Math / equation detection module)</option>
+        <option value="est">est (Estonian)</option>
+        <option value="eus">eus (Basque)</option>
+        <option value="fao">fao (Faroese)</option>
+        <option value="fas">fas (Persian)</option>
+        <option value="fil">fil (Filipino  (old - Tagalog))</option>
+        <option value="fin">fin (Finnish)</option>
+        <option value="fra">fra (French)</option>
+        <option value="frk">frk (German - Fraktur)</option>
+        <option value="frm">frm (French, Middle  (ca.1400-1600))</option>
+        <option value="fry">fry (Western Frisian)</option>
+        <option value="gla">gla (Scottish Gaelic)</option>
+        <option value="gle">gle (Irish)</option>
+        <option value="glg">glg (Galician)</option>
+        <option value="grc">grc (Greek, Ancient  (to 1453)  (contrib))</option>
+        <option value="guj">guj (Gujarati)</option>
+        <option value="hat">hat (Haitian; Haitian Creole)</option>
+        <option value="heb">heb (Hebrew)</option>
+        <option value="hin">hin (Hindi)</option>
+        <option value="hrv">hrv (Croatian)</option>
+        <option value="hun">hun (Hungarian)</option>
+        <option value="hye">hye (Armenian)</option>
+        <option value="iku">iku (Inuktitut)</option>
+        <option value="ind">ind (Indonesian)</option>
+        <option value="isl">isl (Icelandic)</option>
+        <option value="ita">ita (Italian)</option>
+        <option value="ita_old">ita_old (Italian - Old)</option>
+        <option value="jav">jav (Javanese)</option>
+        <option value="jpn">jpn (Japanese)</option>
+        <option value="kan">kan (Kannada)</option>
+        <option value="kat">kat (Georgian)</option>
+        <option value="kat_old">kat_old (Georgian - Old)</option>
+        <option value="kaz">kaz (Kazakh)</option>
+        <option value="khm">khm (Central Khmer)</option>
+        <option value="kir">kir (Kirghiz; Kyrgyz)</option>
+        <option value="kmr">kmr (Kurmanji  (Kurdish - Latin Script))</option>
+        <option value="kor">kor (Korean)</option>
+        <option value="kor_vert">kor_vert (Korean  (vertical))</option>
+        <option value="kur">kur (Kurdish  (Arabic Script))</option>
+        <option value="lao">lao (Lao)</option>
+        <option value="lat">lat (Latin)</option>
+        <option value="lav">lav (Latvian)</option>
+        <option value="lit">lit (Lithuanian)</option>
+        <option value="ltz">ltz (Luxembourgish)</option>
+        <option value="mal">mal (Malayalam)</option>
+        <option value="mar">mar (Marathi)</option>
+        <option value="mkd">mkd (Macedonian)</option>
+        <option value="mlt">mlt (Maltese)</option>
+        <option value="mon">mon (Mongolian)</option>
+        <option value="mri">mri (Maori)</option>
+        <option value="msa">msa (Malay)</option>
+        <option value="mya">mya (Burmese)</option>
+        <option value="nep">nep (Nepali)</option>
+        <option value="nld">nld (Dutch; Flemish)</option>
+        <option value="nor">nor (Norwegian)</option>
+        <option value="oci">oci (Occitan  (post 1500))</option>
+        <option value="ori">ori (Oriya)</option>
+        <option value="osd">osd (Orientation and script detection module)</option>
+        <option value="pan">pan (Panjabi; Punjabi)</option>
+        <option value="pol">pol (Polish)</option>
+        <option value="por">por (Portuguese)</option>
+        <option value="pus">pus (Pushto; Pashto)</option>
+        <option value="que">que (Quechua)</option>
+        <option value="ron">ron (Romanian; Moldavian; Moldovan)</option>
+        <option value="rus">rus (Russian)</option>
+        <option value="san">san (Sanskrit)</option>
+        <option value="sin">sin (Sinhala; Sinhalese)</option>
+        <option value="slk">slk (Slovak)</option>
+        <option value="slk_frak">slk_frak (Slovak - Fraktur  (contrib))</option>
+        <option value="slv">slv (Slovenian)</option>
+        <option value="snd">snd (Sindhi)</option>
+        <option value="spa">spa (Spanish; Castilian)</option>
+        <option value="spa_old">spa_old (Spanish; Castilian - Old)</option>
+        <option value="sqi">sqi (Albanian)</option>
+        <option value="srp">srp (Serbian)</option>
+        <option value="srp_latn">srp_latn (Serbian - Latin)</option>
+        <option value="sun">sun (Sundanese)</option>
+        <option value="swa">swa (Swahili)</option>
+        <option value="swe">swe (Swedish)</option>
+        <option value="syr">syr (Syriac)</option>
+        <option value="tam">tam (Tamil)</option>
+        <option value="tat">tat (Tatar)</option>
+        <option value="tel">tel (Telugu)</option>
+        <option value="tgk">tgk (Tajik)</option>
+        <option value="tgl">tgl (Tagalog  (new - Filipino))</option>
+        <option value="tha">tha (Thai)</option>
+        <option value="tir">tir (Tigrinya)</option>
+        <option value="ton">ton (Tonga)</option>
+        <option value="tur">tur (Turkish)</option>
+        <option value="uig">uig (Uighur; Uyghur)</option>
+        <option value="ukr">ukr (Ukrainian)</option>
+        <option value="urd">urd (Urdu)</option>
+        <option value="uzb">uzb (Uzbek)</option>
+        <option value="uzb_cyrl">uzb_cyrl (Uzbek - Cyrilic)</option>
+        <option value="vie">vie (Vietnamese)</option>
+        <option value="yid">yid (Yiddish)</option>
+        <option value="yor">yor (Yoruba)</option>
+    </param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Text" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">ocr.py</command>
+    </script>
+</inkscape-extension>

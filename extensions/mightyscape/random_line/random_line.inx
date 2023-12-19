@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Random Line</name>
+    <id>fablabchemnitz.de.random_line</id>
+    <param name="height" type="int" min="100" max="1000" gui-text="Shape Height:">120</param>
+    <param name="width" type="int" min="100" max="1000" gui-text="Shape Width:">120</param>
+    <param name="seg_count" type="int" min="1" max="1000" gui-text="Number of Line Segments:">25</param>
+    <label>v.01</label>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Shape/Pattern from Generator"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">random_line.py</command>
+    </script>
+</inkscape-extension>

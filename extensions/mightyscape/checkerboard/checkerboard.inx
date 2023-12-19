@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Checkerboard</name>
+    <id>fablabchemnitz.de.checkerboard</id>
+    <param name="tab" type="notebook">
+        <page name="params" gui-text="Params">
+            <param name="size" type="string" gui-text="Cell size" gui-description="Enter value + unit, e.g. px, pt, mm, cm, in">50px</param>
+            <param name="rows" type="int" min="2" max="1000" gui-text="Rows">10</param>
+            <param name="cols" type="int" min="2" max="1000" gui-text="Columns">10</param>
+            <param name="layer"  type="bool" gui-text="Create in current layer">true</param>
+        </page>
+        <page name="color1" gui-text="1st color">
+            <param name="color1" type="color" gui-text="Color 1">4286282751</param>
+        </page>
+        <page name="color2" gui-text="2nd color">
+            <param name="color2" type="color" gui-text="Color 2">8092671</param>
+        </page>
+        <page name="help" gui-text="Help">
+            <label>1. On the Params tab, choose the cell size (size of the constituent squares), number of rows and columns, and whether to add the checkerboard to the current layer (if unchecked, the checkerboard will be added to the root layer)</label>
+            <label>2. On the 1st color and 2nd color tabs, select the colors for the two sets of squares</label>
+            <label>3. Click Apply</label>
+            <label>More information and source code:</label>
+            <label appearance="url">https://github.com/jeffkayser/inkscape-checkerboard</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Grids/Guides"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">checkerboard.py</command>
+    </script>
+</inkscape-extension>

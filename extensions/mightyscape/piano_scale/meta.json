@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Piano Scale",
+    "id": "fablabchemnitz.de.piano_scale",
+    "path": "piano_scale",
+    "dependent_extensions": null,
+    "original_name": "Piano scale",
+    "original_id": "Page::Blank",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/piroxiljin/inkscape-music-scale-generator/blob/master/share/extensions/svgPianoScale.py",
+    "comment": "See also https://github.com/Neon22/inkscape-music-scale-generator",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/piano_scale",
+    "fork_url": "https://inkscape.org/~Neon22/%E2%98%85pianoscale",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Piano+Scale",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/piroxiljin",
+      "github.com/Neon22",
+      "github.com/eridur-de"
+    ]
+  }
+]

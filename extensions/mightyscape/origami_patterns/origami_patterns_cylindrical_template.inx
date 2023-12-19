@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Cylindrical template effect</name>
+    <id>org.inkscape.Origami_patterns.cylindrical_template</id>
+    <param name="active-tab" type="notebook">
+        <page name="options" gui-text="Options">
+            <separator/>
+            <label>Minimum necessary parameters for Cylindrical origami types :</label>
+            <param name="radius" type="float" max="10000" precision="3" gui-text="Radius of cylinder">10.0</param>
+            <param name="sides" type="int" min="3" max="25" gui-text="Number of sides of polygon">6</param>
+            <param name="rows" type="int" min="1" max="100" gui-text="Number of cells">3</param>
+            <separator/>
+            <param name="length" type="float" max="10000" precision="3" gui-text="Length">10.0</param>
+            <param name="angle" type="int" min="0" max="45" gui-text="Rotation angle (degree)">0</param>
+            <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+                <option value="pt">pt</option>
+                <option value="px">px</option>
+            </param>
+            <label>The .inx file defines the bridge between Inkscape's interface and the python script.</label>
+            <param name="simulation_mode" type="bool" gui-text="Simulation mode">true</param>
+        </page>
+        <page name="slots" gui-text="Slots">
+            <param name="extra_column" type="bool" gui-text="Extra column?">false</param>
+            <separator/>
+            <param name="add_base_slot" type="bool" gui-text="Add base slots?">false</param>
+            <param name="base_slot_position" type="optiongroup" appearance="combo" gui-text="Base slot position:">
+                <option value="-1">Top</option>
+                <option value="0">Center</option>
+                <option value="1">Bottom</option>
+            </param>
+            <param name="base_height" type="float" max="10000" precision="3" gui-text="Height of base">5.0</param>
+            <param name="base_slot_height" type="float" max="10000" precision="3" gui-text="Height of base slot">3.0</param>
+            <param name="base_slot_width" type="float" max="10000" precision="3" gui-text="Width of base slow">3.0</param>
+            <separator/>
+            <param name="add_middle_slot" type="bool" gui-text="Add slots between cells?">false</param>
+            <param name="middle_slot_position" type="optiongroup" appearance="combo" gui-text="Middle slot position:">
+                <option value="-1">Top</option>
+                <option value="0">Center</option>
+                <option value="1">Bottom</option>
+            </param>
+            <param name="distance" type="float" max="10000" precision="3" gui-text="Distance between cells">3.0</param>
+            <param name="middle_slot_height" type="float" max="10000" precision="3" gui-text="Height of slots between cells">3.0</param>
+            <param name="middle_slot_width" type="float" max="10000" precision="3" gui-text="Width of slots between cells">3.0</param>
+        </page>
+        <page name="mountains" gui-text="Mountain creases">
+            <param name="mountain_bool" type="bool" gui-text="Draw mountains?">true</param>
+            <param name="mountain_bool_only" type="bool" gui-text="Draw ONLY mountains?">false</param>
+            <param name="mountain_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
+            <param name="mountain_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Mountain dash + gap length">1</param>
+            <param name="mountain_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Mountain dash duty cycle">0.5</param>
+            <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of mountain strokes">0.1</param>
+            <param name="mountain_stroke_color" type="color" gui-text="Mountain creases color: ">4278190335</param>
+        </page>
+        <page name="valleys" gui-text="Valley creases">
+            <param name="valley_bool" type="bool" gui-text="Draw valley?">true</param>
+            <param name="valley_bool_only" type="bool" gui-text="Draw ONLY valleys?">false</param>
+            <param name="valley_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
+            <param name="valley_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Valley dash + gap length">1</param>
+            <param name="valley_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Valley dash duty cycle">0.25</param>
+            <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of valley strokes">0.1</param>
+            <param name="valley_stroke_color" type="color" gui-text="Valley creases color: ">65535</param>
+        </page>
+        <page name="edge" gui-text="Edge">
+            <param name="edge_bool" type="bool" gui-text="Draw edges?">true</param>
+            <param name="edge_bool_only" type="bool" gui-text="Draw ONLY edges?">false</param>
+            <param name="edge_single_path" type="bool" gui-text="Edges as single path?">true</param>
+            <param name="edge_dashes_bool" type="bool" gui-text="Dashed strokes?">false</param>
+            <param name="edge_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Edge dash + gap length">1</param>
+            <param name="edge_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Edge dash duty cycle">0.25</param>
+            <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of edge strokes">0.1</param>
+            <param name="edge_stroke_color" type="color" gui-text="Edge color: ">255</param>
+        </page>
+        <page name="vertices" gui-text="Vertices">
+            <param name="vertex_bool" type="bool" gui-text="Draw vertices?">true</param>
+            <param name="vertex_bool_only" type="bool" gui-text="Draw ONLY vertices?">false</param>
+            <param name="vertex_radius" type="float" min="0.01" max="50" appearance="full" gui-text="Radius of vertices">0.1</param>
+            <param name="vertex_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of vertex strokes">0.1</param>
+            <param name="vertex_stroke_color" type="color" gui-text="Vertices\' color: ">255</param>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Origami Patterns">
+                    <submenu name="Template submenu" />
+                </submenu>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">OrigamiPatterns/Cylindrical_Template.py</command>
+    </script>
+</inkscape-extension>

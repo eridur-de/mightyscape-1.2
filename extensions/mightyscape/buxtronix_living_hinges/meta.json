@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Buxtronix Living Hinges",
+    "id": "fablabchemnitz.de.buxtronix_living_hinges",
+    "path": "buxtronix_living_hinges",
+    "dependent_extensions": null,
+    "original_name": "Living Hinges",
+    "original_id": "net.buxtronix.living_hinge",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/buxtronix/living-hinge/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/buxtronix_living_hinges",
+    "fork_url": "https://github.com/buxtronix/living-hinge",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Buxtronix+Living+Hinges",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/buxtronix",
+      "github.com/eridur-de"
+    ]
+  }
+]

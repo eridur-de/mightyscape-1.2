@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Longest Continuous Path",
+    "id": "fablabchemnitz.de.longest_continuous_path",
+    "path": "longest_continuous_path",
+    "dependent_extensions": null,
+    "original_name": "Optimize Paths",
+    "original_id": "org.daekkyn.filter.optimizePaths",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/Daekkyn/inkscapeOptimizePath/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/longest_continuous_path",
+    "fork_url": "https://github.com/Daekkyn/inkscapeOptimizePath",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Longest+Continuous+Path",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/Daekkyn",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Chip Scratches",
+    "id": "fablabchemnitz.de.chip_scratches",
+    "path": "chip_scratches",
+    "dependent_extensions": null,
+    "original_name": "ChipScratches",
+    "original_id": "ca.sfu.AT.kurn.ChipScratches",
+    "license": "GNU GPL v2",
+    "license_url": "https://inkscape.org/~kurn/%E2%98%85chipscratches",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/chip_scratches",
+    "fork_url": "https://inkscape.org/~kurn/%E2%98%85chipscratches",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Chip+Scratches",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/kurn",
+      "github.com/eridur-de"
+    ]
+  }
+]

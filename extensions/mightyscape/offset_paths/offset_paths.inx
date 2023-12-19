@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Offset Paths</name>
+    <id>fablabchemnitz.de.offset_paths</id>
+    <param name="tab" type="notebook">
+        <page name="tab_settings" gui-text="Settings">
+		<param name="unit" type="optiongroup" appearance="combo" gui-text="Unit">
+			<option value="mm">mm</option>
+			<option value="cm">cm</option>
+			<option value="in">in</option>
+			<option value="pt">pt</option>
+			<option value="px">px</option>
+			<option value="pc">pc</option>
+		</param>
+		<param name="offset_count" type="int" min="1" max="100000" gui-text="Number of offset paths">1</param>
+		<param name="init_offset" type="float" precision="4" min="-1000" max="+1000" gui-text="Initial offset from original path">1.0000</param>
+		<param name="offset" type="float" precision="4" min="-1000" max="+1000" gui-text="Offset between two paths">1.0000</param>
+		<param name="offset_increase" type="float" precision="4" min="-1000" max="+1000" gui-text="Offset increase per iteration">0.0000</param>
+		<param name="miterlimit" type="float" min="0.0" max="1000" gui-text="Miter limit">3.0</param>
+		<param name="clipperscale" type="int" min="2" max="65536" gui-text="Scaling factor" gui-description="Should be a multiplicator of 2, like 2^4=16 or 2^10=1024. The higher the scale factor the higher the quality.">1024</param>
+		<param name="jointype" appearance="combo" type="optiongroup" gui-text="Join type">
+			<option value="0">Square</option>
+			<option value="1">Round</option>
+			<option value="2">Miter</option>
+		</param>
+		<param name="endtype" appearance="combo" type="optiongroup" gui-text="End type">
+			<option value="0">Closed Polygon</option>
+			<option value="1">Closed Line</option>
+			<option value="2">Open Butt</option>
+			<option value="3">Open Square</option>
+			<option value="4">Open Round</option>
+		</param>
+		<param name="copy_org" type="bool" gui-text="Keep original path" gui-description="If enabled, keeps original path as a copy">false</param>
+        <param name="individual" type="bool" gui-text="Separate into individual paths" gui-description="If enabled, each offset curve will be an individual svg element">false</param>
+        <param name="group" type="bool" gui-text="Put all offset paths into group">true</param>
+        <param name="path_types" type="optiongroup" appearance="combo" gui-text="Path types to apply" gui-description="Process open, closed or all paths!">
+            <option value="both">all paths</option>
+            <option value="open_paths">open paths</option>
+            <option value="closed_paths">closed paths</option>
+        </param>
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Offset Paths</label>
+            <label>Create offset for open or closed paths. Python library 'pyclipper' needs to be installed. Use 'Flatten Bezier' extension in advance of this plugin.</label>
+            <label>2020 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/offsetpaths</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+				<submenu name="Shape/Pattern from existing Path(s)"/>
+			</submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">offset_paths.py</command>
+    </script>
+</inkscape-extension>

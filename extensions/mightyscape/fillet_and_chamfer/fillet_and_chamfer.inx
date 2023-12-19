@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Fillet And Chamfer (Replaced by LPE)</name>
+    <id>fablabchemnitz.de.fillet_and_chamfer</id>
+    <param name="fillet_type" type="optiongroup" appearance="combo" gui-text="Fillet or Chamfer:">
+        <option value="fillet">Fillet</option>
+        <option value="chamfer">Chamfer</option>
+    </param>
+    <param name="radius" type="float" min="0.0" max="1000.0" gui-text="Radius:">5.0</param>
+    <param name="unit" gui-text="Unit" type="optiongroup" appearance="combo">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="in">in</option>
+        <option value="px">px</option>
+    </param>
+	<param name="remove" type="bool" gui-text="Remove control object">false</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+               <submenu name="Modify existing Path(s)"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">fillet_and_chamfer.py</command>
+    </script>
+</inkscape-extension>

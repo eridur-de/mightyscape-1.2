@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Masu box (width and height)</name>
+    <id>org.inkscape.Origami_patterns.boxes_masu</id>
+    <param name="active-tab" type="notebook">
+        <page name="title" gui-text="Options">
+            <param name="width" type="float" max="10000" precision="3" gui-text="Width of box">10.0</param>
+            <param name="height" type="float" max="10000" precision="3" gui-text="Height of box">10.0</param>
+            <label>Needs a square paper of size: sqrt(2) * (width + 2*height).</label>
+            <param name="width_delta" type="float" max="10000" precision="3" gui-text="Width increase*:">0.0</param>
+            <param name="width_delta_bool" type="bool" gui-text="Add width increase*">false</param>
+            <label>* this "width increase" slightly modifies the pattern for having a slightly bigger width and slightly smaller height, while keeping the same paper size. This is useful for creating companion box lids.</label>
+            <param name="units" type="optiongroup" appearance="combo" gui-text="Units">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+                <option value="pt">pt</option>
+                <option value="px">px</option>
+            </param>
+            <param name="simulation_mode" type="bool" gui-text="Simulation mode">true</param>
+        </page>
+        <page name="mountains" gui-text="Mountain creases">
+            <param name="mountain_bool" type="bool" gui-text="Draw mountains?">true</param>
+            <param name="mountain_bool_only" type="bool" gui-text="Draw ONLY mountains?">false</param>
+            <param name="mountain_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
+            <param name="mountain_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Mountain dash + gap length">1</param>
+            <param name="mountain_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Mountain dash duty cycle">0.5</param>
+            <param name="mountain_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of mountain strokes">0.1</param>
+            <param name="mountain_stroke_color" type="color" gui-text="Mountain creases color: ">4278190335</param>
+        </page>
+        <page name="valleys" gui-text="Valley creases">
+            <param name="valley_bool" type="bool" gui-text="Draw valley?">true</param>
+            <param name="valley_bool_only" type="bool" gui-text="Draw ONLY valleys?">false</param>
+            <param name="valley_dashes_bool" type="bool" gui-text="Dashed strokes?">true</param>
+            <param name="valley_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Valley dash + gap length">1</param>
+            <param name="valley_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Valley dash duty cycle">0.25</param>
+            <param name="valley_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of valley strokes">0.1</param>
+            <param name="valley_stroke_color" type="color" gui-text="Valley creases color: ">65535</param>
+        </page>
+        <page name="edge" gui-text="Edge">
+            <param name="edge_bool" type="bool" gui-text="Draw edges?">true</param>
+            <param name="edge_bool_only" type="bool" gui-text="Draw ONLY edges?">false</param>
+            <param name="edge_single_path" type="bool" gui-text="Edges as single path?">true</param>
+            <param name="edge_dashes_bool" type="bool" gui-text="Dashed strokes?">false</param>
+            <param name="edge_dashes_len" type="float" min="0.1" max="10" appearance="full" precision="2" gui-text="Edge dash + gap length">1</param>
+            <param name="edge_dashes_duty" type="float" min="0.1" max="1" appearance="full" precision="2" gui-text="Edge dash duty cycle">0.25</param>
+            <param name="edge_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of edge strokes">0.1</param>
+            <param name="edge_stroke_color" type="color" gui-text="Edge color: ">255</param>
+        </page>
+        <page name="vertices" gui-text="Vertices">
+            <param name="vertex_bool" type="bool" gui-text="Draw vertices?">true</param>
+            <param name="vertex_bool_only" type="bool" gui-text="Draw ONLY vertices?">false</param>
+            <param name="vertex_radius" type="float" min="0.01" max="50" appearance="full" gui-text="Radius of vertices">0.1</param>
+            <param name="vertex_stroke_width" type="float" min="0.01" max="3" appearance="full" gui-text="Width of vertex strokes">0.1</param>
+            <param name="vertex_stroke_color" type="color" gui-text="Vertices\' color: ">255</param>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Paper/Cardboard Boxes" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">OrigamiPatterns/Boxes_Masu.py</command>
+    </script>
+</inkscape-extension>

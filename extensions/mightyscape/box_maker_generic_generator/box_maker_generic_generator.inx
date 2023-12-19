@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>Box Maker - Generic Generator</name>
+	<id>fablabchemnitz.de.box_maker_generic_generator</id>
+	<param name="Topic" type="notebook">
+		<page name="dimensions" gui-text="Box dimensions">
+			<param name="unit" type="optiongroup" appearance="combo" gui-text="Unit">
+				<option value="mm">mm</option>
+				<option value="cm">cm</option>
+				<option value="in">in</option>
+				<option value="pt">pt</option>
+				<option value="px">px</option>
+				<option value="pc">pc</option>
+			</param>
+			<label appearance="header">Internal box dimensions</label>
+			<param name="x" type="float" min="10.0" max="1000.0" gui-text="width">80.0</param>
+			<param name="y" type="float" min="10.0" max="1000.0" gui-text="depth">60.0</param>
+			<param name="z" type="float" min="10.0" max="1000.0" gui-text="height">40.0</param>
+            <label appearance="header">Material</label>
+			<param name="thickness" type="float" min="1.0" max="10.0" gui-text="thickness of material">3.0</param>
+			<param name="burn" type="float" min="0.0" max="2.0" gui-text="Burn factor">0.1</param>
+		</page>
+		<page name="corners" gui-text="Round corners">
+			<param name="StraigthCorners" type="bool" gui-text="Straight corners">true</param>
+			<label>If not straight corners, radius of each corner</label>
+			<param name="back_left_radius" type="float" min="0.0" max="100.0" gui-text="Back left radius">10.0</param>
+			<param name="back_right_radius" type="float" min="0.0" max="100.0" gui-text="Back right radius">10.0</param>
+			<param name="front_left_radius" type="float" min="0.0" max="100.0" gui-text="Front left radius">10.0</param>
+			<param name="front_right_radius" type="float" min="0.0" max="100.0" gui-text="Front right radius">10.0</param>
+		</page>
+		<page name="Lid" gui-text="Lid style">
+			<param name="lid_type" type="optiongroup" appearance="combo" gui-text="Lid style">
+				<option value="Without">Without lid</option>
+				<option value="Closed">Closed box</option>				
+				<option value="Simple">Simple top</option>
+				<option value="Sliding">Sliding lid</option>
+				<option value="WoodHinge">Integrated wood hinge</option>
+				<option value="SteelHinge">Steel hinge</option>
+				<option value="Coffin">Coffin</option>
+			</param>
+			<label appearance="header">Only used with real lid</label>
+			<param name="z_lid" type="float" min="15.0" max="1000.0" gui-text="Lid height">20.0</param>
+			<label appearance="header">Only used with coffin lid</label>
+			<param name="z_dome_lid" type="float" min="15.0" max="1000.0" gui-text="dome lid height">20.0</param>
+			<param name="SkipFlexLines" type="bool" gui-text="Skip flex lines when possible">true</param>
+		</page>
+		<page name="Slots" gui-text="Internal slots">
+			<param name="n_slot_x" type="int" min="1" max="20" gui-text="Number of columns">1</param>
+			<param name="n_slot_y" type="int" min="1" max="20" gui-text="Number of rows">1</param>
+            <param name="h_slot" type="int" min="40" max="100" gui-text="Height of slots (%)">1</param>
+		</page>
+		<page name="Joints" gui-text="Joints">
+			<param name="AutoSizeJoints" type="bool" gui-text="Finger size computed from box dimensions">true</param>
+			<param name="x_joint" type="float" min="1.0" max="100.0" gui-text="Finger size for joints in X direction">5.0</param>
+			<param name="y_joint" type="float" min="1.0" max="100.0" gui-text="Finger size for joints in Y direction">5.0</param>
+			<param name="z_joint" type="float" min="1.0" max="100.0" gui-text="Finger size for joints in Z direction">5.0</param>
+		</page>
+	</param>
+	<separator/>
+    <param name="as_layer" type="bool" gui-text="Output on new layer">false</param>
+	<effect>
+		<object-type>all</object-type>
+		<effects-menu>
+             <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Finger-jointed/Tabbed Boxes"/>
+             </submenu>
+		</effects-menu>
+	</effect>
+	<script>
+		<command location="inx" interpreter="python">box_maker_generic_generator.py</command>
+	</script>
+</inkscape-extension>

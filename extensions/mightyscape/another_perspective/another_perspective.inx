@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Another Perspective</name>
+    <id>fablabchemnitz.de.another_perspective</id>
+    <effect>
+	<object-type>path</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Transformations"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">another_perspective.py</command>
+    </script>
+</inkscape-extension>

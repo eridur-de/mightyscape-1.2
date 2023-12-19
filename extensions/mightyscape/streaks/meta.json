@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Streaks",
+    "id": "fablabchemnitz.de.streaks",
+    "path": "streaks",
+    "dependent_extensions": null,
+    "original_name": "streaks",
+    "original_id": "ca.sfu.AT.kurn.Streaks",
+    "license": "GNU GPL v3",
+    "license_url": "https://sourceforge.net/projects/inkscape-streaks/",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/streaks",
+    "fork_url": "https://sourceforge.net/projects/inkscape-streaks",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Streaks",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "sourceforge.net/andrew-kurn",
+      "github.com/eridur-de"
+    ]
+  }
+]

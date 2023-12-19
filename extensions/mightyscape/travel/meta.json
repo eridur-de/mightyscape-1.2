@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Travel",
+    "id": "fablabchemnitz.de.travel",
+    "path": "travel",
+    "dependent_extensions": null,
+    "original_name": "Travel",
+    "original_id": "travel.rkp8000.inkscape",
+    "license": "MIT License",
+    "license_url": "https://github.com/rkp8000/inkscape-travel/blob/master/LICENSE",
+    "comment": "ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/travel",
+    "fork_url": "https://github.com/rkp8000/inkscape-travel",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Travel",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/rkp8000",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Snap Object Points",
+    "id": "fablabchemnitz.de.snap_object_points",
+    "path": "snap_object_points",
+    "dependent_extensions": null,
+    "original_name": "Snap Object Points",
+    "original_id": "org.pakin.filter.snap_objects",
+    "license": "GNU GPL v3",
+    "license_url": "https://inkscape.org/de/~pakin/%E2%98%85snap-object-points",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/snap_object_points",
+    "fork_url": "https://inkscape.org/de/~pakin/%E2%98%85snap-object-points",
+    "documentation_url": "",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/pakin",
+      "github.com/eridur-de"
+    ]
+  }
+]

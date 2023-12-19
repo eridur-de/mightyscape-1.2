@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Chain Paths</name>
+    <id>fablabchemnitz.de.chain_paths</id>
+    <param name="chain_epsilon" type="float" min="0.001" max="999.999" precision="3" gui-text="Max. distance to connect">0.01</param>
+    <param name="units" type="optiongroup" appearance="combo" gui-text=" ">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="in">in</option>
+        <option value="pt">pt</option>
+        <option value="px">px</option>
+    </param>
+    <param name="snap_ends" type="bool" gui-text="Snap connecting ends together">false</param>
+	<param name="close_loops" type="bool" gui-text="Close loops (start/end of the same path)">true</param>
+    <!-- Keep in sync with chain_paths.py line 19 __version__ = ... -->
+    <label appearance="url">https://github.com/fablabnbg/inkscape-chain-paths</label>
+    <label>Version 0.7</label>
+    <effect needs-live-preview="true">
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Paths - Join/Order" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">chain_paths.py</command>
+    </script>
+</inkscape-extension>

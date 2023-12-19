@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Polyhedra",
+    "id": "fablabchemnitz.de.polyhedra",
+    "path": "polyhedra",
+    "dependent_extensions": null,
+    "original_name": "<various>",
+    "original_id": "net.fabhub.polyhedra.<various>",
+    "license": "GNU GPL v2",
+    "license_url": "https://storage.googleapis.com/google-code-archive-source/v2/code.google.com/jmantonfablab/source-archive.zip",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/polyhedra",
+    "fork_url": "http://www.fabhub.net/entry.php?27-Polyhedra-addiction",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Polyhedra",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "jmanton@illinois.edu",
+      "github.com/eridur-de"
+    ]
+  }
+]

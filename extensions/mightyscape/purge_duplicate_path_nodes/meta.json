@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Purge Duplicate Path Nodes",
+    "id": "fablabchemnitz.de.purge_duplicate_path_nodes",
+    "path": "purge_duplicate_path_nodes",
+    "dependent_extensions": null,
+    "original_name": "Remove duplicate nodes",
+    "original_id": "EllenWasbo.cutlings.RemoveDuplicateNodes",
+    "license": "GNU GPL v2",
+    "license_url": "https://gitlab.com/EllenWasbo/inkscape-extension-removeduplicatenodes/-/blob/master/removeDuplicateNodes.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/purge_duplicate_path_nodes",
+    "fork_url": "https://gitlab.com/EllenWasbo/inkscape-extension-removeduplicatenodes",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Purge+Duplicate+Path+Nodes",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "gitlab.com/EllenWasbo",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Dimetric Projection</name>
+    <id>fablabchemnitz.de.dimetric_projection</id>
+    <param name="conversion" type="optiongroup" appearance="combo" gui-text="Convert flat projection to">
+        <option value="top">Dimetric top side</option>
+        <option value="left">Dimetric left-hand side</option>
+        <option value="right">Dimetric right-hand side</option>
+    </param>
+    <param name="reverse" type="bool" gui-text="Reverse transformation">false</param>
+    <param name="orthoangle" type="float" precision="3" min="0.000" max="90.000" gui-text="Orthographic angle">15.000</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Transformations" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">isometric_projection.py</command>
+    </script>
+</inkscape-extension>

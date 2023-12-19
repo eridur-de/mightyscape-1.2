@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Join Paths / Create Tabs And Dimples</name>
+    <id>fablabchemnitz.de.join_paths</id>
+    <param name="tab" type="notebook">
+        <page name="subdividePath" gui-text="Join Paths / Create Tabs And Dimples">
+            <hbox>
+                <vbox>
+                <label appearance="header">Join Paths</label>
+                <param name="optimized" type="bool" gui-text="Optimized joining">true</param>
+                <param name="reverse" type="bool" gui-text="Reverse">true</param>
+                <param name="margin" type="float" min="0.0001" max="99999.0000" precision="4" gui-text="Merge margin">0.0100</param>
+                <label appearance="header">Tabs And Dimples</label>
+                <label>Enable to insert dimples (pressfit noses) into</label> 
+                <label>the gaps (instead regular straight lines)</label>
+                <param name="add_dimples" type="bool" gui-text="Create dimples">false</param>
+                <param name="dimples_to_group" type="bool" gui-text="Unify into single group">false</param>
+                <param name="dimple_type" type="optiongroup" appearance="combo" gui-text="Dimple type">
+                    <option value="lines">lines</option>
+                    <option value="peaks">peaks</option>
+                    <option value="arcs">arcs</option>
+                    <option value="tabs">tabs</option>
+                    <option value="sheetmetal">sheetmetal</option>
+                </param>
+                <param name="draw_dimple_centers" type="bool" gui-text="Draw dimple centers">false</param>
+                <param name="dimple_invert" type="bool" gui-text="Invert dimple sides">false</param>
+                <param name="draw_both_sides" type="bool" gui-text="Draw both sides">false</param>
+                <param name="draw_arcs_as_paths" type="bool" gui-text="Draw arcs as svg:path" gui-description="If disabled, we get svg:ellipse elements. Only applies for dimple type 'arcs'">true</param>
+                </vbox>
+                <separator/>
+                <vbox>
+                <label appearance="header">Dimple/Tab Dimensions</label>
+                <param name="dimple_height_mode" type="optiongroup" appearance="combo" gui-text="Basic height by ...">
+                    <option value="by_height">by height</option>
+                    <option value="by_angle">by angle</option>
+                </param>
+                <param name="dimple_angle" type="float" min="0.000" max="360.000" precision="3" gui-text="... angle">45.000</param>
+                <param name="dimple_height" type="float" min="0.001" max="99999.000" precision="3" gui-text="... height">4.000</param>
+                <param name="dimple_tab_angle" type="float" min="0.000" max="360.000" precision="3" gui-text="Tab: angle" gui-description="Only applies for dimple type 'tabs'">45.000</param>
+                <param name="dimple_sheetmetal_depth" type="float" min="0.000" max="99999.000" precision="3" gui-text="Sheetmetal: depth" gui-description="Only applies for dimple type 'sheetmetal'">4.000</param>
+                <param name="dimple_height_units" gui-text="Height units" type="optiongroup" appearance="combo">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                    <option value="pt">pt</option>
+                    <option value="px">px</option>
+                 </param>
+                <label appearance="header">Gap filter</label>
+                <label>Prevents filling all gaps with tabs/dimples.</label>
+                <param name="dimple_gap_filter" type="bool" gui-text="Apply min/max filter">false</param>
+                <param name="dimple_min_gap" type="float" min="0.000" max="99999.000" precision="3" gui-text="Min">1</param>
+                <param name="dimple_max_gap" type="float" min="0.000" max="99999.000" precision="3" gui-text="Max">40</param>
+                <param name="dimple_gap_filter_units" gui-text="Filter units" type="optiongroup" appearance="combo">
+                    <option value="mm">mm</option>
+                    <option value="cm">cm</option>
+                    <option value="in">in</option>
+                    <option value="pt">pt</option>
+                    <option value="px">px</option>
+                 </param>
+                </vbox>
+            </hbox>   
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Join Paths / Create Tabs And Dimples</label>
+            <label>This effect joins the Bezier curves with straight line segments. 
+If the end nodes are close enough, they are merged into a single one. 
+With the optimized option selected, the new curve starts from the top 
+most curve from the selection. The curves are then joined based on the 
+distance of their closest end point to the previous curve.
+
+Additionally it allows to create different tabs / dimples for lasercutting.
+
+This extension is originally based on 'Join Paths Optimized' by Shriinivas.</label>
+            <label>2021 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/joinpaths</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+    </param>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Paths - Join/Order" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">join_paths.py</command>
+    </script>
+</inkscape-extension>

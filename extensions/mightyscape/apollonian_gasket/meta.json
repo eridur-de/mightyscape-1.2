@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Apollonian Gasket",
+    "id": "fablabchemnitz.de.apollonian_gasket",
+    "path": "apollonian_gasket",
+    "dependent_extensions": null,
+    "original_name": "Apollonian Gasket 0.0",
+    "original_id": "githubacct.uniqueid.apollonian",
+    "license": "MIT License",
+    "license_url": "https://github.com/macbuse/Apollonian/blob/master/License.md",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/apollonian_gasket",
+    "fork_url": "https://github.com/macbuse/Apollonian",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Apollonian+Gasket",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/macbuse",
+      "github.com/eridur-de"
+    ]
+  }
+]

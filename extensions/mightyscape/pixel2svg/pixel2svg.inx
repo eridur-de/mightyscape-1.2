@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Pixel2SVG</name>
+    <id>fablabchemnitz.de.pixel2svg</id>
+    <param name="tab" type="notebook">
+        <page name="pixel2svg_tab" gui-text="Options">
+            <param name="squaresize" type="int" min="1" max="100" gui-text="Width and height of vector squares (px)">5</param>
+            <param name="same_like_original" type="bool" gui-text="Same size as original">true</param>
+            <param name="offset_image" type="bool" gui-text="Offset traced image">true</param>
+            <param name="delete_image" type="bool" gui-text="Delete bitmap image">false</param>
+        </page>
+        <page name="advanced_tab" gui-text="Advanced">
+            <param name="transparency" type="bool" gui-text="Convert transparency to 'fill-opacity'">true</param>
+            <param name="overlap" type="bool" gui-text="Overlap vector squares by 1px">false</param>
+            <param name="verbose" type="bool" gui-text="Report image info (size, format, mode)">false</param>
+            <param name="maxsize" type="int" min="1" max="10000" gui-text="Max. image size (width or height)">256</param>
+        </page>
+        <page name="advanced_color_tab" gui-text="Colors">
+            <param name="color_mode" type="optiongroup" appearance="combo" gui-text=" ">
+                <option value="all">Trace all colors.</option>
+                <option value="other">Don't trace this color:</option>
+                <option value="this">Only trace this color:</option>
+            </param>
+            <param name="color" type="string" max_length="6" gui-text="Color (hex):">FFFFFF</param>
+        </page>
+        <page name="about_tab" gui-text="About">
+            <label xml:space="preserve">This extension is based on:
+pixel2svg - converts pixel art to SVG - pixel by pixel.
+Copyright 2011 Florian Berger 
+http://florian-berger.de/en/software/pixel2svg
+</label>
+        </page>
+    </param>
+    <effect needs-document="true" needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Tracing/Images/Edge Detection" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">pixel2svg.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Rounder",
+    "id": "fablabchemnitz.de.rounder",
+    "path": "rounder",
+    "dependent_extensions": null,
+    "original_name": "Rounder",
+    "original_id": "jtx.rounder",
+    "license": "GNU GPL v2",
+    "license_url": "https://inkscape.org/~jabiertxof/%E2%98%85rounder-04",
+    "comment": "bufgixed and ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/rounder",
+    "fork_url": "https://inkscape.org/~jabiertxof/%E2%98%85rounder-04",
+    "documentation_url": "",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/jabiertxof",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Purge Pointy Paths",
+    "id": "fablabchemnitz.de.purge_pointy_paths",
+    "path": "purge_pointy_paths",
+    "dependent_extensions": null,
+    "original_name": "Purge Pointy Paths",
+    "original_id": "fablabchemnitz.de.purge_pointy_paths",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
+    "comment": "Written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/purge_pointy_paths",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Purge+Pointy+Paths",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/eridur-de"
+    ]
+  }
+]

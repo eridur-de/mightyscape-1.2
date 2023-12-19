@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Dots To Path Points",
+    "id": "fablabchemnitz.de.dots_to_path_points",
+    "path": "dots_to_path_points",
+    "dependent_extensions": null,
+    "original_name": "Pathpoints2Dots",
+    "original_id": "pathpoints2dots",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/chrille69/Inkscape-Extension-pathpoints2dots/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/dots_to_path_points",
+    "fork_url": "https://github.com/chrille69/Inkscape-Extension-pathpoints2dots",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Dots+To+Path+Points",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/chrille69",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Box Maker - Lasercut Box",
+    "id": "fablabchemnitz.de.box_maker_lasercut_box",
+    "path": "box_maker_lasercut_box",
+    "dependent_extensions": null,
+    "original_name": "Lasercut Box",
+    "original_id": "org.inkscape.LasercutBox",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/Neon22/inkscape-LasercutBox/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/box_maker_lasercut_box",
+    "fork_url": "https://github.com/Neon22/inkscape-LasercutBox",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Lasercut+Box",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/Neon22",
+      "github.com/jnweiger",
+      "github.com/eridur-de"
+    ]
+  }
+]

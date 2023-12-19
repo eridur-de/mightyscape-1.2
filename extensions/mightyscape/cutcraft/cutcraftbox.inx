@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Cut-Craft Box</name>
+    <id>fablabchemnitz.de.cutcraft.box</id>
+    <param name="unit" gui-text="Measurement Units" gui-description="Unit of measurement for all subsequent values entered in this dialog" type="optiongroup" appearance="combo">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="in">in</option>
+    </param>
+    <separator/>
+    <param name="width" type="float" min="10.0" max="1000.0" precision="3" gui-text="Box Width" gui-description="Cylinder Width">60.0</param>
+    <param name="depth" type="float" min="10.0" max="1000.0" precision="3" gui-text="Box Depth" gui-description="Cylinder Depth">30.0</param>
+    <param name="height" type="float" min="10.0" max="1000.0" precision="3" gui-text="Box Height" gui-description="Cylinder Height">30.0</param>
+    <separator/>
+    <param name="thickness" type="float" min="0.1" max="1000.0" precision="3" gui-text="Material Thickness" gui-description="Thickness of the material">5.0</param>
+    <param name="kerf" type="float" min="0.0" max="1000.0" precision="3" gui-text="Laser Cutter Kerf" gui-description="Laser Cutter Kerf (tolerance). Varies based on cutter and material thickness">0.01</param>
+    <param name="linethickness" gui-text="Line Thickness" gui-description="Thickness of the cutting line on the display" type="optiongroup" appearance="combo">
+        <option value="1px">1 pixel</option>
+        <option value="0.002in">hairline</option>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Finger-jointed/Tabbed Boxes" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">cutcraftbox.py</command>
+    </script>
+</inkscape-extension>

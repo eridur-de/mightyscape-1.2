@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Blobs Texture",
+    "id": "fablabchemnitz.de.blobs",
+    "path": "blobs",
+    "dependent_extensions": null,
+    "original_name": "Blobs texture",
+    "original_id": "org.ekips.filter.blobsTexture",
+    "license": "GNU GPL v2",
+    "license_url": "https://inkscape.org/~kurn/%E2%98%85blobs",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/blobs",
+    "fork_url": "https://inkscape.org/~kurn/%E2%98%85blobs",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Blobs+Texture",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/kurn",
+      "github.com/eridur-de"
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Maze",
+    "id": "fablabchemnitz.de.maze",
+    "path": "maze",
+    "dependent_extensions": null,
+    "original_name": "Labyrinthe",
+    "original_id": "tiemenD.1.laby",
+    "license": "MIT License",
+    "license_url": "https://inkscape.org/de/~thjazi/%E2%98%85maze",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/maze",
+    "fork_url": "https://inkscape.org/de/~thjazi/%E2%98%85maze",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Maze",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/thjazi",
+      "github.com/eridur-de"
+    ]
+  }
+]

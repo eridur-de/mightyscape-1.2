@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Optimize Sequence: Small Holes First</name>
+    <id>fablabchemnitz.de.optimize_sequence_lasercut_sequence</id>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+				<submenu name="Paths - Join/Order"/>
+			</submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">optimize_sequence_lasercut_sequence.py</command>
+    </script>
+</inkscape-extension>

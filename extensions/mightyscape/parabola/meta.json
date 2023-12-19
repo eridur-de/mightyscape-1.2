@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Parabola",
+    "id": "fablabchemnitz.de.parabola",
+    "path": "parabola",
+    "dependent_extensions": null,
+    "original_name": "Parabola",
+    "original_id": "org.inkscape.render.parabola",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/opensourcebear/inkscape-extension-parabola/blob/main/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/parabola",
+    "fork_url": "https://github.com/opensourcebear/inkscape-extension-parabola",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Parabola",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/opensourcebear",
+      "github.com/eridur-de"
+    ]
+  }
+]

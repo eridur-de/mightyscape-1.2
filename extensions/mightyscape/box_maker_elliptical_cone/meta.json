@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Box Maker - Elliptical Cone",
+    "id": "fablabchemnitz.de.box_maker_elliptical_cone",
+    "path": "box_maker_elliptical_cone",
+    "dependent_extensions": null,
+    "original_name": "Elliptical cone box maker",
+    "original_id": "fr.fablab-lannion.inkscape.ell_conical_box",
+    "license": "MIT License",
+    "license_url": "https://github.com/thierry7100/ConeFlex/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/box_maker_elliptical_cone",
+    "fork_url": "https://github.com/thierry7100/ConeFlex",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Elliptical+Cone",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/thierry7100",
+      "github.com/eridur-de"
+    ]
+  }
+]

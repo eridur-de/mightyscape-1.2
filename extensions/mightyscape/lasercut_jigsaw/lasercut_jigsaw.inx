@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Lasercut Jigsaw</name>
+    <id>fablabchemnitz.de.lasercut_jigsaw</id>
+    <param name="tab" type="notebook">
+        <page name="Style" gui-text="Style">
+            <label>The Jigsaw lines color does not apply if 'Create separated pieces' option is enabled.</label>
+            <param name="color_border" type="color" appearance="colorbutton" gui-text="Border color">4278190335</param>
+            <param name="color_jigsaw" type="color" appearance="colorbutton" gui-text="Jigsaw lines color">65535</param>
+        </page>
+        <page name="Dimensions" gui-text="Dimensions">
+            <label>Define the Jigsaw size and grid size.</label>
+            <param name="sizetype" gui-text="Width/Height for ..." type="optiongroup" appearance="radio">
+                <option value="boxsize">box size</option>
+                <option value="partsize">part size</option>
+            </param>
+            <param name="width" type="float" min="0.1" max="1000.0" precision="2" gui-text="Width">100.0</param>
+            <param name="height" type="float" min="0.1" max="1000.0" precision="2" gui-text="Height">80.0</param>
+            <param name="innerradius" type="float" min="0.0" max="500.0" precision="2" gui-text="Corner radius" gui-description="0 implies square corners">5.0</param>
+            <param name="units" gui-text="Units" type="optiongroup" appearance="combo" gui-description="The unit of the box dimensions">
+                <option value="px">px</option>
+                <option value="pt">pt</option>
+                <option value="in">in</option>
+                <option value="cm">cm</option>
+                <option value="mm">mm</option>
+            </param>
+            <param name="border" type="bool" gui-text="Outer Border" gui-description="Add Outer Surround">false</param>
+            <param name="borderwidth" type="float" min="0.0" max="500.0" precision="2" gui-text="Border width" gui-description="Size of external surrounding border.">20.0</param>
+            <param name="outerradius" type="float" min="0.0" max="500.0" precision="2" gui-text="Border radius" gui-description="0 implies square corners">5.0</param>
+            <param name="pack" type="optiongroup" appearance="combo" gui-text="Pack Location" gui-description="Where to place backing piece on page">
+                <option value="Right">Right</option>
+                <option value="Below">Below</option>
+                <option value="Separate">Separate</option>
+            </param>
+            <param name="pieces_W" type="int" min="2" max="199" gui-text="How many pieces across (cols)">5</param>
+            <param name="pieces_H" type="int" min="2" max="199" gui-text="How many pieces down (rows)">4</param>
+        </page>
+        <page name="Notches" gui-text="Notches">
+            <label>The interlocking pieces can be shaped here. Also the random nature of the layout.</label>
+            <param name="notch_percent" type="float" min="0.0" max="1.0" precision="2" appearance="full" gui-text="Notch relative size" gui-description="Notch relative size. 0.15 to 0.50 is good">0.5</param>
+            <param name="rand" type="float" min="0.0" max="1.0" precision="2" appearance="full" gui-text="Grid Randomisation" gui-description="Amount to perturb the basic piece grid.">0.4</param>
+            <param name="smooth_edges" type="bool" gui-text="Some edges can be smooth" gui-description="Allow pieces with smooth edges.">false</param>
+            <param name="noknob_frequency" type="float" min="0.0" max="100.0" appearance="full" precision="2" gui-text="percentage of smooth edges">10</param>
+            <param name="use_seed" type="bool" gui-text="Random jigsaw" gui-description="Use the kerf value as the drawn line width">true</param>
+            <param name="seed" type="int" min="0" max="99999999" gui-text="or Jigsaw pattern (seed)" gui-description="Random seed for repeatability">12345</param>
+            <param name="pieces" type="bool" gui-text="Create separated pieces">false</param>
+            <param name="shift" type="float" min="0.0" max="100.0" precision="2" gui-text="Shifting for each piece (%)">0</param>
+        </page>
+        <page name="Usage" gui-text="Usage">
+            <label xml:space="preserve">Jigsaw lines are single for minimal laser cutting.
+   (The pieces are not discrete shapes.)
+The outer edge can be a rectangle or have rounded corners.
+
+A Surrounding border can be added to frame the jigsaw.
+
+Notch size is related to the averaged Jigsaw piece size.
+
+Randomization creates irregularity for unique pieces.
+
+Adjust Notch size and Randomization to avoid overlapping lines:
+  - High values of randomization will cause overlapping lines
+    on small notches.
+  - Highly unbalanced grids (E.g. 9x2 with 0.5 notches) will
+    create overlapping lines.
+        </label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+            <submenu name="Shape Generators">
+                <submenu name="Puzzles/Mazes/Nests" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">lasercut_jigsaw.py</command>
+    </script>
+</inkscape-extension>

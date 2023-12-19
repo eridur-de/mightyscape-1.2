@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Primitive (Michael Fogleman)</name>
+    <id>fablabchemnitz.de.primitive</id>
+    <param name="tab" type="notebook">
+        <page name="tab_general" gui-text="Primitive">
+            <label appearance="header">Settings</label>
+            <separator/>
+            <param name="keeporiginal" type="bool" gui-text="Keep original image on canvas">false</param>
+            <param name="cliprect" type="bool" gui-text="Draw clipping rectangle">true</param>	
+            <param name="n" type="int" min="0" max="99999" gui-text="Number of shapes">100</param>
+            <param name="m" appearance="combo" type="optiongroup" gui-text="Mode"> 
+                <option value="0">Combo</option>
+                <option value="1">Triangle</option>
+                <option value="2">Rectangle</option>
+                <option value="3">Ellipse</option>
+                <option value="4">Circle</option>
+                <option value="5">Rotated rectangle</option>
+                <option value="6">Beziers</option>
+                <option value="7">Rotated ellipse</option>
+                <option value="8">Polygon</option>
+            </param>
+            <param name="rep" type="int" min="0" max="99999" gui-text="Extra shapes/iteration" gui-description="Sdd N extra shapes each iteration with reduced search (mostly good for beziers)">0</param>
+            <param name="r" type="int" min="1" max="99999" gui-text="Resize to size before processing (px)">256</param>
+            <param name="s" type="int" min="1" max="99999" gui-text="Output image size (px)">1024</param>    
+            <param name="a" type="int" min="0" max="255" gui-text="Color alpha" gui-description="Use 0 to let the algorithm choose alpha for each shape">128</param>  
+            <param name="bg_enabled" type="bool" gui-text="Use average starting background color">true</param>
+            <param name="bg" type="color" appearance="colorbutton" gui-text="Starting background color" gui-description="You need to disable average starting background to use this option">255</param>    
+            <param name="j" type="int" min="0" max="32" gui-text="Number of parallel workers" gui-description="Default (0) uses all cores">0</param>    
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Primitive (Michael Fogleman)</label>
+            <label>Primitive - Reproducing images with geometric primitives written in Go. Wrapped for Inkscape.</label>
+            <label>2020 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/primitive</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">Third Party Modules</label>
+            <label appearance="url">https://github.com/fogleman/primitive</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+    </param>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+		<effects-menu>
+         <submenu name="MightyScape">
+            <submenu name="Tracing/Images/Edge Detection"/>
+         </submenu>
+		</effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">primitive.py</command>
+    </script>
+</inkscape-extension>

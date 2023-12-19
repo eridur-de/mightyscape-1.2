@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Triangular Grid</name>
+    <id>fablabchemnitz.de.triangular_grid</id>
+    <param name="tabs" type="notebook">
+        <page name="geometry" gui-text="Geometry">
+            <param name="size_unit" type="optiongroup" appearance="combo" gui-text="Spacing units">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+                <option value="px">px</option>
+                <option value="pt">pt</option>
+            </param>
+            <param name="dm" type="float" min="1" max="1000" precision="2" gui-text="Major grid division Spacing">100.00</param>
+            <param name="y_divs" type="int" min="1" max="1000" gui-text="Major vertical divisions">3</param>
+            <param name="x_divs" type="int" min="1" max="1000" gui-text="Major horizontal divisions">3</param>
+            <param name="grid_angle" type="float" min="0.1" max="89.9" gui-text="Grid angle [deg]">30.0</param>
+            <param name="subdivs" type="int" min="1" max="1000" gui-text="Subdivisions per Major grid division">2</param>
+            <param name="subsubdivs" type="int" min="1" max="1000" gui-text="Subsubdivs. per grid subdivision">5</param>
+        </page>
+        <page name="border" gui-text="Border">
+            <param name="border_color" type="color" gui-text="Color">#000000ff</param>
+            <param name="border_th" type="float" min="0" max="1000" gui-text="Thickness [px]">3</param>
+        </page>
+        <page name="major" gui-text="Major divisions">
+            <param name="major_color" type="color" gui-text="Color">#ff0000ff</param>
+            <param name="major_th" type="float" min="0" max="1000" gui-text="Thickness [px]">2</param>
+        </page>
+        <page name="minor" gui-text="Minor divisions">
+            <param name="subdiv_color" type="color" gui-text="Color">#ff00ffff</param>
+            <param name="subdiv_th" type="float" min="0" max="1000" gui-text="Thickness [px]">2</param>
+        </page>
+        <page name="subminor" gui-text="Subminor divisions">
+            <param name="subsubdiv_color" type="color" gui-text="Color">##0000ffff</param>
+            <param name="subsubdiv_th" type="float" min="0" max="1000" gui-text="Thickness [px]">2</param>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Grids/Guides"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">triangular_grid.py</command>
+    </script>
+</inkscape-extension>

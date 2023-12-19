@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Another Perspective",
+    "id": "fablabchemnitz.de.another_perspective",
+    "path": "another_perspective",
+    "dependent_extensions": null,
+    "original_name": "AnotherPerspective",
+    "original_id": "macrico.anotherperspective",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/CorentinBrule/inkscape_another_perspective_extension/blob/master/anotherperspective.py",
+    "comment": "ported to Inkscape v1 by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/another_perspective",
+    "fork_url": "https://github.com/CorentinBrule/inkscape_another_perspective_extension",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Another+Perspective",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/CorentinBrule",
+      "github.com/eridur-de"
+    ]
+  }
+]

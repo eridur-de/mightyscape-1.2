@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Mirror",
+    "id": "fablabchemnitz.de.mirror",
+    "path": "mirror",
+    "dependent_extensions": null,
+    "original_name": "Mirror",
+    "original_id": "test.apex.mirror",
+    "license": "GNU GPL v2",
+    "license_url": "https://inkscape.org/~jeko/%E2%98%85mirror",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/mirror",
+    "fork_url": "https://inkscape.org/~jeko/%E2%98%85mirror",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Mirror",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/jeko",
+      "github.com/eridur-de"
+    ]
+  }
+]

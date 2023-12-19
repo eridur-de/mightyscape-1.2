@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Normalize Drawing Scale",
+    "id": "fablabchemnitz.de.normalize_drawing_scale",
+    "path": "laser_check",
+    "dependent_extensions": null,
+    "original_name": "Normalize Drawing Scale",
+    "original_id": "fablabchemnitz.de.normalize_drawing_scale",
+    "license": "GNU GPL v3",
+    "license_url": "",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/normalize_drawing_scale",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Normale+Drawing+Scale",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/eridur-de"
+    ]
+  }
+]

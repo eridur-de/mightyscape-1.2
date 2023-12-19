@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Image Triangulation",
+    "id": "fablabchemnitz.de.image_triangulation",
+    "path": "image_triangulation",
+    "dependent_extensions": null,
+    "original_name": "Triangulation",
+    "original_id": "org.inkscape.triangulation",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/nicolaromano/triangulate/blob/master/triangulation.py",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/image_triangulation",
+    "fork_url": "https://github.com/nicolaromano/triangulate",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Image+Triangulation",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/nicolaromano",
+      "github.com/eridur-de"
+    ]
+  }
+]

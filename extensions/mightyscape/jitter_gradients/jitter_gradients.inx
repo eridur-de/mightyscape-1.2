@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>Jitter Gradients</name>
+	<id>fablabchemnitz.de.jitter_gradients</id>
+	<param name="jitter_amount" type="int" min="1" max="1000" gui-text="Jitter Amount" gui-description="Relative to distance between gradient nodes">0</param>
+	<effect>
+		<object-type>all</object-type>
+		<effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Colors/Gradients/Filters"/>
+            </submenu>
+		</effects-menu>
+	</effect>
+	<script>
+		<command location="inx" interpreter="python">jitter_gradients.py</command>
+	</script>
+</inkscape-extension>

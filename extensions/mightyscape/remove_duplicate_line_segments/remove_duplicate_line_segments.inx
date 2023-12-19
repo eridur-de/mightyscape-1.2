@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Remove Duplicate Line Segments</name>
+    <id>fablabchemnitz.de.remove_duplicate_line_segments</id>
+    <param type="notebook" name="tab">
+        <page name="options" gui-text="Options">
+            <label>Remove duplicate line segments from selected paths.</label>
+            <param name="selfPath" type="bool" gui-text="Include checking each path against itself.">false</param>
+            <label>Warning: segments smaller than tolerance set below might disappear</label>
+            <param name="minUse" type="bool" gui-text="Also remove line segments where nodes and controlpoints differ by less than">false</param>
+            <param name="tolerance" indent="3" type="float" precision="2" min="0" max="9999" gui-text="Tolerance">0.01</param>
+            <label>Unit as defined in document (File-&gt;Document Properties).</label>
+            <param name="interp" type="bool" gui-text="Let the remaining line segment be an interpolation of the matching line segments.">false</param>
+        </page>
+        <page name="help" gui-text="Information">
+            <label>Remove duplicate line segments (with exact same coordinates) will always be performed.</label>
+            <label appearance="header">For more information</label>
+            <label appearance="url">https://gitlab.com/EllenWasbo/inkscape-extension-removeduplicatelines</label>
+        </page>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Paths - Cut/Intersect/Purge" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">remove_duplicate_line_segments.py</command>
+    </script>
+</inkscape-extension>

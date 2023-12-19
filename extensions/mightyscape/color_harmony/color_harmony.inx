@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Color Harmony</name>
+    <id>fablabchemnitz.de.color_harmony</id>
+    <param name="tab" type="notebook">
+        <page name="render" gui-text="Create Color Harmony">
+            <label>Select an object that is filled with the color that you want to use as a base for your palette.</label>
+            <param name="harmony" type="optiongroup" appearance="combo" gui-text="Color Harmony:" gui-description="The asterisk means that the Angle modificator parameter can be used to change the outcome.">
+                <option value="just_opposite">Just opposite</option>
+                <option value="split_complementary">Split complementary *</option>
+                <option value="three">Three colors</option>
+                <option value="four">Four colors</option>
+                <option value="rectangle">Rectangle *</option>
+                <option value="five">Five colors *</option>
+                <option value="similar_3">Three similar colors *</option>
+                <option value="similar_5">Five similar colors *</option>
+                <option value="similar_and_opposite">Similar and opposite *</option>
+                <option value="from_raster">From selected raster image</option>
+            </param>
+            <param name="factor" type="int" min="1" max="100" gui-text="Angle modificator *" appearance="full" gui-description="Factor for determining the angle on the color circle for some of the harmonies (those that are marked with an asterisk)">50</param>
+            <param name="sort" type="optiongroup" appearance="combo" gui-text="Sort by:">
+                <option value="by_hue">Hue, 0-360°</option>
+                <option value="hue_contiguous">Hue, start from largest gap</option>
+                <option value="by_saturation">Saturation</option>
+                <option value="by_value">Value</option>
+            </param>
+            <label appearance="header">Add shades</label>
+            <hbox>
+                <vbox>
+                    <param type="bool" name="cooler" gui-text="Cooler">false</param>
+                    <param type="bool" name="warmer" gui-text="Warmer">false</param>
+                    <param type="bool" name="saturation" gui-text="Saturation">false</param>
+                </vbox>
+                <vbox>
+                    <param type="bool" name="value" gui-text="Value">false</param>
+                    <param type="bool" name="chroma" gui-text="Chroma">false</param>
+                    <param type="bool" name="luma" gui-text="Luma">false</param>
+                </vbox>
+                <vbox>
+                    <param type="bool" name="hue" gui-text="Hue">false</param>
+                    <param type="bool" name="hue_luma" gui-text="Hue / Luma">false</param>
+                    <param type="bool" name="luma_plus_chroma" gui-text="Luma plus Chroma">false</param>
+                </vbox>
+                <vbox>
+                    <param type="bool" name="luma_minus_chroma" gui-text="Luma minus Chroma">false</param>
+                </vbox>
+            </hbox>
+            <param name="step_width" type="float" min="0" max="1" gui-text="Shading step width:">0.1</param>
+            <label appearance="header">Size</label>
+            <param name="size" type="int" min="0" max="10000" gui-text="Size:">10</param>
+            <param name="unit" type="optiongroup" appearance="combo" gui-text="Units:">
+                <option value="mm">mm</option>
+                <option value="cm">cm</option>
+                <option value="in">in</option>
+                <option value="px">px</option>
+                <option value="pt">pt</option>
+                <option value="pc">pc</option>
+            </param>
+            <param name="delete_existing" type="bool" gui-text="Remove old palettes">true</param>
+        </page>
+        <page name="save" gui-text="Save as Palette File">
+            <label>Save all selected palettes to a (single) palette file</label>
+            <param name="palette_format" type="optiongroup" appearance="combo" gui-text="Palette file format:">
+                <option value="gimp">Gimp Palette (.gpl)</option>
+                <option value="krita">Krita Palette (.kpl)</option>
+                <option value="scribus">Scribus Palette (.xml)</option>
+            </param>
+            <param type="path" name="palette_folder" gui-text="Folder to save palette file:" mode="folder"/>
+            <param name="palette_name" type="string" gui-text="Palette name">My Palette</param>
+        </page>
+        <page name="colorize" gui-text="Magic Colors">
+            <label>Press "Apply" to colorize the selection with the rendered palette.</label>
+        </page>
+    </param>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Colors/Gradients/Filters"/>
+            </submenu>
+        </effects-menu>
+        <menu-tip>Generate color harmonies and save as palette file</menu-tip>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">color_harmony.py</command>
+    </script>
+</inkscape-extension>

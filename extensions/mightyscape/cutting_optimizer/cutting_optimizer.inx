@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Cutting Optimizer (Nesting)</name>
+    <id>fablabchemnitz.de.cutting_optimizer</id>
+    <param name="tab" type="notebook">
+        <page name="tab_general" gui-text="Cutting Optimizer (CutOptim)">
+            <hbox>
+                <vbox>
+                    <label appearance="header">Geometry</label>
+                    <param name="unit" type="optiongroup" appearance="combo" gui-text="Unit">
+                        <option value="mm">mm</option>
+                    </param>
+                    <param name="distance" type="float" min="0.00" max="10.00" precision="2" gui-text="Min distance between objects" gui-description="This is the size of which polygons will be enlarged. This value must be greater than 0.8mm, the approximation by polygons is not perfect.">0.00</param>
+                    <param name="max_length" type="float" min="0" max="1000" gui-text="Max length of single segment" gui-description="the software will try to find a good configuration by positioning vertices on other vertices. It can be interesting in some cases to 'add' vertices to have more possibilities. If an edge is larger than the specified size, it will be broken into multiple segments, with additional vertices. Do not abuse this option, too low a value will slow down the treatment tremendously. Do not go below 100mm in most cases.">1000</param>
+                    <param name="optimizing_level" type="int" min="1" max="3" gui-text="Optimizing level" gui-description=" By increasing this parameter, the software will optimize the placement of a group of N polygons. This gives better results, but be careful, it considerably increases the treatment time. Do not exceed 2 or 3">1</param>
+                    <param name="firstpos" type="optiongroup" appearance="combo" gui-text="Placement" gui-description="Select option for largest element placement.">
+                        <option value="TL">Top Left</option>
+                        <option value="TC">Top Center</option>
+                        <option value="TR">Top Right</option>
+                        <option value="CL">Center Left</option>
+                        <option value="CC">Center Center</option>
+                        <option value="CR">Center Right</option>
+                        <option value="BL">Bottom Left</option>
+                        <option value="BC">Bottom Center</option>
+                        <option value="BR">Bottom Right</option>
+                    </param>
+                    <param name="free_rot" type="bool" gui-text="Allow free rotation of paths">true</param>
+                    <param name="angle" type="float" min="0.00" max="360.00" precision="2" gui-text="Rotation angle step (°)" gui-description="Try rotation by angle (0 = no rotation allowed)">0.00</param>
+                    <param name="nested" type="bool" gui-text="Keep nested paths together" gui-description="If checked, path included in another one will not processed but linked to the larger path">true</param>
+                    <param name="use_cache" type="bool" gui-text="Use cache" gui-description="Use cache to speed up processing. Cache operation is currently bugged and should NOT be used.">false</param>
+                    <param name="rect_cost" type="float" min="0.00" max="1000.00" precision="2" gui-text="Overall rectangle area * factor" gui-description="Add overall rectangle area * factor to cost function. Default factor is 0.0">0.00</param>
+                </vbox>
+                <vbox>
+                    <label appearance="header">Layers</label>
+                    <param name="original" type="bool" gui-text="Keep original layer">false</param>
+                    <separator/>
+                    <param name="layer_output_0" type="bool" gui-text="Placed Layer">true</param>
+                    <!--<param name="layer_output_1" type="bool" gui-text="Original (Input) Layer">false</param>-->
+                    <param name="layer_output_2" type="bool" gui-text="Polygon layer">false</param>
+                    <param name="layer_output_4" type="bool" gui-text="Large polygon layer">false</param>
+                    <param name="layer_output_8" type="bool" gui-text="Hull layer">false</param>
+                    <param name="layer_output_16" type="bool" gui-text="Placed Polygon layer">false</param>
+                    <label appearance="header">Debug / Error handling</label>
+                    <param name="debug_file" type="bool" gui-text="Generate and open debug file">false</param>
+                    <param name="print_cmd" type="bool" gui-text="Print console cmd only">false</param>
+                    <param name="cancel_on_error" type="bool" gui-text="Cancel on errors" gui-description="Will cancel whole transaction if any polygon could not be placed">true</param>
+                </vbox>   
+            </hbox>
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Cutting Optimizer (CutOptim)</label>
+            <label>CutOptim - a nesting tool for Inkscape (written by thierry7100).</label>
+            <label>2020 - 2023 / Wrapper written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/cutoptim</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">Third Party Modules</label>
+            <label appearance="url">https://github.com/thierry7100/CutOptim</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page> 
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+				<submenu name="Transformations"/>
+			</submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">cutting_optimizer.py</command>
+    </script>
+</inkscape-extension>

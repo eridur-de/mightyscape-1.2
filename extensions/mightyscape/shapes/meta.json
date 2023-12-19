@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Shapes",
+    "id": "fablabchemnitz.de.shapes",
+    "path": "shapes",
+    "dependent_extensions": null,
+    "original_name": "Shapes for 1.0",
+    "original_id": "org.inkscape.effect.shapes1",
+    "license": "GNU GPL v2",
+    "license_url": "https://www.arakne.es/wp-content/uploads/2017/08/arakne_shapes_1.zip",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/shapes",
+    "fork_url": "https://www.arakne.es/en/inkscape-1-0-shapes-extension-new-version/",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Shapes",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/pacogarcia",
+      "github.com/eridur-de"
+    ]
+  }
+]

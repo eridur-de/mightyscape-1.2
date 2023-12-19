@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>UBox</name>
+<id>info.festi.boxes.py.UBox</id>
+<param name="generator" type="string" gui-hidden="true">ubox</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="UBox">
+        <param name="top_edge" type="optiongroup" appearance="combo" gui-text="top_edge" gui-description="edge type for top edge">
+            <option value="e">e Straight Edge</option>
+            <option value="f">f Finger Joint</option>
+            <option value="F">F Finger Joint (opposing side)</option>
+            <option value="h">h Edge (parallel Finger Joint Holes)</option>
+            <option value="c">c Click on (bottom side)</option>
+            <option value="E">E Straight Edge (outset by thickness)</option>
+            <option value="S">S Stackable (top)</option>
+            <option value="Š">Š Stackable edge with finger holes (top)</option>
+            <option value="i">i Straight edge with hinge eye</option>
+            <option value="k">k Straight edge with hinge eye (both ends)</option>
+            <option value="v">v Edge with cabinet hinges for 90° lid</option>
+            <option value="L">L Edge for slide on lid (box back)</option>
+            <option value="t">t Triangle for handle</option>
+            <option value="G">G Edge with pear shaped mounting holes</option>
+            <option value="y">y Handle for e.g. a drawer</option>
+            <option value="Y">Y Handle with holes for parallel finger joint</option>
+      </param>
+        <param name="x" type="float" precision="2" max="9999" gui-text="x" gui-description="inner width in mm">100.0</param>
+        <param name="y" type="float" precision="2" max="9999" gui-text="y" gui-description="inner depth in mm">100.0</param>
+        <param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="inner height in mm">100.0</param>
+        <param name="radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="radius of bottom corners">30.0</param>
+        <param name="lid" type="optiongroup" appearance="combo" gui-text="lid" gui-description="additional lid">
+            <option value="default (none)">default (none)</option>
+            <option value="chest">chest</option>
+            <option value="flat">flat</option>
+    </param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+            <option value="loop">loop</option>
+            <option value="corner">corner</option>
+            <option value="backarc">backarc</option>
+    </param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Finger Joints">
+        <param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
+        <param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+            <option value="rectangular">rectangular</option>
+            <option value="springs">springs</option>
+            <option value="barbs">barbs</option>
+            <option value="snap">snap</option>
+    </param>
+        <param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="space at the start and end in multiple of normal spaces">2.0</param>
+        <param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+        <param name="FingerJoint_extra_length" type="float" precision="2" max="9999" gui-text="extra_length" gui-description="extra material to grind away burn marks (multiples of thickness)">0.0</param>
+        <param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers (multiples of thickness)">2.0</param>
+        <param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out (multiples of thickness)">0.0</param>
+        <param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">2.0</param>
+        <param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
+    </page>
+    <page name="tab_3" gui-text="Stackable Edges">
+        <param name="Stackable_angle" type="int" max="9999" gui-text="angle" gui-description="inside angle of the feet">60</param>
+        <param name="Stackable_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the feet (multiples of thickness)">2.0</param>
+        <param name="Stackable_holedistance" type="float" precision="2" max="9999" gui-text="holedistance" gui-description="distance from finger holes to bottom edge (multiples of thickness)">1.0</param>
+        <param name="Stackable_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of the feet (multiples of thickness)">4.0</param>
+    </page>
+    <page name="tab_4" gui-text="Hinges and HingePins">
+        <param name="Hinge_grip_percentage" type="int" max="9999" gui-text="grip_percentage" gui-description="grip_percentage">0</param>
+        <param name="Hinge_outset" type="bool" gui-text="outset" gui-description="have lid overlap at the sides (similar to OutSetEdge)">false</param>
+        <param name="Hinge_pinwidth" type="float" precision="2" max="9999" gui-text="pinwidth" gui-description="set to lower value to get disks surrounding the pins">0.5</param>
+        <param name="Hinge_style" type="optiongroup" appearance="combo" gui-text="style" gui-description='"outset" or "flush"'>
+            <option value="outset">outset</option>
+            <option value="flush">flush</option>
+    </param>
+        <param name="Hinge_axle" type="float" precision="2" max="9999" gui-text="axle" gui-description="diameter of the pin hole (multiples of thickness)">2.0</param>
+        <param name="Hinge_grip_length" type="int" max="9999" gui-text="grip_length" gui-description="fixed length of the grips on he lids (multiples of thickness)">0</param>
+        <param name="Hinge_hingestrength" type="int" max="9999" gui-text="hingestrength" gui-description="thickness of the arc holding the pin in place (multiples of thickness)">1</param>
+    </page>
+    <page name="tab_5" gui-text="Cabinet Hinges">
+        <param name="CabinetHinge_bore" type="float" precision="2" max="9999" gui-text="bore" gui-description="diameter of the pin hole in mm">3.2</param>
+        <param name="CabinetHinge_eyes_per_hinge" type="int" max="9999" gui-text="eyes_per_hinge" gui-description="pieces per hinge">5</param>
+        <param name="CabinetHinge_hinges" type="int" max="9999" gui-text="hinges" gui-description="number of hinges per edge">2</param>
+        <param name="CabinetHinge_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of hinge used">
+            <option value="inside">inside</option>
+            <option value="outside">outside</option>
+    </param>
+        <param name="CabinetHinge_eye" type="float" precision="2" max="9999" gui-text="eye" gui-description="radius of the eye (multiples of thickness)">1.5</param>
+        <param name="CabinetHinge_play" type="float" precision="2" max="9999" gui-text="play" gui-description="space between eyes (multiples of thickness)">0.05</param>
+        <param name="CabinetHinge_spacing" type="float" precision="2" max="9999" gui-text="spacing" gui-description="minimum space around the hinge (multiples of thickness)">2.0</param>
+    </page>
+    <page name="tab_6" gui-text="Slide-on Lids">
+        <param name="Lid_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
+        <param name="Lid_hole_width" type="int" max="9999" gui-text="hole_width" gui-description='width of the "finger hole" in mm'>0</param>
+        <param name="Lid_second_pin" type="bool" gui-text="second_pin" gui-description="additional pin for better positioning">true</param>
+        <param name="Lid_spring" type="optiongroup" appearance="combo" gui-text="spring" gui-description="position(s) of the extra locking springs in the lid">
+            <option value="both">both</option>
+            <option value="none">none</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+    </param>
+        <param name="Lid_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+            <option value="rectangular">rectangular</option>
+            <option value="springs">springs</option>
+            <option value="barbs">barbs</option>
+            <option value="snap">snap</option>
+    </param>
+        <param name="Lid_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="space at the start and end in multiple of normal spaces">2.0</param>
+        <param name="Lid_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+        <param name="Lid_extra_length" type="float" precision="2" max="9999" gui-text="extra_length" gui-description="extra material to grind away burn marks (multiples of thickness)">0.0</param>
+        <param name="Lid_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers (multiples of thickness)">3.0</param>
+        <param name="Lid_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out (multiples of thickness)">0.05</param>
+        <param name="Lid_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">2.0</param>
+        <param name="Lid_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
+    </page>
+    <page name="tab_7" gui-text="Click-on Lids">
+        <param name="Click_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle of the hooks bending outward">5.0</param>
+        <param name="Click_bottom_radius" type="float" precision="2" max="9999" gui-text="bottom_radius" gui-description="radius at the bottom (multiples of thickness)">0.1</param>
+        <param name="Click_depth" type="float" precision="2" max="9999" gui-text="depth" gui-description="length of the hooks (multiples of thickness)">3.0</param>
+    </page>
+    <page name="tab_8" gui-text="RoundedTriangleEdge">
+        <param name="RoundedTriangleEdge_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height above the wall">50.0</param>
+        <param name="RoundedTriangleEdge_r_hole" type="float" precision="2" max="9999" gui-text="r_hole" gui-description="radius of hole">2.0</param>
+        <param name="RoundedTriangleEdge_radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="radius of top corner">30.0</param>
+        <param name="RoundedTriangleEdge_outset" type="float" precision="2" max="9999" gui-text="outset" gui-description="extend the triangle along the length of the edge (multiples of thickness)">0.0</param>
+    </page>
+    <page name="tab_9" gui-text="Mounting Edge">
+        <param name="Mounting_d_head" type="float" precision="2" max="9999" gui-text="d_head" gui-description="head diameter of mounting screw (in mm)">6.5</param>
+        <param name="Mounting_d_shaft" type="float" precision="2" max="9999" gui-text="d_shaft" gui-description="shaft diameter of mounting screw (in mm)">3.0</param>
+        <param name="Mounting_margin" type="float" precision="2" max="9999" gui-text="margin" gui-description="minimum space left and right without holes (fraction of the edge length)">0.125</param>
+        <param name="Mounting_num" type="int" max="9999" gui-text="num" gui-description="number of mounting holes (integer)">2</param>
+        <param name="Mounting_side" type="optiongroup" appearance="combo" gui-text="side" gui-description="side of box (not all valid configurations make sense...)">
+            <option value="back">back</option>
+            <option value="left">left</option>
+            <option value="right">right</option>
+            <option value="front">front</option>
+    </param>
+        <param name="Mounting_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="edge style">
+            <option value="straight edge, within">straight edge, within</option>
+            <option value="straight edge, extended">straight edge, extended</option>
+            <option value="mounting tab">mounting tab</option>
+    </param>
+    </page>
+    <page name="tab_10" gui-text="HandleEdge">
+        <param name="HandleEdge_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height above the wall in mm">20.0</param>
+        <param name="HandleEdge_hole_height" type="float" precision="2" max="9999" gui-text="hole_height" gui-description="height of hole(s) in percentage of maximum hole height (handle height - 2 * material thickness)">75.0</param>
+        <param name="HandleEdge_hole_width" type="string" gui-text="hole_width" gui-description="width of hole(s) in percentage of maximum hole width (width of edge - (n+1) * material thickness)">40:40</param>
+        <param name="HandleEdge_on_sides" type="bool" gui-text="on_sides" gui-description="added to side panels if checked, to front and back otherwise (only used with top_edge parameter)">true</param>
+        <param name="HandleEdge_radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="radius of corners in mm">10.0</param>
+        <param name="HandleEdge_outset" type="float" precision="2" max="9999" gui-text="outset" gui-description="extend the handle along the length of the edge (multiples of thickness)">1.0</param>
+    </page>
+    <page name="tab_11" gui-text="Flex">
+        <param name="Flex_stretch" type="float" precision="2" max="9999" gui-text="stretch" gui-description="Hint of how much the flex part should be shortend">1.05</param>
+        <param name="Flex_connection" type="float" precision="2" max="9999" gui-text="connection" gui-description="width of the gaps in the cuts (multiples of thickness)">1.0</param>
+        <param name="Flex_distance" type="float" precision="2" max="9999" gui-text="distance" gui-description="width of the pattern perpendicular to the cuts (multiples of thickness)">0.5</param>
+        <param name="Flex_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of the pattern in direction of the cuts (multiples of thickness)">5.0</param>
+    </page>
+    <page name="tab_12" gui-text="Example">
+        <image>./UBox-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/UBox</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="MightyScape">
+            <submenu name="Boxes.py">
+                <submenu name="Boxes with flex"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Guillotine Plus",
+    "id": "fablabchemnitz.de.guillotine_plus",
+    "path": "guillotine_plus",
+    "dependent_extensions": null,
+    "original_name": "Guillotine Plus",
+    "original_id": "org.inkscape.guillotineplus",
+    "license": "GNU GPL v2",
+    "license_url": "https://inkscape.org/de/~Bootta/%E2%98%85guillotine-plus",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/guillotine_plus",
+    "fork_url": "https://inkscape.org/de/~Bootta/%E2%98%85guillotine-plus",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Guillotine+Plus",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/Bootta",   
+      "github.com/eridur-de"
+    ]
+  }
+]

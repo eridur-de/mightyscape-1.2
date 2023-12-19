@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>WaivyKnob</name>
+<id>info.festi.boxes.py.WaivyKnob</id>
+<param name="generator" type="string" gui-hidden="true">waivyknob</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="WaivyKnob">
+        <param name="diameter" type="float" precision="2" max="9999" gui-text="diameter" gui-description="Diameter of the knob (mm)">50.0</param>
+        <param name="serrations" type="int" max="9999" gui-text="serrations" gui-description="Number of serrations">20</param>
+        <param name="serrationangle" type="float" precision="2" max="9999" gui-text="serrationangle" gui-description="higher values for deeper serrations (degrees)">45.0</param>
+        <param name="bolthole" type="float" precision="2" max="9999" gui-text="bolthole" gui-description="Diameter of the bolt hole (mm)">6.0</param>
+        <param name="dhole" type="float" precision="2" max="9999" gui-text="dhole" gui-description="D-Flat in fraction of the diameter">1.0</param>
+        <param name="hexhead" type="float" precision="2" max="9999" gui-text="hexhead" gui-description="Width of the hex bolt head (mm)">10.0</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+            <option value="loop">loop</option>
+            <option value="corner">corner</option>
+            <option value="backarc">backarc</option>
+    </param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Example">
+        <image>./WaivyKnob-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/WaivyKnob</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="MightyScape">
+            <submenu name="Boxes.py">
+                <submenu name="Parts and Samples"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

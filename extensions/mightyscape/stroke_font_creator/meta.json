@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Custom Stroke Font - <various>",
+    "id": "fablabchemnitz.de.stroke_font_creator.<various>",
+    "path": "stroke_font_creator",
+    "dependent_extensions": null,
+    "original_name": "<various>",
+    "original_id": "khema.stroke.fnt.gen.<various>",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/Shriinivas/inkscapestrokefont/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/stroke_font_creator",
+    "fork_url": "https://github.com/Shriinivas/inkscapestrokefont",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Stroke+Font+Creator",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/Shriinivas",
+      "github.com/eridur-de"
+    ]
+  }
+]

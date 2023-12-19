@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Box Maker - Schroff</name>
+    <id>fablabchemnitz.de.boxmaker_tabbed.box_maker_schroff</id>
+    <param name="unit" type="string" gui-hidden="true">mm</param>
+    <param name="inside" type="string" gui-hidden="true">1</param>
+    <param name="schroff" type="int" gui-hidden="true">1</param>
+    <param name="rows" type="int" min="1" max="6" gui-text="Number of 3U rows:">1</param>
+    <param name="hp" type="int" min="4" max="168" gui-text="Width (TE/HP units):">84</param>
+    <param name="length" type="float" precision="3" gui-hidden="true">0.0</param>
+    <param name="width" type="float" precision="3" gui-hidden="true">0.0</param>
+    <param name="depth" type="float" precision="3" min="30" max="300" gui-text="Depth:">65</param>
+    <!-- these defaults are suitable for the rails sold by Elby Designs -->
+    <param name="rail_height" type="float" precision="3" min="7.0" max="10.0" gui-text="Rail height:">10.0</param>
+    <param name="rail_mount_depth" type="float" precision="3" min="5" max="30" gui-text="Rail mounting hole depth:">17.4</param>
+    <param name="rail_mount_centre_offset" type="float" precision="3" min="0.0" max="5.0" gui-text="Rail mount hole centre-offset:">0.0</param>
+    <param name="row_spacing" type="float" precision="3" min="0.0" max="50.0" gui-text="Spacing between rows:">0.0</param>
+    <param name="tab" type="float" precision="2" min="0.0" max="10000.0" gui-text="Minimum/Prefered Tab Width">3.0</param>
+    <param name="equal" type="optiongroup" appearance="combo" gui-text="Tab Width">
+        <option value="0">Fixed</option>
+        <option value="1">Proportional</option>
+    </param>
+    <param name="thickness" type="float" precision="2" min="0.0" max="10000.0" gui-text="Material Thickness">3.0</param>
+    <param name="kerf" type="float" precision="3" min="0.0" max="10000.0" gui-text="Kerf (cut width)">0.1</param>
+    <param name="div_l" type="int" gui-hidden="true">0</param>
+    <param name="div_w" type="int" gui-hidden="true">0</param>
+    <param name="style" type="string" gui-hidden="true">1</param>
+    <param name="boxtype" type="int" gui-hidden="true">2</param>
+    <param name="spacing" type="float" precision="2" min="0.0" max="10000.0" gui-text="Space Between Parts">1.0</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Finger-jointed/Tabbed Boxes" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">box_maker_tabbed.py</command>
+    </script>
+</inkscape-extension>

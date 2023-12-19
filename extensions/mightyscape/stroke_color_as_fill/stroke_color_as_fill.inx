@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Stroke Color As Fill</name>
+    <id>fablabchemnitz.de.stroke_color_as_fill</id>
+    <param name="tab" type="notebook">
+        <page name="swap_tab" gui-text="Fill, Stroke">
+            <param name="fill_stroke_mode" type="optiongroup" appearance="combo" gui-text="Mode:">
+                <option value="fill_stroke">Swap Fill and Stroke</option>
+                <option value="fill">Copy Fill to Stroke</option>
+                <option value="stroke">Copy Stroke to Fill</option>
+            </param>
+            <param name="fill_stroke_copy_alpha" type="bool" gui-text="Copy alpha">true</param>
+            <param name="fill_stroke_copy_none" type="bool" gui-text="Copy 'None' property">true</param>
+            <param name="fill_stroke_copy_unset" type="bool" gui-text="Copy 'Unset' property">true</param>
+            <param name="fill_stroke_convert_unset" type="bool" gui-text="Convert 'Unset' property" gui-description="Convert unset fill to black stroke, unset stroke to 'none' fill.">true</param>
+        <!--<param name="nodash" type="bool" gui-text="Fix dash-stroke to alow no line only markers">false</param>-->
+        </page>
+        <page name="about_tab" gui-text="About">
+            <label appearance="header">Swap</label>
+            <label>Swap or copy fill, stroke paint.</label>
+        </page>
+    </param>
+    <effect needs-document="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Colors/Gradients/Filters"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">stroke_color_as_fill.py</command>
+    </script>
+</inkscape-extension>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Convert To Localized Braille</name>
+    <id>fablabchemnitz.de.braille_l18n</id>
+    <param name="locale" gui-text="Alphabet:" type="optiongroup" appearance="combo">
+        <option value="en">English (ASCII)</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="gl">Galician</option>
+        <option value="eu">Basque</option>
+        <option value="ca">Catalan/Valencian</option>
+    </param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Text" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">braille_l18n.py</command>
+    </script>
+</inkscape-extension>

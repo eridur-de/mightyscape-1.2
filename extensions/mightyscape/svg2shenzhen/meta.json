@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Svg2Shenzhen - <various>",
+    "id": "fablabchemnitz.de.svg2shenzhen_<various>",
+    "path": "svg2shenzhen",
+    "dependent_extensions": null,
+    "original_name": "<various>",
+    "original_id": "net.svg2shenzhen_<various>",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/badgeek/svg2shenzhen/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/svg2shenzhen",
+    "fork_url": "https://github.com/badgeek/svg2shenzhen",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Svg2Shenzhen",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/badgeek",
+      "github.com/eridur-de"
+    ]
+  }
+]

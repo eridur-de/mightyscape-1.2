@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Export Selection As ...",
+    "id": "fablabchemnitz.de.export_selection_as",
+    "path": "export_selection_as",
+    "dependent_extensions": null,
+    "original_name": "Export selection as svg",
+    "original_id": "sk.linuxos.export_selection",
+    "license": "MIT License",
+    "license_url": "https://github.com/mireq/inkscape-export-selection-as-svg/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/export_selection_as",
+    "fork_url": "https://github.com/mireq/inkscape-export-selection-as-svg",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=104923223",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/mireq",  
+      "github.com/eridur-de"
+    ]
+  }
+]

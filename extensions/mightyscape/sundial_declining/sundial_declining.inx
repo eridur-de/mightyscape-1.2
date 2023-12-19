@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Sundial Declining</name>
+   <id>fablabchemnitz.de.sundial_declining</id>
+   <param name="tab" type="notebook">
+      <page name="input" gui-text="Options">
+         <label appearance="header">Location coordinates</label>
+         <param name="latitude" type="float" min="10" max="70" precision="3" gui-text="Latitude:">50</param>
+         <param name="longitude" type="float" min="-180" max="180" precision="3" gui-text="Longitude:">16</param>
+         <param name="timezone" type="int" min="-12" max="12" gui-text="Time zone:">0</param>
+         <param name="summer_time" type="bool" gui-text="Summer time:">false</param>
+      </page>
+      <page name="input_2" gui-text="Add">
+         <label appearance="header">Add 1</label>
+         <param name="gnom" type="float" min="10" max="50" precision="1" gui-text="Length of the gnomon:">40</param>
+         <param name="decl" type="float" min="-90" max="90" precision="1" gui-text="Azimuth wall:">40</param>
+         <label xml:space="preserve">( + West; - East)</label>
+         <param name="incl" type="float" min="-45" max="45" precision="1" gui-text="Slope of the wall:">0</param>
+         <label xml:space="preserve">( + x; - x)</label>
+      </page>
+      <page name="input_3" gui-text="Draw">
+         <label appearance="header">Add 2</label>
+         <param name="DL" type="optiongroup" appearance="combo" gui-text="Number of data lines:">
+            <option value="0">0</option>
+            <option value="3">3</option>
+            <option value="7">7</option>
+         </param>
+      </page>
+   </param>
+   <label xml:space="preserve">* Latitude from +10 to +70
+* Longitude (+ to E) from -180 to 180
+* Time Zone (+ to E) from -12 to 12
+</label>
+   <effect>
+      <object-type>all</object-type>
+      <effects-menu>
+        <submenu name="MightyScape">
+            <submenu name="Shape/Pattern from Generator"/>
+        </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">sundial_declining.py</command>
+   </script>
+</inkscape-extension>

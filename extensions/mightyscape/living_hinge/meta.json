@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Living Hinge (Fit To Rectangle)",
+    "id": "fablabchemnitz.de.living_hinge",
+    "path": "living_hinge",
+    "dependent_extensions": null,
+    "original_name": "Living Hinge",
+    "original_id": "org.lvl1.living_hinge",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/siteswapjuggler/Inkscape_LivingHinge/blob/master/LICENSE.md",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/living_hinge",
+    "fork_url": "https://github.com/siteswapjuggler/Inkscape_LivingHinge",
+    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55018530",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/drphonon",
+      "github.com/siteswapjuggler",
+      "github.com/eridur-de"
+    ]
+  }
+]

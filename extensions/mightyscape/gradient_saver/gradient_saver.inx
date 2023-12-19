@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+	<name>Gradient Saver</name>
+	<id>fablabchemnitz.de.gradient_saver</id>
+	<effect>
+	    <object-type>all</object-type>
+        <effects-menu>
+			<submenu name="MightyScape">
+                <submenu name="Colors/Gradients/Filters"/>
+			</submenu>
+        </effects-menu>
+	</effect>
+	<script>
+		<command location="inx" interpreter="python">gradient_saver.py</command>
+	</script>
+</inkscape-extension>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+   <name>Bobbin Lace - Polar Grid</name>
+   <id>fablabchemnitz.de.bobbinlace.polar_grid</id>
+   <label>Creates a printable polar grid of dots with a constant number of dots per circle and the distance between circles changing at the same speed as the distance between the dots on a circle.</label>
+   <label appearance="header">Grid style</label>
+   <hbox indent="1">
+      <param name="angle" type="float" precision="2" min="15" max="80" gui-text="Grid angle (degrees):">45.0</param>
+   </hbox>
+   <hbox indent="1">
+      <param name="dots" type="int" min="4" max="400" gui-text="Number of dots per circle:">180</param>
+   </hbox>
+   <hbox indent="1">
+      <param name="variant" type="optiongroup" appearance="combo" gui-text="Pattern:">
+         <option value="">diamond</option>
+         <option value="rectangle">rectangle</option>
+         <option value="hexagon1">hexagon (30°)</option>
+         <option value="hexagon2">hexagon (60°, /3)</option>
+         <option value="hexagon3">hexagon + triangle (30-45-60°, /2)</option>
+         <option value="hexagon4">hexagon + diamond (30°)</option>
+         <option value="hexagon5">hexagon + diamond (60°, /2)</option>
+         <option value="snow2">snow, hexagon (60°, /6)</option>
+         <option value="snow1">snow, hexagon + diamond (60°, /8)</option>
+      </param>
+   </hbox>
+   <label appearance="header">Grid size</label>
+   <hbox indent="1">
+      <param name="outerDiameter" type="float" precision="2" min="0.5" max="500" gui-text="Outside diameter:">160</param>
+      <param name="circleDiameterUnits" gui-text=" " type="optiongroup" appearance="combo">
+         <option value="mm">mm</option>
+         <option value="cm">cm</option>
+         <option value="in">in</option>
+         <option value="px">px</option>
+         <option value="pt">pt</option>
+      </param>
+   </hbox>
+   <hbox indent="1">
+      <param name="innerDiameter" type="float" precision="2" min="0.5" max="500" gui-text="Inside diameter:">100</param>
+   </hbox>
+   <hbox indent="1">
+      <param name="alignment" type="optiongroup" appearance="combo" gui-text="Align to:">
+         <option value="outside">outside circle</option>
+         <option value="inside">inside circle</option>
+      </param>
+   </hbox>
+   <label appearance="header">Dot properties</label>
+   <hbox indent="1">
+      <param name="size" type="float" precision="2" min="0.001" max="10" gui-text="Diameter:">0.5</param>
+      <param name="dotUnits" gui-text=" " type="optiongroup" appearance="combo">
+         <option value="px">px</option>
+         <option value="mm">mm</option>
+         <option value="cm">cm</option>
+         <option value="in">in</option>
+         <option value="pt">pt</option>
+      </param>
+   </hbox>
+   <hbox indent="1">
+      <param name="fill" type="color" appearance="colorbutton" gui-text="Color:">255</param>
+   </hbox>
+   <effect needs-live-preview="true">
+      <object-type>all</object-type>
+      <effects-menu>
+         <submenu name="MightyScape">
+            <submenu name="Grids/Guides"/>
+         </submenu>
+      </effects-menu>
+   </effect>
+   <script>
+      <command location="inx" interpreter="python">polar_grid.py</command>
+   </script>
+</inkscape-extension>

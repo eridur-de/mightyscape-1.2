@@ -1,0 +1,21 @@
+[
+  {
+    "name": "PlyCutter",
+    "id": "fablabchemnitz.de.plycutter",
+    "path": "plycutter",
+    "dependent_extensions": null,
+    "original_name": "PlyCutter",
+    "original_id": "fablabchemnitz.de.plycutter",
+    "license": "GNU AGPL v3",
+    "license_url": "https://github.com/tjltjl/plycutter/blob/master/LICENSE-agpl-3.0.txt",
+    "comment": "Written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/plycutter",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/PlyCutter",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/tjltjl",
+      "github.com/eridur-de"
+    ]
+  }
+]

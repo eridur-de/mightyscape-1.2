@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Paperfold</name>
+    <id>fablabchemnitz.de.paperfold</id>
+    <param name="tab" type="notebook">
+        <page name="tab_settings" gui-text="Paperfold for Inkscape">
+            <label appearance="header">Input</label>
+            <param name="inputfile" type="path" gui-text="Input File" filetypes="obj,off,ply,stl"  mode="file" gui-description="The model to unfold. You can use obj files provided in extensions dir of Inkscape \Poly3DObjects\*.obj to play around">/your/beautiful/3dmodel/file</param>
+            <param name="maxNumFaces" type="int" min="1" max="99999" gui-text="Maximum allowed faces" gui-description="If the STL file has too much detail it contains a large number of faces. This will make unfolding extremely slow. So we can limit it.">200</param>     
+            <param name="scalefactor" type="float" precision="3" min="0.0001" max="10000.0" gui-text="Manual scale factor" gui-description="default is 1.0">1.0</param>
+            <param name="roundingDigits" type="int" min="0" max="16" gui-text="Digits for rounding" gui-description="Controls how (nearly) coplanar lines are handled.">3</param>
+            <separator/>
+            <hbox>
+                <vbox>
+                    <label appearance="header">Output</label>
+                    <param name="printGluePairNumbers" type="bool" gui-text="Print glue pair numbers on cut edges">false</param>
+                    <param name="printAngles" type="bool" gui-text="Print folding angles on edges">false</param>
+                    <param name="printLengths" type="bool" gui-text="Print lengths on edges">false</param>
+                    <param name="printTriangleNumbers" type="bool" gui-text="Print triangle numbers on faces">false</param>
+                    <param name="importCoplanarEdges" type="bool" gui-text="Import coplanar edges">false</param>
+                    <param name="experimentalWeights" type="bool" gui-text="Mess around with algorithm">false</param>
+                    <param name="printStats" type="bool" gui-text="Show some unfold statistics">false</param>
+                    <param name="resizetoimport" type="bool" gui-text="Resize canvas" gui-description="Resize the canvas to the imported drawing's bounding box">true</param>
+                    <param name="extraborder" type="float" precision="3" gui-text="Extra border" gui-description="Add extra border around fitted canvas">0.0</param>
+                    <param name="extraborderUnits" type="optiongroup" appearance="combo" gui-text="Border offset units">
+                       <option value="mm">mm</option>
+                       <option value="cm">cm</option>
+                       <option value="in">in</option>
+                       <option value="pt">pt</option>
+                       <option value="px">px</option>
+                    </param>
+                    <param name="writeTwoDSTL" type="bool" gui-text="Write 2D STL unfoldings">false</param>
+                    <param name="TwoDSTLdir" type="path" mode="folder" gui-text="Location to save exported 2D STL">./inkscape_export/</param>
+                </vbox>
+                <separator/>
+                <vbox>
+                    <label appearance="header">Style</label>                 
+                    <param name="fontSize" type="int" min="1" max="100" gui-text="Label font size (%)">15</param>
+                    <param name="flipLabels" type="bool" gui-text="Flip labels">false</param>
+                    <param name="dashes" type="bool" gui-text="Dashes for cut/coplanar lines">true</param>
+                    <param name="merge_cut_lines" type="bool" gui-text="Merge cut lines" gui-description="This will merge all cut lines to a single path">true</param>
+                    <param name="edgeStyle" type="optiongroup" appearance="combo" gui-text="Edge style">
+                       <option value="regular">regular</option>
+                       <option value="saturationsForAngles">saturations for angles</option>
+                       <option value="opacitiesForAngles">opacities for angles</option>
+                    </param>
+                    <param name="separateGluePairsByColor" type="bool" gui-text="Separate glue tab pairs by color" gui-description="Generates random color sets for glue tab pairs">false</param>
+                    <param name="colorCutEdges" type="color" appearance="colorbutton" gui-text="Cut edges">255</param>
+                    <param name="colorCoplanarEdges" type="color" appearance="colorbutton" gui-text="Coplanar edges">1943148287</param>
+                    <param name="colorValleyFolds" type="color" appearance="colorbutton" gui-text="Valley fold edges">3422552319</param>
+                    <param name="colorMountainFolds" type="color" appearance="colorbutton" gui-text="Mountain fold edges">879076607</param>
+                </vbox>
+            </hbox>
+        </page>
+        <page name="tab_postprocessing" gui-text="Post Processing">
+            <label appearance="header">Joinery</label>
+            <label>Joinery is a tool to add interlockings, tabs and other connectors to your edges. It only works on ungrouped paths (flat structure).</label>            
+            <param name="joineryMode" type="bool" gui-text="Enable joinery mode"  gui-description="Makes flat file instead creating groups. Guarantees compability for joinery.">false</param>            
+            <label appearance="url">https://clementzheng.github.io/joinery</label>
+            <label appearance="url">https://www.instructables.com/Joinery-Joints-for-Laser-Cut-Assemblies</label>
+            <label appearance="header">Origami Simulator</label>
+            <label>Simulate your foldings in 3D! See Origami Simulator: "File" -> "Design Tips" -> "Importing SVG"</label>            
+            <label appearance="url">https://origamisimulator.org</label>
+            <label appearance="url">https://github.com/amandaghassaei/OrigamiSimulator</label>
+            <param name="origamiSimulatorMode" type="bool" gui-text="Enable origami simulator mode"  gui-description="Overwrites styles to be compatible to origami simulator.">false</param>            
+        </page>
+        <page name="tab_about" gui-text="About">
+            <label appearance="header">Paperfold for Inkscape</label>
+            <label>Paperfold is another flattener for triangle mesh files, heavily based on paperfoldmodels by Felix Scholz aka felixfeliz. Possible input files are STL, Wavefront OBJ, PLY and OFF.</label>
+            <label>2020 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer/>
+            <label appearance="header">Online Documentation</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/paperfold</label>
+            <spacer/>
+            <label appearance="header">Contributing</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
+            <spacer/>
+            <label appearance="header">Third Party Modules</label>
+            <label appearance="url">https://github.com/felixfeliz/paperfoldmodels</label>
+            <spacer/>
+            <label appearance="header">MightyScape Extension Collection</label>
+            <label>This piece of software is part of the MightyScape for Inkscape Extension Collection and is licensed under GNU GPL v3</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>
+        </page>
+        <page name="tab_donate" gui-text="Donate">
+            <label appearance="header">Coffee + Pizza</label>
+            <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
+            <spacer/>           
+            <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
+            <spacer/>
+            <label>Thanks for using our extension and helping us!</label>
+            <image>../000_about_fablabchemnitz.svg</image>
+        </page>
+    </param>
+    <effect needs-live-preview="true">
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Boxes/Papercraft">
+                    <submenu name="Papercraft Flatteners"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">paperfold.py</command>
+    </script>
+</inkscape-extension>

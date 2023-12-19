@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Clip Out</name>
+    <id>fablabchemnitz.de.clip_out</id>
+    <param name="notebook_main" type="notebook">
+        <page name="settings_page" gui-text="Settings">
+            <param name="clip_type_inverse" type="bool" gui-text="Inverse" gui-description="Make holes :)">false</param>
+            <separator/>
+            <param name="output_set" type="optiongroup" appearance="radio" gui-text="Output">
+                <option value="master_only">Master Only</option>
+                <option value="separate">Separate</option>
+                <option value="master_and_separate">Master &amp; Separate</option>
+            </param>
+                <param name="canvas_to_selection" type="optiongroup" appearance="radio" gui-text="Resize to Selection" gui-description="Crop Canvas To Resulting Clip">
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+            </param>
+            <param name="png_dpi" type="int" min="10" max="99999999" gui-text="PNG dpi">96</param>
+            <separator/>
+            <param type="path" name="save_path" gui-text="File Save Path" mode="folder">None Selected</param>
+        </page>
+        <page name="about_page" gui-text="About">
+            <label xml:space="preserve">
+Clip Out - Export multiple clipped png images using paths / shapes and a background image
+   </label>
+            <label appearance="url">https://gitlab.com/inklinea/quick-export</label>
+            <label appearance="url">https://inkscape.org/~inklinea/</label>
+            <label xml:space="preserve">
+Requires Inkscape 1.1+ --&gt;
+The image to be clipped must be the last selected.
+An easy way to do this, is select all then shift &amp; left click the image twice to make it the last selected.
+It does require that you have saved our svg file
+at least once before using ( will not work on an unsaved svg )
+            </label>
+        </page>
+    </param>
+    <effect needs-live-preview="false">
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Import/Export/Transfer"/>
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">clip_out.py</command>
+    </script>
+</inkscape-extension>

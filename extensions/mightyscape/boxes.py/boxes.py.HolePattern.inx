@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>HolePattern</name>
+<id>info.festi.boxes.py.HolePattern</id>
+<param name="generator" type="string" gui-hidden="true">holepattern</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="HolePattern">
+        <param name="x" type="float" precision="2" max="9999" gui-text="x" gui-description="inner width in mm">100.0</param>
+        <param name="y" type="float" precision="2" max="9999" gui-text="y" gui-description="inner depth in mm">100.0</param>
+        <param name="shape" type="optiongroup" appearance="combo" gui-text="shape" gui-description="Shape of the hole pattern">
+            <option value="rectangle">rectangle</option>
+            <option value="ellipse">ellipse</option>
+            <option value="oval">oval</option>
+            <option value="hexagon">hexagon</option>
+            <option value="octagon">octagon</option>
+    </param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+            <option value="loop">loop</option>
+            <option value="corner">corner</option>
+            <option value="backarc">backarc</option>
+    </param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Hole filling">
+        <param name="fillHoles_bar_length" type="int" max="9999" gui-text="bar_length" gui-description="maximum length of bars">50</param>
+        <param name="fillHoles_fill_pattern" type="optiongroup" appearance="combo" gui-text="fill_pattern" gui-description="style of hole pattern">
+            <option value="no fill">no fill</option>
+            <option value="hex">hex</option>
+            <option value="square">square</option>
+            <option value="random">random</option>
+            <option value="hbar">hbar</option>
+            <option value="vbar">vbar</option>
+    </param>
+        <param name="fillHoles_hole_max_radius" type="float" precision="2" max="9999" gui-text="hole_max_radius" gui-description="maximum radius of generated holes (in mm)">3.0</param>
+        <param name="fillHoles_hole_min_radius" type="float" precision="2" max="9999" gui-text="hole_min_radius" gui-description="minimum radius of generated holes (in mm)">0.5</param>
+        <param name="fillHoles_hole_style" type="optiongroup" appearance="combo" gui-text="hole_style" gui-description="style of holes (does not apply to fill patterns 'vbar' and 'hbar')">
+            <option value="round">round</option>
+            <option value="triangle">triangle</option>
+            <option value="square">square</option>
+            <option value="hexagon">hexagon</option>
+            <option value="octagon">octagon</option>
+    </param>
+        <param name="fillHoles_max_random" type="int" max="9999" gui-text="max_random" gui-description="maximum number of random holes">1000</param>
+        <param name="fillHoles_space_between_holes" type="float" precision="2" max="9999" gui-text="space_between_holes" gui-description="hole to hole spacing (in mm)">4.0</param>
+        <param name="fillHoles_space_to_border" type="float" precision="2" max="9999" gui-text="space_to_border" gui-description="hole to border spacing (in mm)">4.0</param>
+    </page>
+    <page name="tab_3" gui-text="Example">
+        <image>./HolePattern-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/HolePattern</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="MightyScape">
+            <submenu name="Boxes.py">
+                <submenu name="Hole patterns"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

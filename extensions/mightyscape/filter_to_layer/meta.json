@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Filter To Layer",
+    "id": "fablabchemnitz.de.filter_to_layer",
+    "path": "filter_to_layer",
+    "dependent_extensions": null,
+    "original_name": "Filter to layer",
+    "original_id": "org.inkscape.filter.layer",
+    "license": "GNU GPL v2",
+    "license_url": "https://inkscape.org/~jabiertxof/%E2%98%85filter-layer",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/filter_to_layer",
+    "fork_url": "https://inkscape.org/~jabiertxof/%E2%98%85filter-layer",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Filter+To+Layer",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "inkscape.org/jabiertxof",
+      "github.com/eridur-de"
+    ]
+  }
+]

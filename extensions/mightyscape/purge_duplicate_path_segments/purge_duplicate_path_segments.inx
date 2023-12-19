@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Purge Duplicate Path Segments</name>
+    <id>fablabchemnitz.de.purge_duplicate_path_segments</id>
+    <effect>
+        <object-type>path</object-type>
+        <effects-menu>
+            <submenu name="MightyScape">
+                <submenu name="Paths - Cut/Intersect/Purge" />
+            </submenu>
+        </effects-menu>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">purge_duplicate_path_segments.py</command>
+    </script>
+</inkscape-extension>

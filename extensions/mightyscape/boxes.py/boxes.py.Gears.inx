@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>Gears</name>
+<id>info.festi.boxes.py.Gears</id>
+<param name="generator" type="string" gui-hidden="true">gears</param>
+<param name="tab" type="notebook">
+    <page name="tab_0" gui-text="Gears">
+        <param name="teeth1" type="int" max="9999" gui-text="teeth1" gui-description="number of teeth">12</param>
+        <param name="shaft1" type="float" precision="2" max="9999" gui-text="shaft1" gui-description="diameter of the shaft 1">6.0</param>
+        <param name="dpercentage1" type="float" precision="2" max="9999" gui-text="dpercentage1" gui-description="percent of the D section of shaft 1 (100 for round shaft)">75</param>
+        <param name="teeth2" type="int" max="9999" gui-text="teeth2" gui-description="number of teeth in the other size of gears">32</param>
+        <param name="shaft2" type="float" precision="2" max="9999" gui-text="shaft2" gui-description="diameter of the shaft2 (zero for same as shaft 1)">0.0</param>
+        <param name="dpercentage2" type="float" precision="2" max="9999" gui-text="dpercentage2" gui-description="percent of the D section of shaft 1 (0 for same as shaft 1)">0</param>
+        <param name="modulus" type="float" precision="2" max="9999" gui-text="modulus" gui-description="size of teeth (diameter / #teeth) in mm">2</param>
+        <param name="pressure_angle" type="float" precision="2" max="9999" gui-text="pressure_angle" gui-description="angle of the teeth touching (in degrees)">20</param>
+        <param name="profile_shift" type="float" precision="2" max="9999" gui-text="profile_shift" gui-description="in precent of the modulus">20</param>
+    </page>
+    <page name="tab_1" gui-text="Default">
+        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+            <option value="loop">loop</option>
+            <option value="corner">corner</option>
+            <option value="backarc">backarc</option>
+    </param>
+        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+    </page>
+    <page name="tab_2" gui-text="Example">
+        <image>./Gears-thumb.jpg</image>
+    </page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/Gears</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="MightyScape">
+            <submenu name="Boxes.py">
+                <submenu name="Parts and Samples"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

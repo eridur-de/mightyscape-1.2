@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Affine Spirals",
+    "id": "fablabchemnitz.de.affine_spirals",
+    "path": "affine_spirals",
+    "dependent_extensions": null,
+    "original_name": "Affine Torus 0.0",
+    "original_id": "githubacct.uniqueid.affine_torus",
+    "license": "MIT License",
+    "license_url": "https://github.com/macbuse/Affine-spirals/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/affine_spirals",
+    "fork_url": "https://github.com/macbuse/Affine-spirals",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Affine+Spirals",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/macbuse",
+      "github.com/eridur-de"
+    ]
+  }
+]

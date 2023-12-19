@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Box Maker - Elliptical Box",
+    "id": "fablabchemnitz.de.box_maker_elliptical_box",
+    "path": "box_maker_elliptical_box",
+    "dependent_extensions": null,
+    "original_name": " Elliptical Box Maker",
+    "original_id": "be.fablab-leuven.inkscape.elliptical_box",
+    "license": "MIT License",
+    "license_url": "https://github.com/BvdP/elliptical-box-maker/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/box_maker_elliptical_box",
+    "fork_url": "https://github.com/BvdP/elliptical-box-maker",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Elliptical+Box",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/BvdP",
+      "github.com/eridur-de"
+    ]
+  }
+]

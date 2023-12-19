@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Pixel2SVG",
+    "id": "fablabchemnitz.de.pixel2svg",
+    "path": "pixel2svg",
+    "dependent_extensions": null,
+    "original_name": "Pixel2SVG (contrib)",
+    "original_id": "su-v/org.inkscape.effect.pixel2svg",
+    "license": "GNU GPL v2",
+    "license_url": "https://gitlab.com/su-v/inx-pixel2svg/-/blob/master/COPYING",
+    "comment": "ported to Inkscape v1 manually by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/mightyscape/pixel2svg",
+    "fork_url": "ttps://gitlab.com/su-v/inx-pixel2svg",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Pixel2SVG",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "gitlab.com/su-v",
+      "github.com/eridur-de"
+    ]
+  }
+]
