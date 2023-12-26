@@ -136,22 +136,27 @@ class LaserCheck(inkex.EffectExtension):
             > 'viewBox' defined in 'user units' with the values: (x offset, y-offset, width, height).
             > Document scale is determined by ratio of 'width'/'height' to 'viewBox'.
         '''
-        docScale = self.svg.scale
-        docWidth = self.svg.viewport_width
-        docHeight = self.svg.viewport_height
+        
+        inkscapeScale = self.svg.inkscape_scale #this is the "Scale:" value at "Display tab"
+        #docScale = self.svg.scale
+        #docWidth = self.svg.viewport_width
+        #docHeight = self.svg.viewport_height
         #inkex.utils.debug("Document scale (x/y)={:0.3f}".format(docScale))
         #inkex.utils.debug("Document width={:0.3f}".format(docWidth))
         vxMin, vyMin, vxMax, vyMax = self.svg.get_viewbox()
-        vxTotal = vxMax - vxMin
-        vyTotal = vyMax - vyMin
-        vScaleX = self.svg.unittouu(str(vxTotal / docWidth) + doc_units)
-        vScaleXpx = self.svg.unittouu(str(vxTotal / docWidth) + "px")
+        #vxTotal = vxMax - vxMin
+        #vyTotal = vyMax - vyMin
+        #vScaleX = self.svg.unittouu(str(vxTotal / docWidth) + doc_units)
+        #vScaleXpx = self.svg.unittouu(str(vxTotal / docWidth) + "px")
         #vScaleY = vyTotal / docHeight #should/must be the same as vScaleX value
         #inkex.utils.debug(vxTotal)
         #inkex.utils.debug(vyTotal)
         #inkex.utils.debug(vScaleY)
-        inkex.utils.debug("Document scale (x/y): {:0.5f}{} ({:0.5f}px)".format(vScaleX, doc_units, vScaleXpx))
-        if round(vScaleX, 5) != 1.0:
+        #inkex.utils.debug("Document scale (x/y): {:0.5f}{} ({:0.5f}px)".format(vScaleX, doc_units, vScaleXpx))
+        #if round(vScaleX, 5) != 1.0:
+        #    inkex.utils.debug("WARNING: Document scale not 100%!")
+        inkex.utils.debug("Document scale (x/y): {:0.5f}".format(inkscapeScale))
+        if round(inkscapeScale, 5) != 1.0:
             inkex.utils.debug("WARNING: Document scale not 100%!")
         scaleX = namedView.get('scale-x')
         if scaleX is not None:
@@ -682,9 +687,13 @@ class LaserCheck(inkex.EffectExtension):
         if so.checks == "check_all" or so.stroke_opacities is True:
             inkex.utils.debug("\n---------- Objects with stroke transparencies < 1.0 - should be set to 1.0")
             transparencies = []
-            for element in shapes:
+            for element in shapes: 
+                strokeOpacityAttr = element.get('stroke-opacity') #same information could be in regular attribute instead nested in style attribute
+                if strokeOpacityAttr is not None and strokeOpacityAttr not in transparencies:
+                    if float(strokeOpacityAttr) < 1.0:
+                            transparencies.append([element, strokeOpacityAttr])
                 stroke_opacity = element.style.get('stroke-opacity')
-                if stroke_opacity is not stroke_opacity and stroke_opacity not in transparencies:
+                if stroke_opacity is not None and stroke_opacity not in transparencies:
                     if stroke_opacity != "none":
                         if float(stroke_opacity) < 1.0:
                                 transparencies.append([element, stroke_opacity])
