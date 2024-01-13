@@ -99,7 +99,7 @@ class Rounder(inkex.EffectExtension):
         else:
             style = element.get('style')
             if style:
-                style = re.sub('stroke-width:(.*?)(;|$)',self.roundStroke, style)
+                style = re.sub(r'stroke-width:(.*?)(;|$)',self.roundStroke, style)
                 element.set('style',style)
     def opacity_round_it(self, element, typeOpacity):
         if element.tag == inkex.addNS('g','svg'):
@@ -108,7 +108,7 @@ class Rounder(inkex.EffectExtension):
         else:
             style = element.get('style')
             if style:
-                style = re.sub('(^|;)(' + typeOpacity + ':)(.*?)(;|$)',self.roundOpacity, style)
+                style = re.sub(r'(^|;)(' + typeOpacity + ':)(.*?)(;|$)',self.roundOpacity, style)
                 element.set('style',style)
 
     def widthheight_round_it(self, element):
@@ -118,11 +118,11 @@ class Rounder(inkex.EffectExtension):
         else:
             width = element.get('width')
             if width:
-                width = re.sub('^(\-|)([0-9]+\.[0-9]+)(.*?)$',self.roundWHXY, width)
+                width = re.sub(r'^(\-|)([0-9]+\.[0-9]+)(.*?)$',self.roundWHXY, width)
                 element.set('width',width)
             height = element.get('height')
             if height:
-                height = re.sub('^(\-|)([0-9]+\.[0-9]+)(.*?)$',self.roundWHXY, height)
+                height = re.sub(r'^(\-|)([0-9]+\.[0-9]+)(.*?)$',self.roundWHXY, height)
                 element.set('height',height)
     
     def position_round_it(self, element):
@@ -132,11 +132,11 @@ class Rounder(inkex.EffectExtension):
         else:
             x = element.get('x')
             if x:
-                x = re.sub('^(\-|)([0-9]+\.[0-9]+)(.*?)$',self.roundWHXY, x)
+                x = re.sub(r'^(\-|)([0-9]+\.[0-9]+)(.*?)$',self.roundWHXY, x)
                 element.set('x', x)
             y = element.get('y')
             if y:
-                y = re.sub('^(\-|)([0-9]+\.[0-9]+)(.*?)$',self.roundWHXY, y)
+                y = re.sub(r'^(\-|)([0-9]+\.[0-9]+)(.*?)$',self.roundWHXY, y)
                 element.set('y', y)
     
     def effect(self):
