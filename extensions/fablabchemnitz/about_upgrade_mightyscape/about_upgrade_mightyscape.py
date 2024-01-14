@@ -3,11 +3,11 @@
 """
 Upgrade MightyScape from Inkscape Extension Dialog. Made for end users
 
-Extension for InkScape 1.2.1
+Extension for InkScape 1.3.2
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
-Date: 14.05.2021
-Last patch: 07.11.2022
+Date: 14.01.2024
+Last patch: 07.11.2024
 License: GNU GPL v3
 
 ToDo
@@ -17,8 +17,7 @@ ToDo
 import inkex
 import os
 import warnings
-from datetime import datetime
-
+from datetime import datetime, timezone
 try:
     import git
     from git import Repo #requires GitPython lib
@@ -155,7 +154,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
             inkex.utils.debug("Latest {} local commits are:".format(len(localCommits)))
             for i in range(0, len(localCommits)):
                 inkex.utils.debug("{} | {} : {}".format(
-                    datetime.utcfromtimestamp(localCommitList[i].committed_date).strftime('%Y-%m-%d %H:%M:%S'),
+                    datetime.fromtimestamp(localCommitList[i].committed_date, tz=timezone.utc).strftime('%Y-%m-%d %H:%M:%S'),
                     localCommitList[i].name_rev[:7],
                     localCommitList[i].message.strip())
                     )   
