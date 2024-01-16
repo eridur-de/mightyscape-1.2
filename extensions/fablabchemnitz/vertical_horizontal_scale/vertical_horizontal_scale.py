@@ -86,8 +86,8 @@ class VerticalHorizontalScale(inkex.EffectExtension):
         pars.add_argument('-o', '--mark2', type = int, default = '1', help = 'Short line - Draw every x lines')
         
         # line length
-        pars.add_argument('-w', '--mark1wid', type = int, default = '75', help = 'Long line: - Length (units): (\%):')
-        pars.add_argument('-v', '--mark2wid', type = int, help = 'Short line: - Length (units): (\%):')
+        pars.add_argument('-w', '--mark1wid', type = int, default = '75', help = 'Long line: - Length (units): (%%):')
+        pars.add_argument('-v', '--mark2wid', type = int, help = 'Short line: - Length (units): (%%):')
         pars.add_argument('-u', '--unit', default = 'mm', help = 'Unit:')
         pars.add_argument('--useref', type = inkex.Boolean, default = False, help = 'Reference is bounding box center')
         pars.add_argument('--tab', default = 'global', help = '')
