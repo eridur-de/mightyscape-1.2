@@ -73,48 +73,61 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         pars.add_argument("--pattern",        type=inkex.Boolean, default=True)
         pars.add_argument("--rdfRDF",         type=inkex.Boolean, default=True)
         pars.add_argument("--ccWork",         type=inkex.Boolean, default=True)
+        pars.add_argument("--comments",       type=inkex.Boolean, default=True)
         pars.add_argument("--page",           type=inkex.Boolean, default=True)
 
     
     def effect(self):
+        
+        so = self.options
+        
+        #remove comments
+        if so.comments is True:
+            docroot = self.document.getroot()
+            for element in docroot.iter():
+                #inkex.utils.debug(element.tag)
+                if "cyfunction Comment" in str(element.tag):
+                    self.allDrops.append(element)
+                    element.getparent().remove(element)
+
         namespace = [] #a list of selected types we are going to process for filtering (dropping items)
-        #namespace.append("{http://www.w3.org/2000/svg}sodipodi")       if self.options.sodipodi       else "" #do not do this. it will crash InkScape
-        #namespace.append("{http://www.w3.org/2000/svg}svg")            if self.options.svg            else "" #we handle svg:svg the same type like svg:g
-        namespace.append("{http://www.w3.org/2000/svg}circle")                        if self.options.circle         else ""
-        namespace.append("{http://www.w3.org/2000/svg}clipPath")                      if self.options.clipPath       else ""
-        namespace.append("{http://www.w3.org/2000/svg}defs")                          if self.options.defs           else ""     
-        namespace.append("{http://www.w3.org/2000/svg}desc")                          if self.options.desc           else ""     
-        namespace.append("{http://www.w3.org/2000/svg}ellipse")                       if self.options.ellipse        else ""
-        namespace.append("{http://www.w3.org/2000/svg}image")                         if self.options.image          else ""
-        namespace.append("{http://www.w3.org/2000/svg}line")                          if self.options.line           else ""
-        namespace.append("{http://www.w3.org/2000/svg}polygon")                       if self.options.polygon        else ""
-        namespace.append("{http://www.w3.org/2000/svg}path")                          if self.options.path           else ""
-        namespace.append("{http://www.w3.org/2000/svg}polyline")                      if self.options.polyline       else ""
-        namespace.append("{http://www.w3.org/2000/svg}rect")                          if self.options.rect           else ""
-        namespace.append("{http://www.w3.org/2000/svg}text")                          if self.options.text           else ""
-        namespace.append("{http://www.w3.org/2000/svg}tspan")                         if self.options.tspan          else ""
-        namespace.append("{http://www.w3.org/2000/svg}linearGradient")                if self.options.linearGradient else ""
-        namespace.append("{http://www.w3.org/2000/svg}radialGradient")                if self.options.radialGradient else ""
-        namespace.append("{http://www.w3.org/2000/svg}meshGradient")                  if self.options.meshGradient   else ""
-        namespace.append("{http://www.w3.org/2000/svg}meshRow")                       if self.options.meshRow        else ""
-        namespace.append("{http://www.w3.org/2000/svg}meshPatch")                     if self.options.meshPatch      else ""
-        namespace.append("{http://www.w3.org/2000/svg}script")                        if self.options.script         else ""
-        namespace.append("{http://www.w3.org/2000/svg}symbol")                        if self.options.symbol         else ""
-        namespace.append("{http://www.w3.org/2000/svg}mask")                          if self.options.mask           else ""
-        namespace.append("{http://www.w3.org/2000/svg}metadata")                      if self.options.metadata       else ""
-        namespace.append("{http://www.w3.org/2000/svg}stop")                          if self.options.stop           else ""
-        namespace.append("{http://www.w3.org/2000/svg}style")                         if self.options.style          else ""
-        namespace.append("{http://www.w3.org/2000/svg}switch")                        if self.options.switch         else ""
-        namespace.append("{http://www.w3.org/2000/svg}use")                           if self.options.use            else ""
-        namespace.append("{http://www.w3.org/2000/svg}flowRoot")                      if self.options.flowRoot       else ""
-        namespace.append("{http://www.w3.org/2000/svg}flowRegion")                    if self.options.flowRegion     else ""
-        namespace.append("{http://www.w3.org/2000/svg}flowPara")                      if self.options.flowPara       else ""
-        namespace.append("{http://www.w3.org/2000/svg}marker")                        if self.options.marker         else ""
-        namespace.append("{http://www.w3.org/2000/svg}pattern")                       if self.options.pattern        else ""
-        namespace.append("{http://www.inkscape.org/namespaces/inkscape}page")         if self.options.page           else ""
-        namespace.append("{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}guide") if self.options.guide          else ""
-        namespace.append("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF")          if self.options.rdfRDF         else ""
-        namespace.append("{http://creativecommons.org/ns#}Work")                      if self.options.ccWork         else ""
+        #namespace.append("{http://www.w3.org/2000/svg}sodipodi")       if so.sodipodi       else "" #do not do this. it will crash InkScape
+        #namespace.append("{http://www.w3.org/2000/svg}svg")            if so.svg            else "" #we handle svg:svg the same type like svg:g
+        namespace.append("{http://www.w3.org/2000/svg}circle")                        if so.circle         else ""
+        namespace.append("{http://www.w3.org/2000/svg}clipPath")                      if so.clipPath       else ""
+        namespace.append("{http://www.w3.org/2000/svg}defs")                          if so.defs           else ""     
+        namespace.append("{http://www.w3.org/2000/svg}desc")                          if so.desc           else ""     
+        namespace.append("{http://www.w3.org/2000/svg}ellipse")                       if so.ellipse        else ""
+        namespace.append("{http://www.w3.org/2000/svg}image")                         if so.image          else ""
+        namespace.append("{http://www.w3.org/2000/svg}line")                          if so.line           else ""
+        namespace.append("{http://www.w3.org/2000/svg}polygon")                       if so.polygon        else ""
+        namespace.append("{http://www.w3.org/2000/svg}path")                          if so.path           else ""
+        namespace.append("{http://www.w3.org/2000/svg}polyline")                      if so.polyline       else ""
+        namespace.append("{http://www.w3.org/2000/svg}rect")                          if so.rect           else ""
+        namespace.append("{http://www.w3.org/2000/svg}text")                          if so.text           else ""
+        namespace.append("{http://www.w3.org/2000/svg}tspan")                         if so.tspan          else ""
+        namespace.append("{http://www.w3.org/2000/svg}linearGradient")                if so.linearGradient else ""
+        namespace.append("{http://www.w3.org/2000/svg}radialGradient")                if so.radialGradient else ""
+        namespace.append("{http://www.w3.org/2000/svg}meshGradient")                  if so.meshGradient   else ""
+        namespace.append("{http://www.w3.org/2000/svg}meshRow")                       if so.meshRow        else ""
+        namespace.append("{http://www.w3.org/2000/svg}meshPatch")                     if so.meshPatch      else ""
+        namespace.append("{http://www.w3.org/2000/svg}script")                        if so.script         else ""
+        namespace.append("{http://www.w3.org/2000/svg}symbol")                        if so.symbol         else ""
+        namespace.append("{http://www.w3.org/2000/svg}mask")                          if so.mask           else ""
+        namespace.append("{http://www.w3.org/2000/svg}metadata")                      if so.metadata       else ""
+        namespace.append("{http://www.w3.org/2000/svg}stop")                          if so.stop           else ""
+        namespace.append("{http://www.w3.org/2000/svg}style")                         if so.style          else ""
+        namespace.append("{http://www.w3.org/2000/svg}switch")                        if so.switch         else ""
+        namespace.append("{http://www.w3.org/2000/svg}use")                           if so.use            else ""
+        namespace.append("{http://www.w3.org/2000/svg}flowRoot")                      if so.flowRoot       else ""
+        namespace.append("{http://www.w3.org/2000/svg}flowRegion")                    if so.flowRegion     else ""
+        namespace.append("{http://www.w3.org/2000/svg}flowPara")                      if so.flowPara       else ""
+        namespace.append("{http://www.w3.org/2000/svg}marker")                        if so.marker         else ""
+        namespace.append("{http://www.w3.org/2000/svg}pattern")                       if so.pattern        else ""
+        namespace.append("{http://www.inkscape.org/namespaces/inkscape}page")         if so.page           else ""
+        namespace.append("{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}guide") if so.guide          else ""
+        namespace.append("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF")          if so.rdfRDF         else ""
+        namespace.append("{http://creativecommons.org/ns#}Work")                      if so.ccWork         else ""
 
         #self.msg(namespace)
 
@@ -122,7 +135,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         def parseChildren(element):
             if element not in selected:
                 selected.append(element)
-            if self.options.parsechildren == True:   
+            if so.parsechildren == True:   
                 children = element.getchildren()
                 if children is not None:
                     for child in children:
@@ -133,12 +146,12 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         #check the element for it's type and put it into the according list (either re-group or delete or just nothing)
         def parseElement(self, element):
             #if we only want to ungroup (flatten) the elements we just collect all elements in a list and put them in a new single group later
-            if self.options.operationmode == "ungroup_only": 
+            if so.operationmode == "ungroup_only": 
                 if element not in self.allElements:
                     if element.tag != inkex.addNS('g','svg') and element.tag != inkex.addNS('svg','svg') and element.tag != inkex.addNS('namedview','sodipodi'):
                         self.allElements.append(element)
             #if we dont want to ungroup but filter out elements, or ungroup and filter, we need to divide the elements with respect to the namespace (user selection)
-            elif self.options.operationmode == "filter_only" or self.options.operationmode == "ungroup_and_filter":
+            elif so.operationmode == "filter_only" or so.operationmode == "ungroup_and_filter":
                 #self.msg(element.tag)
                 #inkex.utils.debug(element.tag) - uncomment to find out the namespace of new elements
                 if element.tag in namespace: #if the element is in namespace and no group type we will regroup the item. so we will not remove it
@@ -150,7 +163,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
                         if element not in self.allDrops:
                             self.allDrops.append(element)
             #finally the groups we want to get rid off are put into a another list. They will be deleted (depending on the mode) after parsing the element tree
-            if self.options.operationmode == "ungroup_only" or self.options.operationmode == "ungroup_and_filter":
+            if so.operationmode == "ungroup_only" or so.operationmode == "ungroup_and_filter":
                 if element.tag == inkex.addNS('g','svg') or element.tag == inkex.addNS('svg','svg'):
                     if element not in self.allGroups:
                         self.allGroups.append(element)
@@ -163,7 +176,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
             # self.msg(e)
             self.msg("Calling 'Apply Transformations' extension failed. Maybe the extension is not installed. You can download it from official InkScape Gallery. Skipping ...")
              
-        if self.options.apply_transformations is True and applyTransformationsAvailable is True:
+        if so.apply_transformations is True and applyTransformationsAvailable is True:
             apply_transformations.ApplyTransformations().recursiveFuseTransform(self.document.getroot()) 
              
         #check if we have selected elements or if we should parse the whole document instead
@@ -206,8 +219,8 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
                 self.msg("Error while deleting previously generated log file " + migrate_log)
 
         # show a list with items to delete. For ungroup mode it does not apply because we are not going to remove anything
-        if self.options.operationmode == "filter_only" or self.options.operationmode == "ungroup_and_filter":
-            if self.options.showdroplist:
+        if so.operationmode == "filter_only" or so.operationmode == "ungroup_and_filter":
+            if so.showdroplist:
                 self.msg(str(len(self.allDrops)) + " elements were removed during nodes while migration.")
                 if len(self.allDrops) > 100: #if we print too much to the output stream we will freeze InkScape forever wihtout any visual error message. So we write to file instead
                     migrate_log_file = open('migrategroups.log', 'w')
@@ -221,20 +234,20 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
                     if migrate_log_file is None:
                         self.msg(migrateString)
                     else:
-                        migrate_log_file.write(migrateString + "\n")
+                        migrate_log_file.write("{}\n".format(migrateString))
                 if migrate_log_file is not None:
                     migrate_log_file.close()
                     self.msg("Detailed output was dumped into file " + os.path.join(os.getcwd(), migrate_log))
 
         # remove all groups from the selection and form a new single group of it by copying with old IDs.
-        if self.options.operationmode == "ungroup_only" or self.options.operationmode == "ungroup_and_filter":
+        if so.operationmode == "ungroup_only" or so.operationmode == "ungroup_and_filter":
             if len(self.allElements) > 0:
                 newGroup = self.document.getroot().add(inkex.Group()) #make a new group at root level
                 newGroup.set('id', self.svg.get_unique_id('migrate-')) #generate some known ID with the prefix 'migrate-'
-                if self.options.migrate_to == "layer":
+                if so.migrate_to == "layer":
                     newGroup.set(inkex.addNS('groupmode', 'inkscape'), 'layer')
 
-                if self.options.shownewgroupname == True:
+                if so.shownewgroupname == True:
                         self.msg("The migrated elements are now in group with ID " + str(newGroup.get('id')))
                 index = 0
                 for element in self.allElements: #we have a list of elements which does not cotain any other elements like svg:g or svg:svg 
@@ -242,21 +255,21 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
                     index += 1 #we must count up the index or we would overwrite each previous element
     
        # remove the stuff from drop list list. this has to be done before we drop the groups where they are located in
-        if self.options.operationmode == "filter_only" or self.options.operationmode == "ungroup_and_filter":
+        if so.operationmode == "filter_only" or so.operationmode == "ungroup_and_filter":
             if len(self.allDrops) > 0:
                 for dropElement in self.allDrops:
                     if dropElement.getparent() is not None:
                         dropElement.getparent().remove(dropElement)
               
         # remove all the obsolete groups which are left over from ungrouping (flattening)
-        if self.options.operationmode == "ungroup_only" or self.options.operationmode == "ungroup_and_filter":
+        if so.operationmode == "ungroup_only" or so.operationmode == "ungroup_and_filter":
             if len(self.allGroups) > 0:        
                 for group in self.allGroups:
                     if group.getparent() is not None:
                         group.getparent().remove(group)
    
         # finally removed dangling empty groups using external extension (if installed)
-        if self.options.cleanup == True:
+        if so.cleanup == True:
             try:
                 import remove_empty_groups
                 remove_empty_groups.RemoveEmptyGroups.effect(self)

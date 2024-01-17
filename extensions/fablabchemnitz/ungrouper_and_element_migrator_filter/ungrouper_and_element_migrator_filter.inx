@@ -62,6 +62,7 @@
         					<param name="use" type="bool" gui-text="use">true</param>
                             <param name="rdfRDF" type="bool" gui-text="rdf:RDF">true</param>
                             <param name="ccWork" type="bool" gui-text="cc:Work">true</param>
+                            <param name="comments" type="bool" gui-text="comments">true</param>
         				</vbox>
         			</hbox>
                 </vbox>
