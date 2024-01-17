@@ -82,7 +82,7 @@ class LaserCheck(inkex.EffectExtension):
         pars.add_argument('--stroke_colors_max', type=int, default=3)
         pars.add_argument('--stroke_widths', type=inkex.Boolean, default=False)
         pars.add_argument('--stroke_widths_max', type=int, default=1)
-        pars.add_argument('--stroke_opacities', type=inkex.Boolean, default=False)
+        pars.add_argument('--opacities', type=inkex.Boolean, default=False)
         pars.add_argument('--cosmestic_dashes', type=inkex.Boolean, default=False)
         pars.add_argument('--invisible_shapes', type=inkex.Boolean, default=False)
         pars.add_argument('--pointy_paths', type=inkex.Boolean, default=False)
@@ -703,26 +703,47 @@ class LaserCheck(inkex.EffectExtension):
           
                 
         '''
-        Additionally, stroke opacities less than 1.0 cause problems in most laser softwares. Please
+        Additionally, opacities less than 1.0 cause problems in most laser softwares. Please
         adjust all strokes to use full opacity.
         '''
-        if so.checks == "check_all" or so.stroke_opacities is True:
-            inkex.utils.debug("\n---------- Objects with stroke transparencies < 1.0 - should be set to 1.0")
+        if so.checks == "check_all" or so.opacities is True:
+            inkex.utils.debug("\n---------- Objects with transparencies < 1.0 - should be set to 1.0")
             transparencies = []
             for element in shapes: 
                 strokeOpacityAttr = element.get('stroke-opacity') #same information could be in regular attribute instead nested in style attribute
                 if strokeOpacityAttr is not None and strokeOpacityAttr not in transparencies:
                     if float(strokeOpacityAttr) < 1.0:
-                            transparencies.append([element, strokeOpacityAttr])
+                            transparencies.append([element, strokeOpacityAttr, "stroke-opacity"])
                 stroke_opacity = element.style.get('stroke-opacity')
                 if stroke_opacity is not None and stroke_opacity not in transparencies:
                     if stroke_opacity != "none":
                         if float(stroke_opacity) < 1.0:
-                                transparencies.append([element, stroke_opacity])
+                                transparencies.append([element, stroke_opacity, "stroke-opacity"])
+                                
+                fillOpacityAttr = element.get('fill-opacity') #same information could be in regular attribute instead nested in style attribute
+                if fillOpacityAttr is not None and fillOpacityAttr not in transparencies:
+                    if float(fillOpacityAttr) < 1.0:
+                            transparencies.append([element, fillOpacityAttr, "fill-opacity"])
+                fill_opacity = element.style.get('fill-opacity')
+                if fill_opacity is not None and fill_opacity not in transparencies:
+                    if fill_opacity != "none":
+                        if float(fill_opacity) < 1.0:
+                                transparencies.append([element, fill_opacity, "fill-opacity"])
+                  
+                opacityAttr = element.get('opacity') #same information could be in regular attribute instead nested in style attribute
+                if opacityAttr is not None and opacityAttr not in transparencies:
+                    if float(opacityAttr) < 1.0:
+                            transparencies.append([element, opacityAttr, "opacity"])
+                opacity = element.style.get('opacity')
+                if opacity is not None and opacity not in transparencies:
+                    if opacity != "none":
+                        if float(opacity) < 1.0:
+                                transparencies.append([element, opacity, "opacity"])
+                                
             if so.show_issues_only is False:
-                inkex.utils.debug("{} objects with stroke transparencies < 1.0 in total".format(len(transparencies)))
+                inkex.utils.debug("{} objects with transparencies < 1.0 in total".format(len(transparencies)))
             for transparency in transparencies:
-                inkex.utils.debug("id={}, transparency={}".format(transparency[0].get('id'), transparency[1]))  
+                inkex.utils.debug("id={}, transparency={}, attribute={}".format(transparency[0].get('id'), transparency[1], transparency[2]))  
       
       
         '''

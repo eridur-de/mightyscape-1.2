@@ -43,7 +43,7 @@
                     <param name="stroke_widths" type="bool" gui-text="Stroke widths">false</param>
                     <param name="stroke_widths_max" type="int" min="0" max="9999" gui-text="Max. allowed">1</param>
                     <separator/>
-                    <param name="stroke_opacities" type="bool" gui-text="Stroke opacities">false</param>
+                    <param name="opacities" type="bool" gui-text="Opacities" gui-description="Check for existence of attributes opacity, stroke-opacity and fill-opacity">false</param>
                     <param name="cosmestic_dashes" type="bool" gui-text="Cosmetic dash styles">false</param>
                     <param name="invisible_shapes" type="bool" gui-text="Invisible shapes">false</param>
                     <param name="non_path_shapes" type="bool" gui-text="Non-path shapes">false</param>
