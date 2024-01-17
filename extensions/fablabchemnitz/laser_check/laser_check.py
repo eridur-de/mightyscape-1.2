@@ -156,16 +156,25 @@ class LaserCheck(inkex.EffectExtension):
         #if round(vScaleX, 5) != 1.0:
         #    inkex.utils.debug("WARNING: Document scale not 100%!")
         inkex.utils.debug("Document scale (x/y): {:0.5f}".format(inkscapeScale))
+        scaleOk = True
         if round(inkscapeScale, 5) != 1.0:
+            scaleOk = False
             inkex.utils.debug("WARNING: Document scale not 100%!")
         scaleX = namedView.get('scale-x')
         if scaleX is not None:
             inkex.utils.debug("WARNING: Document has scale-x attribute with value={}".format(scaleX)) 
         
+        inkex.utils.debug("Viewbox:\n  x.min = {:0.0f}\n  y.min = {:0.0f}\n  x.max = {:0.0f}\n  y.max = {:0.0f}".format( vxMin, vyMin, vxMax, vyMax))
+        viewboxOk = True
+        if vxMin < 0 or vyMin < 0 or vxMax < 0 or vyMax < 0:
+            viewboxOk = False
+            # values may be lower than 0, but it does not make sense. The viewbox defines the top-left corner, which is usually 0,0. In case we want to allow that, we need to convert all bounding boxes accordingly. See also https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox.
+            inkex.utils.debug("WARNING: Viewbox does not start at 0,0. Visible results will differ from real coordinates.")
+        
         '''
         The SVG format is highly complex and offers a lot of possibilities. Most things of SVG we do not
         need for a laser cutter. Usually we need svg:path and maybe svg:image; we can drop a lot of stuff
-        like svg:defs, svg:desc, gradients, etc.
+        like svg:defs, svg:desc, etc.
         '''
         nonShapes = []
         shapes = [] #this may contains paths, rectangles, circles, groups and more
@@ -193,8 +202,12 @@ class LaserCheck(inkex.EffectExtension):
         we have to fixate on vector grid, pin grid or task plate. Thus we need tapes or pins. So we 
         leave some borders off the actual part geometries.
         '''
-        if so.checks == "check_all" or so.bbox is True:  
+        if so.checks == "check_all" or so.bbox is True:
             inkex.utils.debug("\n---------- Borders around all elements - minimum offset {} mm from each side".format(so.bbox_offset))
+            if scaleOk is False:
+                inkex.utils.debug("WARNING: Document scale is not 100%. Calculating bounding boxes might create wrong results.")
+            if viewboxOk is False:
+                inkex.utils.debug("WARNING: Viewbox does not start at 0,0. Calculating bounding boxes might create wrong results.")
             bbox = inkex.BoundingBox()
             for element in selected:
             #for element in self.document.getroot().iter(tag=etree.Element):
@@ -218,7 +231,7 @@ class LaserCheck(inkex.EffectExtension):
                 inkex.utils.debug("bounding box could not be calculated. SVG seems to be empty.")
             #else:
             #    inkex.utils.debug("bounding box is {}".format(bbox))
-            inkex.utils.debug("bounding box is {}".format(bbox))
+            inkex.utils.debug("bounding box is:\n  x.min = {}\n  y.min = {}\n  x.max = {}\n  y.max = {}".format(bbox.left, bbox.top, bbox.right, bbox.bottom))
             page_width = self.svg.unittouu(self.document.getroot().attrib['width'])
             width_height = self.svg.unittouu(self.document.getroot().attrib['height'])
             fmm = self.svg.unittouu(str(so.bbox_offset) + "mm")
@@ -228,6 +241,7 @@ class LaserCheck(inkex.EffectExtension):
             bb_bottom = round(bbox.bottom, 3)
             bb_width = round(bbox.width, 3)
             bb_height = round(bbox.height, 3)
+    
             if bb_left >= fmm:
                 if so.show_issues_only is False:
                     inkex.utils.debug("left border... ok")
