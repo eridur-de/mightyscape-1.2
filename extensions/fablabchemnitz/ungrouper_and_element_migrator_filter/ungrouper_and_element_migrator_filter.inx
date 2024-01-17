@@ -49,8 +49,8 @@
                             <param name="guide" type="bool" gui-text="guide">true</param>
         					<param name="mask" type="bool" gui-text="mask">true</param>
         					<param name="marker" type="bool" gui-text="marker">true</param>
-                            <param name="metadata" type="bool" gui-text="metadata">true</param>
                             <param name="page" type="bool" gui-text="inkscape:page">true</param>
+                            <param name="perspective" type="bool" gui-text="inkscape:perspective">true</param>
                         </vbox>
                     <spacer/>
                         <vbox>
@@ -62,11 +62,16 @@
         					<param name="use" type="bool" gui-text="use">true</param>
                             <param name="rdfRDF" type="bool" gui-text="rdf:RDF">true</param>
                             <param name="ccWork" type="bool" gui-text="cc:Work">true</param>
-                            <param name="comments" type="bool" gui-text="comments">true</param>
-                            <param name="tails" type="bool" gui-text="tails" gui-description="e.g. new lines, white spaces after an XML tag">true</param>
+                            <param name="metadata" type="bool" gui-text="metadata">true</param>
         				</vbox>
         			</hbox>
                 </vbox>
+                <separator/>
+                <vbox>
+                    <label appearance="header">Other XML structure</label>
+                    <param name="comments" type="bool" gui-text="comments">true</param>
+                    <param name="tails" type="bool" gui-text="tails" gui-description="e.g. new lines, white spaces after an XML tag">true</param>
+                </vbox>  
             </hbox>
             <separator/>
             <param name="operationmode" type="optiongroup" appearance="combo" gui-text="Operation mode">
@@ -88,7 +93,7 @@
             <label appearance="header">Ungrouper And Element Migrator/Filter</label>
             <label>Running this extension works for current selection or if nothing is selected for whole document. It allows to flatten elements into one group and to drop elements while processing.</label>
             <label>Unchecked elements will be dropped, if you selected a filter mode. Groups with transformations might puzzle anywhere. Please run "apply transformations" extension before to avoid this.</label>
-            <label>2020 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <label>2020 - 2024 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/migrategroups</label>

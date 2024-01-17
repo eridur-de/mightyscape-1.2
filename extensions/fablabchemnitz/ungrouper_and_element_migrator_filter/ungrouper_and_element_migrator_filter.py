@@ -1,14 +1,14 @@
 #!/usr/bin/env python3
 
 """
-Extension for InkScape 1.0
+Extension for InkScape 1.3.2
 
 This extension parses the selection and will put all elements into one single group. If you have a cluster with lots of groups and elements you will clean up this way (one top level group, all elements below it). If you select a single element or a set of elements you just wrap it like using CTRL + G (like making a usual group). You can also use this extension to filter out unwanted SVG elements at all.
  
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 13.08.2020
-Last Patch: 13.09.2020
+Last Patch: 17.01.2024
 License: GNU GPL v3
 """
 
@@ -74,6 +74,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         pars.add_argument("--rdfRDF",         type=inkex.Boolean, default=True)
         pars.add_argument("--ccWork",         type=inkex.Boolean, default=True)
         pars.add_argument("--comments",       type=inkex.Boolean, default=True)
+        pars.add_argument("--perspective",    type=inkex.Boolean, default=True)
         pars.add_argument("--page",           type=inkex.Boolean, default=True)
         pars.add_argument("--tails",          type=inkex.Boolean, default=True)
 
@@ -136,6 +137,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         namespace.append("{http://www.w3.org/2000/svg}marker")                        if so.marker         else ""
         namespace.append("{http://www.w3.org/2000/svg}pattern")                       if so.pattern        else ""
         namespace.append("{http://www.inkscape.org/namespaces/inkscape}page")         if so.page           else ""
+        namespace.append("{http://www.inkscape.org/namespaces/inkscape}perspective")  if so.perspective    else ""
         namespace.append("{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}guide") if so.guide          else ""
         namespace.append("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF")          if so.rdfRDF         else ""
         namespace.append("{http://creativecommons.org/ns#}Work")                      if so.ccWork         else ""
