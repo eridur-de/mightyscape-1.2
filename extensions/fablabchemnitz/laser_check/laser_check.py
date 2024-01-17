@@ -171,7 +171,14 @@ class LaserCheck(inkex.EffectExtension):
         shapes = [] #this may contains paths, rectangles, circles, groups and more
         for element in selected:       
             if not isinstance(element, inkex.ShapeElement):
-                nonShapes.append(element)
+                if element.tag not in (
+                        "{http://www.w3.org/2000/svg}defs", 
+                        "{http://www.w3.org/2000/svg}metadata", 
+                        "{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}namedview",
+                        "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
+                        "{http://creativecommons.org/ns#}Work"):
+                    inkex.utils.debug(element.tag)
+                    nonShapes.append(element)
             else:
                 shapes.append(element)
         if so.show_issues_only is False:        
@@ -189,7 +196,8 @@ class LaserCheck(inkex.EffectExtension):
         if so.checks == "check_all" or so.bbox is True:  
             inkex.utils.debug("\n---------- Borders around all elements - minimum offset {} mm from each side".format(so.bbox_offset))
             bbox = inkex.BoundingBox()
-            for element in self.document.getroot().iter(tag=etree.Element):
+            for element in selected:
+            #for element in self.document.getroot().iter(tag=etree.Element):
                 if element != self.document.getroot() and isinstance(element, inkex.ShapeElement) and element.tag != inkex.addNS('use','svg') and element.get('inkscape:groupmode') != 'layer': #bbox fails for svg:use elements and layers
                     transform = inkex.Transform()
                     parent = element.getparent()
@@ -485,12 +493,12 @@ class LaserCheck(inkex.EffectExtension):
             if len(strokeWidths) > so.stroke_widths_max:
                 for strokeWidth in strokeWidths:
                     if strokeWidth is None:
-                        inkex.utils.debug("stroke width default (system standard value)")
+                        inkex.utils.debug("stroke width: default (None, system standard value)")
                     elif strokeWidth == "none":
-                        inkex.utils.debug("stroke width none (invisible)")
+                        inkex.utils.debug("stroke width: none (invisible)")
                     else:
                         swConverted = self.svg.uutounit(float(self.svg.unittouu(strokeWidth))) #possibly w/o units. we unify to some internal float. The value "none" converts to 0.0
-                        inkex.utils.debug("stroke width {}px ({}mm)".format(
+                        inkex.utils.debug("stroke width: {}px ({}mm)".format(
                             round(self.svg.uutounit(swConverted, "px"),4),
                             round(self.svg.uutounit(swConverted, "mm"),4),
                             ))
@@ -958,7 +966,7 @@ class LaserCheck(inkex.EffectExtension):
             if so.show_issues_only is False:
                 inkex.utils.debug("{} non-path shapes in total".format(len(nonPathShapes)))
             for nonPathShape in nonPathShapes:
-                inkex.utils.debug("id={}".format(nonPathShape.get('id')))         
+                inkex.utils.debug("id={}, type={}".format(nonPathShape.get('id'), nonPathShape.tag.replace("{http://www.w3.org/2000/svg}", "")))         
          
         exit(0)
                              

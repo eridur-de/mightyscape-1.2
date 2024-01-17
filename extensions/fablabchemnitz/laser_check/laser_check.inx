@@ -4,6 +4,8 @@
     <id>fablabchemnitz.de.laser_check</id>
     <param name="tab" type="notebook">
         <page name="tab_checks" gui-text="Checks">
+            <label appearance="header">Note: If selection is empty, the complete document is scanned!</label>
+            <separator/>
             <param name="show_issues_only" type="bool" gui-text="Show potential issues only" gui-description="Shortens the report a little bit">false</param>
             <separator/>
             <param name="checks" type="optiongroup" appearance="combo" gui-text="Select checks">
@@ -14,7 +16,7 @@
             <label appearance="header">Custom Checks</label>
             <hbox>
                 <vbox>
-                    <param name="bbox" type="bool" gui-text="Bounding box">false</param>
+                    <param name="bbox" type="bool" gui-text="Bounding box" gui-description="Check if any element touches the canvas border or is completely outside the canvas">false</param>
                     <param name="bbox_offset" type="float" min="0.000" max="9999.000" precision="3" gui-text="Minimum required offset (mm)">5.000</param>
                     <separator/>
                     <param name="cutting_estimation" type="bool" gui-text="Cutting time estimation">false</param>
