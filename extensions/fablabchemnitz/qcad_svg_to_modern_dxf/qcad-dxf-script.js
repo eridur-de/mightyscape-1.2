@@ -10,13 +10,15 @@ var storage = new RMemoryStorage();
 var spatialIndex = new RSpatialIndexSimple();
 var doc = new RDocument(storage, spatialIndex);
 var di = new RDocumentInterface(doc);
+
 var tolerance = $QCAD_TOLERANCE$;
+var purge_duplicates = $QCAD_PURGE_DUPLICATES$;
+var join_polylines = $QCAD_JOIN_POLYLINES$;
 
 const importer = new SvgImporter(doc);
 
 di.importFile("$SVG_PATH$");
 
-var purge_duplicates = $QCAD_PURGE_DUPLICATES$;
 if (purge_duplicates === true) {
     Duplicates.findDuplicates(di, true, tolerance, 0.0, true);
     var counter = doc.countSelectedEntities();
@@ -25,8 +27,10 @@ if (purge_duplicates === true) {
     print("Purged duplicates: " + counter);
 }
 
-di.selectAll();
+if (join_polylines === true) {
+    di.selectAll();
+    PolylineFromSelection.autoJoinSegments(di, tolerance);
+}
 
-PolylineFromSelection.autoJoinSegments(di, tolerance);
 di.exportFile("$EXPORT_PATH$", "$QCAD_DXF_FORMAT$");
 di.destroy();

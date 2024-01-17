@@ -205,12 +205,8 @@ class LaserCheck(inkex.EffectExtension):
         
         #that size is actually not the stored one on file system
         #filesize = len(etree.tostring(self.document, pretty_print=True).decode('UTF-8')) / 1000
-        filesize = 0
-        if os.path.exists(self.document_path()) is False:
-            inkex.utils.debug("WARNING: File was not saved yet!")
-        else:
-            filesize = os.path.getsize(self.document_path()) / 1000
-        inkex.utils.debug("File size: {:0.1f} KB (That might be wrong. Check first for recently saved file)".format(filesize))
+        filesize = os.path.getsize(so.input_file) / 1000
+        inkex.utils.debug("File size: {:0.1f} KB".format(filesize))
         if filesize > so.filesize_max:
             inkex.utils.debug("WARNING: file size is larger than allowed: {} KB > {} KB".format(filesize, so.filesize_max))
             

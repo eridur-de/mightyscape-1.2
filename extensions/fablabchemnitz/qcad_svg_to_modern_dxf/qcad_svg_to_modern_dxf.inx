@@ -19,6 +19,7 @@
                 <option value="R10 DXF">R10 (OpenDesign)</option>
                 <option value="R9 DXF">R9 (OpenDesign)</option>
             </param>
+            <param name="qcad_join_polylines" type="bool" gui-text="Join Polylines">true</param>
             <param name="qcad_tolerance" type="float" min="0.0000001" max="999999" precision="3" gui-text="Polyline tolerance" gui-description="">0.001</param>
             <param name="qcad_purge_duplicates" type="bool" gui-text="Purge duplicate lines">false</param>
             <param name="qcad_pro_path" type="path" mode="file" gui-text="QCAD Pro executable path" gui-description="Do not use Community Edition, as it will not work.">~/opt/qcad-3.28.2-pro-linux-x86_64/qcad</param>
