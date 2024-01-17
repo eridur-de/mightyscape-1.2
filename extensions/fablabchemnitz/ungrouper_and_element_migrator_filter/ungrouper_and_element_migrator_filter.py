@@ -75,6 +75,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         pars.add_argument("--ccWork",         type=inkex.Boolean, default=True)
         pars.add_argument("--comments",       type=inkex.Boolean, default=True)
         pars.add_argument("--page",           type=inkex.Boolean, default=True)
+        pars.add_argument("--tails",          type=inkex.Boolean, default=True)
 
     
     def effect(self):
@@ -85,10 +86,20 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         if so.comments is True:
             docroot = self.document.getroot()
             for element in docroot.iter():
-                #inkex.utils.debug(element.tag)
                 if "cyfunction Comment" in str(element.tag):
                     self.allDrops.append(element)
                     element.getparent().remove(element)
+                
+               
+        #remove newlines (tails of elements)
+        if so.tails is True:
+            parser = etree.XMLParser(remove_blank_text=True)
+            root = self.document.getroot()
+            for element in root.iter('*'):
+                if element.text is not None:
+                    element.text = element.text.strip()
+                if element.tail is not None:
+                    element.tail = element.tail.strip()
 
         namespace = [] #a list of selected types we are going to process for filtering (dropping items)
         #namespace.append("{http://www.w3.org/2000/svg}sodipodi")       if so.sodipodi       else "" #do not do this. it will crash InkScape

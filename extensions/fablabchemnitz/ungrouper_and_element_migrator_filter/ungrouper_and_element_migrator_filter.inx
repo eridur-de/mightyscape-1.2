@@ -63,6 +63,7 @@
                             <param name="rdfRDF" type="bool" gui-text="rdf:RDF">true</param>
                             <param name="ccWork" type="bool" gui-text="cc:Work">true</param>
                             <param name="comments" type="bool" gui-text="comments">true</param>
+                            <param name="tails" type="bool" gui-text="tails" gui-description="e.g. new lines, white spaces after an XML tag">true</param>
         				</vbox>
         			</hbox>
                 </vbox>
