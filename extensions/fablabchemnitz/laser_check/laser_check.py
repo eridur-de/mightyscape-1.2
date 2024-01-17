@@ -90,6 +90,7 @@ class LaserCheck(inkex.EffectExtension):
         pars.add_argument('--cosmestic_dashes', type=inkex.Boolean, default=False)
         pars.add_argument('--invisible_shapes', type=inkex.Boolean, default=False)
         pars.add_argument('--pointy_paths', type=inkex.Boolean, default=False)
+        pars.add_argument('--combined_paths', type=inkex.Boolean, default=False)
         pars.add_argument('--transformations', type=inkex.Boolean, default=False)
         pars.add_argument('--short_paths', type=inkex.Boolean, default=False)
         pars.add_argument('--short_paths_min', type=float, default=1.000)
@@ -799,6 +800,22 @@ class LaserCheck(inkex.EffectExtension):
                 inkex.utils.debug("{} pointy paths in total".format(len(pointyPaths)))
             for pointyPath in pointyPaths:
                 inkex.utils.debug("id={}".format(pointyPath.get('id')))    
+   
+        '''
+        Combined paths make trouble with vector sorting algorithm. Check which paths could be broken apart
+        '''
+        if so.checks == "check_all" or so.combined_paths is True:          
+            inkex.utils.debug("\n---------- Combined paths - should be broken apart")
+            combinedPaths = []
+            for element in shapes:
+                if isinstance(element, inkex.PathElement):
+                    break_paths = element.path.break_apart()
+                    if len(break_paths) > 2:
+                        combinedPaths.append([element, len(break_paths)])
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} combined paths in total".format(len(combinedPaths)))
+            for combinedPath in combinedPaths:
+                inkex.utils.debug("id={} has sub paths: {}".format(combinedPath[0].get('id'), combinedPath[1]))    
    
    
         '''

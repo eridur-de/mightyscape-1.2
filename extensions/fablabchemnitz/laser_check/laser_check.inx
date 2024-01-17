@@ -50,6 +50,7 @@
                     <param name="invisible_shapes" type="bool" gui-text="Invisible shapes">false</param>
                     <param name="non_path_shapes" type="bool" gui-text="Non-path shapes">false</param>
                     <param name="pointy_paths" type="bool" gui-text="Pointy paths">false</param>
+                    <param name="combined_paths" type="bool" gui-text="Combined paths">false</param>
                     <param name="transformations" type="bool" gui-text="Transformations">false</param>
                     <separator/>
                     <param name="short_paths" type="bool" gui-text="Short paths">false</param>
