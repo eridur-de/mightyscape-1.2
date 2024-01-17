@@ -82,10 +82,10 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
     def effect(self):
         
         so = self.options
+        docroot = self.document.getroot()
         
         #remove comments
         if so.comments is True:
-            docroot = self.document.getroot()
             for element in docroot.iter():
                 if "cyfunction Comment" in str(element.tag):
                     self.allDrops.append(element)
@@ -95,8 +95,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         #remove newlines (tails of elements)
         if so.tails is True:
             parser = etree.XMLParser(remove_blank_text=True)
-            root = self.document.getroot()
-            for element in root.iter('*'):
+            for element in docroot.iter('*'):
                 if element.text is not None:
                     element.text = element.text.strip()
                 if element.tail is not None:

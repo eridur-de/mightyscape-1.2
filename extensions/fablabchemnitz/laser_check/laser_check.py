@@ -8,6 +8,8 @@ import math
 import sys
 from math import log
 import datetime
+import os
+from collections import Counter
 
 class LaserCheck(inkex.EffectExtension):
     
@@ -64,6 +66,8 @@ class LaserCheck(inkex.EffectExtension):
         
         pars.add_argument('--show_issues_only', type=inkex.Boolean, default=False)  
         pars.add_argument('--checks', default="check_all")
+        pars.add_argument('--statistics', type=inkex.Boolean, default=False)
+        pars.add_argument('--filesize_max', type=float, default=2048.000)
         pars.add_argument('--bbox', type=inkex.Boolean, default=False)
         pars.add_argument('--bbox_offset', type=float, default=5.000)
         pars.add_argument('--cutting_estimation', type=inkex.Boolean, default=False)
@@ -97,6 +101,8 @@ class LaserCheck(inkex.EffectExtension):
     def effect(self):
         
         so = self.options
+        docroot = self.document.getroot()
+        
         machineWidth = self.svg.unittouu(so.machine_size.split('x')[0] + "mm")
         machineHeight = self.svg.unittouu(so.machine_size.split('x')[1] + "mm")
         selected = [] #total list of elements to parse
@@ -114,15 +120,15 @@ class LaserCheck(inkex.EffectExtension):
         
         #check if we have selected elements or if we should parse the whole document instead
         if len(self.svg.selected) == 0:
-            for element in self.document.getroot().iter(tag=etree.Element):
-                if element != self.document.getroot():
+            for element in docroot.iter(tag=etree.Element):
+                if element != docroot:
 
                     selected.append(element)
         else:
             for element in self.svg.selected.values():
                 parseChildren(element)
                 
-        namedView = self.document.getroot().find(inkex.addNS('namedview', 'sodipodi'))
+        namedView = docroot.find(inkex.addNS('namedview', 'sodipodi'))
         doc_units = namedView.get(inkex.addNS('document-units', 'inkscape'))        
         user_units = namedView.get(inkex.addNS('units'))  
         pagecolor = namedView.get('pagecolor')
@@ -170,7 +176,7 @@ class LaserCheck(inkex.EffectExtension):
             viewboxOk = False
             # values may be lower than 0, but it does not make sense. The viewbox defines the top-left corner, which is usually 0,0. In case we want to allow that, we need to convert all bounding boxes accordingly. See also https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox.
             inkex.utils.debug("WARNING: Viewbox does not start at 0,0. Visible results will differ from real coordinates.")
-        
+      
         '''
         The SVG format is highly complex and offers a lot of possibilities. Most things of SVG we do not
         need for a laser cutter. Usually we need svg:path and maybe svg:image; we can drop a lot of stuff
@@ -186,7 +192,6 @@ class LaserCheck(inkex.EffectExtension):
                         "{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}namedview",
                         "{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF",
                         "{http://creativecommons.org/ns#}Work"):
-                    inkex.utils.debug(element.tag)
                     nonShapes.append(element)
             else:
                 shapes.append(element)
@@ -197,6 +202,34 @@ class LaserCheck(inkex.EffectExtension):
             inkex.utils.debug("non-shape id={}".format(nonShape.get('id')))
         
         
+        #that size is actually not the stored one on file system
+        #filesize = len(etree.tostring(self.document, pretty_print=True).decode('UTF-8')) / 1000
+        filesize = 0
+        if os.path.exists(self.document_path()) is False:
+            inkex.utils.debug("WARNING: File was not saved yet!")
+        else:
+            filesize = os.path.getsize(self.document_path()) / 1000
+        inkex.utils.debug("File size: {:0.1f} KB (That might be wrong. Check first for recently saved file)".format(filesize))
+        if filesize > so.filesize_max:
+            inkex.utils.debug("WARNING: file size is larger than allowed: {} KB > {} KB".format(filesize, so.filesize_max))
+            
+        inkex.utils.debug("Total overview of element types:")
+        elementTypes = []
+        for element in selected:
+            if element not in elementTypes:
+                elementTypes.append(element.tag
+                    .replace("{http://www.w3.org/2000/svg}", "")
+                    .replace("{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}", "")
+                    .replace("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}", "")
+                    .replace("{http://creativecommons.org/ns#}", "")
+                    .replace("{http://www.inkscape.org/namespaces/inkscape}", "")
+                )
+        
+        counter = Counter(elementTypes)
+        uniqElementTypes = counter
+        for key in counter.keys():
+            inkex.utils.debug(" - {}: {}x".format(key, counter[key]))
+
         '''
         Nearly each laser job needs a bit of border to place the material inside the laser. Often
         we have to fixate on vector grid, pin grid or task plate. Thus we need tapes or pins. So we 
@@ -210,8 +243,8 @@ class LaserCheck(inkex.EffectExtension):
                 inkex.utils.debug("WARNING: Viewbox does not start at 0,0. Calculating bounding boxes might create wrong results.")
             bbox = inkex.BoundingBox()
             for element in selected:
-            #for element in self.document.getroot().iter(tag=etree.Element):
-                if element != self.document.getroot() and isinstance(element, inkex.ShapeElement) and element.tag != inkex.addNS('use','svg') and element.get('inkscape:groupmode') != 'layer': #bbox fails for svg:use elements and layers
+            #for element in docroot.iter(tag=etree.Element):
+                if element != docroot and isinstance(element, inkex.ShapeElement) and element.tag != inkex.addNS('use','svg') and element.get('inkscape:groupmode') != 'layer': #bbox fails for svg:use elements and layers
                     transform = inkex.Transform()
                     parent = element.getparent()
                     if parent is not None and isinstance(parent, inkex.ShapeElement):
@@ -232,8 +265,8 @@ class LaserCheck(inkex.EffectExtension):
             #else:
             #    inkex.utils.debug("bounding box is {}".format(bbox))
             inkex.utils.debug("bounding box is:\n  x.min = {}\n  y.min = {}\n  x.max = {}\n  y.max = {}".format(bbox.left, bbox.top, bbox.right, bbox.bottom))
-            page_width = self.svg.unittouu(self.document.getroot().attrib['width'])
-            width_height = self.svg.unittouu(self.document.getroot().attrib['height'])
+            page_width = self.svg.unittouu(docroot.attrib['width'])
+            width_height = self.svg.unittouu(docroot.attrib['height'])
             fmm = self.svg.unittouu(str(so.bbox_offset) + "mm")
             bb_left = round(bbox.left, 3)
             bb_right = round(bbox.right, 3)
@@ -290,7 +323,7 @@ class LaserCheck(inkex.EffectExtension):
                     md += 1
                 for child in element:
                     maxDepth(child, level + 1) 
-            maxDepth(self.document.getroot(), -1)
+            maxDepth(docroot, -1)
             if so.show_issues_only is False:        
                inkex.utils.debug("Maximum group depth={}".format(md - 1))
             if md - 1 > so.nest_depth_max:
@@ -916,6 +949,7 @@ class LaserCheck(inkex.EffectExtension):
         if so.checks == "check_all" or so.nodes_per_path is True:  
             inkex.utils.debug("\n---------- Heavy node-loaded paths (allowed: {} node(s) per {} mm) - should be simplified".format(so.nodes_per_path_max, round(so.nodes_per_path_interval, 3)))
             heavyPaths = []
+            totalNodesCount = 0
             for element in shapes:
                 if isinstance(element, inkex.PathElement):
                     slengths, stotal = csplength(element.path.transform(element.composed_transform()).to_superpath())
@@ -926,6 +960,7 @@ class LaserCheck(inkex.EffectExtension):
             if so.show_issues_only is False:
                 inkex.utils.debug("{} Heavy node-loaded paths in total".format(len(heavyPaths)))
             for heavyPath in heavyPaths:
+                totalNodesCount += heavyPath[1]
                 inkex.utils.debug("id={}, nodes={}, length={}mm, density={}nodes/mm".format(
                         heavyPath[0].get('id'), 
                         heavyPath[1], 
@@ -933,7 +968,15 @@ class LaserCheck(inkex.EffectExtension):
                         round(heavyPath[1] / self.svg.uutounit(str(heavyPath[2]), "mm"), 3)
                         )
                     )
-          
+            inkex.utils.debug("Total nodes on paths: {}".format(totalNodesCount))
+            pathCount = 0
+            for key in counter.keys():
+                if key == "path":
+                    pathCount = counter[key]
+            if pathCount > 0:
+                inkex.utils.debug("Average nodes per path: {:0.0f}".format(totalNodesCount/pathCount))
+
+
         '''
         Elements outside canvas or touching the border. These are critical because they won't be lasered or not correctly lasered
         '''

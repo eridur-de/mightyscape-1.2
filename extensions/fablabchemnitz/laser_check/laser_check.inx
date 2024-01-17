@@ -16,6 +16,8 @@
             <label appearance="header">Custom Checks</label>
             <hbox>
                 <vbox>
+                    <param name="filesize_max" type="float" min="0.000" max="9999.000" precision="3" gui-text="Maximum allowed file size (KB)">2048</param>
+                    <separator/> 
                     <param name="bbox" type="bool" gui-text="Bounding box" gui-description="Check if any element touches the canvas border or is completely outside the canvas">false</param>
                     <param name="bbox_offset" type="float" min="0.000" max="9999.000" precision="3" gui-text="Minimum required offset (mm)">5.000</param>
                     <separator/>
