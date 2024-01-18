@@ -80,11 +80,11 @@ class ChainPaths(inkex.EffectExtension):
       r.append(s)
     return r
 
-  def set_segment_done(self, id, n, msg=''):
+  def set_segment_done(self, so, id, n, msg=''):
     if not id in self.segments_done:
       self.segments_done[id] = {}
     self.segments_done[id][n] = True
-    if self.options.debug: inkex.utils.debug("done {} {} {}".format(id, n, msg))
+    if so.debug: inkex.utils.debug("done {} {} {}".format(id), n, msg)
 
   def is_segment_done(self, id, n):
     if not id in self.segments_done:
@@ -131,7 +131,7 @@ class ChainPaths(inkex.EffectExtension):
       print(__version__)
       sys.exit(0)
 
-    self.calc_unit_factor(self.options.units)
+    self.calc_unit_factor(so.units)
 
     if so.snap_ends     is not None: self.snap_ends     = so.snap_ends
     if so.close_loops   is not None: self.close_loops   = so.close_loops
@@ -146,9 +146,9 @@ class ChainPaths(inkex.EffectExtension):
     segments = []
     for id, node in self.svg.selected.items():
       if node.tag != inkex.addNS('path', 'svg'):
-        inkex.errormsg("Object {} is not a path. Try\n  - Path->Object to Path\n  - Object->Ungroup".format(node.get("id")))
+        inkex.errormsg("Object id {} is not a path. Try\n  - Path->Object to Path\n  - Object->Ungroup".format(node.get('id')))
         return
-      if so.debug: inkex.utils.debug(node.get('id'))
+      if so.debug: inkex.utils.debug("id={}, tag=".format(idnode.get('id'), node.tag))
       path_d = CubicSuperPath(Path(node.get('d')))
       sub_idx = -1
       for sub in path_d:
@@ -162,13 +162,13 @@ class ChainPaths(inkex.EffectExtension):
         end1 = [sub[ 0][1][0], sub[ 0][1][1]]
         end2 = [sub[-1][1][0], sub[-1][1][1]]
 
-        # Remove trivial self revesal when building candidate segments list.
+        # Remove trivial self reversal when building candidate segments list.
         if ((len(sub) == 3) and self.near_ends(end1, end2)):
           if so.debug: inkex.utils.debug("dropping segment from self-reversing path, length: {}".format(len(sub)))
           sub.pop()
           end2 = [sub[-1][1][0], sub[-1][1][1]]
 
-        segments.append({'id': node.get('id'), 'n': sub_idx, 'end1': end1, 'end2':end2, 'seg': sub})
+        segments.append({'id': id, 'n': sub_idx, 'end1': end1, 'end2':end2, 'seg': sub})
       if node.get(inkex.addNS('type', 'sodipodi')):
         del node.attrib[inkex.addNS('type', 'sodipodi')]
     if so.debug: inkex.utils.debug("-------- seen: ")
@@ -186,7 +186,7 @@ class ChainPaths(inkex.EffectExtension):
       cur_idx = -1
       for chain in path_d:
         cur_idx += 1
-        if not self.is_segment_done(node.get('id'), cur_idx):
+        if not self.is_segment_done(id, cur_idx):
           # quadratic algorithm: we check both ends of the current segment.
           # If one of them is near another known end from the segments list, we
           # chain this segment to the current segment and remove it from the
@@ -194,7 +194,7 @@ class ChainPaths(inkex.EffectExtension):
           # end1-end1 or end2-end2: The new segment is reversed.
           # end1-end2: The new segment is prepended to the current segment.
           # end2-end1: The new segment is appended to the current segment.
-          self.set_segment_done(id, cur_idx, "output")        # do not cross with ourselves.
+          self.set_segment_done(so, id, cur_idx, "output") # do not cross with ourselves.
           end1 = [chain[ 0][1][0], chain[ 0][1][1]]
           end2 = [chain[-1][1][0], chain[-1][1][1]]
 
@@ -218,18 +218,18 @@ class ChainPaths(inkex.EffectExtension):
 
             if self.near_ends(end1, seg['end2']):
               # prepend seg to chain
-              self.set_segment_done(seg['id'], seg['n'], 'prepended to {} {}'.format(node.get('id'), cur_idx))
+              self.set_segment_done(so, seg['id'], seg['n'], 'prepended to {} {}'.format(id, cur_idx))
               chain = self.link_segments(seg['seg'], chain)
               end1 = [chain[0][1][0], chain[0][1][1]]
-              segments_idx = 0          # this chain changed. re-visit all candidate
+              segments_idx = 0 # this chain changed. re-visit all candidate
               continue
 
             if self.near_ends(end2, seg['end1']):
-              # append seg to chain		  
-              self.set_segment_done(seg['id'], seg['n'], 'appended to {} {}'.format(node.get('id'), cur_idx))
+              # append seg to chain          
+              self.set_segment_done(so, seg['id'], seg['n'], 'appended to {} {}'.format(id, cur_idx))
               chain = self.link_segments(chain, seg['seg'])
               end2 = [chain[-1][1][0], chain[-1][1][1]]
-              segments_idx = 0          # this chain changed. re-visit all candidate
+              segments_idx = 0 # this chain changed. re-visit all candidate
               continue
 
             segments_idx += 1
@@ -264,10 +264,10 @@ class ChainPaths(inkex.EffectExtension):
         if node.getparent() is not None:
             node.delete()
             obsoleted += 1
-            if so.debug: inkex.utils.debug("Path node obsoleted: {}".format(node.get('id')))
+            if so.debug: inkex.utils.debug("Path node obsoleted: {}".format(id))
       else:
         remaining += 1
-        # BUG: All previously closed loops, are open, after we convert them back with cubicsuperpath.formatPath()
+        # BUG: All previously closed loops are open after we convert them back with cubicsuperpath.formatPath()
         p_fmt = str(Path(CubicSuperPath(new).to_path().to_arrays()))
         if path_closed: p_fmt += " z"
         if so.debug: inkex.utils.debug("new path: {}".format(p_fmt))

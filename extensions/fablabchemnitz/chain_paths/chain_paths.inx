@@ -10,7 +10,7 @@
         <option value="pt">pt</option>
         <option value="px">px</option>
     </param>
-    <param name="snap_ends" type="bool" gui-text="Snap connecting ends together">false</param>
+    <param name="snap_ends" type="bool" gui-text="Snap connecting ends together" gui-description="This will deduplicate (merge) two nodes to one node">false</param>
     <param name="close_loops" type="bool" gui-text="Close loops (start/end of the same path)">true</param>
     <param name="debug" type="bool" gui-text="Debug output">false</param>
     <!-- Keep in sync with chain_paths.py line 19 __version__ = ... -->

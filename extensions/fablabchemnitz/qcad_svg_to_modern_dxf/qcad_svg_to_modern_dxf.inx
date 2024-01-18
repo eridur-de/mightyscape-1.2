@@ -22,10 +22,9 @@
             <param name="qcad_join_polylines" type="bool" gui-text="Join Polylines">true</param>
             <param name="qcad_tolerance" type="float" min="0.0000001" max="999999" precision="3" gui-text="Polyline tolerance" gui-description="">0.001</param>
             <param name="qcad_purge_duplicates" type="bool" gui-text="Purge duplicate lines">false</param>
-            <param name="qcad_pro_path" type="path" mode="file" gui-text="QCAD Pro executable path" gui-description="Do not use Community Edition, as it will not work.">~/opt/qcad-3.28.2-pro-linux-x86_64/qcad</param>
+            <param name="qcad_pro_path" type="path" mode="file" gui-text="QCAD Pro executable path" gui-description="Do not use Community Edition, as it will not work.">~/opt/qcad-3.28.2-pro-linux-x86_64/qcad</param>z
             <param name="debug" type="bool" gui-text="Show debug info">false</param>
             <param name="open_in_qcad" type="bool" gui-text="Open export file in QCAD">false</param>
-
         </page>
         <page name="tab_about" gui-text="About">
             <label appearance="header">QCAD SVG to modern DXF</label>
