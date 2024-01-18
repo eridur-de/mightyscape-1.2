@@ -12,6 +12,7 @@
     </param>
     <param name="snap_ends" type="bool" gui-text="Snap connecting ends together" gui-description="This will deduplicate (merge) two nodes to one node">false</param>
     <param name="close_loops" type="bool" gui-text="Close loops (start/end of the same path)">true</param>
+    <param name="limit" type="int" min="0" max="99999" gui-text="Maximum items to process" gui-description="The more items at once are selected, the slower the process gets. Repeating in smaller steps is better. Set 0 for umlimited selection, else the selection gets cut off.">2000</param>
     <param name="debug" type="bool" gui-text="Debug output">false</param>
     <!-- Keep in sync with chain_paths.py line 19 __version__ = ... -->
     <label appearance="url">https://github.com/fablabnbg/inkscape-chain-paths</label>
