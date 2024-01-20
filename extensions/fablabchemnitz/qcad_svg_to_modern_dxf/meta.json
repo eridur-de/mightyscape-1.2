@@ -1,0 +1,20 @@
+[
+  {
+    "name": "QCAD SVG to modern DXF",
+    "id": "fablabchemnitz.de.qcad_svg_to_modern_dxf",
+    "path": "qcad_svg_to_modern_dxf",
+    "dependent_extensions": null,
+    "original_name": "QCAD SVG to modern DXF",
+    "original_id": "fablabchemnitz.de.qcad_svg_to_modern_dxf",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
+    "comment": "written by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/qcad_svg_to_modern_dxf",
+    "fork_url": null,
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/QCAD+SVG+to+modern+DXF",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/eridur-de"
+    ]
+  }
+]
