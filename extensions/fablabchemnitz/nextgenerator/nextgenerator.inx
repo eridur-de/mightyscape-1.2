@@ -60,7 +60,6 @@ This extension is a Python rewrite of the Generator bash script extension by Aur
     </param>
     <effect needs-live-preview="false">
         <object-type>all</object-type>
-        <menu-tip>Automatically replace values and export the result.</menu-tip>
         <effects-menu>
             <submenu name="FabLab Chemnitz">
                 <submenu name="Import/Export/Transfer" />

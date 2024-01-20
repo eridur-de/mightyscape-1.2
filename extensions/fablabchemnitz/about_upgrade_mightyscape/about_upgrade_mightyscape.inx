@@ -6,6 +6,8 @@
         <param name="tab" type="notebook">
             <page name="tab_settings" gui-text="Upgrade Options">
                 <label appearance="header">Install Updates / Options</label>
+                <param name="install_requirements" type="bool" gui-text="Install python requirements" gui-description="Installs all python requirements from requirements.txt. This may take up to 10 minutes or may. There will be no visible console output until finished. Please wait until completed.">false</param>
+
                 <param name="convert_to_git" type="bool" gui-text="Convert to .git" gui-description="If you downloaded MightyScape as .zip or .tar.gz you cannot upgrade using this extension. But you can convert your downloaded directory to a .git one by enabling this option">false</param>
                 <param name="recreate_remotes" type="bool" gui-text="Recreate remotes" gui-description="Update remotes in git config file (useful if you have an older version of MightyScape or if something changes). Warning: might drop passwords/auth tokens!">false</param>
                 <param name="stash_untracked" type="bool" gui-text="Stash untracked files" gui-description="Enable to drop your local changes">false</param>
@@ -17,7 +19,7 @@
             </page>
             <page name="tab_about" gui-text="About">
                 <label appearance="header">MightyScape Extension Collection</label>
-                <label>2019 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+                <label>2019 - 2024 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
                 <spacer />
                 <label appearance="header">Online Documentation</label>
                 <label appearance="url">https://y.stadtfabrikanten.org/mightyscape-overview</label>

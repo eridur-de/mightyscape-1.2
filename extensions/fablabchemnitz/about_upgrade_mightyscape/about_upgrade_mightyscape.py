@@ -16,6 +16,8 @@ ToDo
 
 import inkex
 import os
+import subprocess
+from subprocess import Popen, PIPE
 import warnings
 from datetime import datetime, timezone
 try:
@@ -26,6 +28,19 @@ except:
     exit(1)
 
 class AboutUpgradeMightyScape(inkex.EffectExtension):
+
+    def install_requirements(self):
+        requirements = inkex.utils.debug(os.path.abspath(os.path.join(self.ext_path()) + "/../../../requirements.txt"))
+        if not os.path.exists(requirements):
+            inkex.utils.debug("requirements.txt could not be found.")
+            exit(1)
+        command = ["python3 -m pip install --upgrade --quiet --no-cache-dir -r " + requirements]
+        inkex.utils.debug("Executing: {}".format(command))
+        proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
+        stdout, stderr = proc.communicate()
+        inkex.utils.debug(stdout.decode('UTF-8'))
+        inkex.utils.debug(stderr.decode('UTF-8'))
+        proc.wait()
 
     def update(self, local_repo, remote, localCommitCount):
         inkex.utils.debug("Chosen remote is: {}".format(remote))
@@ -46,16 +61,8 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
                     #origin.fetch()
                     #fetch_info = origin.pull() #finally pull new data
                     fetch_info = remote_repo.fetch()
-                    try:
-                        remote_repo.pull() #finally pull new data
-                    except git.exc.GitCommandError as e:
-                        if "Your local changes to the following files would be overwritten by merge" in str(e):
-                            inkex.utils.debug("Please save or stash your local git changes first and try again. You can enable 'Stash untracked files' to continue.")
-                            exit(1)  
-                        else:
-                            inkex.utils.debug("Error: ")
-                            inkex.utils.debug(e)
-                            exit(1)
+                    remote_repo.pull() #finally pull new data
+    
                     for info in fetch_info: #should return only one line in total
                         inkex.utils.debug("Updated {} to commit id {}. {} commits were pulled".format(info.ref, str(info.commit)[:7], remoteCommitCount - localCommitCount)) 
     
@@ -65,14 +72,18 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
                 inkex.utils.debug("Nothing to do! MightyScape is already up to date!")  
                    
         except git.exc.GitCommandError as e:
-            inkex.utils.debug("Error: ")
-            inkex.utils.debug(e)
+            if "Your local changes to the following files would be overwritten by merge" in e:
+                inkex.utils.debug("Please save or stash your local git changes first and try again. You can enable 'Stash untracked files' to continue.")
+            else:
+                inkex.utils.debug("Error: ")
+                inkex.utils.debug(e)
             return False
         return True
 
    
     def add_arguments(self, pars):
         pars.add_argument("--tab")
+        pars.add_argument("--install_requirements", type=inkex.Boolean, default=False, help="Install python requirements")
         pars.add_argument("--convert_to_git", type=inkex.Boolean, default=False, help="If you downloaded MightyScape as .zip or .tar.gz you cannot upgrade using this extension. But you can convert your downloaded directory to a .git one by enabling this option")
         pars.add_argument("--recreate_remotes", type=inkex.Boolean, default=False, help="Update remotes in git config file (useful if you have an older version of MightyScape or if sth. changes)")
         pars.add_argument("--stash_untracked", type=inkex.Boolean, default=False, help="Stash untracked files and continue to upgrade")
@@ -84,6 +95,9 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
         so = self.options
         
         warnings.simplefilter('ignore', ResourceWarning) #suppress "enable tracemalloc to get the object allocation traceback"
+
+        if so.install_requirements is True:
+            self.install_requirements()
 
         #get the directory of mightyscape
         extension_dir = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)), '../')) #go up to main dir /home/<user>/.config/inkscape/extensions/mightyscape-1.2/
