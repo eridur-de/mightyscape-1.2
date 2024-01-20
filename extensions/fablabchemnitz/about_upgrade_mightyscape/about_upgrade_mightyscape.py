@@ -46,8 +46,16 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
                     #origin.fetch()
                     #fetch_info = origin.pull() #finally pull new data
                     fetch_info = remote_repo.fetch()
-                    remote_repo.pull() #finally pull new data
-    
+                    try:
+                        remote_repo.pull() #finally pull new data
+                    except git.exc.GitCommandError as e:
+                        if "Your local changes to the following files would be overwritten by merge" in str(e):
+                            inkex.utils.debug("Please save or stash your local git changes first and try again. You can enable 'Stash untracked files' to continue.")
+                            exit(1)  
+                        else:
+                            inkex.utils.debug("Error: ")
+                            inkex.utils.debug(e)
+                            exit(1)
                     for info in fetch_info: #should return only one line in total
                         inkex.utils.debug("Updated {} to commit id {}. {} commits were pulled".format(info.ref, str(info.commit)[:7], remoteCommitCount - localCommitCount)) 
     
