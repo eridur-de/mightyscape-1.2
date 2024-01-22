@@ -16,6 +16,7 @@
             <label appearance="header">Custom Checks</label>
             <hbox>
                 <vbox>
+                    <param name="basic_checks" type="bool" gui-text="Default checks" gui-description="Basic checks like canvas, scale, viewbox, ...">true</param>
                     <param name="filesize_max" type="float" min="0.000" max="9999.000" precision="3" gui-text="Maximum allowed file size (KB)">2048</param>
                     <separator/> 
                     <param name="bbox" type="bool" gui-text="Bounding box" gui-description="Check if any element touches the canvas border or is completely outside the canvas">false</param>
@@ -27,7 +28,7 @@
                     <param name="elements_outside_canvas" type="bool" gui-text="Elements outside canvas">false</param>
                     <separator/>
                     <param name="groups_and_layers" type="bool" gui-text="Groups and layers">false</param>
-                    <param name="nest_depth_max" type="int" min="0" max="9999" gui-text="Max. allowed depth">2</param>
+                    <param name="nest_depth_max" type="int" min="0" max="9999" gui-text="Maximum allowed depth">2</param>
                     <separator/>
                     <param name="clones" type="bool" gui-text="Clones">false</param>
                     <param name="clippaths" type="bool" gui-text="Clippings">false</param>
@@ -37,13 +38,14 @@
                     <param name="lowlevelstrokes" type="bool" gui-text="Low level strokes">false</param>
                     <separator/>
                     <param name="stroke_colors" type="bool" gui-text="Stroke colors">false</param>
-                    <param name="stroke_colors_max" type="int" min="0" max="9999" gui-text="Max. allowed">3</param>
+                    <param name="stroke_colors_max" type="int" min="0" max="9999" gui-text="Maximum allowed">3</param>
                 </vbox>
                 <separator/>    
                 <vbox>
                     <param name="style_types" type="bool" gui-text="Style types">false</param>
+                    <separator/>
                     <param name="stroke_widths" type="bool" gui-text="Stroke widths">false</param>
-                    <param name="stroke_widths_max" type="int" min="0" max="9999" gui-text="Max. allowed">1</param>
+                    <param name="stroke_widths_max" type="int" min="0" max="9999" gui-text="Maximum allowed">1</param>
                     <separator/>
                     <param name="opacities" type="bool" gui-text="Opacities" gui-description="Check for existence of attributes opacity, stroke-opacity and fill-opacity">false</param>
                     <param name="cosmestic_dashes" type="bool" gui-text="Cosmetic dash styles">false</param>
@@ -56,8 +58,8 @@
                     <param name="short_paths" type="bool" gui-text="Short paths">false</param>
                     <param name="short_paths_min" type="float" min="0.000" max="9999.000" precision="3" gui-text="Check below length (mm)">1.000</param>
                     <separator/>
-                    <param name="nodes_per_path" type="bool" gui-text="Max path nodes">false</param>
-                    <param name="nodes_per_path_max" type="int" min="0" max="99999" gui-text="Max nodes/&lt;interval&gt; mm">2</param>
+                    <param name="nodes_per_path" type="bool" gui-text="Maximum path nodes">false</param>
+                    <param name="nodes_per_path_max" type="int" min="0" max="99999" gui-text="Maximum nodes/&lt;interval&gt; mm">2</param>
                     <param name="nodes_per_path_interval" type="float" min="0.000" max="99999.000" precision="3" gui-text="Interval">10.000</param>
                 </vbox>
             </hbox>
@@ -71,8 +73,8 @@
                 <option value="1016x711">1016 x 711 mm (Fusion M2 40)</option>
                 <option value="1219x914">1219 x 914 mm (Fusion Pro 48)</option>
             </param>
-            <param name="max_cutting_speed" type="float" min="1.000" max="9999.000" precision="2" gui-text="Max. cutting speed (mm/s)">120.0</param>
-            <param name="max_travel_speed" type="float" min="1.000" max="9999.000" precision="2" gui-text="Max. travel speed (mm/s)">450.0</param>
+            <param name="max_cutting_speed" type="float" min="1.000" max="9999.000" precision="2" gui-text="Maximum cutting speed (mm/s)">120.0</param>
+            <param name="max_travel_speed" type="float" min="1.000" max="9999.000" precision="2" gui-text="Maximum travel speed (mm/s)">450.0</param>
             <param name="job_time_offset" type="float" min="0.000" max="9999.000" precision="2" gui-text="Job time offset (s)" gui-description="The laser is not starting immediately. It has some delay.">0.0</param>
             <param name="price_per_minute_gross" type="float" min="0.0" max="9999.0" precision="2" gui-text="Price/minute € (gross)">2.0</param>
             <param name="round_times" type="bool" gui-text="Round up to 30/60 seconds" gui-description="For pricing">true</param>

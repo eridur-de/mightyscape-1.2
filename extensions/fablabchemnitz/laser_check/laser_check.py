@@ -66,7 +66,7 @@ class LaserCheck(inkex.EffectExtension):
         
         pars.add_argument('--show_issues_only', type=inkex.Boolean, default=False)  
         pars.add_argument('--checks', default="check_all")
-        pars.add_argument('--statistics', type=inkex.Boolean, default=False)
+        pars.add_argument('--basic_checks', type=inkex.Boolean, default=True)
         pars.add_argument('--filesize_max', type=float, default=2048.000)
         pars.add_argument('--bbox', type=inkex.Boolean, default=False)
         pars.add_argument('--bbox_offset', type=float, default=5.000)
@@ -133,9 +133,6 @@ class LaserCheck(inkex.EffectExtension):
         doc_units = namedView.get(inkex.addNS('document-units', 'inkscape'))        
         user_units = namedView.get(inkex.addNS('units'))  
         pagecolor = namedView.get('pagecolor')
-        inkex.utils.debug("---------- Default checks")
-        inkex.utils.debug("Document units: {}".format(doc_units))
-        inkex.utils.debug("User units: {}".format(user_units))
         
         '''
         Check for scalings
@@ -162,22 +159,14 @@ class LaserCheck(inkex.EffectExtension):
         #inkex.utils.debug("Document scale (x/y): {:0.5f}{} ({:0.5f}px)".format(vScaleX, doc_units, vScaleXpx))
         #if round(vScaleX, 5) != 1.0:
         #    inkex.utils.debug("WARNING: Document scale not 100%!")
-        inkex.utils.debug("Document scale (x/y): {:0.5f}".format(inkscapeScale))
         scaleOk = True
         if round(inkscapeScale, 5) != 1.0:
             scaleOk = False
-            inkex.utils.debug("WARNING: Document scale not 100%!")
         scaleX = namedView.get('scale-x')
-        if scaleX is not None:
-            inkex.utils.debug("WARNING: Document has scale-x attribute with value={}".format(scaleX)) 
-        
-        inkex.utils.debug("Viewbox:\n  x.min = {:0.0f}\n  y.min = {:0.0f}\n  x.max = {:0.0f}\n  y.max = {:0.0f}".format( vxMin, vyMin, vxMax, vyMax))
         viewboxOk = True
         if vxMin < 0 or vyMin < 0 or vxMax < 0 or vyMax < 0:
             viewboxOk = False
-            # values may be lower than 0, but it does not make sense. The viewbox defines the top-left corner, which is usually 0,0. In case we want to allow that, we need to convert all bounding boxes accordingly. See also https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox.
-            inkex.utils.debug("WARNING: Viewbox does not start at 0,0. Visible results will differ from real coordinates.")
-      
+            
         '''
         The SVG format is highly complex and offers a lot of possibilities. Most things of SVG we do not
         need for a laser cutter. Usually we need svg:path and maybe svg:image; we can drop a lot of stuff
@@ -196,21 +185,7 @@ class LaserCheck(inkex.EffectExtension):
                     nonShapes.append(element)
             else:
                 shapes.append(element)
-        if so.show_issues_only is False:        
-            inkex.utils.debug("{} shape elements in total".format(len(shapes)))
-            inkex.utils.debug("{} non-shape elements in total".format(len(nonShapes)))
-        for nonShape in nonShapes:
-            inkex.utils.debug("non-shape id={}".format(nonShape.get('id')))
-        
-        
-        #that size is actually not the stored one on file system
-        #filesize = len(etree.tostring(self.document, pretty_print=True).decode('UTF-8')) / 1000
-        filesize = os.path.getsize(so.input_file) / 1000
-        inkex.utils.debug("File size: {:0.1f} KB".format(filesize))
-        if filesize > so.filesize_max:
-            inkex.utils.debug("WARNING: file size is larger than allowed: {} KB > {} KB".format(filesize, so.filesize_max))
-            
-        inkex.utils.debug("Total overview of element types:")
+          
         elementTypes = []
         for element in selected:
             if element not in elementTypes:
@@ -224,8 +199,39 @@ class LaserCheck(inkex.EffectExtension):
         
         counter = Counter(elementTypes)
         uniqElementTypes = counter
-        for key in counter.keys():
-            inkex.utils.debug(" - {}: {}x".format(key, counter[key]))
+            
+        if so.basic_checks is True:
+            inkex.utils.debug("---------- Default checks")
+            if so.show_issues_only is False:
+                inkex.utils.debug("Document units: {}".format(doc_units))
+                inkex.utils.debug("User units: {}".format(user_units))
+                inkex.utils.debug("Document scale (x/y): {:0.5f}".format(inkscapeScale))
+            if scaleOk is False:
+                inkex.utils.debug("WARNING: Document scale not 100%!")
+            if scaleX is not None:
+                inkex.utils.debug("WARNING: Document has scale-x attribute with value={}".format(scaleX)) 
+            if so.show_issues_only is False:
+                inkex.utils.debug("Viewbox:\n  x.min = {:0.0f}\n  y.min = {:0.0f}\n  x.max = {:0.0f}\n  y.max = {:0.0f}".format( vxMin, vyMin, vxMax, vyMax))
+            if viewboxOk is False:
+                # values may be lower than 0, but it does not make sense. The viewbox defines the top-left corner, which is usually 0,0. In case we want to allow that, we need to convert all bounding boxes accordingly. See also https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox.
+                inkex.utils.debug("WARNING: Viewbox does not start at 0,0. Visible results will differ from real coordinates.")
+            if so.show_issues_only is False:        
+                inkex.utils.debug("{} shape elements in total".format(len(shapes)))
+                inkex.utils.debug("{} non-shape elements in total".format(len(nonShapes)))
+            for nonShape in nonShapes:
+                inkex.utils.debug("non-shape id={}".format(nonShape.get('id')))
+            #that size is actually not the stored one on file system
+            #filesize = len(etree.tostring(self.document, pretty_print=True).decode('UTF-8')) / 1000
+            filesize = os.path.getsize(so.input_file) / 1000
+            if so.show_issues_only is False:
+                inkex.utils.debug("File size: {:0.1f} KB".format(filesize))
+            if filesize > so.filesize_max:
+                inkex.utils.debug("WARNING: file size is larger than allowed: {} KB > {} KB".format(filesize, so.filesize_max)) 
+            if so.show_issues_only is False: 
+                inkex.utils.debug("Total overview of element types:")
+                for key in counter.keys():
+                    inkex.utils.debug(" - {}: {}x".format(key, counter[key]))
+
 
         '''
         Nearly each laser job needs a bit of border to place the material inside the laser. Often
@@ -261,7 +267,8 @@ class LaserCheck(inkex.EffectExtension):
                 inkex.utils.debug("bounding box could not be calculated. SVG seems to be empty.")
             #else:
             #    inkex.utils.debug("bounding box is {}".format(bbox))
-            inkex.utils.debug("bounding box is:\n  x.min = {}\n  y.min = {}\n  x.max = {}\n  y.max = {}".format(bbox.left, bbox.top, bbox.right, bbox.bottom))
+            if so.show_issues_only is False:
+                inkex.utils.debug("bounding box is:\n  x.min = {}\n  y.min = {}\n  x.max = {}\n  y.max = {}".format(bbox.left, bbox.top, bbox.right, bbox.bottom))
             page_width = self.svg.unittouu(docroot.attrib['width'])
             width_height = self.svg.unittouu(docroot.attrib['height'])
             fmm = self.svg.unittouu(str(so.bbox_offset) + "mm")
@@ -375,24 +382,24 @@ class LaserCheck(inkex.EffectExtension):
                     svgStyleElements.append(element)
             for element in shapes:
                 if element.tag != inkex.addNS('g','svg'):
-                    if element.style is not None:
+                    if element.get('style') is not None: #do not use "element.style" - this uses the composed style from parent
                         styleInNonGroupLayerShapes.append(element)
                     for dedicatedStyleItem in dedicatedStyleDict:
                         if element.attrib.has_key(str(dedicatedStyleItem)):
                             dedicatedStylesInNonGroupLayerShapes.append(element)           
             if so.show_issues_only is False:
-                inkex.utils.debug("{} groups/layers with style in total".format(len(groupStyles)))
+                inkex.utils.debug("{} groups/layers with style attribute in total".format(len(groupStyles)))
                 inkex.utils.debug("{} svg:style elements in total".format(len(svgStyleElements)))
-                inkex.utils.debug("{} shapes using style attribute in total".format(len(svgStyleElements)))
+                inkex.utils.debug("{} shapes using style attribute in total".format(len(styleInNonGroupLayerShapes)))
                 inkex.utils.debug("{} shapes using dedicated style attributes in total".format(len(dedicatedStylesInNonGroupLayerShapes)))
             for groupStyle in groupStyles:
-                inkex.utils.debug("group id={} has style".format(groupStyle.get('id')))
+                inkex.utils.debug("group id={} has style attribute".format(groupStyle.get('id')))
             for svgStyleElement in svgStyleElements:
                 inkex.utils.debug("id={} is svg:style element".format(svgStyleElement.get('id')))
             for styleInNonGroupLayerShape in styleInNonGroupLayerShapes:
-                inkex.utils.debug("id={} has style attribute".format(styleInNonGroupLayerShape.get('id')))
+                inkex.utils.debug("shape id={} has style attribute".format(styleInNonGroupLayerShape.get('id')))
             for dedicatedStylesInNonGroupLayerShape in dedicatedStylesInNonGroupLayerShapes:
-                inkex.utils.debug("id={} used dedicated style attribute(s)".format(dedicatedStylesInNonGroupLayerShape.get('id')))
+                inkex.utils.debug("shape id={} uses dedicated style attribute(s)".format(dedicatedStylesInNonGroupLayerShape.get('id')))
                 
                        
         '''
@@ -849,7 +856,11 @@ class LaserCheck(inkex.EffectExtension):
             if so.show_issues_only is False:
                 inkex.utils.debug("{} short paths in total".format(len(shortPaths)))
             if totalDropLength > 0:
-                inkex.utils.debug("{:0.2f}% of total ({:0.2f} mm /{:0.2f} mm)".format(totalDropLength / totalLength, self.svg.uutounit(str(totalDropLength), "mm"), self.svg.uutounit(str(totalLength), "mm")))
+                inkex.utils.debug("{:0.2f}% of total ({:0.2f} mm /{:0.2f} mm)".format(
+                    100 * totalDropLength / totalLength, 
+                    self.svg.uutounit(str(totalDropLength), "mm"), 
+                    self.svg.uutounit(str(totalLength), "mm")
+                    ))
             for shortPath in shortPaths:
                 inkex.utils.debug("id={}, length={}mm".format(shortPath[0].get('id'), round(self.svg.uutounit(str(shortPath[1]), "mm"), 3)))    
           
@@ -981,13 +992,14 @@ class LaserCheck(inkex.EffectExtension):
                         round(heavyPath[1] / self.svg.uutounit(str(heavyPath[2]), "mm"), 3)
                         )
                     )
-            inkex.utils.debug("Total nodes on paths: {}".format(totalNodesCount))
-            pathCount = 0
-            for key in counter.keys():
-                if key == "path":
-                    pathCount = counter[key]
-            if pathCount > 0:
-                inkex.utils.debug("Average nodes per path: {:0.0f}".format(totalNodesCount/pathCount))
+            if so.show_issues_only is False:    
+                inkex.utils.debug("Total nodes on paths: {}".format(totalNodesCount))
+                pathCount = 0
+                for key in counter.keys():
+                    if key == "path":
+                        pathCount = counter[key]
+                if pathCount > 0:
+                    inkex.utils.debug("Average nodes per path: {:0.0f}".format(totalNodesCount/pathCount))
 
 
         '''
