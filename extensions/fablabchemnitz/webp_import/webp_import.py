@@ -25,10 +25,10 @@ class WebpImport(inkex.InputExtension):
         convertfile = os.path.join(tmp, "webp.png")
         if shutil.which('magick'):
             command = "magick \"%s\" \"%s\" " % (self.options.inputfile, convertfile)
-        elif shutil.which('convert'):
+        elif os.name != 'nt' and shutil.which('convert'): #on Windows this command is reserved for some HDD actions
             command = "convert \"%s\" \"%s\" " % (self.options.inputfile, convertfile)
         else:
-            inkex.errormsg('ImageMagick does not appear to be installed.')
+            inkex.errormsg('ImageMagick does not appear to be installed. Get it from https://imagemagick.org/script/download.php')
             exit()   
         p = subprocess.Popen(command, shell=True)
         return_code = p.wait()
