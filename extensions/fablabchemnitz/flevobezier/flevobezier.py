@@ -10,50 +10,53 @@ import inkex
 import gettext
 from inkex.paths import Path
 import sys
-def pout(t): sys.exit((gettext.gettext(t)))
 
 class FlevoBezier(inkex.EffectExtension):
 
     def effect(self):
-        if len(self.svg.selected) == 0: pout("Please select at least one path.")
-        for obj in self.svg.selected: # The objects are the paths, which may be compound
-            curr = self.svg.selected[obj]
-            raw = Path(curr.get("d")).to_arrays()
-            subpaths, prev = [], 0
-            for i in range(len(raw)): # Breaks compound paths into simple paths
-                if raw[i][0] == 'M' and i != 0:
-                    subpaths.append(raw[prev:i])
-                    prev = i
-            subpaths.append(raw[prev:])
-			
-            output = ""
-            for simpath in subpaths:
-                closed = False
-                if simpath[-1][0] == 'Z':
-                    closed = True
-                    if simpath[-2][0] == 'L': simpath[-1][1] = simpath[0][1]
-                    else: simpath.pop()
-                #nodes = [node(simpath[i][1][-2:]) for i in range(len(simpath))]
-                nodes = []
-                for i in range(len(simpath)):
-                    if simpath[i][0] == 'V': # vertical and horizontal lines only have one point in args, but 2 are required
-                        #inkex.utils.debug(simpath[i][0])
-                        simpath[i][0]='L' #overwrite V with regular L command
-                        add=simpath[i-1][1][0] #read the X value from previous segment
-                        simpath[i][1].append(simpath[i][1][0]) #add the second (missing) argument by taking argument from previous segment
-                        simpath[i][1][0]=add #replace with recent X after Y was appended
-                    if simpath[i][0] == 'H': # vertical and horizontal lines only have one point in args, but 2 are required
-                        #inkex.utils.debug(simpath[i][0])
-                        simpath[i][0]='L' #overwrite H with regular L command
-                        simpath[i][1].append(simpath[i-1][1][1]) #add the second (missing) argument by taking argument from previous segment				
-                    #inkex.utils.debug(simpath[i])
-                    nodes.append(node(simpath[i][1][-2:]))
-                output += flevobezier(nodes, closed)
-            curr.set("d", output)
+        if len(self.svg.selected) == 0: inkex.utils.debug("Please select at least one path.")
+        for element in self.svg.selected: # The objects are the paths, which may be compound
+            if element.tag == inkex.addNS('path','svg'):
+                curr = self.svg.selected[element]
+                raw = Path(curr.get("d")).to_arrays()
+                subpaths, prev = [], 0
+                for i in range(len(raw)): # Breaks compound paths into simple paths
+                    if raw[i][0] == 'M' and i != 0:
+                        subpaths.append(raw[prev:i])
+                        prev = i
+                subpaths.append(raw[prev:])
+    			
+                output = ""
+                for simpath in subpaths:
+                    closed = False
+                    if simpath[-1][0] == 'Z':
+                        closed = True
+                        if simpath[-2][0] == 'L': simpath[-1][1] = simpath[0][1]
+                        else: simpath.pop()
+                    #nodes = [node(simpath[i][1][-2:]) for i in range(len(simpath))]
+                    nodes = []
+                    for i in range(len(simpath)):
+                        if simpath[i][0] == 'V': # vertical and horizontal lines only have one point in args, but 2 are required
+                            #inkex.utils.debug(simpath[i][0])
+                            simpath[i][0]='L' #overwrite V with regular L command
+                            add=simpath[i-1][1][0] #read the X value from previous segment
+                            simpath[i][1].append(simpath[i][1][0]) #add the second (missing) argument by taking argument from previous segment
+                            simpath[i][1][0]=add #replace with recent X after Y was appended
+                        if simpath[i][0] == 'H': # vertical and horizontal lines only have one point in args, but 2 are required
+                            #inkex.utils.debug(simpath[i][0])
+                            simpath[i][0]='L' #overwrite H with regular L command
+                            simpath[i][1].append(simpath[i-1][1][1]) #add the second (missing) argument by taking argument from previous segment				
+                        #inkex.utils.debug(simpath[i])
+                        nodes.append(node(simpath[i][1][-2:]))
+                    output += flevobezier(nodes, closed)
+                curr.set("d", output)
+            else:
+                inkex.utils.debug("element {} is not a path! Try to degroup / convert before!".format(element.get('id')))
+                
 			
 # The main algorithm! Yay!
 def flevobezier(points, z):
-    if len(points) < 2: pout("A curve isn't a point, silly!")
+    if len(points) < 2: inkex.utils.debug("A curve isn't a point, silly!")
     res = []
     prevtrail, trail, lead, window = 0, 0, 1, points[:2] # Start with first two points
     maybeover = False # Over by error followed by over by angle -> backup
@@ -66,7 +69,7 @@ def flevobezier(points, z):
         try:
             dist(v) / dist(w)
         except ZeroDivisionError as e:
-            pout("Division by zero. Check if your path contains duplicate handles.")
+            inkex.utils.debug("Division by zero. Check if your path contains duplicate handles.")
         if dotp(v, w) / dist(v) / dist(w) >= 0.5: # 60 degrees or less, over by angle
             if maybeover: # backup
                 newcurve = stress(points[prevtrail:lead])[0]
@@ -124,7 +127,7 @@ def flevobezier(points, z):
                     res[t - 1] = res[t] + spin(v, sign * theta)
                     res[t + 1] = res[t] + spin(w, -sign * theta)
             except ZeroDivisionError:
-                pout("Path has only one point left. Cannot continue")
+                inkex.utils.debug("Path has only one point left. Cannot continue")
     res.append(ouro)
     # Formatting and final output
     out = "M " + str(res[0])
@@ -191,7 +194,7 @@ def cubicfrom4(nodes, p = None, q = None):
     x = nodes[1] - (1 - lm) ** 3 * nodes[0] - lm ** 3 * nodes[3]
     y = nodes[2] - (1 - mu) ** 3 * nodes[0] - mu ** 3 * nodes[3]
     det = a * d - b * c
-    if not det: pout("Singular matrix!")
+    if not det: inkex.utils.debug("Singular matrix!")
     l, m = (d * x - b * y) / det, (a * y - c * x) / det
     return [nodes[0], l, m, nodes[3]]
 
