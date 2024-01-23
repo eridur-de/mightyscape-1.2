@@ -10,6 +10,9 @@ from math import log
 import datetime
 import os
 from collections import Counter
+from PIL import Image
+from io import BytesIO
+import base64
 
 class LaserCheck(inkex.EffectExtension):
     
@@ -21,32 +24,13 @@ class LaserCheck(inkex.EffectExtension):
          - select material (parameters -> how to???)
          - add fields for additional costs like configuring the machine or grabbing parts out of the machine (weeding), etc.
          - add mode select: cut, engrave
-     - Handlungsempfehlungen einbauen
-        - verweisen auf diverse plugins, die man nutzen kann:
-            - migrate ungrouper
-            - pointy paths
-            - cleaner
-            - styles to layers
-            - apply transforms
-            - epilog bbox adjust
-        - wege zum Pfade fixen:
-            - cut slower ( > muss aber auch leistung reduzieren - inb welchem umfang?)
-            - sort
-            - chaining with touching neighbours
-            - remove path
-            - remove modes/simplify
-    - find duplicate lines
-    - visualize results as a nice SVG rendered check list page with 
-        - red/green/grey icons (failed, done, skipped) and calculate some scores
-        - preview image
-        - statistics
-        - export as PDF
+    - visualize results as nice markdown formatted file
     - run as script to generate quick results for users
     - check for old styles which should be upgraded (cleanup styles tool)
     - check for elements which have no style attribute (should be created) -> (cleanup styles tool)
     - self-intersecting paths
     - number of parts (isles) to weed in total - this is an indicator for manually picking work; if we add bridges we have less work
-    - number of parts which are smaller than vector grid
+    - number of parts which are smaller than vector grid (which call fall off when lasercutting)
     - add some inkex.Desc to all elements which were checked and which have some issue. use special syntax to remove old stuff each time the check is applied again
     - this code is horrible ugly stuff
     - output time/cost estimations per stroke color
@@ -65,6 +49,7 @@ class LaserCheck(inkex.EffectExtension):
         pars.add_argument('--round_times', type=inkex.Boolean, default=True)
         
         pars.add_argument('--show_issues_only', type=inkex.Boolean, default=False)  
+        pars.add_argument('--show_expert_tips', type=inkex.Boolean, default=False)  
         pars.add_argument('--checks', default="check_all")
         pars.add_argument('--basic_checks', type=inkex.Boolean, default=True)
         pars.add_argument('--filesize_max', type=float, default=2048.000)
@@ -78,6 +63,8 @@ class LaserCheck(inkex.EffectExtension):
         pars.add_argument('--clones', type=inkex.Boolean, default=False)
         pars.add_argument('--clippaths', type=inkex.Boolean, default=False)
         pars.add_argument('--images', type=inkex.Boolean, default=False)
+        pars.add_argument('--min_image_dpi', type=int, default=300)
+        pars.add_argument('--max_image_dpi', type=int, default=1200)
         pars.add_argument('--texts', type=inkex.Boolean, default=False)
         pars.add_argument('--filters', type=inkex.Boolean, default=False)
         pars.add_argument('--lowlevelstrokes', type=inkex.Boolean, default=False)
@@ -208,13 +195,19 @@ class LaserCheck(inkex.EffectExtension):
                 inkex.utils.debug("Document scale (x/y): {:0.5f}".format(inkscapeScale))
             if scaleOk is False:
                 inkex.utils.debug("WARNING: Document scale not 100%!")
+                if so.show_expert_tips is True:
+                    inkex.utils.debug("EXTENSION TIP:\n"\
+                  " - Use 'FabLab Chemnitz > Transformations > Normalize Drawing Scale' can fix this")
             if scaleX is not None:
                 inkex.utils.debug("WARNING: Document has scale-x attribute with value={}".format(scaleX)) 
             if so.show_issues_only is False:
                 inkex.utils.debug("Viewbox:\n  x.min = {:0.0f}\n  y.min = {:0.0f}\n  x.max = {:0.0f}\n  y.max = {:0.0f}".format( vxMin, vyMin, vxMax, vyMax))
             if viewboxOk is False:
                 # values may be lower than 0, but it does not make sense. The viewbox defines the top-left corner, which is usually 0,0. In case we want to allow that, we need to convert all bounding boxes accordingly. See also https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/viewBox.
-                inkex.utils.debug("WARNING: Viewbox does not start at 0,0. Visible results will differ from real coordinates.")
+                inkex.utils.debug("WARNING: viewBox does not start at 0,0. Visible results will differ from real coordinates (shifting).")
+                if so.show_expert_tips is True:
+                    inkex.utils.debug("EXTENSION TIP:\n"\
+                  " - Use 'FabLab Chemnitz > Transformations > Normalize Drawing Scale' can fix this")
             if so.show_issues_only is False:        
                 inkex.utils.debug("{} shape elements in total".format(len(shapes)))
                 inkex.utils.debug("{} non-shape elements in total".format(len(nonShapes)))
@@ -227,6 +220,24 @@ class LaserCheck(inkex.EffectExtension):
                 inkex.utils.debug("File size: {:0.1f} KB".format(filesize))
             if filesize > so.filesize_max:
                 inkex.utils.debug("WARNING: file size is larger than allowed: {} KB > {} KB".format(filesize, so.filesize_max)) 
+                if so.show_expert_tips is True:
+                    inkex.utils.debug("SOME TIPS TO REDUCE FILE SIZE:\n"\
+              " - Reduce count of nodes on paths / reduce duplicate segments / remove useless:\n"\
+              "   - Use 'FabLab Chemnitz > Paths Intersect/Cut/Purge > Contour Scanner and Trimmer'\n"\
+              "   - Use 'FabLab Chemnitz > Paths Intersect/Cut/Purge > Purge Duplicate Path Nodes'\n"\
+              "   - Use 'FabLab Chemnitz > Paths Intersect/Cut/Purge > Purge Duplicate Path Segments'\n"\
+              "   - Use 'FabLab Chemnitz > Paths Intersect/Cut/Purge > Remove Duplicate Line Segments'\n"\
+              "   - Use 'FabLab Chemnitz > Paths Intersect/Cut/Purge > Purge Pointy Paths'\n"\
+              "   - Use 'FabLab Chemnitz > Paths Intersect/Cut/Purge > Filter by Length/Area'\n"\
+              "   - Use 'FabLab Chemnitz > Paths Join/Order > Chain Paths'\n"\
+              "   - Simplify by CTRL+L\n"\
+              "   - Merge (combine) paths\n"\
+              " - Cut off decimals (over-precision) from path data:\n"\
+              "   - Use 'FabLab Chemnitz > Modify Existing Path(s) > Rounder'\n"\
+              " - Purge other unrequirements elements from SVG tree:\n"\
+              "   - Use 'FabLab Chemnitz > Groups and Layers > Remove Empty Groups'\n"
+              "   - Use 'FabLab Chemnitz > Groups and Layers > Ungrouper and Element Migrator/Filter'\n"
+              )
             if so.show_issues_only is False: 
                 inkex.utils.debug("Total overview of element types:")
                 for key in counter.keys():
@@ -242,8 +253,14 @@ class LaserCheck(inkex.EffectExtension):
             inkex.utils.debug("\n---------- Borders around all elements - minimum offset {} mm from each side".format(so.bbox_offset))
             if scaleOk is False:
                 inkex.utils.debug("WARNING: Document scale is not 100%. Calculating bounding boxes might create wrong results.")
+                if so.show_expert_tips is True:
+                    inkex.utils.debug("EXTENSION TIP:\n"\
+                  " - Use 'FabLab Chemnitz > Transformations > Normalize Drawing Scale' can fix this")
             if viewboxOk is False:
                 inkex.utils.debug("WARNING: Viewbox does not start at 0,0. Calculating bounding boxes might create wrong results.")
+                if so.show_expert_tips is True:
+                    inkex.utils.debug("EXTENSION TIP:\n"\
+                  " - Use 'FabLab Chemnitz > Transformations > Normalize Drawing Scale' can fix this")
             bbox = inkex.BoundingBox()
             for element in selected:
             #for element in docroot.iter(tag=etree.Element):
@@ -267,7 +284,7 @@ class LaserCheck(inkex.EffectExtension):
                 inkex.utils.debug("bounding box could not be calculated. SVG seems to be empty.")
             #else:
             #    inkex.utils.debug("bounding box is {}".format(bbox))
-            if so.show_issues_only is False:
+            elif so.show_issues_only is False:
                 inkex.utils.debug("bounding box is:\n  x.min = {}\n  y.min = {}\n  x.max = {}\n  y.max = {}".format(bbox.left, bbox.top, bbox.right, bbox.bottom))
             page_width = self.svg.unittouu(docroot.attrib['width'])
             width_height = self.svg.unittouu(docroot.attrib['height'])
@@ -333,7 +350,9 @@ class LaserCheck(inkex.EffectExtension):
             if md - 1 > so.nest_depth_max:
                 inkex.utils.debug("Warning: maximum allowed group depth reached: {}".format(so.nest_depth_max))
             groups = []
+            emptyGroups = 0
             layers = []
+            emptyLayers = 0
             for element in selected:
                 if element.tag == inkex.addNS('g','svg'):
                     if element.get('inkscape:groupmode') == 'layer':
@@ -348,12 +367,22 @@ class LaserCheck(inkex.EffectExtension):
             #check for empty groups
             for group in groups:
                 if len(group) == 0:
+                    emptyGroups += 1
                     inkex.utils.debug("id={} is empty group".format(group.get('id')))
     
             #check for empty layers
             for layer in layers:
                 if len(layer) == 0:
+                    emptyLayers += 1
                     inkex.utils.debug("id={} is empty layer".format(layer.get('id')))
+
+            if so.show_issues_only is False:
+               inkex.utils.debug("{} empty groups total".format(emptyGroups))
+               inkex.utils.debug("{} empty layers total".format(emptyLayers))
+            if so.show_expert_tips is True and (emptyGroups > 0 or emptyLayers > 0):
+                inkex.utils.debug("TIPS:\n"\
+                  "   - Use 'FabLab Chemnitz > Groups and Layers > Remove Empty Groups'\n"
+                  )
 
         '''
         Style scheme in svg. We can style elements by ...
@@ -363,7 +392,6 @@ class LaserCheck(inkex.EffectExtension):
         - css class together with svg:style elements
         For a cleaner file we should avoid to mess up. Best is to define styles 
         at svg:path level or using properly defined css classes
-        We can use "Cleanup Styles" and "Styles To Layers" extension to change this behaviour.
         '''
         if so.checks == "check_all" or so.style_types is True: 
             inkex.utils.debug("\n---------- Style types")
@@ -387,11 +415,6 @@ class LaserCheck(inkex.EffectExtension):
                     for dedicatedStyleItem in dedicatedStyleDict:
                         if element.attrib.has_key(str(dedicatedStyleItem)):
                             dedicatedStylesInNonGroupLayerShapes.append(element)           
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} groups/layers with style attribute in total".format(len(groupStyles)))
-                inkex.utils.debug("{} svg:style elements in total".format(len(svgStyleElements)))
-                inkex.utils.debug("{} shapes using style attribute in total".format(len(styleInNonGroupLayerShapes)))
-                inkex.utils.debug("{} shapes using dedicated style attributes in total".format(len(dedicatedStylesInNonGroupLayerShapes)))
             for groupStyle in groupStyles:
                 inkex.utils.debug("group id={} has style attribute".format(groupStyle.get('id')))
             for svgStyleElement in svgStyleElements:
@@ -400,69 +423,133 @@ class LaserCheck(inkex.EffectExtension):
                 inkex.utils.debug("shape id={} has style attribute".format(styleInNonGroupLayerShape.get('id')))
             for dedicatedStylesInNonGroupLayerShape in dedicatedStylesInNonGroupLayerShapes:
                 inkex.utils.debug("shape id={} uses dedicated style attribute(s)".format(dedicatedStylesInNonGroupLayerShape.get('id')))
-                
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} groups/layers with style attribute in total".format(len(groupStyles)))
+                inkex.utils.debug("{} svg:style elements in total".format(len(svgStyleElements)))
+                inkex.utils.debug("{} shapes using style attribute in total".format(len(styleInNonGroupLayerShapes)))
+                inkex.utils.debug("{} shapes using dedicated style attributes in total".format(len(dedicatedStylesInNonGroupLayerShapes)))
+            if so.show_expert_tips is True:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Use 'FabLab Chemnitz > Colors/Gradients/Filters > Cleanup Styles'\n"\
+                "   - Use 'FabLab Chemnitz > Groups and Layers > Styles to Layers'"
+                )
                        
         '''
         Clones should be unlinked because they cause similar issues like transformations
         '''
         if so.checks == "check_all" or so.clones is True:
-            inkex.utils.debug("\n---------- Clones (svg:use) - maybe unlink") 
+            inkex.utils.debug("\n---------- Clones (svg:use)") 
             uses = []
             for element in selected:
                 if element.tag == inkex.addNS('use','svg'):
                     uses.append(element)
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} svg:use clones in total".format(len(uses)))
             for use in uses:
                 inkex.utils.debug("id={}".format(use.get('id')))
-   
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} svg:use clones in total".format(len(uses)))
+            if so.show_expert_tips is True and len(uses) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Unlink Clones to make them unique objects")
    
         '''
         Clip paths are neat to visualize things, but they do not perform a real path cutting.
         Please perform real intersections to have an intact target geometry.
         '''
         if so.checks == "check_all" or so.clippaths is True:
-            inkex.utils.debug("\n---------- Clippings (svg:clipPath) - please replace with real cut paths") 
+            inkex.utils.debug("\n---------- Clippings (svg:clipPath)") 
             clipPaths = []
             for element in selected:
                 if element.tag == inkex.addNS('clipPath','svg'):
                     clipPaths.append(element)
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} svg:clipPath in total".format(len(clipPaths)))
             for clipPath in clipPaths:
                 inkex.utils.debug("id={}".format(clipPath.get('id')))
-   
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} svg:clipPath in total".format(len(clipPaths)))
+            if so.show_expert_tips is True and len(clipPaths) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Replace clipped paths with real cutting paths")
    
         '''
         Sometimes images look like vector but they are'nt. In case you dont want to perform engraving, either
         check to drop or trace to vector paths
         '''
         if so.checks == "check_all" or so.images is True:
-            inkex.utils.debug("\n---------- Images (svg:image) - maybe trace to svg") 
+            inkex.utils.debug("\n---------- Images (svg:image)") 
             images = []
             for element in selected:
                 if element.tag == inkex.addNS('image','svg'):
                     images.append(element)
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} svg:image in total".format(len(images)))
+            malformedScales = []
+            maxDPIhits = []
+            minDPIhits = []
             for image in images:
                 inkex.utils.debug("image id={}".format(image.get('id')))
-    
-    
+                
+                image_string = image.get('{http://www.w3.org/1999/xlink}href')
+                # find comma position
+                i = 0
+                while i < 40:
+                    if image_string[i] == ',':
+                        break
+                    i = i + 1
+                img = Image.open(BytesIO(base64.b64decode(image_string[i + 1:len(image_string)])))
+                img_w = img.getbbox()[2]
+                img_h = img.getbbox()[3]
+                if image.get('width') is None:
+                    img_svg_w = self.svg.unittouu(str(img_w) + "px")
+                else:
+                    img_svg_w = float(image.get('width')) * inkscapeScale
+                if image.get('height') is None:
+                    img_svg_h = self.svg.unittouu(str(img_h) + "px")
+                else:
+                    img_svg_h = float(image.get('height')) * inkscapeScale
+                imgScaleX = img_svg_w / img_w
+                imgScaleY = img_svg_h / img_h
+                dpiX = self.svg.unittouu(str(img_w) + "in") / img_svg_w
+                dpiY = self.svg.unittouu(str(img_h) + "in") / img_svg_h
+                
+                if round(dpiX, 0) < so.min_image_dpi or round(dpiY, 0) < so.min_image_dpi:
+                    minDPIhits.append([element, dpiY, dpiX])
+                if round(dpiX, 0) > so.max_image_dpi or round(dpiY, 0) > so.max_image_dpi:
+                    maxDPIhits.append([element, dpiY, dpiX])
+                        
+                uniform = False
+                if round(imgScaleX, 3) == round(imgScaleY, 3):
+                    uniform = True
+                else:
+                    malformedScales.append([element, imgScaleX, imgScaleY])
+            if len(minDPIhits) > 0:
+                for minDPIhit in minDPIhits:
+                    inkex.utils.debug("Image {} has DPI X{:0.0f}+Y{:0.0f} < min. {:0.0f}".format(minDPIhit[0].get('id'), minDPIhit[1], minDPIhit[2], so.min_image_dpi))
+            if len(maxDPIhits) > 0:
+                for maxDPIhit in maxDPIhits:
+                    inkex.utils.debug("Image {} has DPI X{:0.0f}+Y{:0.0f} > max. {:0.0f}".format(maxDPIhit[0].get('id'), maxDPIhit[1], maxDPIhit[2],so.max_image_dpi))
+            if len(malformedScales) > 0:
+                for malformedScale in malformedScales:
+                    inkex.utils.debug("Image {} has non-uniform scale X = {:0.3f}, Y = {:0.3f}".format(malformedScale[0].get('id'), malformedScale[1], malformedScale[2]))
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} svg:image in total".format(len(images)))
+            if so.show_expert_tips is True and len(images) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Maybe trace images using built-in image tracer: ALT + SHIFT + B or use Imagetracer.js or KVEC")
+
+
         '''
         Low level strokes cannot be properly edited in Inkscape (no node handles). Converting helps
         '''
         if so.checks == "check_all" or so.lowlevelstrokes is True:
-            inkex.utils.debug("\n---------- Low level strokes (svg:line/polyline/polygon) - maybe convert to path") 
+            inkex.utils.debug("\n---------- Low level strokes (svg:line/polyline/polygon)") 
             lowlevels = []
             for element in selected:
                 if element.tag in (inkex.addNS('line','svg'), inkex.addNS('polyline','svg'), inkex.addNS('polygon','svg')):
                     lowlevels.append(element)
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} low level strokes in total".format(len(lowlevels)))
             for lowlevel in lowlevels:
                 inkex.utils.debug("id={}".format(lowlevel.get('id')))
-    
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} low level strokes in total".format(len(lowlevels)))
+            if so.show_expert_tips is True and len(lowlevels) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Convert low level strokes like svg:line, svg:polyline and svg:polygon to path")
     
         '''
         Texts cause problems when sharing with other people. You must ensure that everyone has the
@@ -470,23 +557,25 @@ class LaserCheck(inkex.EffectExtension):
         everywhere.
         '''
         if so.checks == "check_all" or so.texts is True:
-            inkex.utils.debug("\n---------- Texts (should be converted to paths)") 
+            inkex.utils.debug("\n---------- Texts") 
             texts = []
             for element in selected:
                 if element.tag == inkex.addNS('text','svg'):
                     texts.append(element)
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} svg:text in total".format(len(texts)))
             for text in texts:
                 inkex.utils.debug("id={}".format(text.get('id')))
-             
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} svg:text in total".format(len(texts)))   
+            if so.show_expert_tips is True and len(texts) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Convert text elements to paths. So we do not require the font file to be installed at target system")
 
         '''
         Filters on elements let Epilog Software Suite always think vectors should get to raster image data. That might be good sometimes,
         but not in usual case.
         '''
         if so.checks == "check_all" or so.filters is True:
-            inkex.utils.debug("\n---------- Filters (should be removed to keep vector characterism)") 
+            inkex.utils.debug("\n---------- Filters") 
 
             filter_elements = []
             for element in selected:
@@ -504,12 +593,14 @@ class LaserCheck(inkex.EffectExtension):
                     filter_style[1] = "none"
                 if filter_style[1] != "none" and filter_style not in filter_styles:
                     filter_styles.append(filter_style)
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} filters (in styles) in total".format(len(filter_styles)))
             for filter_style in filter_styles:
                 inkex.utils.debug("id={}, filter={}".format(filter_style[0].get('id'), filter_style[1]))
-            
-        
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} filters (in styles) in total".format(len(filter_styles)))
+            if so.show_expert_tips is True and len(filter_styles) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Use 'FabLab Chemnitz > Groups and Layers > Ungrouper and Element Migrator/Filter'")
+
         '''
         The more stroke colors the more laser job configuration is required. Reduce the SVG file
         to a minimum of stroke colors to be quicker. Note that a None stroke might be same like #000000 but thats not guaranteed
@@ -521,12 +612,17 @@ class LaserCheck(inkex.EffectExtension):
                 strokeColor = element.style.get('stroke')
                 if  strokeColor not in strokeColors: #we also add None (default value is #000000 then) and "none" values. 
                     strokeColors.append(strokeColor)
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} different stroke colors in total".format(len(strokeColors)))
             if len(strokeColors) > so.stroke_colors_max:
                 for strokeColor in strokeColors:
                     inkex.utils.debug("stroke color {}".format(strokeColor))
-                    
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} different stroke colors in total".format(len(strokeColors)))
+            if so.show_expert_tips is True and len(strokeColors) > so.stroke_colors_max:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Use 'FabLab Chemnitz > Colors/Gradients/Filters > Cleanup Styles'\n"\
+                "   - Use 'FabLab Chemnitz > Groups and Layers > Styles to Layers'"
+                )
+
       
         '''
         Different stroke widths might behave the same like different stroke colors. Reduce to a minimum set.
@@ -539,8 +635,6 @@ class LaserCheck(inkex.EffectExtension):
                 strokeWidth = element.style.get('stroke-width')
                 if strokeWidth not in strokeWidths: #we also add None and "none" values. Default width for None value seems to be 1px
                     strokeWidths.append(strokeWidth)
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} different stroke widths in total".format(len(strokeWidths)))
             if len(strokeWidths) > so.stroke_widths_max:
                 for strokeWidth in strokeWidths:
                     if strokeWidth is None:
@@ -553,24 +647,34 @@ class LaserCheck(inkex.EffectExtension):
                             round(self.svg.uutounit(swConverted, "px"),4),
                             round(self.svg.uutounit(swConverted, "mm"),4),
                             ))
-                
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} different stroke widths in total".format(len(strokeWidths)))
+            if so.show_expert_tips is True and len(strokeWidths) > so.stroke_widths_max:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Use 'FabLab Chemnitz > Colors/Gradients/Filters > Cleanup Styles'\n"\
+                "   - Use 'FabLab Chemnitz > Groups and Layers > Styles to Layers'"
+                ) 
                 
         '''
         Cosmetic dashes cause simulation issues and are no real cut paths. It's similar to the thing
         with clip paths. Please convert lines to real dash segments if you want to laser them.
         '''
         if so.checks == "check_all" or so.cosmestic_dashes is True:   
-            inkex.utils.debug("\n---------- Cosmetic dashes - should be converted to paths")
+            inkex.utils.debug("\n---------- Cosmetic dashes")
             strokeDasharrays = []
             for element in shapes:  
                 strokeDasharray = element.style.get('stroke-dasharray')
                 if strokeDasharray is not None and strokeDasharray != 'none' and strokeDasharray not in strokeDasharrays:
                     strokeDasharrays.append(strokeDasharray)
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} different stroke dash arrays in total".format(len(strokeDasharrays)))
+
             for strokeDasharray in strokeDasharrays:
                 inkex.utils.debug("stroke dash array {}".format(strokeDasharray))
-     
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} different stroke dash arrays in total".format(len(strokeDasharrays)))
+            if so.show_expert_tips is True and len(strokeDasharrays) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Convert dashes to real paths"
+                ) 
   
         '''
         Shapes/paths with the same color like the background, 0% opacity, etc. lead to strange
@@ -733,18 +837,22 @@ class LaserCheck(inkex.EffectExtension):
                         if pathVis == 0:
                             if element not in invisibles:
                                 invisibles.append(flags) 
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} invisible shapes in total".format(len(invisibles)))
             for invisible in invisibles:
                 inkex.utils.debug(invisible)
-          
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} invisible shapes in total".format(len(invisibles)))
+            if so.show_expert_tips is True and len(invisibles) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Use 'FabLab Chemnitz > Colors/Gradients/Filters > Cleanup Styles'\n"\
+                "   - Use 'FabLab Chemnitz > Groups and Layers > Styles to Layers'"
+                ) 
                 
         '''
         Additionally, opacities less than 1.0 cause problems in most laser softwares. Please
         adjust all strokes to use full opacity.
         '''
         if so.checks == "check_all" or so.opacities is True:
-            inkex.utils.debug("\n---------- Objects with transparencies < 1.0 - should be set to 1.0")
+            inkex.utils.debug("\n---------- Objects with transparencies < 1.0")
             transparencies = []
             for element in shapes: 
                 strokeOpacityAttr = element.get('stroke-opacity') #same information could be in regular attribute instead nested in style attribute
@@ -777,10 +885,17 @@ class LaserCheck(inkex.EffectExtension):
                         if float(opacity) < 1.0:
                                 transparencies.append([element, opacity, "opacity"])
                                 
+
+            for transparency in transparencies:
+                inkex.utils.debug("id={}, transparency={}, attribute={}".format(transparency[0].get('id'), transparency[1], transparency[2]))
             if so.show_issues_only is False:
                 inkex.utils.debug("{} objects with transparencies < 1.0 in total".format(len(transparencies)))
-            for transparency in transparencies:
-                inkex.utils.debug("id={}, transparency={}, attribute={}".format(transparency[0].get('id'), transparency[1], transparency[2]))  
+            if so.show_expert_tips is True and len(transparencies) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - should be set to 1.0\n"\
+                "   - Use 'FabLab Chemnitz > Colors/Gradients/Filters > Cleanup Styles'\n"\
+                "   - Use 'FabLab Chemnitz > Groups and Layers > Styles to Layers'"
+                ) 
       
       
         '''
@@ -788,7 +903,7 @@ class LaserCheck(inkex.EffectExtension):
         Note: this scan only works for paths, not for subpaths. If so, you need to break apart before
         '''
         if so.checks == "check_all" or so.pointy_paths is True:          
-            inkex.utils.debug("\n---------- Pointy paths - should be deleted")
+            inkex.utils.debug("\n---------- Pointy paths")
             pointyPaths = []
             for element in shapes:
                 if isinstance(element, inkex.PathElement):
@@ -799,27 +914,35 @@ class LaserCheck(inkex.EffectExtension):
                         (len(commandsCoords) == 2 and commandsCoords[-1][0] == 'Z') or \
                         (len(commandsCoords) == 3 and commandsCoords[0][1] == commandsCoords[1][1] and commandsCoords[2][1] == 'Z'):
                         pointyPaths.append(element)
+            for pointyPath in pointyPaths:
+                inkex.utils.debug("id={}".format(pointyPath.get('id')))  
             if so.show_issues_only is False:
                 inkex.utils.debug("{} pointy paths in total".format(len(pointyPaths)))
-            for pointyPath in pointyPaths:
-                inkex.utils.debug("id={}".format(pointyPath.get('id')))    
+            if so.show_expert_tips is True and len(pointyPaths) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - should be deleted as they do not contain any valid path data.\n"\
+                "   - Use 'FabLab Chemnitz > Paths Intersect/Cut/Purge > Purge Pointy Paths'"\
+                ) 
    
         '''
         Combined paths make trouble with vector sorting algorithm. Check which paths could be broken apart
         '''
         if so.checks == "check_all" or so.combined_paths is True:          
-            inkex.utils.debug("\n---------- Combined paths - should be broken apart")
+            inkex.utils.debug("\n---------- Combined paths")
             combinedPaths = []
             for element in shapes:
                 if isinstance(element, inkex.PathElement):
                     break_paths = element.path.break_apart()
                     if len(break_paths) > 2:
                         combinedPaths.append([element, len(break_paths)])
+            for combinedPath in combinedPaths:
+                inkex.utils.debug("id={} has sub paths: {}".format(combinedPath[0].get('id'), combinedPath[1]))
             if so.show_issues_only is False:
                 inkex.utils.debug("{} combined paths in total".format(len(combinedPaths)))
-            for combinedPath in combinedPaths:
-                inkex.utils.debug("id={} has sub paths: {}".format(combinedPath[0].get('id'), combinedPath[1]))    
-   
+            if so.show_expert_tips is True and len(combinedPaths) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - break apart pressing CTRL + SHIFT + K"
+                )
    
         '''
         Transformations often lead to wrong stroke widths or mis-rendering in end software. The best we
@@ -827,15 +950,20 @@ class LaserCheck(inkex.EffectExtension):
         apply absolute coordinates only.
         '''
         if so.checks == "check_all" or so.transformations is True:
-            inkex.utils.debug("\n---------- Transformations - should be applied to absolute")
+            inkex.utils.debug("\n---------- Transformations")
             transformations = []
             for element in shapes:
                 if element.get('transform') is not None:
                     transformations.append(element)
+
+            for transformation in transformations:
+                inkex.utils.debug("transformation in id={}".format(transformation.get('id')))
             if so.show_issues_only is False:
                 inkex.utils.debug("{} transformation in total".format(len(transformations)))
-            for transformation in transformations:
-                inkex.utils.debug("transformation in id={}".format(transformation.get('id')))    
+            if so.show_expert_tips is True and len(transformations) > 0:
+                inkex.utils.debug("TIPS:\n"\
+                "   - Use 'FabLab Chemnitz > Transformations > Apply Transformations' to remove all transformations, making objects absolute")
+          
           
         '''
         Really short paths can cause issues with laser cutter mechanics and should be avoided to 
@@ -967,11 +1095,8 @@ class LaserCheck(inkex.EffectExtension):
         If the laser is in X=0 Y=0 the jobs needs ~2 seconds to start moving and firing the laser. We use this as constant offset
         '''
         
-        '''
-        Paths with a high amount of nodes will cause issues because each node means slowing down/speeding up the laser mechanics
-        '''
         if so.checks == "check_all" or so.nodes_per_path is True:  
-            inkex.utils.debug("\n---------- Heavy node-loaded paths (allowed: {} node(s) per {} mm) - should be simplified".format(so.nodes_per_path_max, round(so.nodes_per_path_interval, 3)))
+            inkex.utils.debug("\n---------- Heavy node-loaded paths (allowed: {} node(s) per {} mm)".format(so.nodes_per_path_max, round(so.nodes_per_path_interval, 3)))
             heavyPaths = []
             totalNodesCount = 0
             for element in shapes:
@@ -983,6 +1108,16 @@ class LaserCheck(inkex.EffectExtension):
                             heavyPaths.append([element, nodes, stotal])
             if so.show_issues_only is False:
                 inkex.utils.debug("{} Heavy node-loaded paths in total".format(len(heavyPaths)))
+            if so.show_expert_tips is True and len(heavyPaths) > 0:
+                inkex.utils.debug("Paths with a high amount of nodes will cause issues because each node means slowing down the laser mechanics. Otherwise we will get stuttering movements.")
+                inkex.utils.debug("SOME TIPS TO REDUCE NODES:\n"\
+              " - Reduce count of nodes on paths / reduce duplicate segments / remove useless:\n"\
+              "   - Use 'FabLab Chemnitz > Paths Intersect/Cut/Purge > Purge Duplicate Path Nodes'\n"\
+              "   - Use 'FabLab Chemnitz > Paths Intersect/Cut/Purge > Purge Duplicate Path Segments'\n"\
+              "   - Use 'FabLab Chemnitz > Paths Intersect/Cut/Purge > Remove Duplicate Line Segments'\n"\
+              "   - Use 'FabLab Chemnitz > Paths Join/Order > Chain Paths'\n"\
+              "   - Simplify by CTRL+L\n"
+              )
             for heavyPath in heavyPaths:
                 totalNodesCount += heavyPath[1]
                 inkex.utils.debug("id={}, nodes={}, length={}mm, density={}nodes/mm".format(
@@ -993,7 +1128,7 @@ class LaserCheck(inkex.EffectExtension):
                         )
                     )
             if so.show_issues_only is False:    
-                inkex.utils.debug("Total nodes on paths: {}".format(totalNodesCount))
+                inkex.utils.debug("{} total nodes on paths".format(totalNodesCount))
                 pathCount = 0
                 for key in counter.keys():
                     if key == "path":
@@ -1002,9 +1137,6 @@ class LaserCheck(inkex.EffectExtension):
                     inkex.utils.debug("Average nodes per path: {:0.0f}".format(totalNodesCount/pathCount))
 
 
-        '''
-        Elements outside canvas or touching the border. These are critical because they won't be lasered or not correctly lasered
-        '''
         if so.checks == "check_all" or so.elements_outside_canvas is True:  
             inkex.utils.debug("\n---------- Elements outside canvas or touching the border")
             elementsOutside = []
@@ -1046,30 +1178,34 @@ class LaserCheck(inkex.EffectExtension):
                                bottomOutside = True
                             if rightOutside is True or leftOutside is True or topOutside is True or bottomOutside is True:
                                 elementsOutside.append([element, "partially outside"])
-            if so.show_issues_only is False:
-                inkex.utils.debug("{} Elements outside canvas or touching the border in total".format(len(elementsOutside)))
             for elementOutside in elementsOutside:
                 inkex.utils.debug("id={}, status={}".format(
                         elementOutside[0].get('id'), 
                         elementOutside[1]
                         )
-                    )    
+                    )
+            if so.show_issues_only is False:
+                inkex.utils.debug("{} Elements outside canvas or touching the border in total".format(len(elementsOutside)))
+            if so.show_expert_tips is True and len(elementsOutside) > 0:
+                inkex.utils.debug("SOME TIPS:\n"\
+              " - Elements outside canvas or touching the border. These are critical because they won't be lasered or not correctly lasered"
+              )
              
-                   
-        '''
-        Shapes like rectangles, ellipses, arcs, spirals should be converted to svg:path to have more
-        convenience in the file
-        '''
+    
         if so.checks == "check_all" or so.non_path_shapes is True:          
-            inkex.utils.debug("\n---------- Non-path shapes - should be converted to paths")
+            inkex.utils.debug("\n---------- Non-path shapes")
             nonPathShapes = []
             for element in shapes:
                 if not isinstance(element, inkex.PathElement) and not isinstance(element, inkex.Group):
                     nonPathShapes.append(element)
+            for nonPathShape in nonPathShapes:
+                inkex.utils.debug("id={}, type={}".format(nonPathShape.get('id'), nonPathShape.tag.replace("{http://www.w3.org/2000/svg}", "")))
             if so.show_issues_only is False:
                 inkex.utils.debug("{} non-path shapes in total".format(len(nonPathShapes)))
-            for nonPathShape in nonPathShapes:
-                inkex.utils.debug("id={}, type={}".format(nonPathShape.get('id'), nonPathShape.tag.replace("{http://www.w3.org/2000/svg}", "")))         
+            if so.show_expert_tips is True and len(nonPathShapes) > 0:
+                inkex.utils.debug("SOME TIPS:\n"\
+              " - Shapes like rectangles, ellipses, arcs, spirals should be converted to svg:path"
+              )
          
         exit(0)
                              

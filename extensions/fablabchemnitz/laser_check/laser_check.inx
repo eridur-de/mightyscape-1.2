@@ -7,6 +7,7 @@
             <label appearance="header">Note: If selection is empty, the complete document is scanned!</label>
             <separator/>
             <param name="show_issues_only" type="bool" gui-text="Show potential issues only" gui-description="Shortens the report a little bit">false</param>
+            <param name="show_expert_tips" type="bool" gui-text="Show expert tips" gui-description="Prints tips how to resolve issues">false</param>
             <separator/>
             <param name="checks" type="optiongroup" appearance="combo" gui-text="Select checks">
                 <option value="check_all">Check all</option>
@@ -32,16 +33,20 @@
                     <separator/>
                     <param name="clones" type="bool" gui-text="Clones">false</param>
                     <param name="clippaths" type="bool" gui-text="Clippings">false</param>
+                    <separator/>
                     <param name="images" type="bool" gui-text="Images">false</param>
+                    <param name="min_image_dpi" type="int" min="0" max="9999" gui-text="Minimum DPI">300</param>
+                    <param name="max_image_dpi" type="int" min="0" max="9999" gui-text="Maximum DPI">1200</param>
+                    <separator/>
                     <param name="texts" type="bool" gui-text="Texts">false</param>
                     <param name="filters" type="bool" gui-text="Filters">false</param>
+                </vbox>
+                <separator/>    
+                <vbox>
                     <param name="lowlevelstrokes" type="bool" gui-text="Low level strokes">false</param>
                     <separator/>
                     <param name="stroke_colors" type="bool" gui-text="Stroke colors">false</param>
                     <param name="stroke_colors_max" type="int" min="0" max="9999" gui-text="Maximum allowed">3</param>
-                </vbox>
-                <separator/>    
-                <vbox>
                     <param name="style_types" type="bool" gui-text="Style types">false</param>
                     <separator/>
                     <param name="stroke_widths" type="bool" gui-text="Stroke widths">false</param>
