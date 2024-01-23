@@ -13,6 +13,7 @@ from collections import Counter
 from PIL import Image
 from io import BytesIO
 import base64
+import urllib.request as urllib
 
 class LaserCheck(inkex.EffectExtension):
     
@@ -35,6 +36,30 @@ class LaserCheck(inkex.EffectExtension):
     - this code is horrible ugly stuff
     - output time/cost estimations per stroke color
     '''
+
+    def checkImagePath(self, node):
+        """Embed the data of the selected Image Tag element"""
+        xlink = node.get('xlink:href')
+        if xlink and xlink[:5] == 'data:':
+            # No need, data alread embedded
+            return
+
+        url = urllib.urlparse(xlink)
+        href = urllib.url2pathname(url.path)
+
+        # Primary location always the filename itself.
+        path = self.absolute_href(href or '')
+
+        # Backup directory where we can find the image
+        if not os.path.isfile(path):
+            path = node.get('sodipodi:absref', path)
+
+        if not os.path.isfile(path):
+            inkex.errormsg('File not found "{}". Unable to embed image.').format(path)
+            return
+
+        if (os.path.isfile(path)):
+            return path
     
     def add_arguments(self, pars):
         pars.add_argument('--tab')
@@ -482,42 +507,49 @@ class LaserCheck(inkex.EffectExtension):
             malformedScales = []
             maxDPIhits = []
             minDPIhits = []
+            
             for image in images:
                 inkex.utils.debug("image id={}".format(image.get('id')))
                 
-                image_string = image.get('{http://www.w3.org/1999/xlink}href')
-                # find comma position
-                i = 0
-                while i < 40:
-                    if image_string[i] == ',':
-                        break
-                    i = i + 1
-                img = Image.open(BytesIO(base64.b64decode(image_string[i + 1:len(image_string)])))
-                img_w = img.getbbox()[2]
-                img_h = img.getbbox()[3]
-                if image.get('width') is None:
-                    img_svg_w = self.svg.unittouu(str(img_w) + "px")
+                self.path = self.checkImagePath(image)  # This also ensures the file exists
+                if self.path is None:  # check if image is embedded or linked
+                    image_string = node.get('{http://www.w3.org/1999/xlink}href')
+                    # find comma position
+                    i = 0
+                    while i < 40:
+                        if image_string[i] == ',':
+                            break
+                        i = i + 1
+                    img = Image.open(BytesIO(base64.b64decode(image_string[i + 1:len(image_string)])))
                 else:
-                    img_svg_w = float(image.get('width')) * inkscapeScale
-                if image.get('height') is None:
-                    img_svg_h = self.svg.unittouu(str(img_h) + "px")
-                else:
-                    img_svg_h = float(image.get('height')) * inkscapeScale
-                imgScaleX = img_svg_w / img_w
-                imgScaleY = img_svg_h / img_h
-                dpiX = self.svg.unittouu(str(img_w) + "in") / img_svg_w
-                dpiY = self.svg.unittouu(str(img_h) + "in") / img_svg_h
-                
-                if round(dpiX, 0) < so.min_image_dpi or round(dpiY, 0) < so.min_image_dpi:
-                    minDPIhits.append([element, dpiY, dpiX])
-                if round(dpiX, 0) > so.max_image_dpi or round(dpiY, 0) > so.max_image_dpi:
-                    maxDPIhits.append([element, dpiY, dpiX])
-                        
-                uniform = False
-                if round(imgScaleX, 3) == round(imgScaleY, 3):
-                    uniform = True
-                else:
-                    malformedScales.append([element, imgScaleX, imgScaleY])
+                    img = Image.open(self.path)
+        
+                if img:
+                    img_w = img.getbbox()[2]
+                    img_h = img.getbbox()[3]
+                    if image.get('width') is None:
+                        img_svg_w = self.svg.unittouu(str(img_w) + "px")
+                    else:
+                        img_svg_w = float(image.get('width')) * inkscapeScale
+                    if image.get('height') is None:
+                        img_svg_h = self.svg.unittouu(str(img_h) + "px")
+                    else:
+                        img_svg_h = float(image.get('height')) * inkscapeScale
+                    imgScaleX = img_svg_w / img_w
+                    imgScaleY = img_svg_h / img_h
+                    dpiX = self.svg.unittouu(str(img_w) + "in") / img_svg_w
+                    dpiY = self.svg.unittouu(str(img_h) + "in") / img_svg_h
+                    
+                    if round(dpiX, 0) < so.min_image_dpi or round(dpiY, 0) < so.min_image_dpi:
+                        minDPIhits.append([element, dpiY, dpiX])
+                    if round(dpiX, 0) > so.max_image_dpi or round(dpiY, 0) > so.max_image_dpi:
+                        maxDPIhits.append([element, dpiY, dpiX])
+                            
+                    uniform = False
+                    if round(imgScaleX, 3) == round(imgScaleY, 3):
+                        uniform = True
+                    else:
+                        malformedScales.append([element, imgScaleX, imgScaleY])
             if len(minDPIhits) > 0:
                 for minDPIhit in minDPIhits:
                     inkex.utils.debug("Image {} has DPI X{:0.0f}+Y{:0.0f} < min. {:0.0f}".format(minDPIhit[0].get('id'), minDPIhit[1], minDPIhit[2], so.min_image_dpi))
