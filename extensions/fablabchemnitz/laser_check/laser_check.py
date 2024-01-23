@@ -530,11 +530,11 @@ class LaserCheck(inkex.EffectExtension):
                     if image.get('width') is None:
                         img_svg_w = self.svg.unittouu(str(img_w) + "px")
                     else:
-                        img_svg_w = float(image.get('width')) * inkscapeScale
+                        img_svg_w = self.svg.unittouu(str(float(image.get('width'))) + "px")
                     if image.get('height') is None:
                         img_svg_h = self.svg.unittouu(str(img_h) + "px")
                     else:
-                        img_svg_h = float(image.get('height')) * inkscapeScale
+                        img_svg_h = self.svg.unittouu(str(float(image.get('height'))) + "px")
                     imgScaleX = img_svg_w / img_w
                     imgScaleY = img_svg_h / img_h
                     dpiX = self.svg.unittouu(str(img_w) + "in") / img_svg_w
