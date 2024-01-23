@@ -7,7 +7,6 @@ from lxml import etree
 class NormalizeDrawingScale(inkex.EffectExtension):
     
     def add_arguments(self, pars):
-        pars.add_argument('--remove_viewbox', type=inkex.Boolean, default=True)
         pars.add_argument('--target_scale', type=float, default=100.0)
     
     def effect(self):
@@ -48,9 +47,9 @@ class NormalizeDrawingScale(inkex.EffectExtension):
         #inkex.errormsg("visualScaleX: {:0.6f}".format(visualScaleX))
         #inkex.errormsg("formatScaleX: {:0.6f}".format(formatScaleX))
    
-        if inkscapeScale == targetScale: #strange rule. might break sth.
-            inkex.utils.debug("Nothing to do. Scale is already 100%")
-            return  
+        #if inkscapeScale == targetScale: #strange rule. might break sth.
+        #    inkex.utils.debug("Nothing to do. Scale is already 100%")
+        #    return  
         
         if visualScaleX == 0.0: #seems there is no viewBox attribute, then ...
             #inkex.errormsg("viewBox attribute is missing in svg:svg. Applying new one ...")
@@ -59,21 +58,14 @@ class NormalizeDrawingScale(inkex.EffectExtension):
         if round(visualScaleX, 5) != targetScale or self.options.remove_viewbox is True:
             #set scale to 100% (we adjust viewBox)
             sc = (1 / (targetScale / inkscapeScale))
-            if self.options.remove_viewbox is False:
-                viewBoxNew = '0 0 {} {}'.format(docWidth_fin / targetScale, docHeight_fin / targetScale)
-                #inkex.errormsg("viewBox modifying to: {}".format(viewBoxNew))
-                #inkex.errormsg("width modifying to: {}{}".format(docWidth_fin, format_units))
-                #inkex.errormsg("height modifying to: {}{}".format(docHeight_fin, format_units))
-                self.svg.set('viewBox', viewBoxNew)
-                self.svg.set('width', "{}{}".format(docWidth_fin, format_units))
-                self.svg.set('height', "{}{}".format(docHeight_fin, format_units))
-            else:
-                #inkex.errormsg("viewBox popping; setting back to px ...")
-                self.svg.pop('viewBox')
-                self.document.getroot().set('inkscape:document-units', 'px')
-                self.svg.set('width', docWidth_fin)
-                self.svg.set('height', docHeight_fin)
-                namedView.attrib[inkex.addNS('document-units', 'inkscape')] = 'px'
+            viewBoxNew = '0 0 {} {}'.format(docWidth_fin / targetScale, docHeight_fin / targetScale)
+            #inkex.errormsg("viewBox modifying to: {}".format(viewBoxNew))
+            #inkex.errormsg("width modifying to: {}{}".format(docWidth_fin, format_units))
+            #inkex.errormsg("height modifying to: {}{}".format(docHeight_fin, format_units))
+            self.svg.set('viewBox', viewBoxNew)
+            self.svg.set('width', "{}{}".format(docWidth_fin, format_units))
+            self.svg.set('height', "{}{}".format(docHeight_fin, format_units))
+
                 
             translation_matrix = [[sc, 0.0, 0.0], [0.0, sc, 0.0]]
             #select each top layer and apply the transformation to scale

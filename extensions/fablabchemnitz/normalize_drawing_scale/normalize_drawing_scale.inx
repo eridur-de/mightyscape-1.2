@@ -2,7 +2,7 @@
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <name>Normalize Drawing Scale</name>
     <id>fablabchemnitz.de.normalize_drawing_scale</id>
-    <param name="remove_viewbox" type="bool" gui-text="Remove viewBox and set document units to px" gui-description="Removes viewBox attribute from svg:svg. Warning: this disabled the feature to change the document units to anything else than px unit.">false</param>
+    <label appearance="header">This will also reset the viewbox origin to x0,y0</label>
     <param name="target_scale" type="float" min="0.001" max="9999.000" precision="3" gui-text="Target scale (%)" gui-description="Default is 100%">100.0</param>
     <effect needs-live-preview="false">
         <object-type>all</object-type>
