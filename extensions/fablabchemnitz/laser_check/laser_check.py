@@ -541,15 +541,15 @@ class LaserCheck(inkex.EffectExtension):
                     dpiY = self.svg.unittouu(str(img_h) + "in") / img_svg_h
                     
                     if round(dpiX, 0) < so.min_image_dpi or round(dpiY, 0) < so.min_image_dpi:
-                        minDPIhits.append([element, dpiY, dpiX])
+                        minDPIhits.append([image, dpiY, dpiX])
                     if round(dpiX, 0) > so.max_image_dpi or round(dpiY, 0) > so.max_image_dpi:
-                        maxDPIhits.append([element, dpiY, dpiX])
+                        maxDPIhits.append([image, dpiY, dpiX])
                             
                     uniform = False
                     if round(imgScaleX, 3) == round(imgScaleY, 3):
                         uniform = True
                     else:
-                        malformedScales.append([element, imgScaleX, imgScaleY])
+                        malformedScales.append([image, imgScaleX, imgScaleY])
             if len(minDPIhits) > 0:
                 for minDPIhit in minDPIhits:
                     inkex.utils.debug("Image {} has DPI X{:0.0f}+Y{:0.0f} < min. {:0.0f}".format(minDPIhit[0].get('id'), minDPIhit[1], minDPIhit[2], so.min_image_dpi))
