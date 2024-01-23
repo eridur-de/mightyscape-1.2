@@ -513,7 +513,7 @@ class LaserCheck(inkex.EffectExtension):
                 
                 self.path = self.checkImagePath(image)  # This also ensures the file exists
                 if self.path is None:  # check if image is embedded or linked
-                    image_string = node.get('{http://www.w3.org/1999/xlink}href')
+                    image_string = image.get('{http://www.w3.org/1999/xlink}href')
                     # find comma position
                     i = 0
                     while i < 40:
