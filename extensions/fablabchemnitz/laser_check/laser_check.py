@@ -14,6 +14,7 @@ from PIL import Image
 from io import BytesIO
 import base64
 import urllib.request as urllib
+from _ast import Or
 
 class LaserCheck(inkex.EffectExtension):
     
@@ -525,52 +526,65 @@ class LaserCheck(inkex.EffectExtension):
                 img_w = img.getbbox()[2]
                 img_h = img.getbbox()[3]
                 if image.get('width') is None:
-                    img_svg_w = self.svg.unittouu(str(img_w) + "px") * inkscapeScale
+                    img_svg_w = img_w * inkscapeScale
                 else:
-                    img_svg_w = self.svg.unittouu(str(float(image.get('width'))) + "px") * inkscapeScale
+                    try:
+                        img_svg_w = float(image.get('width')) * inkscapeScale
+                    except Exception as e:
+                        img_svg_w = self.svg.unittouu(image.get('width')) * inkscapeScale
                 if image.get('height') is None:
-                    img_svg_h = self.svg.unittouu(str(img_h) + "px") * inkscapeScale
+                    img_svg_h = img_h * inkscapeScale
                 else:
-                    img_svg_h = self.svg.unittouu(str(float(image.get('height'))) + "px") * inkscapeScale
+                    try:
+                        img_svg_h = float(image.get('height')) * inkscapeScale
+                    except Exception as e:
+                        img_svg_h = self.svg.unittouu(image.get('height')) * inkscapeScale
+                        
                 imgScaleX = img_svg_w / img_w
                 imgScaleY = img_svg_h / img_h
-                dpiX = self.svg.unittouu(str(img_w) + "in") / img_svg_w
-                dpiY = self.svg.unittouu(str(img_h) + "in") / img_svg_h
-                
-                if round(dpiX, 0) < so.min_image_dpi or round(dpiY, 0) < so.min_image_dpi:
-                    minDPIhits.append([image, dpiX, dpiY, img_svg_w, img_svg_h])
-                if round(dpiX, 0) > so.max_image_dpi or round(dpiY, 0) > so.max_image_dpi:
-                    maxDPIhits.append([image, dpiX, dpiY, img_svg_w, img_svg_h])
-                        
-                uniform = False
-                if round(imgScaleX, 3) == round(imgScaleY, 3):
+                uniform = False #check for aspect ratio
+                if round(imgScaleX, 3) == round(imgScaleY, 3) or \
+                    image.get('preserveAspectRatio') is None or \
+                    "none" not in image.get('preserveAspectRatio'):
                     uniform = True
                 else:
                     malformedScales.append([image, imgScaleX, imgScaleY])
-                    
-                inkex.utils.debug("image id={} - internal size {}x{}px - scaled to {:0.0f}x{:0.0f}px - DPI X{:0.0f}+Y{:0.0f}".format(image.get('id'), img_w, img_h, img_svg_w, img_svg_h, dpiX, dpiY))
+                       
+                dpiX = self.svg.unittouu(str(img_w) + "in") / img_svg_w
+                dpiY = self.svg.unittouu(str(img_h) + "in") / img_svg_h
+                
+                if round(dpiX, 0) < so.min_image_dpi or (round(dpiY, 0) < so.min_image_dpi and uniform is False):
+                    minDPIhits.append([image, dpiX, dpiY, img_svg_w, img_svg_h])
+                if round(dpiX, 0) > so.max_image_dpi or (round(dpiY, 0) > so.max_image_dpi and uniform is False):
+                    maxDPIhits.append([image, dpiX, dpiY, img_svg_w, img_svg_h])
+                        
+                inkex.utils.debug("image id={} - internal size {}x{}px - scaled to {:0.2f}x{:0.2f}px - DPI X{:0.2f}+Y{:0.2f} - uniform = {}".format(image.get('id'), img_w, img_h, img_svg_w, img_h*img_svg_w/img_w if uniform is True else img_svg_h, dpiX, dpiX if uniform is True else dpiY, uniform))
  
+            dpi_string = "Image {} has DPI X{:0.2f}+Y{:0.2f} {} {:0.0f} ({}). "\
+                    "Resize to {:0.2f}x{:0.2f}px to fit or try to set/change preserveAspectRatio attribute"
             if len(minDPIhits) > 0:
                 for minDPIhit in minDPIhits:
-                    inkex.utils.debug("Image {} has DPI X{:0.0f}+Y{:0.0f} < min. {:0.0f}. "\
-                    "Resize to {:0.0f}x{:0.0f}px to fit".format(
+                    inkex.utils.debug(dpi_string.format(
                         minDPIhit[0].get('id'), 
                         minDPIhit[1], 
-                        minDPIhit[2], 
-                        so.min_image_dpi,  
+                        minDPIhit[2],
+                        "<",
+                        so.min_image_dpi,
+                        "minimum",
                         minDPIhit[3] * (minDPIhit[1] / so.min_image_dpi),
                         minDPIhit[4] * (minDPIhit[2] / so.min_image_dpi),
                         ))
             if len(maxDPIhits) > 0:
                 for maxDPIhit in maxDPIhits:
-                    inkex.utils.debug("Image {} has DPI X{:0.0f}+Y{:0.0f} > max. {:0.0f}. "\
-                    "Resize to {:0.0f}x{:0.0f}px to fit".format(
+                    inkex.utils.debug(dpi_string.format(
                         maxDPIhit[0].get('id'), 
                         maxDPIhit[1], 
-                        maxDPIhit[2], 
-                        so.max_image_dpi,  
-                        maxDPIhit[3] * (maxDPIhit[1] / so.max_image_dpi),
-                        maxDPIhit[4] * (maxDPIhit[2] / so.max_image_dpi),
+                        maxDPIhit[2],
+                        ">",
+                        so.max_image_dpi,
+                        "maximum",  
+                        maxDPIhit[3] * (maxDPIhit[1] / so.max_image_dpi) * inkscapeScale,
+                        maxDPIhit[4] * (maxDPIhit[2] / so.max_image_dpi) * inkscapeScale,
                         ))
             if len(malformedScales) > 0:
                 for malformedScale in malformedScales:
