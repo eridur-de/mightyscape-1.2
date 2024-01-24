@@ -24,6 +24,11 @@
                     <param name="flowRoot" type="bool" gui-text="flowRoot">true</param>
                     <param name="flowRegion" type="bool" gui-text="flowRegion">true</param>
                     <param name="flowPara" type="bool" gui-text="flowPara">true</param>
+                    <separator/>
+                    <label appearance="header">Font</label>
+                    <param name="font" type="bool" gui-text="font">true</param>
+                    <param name="fontFace" type="bool" gui-text="font-face">true</param>
+                    <param name="glyph" type="bool" gui-text="glyph">true</param>
                 </vbox>
                 <separator/>
                 <vbox>

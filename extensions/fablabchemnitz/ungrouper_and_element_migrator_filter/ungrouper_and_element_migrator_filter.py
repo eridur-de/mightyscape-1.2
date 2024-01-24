@@ -8,7 +8,7 @@ This extension parses the selection and will put all elements into one single gr
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 13.08.2020
-Last Patch: 17.01.2024
+Last Patch: 24.01.2024
 License: GNU GPL v3
 """
 
@@ -53,6 +53,9 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         pars.add_argument("--rect",           type=inkex.Boolean, default=True)
         pars.add_argument("--text",           type=inkex.Boolean, default=True)
         pars.add_argument("--tspan",          type=inkex.Boolean, default=True)
+        pars.add_argument("--font",           type=inkex.Boolean, default=True)
+        pars.add_argument("--fontFace",       type=inkex.Boolean, default=True)
+        pars.add_argument("--glyph",          type=inkex.Boolean, default=True)
         pars.add_argument("--linearGradient", type=inkex.Boolean, default=True)
         pars.add_argument("--radialGradient", type=inkex.Boolean, default=True)
         pars.add_argument("--mask",           type=inkex.Boolean, default=True)
@@ -117,6 +120,9 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         namespace.append("{http://www.w3.org/2000/svg}rect")                          if so.rect           else ""
         namespace.append("{http://www.w3.org/2000/svg}text")                          if so.text           else ""
         namespace.append("{http://www.w3.org/2000/svg}tspan")                         if so.tspan          else ""
+        namespace.append("{http://www.w3.org/2000/svg}font")                          if so.font           else ""
+        namespace.append("{http://www.w3.org/2000/svg}font-face")                     if so.fontFace       else ""
+        namespace.append("{http://www.w3.org/2000/svg}glyph")                         if so.glyph          else ""
         namespace.append("{http://www.w3.org/2000/svg}linearGradient")                if so.linearGradient else ""
         namespace.append("{http://www.w3.org/2000/svg}radialGradient")                if so.radialGradient else ""
         namespace.append("{http://www.w3.org/2000/svg}meshGradient")                  if so.meshGradient   else ""
