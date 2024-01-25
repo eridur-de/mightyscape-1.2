@@ -10,7 +10,7 @@
 
                 <param name="convert_to_git" type="bool" gui-text="Convert to .git" gui-description="If you downloaded MightyScape as .zip or .tar.gz you cannot upgrade using this extension. But you can convert your downloaded directory to a .git one by enabling this option">false</param>
                 <param name="recreate_remotes" type="bool" gui-text="Recreate remotes" gui-description="Update remotes in git config file (useful if you have an older version of MightyScape or if something changes). Warning: might drop passwords/auth tokens!">false</param>
-                <param name="stash_untracked" type="bool" gui-text="Stash untracked files/back to origin" gui-description="Enable to drop your local changes. If HEAD is not attached or unchaged files block a git pull.">false</param>
+                <param name="stash_untracked" type="bool" gui-text="Stash untracked files/Re-checkout origin" gui-description="Enable to drop your local changes. If HEAD is not attached or unchaged files block a git pull.">false</param>
                 <label>Click "Apply" to upgrade MightyScape to recent version!</label>
                 <spacer />
                 <label appearance="header">Hint: Zip File Mirror</label>
