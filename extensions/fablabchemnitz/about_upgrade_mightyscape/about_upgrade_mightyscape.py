@@ -72,7 +72,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
                 inkex.utils.debug("Nothing to do! MightyScape is already up to date!")  
                    
         except git.exc.GitCommandError as e:
-            if "Your local changes to the following files would be overwritten by merge" in e:
+            if "Your local changes to the following files would be overwritten by merge" in str(e):
                 inkex.utils.debug("Please save or stash your local git changes first and try again. You can enable 'Stash untracked files' to continue.")
             else:
                 inkex.utils.debug("Error: ")
@@ -142,6 +142,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
         #drop local changed. update might fail if file changes are present
         if so.stash_untracked is True:
             local_repo.git.stash('save')
+            local_repo.git.checkout('origin/master')
         
         existingRemotes = [] #check for existing remotes. if one is missing, add it (or delete and recreate)
         for r in local_repo.remotes:
