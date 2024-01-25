@@ -29,6 +29,8 @@ except:
 
 class AboutUpgradeMightyScape(inkex.EffectExtension):
 
+    restart = False
+
     def install_requirements(self):
         requirements = inkex.utils.debug(os.path.abspath(os.path.join(self.ext_path()) + "/../../../requirements.txt"))
         if not os.path.exists(requirements):
@@ -64,12 +66,10 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
                     remote_repo.pull() #finally pull new data
     
                     for info in fetch_info: #should return only one line in total
-                        inkex.utils.debug("Updated {} to commit id {}. {} commits were pulled".format(info.ref, str(info.commit)[:7], remoteCommitCount - localCommitCount)) 
-    
-                    inkex.utils.debug("Please restart Inkscape to let the changes take effect.")  
-
+                        inkex.utils.debug("Updated {} to commit id {}. {} commits were pulled".format(info.ref, str(info.commit)[:7], remoteCommitCount - localCommitCount))    
+                    self.restart = True
             else:
-                inkex.utils.debug("Nothing to do! MightyScape is already up to date!")  
+                self.restart = False
                    
         except git.exc.GitCommandError as e:
             inkex.utils.debug("git command failed. Please save or stash your local git changes first and try again. You can enable 'Stash untracked files' to continue. This will also reset your branch to master.")
@@ -140,6 +140,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
         if so.stash_untracked is True:
             local_repo.git.stash('save')
             local_repo.git.checkout('master')
+            self.restart = True
             #local_repo.git.checkout('origin/master')
         
         existingRemotes = [] #check for existing remotes. if one is missing, add it (or delete and recreate)
@@ -191,6 +192,11 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
                 inkex.utils.debug("Error receiving latest remote commit from second git remote {}.\nAre you offline? Cannot continue!".format(remotes[0][0]))
                 exit(1)
         
+            if self.restart is True:
+                inkex.utils.debug("Please restart Inkscape to let all changes take effect.")
+            else:
+                inkex.utils.debug("Nothing to do! MightyScape is already up to date!")
+                
         else:
             inkex.utils.debug("No \".git\" directory found. Seems your MightyScape was not installed with git clone. Please see documentation on how to do that.")  
             exit(1)
