@@ -198,21 +198,29 @@ class KVEC (inkex.EffectExtension):
                         newGroup = inkex.Group()
                         parent.insert(idx + 1,newGroup)
                         for child in doc:
-                            newGroup.append(child)
+                            if child.tag != etree.Comment and "desc" not in child.tag:
+                                if child.text is not None:
+                                    child.text = child.text.strip()
+                                if child.tail is not None:
+                                    child.tail = child.tail.strip()
+                                newGroup.append(child)
                             
                         #doc.get('height')
                         #doc.get('width')
                         #doc.get('viewBox')
                         if so.fittooriginal is True: #fitting does not work in all cases so we make it available as option
                             bbox = newGroup.bounding_box()
-                            newGroup.attrib['transform'] = "matrix({:0.6f}, 0, 0, {:0.6f}, {:0.6f}, {:0.6f})".format(
-                                #float(element.get('width')) / float(doc.get('width')),
-                                #float(element.get('height')) / float(doc.get('height')),
-                                float(element.get('width')) / bbox.width,
-                                float(element.get('height')) / bbox.height,
-                                float(element.get('x')) - (float(element.get('width')) / bbox.width) * bbox.left,
-                                float(element.get('y')) - (float(element.get('height')) / bbox.height) * bbox.top
-                                )
+                            if bbox is not None:
+                                newGroup.attrib['transform'] = "matrix({:0.6f}, 0, 0, {:0.6f}, {:0.6f}, {:0.6f})".format(
+                                    #float(element.get('width')) / float(doc.get('width')),
+                                    #float(element.get('height')) / float(doc.get('height')),
+                                    float(element.get('width')) / bbox.width,
+                                    float(element.get('height')) / bbox.height,
+                                    float(element.get('x')) - (float(element.get('width')) / bbox.width) * bbox.left,
+                                    float(element.get('y')) - (float(element.get('height')) / bbox.height) * bbox.top
+                                    )
+                            else:
+                                inkex.utils.debug("Fit to original dimensions failed. Please scale to size manually.")
 
                         # Delete the temporary svg file
                         if os.path.exists(exportfile + ".svg"):
