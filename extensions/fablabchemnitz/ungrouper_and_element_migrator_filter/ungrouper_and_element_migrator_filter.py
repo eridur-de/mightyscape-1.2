@@ -8,7 +8,7 @@ This extension parses the selection and will put all elements into one single gr
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 13.08.2020
-Last Patch: 24.01.2024
+Last Patch: 26.01.2024
 License: GNU GPL v3
 """
 
@@ -88,22 +88,24 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         docroot = self.document.getroot()
         
         #remove comments
-        if so.comments is True:
-            for element in docroot.iter():
-                if "cyfunction Comment" in str(element.tag):
-                    self.allDrops.append(element)
-                    element.getparent().remove(element)
-                
-               
+        if so.comments is False:
+            for element in docroot.iter(tag=etree.Comment):
+                #inkex.utils.debug("Comment: <!-- {} -->".format(element.text))
+                self.allDrops.append(element)
+                  
         #remove newlines (tails of elements)
-        if so.tails is True:
-            parser = etree.XMLParser(remove_blank_text=True)
+        if so.tails is False:
+            tails = 0
             for element in docroot.iter('*'):
                 if element.text is not None:
                     element.text = element.text.strip()
+                    tails += 1
                 if element.tail is not None:
                     element.tail = element.tail.strip()
-
+                    tails += 1
+            if tails > 0:
+                self.msg("{} tails/texts were removed during nodes while migration.".format(tails))
+                
         namespace = [] #a list of selected types we are going to process for filtering (dropping items)
         #namespace.append("{http://www.w3.org/2000/svg}sodipodi")       if so.sodipodi       else "" #do not do this. it will crash InkScape
         #namespace.append("{http://www.w3.org/2000/svg}svg")            if so.svg            else "" #we handle svg:svg the same type like svg:g
@@ -239,7 +241,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         # show a list with items to delete. For ungroup mode it does not apply because we are not going to remove anything
         if so.operationmode == "filter_only" or so.operationmode == "ungroup_and_filter":
             if so.showdroplist:
-                self.msg(str(len(self.allDrops)) + " elements were removed during nodes while migration.")
+                self.msg("{} elements were removed during nodes while migration.".format(len(self.allDrops)))
                 if len(self.allDrops) > 100: #if we print too much to the output stream we will freeze InkScape forever wihtout any visual error message. So we write to file instead
                     migrate_log_file = open('migrategroups.log', 'w')
                 else:
