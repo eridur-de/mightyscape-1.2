@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
-    <name>Open Extension Directory</name>
-    <id>fablabchemnitz.de.open_dir</id>
+    <name>Open Current File Directory</name>
+    <id>fablabchemnitz.de.open_currentfile_dir</id>
     <effect needs-live-preview="false">
         <object-type>all</object-type>
 		<effects-menu>
@@ -9,6 +9,6 @@
 		</effects-menu>
     </effect>
     <script>
-        <command location="inx" interpreter="python">open_dir.py</command>
+        <command location="inx" interpreter="python">open_currentfile_dir.py</command>
     </script>
 </inkscape-extension>
