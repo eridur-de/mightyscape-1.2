@@ -38,5 +38,5 @@ git+https://github.com/LoicGoulefert/deduplicate.git#egg=deduplicate
 #plycutter
 git+https://github.com/tjltjl/plycutter.git
 
-#boses.py
+#boxes.py
 git+https://github.com/florianfesti/boxes.git
