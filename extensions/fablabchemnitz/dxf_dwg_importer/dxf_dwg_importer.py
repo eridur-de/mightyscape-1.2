@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 
 """
-Extension for InkScape 1.0
+Extension for InkScape 1.3
 
 Import any DWG or DXF file using ODA File Converter, sk1 UniConvertor, ezdxf and more tools.
 
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 23.08.2020
-Last patch: 04.04.2021
+Last patch: 09.02.2024
 License: GNU GPL v3
 
 Module licenses
 - ezdxf (https://github.com/mozman/ezdxf) - MIT License
 - node.js (https://raw.githubusercontent.com/nodejs/node/master/LICENSE) - MIT License
-- https://github.com/bjnortier/dxf - MIT License
+- https://github.com/skymakerolof/dxf - MIT License
 - ODA File Converter - not bundled (due to restrictions by vendor)
 - sk1 UniConvertor (https://github.com/sk1project/uniconvertor) - AGPL v3.0 - not bundled
 - kabeja (http://kabeja.sourceforge.net/) - Apache v2
@@ -56,7 +56,7 @@ class DXFDWGImport(inkex.EffectExtension):
         
         #general
         pars.add_argument("--inputfile")   
-        pars.add_argument("--dxf_to_svg_parser",                     default="bjnortier",  help="Choose a DXF to SVG parser")
+        pars.add_argument("--dxf_to_svg_parser",                     default="skymakerolof",  help="Choose a DXF to SVG parser")
         pars.add_argument("--resizetoimport",    type=inkex.Boolean, default=True,         help="Resize the canvas to the imported drawing's bounding box") 
         pars.add_argument("--extraborder",       type=float,         default=0.0)
         pars.add_argument("--extraborder_units")      
@@ -302,14 +302,14 @@ class DXFDWGImport(inkex.EffectExtension):
                if self.options.opendironerror:
                    self.openExplorer(temp_output_dir)
                                     
-        elif self.options.dxf_to_svg_parser == "bjnortier":
+        elif self.options.dxf_to_svg_parser == "skymakerolof":
             if which("node") is None:
                 self.msg("NodeJS executable not found on path. Please check your installation.")
                 exit(1)
             else:
-                bjnortier_cmd = ["node", os.path.join("node_modules","dxf","lib","cli.js"), dxf_file, svg_file]
-                #self.msg(bjnortier_cmd)
-                proc = subprocess.Popen(bjnortier_cmd, shell=False, stdout=PIPE, stderr=PIPE)
+                skymakerolof_cmd = ["node", os.path.join("node_modules","dxf","lib","cli.js"), dxf_file, svg_file]
+                #self.msg(skymakerolof_cmd)
+                proc = subprocess.Popen(skymakerolof_cmd, shell=False, stdout=PIPE, stderr=PIPE)
                 stdout, stderr = proc.communicate()
                 if proc.returncode != 0: 
                    self.msg("node.js DXF to SVG conversion failed: %d %s %s" % (proc.returncode, stdout, stderr))
@@ -421,7 +421,7 @@ class DXFDWGImport(inkex.EffectExtension):
             for element in doc.getchildren():
                 docGroup.append(element)
 
-        #get children of the doc and move them one group above - we don't do this for bjnortier tool because this has different structure which we don't want to disturb
+        #get children of the doc and move them one group above - we don't do this for skymakerolof tool because this has different structure which we don't want to disturb
         if self.options.dxf_to_svg_parser == "sk1":
             elements = []
             emptyGroup = None
