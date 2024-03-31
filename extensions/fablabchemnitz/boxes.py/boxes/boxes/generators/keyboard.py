@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (C) 2021 Guillaume Collic
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,9 +13,11 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import re
 import argparse
-from boxes import Boxes, boolarg
+import re
+
+from boxes import boolarg
+
 
 class Keyboard:
     """
@@ -33,7 +33,7 @@ class Keyboard:
     SWITCH_CASE_SIZE = 15.6
     FRAME_CUTOUT = 14
 
-    def __init__(self):
+    def __init__(self) -> None:
         pass
 
     def add_common_keyboard_parameters(
@@ -116,7 +116,6 @@ class Keyboard:
         Spaces are not important.
         For example '3x2 / 4@11' means we want 3 columns, the two first with
         3 rows without offset, and the last with 4 rows starting at 11mm high
-
         """
         result = []
         try:
@@ -166,7 +165,7 @@ class Keyboard:
             grid_hole(3, -4, led_hole_size)
 
     def apply_callback_on_columns(self, cb, columns_definition, spacing=None, reverse=False):
-        if spacing == None:
+        if spacing is None:
             spacing = self.STANDARD_KEY_SPACING
         if reverse:
             columns_definition = list(reversed(columns_definition))
@@ -244,7 +243,7 @@ class Keyboard:
         A simple plate cutout, a 14mm rectangle, as specified in this reference sheet
         https://cdn.sparkfun.com/datasheets/Components/Switches/MX%20Series.pdf
 
-        With_notch shoul be used for a secondary lower plate, strengthening the first one.
+        With_notch should be used for a secondary lower plate, strengthening the first one.
         A notch is added to let the hooks grasp the main upper plate.
 
         Current position should be switch center.

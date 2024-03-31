@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,13 @@
 
 from boxes import *
 
+
 class OpenBox(Boxes):
     """Box with top and front open"""
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.buildArgParser("x", "y", "h", "outside")
         self.argparser.add_argument(

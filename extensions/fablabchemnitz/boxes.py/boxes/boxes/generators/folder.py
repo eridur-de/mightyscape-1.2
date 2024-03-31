@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,13 +14,12 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math
 
 
 class Folder(Boxes):
     """Book cover with flex for the spine"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FlexSettings)
         self.buildArgParser("x", "y", "h")
@@ -44,6 +42,3 @@ class Folder(Boxes):
         self.corner(90, r)
         self.edge(y - 2 * r)
         self.corner(90, r)
-
-
-

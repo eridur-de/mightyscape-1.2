@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # Copyright (C) 2013-2018 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -18,26 +17,26 @@ from boxes import *
 
 
 class TwoPiece(Boxes):
-    """A two piece box where top slips over the bottom half to form 
+    """A two piece box where top slips over the bottom half to form
        the enclosure.
     """
 
     description = """
-Set *hi* larger than *h* to leave gap between the inner and outer shell. This can be used to make opening the box easier. Set *hi* smaller to only have a small inner ridge that will allow the content to be momre visible after opening.
+Set *hi* larger than *h* to leave gap between the inner and outer shell. This can be used to make opening the box easier. Set *hi* smaller to only have a small inner ridge that will allow the content to be more visible after opening.
 
 ![Bottom view](static/samples/TwoPiece2.jpg)
 """
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.buildArgParser("x", "y", "h", "hi", "outside")
         self.addSettingsArgs(edges.FingerJointSettings, finger=2.0, space=2.0)
 
         self.argparser.add_argument(
             "--play",  action="store", type=float, default=0.15,
-            help="play between the two parts as multipleof the wall thickness")
+            help="play between the two parts as multiple of the wall thickness")
 
     def render(self):
         # adjust to the variables you want in the local scope
@@ -67,4 +66,3 @@ Set *hi* larger than *h* to leave gap between the inner and outer shell. This ca
 
         self.rectangularWall(x, y, "hhhh", bedBolts=None, move="right")
         self.rectangularWall(x+d, y+d, "FFFF", bedBolts=None, move="right")
-        

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2018 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,14 +14,14 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math
+
 
 class Hook(Boxes):
-    """A hook wit a rectangular mouth to mount at the wall"""
+    """A hook with a rectangular mouth to mount at the wall"""
 
     ui_group = "Misc"  # see ./__init__.py for names
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=0.5)
@@ -40,7 +39,7 @@ class Hook(Boxes):
             help="width of the hook from the side")
         self.argparser.add_argument("--angle",  action="store",
             type=float, default=45.,
-            help="angle of the support underneeth")
+            help="angle of the support underneath")
 
     def render(self):
 
@@ -79,11 +78,11 @@ class Hook(Boxes):
         self.hole(x_h, y1, d=3)
         self.hole(x_h, y2, d=3)
         self.hole(x_h, y3, d=3)
-        
+
 
     @property
     def height_back(self):
-        
+
         return self.strength + self.height + self.h_a
 
     @property

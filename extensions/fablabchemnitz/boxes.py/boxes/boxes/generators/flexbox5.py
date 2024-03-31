@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -14,8 +13,9 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import boxes
 import math
+
+import boxes
 
 
 class FlexBox5(boxes.Boxes):
@@ -23,7 +23,7 @@ class FlexBox5(boxes.Boxes):
 
     ui_group = "FlexBox"
 
-    def __init__(self):
+    def __init__(self) -> None:
         boxes.Boxes.__init__(self)
         self.addSettingsArgs(boxes.edges.FingerJointSettings)
         self.addSettingsArgs(boxes.edges.FlexSettings)
@@ -46,7 +46,7 @@ class FlexBox5(boxes.Boxes):
         l = self.l
 
         tw , th = l+r1+r2, 2*max(r1, r2)+2*t
-        
+
         if self.move(tw, th, move, True):
             return
 
@@ -107,7 +107,7 @@ class FlexBox5(boxes.Boxes):
             self.h = self.adjustSize(self.h)
             self.top_diameter = self.adjustSize(self.top_diameter)
             self.bottom_diameter = self.adjustSize(self.bottom_diameter)
-            
+
         t = self.thickness
         self.latchsize *= self.thickness
         d_t, d_b = self.top_diameter, self.bottom_diameter

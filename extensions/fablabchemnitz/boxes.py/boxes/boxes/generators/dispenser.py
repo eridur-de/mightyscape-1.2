@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,6 +14,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
+
 
 class FrontEdge(edges.BaseEdge):
     """An edge with room to get your fingers around cards"""
@@ -38,10 +38,10 @@ class Dispenser(Boxes):
 
     description = """Set *bottomheight* to 0 for a wall mounting variant.
 Please add mounting holes yourself."""
-    
+
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings)
@@ -81,7 +81,7 @@ Please add mounting holes yourself."""
 
 
         self.rectangularWall(x, y, "ffff", move="up only")
-            
+
         if hb:
             frontedge = edges.CompoundEdge(self, "Ef", (hb+t+hs, h-hs))
             self.rectangularWall(
@@ -113,4 +113,3 @@ Please add mounting holes yourself."""
                              label="Left front", move="right")
         self.rectangularWall(x/3, h-hs, "eee" + se,
                              label="Right front", move="mirror right")
-

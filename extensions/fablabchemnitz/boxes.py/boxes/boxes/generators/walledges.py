@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -14,13 +13,13 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from boxes import *
 from boxes.walledges import _WallMountedBox
+
 
 class WallEdges(_WallMountedBox):
     """Shows the different edge types for wall systems"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.buildArgParser(h=120)
 

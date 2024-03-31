@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,10 +15,11 @@
 
 from boxes import *
 
+
 class CornerEdge(edges.Edge):
     char = "C"
-    
-    def startwidth(self):
+
+    def startwidth(self) -> float:
         return self.boxes.thickness * math.tan(math.radians(90-22.5))
 
     def __call__(self, length, bedBolts=None, bedBoltSettings=None, **kw):
@@ -31,14 +31,14 @@ class CornerEdge(edges.Edge):
             self.ctx.stroke()
             self.set_source_color(Color.BLACK)
         super().__call__(length, bedBolts=None, bedBoltSettings=None, **kw)
-    
+
 
 class TriangleLamp(Boxes):
     """Triangle LED Lamp"""
 
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings, finger=3.0,space=3.0,
@@ -105,7 +105,7 @@ class TriangleLamp(Boxes):
         self.rectangularWall(l, h, "F"+C+"e" + C,
                              callback=[self.CB(l, c*2**.5)], move="up")
 
-        
+
         self.rectangularTriangle(c, c, "ffe", num=2, move="right", callback=[
             lambda:self.hole(2/3.*c,1/3.*c, r1)])
         self.rectangularTriangle(c, c, "fef", num=4, move="up", callback=[

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2019 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -17,10 +16,11 @@
 from boxes import *
 from boxes.walledges import _WallMountedBox
 
+
 class WallPliersHolder(_WallMountedBox):
     """Bar to hang pliers on"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
         self.buildArgParser(sx="100*3", y=50, h=50, outside=True)
@@ -31,7 +31,7 @@ class WallPliersHolder(_WallMountedBox):
 
     def brace(self, h, d, a, outside=False, move=None):
         t = self.thickness
-        
+
         tw = d + self.edges["b"].spacing() + self.edges["f"].spacing()
         th = self.h_t
 
@@ -75,15 +75,14 @@ class WallPliersHolder(_WallMountedBox):
 
         if self.outside:
             self.sx = self.adjustSize(self.sx)
-        
+
         sx, y, h = self.sx, self.y, self.h
         t = self.thickness
 
         r = y / 4
         self.h_t = h + (y+t-r) * math.tan(math.radians(90-self.angle)) + r
-        
+
         self.rectangularWall(sum(sx) + (len(sx)-1) * t, h, "efef", callback=[self.frontCB],  move="up")
         self.rectangularWall(sum(sx) + (len(sx)-1) * t, self.h_t, "eCec", callback=[self.backCB],  move="up")
         for i in range(len(sx)+1):
             self.brace(h, y, self.angle, i<2, move="right")
-            

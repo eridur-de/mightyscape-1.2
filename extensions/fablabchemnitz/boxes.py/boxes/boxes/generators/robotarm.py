@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2017 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -17,12 +16,13 @@
 from boxes import *
 from boxes import robot, servos
 
+
 class RobotArm(Boxes): # change class name here and below
     """Segments of servo powered robot arm"""
 
     ui_group = "Part"
-    
-    def __init__(self):
+
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings)
@@ -56,4 +56,3 @@ class RobotArm(Boxes): # change class name here and below
             servoClsA = getattr(servos, servoA)
             servoClsB = getattr(servos, servoB)
             armcls(self, servoClsA(self), servoClsB(self))(length, move="up")
-

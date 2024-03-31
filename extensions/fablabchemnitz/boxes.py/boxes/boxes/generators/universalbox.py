@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,19 +14,22 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
+from boxes import lids
 from boxes.edges import Bolts
-from boxes.lids import _TopEdge, _ChestLid
+from boxes.lids import _TopEdge
 
-class UniversalBox(_TopEdge, _ChestLid):
+
+class UniversalBox(_TopEdge):
     """Box with various options for different styles and lids"""
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addTopEdgeSettings(roundedtriangle={"outset" : 1},
                                 hinge={"outset" : True})
         self.addSettingsArgs(edges.FlexSettings)
+        self.addSettingsArgs(lids.LidSettings)
         self.buildArgParser("top_edge", "bottom_edge",
                             "x", "y", "h", "outside")
         self.argparser.add_argument(
@@ -35,10 +37,6 @@ class UniversalBox(_TopEdge, _ChestLid):
             default="finger joints",
             choices=("finger joints", "finger holes"),
             help="connections used for the vertical edges")
-        self.argparser.add_argument(
-            "--lid",  action="store", type=str, default="default (none)",
-            choices=("default (none)", "chest", "flat"),
-            help="additional lid (for straight top_edge only)")
 
     def top_hole(self, x, y, top_edge):
         t = self.thickness
@@ -62,7 +60,7 @@ class UniversalBox(_TopEdge, _ChestLid):
         x, y, h = self.x, self.y, self.h
         t = self.thickness
 
-        t1, t2, t3, t4 = self.topEdges(self.top_edge)
+        tl, tb, tr, tf = self.topEdges(self.top_edge)
         b = self.edges.get(self.bottom_edge, self.edges["F"])
 
         d2 = Bolts(2)
@@ -78,12 +76,12 @@ class UniversalBox(_TopEdge, _ChestLid):
             self.h = h = self.adjustSize(h, b, self.top_edge)
 
         with self.saved_context():
-            self.rectangularWall(x, h, [b, sideedge, t1, sideedge],
+            self.rectangularWall(x, h, [b, sideedge, tf, sideedge],
                                  ignore_widths=[1, 6],
-                                 bedBolts=[d2], move="up", label="left")
-            self.rectangularWall(x, h, [b, sideedge, t3, sideedge],
+                                 bedBolts=[d2], move="up", label="front")
+            self.rectangularWall(x, h, [b, sideedge, tb, sideedge],
                                  ignore_widths=[1, 6],
-                                 bedBolts=[d2], move="up", label="right")
+                                 bedBolts=[d2], move="up", label="back")
 
             if self.bottom_edge != "e":
                 self.rectangularWall(x, y, "ffff", bedBolts=[d2, d3, d2, d3], move="up", label="bottom")
@@ -93,16 +91,14 @@ class UniversalBox(_TopEdge, _ChestLid):
                     lambda:self.top_hole(x, y, self.top_edge)], move="up", label="top hole")
                 self.set_source_color(Color.BLACK)
             self.drawLid(x, y, self.top_edge, [d2, d3])
-            self.drawAddOnLid(x, y, self.lid)
+            self.lid(x, y, self.top_edge)
 
-        self.rectangularWall(x, h, [b, sideedge, t3, sideedge],
+        self.rectangularWall(x, h, [b, sideedge, tf, sideedge],
                              ignore_widths=[1, 6],
                              bedBolts=[d2], move="right only", label="invisible")
-        self.rectangularWall(y, h, [b, "f", t2, "f"],
+        self.rectangularWall(y, h, [b, "f", tl, "f"],
                              ignore_widths=[1, 6],
-                             bedBolts=[d3], move="up", label="back")
-        self.rectangularWall(y, h, [b, "f", t4, "f"],
+                             bedBolts=[d3], move="up", label="left")
+        self.rectangularWall(y, h, [b, "f", tr, "f"],
                              ignore_widths=[1, 6],
-                             bedBolts=[d3], move="up", label="front")
-
-
+                             bedBolts=[d3], move="up", label="right")

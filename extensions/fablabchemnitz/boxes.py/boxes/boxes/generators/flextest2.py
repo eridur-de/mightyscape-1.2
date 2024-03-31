@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -18,11 +17,11 @@ from boxes import *
 
 
 class FlexTest2(Boxes):
-    "Piece for testing 2D flex settings"
+    """Piece for testing 2D flex settings"""
 
     ui_group = "Part"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.buildArgParser("x", "y")
         self.argparser.add_argument(
@@ -33,5 +32,3 @@ class FlexTest2(Boxes):
         x, y = self.x, self.y
 
         self.rectangularWall(x, y, callback=[lambda: self.flex2D(x, y, self.fw)])
-
-

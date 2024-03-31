@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -22,7 +21,7 @@ class TrayInsert(Boxes):
 
     ui_group = "Tray"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.buildArgParser("sx", "sy", "h", "outside")
 
@@ -46,6 +45,3 @@ class TrayInsert(Boxes):
         for i in range(len(self.sy) - 1):
             e = ["e", "e", edges.SlottedEdge(self, self.sx[::-1], "e", slots=0.5 * h), "e"]
             self.rectangularWall(x, h, e, move="up")
-
-
-

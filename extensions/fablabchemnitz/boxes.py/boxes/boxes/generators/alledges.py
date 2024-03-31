@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2018 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,18 +15,19 @@
 
 from boxes import *
 
+
 class AllEdges(Boxes):
     """Showing all edge types"""
 
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings)
         self.addSettingsArgs(edges.StackableSettings)
         self.addSettingsArgs(edges.HingeSettings)
-        self.addSettingsArgs(edges.LidSettings)
+        self.addSettingsArgs(edges.SlideOnLidSettings)
         self.addSettingsArgs(edges.ClickSettings)
         self.addSettingsArgs(edges.FlexSettings)
         self.addSettingsArgs(edges.HandleEdgeSettings)
@@ -43,7 +43,7 @@ class AllEdges(Boxes):
         chars.reverse()
 
         self.moveTo(0, 10*t)
-        
+
         for c in chars:
             with self.saved_context():
                 self.move(0, 0, "", True)
@@ -56,6 +56,5 @@ class AllEdges(Boxes):
                 self.move(0, 0, "")
 
             self.moveTo(0, 3*t + self.edges[c].spacing())
-            self.text("%s - %s" % (c, self.edges[c].description))
+            self.text(f"{c} - {self.edges[c].description}")
             self.moveTo(0, 12*t)
-

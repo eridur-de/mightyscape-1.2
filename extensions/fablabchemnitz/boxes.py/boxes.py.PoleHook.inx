@@ -3,46 +3,44 @@
 <name>PoleHook</name>
 <id>info.festi.boxes.py.PoleHook</id>
 <param name="generator" type="string" gui-hidden="true">polehook</param>
-<param name="tab" type="notebook">
-    <page name="tab_0" gui-text="PoleHook">
-        <param name="diameter" type="float" precision="2" max="9999" gui-text="diameter" gui-description="diameter of the thing to hook">50.0</param>
-        <param name="screw" type="float" precision="2" max="9999" gui-text="screw" gui-description="diameter of the screw in mm">7.8</param>
-        <param name="screwhead" type="float" precision="2" max="9999" gui-text="screwhead" gui-description="with of the screw head in mm">13.0</param>
-        <param name="screwheadheight" type="float" precision="2" max="9999" gui-text="screwheadheight" gui-description="height of the screw head in mm">5.5</param>
-        <param name="pin" type="float" precision="2" max="9999" gui-text="pin" gui-description="diameter of the pin in mm">4.0</param>
-    </page>
-    <page name="tab_1" gui-text="Default">
-        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
-        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
-        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
-        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
-        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
-        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
-            <option value="loop">loop</option>
-            <option value="corner">corner</option>
-            <option value="backarc">backarc</option>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="PoleHook"><param name="diameter" type="float" precision="2" max="9999" gui-text="diameter" gui-description="diameter of the thing to hook">50.0</param>
+<param name="screw" type="float" precision="2" max="9999" gui-text="screw" gui-description="diameter of the screw in mm">7.8</param>
+<param name="screwhead" type="float" precision="2" max="9999" gui-text="screwhead" gui-description="with of the screw head in mm">13.0</param>
+<param name="screwheadheight" type="float" precision="2" max="9999" gui-text="screwheadheight" gui-description="height of the screw head in mm">5.5</param>
+<param name="pin" type="float" precision="2" max="9999" gui-text="pin" gui-description="diameter of the pin in mm">4.0</param>
+</page>
+<page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+<param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+<param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
+<param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+<param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+<param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+<option value="loop">loop</option>
+<option value="corner">corner</option>
+<option value="backarc">backarc</option>
     </param>
-        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
-    </page>
-    <page name="tab_2" gui-text="Finger Joints">
-        <param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
-        <param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
-            <option value="rectangular">rectangular</option>
-            <option value="springs">springs</option>
-            <option value="barbs">barbs</option>
-            <option value="snap">snap</option>
+<param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+</page>
+<page name="tab_2" gui-text="Finger Joints"><param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
+<param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+<option value="rectangular">rectangular</option>
+<option value="springs">springs</option>
+<option value="barbs">barbs</option>
+<option value="snap">snap</option>
     </param>
-        <param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="space at the start and end in multiple of normal spaces">2.0</param>
-        <param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
-        <param name="FingerJoint_extra_length" type="float" precision="2" max="9999" gui-text="extra_length" gui-description="extra material to grind away burn marks (multiples of thickness)">0.0</param>
-        <param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers (multiples of thickness)">2.0</param>
-        <param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out (multiples of thickness)">0.0</param>
-        <param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">2.0</param>
-        <param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
-    </page>
-    <page name="tab_3" gui-text="Example">
-        <image>./PoleHook-thumb.jpg</image>
-    </page>
+<param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="space at the start and end in multiple of normal spaces">2.0</param>
+<param name="FingerJoint_bottom_lip" type="float" precision="2" max="9999" gui-text="bottom_lip" gui-description="height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!">0.0</param>
+<param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+<param name="FingerJoint_extra_length" type="float" precision="2" max="9999" gui-text="extra_length" gui-description="extra material to grind away burn marks (multiples of thickness)">0.0</param>
+<param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers (multiples of thickness)">2.0</param>
+<param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out (multiples of thickness)">0.0</param>
+<param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">2.0</param>
+<param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
+</page>
+<page name="tab_3" gui-text="Example">
+<image>./PoleHook-thumb.jpg</image>
+</page>
 </param>
 <label appearance="url">https://www.festi.info/boxes.py/PoleHook</label>
 <effect>

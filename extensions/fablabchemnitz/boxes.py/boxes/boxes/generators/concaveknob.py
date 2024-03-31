@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2017 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,13 @@
 
 from boxes import *
 
+
 class ConcaveKnob(Boxes):
     """Round knob serrated outside for better gripping"""
-    
+
     ui_group = "Part"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         # Add non default cli params if needed (see argparse std lib)
@@ -36,7 +36,7 @@ class ConcaveKnob(Boxes):
             help="Amount of circumference used for non convex parts")
         self.argparser.add_argument(
             "--angle",  action="store", type=float, default=70.,
-            help="Angle between convex and concave parts")        
+            help="Angle between convex and concave parts")
         self.argparser.add_argument(
             "--bolthole",  action="store", type=float, default=6.,
             help="Diameter of the bolt hole (mm)")
@@ -61,5 +61,3 @@ class ConcaveKnob(Boxes):
                                move="right")
         self.parts.concaveKnob(self.diameter, self.serrations,
                                self.rounded, self.angle)
-
-

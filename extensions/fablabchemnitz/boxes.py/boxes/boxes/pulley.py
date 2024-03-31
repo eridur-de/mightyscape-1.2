@@ -3,15 +3,16 @@
 // by droftarts January 2012
 
 // Based on pulleys by:
-// http://www.thingiverse.com/thing:11256 by me!
+// https://www.thingiverse.com/thing:11256 by me!
 // https://github.com/prusajr/PrusaMendel by Josef Prusa
-// http://www.thingiverse.com/thing:3104 by GilesBathgate
-// http://www.thingiverse.com/thing:2079 by nophead
+// https://www.thingiverse.com/thing:3104 by GilesBathgate
+// https://www.thingiverse.com/thing:2079 by nophead
 
 // dxf tooth data from http://oem.cadregister.com/asp/PPOW_Entry.asp?company=915217&elementID=07807803/METRIC/URETH/WV0025/F
-// pulley diameter checked and modelled from data at http://www.sdp-si.com/D265/HTML/D265T016.html
+// pulley diameter checked and modelled from data at https://www.sdp-si.com/D265/HTML/D265T016.html
 """
 from math import *
+
 from boxes.vectors import *
 
 
@@ -78,24 +79,12 @@ class Pulley:
               "GT2_5mm" : [[-1.975908,-0.75],[-1.975908,0],[-1.797959,0.03212],[-1.646634,0.121224],[-1.534534,0.256431],[-1.474258,0.426861],[-1.446911,0.570808],[-1.411774,0.712722],[-1.368964,0.852287],[-1.318597,0.989189],[-1.260788,1.123115],[-1.195654,1.25375],[-1.12331,1.380781],[-1.043869,1.503892],[-0.935264,1.612278],[-0.817959,1.706414],[-0.693181,1.786237],[-0.562151,1.851687],[-0.426095,1.9027],[-0.286235,1.939214],[-0.143795,1.961168],[0,1.9685],[0.143796,1.961168],[0.286235,1.939214],[0.426095,1.9027],[0.562151,1.851687],[0.693181,1.786237],[0.817959,1.706414],[0.935263,1.612278],[1.043869,1.503892],[1.123207,1.380781],[1.195509,1.25375],[1.26065,1.123115],[1.318507,0.989189],[1.368956,0.852287],[1.411872,0.712722],[1.447132,0.570808],[1.474611,0.426861],[1.534583,0.256431],[1.646678,0.121223],[1.798064,0.03212],[1.975908,0],[1.975908,-0.75]],
     }
 
-    def __init__(self, boxes):
+    def __init__(self, boxes) -> None:
         self.boxes = boxes
 
     @classmethod
     def getProfiles(cls):
         return list(sorted(cls.teeth.keys()))
-
-    def drawPoints(self, lines, kerfdir=1):
-        if kerfdir != 0:
-            lines = kerf(lines, self.boxes.burn * kerfdir)
-        self.boxes.ctx.save()
-        self.boxes.ctx.move_to(*lines[0])
-
-        for x, y in lines[1:]:
-            self.boxes.ctx.line_to(x, y)
-
-        self.boxes.ctx.line_to(*lines[0])
-        self.boxes.ctx.restore()
 
     def diameter(self, teeth, profile):
         if self.spacing[profile][0]:
@@ -146,7 +135,7 @@ class Pulley:
             m = [[tooth_width_scale, 0, 0],
                  [0, tooth_depth_scale, -tooth_distance_from_centre]]
             m = mmul(m, rotm(i * 2 * pi / teeth))
-            points.extend((vtransl(pt, m) for pt in self.teeth[profile][1:-1]))
+            points.extend(vtransl(pt, m) for pt in self.teeth[profile][1:-1])
 
-        self.drawPoints(points, kerfdir=-1 if insideout else 1)
+        self.boxes.drawPoints(points, kerfdir=-1 if insideout else 1)
         self.boxes.move(total_width, total_width, move)

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2020 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,19 +15,20 @@
 
 from boxes import *
 
+
 class BottleStack(Boxes):
     """Stack bottles in a fridge"""
 
-    description = """When rendered with the "double" option the parts with the double slots get connected the shorter beams in the asymetrical slots.
+    description = """When rendered with the "double" option the parts with the double slots get connected the shorter beams in the asymmetrical slots.
 
 Without the "double" option the stand is a bit more narrow.
 """
 
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
-        
+
         self.argparser.add_argument(
             "--diameter",  action="store", type=float, default=80,
             help="diameter of the bottles in mm")
@@ -41,7 +41,7 @@ Without the "double" option the stand is a bit more narrow.
         self.argparser.add_argument(
             "--double",  action="store", type=boolarg, default=True,
             help="two pieces that can be combined to up to double the width")
-        
+
 
 
     def front(self, h_sides, offset=0, move=None):
@@ -49,7 +49,7 @@ Without the "double" option the stand is a bit more narrow.
         a = 60
         nr = self.number
         r1 = self.diameter / 2.0 # bottle
-        r2 = r1 / math.cos(math.radians(90-a)) - r1 # inbetween
+        r2 = r1 / math.cos(math.radians(90-a)) - r1  # in between
         if self.double:
             r3 = 1.5*t # upper corners
         else:
@@ -58,10 +58,10 @@ Without the "double" option the stand is a bit more narrow.
         h_extra = 1*t
         h_s = h_sides - t
         p = 0.05*t # play
-        
+
         tw, th = nr * r1 * 2 + 2*r3, h + 2*t
 
-        
+
         if self.move(tw, th, move, True):
             return
 
@@ -116,26 +116,26 @@ Without the "double" option the stand is a bit more narrow.
 
         if open_sides:
             h_extra -= h_s
-        
+
         self.polyline(0, 90, h_extra+h-r3, (90, r3))
 
         for i in range(nr):
             self.polyline(0, (a, r2), 0, (-2*a, r1), 0, (a, r2))
         self.polyline(0, (90, r3), h_extra+h-r3, 90)
-            
+
         self.move(tw, th, move)
 
     def side(self, l, h, short=False, move=None):
         t = self.thickness
         short = bool(short)
-        
+
         tw, th = l + 2*t - 4*t*short, h
 
         if self.move(tw, th, move, True):
             return
 
         self.moveTo(t, 0)
-        
+
         self.polyline(l-3*t*short)
         if short:
             end = [90, h-t, 90, t, -90, t, 90]
@@ -153,7 +153,7 @@ Without the "double" option the stand is a bit more narrow.
         nr = self.number
         h_sides = 2*t
         pieces = 2 if self.double else 1
-        
+
         for offset in range(pieces):
             self.front(h_sides, offset, move="up")
             self.front(h_sides, offset, move="up")
@@ -161,5 +161,3 @@ Without the "double" option the stand is a bit more narrow.
         for short in range(pieces):
             for i in range(nr+1):
                 self.side(d, h_sides, short, move="up")
-            
-        

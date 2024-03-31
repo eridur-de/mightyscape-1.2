@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2019 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -14,14 +13,17 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+# mypy: ignore-errors
+
 from boxes import *
+
 
 class SlatwallXXX(Boxes): # Change class name!
     """DESCRIPTION"""
 
     ui_group = "SlatWall"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings)

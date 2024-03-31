@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -22,7 +21,7 @@ class GearBox(Boxes):
 
     ui_group = "Part"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.argparser.add_argument(
@@ -33,7 +32,7 @@ class GearBox(Boxes):
             help="number of teeth on outgoing shaft")
         self.argparser.add_argument(
             "--modulus", action="store", type=float, default=3,
-            help="modulus of the theeth in mm")
+            help="modulus of the teeth in mm")
         self.argparser.add_argument(
             "--shaft", action="store", type=float, default=6.,
             help="diameter of the shaft")
@@ -93,6 +92,3 @@ class GearBox(Boxes):
         for i in range(self.stages):
             self.gears(teeth=self.teeth1, dimension=self.modulus, angle=pressure_angle,
                        mount_hole=mh, profile_shift=profile_shift, move="down")
-
-
-

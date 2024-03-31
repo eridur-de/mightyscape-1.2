@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,13 @@
 
 from boxes import *
 
+
 class LBeam(Boxes):
     """Simple L-Beam: two pieces joined with a right angle"""
 
     ui_group = "Part"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.buildArgParser("x", "y", "h", "outside")
         self.addSettingsArgs(edges.FingerJointSettings)
@@ -38,5 +38,3 @@ class LBeam(Boxes):
 
         self.rectangularWall(x, h, "eFee", move="right")
         self.rectangularWall(y, h, "eeef")
-
-

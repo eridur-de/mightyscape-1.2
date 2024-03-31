@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2017 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -22,44 +21,40 @@ class EuroRackSkiff(Boxes):
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.buildArgParser("h")
         self.argparser.add_argument(
             "--hp", action="store", type=int, default=84,
             help="Width of the case in HP")
-        
+
 
     def wallxCB(self, x):
         t = self.thickness
-        
+
     def wallyCB(self, y):
         t = self.thickness
-        self.fingerHolesAt(6, self.h-1.5*t, y, 0)
+        self.fingerHolesAt(0, self.h-1.5*t, y, 0)
 
     def railHoles(self):
         for i in range(0, self.hp):
             self.hole(i*5.08 + 2.54, 3, d=3.0)
-        
+
     def render(self):
 
         t = self.thickness
         h = self.h
         y = self.hp * 5.08
         x = 128.5
-        
-        
+
+
         self.rectangularWall(y, 6, "feee", callback=[self.railHoles] , move="up")
         self.rectangularWall(y, 6, "feee", callback=[self.railHoles] , move="up")
-        self.rectangularWall(x, h, "fFeF", callback=[self.wallxCB(x)],
+        self.rectangularWall(x, h, "fFeF", callback=[lambda: self.wallxCB(x)],
                              move="right")
-        self.rectangularWall(y, h, "ffef", callback=[self.wallyCB(y)], move="up")
-        self.rectangularWall(y, h, "ffef", callback=[self.wallyCB(y)])
-        self.rectangularWall(x, h, "fFeF", callback=[self.wallxCB(x)],
+        self.rectangularWall(y, h, "ffef", callback=[lambda: self.wallyCB(y)], move="up")
+        self.rectangularWall(y, h, "ffef", callback=[lambda: self.wallyCB(y)])
+        self.rectangularWall(x, h, "fFeF", callback=[lambda: self.wallxCB(x)],
                              move="left up")
         self.rectangularWall(x, y, "FFFF", callback=[], move="right")
-        
-
-
-

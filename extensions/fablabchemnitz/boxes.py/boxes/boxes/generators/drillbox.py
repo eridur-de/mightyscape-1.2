@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -14,15 +13,18 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from boxes import Boxes, edges, Color, ArgparseEdgeType
-from boxes.lids import _TopEdge
+from boxes import ArgparseEdgeType, Boxes, Color, edges
+from boxes.lids import LidSettings, _TopEdge
+
 
 class DrillBox(_TopEdge):
     """A parametrized box for drills"""
 
+    description = """![Multiple DrillBoxes](static/samples/DrillBoxes.jpg) """
+
     ui_group = "Tray"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings,
@@ -30,6 +32,7 @@ class DrillBox(_TopEdge):
         self.addSettingsArgs(edges.RoundedTriangleEdgeSettings, outset=1)
         self.addSettingsArgs(edges.StackableSettings)
         self.addSettingsArgs(edges.MountingSettings)
+        self.addSettingsArgs(LidSettings)
         self.argparser.add_argument(
             "--top_edge", action="store",
             type=ArgparseEdgeType("eStG"), choices=list("eStG"),
@@ -123,3 +126,4 @@ class DrillBox(_TopEdge):
             x, y, "ffff",
             callback=[lambda: self.drillholes(description=True)],
             move="right")
+        self.lid(x, y, self.top_edge)

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -28,7 +27,7 @@ plate.
 
 See BasedBox for variant with a base."""
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.buildArgParser("x", "y", "h", "outside")
@@ -56,6 +55,3 @@ See BasedBox for variant with a base."""
 
         self.rectangularWall(x, y, "ffff", bedBolts=[d2, d3, d2, d3], move="right", label="Top")
         self.rectangularWall(x, y, "ffff", bedBolts=[d2, d3, d2, d3], label="Bottom")
-
-
-

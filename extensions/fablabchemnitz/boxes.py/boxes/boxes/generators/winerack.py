@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,13 @@
 
 from boxes import *
 
+
 class WineRack(Boxes):
     """Honey Comb Style Wine Rack"""
-    
+
     ui_group = "Shelf"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         # Uncomment the settings for the edge types you use
@@ -59,7 +59,7 @@ class WineRack(Boxes):
         self.moveTo((x-dx*2*cx)/2, (y-ty) / 2)
 
         wmin = self.walls == "minimal"
-        
+
         for i in range(cy//2 + cy % 2):
             if not frontwall and self.walls == "all":
                 self.hexFingerHoles(0, (2*r+2*dy)*i+dy, r, 90)
@@ -97,13 +97,13 @@ class WineRack(Boxes):
                 if j < cx -1:
                     self.hexFingerHoles(j*2*dx+dx, (2*r+2*dy)*i, r, 30)
 
-        
+
     def render(self):
         x, y, h, radius = self.x, self.y, self.h, self.radius
 
         t = self.thickness
         r = self.r = 2 * (radius + t) * math.tan(math.pi/6)
-        
+
         self.dx = dx = r * math.cos(math.pi/6)
         self.dy = dy = r * math.sin(math.pi/6)
         self.cx = cx = int((x-2*t) // (2*dx))
@@ -129,5 +129,3 @@ class WineRack(Boxes):
                 tc += 2 * cx - 2 # very top row
 
         self.partsMatrix(tc, cx, "up", self.rectangularWall, r-2*self.delta, h, "fefe")
-
-

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2019 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,15 +15,16 @@
 
 from boxes import *
 
+
 class BayonetBox(Boxes):
     """Round box made from layers with twist on top"""
 
     description = """Glue together - all outside rings to the bottom, all inside rings to the top."""
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
-        
+
         self.argparser.add_argument(
             "--diameter",  action="store", type=float, default=50.,
             help="Diameter of the box in mm")
@@ -65,7 +65,7 @@ class BayonetBox(Boxes):
             if self.move(d, d, move, True):
                 return
             self.moveTo(d/2, d/2)
-        
+
         self.alignmentHoles(inner=True)
         self.hole(0, 0, r=d/2 - 2.5*t)
         self.moveTo(d/2 - 1.5*t, 0, -90)
@@ -102,14 +102,14 @@ class BayonetBox(Boxes):
         l = self.lugs
 
         a = 180 / l
-        
+
         self.hole(0, 0, r=d/2 - 2.5*t)
         self.hole(0, 0, r=d/2 - 1.5*t)
         self.alignmentHoles(inner=True, outer=True)
         self.moveTo(d/2 - 1.5*t, 0, -90)
 
         for i in range(l):
-            self.polyline(0, (-1.3*a, r-1.5*t+p), 0, 90, 0.5*t, -90, 0, (-0.7*a, r-t+p), 0, -90, 0.5*t, 90)        
+            self.polyline(0, (-1.3*a, r-1.5*t+p), 0, 90, 0.5*t, -90, 0, (-0.7*a, r-t+p), 0, -90, 0.5*t, 90)
 
 
     def render(self):
@@ -119,8 +119,8 @@ class BayonetBox(Boxes):
 
         if not self.outside:
             self.diameter = d = d - 3*t
-        
-        
+
+
         self.parts.disc(d, callback=lambda: self.alignmentHoles(outer=True), move="right")
         self.parts.disc(d, callback=lambda: (self.alignmentHoles(outer=True), self.hole(0, 0, d/2-1.5*t)), move="right")
         self.parts.disc(d, callback=self.lowerCB, move="right")

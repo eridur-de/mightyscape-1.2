@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2022 Erik Snider (SniderThanYou@gmail.com)
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -22,7 +21,7 @@ class DiceBox(Boxes):
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(
             edges.FingerJointSettings,

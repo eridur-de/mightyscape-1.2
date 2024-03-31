@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2018 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -22,7 +21,7 @@ class UnevenHeightBox(Boxes):
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.addSettingsArgs(edges.GroovedSettings)
@@ -99,6 +98,3 @@ class UnevenHeightBox(Boxes):
                       (" only" if h2 == h1 == 0.0 else ""))
             self.trapezoidWall(x, h1, h0, "FF" + edge_types[0] + "F", move="right" +
                       (" only" if h1 == h0 == 0.0 else ""))
-
-
-

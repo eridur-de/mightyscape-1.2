@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,7 +14,6 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math
 
 """
 22x7.5x7cm
@@ -51,17 +49,17 @@ class RoundedTriangle(edges.Edge):
         self.edge(l)
         self.corner(90 - angle, r)
 
-    def startAngle(self):
-        return 90
+    def startAngle(self) -> float:
+        return 90.0
 
-    def endAngle(self):
-        return 90
+    def endAngle(self) -> float:
+        return 90.0
 
 
 class Lamp(Boxes):
     webinterface = False
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.buildArgParser(x=220, y=75, h=70)
@@ -129,6 +127,3 @@ class Lamp(Boxes):
 
         self.rectangularWall(x, h, edges='hFFF', holesMargin=5, move="right")
         self.rectangularWall(x, h, edges='hFFF', holesMargin=5)
-
-
-

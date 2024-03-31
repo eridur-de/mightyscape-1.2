@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2017 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,13 @@
 
 from boxes import *
 
+
 class NemaMount(Boxes):
-    """Mounting braket for a Nema motor"""
+    """Mounting bracket for a Nema motor"""
 
     ui_group = "Part"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.argparser.add_argument(
@@ -52,4 +52,3 @@ class NemaMount(Boxes):
         self.fingerHolesAt(0.5*t, t, x, 90)
         self.fingerHolesAt(1.5*t+x, t, x, 90)
         self.fingerHolesAt(t, 0.5*t, x, 0)
-

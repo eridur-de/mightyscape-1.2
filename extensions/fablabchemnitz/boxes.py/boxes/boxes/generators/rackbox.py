@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2017 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -22,7 +21,7 @@ class RackBox(Boxes):
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=1.2)
         self.buildArgParser("x", "y", "h", "outside")
@@ -46,33 +45,33 @@ class RackBox(Boxes):
         t = self.thickness
         self.fingerHolesAt(0, self.h-1.5*t, self.triangle, 0)
         self.fingerHolesAt(self.x, self.h-1.5*t, self.triangle, 180)
-        
+
     def wallxfCB(self): # front
         t = self.thickness
         hd = self.holedist
         for x in (hd, self.x+3*hd+2*t):
             for y in (hd, self.h-hd+t):
                 self.hole(x, y, self.d3/2.)
-        
+
         self.moveTo(t+2*hd, t)
         self.wallxCB()
-        
+
     def wallyCB(self):
         t = self.thickness
         self.fingerHolesAt(0, self.h-1.5*t, self.triangle, 0)
         self.fingerHolesAt(self.y, self.h-1.5*t, self.triangle, 180)
-        
-        
+
+
     def render(self):
 
         t = self.thickness
         self.h = h = self.h + 2*t # compensate for lid
         x, y, h = self.x, self.y, self.h
         d1, d2, d3 =self.d1, self.d2, self.d3
-        hd = self.holedist 
+        hd = self.holedist
         tr = self.triangle
         trh = tr / 3.
-       
+
         if self.outside:
             self.x = x = self.adjustSize(x)
             self.y = y = self.adjustSize(y)
@@ -92,6 +91,3 @@ class RackBox(Boxes):
 
         self.rectangularTriangle(tr, tr, "ffe", num=4,
             callback=[None, lambda: self.hole(trh, trh, d=d1)])
-
-
-

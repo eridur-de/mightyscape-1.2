@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,24 @@
 
 from boxes import *
 
+
 class Console(Boxes):
     """Console with slanted panel"""
 
     ui_group = "Box"
 
-    def __init__(self):
+    description = """
+
+Console Arcade Stick
+
+![Front](static/samples/ConsoleArcadeStickFront.jpg)
+![Back](static/samples/ConsoleArcadeStickBack.jpg)
+![Inside](static/samples/ConsoleArcadeStickInside.jpg)
+
+Keyboard enclosure:
+"""
+
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=.5)

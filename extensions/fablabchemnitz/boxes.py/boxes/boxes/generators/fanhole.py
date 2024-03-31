@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,13 @@
 
 from boxes import *
 
+
 class FanHole(Boxes):
     """Hole pattern for mounting a fan"""
 
     ui_group = "Holes"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.argparser.add_argument(
@@ -43,7 +43,7 @@ class FanHole(Boxes):
             "--style",  action="store", type=str, default="CW Swirl",
             choices=["CW Swirl", "CCW Swirl", "Hole"],
             help="Style of the fan hole")
-        
+
 
     def arc(self, d, a):
         r = abs(1/math.cos(math.radians(90-a/2))*d/2)
@@ -60,7 +60,7 @@ class FanHole(Boxes):
         ai = 90
         ao = 360/n * 0.8
         # angle going in
-        a1 = math.degrees(math.atan( 
+        a1 = math.degrees(math.atan(
             ri*math.sin(math.radians(ai)) /
             (r - ri*math.cos(math.radians(ai)))))
         d1= (ri*math.sin(math.radians(ai))**2 +
@@ -85,8 +85,8 @@ class FanHole(Boxes):
                 self.corner(-180+a3)
                 self.arc(d1, 85)
                 self.corner(-90-a1)
-            
-            self.moveArc(-360./n, r)        
+
+            self.moveArc(-360./n, r)
 
     def render(self):
         r_h = self.mounting_holes / 2

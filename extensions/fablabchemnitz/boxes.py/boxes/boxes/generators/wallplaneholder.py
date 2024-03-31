@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2019 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -14,13 +13,13 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from boxes import *
 from boxes.walledges import _WallMountedBox
+
 
 class WallPlaneHolder(_WallMountedBox):
     """Hold a plane to a wall"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
         self.argparser.add_argument(
@@ -28,10 +27,10 @@ class WallPlaneHolder(_WallMountedBox):
             help="width of the plane")
         self.argparser.add_argument(
             "--length",  action="store", type=float, default=250,
-            help="legth of the plane")
+            help="length of the plane")
         self.argparser.add_argument(
             "--hold_length",  action="store", type=float, default=30,
-            help="legth of the part hiolding the plane over the front")
+            help="length of the part holding the plane over the front")
         self.argparser.add_argument(
             "--height",  action="store", type=float, default=80,
             help="height of the front of plane")

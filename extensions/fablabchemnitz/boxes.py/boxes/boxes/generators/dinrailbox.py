@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2020 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -19,12 +18,12 @@ from boxes import *
 
 class DinRailEdge(edges.FingerHoleEdge):
 
-    def __init__(self, boxes, settings, width=35.0, offset=0.0):
+    def __init__(self, boxes, settings, width=35.0, offset=0.0) -> None:
         super().__init__(boxes, settings)
         self.width = width
         self.offset = offset
 
-    def startwidth(self):
+    def startwidth(self) -> float:
         return 8 + self.settings.thickness
 
     def __call__(self, length, bedBolts=None, bedBoltSettings=None, **kw):
@@ -40,7 +39,7 @@ class DinRailEdge(edges.FingerHoleEdge):
                       w+0.25,
                       -90, 1, 30, 5*2*3**-.5, 60, (l-w)/2+o-3.25)
 
-        
+
 class DinRailBox(Boxes):
     """Box for DIN rail used in electrical junction boxes"""
 
@@ -61,8 +60,8 @@ class DinRailBox(Boxes):
                       4+1.25, 90, 4.5, -90, t+4, -90, 2, 90, l-.8*t-9, 90, 2, -90, 5+t, 90, 4, 90)
 
         self.move(tw, th, move)
-        
-    def __init__(self):
+
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=.8)
@@ -114,7 +113,7 @@ class DinRailBox(Boxes):
             lambda:self.fingerHolesAt(.55*t, .05*t, y-.1*t, 90), None,
             lambda:self.fingerHolesAt(.55*t, .05*t, y-.1*t, 90), None],
             move="right", label="Lid")
-        
+
         self.lid_lip(y-.1*t, move="rotated right")
         self.lid_lip(y-.1*t, move="rotated right")
 

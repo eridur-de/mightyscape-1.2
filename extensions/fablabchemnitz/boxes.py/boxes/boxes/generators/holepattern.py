@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2022 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,16 +14,14 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-from shapely.geometry import *
-import random
-import time
+
 
 class HolePattern(Boxes):
     """Generate hole patterns in different simple shapes"""
 
     ui_group = "Holes"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(fillHolesSettings, fill_pattern="hex")
@@ -63,7 +60,7 @@ class HolePattern(Boxes):
                       (d2*x, y), (d*x, y), (0, d2*y), (0, d*y)]
         else: # "rectangle"
             border = [(0, 0), (x, 0), (x, y), (0, y)]
-    
+
         self.fillHoles(
             pattern=self.fillHoles_fill_pattern,
             border=border,

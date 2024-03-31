@@ -1,14 +1,14 @@
 """Half 19inch rack unit for musical equipment."""
 
 from boxes import Boxes
-from boxes.edges import Edge
+
 
 class Rack19HalfWidth(Boxes):
     """Half width 19inch rack unit for musical equipment."""
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.argparser.add_argument(
             '--ru_count', action='store', type=float, default=1,

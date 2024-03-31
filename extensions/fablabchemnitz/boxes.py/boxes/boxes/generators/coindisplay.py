@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,6 +14,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
+
 
 class CoinHolderSideEdge(edges.BaseEdge):
     char = "B"
@@ -33,7 +33,7 @@ class CoinHolderSideEdge(edges.BaseEdge):
 
         self.polyline(0, 90+a, a_l2, -90)
 
-    def margin(self):
+    def margin(self) -> float:
         return self.settings.coin_plate_x
 
 class CoinDisplay(Boxes):
@@ -41,7 +41,7 @@ class CoinDisplay(Boxes):
 
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings)
@@ -112,4 +112,3 @@ class CoinDisplay(Boxes):
         self.rectangularWall(self.coin_plate, self.coin_plate, "efef", move="down", label="Coin Plate", callback=[self.coinCutout])
 
         self.rectangularWall(self.coin_plate, self.coin_showcase_h, "fFeF", move="down", label="CoinSide3")
-

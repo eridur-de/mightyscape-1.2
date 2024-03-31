@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2019 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -14,19 +13,20 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from boxes import *
 import boxes
+from boxes import *
+
 
 class DrillStand(Boxes):
     """Box for drills with each compartment of a different height"""
 
-    description = """Note: `sh` gives the hight of the rows front to back. It though should have the same number of entries as `sy`. These heights are the one on the left side and increase throughout the row. To have each compartement a bit higher than the previous one the steps in `sh` should be a bit bigger than `extra_height`.
+    description = """Note: `sh` gives the height of the rows front to back. It though should have the same number of entries as `sy`. These heights are the one on the left side and increase throughout the row. To have each compartment a bit higher than the previous one the steps in `sh` should be a bit bigger than `extra_height`.
 
 Assembly:
 
 ![Parts](static/samples/DrillStand-drawing.png)
 
-Start with putting the slots of the inner walls together. Be especially careful with adding the bottom. It is always assymetrical and flush with the right/lower side while being a little short on the left/higher side to not protrude into the side wall.
+Start with putting the slots of the inner walls together. Be especially careful with adding the bottom. It is always asymmetrical and flush with the right/lower side while being a little short on the left/higher side to not protrude into the side wall.
 
 |      |      |
 | ---- | ---- |
@@ -37,7 +37,7 @@ Start with putting the slots of the inner walls together. Be especially careful 
 
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.StackableSettings, height=1.0, width=3)
@@ -50,7 +50,7 @@ Start with putting the slots of the inner walls together. Be especially careful 
 
     def yWall(self, nr, move=None):
         t = self.thickness
-        x, sx, y, sy, sh = self.x, self.sx, self.y, self.sy, self.sh        
+        x, sx, y, sy, sh = self.x, self.sx, self.y, self.sy, self.sh
         eh = self.extra_height * (sum(sx[:nr])+ nr*t - t)/x
 
         tw, th = sum(sy) + t * len(sy) + t, max(sh) + eh
@@ -65,12 +65,12 @@ Start with putting the slots of the inner walls together. Be especially careful 
         for i in range(len(sy)-1, 0, -1):
             s1 = max(sh[i]-sh[i-1], 0) + 4*t
             s2 = max(sh[i-1]-sh[i], 0) + 4*t
-            
+
             self.polyline(sy[i], 90, s1, -90, t, -90, s2, 90)
         self.polyline(sy[0], 90)
         self.edges["f"](sh[0] + eh)
         self.corner(90)
-        
+
         self.move(tw, th, move)
 
     def sideWall(self, extra_height=0.0, foot_height=0.0, edges="šFf", move=None):
@@ -109,7 +109,7 @@ Start with putting the slots of the inner walls together. Be especially careful 
         self.step(t - edges[2].endwidth())
         self.polyline(fh)
         self.edgeCorner("e", edges[0])
-        
+
         self.move(tw, th, move)
 
     def xWall(self, nr, move=None):
@@ -125,7 +125,7 @@ Start with putting the slots of the inner walls together. Be especially careful 
         if self.move(tw, th, move, True):
             return
 
-        
+
         self.moveTo(t, eh+t, -a)
 
         for i in range(len(sx)-1):
@@ -147,7 +147,7 @@ Start with putting the slots of the inner walls together. Be especially careful 
     def xOutsideWall(self, h, edges="fFeF", move=None):
         t = self.thickness
         x, sx, y, sy, sh = self.x, self.sx, self.y, self.sy, self.sh
-        
+
         edges = [self.edges.get(e, e) for e in edges]
         eh = self.extra_height
 
@@ -160,7 +160,7 @@ Start with putting the slots of the inner walls together. Be especially careful 
         if self.move(tw, th, move, True):
             return
 
-        
+
         self.moveTo(edges[3].spacing(), eh+edges[0].margin(), -a)
 
         self.edge(t*math.tan(math.radians(a)))
@@ -188,7 +188,7 @@ Start with putting the slots of the inner walls together. Be especially careful 
         self.edgeCorner("e", edges[0], 90)
 
         self.moveTo(0, self.burn+edges[0].startwidth(), 0)
-        
+
         for i in range(1, len(sx)):
             posx = sum(sx[:i]) + i*t - 0.5 * t
             length = h + self.extra_height * (sum(sx[:i]) + i*t - t)/x
@@ -198,7 +198,7 @@ Start with putting the slots of the inner walls together. Be especially careful 
 
     def bottomCB(self):
         t = self.thickness
-        x, sx, y, sy, sh = self.x, self.sx, self.y, self.sy, self.sh        
+        x, sx, y, sy, sh = self.x, self.sx, self.y, self.sy, self.sh
         eh = self.extra_height
 
         a = math.degrees(math.atan(eh / x))
@@ -226,9 +226,8 @@ Start with putting the slots of the inner walls together. Be especially careful 
         self.xOutsideWall(sh[-1], "hfef", move="up")
 
         self.rectangularWall(x/math.cos(bottom_angle)-t*math.tan(bottom_angle), y, "fefe", callback=[self.bottomCB], move="up")
-        
+
         self.sideWall(foot_height=self.extra_height+2*t, move="right")
         for i in range(1, len(sx)):
             self.yWall(i, move="right")
         self.sideWall(self.extra_height, 2*t, move="right")
-            

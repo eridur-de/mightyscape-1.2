@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -22,7 +21,7 @@ class BottleTag(Boxes):
 
     ui_group = "Misc"  # see ./__init__.py for names
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.buildArgParser()
@@ -86,4 +85,3 @@ class BottleTag(Boxes):
                 with self.saved_context():
                     self.moveTo(0, 0, -90)
                     self.edge(0.5)
-

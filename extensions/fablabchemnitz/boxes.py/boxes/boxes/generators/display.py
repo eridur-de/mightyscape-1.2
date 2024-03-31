@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,14 +14,14 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math
+
 
 class Display(Boxes):
-    """Diplay for flyers or leaflets"""
+    """Display for flyers or leaflets"""
 
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.buildArgParser(x=150., h=200.0)
@@ -51,4 +50,3 @@ class Display(Boxes):
         self.polyline(x-2*r, (90-a, r), oh, (90+a, r),
                       x-2*r+2*math.sin(math.radians(a))*oh,
                       (90+a, r), oh, (90-a, r))
-

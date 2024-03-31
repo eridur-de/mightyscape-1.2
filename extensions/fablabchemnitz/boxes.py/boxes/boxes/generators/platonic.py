@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2020 Norbert Szulc
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,9 +14,8 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-from boxes.edges import FingerJointBase, FingerJointEdge
+from boxes.edges import FingerJointEdge
 
-from math import sin, pi
 
 class UnevenFingerJointEdge(FingerJointEdge):
     """Uneven finger joint edge """
@@ -43,7 +41,7 @@ class UnevenFingerJointEdge(FingerJointEdge):
             leftover -= play
 
         shift = (f + s) / 2 # we shift all fingers to make them un even
-        if (leftover < shift): 
+        if (leftover < shift):
             leftover = shift
 
         self.edge((leftover + shift)/2, tabs=1)  # Whole point of this class
@@ -77,7 +75,7 @@ class UnevenFingerJointEdge(FingerJointEdge):
         self.edge((leftover - shift)/2, tabs=1)  # Whole point of this class
 
 # Unstable
-class UnevenFingerJointEdgeCounterPart(UnevenFingerJointEdge): 
+class UnevenFingerJointEdgeCounterPart(UnevenFingerJointEdge):
     """Uneven finger joint edge - other side"""
     char = 'U'
     description = "Uneven Finger Joint (opposing side)"
@@ -98,7 +96,7 @@ class Platonic(Boxes):
         "icosahedro": (20, 3),
     }
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=0)
@@ -124,5 +122,3 @@ class Platonic(Boxes):
 
         for _ in range(faces):
             self.regularPolygonWall(corners, side=e, edges="u", move="right")
-
-

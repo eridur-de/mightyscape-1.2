@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>WallRack</name>
+<id>info.festi.boxes.py.WallRack</id>
+<param name="generator" type="string" gui-hidden="true">wallrack</param>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="WallRack"><param name="x" type="float" precision="2" max="9999" gui-text="x" gui-description="inner width in mm (unless outside selected)">200</param>
+<param name="y" type="float" precision="2" max="9999" gui-text="y" gui-description="inner depth in mm (unless outside selected)">50</param>
+<param name="sh" type="string" gui-text="sh" gui-description="sections bottom to top in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">100*3</param>
+<param name="outside" type="bool" gui-text="outside" gui-description="treat sizes as outside measurements [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#outside)">false</param>
+        <param name="top_edge" type="optiongroup" appearance="combo" gui-text="top_edge" gui-description="edge type for top edge">
+            <option value="e">e Straight Edge</option>
+            <option value="E">E Straight Edge (outset by thickness)</option>
+            <option value="G">G Edge with pear shaped mounting holes</option>
+            <option value="y">y Handle for e.g. a drawer</option>
+      </param>
+<param name="full_height_top" type="bool" gui-text="full_height_top" gui-description="Add full height of topmost rack to the back panel">true</param>
+<param name="wall_height" type="float" precision="2" max="9999" gui-text="wall_height" gui-description="height of walls">20.0</param>
+<param name="back_height" type="float" precision="2" max="9999" gui-text="back_height" gui-description="height of the back as fraction of the front height">1.5</param>
+        <param name="side_edges" type="optiongroup" appearance="combo" gui-text="side_edges" gui-description="edge type holding the shelfs together">
+            <option value="F">F Finger Joint (opposing side)</option>
+            <option value="h">h Edge (parallel Finger Joint Holes)</option>
+      </param>
+<param name="flat_bottom" type="bool" gui-text="flat_bottom" gui-description="Make bottom Flat, so that the rack can also stand">false</param>
+</page>
+<page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+<param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+<param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
+<param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+<param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+<param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+<option value="loop">loop</option>
+<option value="corner">corner</option>
+<option value="backarc">backarc</option>
+    </param>
+<param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+</page>
+<page name="tab_2" gui-text="Finger Joints"><param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
+<param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+<option value="rectangular">rectangular</option>
+<option value="springs">springs</option>
+<option value="barbs">barbs</option>
+<option value="snap">snap</option>
+    </param>
+<param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="space at the start and end in multiple of normal spaces">1.0</param>
+<param name="FingerJoint_bottom_lip" type="float" precision="2" max="9999" gui-text="bottom_lip" gui-description="height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!">0.0</param>
+<param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+<param name="FingerJoint_extra_length" type="float" precision="2" max="9999" gui-text="extra_length" gui-description="extra material to grind away burn marks (multiples of thickness)">0.0</param>
+<param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers (multiples of thickness)">2.0</param>
+<param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out (multiples of thickness)">0.0</param>
+<param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">2.0</param>
+<param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
+</page>
+<page name="tab_3" gui-text="Mounting Edge"><param name="Mounting_d_head" type="float" precision="2" max="9999" gui-text="d_head" gui-description="head diameter of mounting screw (in mm)">6.5</param>
+<param name="Mounting_d_shaft" type="float" precision="2" max="9999" gui-text="d_shaft" gui-description="shaft diameter of mounting screw (in mm)">3.0</param>
+<param name="Mounting_margin" type="float" precision="2" max="9999" gui-text="margin" gui-description="minimum space left and right without holes (fraction of the edge length)">0.125</param>
+<param name="Mounting_num" type="int" max="9999" gui-text="num" gui-description="number of mounting holes (integer)">2</param>
+<param name="Mounting_side" type="optiongroup" appearance="combo" gui-text="side" gui-description="side of box (not all valid configurations make sense...)">
+<option value="back">back</option>
+<option value="left">left</option>
+<option value="right">right</option>
+<option value="front">front</option>
+    </param>
+<param name="Mounting_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="edge style">
+<option value="straight edge, within">straight edge, within</option>
+<option value="straight edge, extended">straight edge, extended</option>
+<option value="mounting tab">mounting tab</option>
+    </param>
+</page>
+<page name="tab_4" gui-text="HandleEdge"><param name="HandleEdge_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height above the wall in mm">20.0</param>
+<param name="HandleEdge_hole_height" type="float" precision="2" max="9999" gui-text="hole_height" gui-description="height of hole(s) in percentage of maximum hole height (handle height - 2 * material thickness)">75.0</param>
+<param name="HandleEdge_hole_width" type="string" gui-text="hole_width" gui-description="width of hole(s) in percentage of maximum hole width (width of edge - (n+1) * material thickness)">40:40</param>
+<param name="HandleEdge_on_sides" type="bool" gui-text="on_sides" gui-description="added to side panels if checked, to front and back otherwise (only used with top_edge parameter)">true</param>
+<param name="HandleEdge_radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="radius of corners in mm">10.0</param>
+<param name="HandleEdge_outset" type="float" precision="2" max="9999" gui-text="outset" gui-description="extend the handle along the length of the edge (multiples of thickness)">1.0</param>
+</page>
+<page name="tab_5" gui-text="Example">
+<image>./WallRack-thumb.jpg</image>
+</page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/WallRack</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="WallMounted"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

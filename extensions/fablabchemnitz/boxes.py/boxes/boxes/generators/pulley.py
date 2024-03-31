@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,7 +15,6 @@
 
 from boxes import *
 from boxes import pulley
-import math
 
 
 class Pulley(Boxes):
@@ -24,7 +22,7 @@ class Pulley(Boxes):
 
     ui_group = "Part"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         # remove cli params you do not need
         self.buildArgParser(h=6.)
@@ -77,6 +75,3 @@ class Pulley(Boxes):
 
         for i in range(int(math.ceil(self.h / self.thickness))):
             self.pulley(self.teeth, self.profile, insideout=self.insideout, r_axle=self.axle / 2.0, move="right")
-
-
-

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,20 @@
 
 from boxes import *
 
+
 class HingeBox(Boxes):
     """Box with lid attached by cabinet hinges"""
 
+    description = """Needs (metal) pins as hinge axles. Pieces of nails will
+do fine. They need to be cut to length as they are captured as soon as the
+hinges are assembled.
+
+Assemble the box and the lid separately. Then insert the axle into the hinges.
+Then attach the hinges on the inside of the box and then connect them to lid.
+"""
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.addSettingsArgs(edges.CabinetHingeSettings)
@@ -37,7 +44,7 @@ class HingeBox(Boxes):
 
         x, y, h, hl = self.x, self.y, self.h, self.lidheight
         s = self.splitlid
-        
+
         if self.outside:
             x = self.adjustSize(x)
             y = self.adjustSize(y)
@@ -79,6 +86,3 @@ class HingeBox(Boxes):
         self.edges['u'].parts(move="up")
         if s:
             self.edges['u'].parts(move="up")
-
-
-

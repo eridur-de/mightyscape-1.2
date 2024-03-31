@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,13 @@
 
 from boxes import *
 
+
 class AngledCutJig(Boxes): # Change class name!
     """Jig for making angled cuts in a laser cutter"""
 
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=1.)
@@ -59,7 +59,6 @@ class AngledCutJig(Boxes): # Change class name!
             lambda:self.fingerHolesAt(0, 4.5*t, l2, 0), None,
             lambda:self.fingerHolesAt(0, 4.5*t, l2, 0), None],
                              move="right")
-        
+
         self.rectangularTriangle(x, th, "fef", num=2, move="up")
         self.rectangularTriangle(20, th2, "fef", num=2, move="up")
-        

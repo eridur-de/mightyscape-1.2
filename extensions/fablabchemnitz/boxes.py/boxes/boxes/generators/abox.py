@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,22 +14,21 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
+from boxes.lids import LidSettings
+
 
 class ABox(Boxes):
     """A simple Box"""
 
     description = "This box is kept simple on purpose. If you need more features have a look at the UniversalBox."
-    
+
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
+        self.addSettingsArgs(LidSettings)
         self.buildArgParser("x", "y", "h", "outside", "bottom_edge")
-        #self.argparser.add_argument(
-        #    "--lid",  action="store", type=str, default="default (none)",
-        #    choices=("default (none)", "chest", "flat"),
-        #    help="additional lid (for straight top_edge only)")
 
     def render(self):
         x, y, h = self.x, self.y, self.h
@@ -53,7 +51,7 @@ class ABox(Boxes):
 
             if self.bottom_edge != "e":
                 self.rectangularWall(x, y, "ffff", move="up")
-            #self.drawAddOnLid(x, y, self.lid)
+            self.lid(x, y)
 
         self.rectangularWall(x, h, [b, sideedge, t3, sideedge],
                              ignore_widths=[1, 6], move="right only")
@@ -61,5 +59,3 @@ class ABox(Boxes):
                              ignore_widths=[1, 6], move="up")
         self.rectangularWall(y, h, [b, "f", t4, "f"],
                              ignore_widths=[1, 6], move="up")
-
-

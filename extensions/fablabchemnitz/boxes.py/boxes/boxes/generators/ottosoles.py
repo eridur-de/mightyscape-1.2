@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2018 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,13 @@
 
 from boxes import *
 
+
 class OttoSoles(Boxes):
     """Foam soles for the OttO bot"""
 
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.buildArgParser(x=58., y=38.)
@@ -45,7 +45,7 @@ class OttoSoles(Boxes):
         w2 = w * 2**0.5 - c2 / 2
         d = w * math.tan(math.radians(22.5))
 
-        
+
         self.edges["d"].settings.setValues(w, size=0.4, depth=0.3,
                                            radius=0.05)
 

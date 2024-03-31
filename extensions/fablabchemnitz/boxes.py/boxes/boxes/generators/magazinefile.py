@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -17,10 +16,11 @@
 from boxes import *
 from boxes.lids import _TopEdge
 
-class MagazinFile(Boxes):
+
+class MagazineFile(Boxes):
     """Open magazine file"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.buildArgParser(x=100, y=200, h=300, hi=0, outside=False)
         self.addSettingsArgs(edges.FingerJointSettings)
@@ -87,6 +87,3 @@ class MagazinFile(Boxes):
         self.side(y, h, hi, t1)
         self.moveTo(y + 15, h + hi + 15, 180)
         self.side(y, h, hi, t3)
-
-
-

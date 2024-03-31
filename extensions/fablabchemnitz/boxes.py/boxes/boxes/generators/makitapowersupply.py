@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,6 +15,7 @@
 
 from boxes import *
 
+
 class MakitaPowerSupply(Boxes):
     """Bench power supply powered with Maktia 18V battery or laptop power supply"""
 
@@ -27,7 +27,7 @@ To allow powering by laptop power supply: flip switch, Lenovo round socket (or a
 
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings)

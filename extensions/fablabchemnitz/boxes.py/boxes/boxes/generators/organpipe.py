@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (C) 2013-2018 Florian Festi
 #
 # Based on pipecalc by Christian F. Coors
@@ -18,8 +16,9 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+from math import *
+
 from boxes import *
-from  math import *
 
 pitches = ['c', 'c#', 'd', 'd#', 'e', 'f', 'f#', 'g', 'g#', 'a', 'a#' ,'b']
 
@@ -41,16 +40,16 @@ class OrganPipe(Boxes): # Change class name!
     def getRadius(self, pitch, octave, intonation):
         steps = pitches.index(pitch) + (octave-2)*12 + intonation
         return 0.5 * 0.15555 * 0.957458**steps
-    
+
     def getAirSpeed(self, wind_pressure, air_density=1.2):
         return (2.0 * (wind_pressure / air_density))**.5
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings, finger=3.0, space=3.0,
                              surroundingspaces=1.0)
-        
+
         """
     air_temperature: f64,
 """
@@ -73,7 +72,7 @@ class OrganPipe(Boxes): # Change class name!
             help="Cutup to mouth ratio")
         self.argparser.add_argument(
             "--mensur",  action="store", type=int, default=0,
-            help=u"Distance in halftones in the Normalmensur by Töpfer")
+            help="Distance in halftones in the Normalmensur by Töpfer")
         self.argparser.add_argument(
             "--windpressure",  action="store", type=float, default=588.4,
             help="uses unit selected below")
@@ -91,12 +90,12 @@ class OrganPipe(Boxes): # Change class name!
         f = self.getFrequency(self.pitch, self.octave, 440)
 
         self.windpressure *= pressure_units.get(self.windpressure_units, 1.0)
-        
+
         speed_of_sound = 343.6 # XXX util::speed_of_sound(self.air_temperature); // in m/s
         air_density = 1.2
         air_speed = self.getAirSpeed(self.windpressure, air_density)
 
-        i = self.intonation;
+        i = self.intonation
         radius = self.getRadius(self.pitch, self.octave, i) * 1000
         cross_section = pi * radius**2
         circumference = pi * radius * 2.0
@@ -110,9 +109,9 @@ class OrganPipe(Boxes): # Change class name!
         sound_power = (0.001 * pi * (air_density / speed_of_sound) * f**2
                        * (1.7 * (jet_thickness * speed_of_sound * f * mouth_area * mouth_area**.5)**.5)**2)
 
-        air_consumption_rate = air_speed * mouth_width * jet_thickness * 1E6;
+        air_consumption_rate = air_speed * mouth_width * jet_thickness * 1E6
 
-        wavelength = speed_of_sound / f * 1000;
+        wavelength = speed_of_sound / f * 1000
 
         if self.stopped:
             theoretical_resonator_length = wavelength / 4.0
@@ -125,11 +124,11 @@ class OrganPipe(Boxes): # Change class name!
         air_hole_diameter = 2.0 * ((mouth_width * jet_thickness * 10.0)**.5 / pi)
 
         total_length = resonator_length + base_length
-        
+
 
         e = ["f", "e",
              edges.CompoundEdge(self, "fef", (resonator_length - mouth_height - 10*t, mouth_height + 10*t, base_length)), "f"]
-        
+
         self.rectangularWall(total_length, pipe_depth, e, callback=[
             lambda: self.fingerHolesAt(base_length-0.5*t, 0, pipe_depth-jet_thickness)],
                              move="up")
@@ -146,4 +145,3 @@ class OrganPipe(Boxes): # Change class name!
         self.rectangularWall(mouth_width, pipe_depth, "fFfF", callback=[
             lambda:self.hole(mouth_width/2, pipe_depth/2, d=air_hole_diameter)], move="right")
         self.rectangularWall(mouth_width, pipe_depth - jet_thickness, "ffef", move="right")
-

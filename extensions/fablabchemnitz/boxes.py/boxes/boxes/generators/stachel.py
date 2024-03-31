@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,14 +14,14 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math
+
 
 class Stachel(Boxes):
     """Bass Recorder Endpin"""
-    
+
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.argparser.add_argument(
@@ -45,7 +44,7 @@ class Stachel(Boxes):
 
         tw = 2*ro + 2*rp
         th = 2*ro + l
-        
+
         if self.move(tw, th, move, True):
             return
 
@@ -80,10 +79,10 @@ class Stachel(Boxes):
         else:
             self.polyline(l+l1-r)
         self.polyline(0, (90, r), w-2*r, (90, r))
-        
+
         self.move(tw, th, move)
-        
-        
+
+
 
     def render(self):
 
@@ -94,5 +93,3 @@ class Stachel(Boxes):
         self.layer(ri-20, ro, rp, move="up")
         self.layer(ri, ro, rp, True, move="up")
         self.layer(ri, ro, rp, move="up")
-
-

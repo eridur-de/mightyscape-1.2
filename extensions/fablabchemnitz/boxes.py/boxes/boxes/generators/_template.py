@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,22 +15,27 @@
 
 from boxes import *
 
+
 class BOX(Boxes): # Change class name!
     """DESCRIPTION"""
 
     ui_group = "Unstable" # see ./__init__.py for names
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         # Uncomment the settings for the edge types you use
         # use keyword args to set default values
         # self.addSettingsArgs(edges.FingerJointSettings, finger=1.0,space=1.0)
+        # self.addSettingsArgs(edges.DoveTailSettings)
         # self.addSettingsArgs(edges.StackableSettings)
         # self.addSettingsArgs(edges.HingeSettings)
-        # self.addSettingsArgs(edges.LidSettings)
+        # self.addSettingsArgs(edges.SlideOnLidSettings)
         # self.addSettingsArgs(edges.ClickSettings)
         # self.addSettingsArgs(edges.FlexSettings)
+        # self.addSettingsArgs(edges.HandleEdgeSettings)
+        # self.addSettingsArgs(edges.RoundedTriangleEdgeSettings)
+        # self.addSettingsArgs(edges.MountingSettings)
 
         # remove cli params you do not need
         self.buildArgParser(x=100, sx="3*50", y=100, sy="3*50", h=100, hi=0)
@@ -51,8 +55,7 @@ class BOX(Boxes): # Change class name!
                                       space = 10, finger=10,
                                       width=self.thickness)
         p = edges.FingerJointEdge(self, s)
-        p.char = "a" # 'a', 'A', 'b' and 'B' is reserved for beeing used within generators
+        p.char = "a" # 'a', 'A', 'b' and 'B' is reserved for being used within generators
         self.addPart(p)
 
         # render your parts here
-

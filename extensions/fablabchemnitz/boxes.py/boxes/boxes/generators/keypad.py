@@ -4,6 +4,7 @@ from copy import deepcopy
 
 from boxes import Boxes, boolarg
 from boxes.edges import FingerJointSettings
+
 from .keyboard import Keyboard
 
 
@@ -18,7 +19,7 @@ class Keypad(Boxes, Keyboard):
     box_padding = 10
     triangle = 25.0
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.argparser.add_argument(
             '--h', action='store', type=int, default=30,
@@ -109,7 +110,7 @@ class Keypad(Boxes, Keyboard):
         return [callback]
 
     def hotplug(self):
-        """Callback for the key stabelizers."""
+        """Callback for the key stabilizers."""
         self.pcb_holes(
             with_pcb_mount=self.pcb_mount_enable,
             with_diode=self.diode_enable,

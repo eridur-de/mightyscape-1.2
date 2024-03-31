@@ -1,11 +1,17 @@
-from .edges import Settings, BaseEdge
-from boxes import Boxes, edges
+from __future__ import annotations
+
 import math
+from typing import Any
+
+from boxes import Boxes, edges
+
+from .edges import BaseEdge, Settings
+
 
 class _WallMountedBox(Boxes):
     ui_group = "WallMounted"
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.addWallSettingsArgs()
 
@@ -17,7 +23,7 @@ class _WallMountedBox(Boxes):
         self.addSettingsArgs(FrenchCleatSettings)
         self.argparser.add_argument(
             "--walltype",  action="store", type=str, default="plain",
-            choices=["plain", "plain reenforced", "slatwall", "dinrail",
+            choices=["plain", "plain reinforced", "slatwall", "dinrail",
                      "french cleat"],
             help="Type of wall system to attach to")
 
@@ -41,7 +47,7 @@ class _WallMountedBox(Boxes):
 
         s.edgeObjects(self)
         self.wallHolesAt = self.edges["|"]
-        if self.walltype.endswith("reenforced"):
+        if self.walltype.endswith("reinforced"):
             self.edges["c"] = self.edges["d"]
             self.edges["C"] = self.edges["D"]
 
@@ -52,7 +58,7 @@ class _WallMountedBox(Boxes):
 class WallEdge(BaseEdge):
 
     _reversed = False
-    
+
     def lengths(self, length):
         return [length]
 
@@ -84,7 +90,7 @@ class WallJoinedEdge(WallEdge):
         self.edges["f"](length)
         self.step(t)
 
-    def startwidth(self):
+    def startwidth(self) -> float:
         return self.settings.thickness
 
 class WallBackEdge(WallEdge):
@@ -98,7 +104,7 @@ class WallBackEdge(WallEdge):
         self.edges["F"](length)
         self.step(-t)
 
-    def margin(self):
+    def margin(self) -> float:
         return self.settings.thickness
 
 class WallHoles(WallEdge):
@@ -110,7 +116,7 @@ class WallHoles(WallEdge):
     def _joint(self, length):
         self.fingerHolesAt(0, 0, length, 0)
         self.moveTo(length, 0)
-                
+
     def __call__(self, x, y, length, angle, **kw):
         """
         Draw holes for a matching WallJoinedEdge
@@ -137,7 +143,7 @@ class WallHoleEdge(WallHoles):
     """Edge with holes for a parallel finger joint"""
     description = "Edge (parallel slot wall Holes)"
 
-    def __init__(self, boxes, wallHoles, **kw):
+    def __init__(self, boxes, wallHoles, **kw) -> None:
         super().__init__(boxes, wallHoles.settings, **kw)
         self.wallHoles = wallHoles
 
@@ -149,15 +155,14 @@ class WallHoleEdge(WallHoles):
                 px, dist, length, angle)
         self.edge(length, tabs=2)
 
-    def startwidth(self):
+    def startwidth(self) -> float:
         """ """
         return self.wallHoles.settings.edge_width + self.settings.thickness
 
-    def margin(self):
+    def margin(self) -> float:
         return 0.0
-        
-class WallSettings(Settings):
 
+class WallSettings(Settings):
     """Settings for plain WallEdges
 Values:
 
@@ -167,7 +172,7 @@ Values:
 
 """
 
-    absolute_params = {
+    absolute_params: dict[str, Any] = {
     }
 
     relative_params = {
@@ -180,7 +185,7 @@ Values:
         bc = self.base_class
         bn = bc.__name__
         wallholes = type(bn+"Hole", (WallHoles, bc), {})(boxes, self)
-        
+
         edges = [bc(boxes, self),
                  type(bn+"Reversed", (bc,), {'_reversed' : True})(boxes, self),
                  type(bn+"Joined", (WallJoinedEdge, bc), {})(boxes, self),
@@ -256,11 +261,10 @@ class SlatWallEdge(WallEdge):
             poly = reversed(poly)
         self.polyline(*poly)
 
-    def margin(self):
+    def margin(self) -> float:
         return self.settings.hook_depth + self.settings.hook_distance
 
 class SlatWallSettings(WallSettings):
-
     """Settings for SlatWallEdges
 Values:
 
@@ -332,11 +336,10 @@ class DinRailEdge(WallEdge):
             poly = reversed(poly)
         self.polyline(*poly)
 
-    def margin(self):
+    def margin(self) -> float:
         return self.settings.depth
 
 class DinRailSettings(WallSettings):
-
     """Settings for DinRailEdges
 Values:
 
@@ -410,11 +413,10 @@ class FrenchCleatEdge(WallEdge):
             poly = reversed(poly)
         self.polyline(*poly)
 
-    def margin(self):
+    def margin(self) -> float:
         return self.settings.depth
 
 class FrenchCleatSettings(WallSettings):
-
     """Settings for FrenchCleatEdges
 Values:
 

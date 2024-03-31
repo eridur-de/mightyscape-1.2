@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -26,7 +25,7 @@ class Silverware(Boxes):
     ui_group = "Unstable"
 
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.buildArgParser(x=250, y=154, h=120)
@@ -106,4 +105,3 @@ class Silverware(Boxes):
 
         self.moveTo(-3.0 * (l + 2 * t + 8 * b), h - 10 + 2 * t + 8 * b)
         self.basePlate(x, y, r)
-

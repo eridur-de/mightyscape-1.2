@@ -54,6 +54,19 @@ If you want feed back on you code feel free to open a PR. State that
 this is work in progress in the PR message. It's OK if it does not
 follow the guidelines (yet).
 
+Check Code
+..........
+
+The `pre-commit <https://pre-commit.com/>`_ tool is used to verify the code style.
+When installed, it automatically checks and corrects the code before each commit.
+
+* Install *pre-commit*, e.g. :code:`pip install pre-commit`
+* Install githook :code:`pre-commit install`
+
+For manual check use :code:`pre-commit run --all-files`.
+
+To remove githook use :code:`pre-commit uninstall`.
+
 Writing new Generators
 ......................
 
@@ -71,12 +84,11 @@ Adding new Dependencies
 .......................
 
 Adding new dependencies should be considered thoroughly. If a new
-depencendcy is added it needs to be added in all these places:
+dependency is added it needs to be added in all these places:
 
 * *documentation/src/install.rst*
 * RST files in *documentation/src/install/*
 * *scripts/Dockerfile*
-* *.travis.yml*
 
 If it is a Python module it also needs to be added:
 * *requirements.txt*
@@ -96,23 +108,24 @@ To check your changes docs need to be build with *make html* in
 *documentation/build/html*. You need to have *sphinx* installed for
 this to work.
 
-The online documentation gets build and updated automatically by the Travis CI
-as soon as the changes makes it into the GitHub master branch.
+The online documentation gets build and updated automatically by the Github Actions
+as soon as the changes makes it into the GitHub *master* branch.
 
 Provide photos for generators
 -----------------------------
 
 Many generators still come without an example photo. If you are
 creating such an item consider donating a good picture. You can
-simply attach it to `ticket #140
-<https://github.com/florianfesti/boxes/issues/140>`_. If you want you can
+simply attach it to `ticket #628
+<https://github.com/florianfesti/boxes/issues/628>`_. If you want you can
 also create a proper pull request instead:
 
-* Make sure you have sh, convert (ImageMagick), sed and sha256sum installed
+* Make sure you have sh, ImageMagick (You will need to install legacy utilities for convert), sed and sha256sum installed
 * The picture needs to be an jpg file with the name of the generator
   (This is case sensitive. Use CamelCase.)
 * The picture should be 1200 pixels wide and square or not too far
   from square (3:4 is fine).
+* Minimize the file size by running it through `Tiny Png <https://tinypng.com/>`_
 * Place the file in *static/samples/*
 * Check if the picture shows up at the bottom of the settings page of
   the generator when running *scripts/boxesserver*
@@ -142,7 +155,11 @@ perfect. We can work on it together.
 Running the Code
 ----------------------------
 
-To serve website, run `scripts/boxesserver` script
+To serve website, run :code:`scripts/boxesserver` script.
+
+You can set the BOXES_GENERATOR_PATH environment variable to add
+custom generators if you cannot easily copy them in the sources /
+system installation.
 
 Reporting bugs
 --------------

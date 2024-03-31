@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2021 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -22,9 +21,10 @@ class CardHolder(Boxes):
 
     ui_group = "Shelf"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
+        self.addSettingsArgs(edges.StackableSettings)
         self.addSettingsArgs(edges.GroovedSettings)
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=1.0)
 

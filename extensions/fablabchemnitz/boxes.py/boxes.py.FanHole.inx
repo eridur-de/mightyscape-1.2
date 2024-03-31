@@ -3,35 +3,33 @@
 <name>FanHole</name>
 <id>info.festi.boxes.py.FanHole</id>
 <param name="generator" type="string" gui-hidden="true">fanhole</param>
-<param name="tab" type="notebook">
-    <page name="tab_0" gui-text="FanHole">
-        <param name="diameter" type="float" precision="2" max="9999" gui-text="diameter" gui-description="diameter of the fan hole">80</param>
-        <param name="mounting_holes" type="float" precision="2" max="9999" gui-text="mounting_holes" gui-description="diameter of the fan mounting holes">3</param>
-        <param name="mounting_holes_inset" type="float" precision="2" max="9999" gui-text="mounting_holes_inset" gui-description="distance of the fan mounting holes from the outside">5</param>
-        <param name="arms" type="int" max="9999" gui-text="arms" gui-description="number of arms">10</param>
-        <param name="inner_disc" type="float" precision="2" max="9999" gui-text="inner_disc" gui-description="relative size of the inner disc">0.2</param>
-        <param name="style" type="optiongroup" appearance="combo" gui-text="style" gui-description="Style of the fan hole">
-            <option value="CW Swirl">CW Swirl</option>
-            <option value="CCW Swirl">CCW Swirl</option>
-            <option value="Hole">Hole</option>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="FanHole"><param name="diameter" type="float" precision="2" max="9999" gui-text="diameter" gui-description="diameter of the fan hole">80</param>
+<param name="mounting_holes" type="float" precision="2" max="9999" gui-text="mounting_holes" gui-description="diameter of the fan mounting holes">3</param>
+<param name="mounting_holes_inset" type="float" precision="2" max="9999" gui-text="mounting_holes_inset" gui-description="distance of the fan mounting holes from the outside">5</param>
+<param name="arms" type="int" max="9999" gui-text="arms" gui-description="number of arms">10</param>
+<param name="inner_disc" type="float" precision="2" max="9999" gui-text="inner_disc" gui-description="relative size of the inner disc">0.2</param>
+<param name="style" type="optiongroup" appearance="combo" gui-text="style" gui-description="Style of the fan hole">
+<option value="CW Swirl">CW Swirl</option>
+<option value="CCW Swirl">CCW Swirl</option>
+<option value="Hole">Hole</option>
     </param>
-    </page>
-    <page name="tab_1" gui-text="Default">
-        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
-        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
-        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
-        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
-        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
-        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
-            <option value="loop">loop</option>
-            <option value="corner">corner</option>
-            <option value="backarc">backarc</option>
+</page>
+<page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+<param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+<param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
+<param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+<param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+<param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+<option value="loop">loop</option>
+<option value="corner">corner</option>
+<option value="backarc">backarc</option>
     </param>
-        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
-    </page>
-    <page name="tab_2" gui-text="Example">
-        <image>./FanHole-thumb.jpg</image>
-    </page>
+<param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+</page>
+<page name="tab_2" gui-text="Example">
+<image>./FanHole-thumb.jpg</image>
+</page>
 </param>
 <label appearance="url">https://www.festi.info/boxes.py/FanHole</label>
 <effect>

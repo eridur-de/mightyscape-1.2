@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,7 +14,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import copy
+
 
 class SlotEdge(edges.Edge):
 
@@ -24,21 +23,21 @@ class SlotEdge(edges.Edge):
         r, h = self.settings.radius, self.settings.h
         sh = self.settings.sh # distance side to center
 
-        li = 2 * sh * math.tan(math.radians(90/n)) # side inner 2x polygone
+        li = 2 * sh * math.tan(math.radians(90/n)) # side inner 2x polygon
         ls2 = t / math.tan(math.radians(180/n))
         ls1 = t / math.cos(math.radians(90-(180/n)))
 
         lo = (length-li-2*ls1)/2
 
         li = li - 2*ls2 # correct for overlap of wall
-        
+
         d = h/2
-        
+
         if li > 0:
             poly = [lo-1, (90, 1), d+t-1, -90, ls1+ls2, -90, d-t, (90, t)]
         self.polyline(*(poly + [li-2*t] + list(reversed(poly))))
 
-    def startwidth(self):
+    def startwidth(self) -> float:
         return self.settings.thickness
 
 
@@ -50,7 +49,7 @@ class RegularStarBox(Boxes):
 
     description = """![Open box](static/samples/RegularStarBox-2.jpg)"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.buildArgParser("h", "outside")

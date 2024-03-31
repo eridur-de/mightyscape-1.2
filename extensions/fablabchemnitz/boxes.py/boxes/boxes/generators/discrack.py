@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# coding: utf-8
 # Copyright (C) 2019 chrysn <chrysn@fsfe.org>
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,10 +13,10 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from __future__ import division, unicode_literals
+from math import cos, pi, sin, sqrt
 
 from boxes import *
-from math import sqrt, pi, sin, cos
+
 
 def offset_radius_in_square(squareside, angle, outset):
     """From the centre of a square, rotate by an angle relative to the
@@ -34,7 +32,7 @@ def offset_radius_in_square(squareside, angle, outset):
     10.0
     >>> offset_radius_in_square(20, 0, 5)
     10.0
-    >>> # Without offset, it's half squre length divided by cos(angle) -- at
+    >>> # Without offset, it's half square length divided by cos(angle) -- at
     >>> # least before it hits the next wall
     >>> offset_radius_in_square(20, 15, 0) # doctest:+ELLIPSIS
     10.35276...
@@ -79,7 +77,7 @@ class DiscRack(Boxes):
 
     ui_group = "Shelf"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.buildArgParser(sx="20*10")
@@ -166,21 +164,15 @@ class DiscRack(Boxes):
 
         def word_thickness(length):
             if length > 0:
-                return "very thin (%.2g mm at a thickness of %.2g mm)" % (
-                        length, self.thickness)
+                return f"very thin ({length:.2g} mm at a thickness of {self.thickness:.2g} mm)"
             if length < 0:
                 return "absent"
 
         if self.rear_outset < self.thickness:
-            warnings.append("Rear upper constraint is %s. Consider increasing"
-                    " the disc outset parameter, or move the angle away from 45°."
-                    % word_thickness(self.rear_outset)
-                    )
+            warnings.append("Rear upper constraint is %s. Consider increasing the disc outset parameter, or move the angle away from 45°." % word_thickness(self.rear_outset))
 
         if self.lower_outset < self.thickness:
-            warnings.append("Lower front constraint is %s. Consider increasing"
-                    " the disc outset parameter, or move the angle away from 45°."
-                    % word_thickness(self.lower_outset))
+            warnings.append("Lower front constraint is %s. Consider increasing the disc outset parameter, or move the angle away from 45°." % word_thickness(self.lower_outset))
 
         # Are the discs supported where the grids meet?
 
@@ -189,26 +181,23 @@ class DiscRack(Boxes):
         inner_reardistance = r * self.lower_factor - self.rear_halfslit
 
         if inner_lowerdistance < 0 or inner_reardistance < 0:
-            warnings.append("Corner is inside the disc radios, discs would not"
-                    " be supported. Consider increasing the factor parameters.")
+            warnings.append("Corner is inside the disc radios, discs would not be supported. Consider increasing the factor parameters.")
 
         # Won't the type-H edge on the rear side make the whole contraption
         # wiggle?
 
         max_slitlengthplush = offset_radius_in_square(
                 self.outer, self.angle, r * self.rear_factor + self.thickness)
-        slitlengthplush = self.rear_halfslit + self.thickness * ( 1 + \
+        slitlengthplush = self.rear_halfslit + self.thickness * ( 1 +
                 self.edgesettings['FingerJoint']['edge_width'])
 
         if slitlengthplush > max_slitlengthplush:
-            warnings.append("Joint would protrude from lower box edge. Consider"
-                    " increasing the the disc outset parameter, or move the"
-                    " angle away from 45°.")
+            warnings.append("Joint would protrude from lower box edge. Consider increasing the the disc outset parameter, or move the angle away from 45°.")
 
         # Can the discs be removed at all?
         # Does not need explicit checking, for Thales' theorem tells us that at
-        # the point wher there is barely support in the corner, three contact
-        # points on the circle form just a demicircle and the discs can be
+        # the point where there is barely support in the corner, three contact
+        # points on the circle form just a semicircle and the discs can be
         # inserted/removed. When we keep the other contact points and move the
         # slits away from the corner, the disc gets smaller and thus will fit
         # through the opening that is as wide as the diameter of the largest

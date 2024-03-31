@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (C) 2021 Guillaume Collic
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,6 +14,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import math
+
 from boxes import Boxes, boolarg
 
 
@@ -27,10 +26,10 @@ class CoffeeCapsuleHolder(Boxes):
     ui_group = "Misc"
 
     description = """
-    You can store your coffee capsule near your expresso machine with this. It works both vertically, or upside down under a shelf.
+    You can store your coffee capsule near your espresso machine with this. It works both vertically, or upside down under a shelf.
 """
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.argparser.add_argument(
             "--columns",

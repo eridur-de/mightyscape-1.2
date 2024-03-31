@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2018 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -22,7 +21,7 @@ class Rack19Box(Boxes):
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=0.5)
         self.argparser.add_argument(
@@ -46,22 +45,22 @@ class Rack19Box(Boxes):
         t = self.thickness
         self.fingerHolesAt(0, self.h-1.5*t, self.triangle, 0)
         self.fingerHolesAt(self.x, self.h-1.5*t, self.triangle, 180)
-        
+
     def wallxfCB(self): # front
         t = self.thickness
         for x in (8.5, self.x+2*17.+2*t-8.5):
             for y in (6., self.h-6.+t):
                 self.rectangularHole(x, y, 10, 6.5, r=3.25)
-        
+
         self.moveTo(t+17., t)
         self.wallxCB()
-        
+
     def wallyCB(self):
         t = self.thickness
         self.fingerHolesAt(0, self.h-1.5*t, self.triangle, 0)
         self.fingerHolesAt(self.y, self.h-1.5*t, self.triangle, 180)
-        
-        
+
+
     def _render(self, type):
 
         t = self.thickness
@@ -77,17 +76,18 @@ class Rack19Box(Boxes):
         tr = self.triangle
         trh = tr / 3.
 
-        self.rectangularWall(y, h, "ffef", callback=[self.wallyCB], move="right")
-        self.rectangularWall(x, h, "fFeF", callback=[self.wallxCB],
-                             move="up")
-        self.flangedWall(x, h, "FFeF", callback=[self.wallxfCB], r=t,
-                         flanges=[0., 17., -t, 17.])
         self.rectangularWall(y, h, "ffef", callback=[self.wallyCB],
-                             move="left up")
+                             move="right", label="right")
+        self.flangedWall(x, h, "FFEF", callback=[self.wallxfCB], r=t,
+                         flanges=[0., 17., -t, 17.], move="up", label="front")
+        self.rectangularWall(x, h, "fFeF", callback=[self.wallxCB],
+                             label="back")
+        self.rectangularWall(y, h, "ffef", callback=[self.wallyCB],
+                             move="left up", label="left")
 
-        self.rectangularWall(x, y, "fFFF", move="right")
+        self.rectangularWall(x, y, "fFFF", move="up", label="bottom")
         self.rectangularWall(x, y, callback=[
-            lambda:self.hole(trh, trh, d=d2)] * 4, move='up')
+            lambda:self.hole(trh, trh, d=d2)] * 4, move='right', label="lid")
 
         self.rectangularTriangle(tr, tr, "ffe", num=4,
             callback=[None, lambda: self.hole(trh, trh, d=d1)])

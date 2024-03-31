@@ -15,10 +15,9 @@ Options:
   --list        List available generators.
 """
 
-from __future__ import print_function
-import sys
+import gettext
 import os
-from pkg_resources import get_distribution
+import sys
 
 try:
     import boxes
@@ -28,26 +27,10 @@ except ImportError:
 
 import boxes.generators
 
-#__version__ = get_distribution('boxes').version
-
-
-def main():
-    #version = 'boxes.py v{}'.format(__version__)
-
-    if len(sys.argv) > 1 and sys.argv[1].startswith("--id="):
-        del sys.argv[1]
-    if len(sys.argv) == 1:
-        print_usage()
-    elif sys.argv[1] == '--list':
-        list_grouped_generators()
-    else:
-        name = sys.argv[1].lower()
-        if name.startswith("--generator="):
-            name = name[12:]
-        run_generator(name, sys.argv[2:])
 
 def print_usage():
     print(__doc__)
+
 
 def list_grouped_generators():
     print('Available generators:')
@@ -61,21 +44,29 @@ def list_grouped_generators():
             print(' *  {}  -  {}'.format(box.__name__, box.__doc__ or ''))
 
 
+def get_translation():
+    try:
+        return gettext.translation('boxes.py', localedir='locale')
+    except OSError:
+        return gettext.translation('boxes.py', fallback=True)
+
+
 def run_generator(name, args):
     generators = generators_by_name()
     lower_name = name.lower()
 
     if lower_name in generators.keys():
         box = generators[lower_name]()
+        box.translations = get_translation()
         box.parseArgs(args)
         box.open()
         box.render()
-        box.close()
+        data = box.close()
+        with os.fdopen(sys.stdout.fileno(), "wb", closefd=False) if box.output == "-" else open(box.output, 'wb') as f:
+            f.write(data.getvalue())
     else:
-        msg = ('Unknown generator \'{}\'. Use boxes --list to get a list of '
-               'available commands.\n').format(name)
+        msg = f'Unknown generator \'{name}\'. Use boxes --list to get a list of available commands.\n'
         sys.stderr.write(msg)
-
 
 def generator_groups():
     generators = generators_by_name()
@@ -101,6 +92,20 @@ def generators_by_name():
         name.split('.')[-1].lower(): generator
         for name, generator in all_generators.items()
     }
+
+
+def main() -> None:
+    if len(sys.argv) > 1 and sys.argv[1].startswith("--id="):
+        del sys.argv[1]
+    if len(sys.argv) == 1:
+        print_usage()
+    elif sys.argv[1] == '--list':
+        list_grouped_generators()
+    else:
+        name = sys.argv[1].lower()
+        if name.startswith("--generator="):
+            name = name[12:]
+        run_generator(name, sys.argv[2:])
 
 
 if __name__ == '__main__':

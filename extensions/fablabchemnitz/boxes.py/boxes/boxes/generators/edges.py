@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,13 +15,14 @@
 
 from boxes import *
 
+
 class Edges(Boxes):
-    """Print all registerd Edge types"""
-    
+    """Print all registered Edge types"""
+
     webinterface = False
 
-    def __init__(self):
-        Boxes.__init__(self)        
+    def __init__(self) -> None:
+        Boxes.__init__(self)
 
     def render(self):
         self.ctx = None
@@ -31,4 +31,3 @@ class Edges(Boxes):
         for c in sorted(chars, key=lambda x:(x.lower(), x.isupper())):
             print("%s %s - %s" %(c, self.edges[c].__class__.__name__,
                   self.edges[c].__doc__))
-

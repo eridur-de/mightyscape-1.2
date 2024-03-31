@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,7 +14,6 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math
 
 
 class FlexBox3(Boxes):
@@ -23,7 +21,7 @@ class FlexBox3(Boxes):
 
     ui_group = "FlexBox"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=1)
         self.addSettingsArgs(edges.FlexSettings)
@@ -163,6 +161,3 @@ class FlexBox3(Boxes):
         self.flexBoxSide(x, y, r, move="right")
         self.flexBoxSide(x, y, r, move="mirror right")
         self.rectangularWall(z, y, edges="fFeF")
-
-
-

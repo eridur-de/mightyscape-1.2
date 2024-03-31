@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,16 +14,14 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math
 
 
 class Planetary(Boxes):
-
     """Planetary Gear with possibly multiple identical stages"""
 
     ui_group = "Part"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.argparser.add_argument(
             "--sunteeth", action="store", type=int, default=8,
@@ -102,6 +99,3 @@ class Planetary(Boxes):
             self.gears(teeth=self.planetteeth, dimension=self.modulus,
                        angle=pressure_angle,
                        mount_hole=self.shaft, profile_shift=profile_shift, move="up")
-
-
-

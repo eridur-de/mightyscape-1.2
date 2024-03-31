@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2020 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,6 +15,7 @@
 
 from boxes import *
 
+
 class Console2(Boxes):
     """Console with slanted panel and service hatches"""
 
@@ -25,7 +25,7 @@ class Console2(Boxes):
 This box is designed as a housing for electronic projects. It has hatches that can be re-opened with simple tools. It intentionally cannot be opened with bare hands - if build with thin enough material.
 
 #### Caution
-There is a chance that the latches of the back wall or the back wall itself interfere with the front panel or it's mounting frame/lips. The generator does not check for this. So depending on the variant choosen you might need to make the box deeper (increase y parameter) or the panel angle steeper (increase angle parameter) until there is enough room.
+There is a chance that the latches of the back wall or the back wall itself interfere with the front panel or it's mounting frame/lips. The generator does not check for this. So depending on the variant chosen you might need to make the box deeper (increase y parameter) or the panel angle steeper (increase angle parameter) until there is enough room.
 
 It's also possible that the frame of the panel interferes with the floor if the hi parameter is too small.
 
@@ -40,7 +40,7 @@ If the panel is removable you need to add the springs with the tabs to the side 
 
 ![Back wall details](static/samples/Console2-panel-detail.jpg)
 
-If space is tight you may consider not glueing the cross pieces in place and remove them after the glue-up. This may prevent the latches of the back wall and the panel from interfereing with each other.
+If space is tight you may consider not gluing the cross pieces in place and remove them after the glue-up. This may prevent the latches of the back wall and the panel from interfering with each other.
 
 The variant using finger joints only has the two side lips without the cross bars.
 
@@ -51,7 +51,7 @@ The latches at the back wall lock in place when closed. To open them they need t
 To remove the panel you have to press in the four tabs at the side. It is easiest to push them in and then pull the panel up a little bit so the tabs stay in.
 """
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=.5)
@@ -99,7 +99,7 @@ To remove the panel you have to press in the four tabs at the side. It is easies
 
         if self.move(tw, th, move, True):
             return
-        
+
         self.moveTo(0, 1.2*t)
         self.polyline(t, -90, .2*t, 90, 2*t, -90, t, 90, t, 90, t, -90, 3*t,
                       90, t, -90, t, 90, t, 90, 2*t, 90, 0.5*t,
@@ -194,7 +194,7 @@ To remove the panel you have to press in the four tabs at the side. It is easies
 
         t = self.thickness
         bottom = self.edges.get(bottom, bottom)
-        
+
         tw =  borders[0] + 2* self.edges["f"].spacing()
         th = borders[-2] + bottom.spacing() + self.edges["f"].spacing()
         if self.move(tw, th, move, True):
@@ -202,7 +202,7 @@ To remove the panel you have to press in the four tabs at the side. It is easies
 
         d1 = t * math.cos(math.radians(self.angle))
         d2 = t * math.sin(math.radians(self.angle))
-        
+
         self.moveTo(t, 0)
         bottom(borders[0])
         self.corner(90)
@@ -229,9 +229,9 @@ To remove the panel you have to press in the four tabs at the side. It is easies
         else:
             self.edges["f"](borders[-2]+bottom.startwidth())
         self.corner(borders[-1])
-        
+
         self.move(tw, th, move, label=label)
-        
+
     def render(self):
         x, y, h = self.x, self.y, self.h
         t = self.thickness

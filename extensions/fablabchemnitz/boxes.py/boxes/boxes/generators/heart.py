@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,13 @@
 
 from boxes import *
 
+
 class HeartBox(Boxes):
-    """Box in the form of an heart"""
+    """Box in the form of a heart"""
 
     ui_group = "FlexBox"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings, finger=1.0,space=1.0)
@@ -42,7 +42,7 @@ class HeartBox(Boxes):
 
         if self.top == "closed":
             return
-        
+
         for i in range(2):
             self.moveTo(t, t)
             self.polyline((l, 2), (180, r), (d, 1), -90,
@@ -59,12 +59,11 @@ class HeartBox(Boxes):
 
         l = 2/3. * x
         r = l/2. - 0.5*t
-        
+
         borders = [l, (180, r), t, -90, t, (180, r), l, 90]
         self.polygonWalls(borders, h)
         self.rectangularWall(0, h, "FFFF", move="up only")
         self.polygonWall(borders, callback=[self.CB], move="right")
-        self.moveTo(-2*t)
         self.polygonWall(borders, move="mirror right")
         if self.top == "lid":
             self.polygonWall([l+t, (180, r+t), 0, -90, 0, (180, r+t), l+t, 90], 'e')

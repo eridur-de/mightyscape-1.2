@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (C) 2020 Guillaume Collic
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,6 +14,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import math
+
 from boxes import Boxes
 
 
@@ -30,12 +29,12 @@ class PaperBox(Boxes):
 This box is made of paper.
 
 There is marks in the "outside leftover paper" to help see where to fold
-(cutting with tabs helps use them). The cut is very precise, and could be too tight if misaligned when glued. A plywood box (such as a simple TypeTray) of the same size is a great guide during folding and glueing. Just fold the box against it. Accurate quick and easy.
+(cutting with tabs helps use them). The cut is very precise, and could be too tight if misaligned when glued. A plywood box (such as a simple TypeTray) of the same size is a great guide during folding and gluing. Just fold the box against it. Accurate quick and easy.
 
 A paper creaser (or bone folder) is also useful.
 """
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.buildArgParser("x", "y", "h")
 
@@ -49,7 +48,7 @@ A paper creaser (or bone folder) is also useful.
         )
 
         self.argparser.add_argument(
-            "--lid_heigth",
+            "--lid_height",
             type=float,
             default=15,
             help="Height of the lid (part which goes inside the box)",
@@ -120,7 +119,7 @@ A paper creaser (or bone folder) is also useful.
                 0,
             ]
             + self.lid_cut(lid_cut_length)
-            + self.lid(width - 2 * self.thickness)
+            + self.lid_tab(width - 2 * self.thickness)
             + [0]
             + self.lid_cut(lid_cut_length, reverse=True)
             + [
@@ -188,17 +187,17 @@ A paper creaser (or bone folder) is also useful.
         return (
             self.side_with_finger_hole(width, self.finger_hole_diameter)
             + half_side
-            + self.lid(width)
+            + self.lid_tab(width)
             + list(reversed(half_side))
         )
 
-    def lid(self, width):
+    def lid_tab(self, width):
         return [
-            self.lid_heigth - self.lid_radius,
+            self.lid_height - self.lid_radius,
             (90, self.lid_radius),
             width - 2 * self.lid_radius,
             (90, self.lid_radius),
-            self.lid_heigth - self.lid_radius,
+            self.lid_height - self.lid_radius,
         ]
 
     def mark(self, length):
@@ -254,7 +253,7 @@ A paper creaser (or bone folder) is also useful.
         ]
 
     def ear_description(self, length, lid_cut_length, reverse=False):
-        ear_depth = max(lid_cut_length, self.lid_heigth)
+        ear_depth = max(lid_cut_length, self.lid_height)
         radius = min(self.lid_radius, ear_depth - lid_cut_length)
         start_margin = self.thickness
         end_margin = 2 * self.burn

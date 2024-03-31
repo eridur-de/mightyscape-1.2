@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -22,7 +21,7 @@ class IntegratedHingeBox(Boxes):
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.addSettingsArgs(edges.ChestHingeSettings)
@@ -30,7 +29,7 @@ class IntegratedHingeBox(Boxes):
         self.argparser.add_argument(
             "--lidheight",  action="store", type=float, default=20.0,
             help="height of lid in mm")
-        
+
 
     def render(self):
 
@@ -61,6 +60,3 @@ class IntegratedHingeBox(Boxes):
 
         self.rectangularWall(y, x, "ffff", move="up")
         self.rectangularWall(y, x, "ffff")
-
-
-

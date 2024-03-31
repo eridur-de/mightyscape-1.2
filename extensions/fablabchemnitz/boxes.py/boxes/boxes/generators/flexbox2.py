@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,14 +14,14 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math
+
 
 class FlexBox2(Boxes):
     """Box with living hinge and top corners rounded"""
 
     ui_group = "FlexBox"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.addSettingsArgs(edges.FlexSettings)
@@ -117,5 +116,3 @@ class FlexBox2(Boxes):
         self.flexBoxSide(self.y, self.h, self.radius, move="right")
         self.flexBoxSide(self.y, self.h, self.radius, move= "mirror right")
         self.rectangularWall(self.x, self.h - self.radius - self.latchsize, edges="fFeF")
-
-

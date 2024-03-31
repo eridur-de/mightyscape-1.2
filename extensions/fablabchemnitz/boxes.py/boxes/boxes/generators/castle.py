@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -18,13 +17,13 @@ from boxes import *
 
 
 class Castle(Boxes):
-    "Castle tower with two walls"
+    """Castle tower with two walls"""
 
     description = """This was done as a table decoration. May be at some point in the future someone will create a proper castle
 with towers and gates and walls that can be attached in multiple configurations."""
     ui_group = "Unstable"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
 
@@ -43,6 +42,3 @@ with towers and gates and walls that can be attached in multiple configurations.
 
         self.rectangularWall(w1_x, w1_h, "efpe", move="right")
         self.rectangularWall(w2_x, w2_h, "efpe", move="right")
-
-
-

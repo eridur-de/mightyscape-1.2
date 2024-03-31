@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,15 +14,14 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math
-import copy
+
 
 class AngledBox(Boxes):
     """Box with both ends cornered"""
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.buildArgParser("x", "y", "h", "outside", "bottom_edge")
@@ -38,17 +36,17 @@ class AngledBox(Boxes):
     def floor(self, x, y, n, edge='e', hole=None, move=None, callback=None, label=""):
         r, h, side  = self.regularPolygon(2*n+2, h=y/2.0)
         t = self.thickness
-        
+
         if n % 2:
             lx = x - 2 * h + side
         else:
             lx = x - 2 * r + side
-        
+
         edge = self.edges.get(edge, edge)
 
         tx = x + 2 * edge.spacing()
         ty = y + 2 * edge.spacing()
-        
+
         if self.move(tx, ty, move, before=True):
             return
 
@@ -59,7 +57,7 @@ class AngledBox(Boxes):
                 hr, hh, hside  = self.regularPolygon(2*n+2, h=y/2.0-t)
                 dx = side - hside
                 hlx = lx - dx
-            
+
                 self.moveTo(dx/2.0, t+edge.spacing())
                 for i, l in enumerate(([hlx] + ([hside] * n))* 2):
                     self.edge(l)
@@ -96,12 +94,12 @@ class AngledBox(Boxes):
         t = self.thickness
 
         r, hp, side  = self.regularPolygon(2*n+2, h=y/2.0)
-        
+
         if n % 2:
             lx = x - 2 * hp + side
         else:
             lx = x - 2 * r + side
-        
+
         fingerJointSettings = copy.deepcopy(self.edges["f"].settings)
         fingerJointSettings.setValues(self.thickness, angle=360./(2 * (n+1)))
         fingerJointSettings.edgeObjects(self, chars="gGH")
@@ -126,22 +124,18 @@ class AngledBox(Boxes):
             if j == 0 or n % 2:
                 self.rectangularWall(lx, h, move="right",
                                  edges=b+"GfG" if fingers else b+"GeG",
-                                 label="wall {}".format(cnt))
+                                 label=f"wall {cnt}")
             else:
                 self.rectangularWall(lx, h, move="right",
                                  edges=b+"gfg" if fingers else b+"geg",
-                                 label="wall {}".format(cnt))
+                                 label=f"wall {cnt}")
             for i in range(n):
                 cnt += 1
                 if (i+j*((n+1)%2)) % 2: # reverse for second half if even n
                     self.rectangularWall(side, h, move="right",
                                          edges=b+"GfG" if fingers else b+"GeG",
-                                         label="wall {}".format(cnt))
+                                         label=f"wall {cnt}")
                 else:
                     self.rectangularWall(side, h, move="right",
                                          edges=b+"gfg" if fingers else b+"geg",
-                                         label="wall {}".format(cnt))
-
-
-
-
+                                         label=f"wall {cnt}")

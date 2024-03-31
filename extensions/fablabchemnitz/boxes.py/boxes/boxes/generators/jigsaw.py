@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,15 +14,14 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import random
 
 
 class JigsawPuzzle(Boxes):  # change class name here and below
-    """Fractal jigsaw puzzle. Still aplha"""
+    """Fractal jigsaw puzzle. Still alpha."""
 
     webinterface = False  # Change to make visible in web interface
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.count = 0
         self.argparser.add_argument(
@@ -83,5 +81,3 @@ class JigsawPuzzle(Boxes):  # change class name here and below
         self.burn = 0.0
         self.moveTo(10, 10)
         self.hilbert(self.depth)
-
-

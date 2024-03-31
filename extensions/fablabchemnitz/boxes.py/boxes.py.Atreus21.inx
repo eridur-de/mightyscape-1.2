@@ -3,31 +3,29 @@
 <name>Atreus21</name>
 <id>info.festi.boxes.py.Atreus21</id>
 <param name="generator" type="string" gui-hidden="true">atreus21</param>
-<param name="tab" type="notebook">
-    <page name="tab_0" gui-text="Atreus21">
-        <param name="hotswap_enable" type="bool" gui-text="hotswap_enable" gui-description="enlarge switches holes for hotswap pcb sockets">true</param>
-        <param name="pcb_mount_enable" type="bool" gui-text="pcb_mount_enable" gui-description="adds holes for pcb mount switches">true</param>
-        <param name="led_enable" type="bool" gui-text="led_enable" gui-description="adds pin holes under switches for leds">false</param>
-        <param name="diode_enable" type="bool" gui-text="diode_enable" gui-description="adds pin holes under switches for diodes">false</param>
-        <param name="cutout_type" type="string" gui-text="cutout_type" gui-description="Shape of the plate cutout: 'castle' allows for modding, and 'simple' is a tighter and simpler square">castle</param>
-        <param name="columns_definition" type="string" gui-text="columns_definition" gui-description="Each column is separated by '/', and is in the form 'nb_rows @ offset x repeat_count'. Nb_rows is the number of rows for this column. The offset is in mm and optional. Repeat_count is optional and repeats this column multiple times. Spaces are not important.For example '3x2 / 4@11' means we want 3 columns, the two first with 3 rows without offset, and the last with 4 rows starting at 11mm high.">4@3/4@6/4@11/4@5/4@0/1@7.8</param>
-    </page>
-    <page name="tab_1" gui-text="Default">
-        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
-        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
-        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
-        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
-        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
-        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
-            <option value="loop">loop</option>
-            <option value="corner">corner</option>
-            <option value="backarc">backarc</option>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="Atreus21"><param name="hotswap_enable" type="bool" gui-text="hotswap_enable" gui-description="enlarge switches holes for hotswap pcb sockets">true</param>
+<param name="pcb_mount_enable" type="bool" gui-text="pcb_mount_enable" gui-description="adds holes for pcb mount switches">true</param>
+<param name="led_enable" type="bool" gui-text="led_enable" gui-description="adds pin holes under switches for leds">false</param>
+<param name="diode_enable" type="bool" gui-text="diode_enable" gui-description="adds pin holes under switches for diodes">false</param>
+<param name="cutout_type" type="string" gui-text="cutout_type" gui-description="Shape of the plate cutout: 'castle' allows for modding, and 'simple' is a tighter and simpler square">castle</param>
+<param name="columns_definition" type="string" gui-text="columns_definition" gui-description="Each column is separated by '/', and is in the form 'nb_rows @ offset x repeat_count'. Nb_rows is the number of rows for this column. The offset is in mm and optional. Repeat_count is optional and repeats this column multiple times. Spaces are not important.For example '3x2 / 4@11' means we want 3 columns, the two first with 3 rows without offset, and the last with 4 rows starting at 11mm high.">4@3/4@6/4@11/4@5/4@0/1@7.8</param>
+</page>
+<page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+<param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+<param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
+<param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+<param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+<param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+<option value="loop">loop</option>
+<option value="corner">corner</option>
+<option value="backarc">backarc</option>
     </param>
-        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
-    </page>
-    <page name="tab_2" gui-text="Example">
-        <image>./Atreus21-thumb.jpg</image>
-    </page>
+<param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+</page>
+<page name="tab_2" gui-text="Example">
+<image>./Atreus21-thumb.jpg</image>
+</page>
 </param>
 <label appearance="url">https://www.festi.info/boxes.py/Atreus21</label>
 <effect>

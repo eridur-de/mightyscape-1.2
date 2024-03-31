@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2019 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -14,13 +13,13 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from boxes import *
 from boxes.walledges import _WallMountedBox
+
 
 class WallCaliper(_WallMountedBox):
     """Holds a single caliper to a wall"""
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
 
         # remove cli params you do not need
@@ -30,19 +29,19 @@ class WallCaliper(_WallMountedBox):
             "--width",  action="store", type=float, default=18.0,
             help="width of the long end")
         self.argparser.add_argument(
-            "--heigth",  action="store", type=float, default=6.0,
-            help="heigth of the body")
+            "--height",  action="store", type=float, default=6.0,
+            help="height of the body")
 
     def side(self, move=None):
         t = self.thickness
         h = self.h
-        hc = self.heigth
+        hc = self.height
 
         tw = self.edges["b"].spacing() + hc + 8*t
 
         if self.move(tw, h, move, True):
             return
-        
+
         self.moveTo(self.edges["b"].startwidth())
         self.polyline(5*t+hc, (90, 2*t), h/2-2*t, (180, 1.5*t), 0.25*h,
                       -90, hc, -90, 0.75*h-2*t, (90, 2*t), 2*t, 90)
@@ -56,7 +55,7 @@ class WallCaliper(_WallMountedBox):
 
         t = self.thickness
         h = self.h
-        
+
         self.side(move="right")
         self.side(move="right")
         w = self.width

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,23 +15,24 @@
 
 from boxes import *
 
+
 class RectangularWall(Boxes):
-    """Simple wall"""
+    """Simple wall with options for different edges"""
 
     ui_group = "Part" # see ./__init__.py for names
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.CabinetHingeSettings)
-        self.addSettingsArgs(edges.ClickSettings)        
-        self.addSettingsArgs(edges.DoveTailSettings)        
+        self.addSettingsArgs(edges.ClickSettings)
+        self.addSettingsArgs(edges.DoveTailSettings)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.addSettingsArgs(edges.GearSettings)
         self.addSettingsArgs(edges.GripSettings)
         self.addSettingsArgs(edges.HingeSettings)
         self.addSettingsArgs(edges.ChestHingeSettings)
-        self.addSettingsArgs(edges.LidSettings)
+        self.addSettingsArgs(edges.SlideOnLidSettings)
         self.addSettingsArgs(edges.StackableSettings)
 
         self.buildArgParser(x=100, h=100)
@@ -53,7 +53,7 @@ class RectangularWall(Boxes):
             "--left_edge", action="store",
             type=ArgparseEdgeType("cCdDeEfFghiIjJkKlLmMnNoOpPqQRsSšŠuUvV"), choices=list("cCdDeEfFghiIjJkKlLmMnNoOpPqQRsSšŠuUvV"),
             default="e", help="edge type for left edge")
-        
+
 
     def cb(self, nr):
         t = self.thickness
@@ -68,4 +68,3 @@ class RectangularWall(Boxes):
 
         self.moveTo(3*t, 3*t)
         self.rectangularWall(self.x, self.h, self.edgetypes, callback=self.cb)
-

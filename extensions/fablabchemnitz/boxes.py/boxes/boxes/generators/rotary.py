@@ -1,4 +1,3 @@
-#!/usr/bin/python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -18,8 +17,8 @@ from boxes import *
 
 
 class MotorEdge(edges.BaseEdge):
-    # def margin(self):
-    #    return 30
+    # def margin(self) -> float:
+    #    return 30.0
     def __call__(self, l, **kw):
         self.polyline(
             l - 165, 45,
@@ -30,15 +29,15 @@ class MotorEdge(edges.BaseEdge):
 
 
 class OutsetEdge(edges.OutSetEdge):
-    def startwidth(self):
-        return 20
+    def startwidth(self) -> float:
+        return 20.0
 
 
 class HangerEdge(edges.BaseEdge):
     char = "H"
 
-    def margin(self):
-        return 40
+    def margin(self) -> float:
+        return 40.0
 
     def __call__(self, l, **kw):
         self.fingerHolesAt(0, -0.5 * self.thickness, l, angle=0)
@@ -55,8 +54,8 @@ class HangerEdge(edges.BaseEdge):
 
 
 class RollerEdge(edges.BaseEdge):
-    def margin(self):
-        return 20
+    def margin(self) -> float:
+        return 20.0
 
     def __call__(self, l, **kw):
         m = 40 + 100
@@ -68,7 +67,7 @@ class RollerEdge(edges.BaseEdge):
 
 
 class RollerEdge2(edges.BaseEdge):
-    def margin(self):
+    def margin(self) -> float:
         return self.thickness
 
     def __call__(self, l, **kw):
@@ -80,12 +79,11 @@ class RollerEdge2(edges.BaseEdge):
 
 
 class Rotary(Boxes):
-
     """Rotary Attachment for engraving cylindrical objects in a laser cutter"""
 
     ui_group = "Unstable"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings)
@@ -101,7 +99,7 @@ class Rotary(Boxes):
             help="diameter of the axles")
         self.argparser.add_argument(
             "--knifethickness", action="store", type=float, default=8.,
-            help="thickness of the knifes in mm. Use 0 for use with honey comb table.")
+            help="thickness of the knives in mm. Use 0 for use with honey comb table.")
         self.argparser.add_argument(
             "--beamwidth",  action="store", type=float, default=32.,
             help="width of the (aluminium) profile connecting the parts")
@@ -252,9 +250,9 @@ class Rotary(Boxes):
         with self.saved_context():
             self.rectangularWall(hw - 2 * t - 2, 60, edges="efef", move="right")
             self.rectangularWall(hw - 4 * t - 4, 60, edges="efef", move="right")
-            # Spindel auxiliaries 
-            self.parts.waivyKnob(50, callback=lambda: self.nutHole("M8"), move="right")
-            self.parts.waivyKnob(50, callback=lambda: self.nutHole("M8"), move="right")
+            # Spindle auxiliaries
+            self.parts.wavyKnob(50, callback=lambda: self.nutHole("M8"), move="right")
+            self.parts.wavyKnob(50, callback=lambda: self.nutHole("M8"), move="right")
 
         self.rectangularWall(hw - 2 * t - 4, 60, edges="efef", move="up only")
 
@@ -292,7 +290,7 @@ class Rotary(Boxes):
                 self.rectangularWall(ow, h, edges="hFFH", move="right")
                 self.rectangularWall(ow, h, edges="hFFH", move="right")
             self.rectangularWall(ow, h, edges="hFFH", move="up only")
-        
+
         # Motor block
         mw = 40
         self.rectangularWall(3.6 * d, h, edges=["h", "f", MotorEdge(self, None),"f"], callback=[self.mainPlate], move="up")
@@ -324,6 +322,3 @@ class Rotary(Boxes):
                             hole=self.axle, move="right")
         self.parts.disc(self.diameter - 2 * self.rubberthickness + 4,
                         hole=self.axle, move="right up")
-
-
-

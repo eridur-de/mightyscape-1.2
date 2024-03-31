@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -18,11 +17,11 @@ from boxes import *
 
 
 class FlexTest(Boxes):
-    "Piece for testing different flex settings"
+    """Piece for testing different flex settings"""
 
     ui_group = "Part"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FlexSettings)
         self.buildArgParser("x", "y")
@@ -41,6 +40,3 @@ class FlexTest(Boxes):
         self.corner(90)
         self.edge(y)
         self.corner(90)
-
-
-

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,6 +15,7 @@
 
 from boxes import *
 
+
 class JointPanel(Boxes):
     """Create pieces larger than your laser cutter by joining them with Dove Tails"""
 
@@ -28,10 +28,10 @@ Small dove tails make it easier to fit parts in without problems. Lookout for pi
 For plywood this method works well with a very stiff press fit. Aim for needing a hammer to join the pieces together. This way they will feel like they have been welder together.
 
 """
-    
+
     ui_group = "Misc"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(

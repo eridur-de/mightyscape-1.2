@@ -1,9 +1,7 @@
 """Generator for a split atreus keyboard."""
 
-from copy import deepcopy
+from boxes import Boxes, restore
 
-from boxes import Boxes, Color, holeCol, restore, boolarg
-from boxes.edges import FingerJointSettings
 from .keyboard import Keyboard
 
 
@@ -14,11 +12,11 @@ class Atreus21(Boxes, Keyboard):
     half_btn = btn_size / 2
     border = 6
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.add_common_keyboard_parameters(
             # By default, columns from Atreus 21
-            default_columns_definition='4@3/4@6/4@11/4@5/4@0/1@{}'.format(self.btn_size * 0.5)
+            default_columns_definition=f'4@3/4@6/4@11/4@5/4@0/1@{self.btn_size * 0.5}'
         )
 
     def render(self):
@@ -87,7 +85,7 @@ class Atreus21(Boxes, Keyboard):
 
     @restore
     def half(self, hole_cb=None, reverse=False):
-        if hole_cb == None:
+        if hole_cb is None:
             hole_cb = self.key
         self.moveTo(self.half_btn, self.half_btn)
         self.apply_callback_on_columns(

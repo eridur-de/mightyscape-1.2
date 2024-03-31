@@ -1,18 +1,33 @@
-import math
-import datetime
-from affine import Affine
-from boxes.extents import Extents
-from boxes.Color import Color as bColor
+from __future__ import annotations
 
-try:
-    from xml.etree import cElementTree as ET
-except ImportError:
-    from xml.etree import ElementTree as ET
+import codecs
+import datetime
+import io
+import math
+from typing import Any
+from xml.etree import ElementTree as ET
+
+from affine import Affine
+
+from boxes.extents import Extents
 
 EPS = 1e-4
 PADDING = 10
 
-RANDOMIZE_COLORS = False  # enable to ease check for continuity of pathes
+RANDOMIZE_COLORS = False  # enable to ease check for continuity of paths
+
+
+def reorder_attributes(root) -> None:
+    """
+    Source: https://docs.python.org/3/library/xml.etree.elementtree.html#xml.etree.ElementTree.Element.remove
+    """
+    for el in root.iter():
+        attrib = el.attrib
+        if len(attrib) > 1:
+            # adjust attribute order, e.g. by sorting
+            attribs = sorted(attrib.items())
+            attrib.clear()
+            attrib.update(attribs)
 
 
 def points_equal(x1, y1, x2, y2):
@@ -30,10 +45,10 @@ class Surface:
     scale = 1.0
     invert_y = False
 
-    def __init__(self, fname):
-        self._fname = fname
-        self.parts = []
+    def __init__(self) -> None:
+        self.parts: list[Any] = []
         self._p = self.new_part("default")
+        self.count = 0
 
     def set_metadata(self, metadata):
         self.metadata = metadata
@@ -81,6 +96,9 @@ class Surface:
         return p
 
     def append(self, *path):
+        self.count += 1
+        if self.count > 100000:
+            raise ValueError("Too many lines")
         self._p.append(*path)
 
     def stroke(self, **params):
@@ -96,9 +114,9 @@ class Surface:
 
 
 class Part:
-    def __init__(self, name):
-        self.pathes = []
-        self.path = []
+    def __init__(self, name) -> None:
+        self.pathes: list[Any] = []
+        self.path: list[Any] = []
 
     def extents(self):
         if not self.pathes:
@@ -143,11 +161,11 @@ class Part:
 
 
 class Path:
-    def __init__(self, path, params):
+    def __init__(self, path, params) -> None:
         self.path = path
         self.params = params
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         l = len(self.path)
         # x1,y1 = self.path[0][1:3]
         if l>0:
@@ -214,13 +232,13 @@ class Path:
             self.path = [p for n, p in enumerate(self.path) if p != self.path[n-1]]
 
 class Context:
-    def __init__(self, surface, *al, **ad):
+    def __init__(self, surface, *al, **ad) -> None:
         self._renderer = self._dwg = surface
 
         self._bounds = Extents()
         self._padding = PADDING
 
-        self._stack = []
+        self._stack: list[Any] = []
         self._m = Affine.translation(0, 0)
         self._xy = (0, 0)
         self._mxy = self._m * self._xy
@@ -430,6 +448,7 @@ class SVGSurface(Surface):
 
         if "url" in md and md["url"]:
             self._addTag(w, 'dc:source', md["url"])
+            self._addTag(w, 'dc:source', md["url_short"])
         else:
             self._addTag(w, 'dc:source', md["cli"])
 
@@ -438,9 +457,12 @@ class SVGSurface(Surface):
             desc += "\n\n" + md["description"]
         desc += "\n\nCreated with Boxes.py (https://festi.info/boxes.py)\n"
         desc += "Command line: %s\n" % md["cli"]
+        desc += "Command line short: %s\n" % md["cli_short"]
         if md["url"]:
             desc += "Url: %s\n" % md["url"]
+            desc += "Url short: %s\n" % md["url_short"]
             desc += "SettingsUrl: %s\n" % md["url"].replace("&render=1", "")
+            desc += "SettingsUrl short: %s\n" % md["url_short"].replace("&render=1", "")
         self._addTag(w, 'dc:description', desc)
 
         # title
@@ -461,11 +483,13 @@ Created with Boxes.py (https://festi.info/boxes.py)
 Creation date: {date}
 """.format(date=date, **md)
 
-        txt += "Command line (remove spaces between dashes): %s\n" % md["cli"]
+        txt += "Command line (remove spaces between dashes): %s\n" % md["cli_short"]
 
         if md["url"]:
             txt += "Url: %s\n" % md["url"]
+            txt += "Url short: %s\n" % md["url_short"]
             txt += "SettingsUrl: %s\n" % md["url"].replace("&render=1", "")
+            txt += "SettingsUrl short: %s\n" % md["url_short"].replace("&render=1", "")
         m = ET.Comment(txt.replace("--", "- -").replace("--", "- -")) # ----
         m.tail = '\n'
         root.insert(0, m)
@@ -495,7 +519,7 @@ Creation date: {date}
         tree = ET.ElementTree(svg)
 
         self._add_metadata(svg)
-        
+
         for i, part in enumerate(self.parts):
             if not part.pathes:
                 continue
@@ -533,7 +557,7 @@ Creation date: {date}
                     elif C == "T":
                         m, text, params = c[3:]
                         m = m * Affine.translation(0, -params['fs'])
-                        tm = " ".join((f"{m[i]:.3f}" for i in (0, 3, 1, 4, 2, 5)))
+                        tm = " ".join(f"{m[i]:.3f}" for i in (0, 3, 1, 4, 2, 5))
                         font, bold, italic = params['ff']
                         fontweight = ("normal", "bold")[bool(bold)]
                         fontstyle = ("normal", "italic")[bool(italic)]
@@ -567,7 +591,11 @@ Creation date: {date}
                     t.set("stroke-width", f'{path.params["lw"]:.2f}')
                     t.tail = "\n  "
             t.tail = "\n"
-        tree.write(open(self._fname, "wb"), xml_declaration=True, method="xml")
+        reorder_attributes(tree)
+        f = io.BytesIO()
+        tree.write(f, encoding="utf-8", xml_declaration=True, method="xml")
+        f.seek(0)
+        return f
 
 class PSSurface(Surface):
 
@@ -607,9 +635,12 @@ class PSSurface(Surface):
             desc += "%\n"
 
         desc += "%% Command line: %s\n" % md["cli"]
+        desc += "%% Command line short: %s\n" % md["cli_short"]
         if md["url"]:
             desc += f'%%Url: {md["url"]}\n'
+            desc += f'%%Url short: {md["url_short"]}\n'
             desc += f'%%SettingsUrl: {md["url"].replace("&render=1", "")}\n'
+            desc += f'%%SettingsUrl short: {md["url_short"].replace("&render=1", "")}\n'
         return desc
 
     def finish(self, inner_corners="loop"):
@@ -618,12 +649,14 @@ class PSSurface(Surface):
         w = extents.width
         h = extents.height
 
-        f = open(self._fname, "w", encoding="latin1", errors="replace")
+        data = io.BytesIO()
+        f = codecs.getwriter('utf-8')(data)
 
-        f.write("%!PS-Adobe-2.0\n")
-        f.write(f"%%BoundingBox: 0 0 {w:.0f} {h:.0f}\n")
-        f.write(self._metadata())
-        f.write("""
+        f.write(f"""%!PS-Adobe-2.0 EPSF-2.0
+%%BoundingBox: 0 0 {w:.0f} {h:.0f}
+{self._metadata()}
+%%EndComments
+
 1 setlinecap
 1 setlinejoin
 0.0 0.0 0.0 setrgbcolor
@@ -670,10 +703,9 @@ class PSSurface(Surface):
                         )
                     elif C == "T":
                         m, text, params = c[3:]
-                        tm = " ".join((f"{m[i]:.3f}" for i in (0, 3, 1, 4, 2, 5)))
-                        text = text.replace("(", "r\(").replace(")", r"\)")
-                        color = " ".join((f"{c:.2f}"
-                                          for c in params["rgb"]))
+                        tm = " ".join(f"{m[i]:.3f}" for i in (0, 3, 1, 4, 2, 5))
+                        text = text.replace("(", r"\(").replace(")", r"\)")
+                        color = " ".join(f"{c:.2f}" for c in params["rgb"])
                         align = params.get('align', 'left')
                         f.write(f"/{self.fonts[params['ff']]}-Latin1 findfont\n")
                         f.write(f"{params['fs']} scalefont\n")
@@ -704,8 +736,7 @@ class PSSurface(Surface):
                     else rgb_to_svg_color(*path.params["rgb"])
                 )
                 if p:  # todo: might be empty since text is not implemented yet
-                    color = " ".join((f"{c:.2f}"
-                                      for c in path.params["rgb"]))
+                    color = " ".join(f"{c:.2f}" for c in path.params["rgb"])
                     f.write("newpath\n")
                     f.write("\n".join(p))
                     f.write("\n")
@@ -719,7 +750,8 @@ showpage
 %%EOF
 """
         )
-        f.close()
+        data.seek(0)
+        return data
 
 class LBRN2Surface(Surface):
 
@@ -757,7 +789,7 @@ class LBRN2Surface(Surface):
 
         tree = ET.ElementTree(svg)
         if self.dbg: print ("8", num)
-        
+
         cs = ET.SubElement(svg, "CutSetting", Type="Cut")
         index    = ET.SubElement(cs, "index",    Value="3")         # green layer (ETCHING)
         name     = ET.SubElement(cs, "name",     Value="Etch")
@@ -797,7 +829,7 @@ class LBRN2Surface(Surface):
         index    = ET.SubElement(cs, "index",    Value="30")        # T1 layer (ANNOTATIONS)
         name     = ET.SubElement(cs, "name",     Value="T1")        # tool layer do not support names
         priority = ET.SubElement(cs, "priority", Value="7")         # is not cut at all
-                
+
         for i, part in enumerate(self.parts):
             if self.dbg: print ("7", num)
             if not part.pathes:
@@ -808,7 +840,7 @@ class LBRN2Surface(Surface):
             children = ET.SubElement(gp, "Children")
             children.text = "\n  "
             children.tail = "\n"
-            
+
             for j, path in enumerate(part.pathes):
                 myColor = self.lbrn2_colors[4*int(path.params["rgb"][0])+2*int(path.params["rgb"][1])+int(path.params["rgb"][2])]
 
@@ -820,18 +852,20 @@ class LBRN2Surface(Surface):
                 path.faster_edges(inner_corners)
                 num = 0
                 cnt = 1
-                ende = len(path.path)-1
-                if self.dbg: 
+                end = len(path.path) - 1
+                if self.dbg:
                     for c in path.path:
                         print ("6",num, c)
                         num += 1
                     num = 0
-                    
+
                 c = path.path[num]
                 C, x, y = c[0:3]
-                if self.dbg: print("ende:" ,ende)
-                while num < ende or (C == "T" and num <= ende): #len(path.path):
-                    if self.dbg: print ("0", num)
+                if self.dbg:
+                    print("end:", end)
+                while num < end or (C == "T" and num <= end):  # len(path.path):
+                    if self.dbg:
+                        print("0", num)
                     c = path.path[num]
                     if self.dbg: print("first: ", num, c)
 
@@ -852,7 +886,7 @@ class LBRN2Surface(Surface):
                         # do something with M
                         done = False
                         bspline = False
-                        while done == False and num < ende: #len(path.path):
+                        while done == False and num < end:  # len(path.path):
                             num += 1
                             c = path.path[num]
                             if self.dbg: print ("next: ",num, c)
@@ -883,7 +917,7 @@ class LBRN2Surface(Surface):
                                     print("unknown", c)
                             if done == False:
                                 x0, y0 = x, y
-                
+
                         if start and points_equal(start[1], start[2], x0, y0):
                                 if bspline == False:
                                     pl.text = "LineClosed"
@@ -913,7 +947,7 @@ class LBRN2Surface(Surface):
                             else:
                                 hor = '0'
                         ver = 1 # vertical is always bottom, text is shifted in box class
-                        
+
                         pos = text.find('%')
                         offs = 0
                         if pos >- 1:
@@ -955,7 +989,7 @@ class LBRN2Surface(Surface):
                             sh.text = "\n  "
                             sh.tail = "\n"
                             xf = ET.SubElement(sh, "XForm")
-                            xf.text = " ".join((f"{m[i]:.3f}" for i in (0, 3, 1, 4, 2, 5)))
+                            xf.text = " ".join(f"{m[i]:.3f}" for i in (0, 3, 1, 4, 2, 5))
                             xf.tail = "\n"
                     else:
                         if self.dbg: print ("4", num)
@@ -963,13 +997,17 @@ class LBRN2Surface(Surface):
                         num += 1
 
         url = self.metadata["url"].replace("&render=1", "") # remove render argument to get web form again
-        
+
         pl = ET.SubElement(svg, "Notes", ShowOnLoad="1", Notes="File created by Boxes.py script, programmed by Florian Festi.\nLightburn output by Klaus Steinhammer.\n\nURL with settings:\n" + str(url))
         pl.text = ""
         pl.tail = "\n"
 
         if self.dbg: print ("5", num)
-        tree.write(open(self._fname, "wb"), xml_declaration=True, method="xml", encoding="UTF-8")
+        f = io.BytesIO()
+        tree.write(f, encoding="utf-8", xml_declaration=True, method="xml")
+        f.seek(0)
+        return f
+
 from random import random
 
 
@@ -992,7 +1030,7 @@ def line_intersection(line1, line2):
 
     div = det(xdiff, ydiff)
     if div == 0:
-        # todo: deal with paralel line intersection / overlay
+        # todo: deal with parallel line intersection / overlay
         return False, None, None
 
     d = (det(*line1), det(*line2))

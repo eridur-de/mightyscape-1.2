@@ -49,6 +49,7 @@ h3 {
     padding: 5px;
     padding-left: 15px;
     margin: 0px;
+    width: 75%
 }
 
 h3::before {
@@ -78,6 +79,7 @@ table tr p {
 /* Container */
 
 .container {
+    background-color: #FFF8EA;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -123,7 +125,12 @@ video {
 }
 
 .footer {
-    box-shadow: none;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    padding-bottom: 15px;
+    width: 996px;
+    border-radius: 30px;
     text-align: center;
     margin-top: 0px;
 }
@@ -136,6 +143,11 @@ video {
     list-style-type: circle;
     display: inline-block;
     font-size: 0.9em;
+}
+
+.search {
+    float : right;
+    padding-top: 10px;
 }
 
 .footer ul li a {
@@ -185,4 +197,41 @@ img[id|=sample] {
 
 textarea {
     font-family: monospace;
+}
+
+.gallery_missing {
+    display : inline-block;
+    text-align : center;
+    vertical-align: middle;
+    width : 200px;
+    margin : 5px;
+    font-weight: bold;
+}
+
+.gallery img {
+    max-height : 200px;
+    max-width : 200px;
+    margin : 5px;
+}
+
+.modenav {
+    overflow: hidden;
+}
+
+.modebutton {
+    float: left;
+    border: none;
+    outline: none;
+    padding: 10px 16px;
+    margin-right: 10px;
+    text-align : center;
+    border-radius: 10px;
+    font-size: 17px;
+    width: 25%;
+    background-color: #EFE8DA;
+}
+
+.modeactive {
+    background-color: #DFD8BA;
+
 }

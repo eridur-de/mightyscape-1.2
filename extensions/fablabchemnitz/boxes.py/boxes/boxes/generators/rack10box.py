@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2018 Sebastian Reichel
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -14,8 +13,8 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from boxes import *
 from boxes.generators.rack19box import Rack19Box
+
 
 class Rack10Box(Rack19Box):
     """Closed box with screw on top for mounting in a 10" rack."""

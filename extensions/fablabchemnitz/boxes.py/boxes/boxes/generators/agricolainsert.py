@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (C) 2020 Guillaume Collic
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -17,11 +15,10 @@
 
 import math
 from functools import partial
+
 from boxes import Boxes, edges
-from .dividertray import (
-    SlotDescriptionsGenerator,
-    DividerSlotsEdge,
-)
+
+from .dividertray import DividerSlotsEdge, SlotDescriptionsGenerator
 
 
 class AgricolaInsert(Boxes):
@@ -127,7 +124,7 @@ protruding underneath.
 
 """
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=1.0)
 
@@ -654,7 +651,7 @@ protruding underneath.
 
     def render_upper_token_trays(self, tray_inner_height, box_width):
         """
-        Upper level : multiple trays for each ressource
+        Upper level : multiple trays for each resource
         (beside horses which are on the lower level)
         """
         tray_height = tray_inner_height + self.thickness
@@ -780,7 +777,7 @@ class MoorBoxSideEdge(edges.BaseEdge):
     Edge for the sides of the moor tiles box
     """
 
-    def __init__(self, boxes, corner_length, corner_height, lower_corner):
+    def __init__(self, boxes, corner_length, corner_height, lower_corner) -> None:
         super().__init__(boxes, None)
         self.corner_height = corner_height
         self.lower_corner = lower_corner
@@ -799,11 +796,11 @@ class MoorBoxSideEdge(edges.BaseEdge):
         else:
             self.polyline(length)
 
-    def startwidth(self):
+    def startwidth(self) -> float:
         return self.corner_height
 
-    def endwidth(self):
-        return 0 if self.lower_corner else self.corner_height
+    def endwidth(self) -> float:
+        return 0.0 if self.lower_corner else self.corner_height
 
 
 class MoorBoxHoleEdge(edges.BaseEdge):
@@ -811,7 +808,7 @@ class MoorBoxHoleEdge(edges.BaseEdge):
     Edge which does the notches for the moor tiles box
     """
 
-    def __init__(self, boxes, height, corner_height, lower_corner):
+    def __init__(self, boxes, height, corner_height, lower_corner) -> None:
         super().__init__(boxes, None)
         self.height = height
         self.corner_height = corner_height
@@ -851,11 +848,11 @@ class MoorBoxHoleEdge(edges.BaseEdge):
         )
         self.polyline(*full_polyline)
 
-    def startwidth(self):
+    def startwidth(self) -> float:
         return self.corner_height
 
-    def endwidth(self):
-        return 0 if self.lower_corner else self.corner_height
+    def endwidth(self) -> float:
+        return 0.0 if self.lower_corner else self.corner_height
 
 
 class BedHeadEdge(edges.BaseEdge):
@@ -863,7 +860,7 @@ class BedHeadEdge(edges.BaseEdge):
     Edge which does the head side of the Agricola player box
     """
 
-    def __init__(self, boxes, hole_depth):
+    def __init__(self, boxes, hole_depth) -> None:
         super().__init__(boxes, None)
         self.hole_depth = hole_depth
 
@@ -894,7 +891,7 @@ class Bed2SidesEdge(edges.BaseEdge):
     The next edge should be a NoopEdge
     """
 
-    def __init__(self, boxes, bed_length, full_head_length, full_foot_height):
+    def __init__(self, boxes, bed_length, full_head_length, full_foot_height) -> None:
         super().__init__(boxes, None)
         self.bed_length = bed_length
         self.full_head_length = full_head_length
@@ -926,7 +923,7 @@ class NoopEdge(edges.BaseEdge):
     Edge which does nothing, not even turn or move.
     """
 
-    def __init__(self, boxes):
+    def __init__(self, boxes) -> None:
         super().__init__(boxes, None)
 
     def __call__(self, length, **kw):

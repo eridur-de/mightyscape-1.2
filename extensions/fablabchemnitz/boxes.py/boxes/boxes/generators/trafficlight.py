@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-#-*- coding: utf-8 -*-
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +14,12 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math
+
 
 class ShadyEdge(edges.BaseEdge):
     char = "s"
 
-    def __call__(self, lenght, **kw):
+    def __call__(self, length, **kw):
         s = self.shades
         h = self.h
         a = math.atan(s/h)
@@ -33,16 +31,16 @@ class ShadyEdge(edges.BaseEdge):
             if i < self.n-1:
                 self.edge(self.thickness)
 
-    def margin(self):
+    def margin(self) -> float:
         return self.shades
 
 class TrafficLight(Boxes): # change class name here and below
     """Traffic light"""
-    description = u"""The traffic light was created to visualize the status of a Icinga monitored system.
+    description = """The traffic light was created to visualize the status of a Icinga monitored system.
 
 When turned by 90°, it can be also used to create a bottle holder."""
-    
-    def __init__(self):
+
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings)
@@ -113,7 +111,7 @@ When turned by 90°, it can be also used to create a bottle holder."""
         self.edgeCorner(edges[3], edges[3 + 1], 90)
 
         self.move(overallwidth, overallheight, move, label=label)
-        
+
     def addMountH(self, width, height):
         ds = self.hole_dD[0]
 
@@ -151,7 +149,7 @@ When turned by 90°, it can be also used to create a bottle holder."""
 
         self.mountingHole(x, y1, ds, dh, 180)
         self.mountingHole(x, y2, ds, dh, 180)
-    
+
     def render(self):
         # adjust to the variables you want in the local scope
         d, h, n = self.depth, self.h, self.n
@@ -159,7 +157,7 @@ When turned by 90°, it can be also used to create a bottle holder."""
         t = self.thickness
 
         th = n * (h + t) - t
-        
+
 
         self.addPart(ShadyEdge(self, None))
 
@@ -206,4 +204,3 @@ When turned by 90°, it can be also used to create a bottle holder."""
         # Colored windows
         for i in range(n):
             self.parts.disc(h-2*t, move="right", label="colored windows")
-

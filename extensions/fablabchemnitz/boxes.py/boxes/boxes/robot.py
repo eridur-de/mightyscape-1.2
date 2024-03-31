@@ -1,5 +1,3 @@
-import boxes
-
 __all__ = [
     "RobotArg",
     "RobotArmMM",
@@ -11,7 +9,7 @@ __all__ = [
 
 class RobotArg:
 
-    def __init__(self, includenone=False):
+    def __init__(self, includenone=False) -> None:
         self.robotarms = [
             (name, globals()[name].__doc__[23:]) for name in __all__
             if name.startswith("RobotArm")]
@@ -29,12 +27,12 @@ class RobotArg:
             ("""<option value="%s"%s>%s %s</option>""" %
              (name, ' selected="selected"' if name == default else "",
               name, descr) for name, descr in self.robotarms))
-        return """<select name="%s" size="1">\n%s</select>\n""" % (name, options)
+        return f"""<select name="{name}" size="1">\n{options}</select>\n"""
 
 
 class _RobotArm:
 
-    def __init__(self, boxes, servo, servo2=None):
+    def __init__(self, boxes, servo, servo2=None) -> None:
         self.boxes = boxes
         self.servo = servo
         self.servo2 = servo2 or servo

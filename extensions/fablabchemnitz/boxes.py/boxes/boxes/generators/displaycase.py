@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 # Copyright (C) 2018 Alexander Bulimov
 #
@@ -23,7 +22,7 @@ class DisplayCase(Boxes):
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.buildArgParser("x", "y", "h", "outside")
@@ -58,4 +57,3 @@ class DisplayCase(Boxes):
 
         self.flangedWall(x, y, "FFFF", flanges=[self.overhang] * 4, move="right", label="Top")
         self.flangedWall(x, y, "FFFF", flanges=[self.overhang] * 4, label="Bottom")
-

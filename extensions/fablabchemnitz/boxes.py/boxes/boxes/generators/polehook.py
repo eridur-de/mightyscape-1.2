@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,10 +15,11 @@
 
 from boxes import *
 
+
 class PoleHook(Boxes): # change class name here and below
     """Hook for pole like things to be clamped to another pole"""
-    
-    def __init__(self):
+
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         # Uncomment the settings for the edge types you use
@@ -51,7 +51,7 @@ class PoleHook(Boxes): # change class name here and below
 
         e = self.edges.get(edge, edge)
 
-        
+
         self.moveTo(0, e.margin())
 
         if e is self.edges["e"]:
@@ -65,7 +65,7 @@ class PoleHook(Boxes): # change class name here and below
         else:
             self.polyline(0, 90, d, 90, w, 90, 0, (-180, d/2),
                           0.5*d, (180, w/2), 1.5 * d, 90)
-            
+
         self.move(tw, th, move)
 
     def lock(self, l1, l2, w, move=None):
@@ -113,11 +113,11 @@ class PoleHook(Boxes): # change class name here and below
         self.parts.disc(d+2*ww, hole=self.screw, move="right")
         self.parts.disc(d+2*ww, callback=self.clamp, hole=self.screw+0.5*t, move="right")
         self.parts.disc(d+2*ww, hole=self.screw+0.5*t, move="right")
-        self.parts.waivyKnob(50, callback=lambda:self.nutHole(self.screwhead),
+        self.parts.wavyKnob(50, callback=lambda:self.nutHole(self.screwhead),
                              move="right")
-        self.parts.waivyKnob(50, callback=lambda:self.nutHole(self.screwhead),
+        self.parts.wavyKnob(50, callback=lambda:self.nutHole(self.screwhead),
                              move="right")
-        self.parts.waivyKnob(50, hole=self.screw+0.5*t, move="right")
+        self.parts.wavyKnob(50, hole=self.screw+0.5*t, move="right")
 
         ll = ((d**2 + (0.5*(d+ww))**2)**0.5) - 0.5 * d
         for i in range(3):
@@ -125,5 +125,3 @@ class PoleHook(Boxes): # change class name here and below
 
         for i in range(2):
             self.parts.disc(ww, move="up")
-            
-

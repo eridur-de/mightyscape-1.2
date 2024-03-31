@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2022 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,17 +15,18 @@
 
 from boxes import *
 
+
 class BreadBox(Boxes):
     """A BreadBox with a gliding door"""
 
-    ui_group = "Unstable" # "FlexBox"
+    ui_group = "FlexBox"
 
     description = """Beware of the rolling shutter effect! Use wax on sliding surfaces.
 """
 
     def side(self, l, h, r, move=None):
         t = self.thickness
-        
+
         if self.move(l+2*t, h+2*t, move, True):
             return
 
@@ -52,7 +52,7 @@ class BreadBox(Boxes):
         self.edges["f"](l/2)
         self.polyline(0, 90)
         self.edges["f"](h)
-        
+
         self.move(l+2*t, h+2*t, move)
 
     def cornerRadius(self, r, two=False, move=None):
@@ -80,7 +80,7 @@ class BreadBox(Boxes):
         self.polyline(l/2-r, (90, r-1.5*t), h-r, 90, t, 90, h-r, (-90, r-2.5*t), l/2-r, 90, t, 90)
         self.moveTo(-t-s, t+s)
         self.polyline(l/2-r, (90, r-1.5*t), h-r, 90, t, 90, h-r, (-90, r-2.5*t), l/2-r, 90, t, 90)
-            
+
         self.move(tw, th, move)
 
     def door(self, l, h, move=None):
@@ -93,7 +93,7 @@ class BreadBox(Boxes):
         self.polyline(0, 90, h, 90, l, 90, h, 90)
         self.move(l, h, move)
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=0.5)
@@ -107,7 +107,7 @@ class BreadBox(Boxes):
     def render(self):
         x, y, h, r = self.x, self.y, self.h, self.radius
         self.n = n = 3
-        
+
         if not r:
             self.radius = r = h / 2
         self.radius = r = min(r, h/2)
@@ -123,11 +123,11 @@ class BreadBox(Boxes):
 
         self.rectangularWall(x, y, "FEFF", move="right")
         self.rectangularWall(x/2, y, "FeFF", move="right")
-        
+
         self.door(x/2 + h - 2*r + 0.5*math.pi*r + 2*t, y-0.2*t, move="right")
 
         self.rectangularWall(2*t, y-2.2*t, edges="eeef", move="right")
-        
+
 
         a = 90. / n
         ls = 2*math.sin(math.radians(a/2)) * (r-2.5*t)
@@ -137,9 +137,9 @@ class BreadBox(Boxes):
 
 
         self.rectangularWall(h-r, y, "fbfe", move="right")
-        
+
         self.rectangularWall(ls, y, "fafB", move="right")
-        
+
         for i in range(n-2):
             self.rectangularWall(ls, y, "fafA", move="right")
 

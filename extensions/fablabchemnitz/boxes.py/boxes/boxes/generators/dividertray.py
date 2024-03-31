@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,9 +13,12 @@
 #   You should have received a copy of the GNU General Public License
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-from functools import partial
-from boxes import Boxes, edges, boolarg
+from __future__ import annotations
+
 import math
+from functools import partial
+
+from boxes import Boxes, boolarg, edges, lids
 
 
 class NotchSettings(edges.Settings):
@@ -78,7 +79,7 @@ Adding '0:' at the start of the sy parameter adds a slot at the very back. Addin
 
 There are 4 different sets of dividers rendered:
 
-* With asymetric tabs so the tabs fit on top of each other
+* With asymmetric tabs so the tabs fit on top of each other
 * With tabs of half wall thickness that can go side by side
 * With tabs of a full wall thickness
 * One single divider spanning across all columns
@@ -88,10 +89,11 @@ You will likely need to cut each of the dividers you want multiple times.
 
     ui_group = "Tray"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addSettingsArgs(edges.FingerJointSettings)
         self.addSettingsArgs(edges.HandleEdgeSettings)
+        self.addSettingsArgs(lids.LidSettings)
         self.buildArgParser("sx", "sy", "h", "outside")
         self.addSettingsArgs(SlotSettings)
         self.addSettingsArgs(NotchSettings)
@@ -192,6 +194,8 @@ You will likely need to cut each of the dividers you want multiple times.
                 side_wall_length, self.h, [be, "f", se, "f"], move="up", label="Sidepiece " + str(_ + 1)
             )
 
+        self.lid(facing_wall_length, side_wall_length)
+
         # Switch to right side of the file
         self.ctx.restore()
         self.rectangularWall(
@@ -215,7 +219,7 @@ You will likely need to cut each of the dividers you want multiple times.
 
         # Dividers
         divider_height = (
-            # h, with angle adjustement
+            # h, with angle adjustment
             self.h / math.cos(math.radians(self.Slot_angle))
             # removing what exceeds in the width of the divider
             - self.thickness * math.tan(math.radians(self.Slot_angle))
@@ -227,7 +231,7 @@ You will likely need to cut each of the dividers you want multiple times.
             first_tab_width=self.thickness if self.left_wall else 0,
             second_tab_width=self.thickness if self.right_wall else 0
         )
-        for tabs, asymetric_tabs in [(self.thickness, None),
+        for tabs, asymmetric_tabs in [(self.thickness, None),
                                      (self.thickness / 2, None),
                                      (self.thickness, 0.5),]:
             with self.saved_context():
@@ -238,47 +242,30 @@ You will likely need to cut each of the dividers you want multiple times.
                         "right",
                         first_tab_width=tabs if self.left_wall or i>0 else 0,
                         second_tab_width=tabs if self.right_wall or i<(len(self.sx) - 1) else 0,
-                        asymetric_tabs=asymetric_tabs,
+                        asymmetric_tabs=asymmetric_tabs,
                     )
-                    if asymetric_tabs:
+                    if asymmetric_tabs:
                         self.moveTo(-tabs, self.spacing)
             self.generate_divider(self.sx, divider_height, "up only")
 
         if self.debug:
             debug_info = ["Debug"]
+            debug_info.append(f"Slot_edge_outer_length:{slot_descriptions.total_length() + 2 * self.thickness:.2f}")
             debug_info.append(
-                "Slot_edge_outer_length:{0:.2f}".format(
-                    slot_descriptions.total_length() + 2 * self.thickness
-                )
-            )
-            debug_info.append(
-                "Slot_edge_inner_lengths:{0}".format(
+                "Slot_edge_inner_lengths:{}".format(
                     str.join(
                         "|",
                         [
-                            "{0:.2f}".format(e.usefull_length())
-                            for e in slot_descriptions.get_straigth_edges()
+                            f"{e.useful_length():.2f}"
+                            for e in slot_descriptions.get_straight_edges()
                         ],
                     )
                 )
             )
-            debug_info.append(
-                "Face_edge_outer_length:{0:.2f}".format(
-                    facing_wall_length
-                    + self.thickness * sum([self.left_wall, self.right_wall])
-                )
-            )
-            debug_info.append(
-                "Face_edge_inner_lengths:{0}".format(
-                    str.join("|", ["{0:.2f}".format(e) for e in self.sx])
-                )
-            )
-            debug_info.append("Tray_height:{0:.2f}".format(self.h))
-            debug_info.append(
-                "Content_height:{0:.2f}".format(
-                    self.h / math.cos(math.radians(self.Slot_angle))
-                )
-            )
+            debug_info.append(f"Face_edge_outer_length:{facing_wall_length + self.thickness * sum([self.left_wall, self.right_wall]):.2f}")
+            debug_info.append("Face_edge_inner_lengths:{}".format(str.join("|", [f"{e:.2f}" for e in self.sx])))
+            debug_info.append(f"Tray_height:{self.h:.2f}")
+            debug_info.append(f"Content_height:{self.h / math.cos(math.radians(self.Slot_angle)):.2f}")
             self.text(str.join("\n", debug_info), x=5, y=5, align="bottom left")
 
     def generate_finger_holes(self, length):
@@ -290,7 +277,7 @@ You will likely need to cut each of the dividers you want multiple times.
     def generate_divider(
             self, widths, height, move,
             first_tab_width=0, second_tab_width=0,
-            asymetric_tabs=None):
+            asymmetric_tabs=None):
         total_width = sum(widths) + (len(widths)-1) * self.thickness + first_tab_width + second_tab_width
 
         if self.move(total_width, height, move, True):
@@ -298,12 +285,12 @@ You will likely need to cut each of the dividers you want multiple times.
 
         play = self.Divider_play
         left_tab_height = right_tab_height = self.Slot_depth
-        if asymetric_tabs:
-            left_tab_height = left_tab_height * asymetric_tabs - play
-            right_tab_height = right_tab_height * (1-asymetric_tabs)
+        if asymmetric_tabs:
+            left_tab_height = left_tab_height * asymmetric_tabs - play
+            right_tab_height = right_tab_height * (1 - asymmetric_tabs)
 
         # Upper: first tab width
-        if asymetric_tabs:
+        if asymmetric_tabs:
             self.moveTo(first_tab_width - play)
         else:
             self.edge(first_tab_width - play)
@@ -352,7 +339,7 @@ You will likely need to cut each of the dividers you want multiple times.
             right_tab_height,
             90
         )
-        if asymetric_tabs:
+        if asymmetric_tabs:
             self.polyline(
                 first_tab_width - play,
                 -90,
@@ -365,13 +352,13 @@ You will likely need to cut each of the dividers you want multiple times.
 
 
 class SlottedEdgeDescriptions:
-    def __init__(self):
-        self.descriptions = []
+    def __init__(self) -> None:
+        self.descriptions: list[str] = []
 
-    def add(self, description):
+    def add(self, description: str) -> None:
         self.descriptions.append(description)
 
-    def get_straigth_edges(self):
+    def get_straight_edges(self):
         return [x for x in self.descriptions if isinstance(x, StraightEdgeDescription)]
 
     def get_last_edge(self):
@@ -382,10 +369,10 @@ class SlottedEdgeDescriptions:
         compensation = actual_length - target_length
 
         compensation_ratio = compensation / sum(
-            [d.asked_length for d in self.get_straigth_edges()]
+            [d.asked_length for d in self.get_straight_edges()]
         )
 
-        for edge in self.get_straigth_edges():
+        for edge in self.get_straight_edges():
             edge.outside_ratio = 1 - compensation_ratio
 
     def total_length(self):
@@ -399,21 +386,14 @@ class StraightEdgeDescription:
         round_edge_compensation=0,
         outside_ratio=1,
         angle_compensation=0,
-    ):
+    ) -> None:
         self.asked_length = asked_length
         self.round_edge_compensation = round_edge_compensation
         self.outside_ratio = outside_ratio
         self.angle_compensation = angle_compensation
 
-    def __repr__(self):
-        return (
-            "StraightEdgeDescription({0}, round_edge_compensation={1}, angle_compensation={2}, outside_ratio={3})"
-        ).format(
-            self.asked_length,
-            self.round_edge_compensation,
-            self.angle_compensation,
-            self.outside_ratio,
-        )
+    def __repr__(self) -> str:
+        return f"StraightEdgeDescription({self.asked_length}, round_edge_compensation={self.round_edge_compensation}, angle_compensation={self.angle_compensation}, outside_ratio={self.outside_ratio})"
 
     def tracing_length(self):
         """
@@ -425,7 +405,7 @@ class StraightEdgeDescription:
             + self.angle_compensation
         )
 
-    def usefull_length(self):
+    def useful_length(self):
         """
         Part of the length which might be used by the content of the tray
         """
@@ -433,7 +413,7 @@ class StraightEdgeDescription:
 
 
 class Memoizer(dict):
-    def __init__(self, computation):
+    def __init__(self, computation) -> None:
         self.computation = computation
 
     def __missing__(self, key):
@@ -447,17 +427,15 @@ class SlotDescription:
 
     def __init__(
         self, width, depth=20, angle=0, radius=0, start_radius=None, end_radius=None
-    ):
+    ) -> None:
         self.depth = depth
         self.width = width
-        self.start_radius = radius if start_radius == None else start_radius
-        self.end_radius = radius if end_radius == None else end_radius
+        self.start_radius = radius if start_radius is None else start_radius
+        self.end_radius = radius if end_radius is None else end_radius
         self.angle = angle
 
-    def __repr__(self):
-        return "SlotDescription({0}, depth={1}, angle={2}, start_radius={3}, end_radius={4})".format(
-            self.width, self.depth, self.angle, self.start_radius, self.end_radius
-        )
+    def __repr__(self) -> str:
+        return f"SlotDescription({self.width}, depth={self.depth}, angle={self.angle}, start_radius={self.start_radius}, end_radius={self.end_radius})"
 
     def _div_by_cos(self):
         return SlotDescription._div_by_cos_cache[self.angle]
@@ -495,14 +473,14 @@ class SlotDescription:
 
     def corrected_start_depth(self):
         """
-        Returns the depth of the straigth part of the slot starting side
+        Returns the depth of the straight part of the slot starting side
         """
         extra_depth = self._depth_angle_correction()
         return self.depth + max(0, extra_depth) - self.round_edge_start_correction()
 
     def corrected_end_depth(self):
         """
-        Returns the depth of the straigth part of the slot ending side
+        Returns the depth of the straight part of the slot ending side
         """
         extra_depth = self._depth_angle_correction()
         return self.depth + max(0, -extra_depth) - self.round_edge_end_correction()
@@ -555,7 +533,7 @@ class SlotDescriptionsGenerator:
             # Add this slot
             descriptions.add(slot)
 
-            # Add the straigth edge after this slot
+            # Add the straight edge after this slot
             descriptions.add(
                 StraightEdgeDescription(l, slot.round_edge_end_correction())
             )
@@ -573,7 +551,7 @@ class DividerNotchesEdge(edges.BaseEdge):
 
     description = "Edge with multiple notches for easier access to dividers"
 
-    def __init__(self, boxes, sx):
+    def __init__(self, boxes, sx) -> None:
 
         super().__init__(boxes, None)
 
@@ -618,7 +596,7 @@ class DividerSlotsEdge(edges.BaseEdge):
 
     description = "Edge with multiple angled rounded slots for dividers"
 
-    def __init__(self, boxes, descriptions):
+    def __init__(self, boxes, descriptions) -> None:
 
         super().__init__(boxes, None)
 
@@ -634,7 +612,7 @@ class DividerSlotsEdge(edges.BaseEdge):
             elif isinstance(description, StraightEdgeDescription):
                 self.do_straight_edge(description)
 
-        # rounding errors might accumulates :
+        # rounding errors might accumulate :
         # restore context and redo the move straight
         self.ctx.restore()
         self.moveTo(length)
@@ -656,7 +634,7 @@ class DividerSlotsEdge(edges.BaseEdge):
             (90 + slot.angle, slot.end_radius),
         )
 
-        # rounding errors might accumulates :
+        # rounding errors might accumulate :
         # restore context and redo the move straight
         self.ctx.restore()
         self.moveTo(slot.tracing_length())

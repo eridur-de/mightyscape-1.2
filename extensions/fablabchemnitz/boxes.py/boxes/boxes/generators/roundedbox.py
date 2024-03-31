@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -32,11 +31,11 @@ With lid:
 
     ui_group = "FlexBox"
 
-    def __init__(self):
+    def __init__(self) -> None:
         boxes.Boxes.__init__(self)
         self.addSettingsArgs(boxes.edges.FingerJointSettings)
         self.addSettingsArgs(boxes.edges.DoveTailSettings)
-        self.addSettingsArgs(boxes.edges.FlexSettings)            
+        self.addSettingsArgs(boxes.edges.FlexSettings)
         self.buildArgParser("x", "y", "outside", sh="100.0")
         self.argparser.add_argument(
             "--radius", action="store", type=float, default=15,
@@ -75,7 +74,7 @@ With lid:
 
         self.moveTo(0, dr)
         for l in (lx, ly, lx, ly):
-            self.edge(l);
+            self.edge(l)
             self.corner(90, r)
 
     def cb(self, nr):
@@ -135,5 +134,3 @@ With lid:
 
         self.surroundingWall(x, y, r, h, pe, pe, pieces=self.wallpieces,
                              callback=self.cb)
-
-

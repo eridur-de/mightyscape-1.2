@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
 # Copyright (C) 2021 Guillaume Collic
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -17,6 +15,7 @@
 
 import math
 from functools import partial
+
 from boxes import Boxes, edges
 
 
@@ -35,7 +34,7 @@ class PhoneHolder(Boxes):
     Default values are currently based on Galaxy S7.
 """
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.argparser.add_argument(
             "--phone_height",
@@ -213,7 +212,7 @@ class PhoneHolder(Boxes):
 
 
 class BottomEdge(edges.BaseEdge):
-    def __init__(self, boxes, support_start_height, support_spacing):
+    def __init__(self, boxes, support_start_height, support_spacing) -> None:
         super().__init__(boxes, None)
         self.support_start_height = support_start_height
         self.support_spacing = support_spacing
@@ -241,7 +240,7 @@ class BottomEdge(edges.BaseEdge):
 
 
 class SideEdge(edges.BaseEdge):
-    def __init__(self, boxes, tab_start, tab_length, reverse=False):
+    def __init__(self, boxes, tab_start, tab_length, reverse=False) -> None:
         super().__init__(boxes, None)
         self.tab_start = tab_start
         self.tab_length = tab_length
@@ -265,12 +264,12 @@ class SideEdge(edges.BaseEdge):
         self.polyline(0, -90, self.thickness, 90)
         self.edges["F"](tab_end)
 
-    def startwidth(self):
+    def startwidth(self) -> float:
         return self.boxes.thickness
 
 
 class TabbedEdge(edges.BaseEdge):
-    def __init__(self, boxes, tab_start, tab_length, tab_depth, reverse=False):
+    def __init__(self, boxes, tab_start, tab_length, tab_depth, reverse=False) -> None:
         super().__init__(boxes, None)
         self.tab_start = tab_start
         self.tab_length = tab_length
@@ -302,5 +301,5 @@ class TabbedEdge(edges.BaseEdge):
         )
         self.edges["f"](tab_end)
 
-    def margin(self):
+    def margin(self) -> float:
         return self.tab_depth + self.thickness

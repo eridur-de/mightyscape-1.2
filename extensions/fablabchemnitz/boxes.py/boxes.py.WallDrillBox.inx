@@ -3,95 +3,89 @@
 <name>WallDrillBox</name>
 <id>info.festi.boxes.py.WallDrillBox</id>
 <param name="generator" type="string" gui-hidden="true">walldrillbox</param>
-<param name="tab" type="notebook">
-    <page name="tab_0" gui-text="WallDrillBox">
-        <param name="walltype" type="optiongroup" appearance="combo" gui-text="walltype" gui-description="Type of wall system to attach to">
-            <option value="plain">plain</option>
-            <option value="plain reenforced">plain reenforced</option>
-            <option value="slatwall">slatwall</option>
-            <option value="dinrail">dinrail</option>
-            <option value="french cleat">french cleat</option>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="WallDrillBox"><param name="walltype" type="optiongroup" appearance="combo" gui-text="walltype" gui-description="Type of wall system to attach to">
+<option value="plain">plain</option>
+<option value="plain reinforced">plain reinforced</option>
+<option value="slatwall">slatwall</option>
+<option value="dinrail">dinrail</option>
+<option value="french cleat">french cleat</option>
     </param>
-        <param name="sx" type="string" gui-text="sx" gui-description="sections left to right in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">25*6</param>
-        <param name="sy" type="string" gui-text="sy" gui-description="sections back to front in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">10:20:30</param>
-        <param name="sh" type="string" gui-text="sh" gui-description="sections bottom to top in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">25:40:60</param>
-        <param name="extra_height" type="float" precision="2" max="9999" gui-text="extra_height" gui-description="height difference left to right">15.0</param>
-    </page>
-    <page name="tab_1" gui-text="Default">
-        <param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
-        <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
-        <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
-        <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
-        <param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
-        <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
-            <option value="loop">loop</option>
-            <option value="corner">corner</option>
-            <option value="backarc">backarc</option>
+<param name="sx" type="string" gui-text="sx" gui-description="sections left to right in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">25*6</param>
+<param name="sy" type="string" gui-text="sy" gui-description="sections back to front in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">10:20:30</param>
+<param name="sh" type="string" gui-text="sh" gui-description="sections bottom to top in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">25:40:60</param>
+<param name="extra_height" type="float" precision="2" max="9999" gui-text="extra_height" gui-description="height difference left to right">15.0</param>
+</page>
+<page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+<param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+<param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
+<param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+<param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+<param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+<option value="loop">loop</option>
+<option value="corner">corner</option>
+<option value="backarc">backarc</option>
     </param>
-        <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
-    </page>
-    <page name="tab_2" gui-text="Finger Joints">
-        <param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
-        <param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
-            <option value="rectangular">rectangular</option>
-            <option value="springs">springs</option>
-            <option value="barbs">barbs</option>
-            <option value="snap">snap</option>
+<param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+</page>
+<page name="tab_2" gui-text="Finger Joints"><param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
+<param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+<option value="rectangular">rectangular</option>
+<option value="springs">springs</option>
+<option value="barbs">barbs</option>
+<option value="snap">snap</option>
     </param>
-        <param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="space at the start and end in multiple of normal spaces">2.0</param>
-        <param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
-        <param name="FingerJoint_extra_length" type="float" precision="2" max="9999" gui-text="extra_length" gui-description="extra material to grind away burn marks (multiples of thickness)">0.0</param>
-        <param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers (multiples of thickness)">2.0</param>
-        <param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out (multiples of thickness)">0.0</param>
-        <param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">2.0</param>
-        <param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
-    </page>
-    <page name="tab_3" gui-text="plain WallEdges">
-        <param name="Wall_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
-    </page>
-    <page name="tab_4" gui-text="SlatWallEdges">
-        <param name="SlatWall_bottom_hook" type="optiongroup" appearance="combo" gui-text="bottom_hook" gui-description='"spring", "stud" or "none"'>
-            <option value="hook">hook</option>
-            <option value="spring">spring</option>
-            <option value="stud">stud</option>
-            <option value="none">none</option>
+<param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="space at the start and end in multiple of normal spaces">2.0</param>
+<param name="FingerJoint_bottom_lip" type="float" precision="2" max="9999" gui-text="bottom_lip" gui-description="height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!">0.0</param>
+<param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+<param name="FingerJoint_extra_length" type="float" precision="2" max="9999" gui-text="extra_length" gui-description="extra material to grind away burn marks (multiples of thickness)">0.0</param>
+<param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers (multiples of thickness)">2.0</param>
+<param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out (multiples of thickness)">0.0</param>
+<param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">2.0</param>
+<param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
+</page>
+<page name="tab_3" gui-text="plain WallEdges"><param name="Wall_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+</page>
+<page name="tab_4" gui-text="SlatWallEdges"><param name="SlatWall_bottom_hook" type="optiongroup" appearance="combo" gui-text="bottom_hook" gui-description='"spring", "stud" or "none"'>
+<option value="hook">hook</option>
+<option value="spring">spring</option>
+<option value="stud">stud</option>
+<option value="none">none</option>
     </param>
-        <param name="SlatWall_hook_depth" type="float" precision="2" max="9999" gui-text="hook_depth" gui-description="horizontal width of the hook">4.0</param>
-        <param name="SlatWall_hook_distance" type="float" precision="2" max="9999" gui-text="hook_distance" gui-description="horizontal space to the hook">5.5</param>
-        <param name="SlatWall_hook_height" type="float" precision="2" max="9999" gui-text="hook_height" gui-description="height of the horizontal bar of the hook">6.0</param>
-        <param name="SlatWall_hook_overall_height" type="float" precision="2" max="9999" gui-text="hook_overall_height" gui-description="height of the hook top to bottom">12.0</param>
-        <param name="SlatWall_pitch" type="float" precision="2" max="9999" gui-text="pitch" gui-description="vertical spacing of slots middle to middle (in mm)">101.6</param>
-        <param name="SlatWall_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
-        <param name="SlatWall_hook_extra_height" type="float" precision="2" max="9999" gui-text="hook_extra_height" gui-description="space surrounding connectors (multiples of thickness)">2.0</param>
-    </page>
-    <page name="tab_5" gui-text="DinRailEdges">
-        <param name="DinRail_bottom" type="optiongroup" appearance="combo" gui-text="bottom" gui-description='"stud" or "none"'>
-            <option value="stud">stud</option>
-            <option value="none">none</option>
+<param name="SlatWall_hook_depth" type="float" precision="2" max="9999" gui-text="hook_depth" gui-description="horizontal width of the hook">4.0</param>
+<param name="SlatWall_hook_distance" type="float" precision="2" max="9999" gui-text="hook_distance" gui-description="horizontal space to the hook">5.5</param>
+<param name="SlatWall_hook_height" type="float" precision="2" max="9999" gui-text="hook_height" gui-description="height of the horizontal bar of the hook">6.0</param>
+<param name="SlatWall_hook_overall_height" type="float" precision="2" max="9999" gui-text="hook_overall_height" gui-description="height of the hook top to bottom">12.0</param>
+<param name="SlatWall_pitch" type="float" precision="2" max="9999" gui-text="pitch" gui-description="vertical spacing of slots middle to middle (in mm)">101.6</param>
+<param name="SlatWall_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+<param name="SlatWall_hook_extra_height" type="float" precision="2" max="9999" gui-text="hook_extra_height" gui-description="space surrounding connectors (multiples of thickness)">2.0</param>
+</page>
+<page name="tab_5" gui-text="DinRailEdges"><param name="DinRail_bottom" type="optiongroup" appearance="combo" gui-text="bottom" gui-description='"stud" or "none"'>
+<option value="stud">stud</option>
+<option value="none">none</option>
     </param>
-        <param name="DinRail_depth" type="float" precision="2" max="9999" gui-text="depth" gui-description="horizontal width of the hook">8.0</param>
-        <param name="DinRail_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
-    </page>
-    <page name="tab_6" gui-text="FrenchCleatEdges">
-        <param name="FrenchCleat_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle of the cut (0 for horizontal)">45.0</param>
-        <param name="FrenchCleat_bottom" type="optiongroup" appearance="combo" gui-text="bottom" gui-description='"stud", "hook" or "none"'>
-            <option value="stud">stud</option>
-            <option value="hook">hook</option>
-            <option value="none">none</option>
+<param name="DinRail_depth" type="float" precision="2" max="9999" gui-text="depth" gui-description="horizontal width of the hook">8.0</param>
+<param name="DinRail_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+</page>
+<page name="tab_6" gui-text="FrenchCleatEdges"><param name="FrenchCleat_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle of the cut (0 for horizontal)">45.0</param>
+<param name="FrenchCleat_bottom" type="optiongroup" appearance="combo" gui-text="bottom" gui-description='"stud", "hook" or "none"'>
+<option value="stud">stud</option>
+<option value="hook">hook</option>
+<option value="none">none</option>
     </param>
-        <param name="FrenchCleat_depth" type="float" precision="2" max="9999" gui-text="depth" gui-description="horizontal width of the hook in mm">18.0</param>
-        <param name="FrenchCleat_spacing" type="float" precision="2" max="9999" gui-text="spacing" gui-description="distance of the cleats in mm (for bottom hook)">200.0</param>
-        <param name="FrenchCleat_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
-    </page>
-    <page name="tab_7" gui-text="Stackable Edges">
-        <param name="Stackable_angle" type="int" max="9999" gui-text="angle" gui-description="inside angle of the feet">60</param>
-        <param name="Stackable_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the feet (multiples of thickness)">1.0</param>
-        <param name="Stackable_holedistance" type="float" precision="2" max="9999" gui-text="holedistance" gui-description="distance from finger holes to bottom edge (multiples of thickness)">1.0</param>
-        <param name="Stackable_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of the feet (multiples of thickness)">3.0</param>
-    </page>
-    <page name="tab_8" gui-text="Example">
-        <image>./WallDrillBox-thumb.jpg</image>
-    </page>
+<param name="FrenchCleat_depth" type="float" precision="2" max="9999" gui-text="depth" gui-description="horizontal width of the hook in mm">18.0</param>
+<param name="FrenchCleat_spacing" type="float" precision="2" max="9999" gui-text="spacing" gui-description="distance of the cleats in mm (for bottom hook)">200.0</param>
+<param name="FrenchCleat_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+</page>
+<page name="tab_7" gui-text="Stackable Edges"><param name="Stackable_angle" type="int" max="9999" gui-text="angle" gui-description="inside angle of the feet">60</param>
+<param name="Stackable_bottom_stabilizers" type="float" precision="2" max="9999" gui-text="bottom_stabilizers" gui-description="height of strips to be glued to the inside of bottom edges (multiples of thickness)">0.0</param>
+<param name="Stackable_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the feet (multiples of thickness)">1.0</param>
+<param name="Stackable_holedistance" type="float" precision="2" max="9999" gui-text="holedistance" gui-description="distance from finger holes to bottom edge (multiples of thickness)">1.0</param>
+<param name="Stackable_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of the feet (multiples of thickness)">3.0</param>
+</page>
+<page name="tab_8" gui-text="Example">
+<image>./WallDrillBox-thumb.jpg</image>
+</page>
 </param>
 <label appearance="url">https://www.festi.info/boxes.py/WallDrillBox</label>
 <effect>

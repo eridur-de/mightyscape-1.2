@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -17,13 +16,14 @@
 from boxes import *
 from boxes.lids import _TopEdge
 
+
 class StorageShelf(_TopEdge):
     """StorageShelf can be used to store Typetray"""
 
     ui_group = "Shelf"
     description = "This is a simple shelf box."
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.addTopEdgeSettings(fingerjoint={"surroundingspaces": 0.5},
                                 roundedtriangle={"outset" : 1})
@@ -35,8 +35,8 @@ class StorageShelf(_TopEdge):
         self.argparser.add_argument(
             "--retainer_hole_edge",  action="store", type=boolarg, default=False,
             help="use finger hole edge for retainer walls")
-        
-        
+
+
 
     def ySlots(self):
         posy = -0.5 * self.thickness

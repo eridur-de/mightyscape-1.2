@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2016 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -16,12 +15,13 @@
 
 from boxes import *
 
+
 class LaserHoldfast(Boxes):
     """A holdfast for honey comb tables of laser cutters"""
 
     ui_group = "Part"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
 
         self.buildArgParser(x=25, h=40)
@@ -34,7 +34,7 @@ class LaserHoldfast(Boxes):
 
     def render(self):
         # adjust to the variables you want in the local scope
-        x, hh, h, sw = self.x, self.hookheight, self.h, self.shaftwidth 
+        x, hh, h, sw = self.x, self.hookheight, self.h, self.shaftwidth
         t = self.thickness
 
         a = 30

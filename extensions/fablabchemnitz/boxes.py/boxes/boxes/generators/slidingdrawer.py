@@ -1,11 +1,12 @@
 from boxes import *
 
+
 class SlidingDrawer(Boxes):
     """Sliding drawer box"""
 
     ui_group = "Box"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.buildArgParser(x=60, y=100, h=30, outside='true')
         self.addSettingsArgs(edges.FingerJointSettings, finger=2.0, space=2.0)
@@ -13,7 +14,7 @@ class SlidingDrawer(Boxes):
 
         self.argparser.add_argument(
             "--play",  action="store", type=float, default=0.15,
-            help="play between the two parts as multipleof the wall thickness")
+            help="play between the two parts as multiple of the wall thickness")
 
     def render(self):
 
@@ -47,4 +48,3 @@ class SlidingDrawer(Boxes):
         self.rectangularWall(y, h, "fffe", label="out box wall", move="up left")
 
         self.rectangularWall(x, h, "fFfF", label="out box wall")
-

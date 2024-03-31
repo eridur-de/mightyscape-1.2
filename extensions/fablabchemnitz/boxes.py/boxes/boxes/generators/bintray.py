@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # Copyright (C) 2013-2014 Florian Festi
 #
 #   This program is free software: you can redistribute it and/or modify
@@ -15,7 +14,7 @@
 #   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 from boxes import *
-import math, copy
+
 
 class BinFrontEdge(edges.BaseEdge):
     char = "B"
@@ -26,7 +25,7 @@ class BinFrontEdge(edges.BaseEdge):
         self.corner(-a1)
         for i, l in enumerate(self.settings.sy):
             self.edges["e"](l* (f**2+(1-f)**2)**0.5)
-            self.corner(a2)            
+            self.corner(a2)
             self.edges["f"](l*f*2**0.5)
             if i < len(self.settings.sy)-1:
                 if self.char == "B":
@@ -37,7 +36,7 @@ class BinFrontEdge(edges.BaseEdge):
             else:
                 self.corner(-45)
 
-    def margin(self):
+    def margin(self) -> float:
         return max(self.settings.sy) * self.settings.front
 
 class BinFrontSideEdge(BinFrontEdge):
@@ -48,14 +47,14 @@ class BinTray(Boxes):
 
     ui_group = "Shelf"
 
-    def __init__(self):
+    def __init__(self) -> None:
         Boxes.__init__(self)
         self.buildArgParser("sx", "sy", "h", "outside", "hole_dD")
         self.addSettingsArgs(edges.FingerJointSettings, surroundingspaces=0.5)
         self.argparser.add_argument(
             "--front", action="store", type=float, default=0.4,
-            help="fraction of bin height covert with slope")
-        
+            help="fraction of bin height covered with slope")
+
     def xSlots(self):
         posx = -0.5 * self.thickness
         for x in self.sx[:-1]:
@@ -73,7 +72,7 @@ class BinTray(Boxes):
             for x in self.sx:
                 self.fingerHolesAt(posy, posx, x)
                 posx += x + self.thickness
-                
+
     def addMount(self):
         ds = self.hole_dD[0]
 
@@ -96,7 +95,7 @@ class BinTray(Boxes):
         for x in self.sx[:-1]:
             posx += x + self.thickness
             self.fingerHolesAt(posx, 0, self.hi)
-            
+
     def frontHoles(self, i):
         def CB():
             posx = -0.5 * self.thickness
@@ -119,7 +118,7 @@ class BinTray(Boxes):
 
         x = sum(self.sx) + self.thickness * (len(self.sx) - 1)
         y = sum(self.sy) + self.thickness * (len(self.sy) - 1)
-            
+
         h = self.h
         hi = self.hi = h
         t = self.thickness
