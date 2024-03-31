@@ -2,7 +2,7 @@
 
 <img title="" src="./extensions/fablabchemnitz/000_Mightyscape.svg" alt="" data-align="left">
 
-In short: A maintained extension collection for Inkscape 1.2, working on Windows and Linux. There are **237 extension folders** with **432 .inx files** inside. We also take part at https://inkscape.org/gallery/=extension/ (with single extension uploads).
+In short: A maintained extension collection for Inkscape 1.2, working on Windows and Linux. There are **239 extension folders** with **459 .inx files** inside. We also take part at https://inkscape.org/gallery/=extension/ (with single extension uploads).
 
 # About MightyScape
 

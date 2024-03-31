@@ -1,20 +1,20 @@
 [
   {
-    "name": "Sundial Declining",
-    "id": "fablabchemnitz.de.sundial_declining",
-    "path": "sundial_declining",
+    "name": "Sudoku",
+    "id": "fablabchemnitz.de.sudoku",
+    "path": "sudoku",
     "dependent_extensions": null,
-    "original_name": "Sundial",
-    "original_id": "fr.electropol.tableausimple.inkscape",
-    "license": "Public Domain",
-    "license_url": "https://inkscape.org/de/~TomasUrban/%E2%98%85sundial-declining",
+    "original_name": "Sudoku",
+    "original_id": "org.inkscape.render.sudoku",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/neocogent/inkscape-sudoku/blob/master/LICENCE",
     "comment": "ported to Inkscape v1 by Mario Voigt",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/sundial_declining",
-    "fork_url": "https://inkscape.org/de/~TomasUrban/%E2%98%85sundial-declining",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Sundial+Declining",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/sudoku",
+    "fork_url": "https://github.com/neocogent/inkscape-sudoku",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Sudoku",
     "inkscape_gallery_url": null,
     "contributors": [
-      "inkscape.org/TomasUrban",
+      "github.com/neocogent",
       "github.com/eridur-de"
     ]
   }

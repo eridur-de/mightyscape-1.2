@@ -1540,7 +1540,8 @@ class BoxFace:
         InteriorHeight = self.bottom_right_corner.y_end_joint * Height_percentage / 100.0
         l_NotchLine = NotchLine((0, 0, 1), (InteriorHeight, 0, 1), math.pi/2, z_joint_size) 
 
-        StartHole = l_NotchLine.start_line_joint_y + l_NotchLine.JointSize
+        #First hole z computation. Start at notch line but add delta if Height_percentage is not 100%
+        StartHole = l_NotchLine.start_line_joint_y + l_NotchLine.JointSize + self.bottom_right_corner.y_end_joint - InteriorHeight
         Spacing = 2*l_NotchLine.JointSize
         DebugMsg("drawFaceWithHoles, Hole Start ="+str(StartHole)+" Spacing="+str(Spacing)+" n_holes"+str(l_NotchLine.nb_finger_joint//2)
                  +' n_slot='+str(n_slot)+'  slot_size='+str(slot_size)+" Delta_Pos="+str(DeltaHolePosition)+'\n')
@@ -1548,7 +1549,8 @@ class BoxFace:
             #For each wall, draw holes corresponding at each notch on zbox
             for j in range(int(l_NotchLine.nb_finger_joint//2)):
                 drawHole(self.path, i*(slot_size+thickness) - DeltaHolePosition -thickness, StartHole + j*Spacing, thickness, l_NotchLine.JointSize, burn)
-
+                DebugMsg("drawHole, Slot="+str(i)+", j="+str(j)+", x="+str(i*(slot_size+thickness) - DeltaHolePosition -thickness)+" y="+str(StartHole + j*Spacing)+'\n')
+                
         #Close the path if asked
         if ClosePath:
             self.path.Close()

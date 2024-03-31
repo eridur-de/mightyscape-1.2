@@ -141,10 +141,7 @@ class ApplyTransformations(inkex.EffectExtension):
                 or not isequal(newxy2[0], newxy3[0])
                 or not isequal(newxy1[1], newxy2[1])
             ):
-                inkex.utils.errormsg(
-                    "Warning: Shape %s (%s) is approximate only, try Object to path first for better results"
-                    % (element.TAG, element.get("id"))
-                )
+                inkex.utils.errormsg(f"Warning: Shape {node.TAG} ({node.get('id')}) is approximate only, try Object to path first for better results")
 
             if element.TAG == "ellipse":
                 element.set("rx", edgex / 2)
@@ -204,10 +201,7 @@ class ApplyTransformations(inkex.EffectExtension):
                           inkex.addNS('text', 'svg'),
                           inkex.addNS('image', 'svg')]:
             element.attrib['transform'] = str(transf)
-            inkex.utils.errormsg(
-                "Shape %s (%s) not yet supported. Not all transforms will be applied. Try Object to path first"
-                % (element.TAG, element.get("id"))
-            )
+            inkex.utils.errormsg(f"Shape {node.TAG} ({node.get('id')}) not yet supported. Not all transforms will be applied. Try Object to path first")
         else:
             # e.g. <g style="...">
             self.scaleStrokeWidth(element, transf)

@@ -1,20 +1,20 @@
 [
   {
-    "name": "Slic3r STL Input",
-    "id": "fablabchemnitz.de.slic3r_stl_input",
-    "path": "slic3r_stl_input",
+    "name": "Sine And Lace",
+    "id": "fablabchemnitz.de.sine_and_lace",
+    "path": "sine_and_lace",
     "dependent_extensions": null,
-    "original_name": "STL Input",
-    "original_id": "com.github.jnweiger.inkscape.input.stl",
-    "license": "GNU GPL v2",
-    "license_url": "https://github.com/jnweiger/inkscape-input-stl/blob/master/LICENSE",
+    "original_name": "Sine and Lace",
+    "original_id": "command.experiment.sineandlace",
+    "license": "GNU GPL v3",
+    "license_url": "https://github.com/evil-mad/EggBot/blob/master/LICENSE",
     "comment": "",
-    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/slic3r_stl_input",
-    "fork_url": "https://github.com/jnweiger/inkscape-input-stl",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Slic3r+STL+Input",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/sine_and_lace",
+    "fork_url": "https://github.com/evil-mad/EggBot",
+    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Sine+And+Lace",
     "inkscape_gallery_url": null,
     "contributors": [
-      "github.com/jnweiger",
+      "github.com/evil-mad",
       "github.com/eridur-de"
     ]
   }

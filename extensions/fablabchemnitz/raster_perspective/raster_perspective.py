@@ -80,9 +80,10 @@ class RasterPerspective(inkex.Effect):
         if str(envelope_node) == "image" and str(the_image_node) == "path":
             envelope_node, the_image_node = self.svg.selection #switch
 
-        if str(the_image_node) != "image" and str(envelope_node) != "path":
-            inkex.utils.debug(WARN)
-            return
+        if str(the_image_node) != "image" or str(envelope_node) != "path":
+            inkex.errormsg(WARN)
+            exit()
+
         img_width, img_height = the_image_node.width, the_image_node.height
 
         try:

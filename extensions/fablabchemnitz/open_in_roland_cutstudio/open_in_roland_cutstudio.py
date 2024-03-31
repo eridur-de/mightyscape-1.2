@@ -22,14 +22,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 '''
 
-# The source code is a horrible mess. I apologize for your inconvenience, but hope that it still helps. Feel free to improve :-)
-# Keep everything python2 compatible as long as people out there are using Inkscape <= 0.92.4!
-
-from __future__ import division
-from __future__ import print_function
-from __future__ import unicode_literals
-from __future__ import absolute_import
-
 from builtins import open
 from builtins import map
 from builtins import str
@@ -57,6 +49,11 @@ import string
 
 DEVNULL = open(os.devnull, 'w')
 atexit.register(DEVNULL.close)
+# work around Inkscape 1.3 failing to start when it "calls itself" (Inkscape -> Extension -> Inkscape):
+# https://gitlab.com/inkscape/inkscape/-/issues/4163
+# https://gitlab.com/inkscape/extensions/-/merge_requests/534
+# TODO: Rewrite most parts of this extension using the inkex python module. This removes the need for such workarounds.
+os.environ["SELF_CALL"] = "true"
 
 def message(s):
     sys.stderr.write(s+"\n")
@@ -71,9 +68,9 @@ def which(program, raiseError, extraPaths=[], subdir=None):
     """
     pathlist=os.environ["PATH"].split(os.pathsep)
     if "nt" in os.name:
-        pathlist.append(os.environ.get("ProgramFiles","C:\Program Files\\"))
-        pathlist.append(os.environ.get("ProgramFiles(x86)","C:\Program Files (x86)\\"))
-        pathlist.append("C:\Program Files\\") # needed for 64bit inkscape on 64bit Win7 machines
+        pathlist.append(os.environ.get('ProgramFiles','C:\\Program Files\\'))
+        pathlist.append(os.environ.get('ProgramFiles(x86)','C:\\Program Files (x86)\\'))
+        pathlist.append('C:\\Program Files\\') # needed for 64bit inkscape on 64bit Win7 machines
         pathlist.append(os.path.dirname(os.path.dirname(os.getcwd()))) # portable application in the current directory
     pathlist += extraPaths
     if subdir:
@@ -286,8 +283,8 @@ def EPS2CutstudioEPS(src, dest, mirror=False):
         m=m.transpose()
         #debug("with {}".format(m))
         pnew = numpy.matmul(m, p)
-        x=float(pnew[0])
-        y=float(pnew[1])
+        x=float(pnew.item(0))
+        y=float(pnew.item(1))
         #debug("to: {} {}".format(x, y))
         return [x, y]
     def outputMoveto(x, y):
@@ -410,7 +407,7 @@ if "--selftest" in sys.argv:
 
 if os.name=="nt":
     DETACHED_PROCESS = 8 # start as "daemon"
-    Popen([which("CutStudio\CutStudio.exe", True), "/import", destination], creationflags=DETACHED_PROCESS, close_fds=True)
+    Popen([which("CutStudio\\CutStudio.exe", True), "/import", destination], creationflags=DETACHED_PROCESS, close_fds=True)
 else: #check if we have access to "wine"
     CUTSTUDIO_C_DRIVE = str(Path.home()) + "/.wine/drive_c/"
     CUTSTUDIO_PATH_LINUX_WINE = CUTSTUDIO_C_DRIVE + "Program Files (x86)/CutStudio/CutStudio.exe"

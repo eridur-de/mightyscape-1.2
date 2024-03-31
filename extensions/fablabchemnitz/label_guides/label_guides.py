@@ -428,7 +428,7 @@ class LabelGuides(inkex.Effect):
 
         # Draw horizontal guides
         for g in guides['h']:
-            add_SVG_guide(0, self.svg.viewport_height - g, 'horz', colour, nv)
+            add_SVG_guide(0, self.svg.viewbox_height - g, 'horz', colour, nv)
 
     def _draw_centre_guides(self, document, label_opts, colour):
         """
@@ -444,7 +444,7 @@ class LabelGuides(inkex.Effect):
 
         for g in range(0, len(guides['h']), 2):
             pos = (guides['h'][g] + guides['h'][g + 1]) / 2
-            add_SVG_guide(0, self.svg.viewport_height - pos, 'horz', colour, nv)
+            add_SVG_guide(0, self.svg.viewbox_height - pos, 'horz', colour, nv)
 
     def _draw_shapes(self, document, label_opts, inset):
         """
