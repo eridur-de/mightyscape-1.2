@@ -27,6 +27,8 @@ cssselect
 #affine required by boxes.py extension
 affine
 openmesh
+#qrcode required by boxes.py extension
+qrcode
 
 #vpype occult plugin setup
 git+https://github.com/abey79/occult.git#egg=occult
