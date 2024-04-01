@@ -24,11 +24,11 @@ PySide6
 brother_ql 
 #cssselect required by boxes.py and mightyscape updater extension
 cssselect
-#affine required by boxes.py extension
+#affine, qrcode, gettex required by boxes.py extension
 affine
-openmesh
-#qrcode required by boxes.py extension
 qrcode
+gettex
+openmesh
 
 #vpype occult plugin setup
 git+https://github.com/abey79/occult.git#egg=occult
