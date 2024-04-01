@@ -6,8 +6,6 @@ import math
 from numbers import Real
 from operator import pos
 import os.path
-from typing import List
-from more_itertools import last
 
 from numpy import False_
 import inkex
