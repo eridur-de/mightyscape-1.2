@@ -72,13 +72,13 @@ class DestructiveClip(inkex.EffectExtension):
             elif cmd[0] == 'C':
                 # https://developer.mozilla.org/en/docs/Web/SVG/Tutorial/Paths
                 lineSegments.append([prev, [this[4], this[5]]])
-                errors.add("Curve node detected (svg type C), this node will be handled as a regular node")
+                errors.add("Curve node detected (svg type C), this node will be handled as a regular node. Try to flatten bezier curves before running this extension!")
             else:
-                errors.add("Invalid node type detected: {}. This script only handle type M, L, Z".format(cmd[0]))
+                errors.add("Invalid node type detected: {}. This script only handles types M, L, Z".format(cmd[0]))
             prev = this
         return (lineSegments, errors)
 
-    def linesgmentsToSimplePath(self, lineSegments):
+    def lineSegmentsToSimplePath(self, lineSegments):
         # reverses simplepathToLines - converts line segments to Move/Line-to's
         path = []
         end = None
@@ -202,8 +202,13 @@ class DestructiveClip(inkex.EffectExtension):
                     self.error_messages.extend(['{}: {}'.format(id, err) for err in errors])
                     clippedSegments = self.clipLineSegments(segmentsToClip, clippingLineSegments)
                     if len(clippedSegments) != 0:
-                        path = str(inkex.Path(self.linesgmentsToSimplePath(clippedSegments)))
-                        node.set('d', path)
+                        segsOkay = True
+                        for clippedSegment in clippedSegments:
+                            if len(clippedSegment[0]) != 2: #must be 2, otherwise this errors in Path generation.
+                                segsOkay = False
+                        if segsOkay is True:
+                            path = str(inkex.Path(self.lineSegmentsToSimplePath(clippedSegments)))
+                            node.set('d', path)
                     else:
                         # don't put back an empty path(?)  could perhaps put move, move?
                         inkex.errormsg('Object {} clipped to nothing, will not be updated.'.format(node.get('id')))

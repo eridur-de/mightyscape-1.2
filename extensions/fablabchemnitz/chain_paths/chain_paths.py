@@ -164,7 +164,7 @@ class ChainPaths(inkex.EffectExtension):
                 inkex.utils.debug("Warning: node {} has transform {}. Use 'Apply Transforms' extension before to handle this.".format(node.get('id'), node.get('transform')))
                 return
             
-            if so.debug: inkex.utils.debug("id={}, tag=".format(idnode.get('id'), node.tag))
+            if so.debug: inkex.utils.debug("id={}, tag=".format(node.get('id'), node.tag))
             path_d = CubicSuperPath(Path(node.get('d')))
             sub_idx = -1
             for sub in path_d:
