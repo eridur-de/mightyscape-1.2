@@ -129,7 +129,7 @@ class SlicerSTLInput(inkex.EffectExtension):
         #############################################
         if sys_platform.startswith('win'):
             # assert we run the commandline version of slic3r
-            args.slic3r_cmd = re.sub('slic3r(\.exe)?$', 'slic3r-console.exe', args.slic3r_cmd, flags=re.I)       
+            args.slic3r_cmd = re.sub(r'slic3r(\.exe)?$', 'slic3r-console.exe', args.slic3r_cmd, flags=re.I)       
         cmd = [args.slic3r_cmd, '--version']
         try:
             proc = subprocess.Popen(cmd, shell=False, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -160,7 +160,7 @@ class SlicerSTLInput(inkex.EffectExtension):
         #############################################
         # create the layer slices
         #############################################
-        svgfile = re.sub('\.stl', '.svg', args.inputfile, flags=re.IGNORECASE)  
+        svgfile = re.sub(r'\.stl', '.svg', args.inputfile, flags=re.IGNORECASE)  
         # option --layer-height does not work. We use --scale instead...
         scale = 1.0 / args.layer_height
         cmd  = [
@@ -175,7 +175,7 @@ class SlicerSTLInput(inkex.EffectExtension):
               
         def scale_points(pts, scale):
             """ str='276.422496,309.4 260.209984,309.4 260.209984,209.03 276.422496,209.03' """
-            return re.sub('\d*\.\d*', lambda x: str(float(x.group(0))*scale), pts)
+            return re.sub(r'\d*\.\d*', lambda x: str(float(x.group(0))*scale), pts)
         
         def bbox_info(slic3r, file):
             cmd = [ slic3r, '--no-gui', '--info', file ]
@@ -186,7 +186,7 @@ class SlicerSTLInput(inkex.EffectExtension):
         
             bb = {}
             for l in out.decode().split("\n"):
-                m = re.match('((min|max)_[xyz])\s*=\s*(.*)', l)
+                m = re.match(r'((min|max)_[xyz])\s*=\s*(.*)', l)
                 if m: bb[m.group(1)] = float(m.group(3))
             if (len(bb) != 6):
                 raise ValueError("slic3r --info did not return 6 elements for bbox")
