@@ -201,7 +201,7 @@ class ApplyTransformations(inkex.EffectExtension):
                           inkex.addNS('text', 'svg'),
                           inkex.addNS('image', 'svg')]:
             element.attrib['transform'] = str(transf)
-            inkex.utils.errormsg(f"Shape {node.TAG} ({node.get('id')}) not yet supported. Not all transforms will be applied. Try Object to path first")
+            inkex.utils.errormsg(f"Shape {element.TAG} ({element.get('id')}) not yet supported. Not all transforms will be applied. Try Object to path first")
         else:
             # e.g. <g style="...">
             self.scaleStrokeWidth(element, transf)
