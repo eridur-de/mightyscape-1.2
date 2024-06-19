@@ -79,6 +79,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         pars.add_argument("--comments",       type=inkex.Boolean, default=True)
         pars.add_argument("--perspective",    type=inkex.Boolean, default=True)
         pars.add_argument("--page",           type=inkex.Boolean, default=True)
+        pars.add_argument("--pathEffect",     type=inkex.Boolean, default=True)
         pars.add_argument("--tails",          type=inkex.Boolean, default=True)
 
     
@@ -145,6 +146,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         namespace.append("{http://www.w3.org/2000/svg}pattern")                       if so.pattern        else ""
         namespace.append("{http://www.inkscape.org/namespaces/inkscape}page")         if so.page           else ""
         namespace.append("{http://www.inkscape.org/namespaces/inkscape}perspective")  if so.perspective    else ""
+        namespace.append("{http://www.inkscape.org/namespaces/inkscape}path-effect")  if so.pathEffect     else ""
         namespace.append("{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}guide") if so.guide          else ""
         namespace.append("{http://www.w3.org/1999/02/22-rdf-syntax-ns#}RDF")          if so.rdfRDF         else ""
         namespace.append("{http://creativecommons.org/ns#}Work")                      if so.ccWork         else ""

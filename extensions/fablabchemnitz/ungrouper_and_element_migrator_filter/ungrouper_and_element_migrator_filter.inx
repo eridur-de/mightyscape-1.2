@@ -56,6 +56,7 @@
         					<param name="marker" type="bool" gui-text="marker">true</param>
                             <param name="page" type="bool" gui-text="inkscape:page">true</param>
                             <param name="perspective" type="bool" gui-text="inkscape:perspective">true</param>
+                            <param name="pathEffect" type="bool" gui-text="inkscape:path-effect">true</param>
                         </vbox>
                     <spacer/>
                         <vbox>
