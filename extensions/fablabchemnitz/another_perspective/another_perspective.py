@@ -288,7 +288,7 @@ class AnotherPerspective(inkex.EffectExtension):
                     for p in obj.iterfind(".//{http://www.w3.org/2000/svg}path"):
 
                         absolute_d = str(Path(p.get('d')))
-                        mat = p.transform * Transform([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]])
+                        mat = p.transform @ Transform([[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]])
                         path = CubicSuperPath(absolute_d)
                         Path(path).transform(mat)
                         absolute_object_path += str(Path(path))
