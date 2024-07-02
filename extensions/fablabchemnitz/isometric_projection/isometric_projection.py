@@ -67,6 +67,9 @@ class IsometricProjection(inkex.EffectExtension):
         self.arg_parser.add_argument('--orthoangle', type=float, default=15.0, help='Isometric angle in degrees')
 
     def __initConstants(self, angle):
+        if angle == 0:
+            inkex.utils.debug("angle is set to 0°. This is not supported")
+            return
         # Precomputed values for sine, cosine, and tangent of orthoangle.
         self.rad = math.radians(angle)
         self.cos = math.cos(self.rad)
