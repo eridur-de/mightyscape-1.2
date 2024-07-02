@@ -159,8 +159,8 @@ class RolandCutStudioEPSExport(inkex.OutputExtension):
             m=m.transpose()
             #debug("with {}".format(m))
             pnew = numpy.matmul(m, p)
-            x=float(pnew[0])
-            y=float(pnew[1])
+            x=float(pnew[0][0])
+            y=float(pnew[1][0])
             #debug("to: {} {}".format(x, y))
             return [x, y]
         
