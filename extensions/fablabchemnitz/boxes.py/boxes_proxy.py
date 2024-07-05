@@ -8,7 +8,7 @@ boxes.py wrapper script to make it work on Windows and Linux systems
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 27.04.2021
-Last patch: 30.11.2022
+Last patch: 05.07.2024
 License: GNU GPL v3
 
 """
@@ -19,6 +19,7 @@ import os
 from lxml import etree
 import tempfile
 import argparse
+import xml.etree.ElementTree as ET
 
 class boxesPyWrapper(inkex.GenerateExtension):
 
@@ -38,7 +39,19 @@ class boxesPyWrapper(inkex.GenerateExtension):
 
         boxes_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'boxes', 'scripts')
         
-        PYTHONBIN = "python"
+        #get the correct python executable. If Inkscape has a custom interpreter in preferences.xml, we should honor it
+        preferencesPath = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', '..', '..', '..')
+        preferencesXml = os.path.join(preferencesPath, "preferences.xml")
+        customPythonInterpreter = None
+        #inkex.utils.debug(preferencesXml)
+        tree = ET.parse(preferencesXml)
+        root = tree.getroot()
+        for group in root.findall('group'):
+            for attribute in group.attrib:
+                if attribute == "python-interpreter":
+                    #inkex.utils.debug(group.get("python-interpreter"))
+                    customPythonInterpreter = group.get("python-interpreter")
+        
         if os.name=="nt": #we want to omit using the python executable delivered by inkscape. we use our own installation from %PATH%
             pathlist=list(reversed(os.environ["PATH"].split(os.pathsep)))
             for path in pathlist:
@@ -48,7 +61,12 @@ class boxesPyWrapper(inkex.GenerateExtension):
                     if os.path.isfile(path) and os.access(path, os.X_OK):
                         #inkex.utils.debug(path)
                         PYTHONBIN = path
-                              
+        else: #Linux/MacOS
+            PYTHONBIN = "python"
+            
+        if customPythonInterpreter is not None:
+            PYTHONBIN = customPythonInterpreter
+                                          
         cmd = PYTHONBIN + ' ' + os.path.join(boxes_dir, 'boxes') #the boxes python file (without .py ending) - we add python at the beginning to support Windows too    
         for arg in vars(self.options):
             if arg not in ("output", "ids", "selected_nodes"):
