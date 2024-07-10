@@ -40,7 +40,7 @@ class boxesPyWrapper(inkex.GenerateExtension):
         boxes_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'boxes', 'scripts')
         
         #get the correct python executable. If Inkscape has a custom interpreter in preferences.xml, we should honor it
-        preferencesPath = os.path.join(os.path.dirname(os.path.realpath(__file__)), '..', '..', '..', '..', '..')
+        preferencesPath = os.environ["INKSCAPE_PROFILE_DIR"]
         preferencesXml = os.path.join(preferencesPath, "preferences.xml")
         customPythonInterpreter = None
         #inkex.utils.debug(preferencesXml)
@@ -51,7 +51,6 @@ class boxesPyWrapper(inkex.GenerateExtension):
                 if attribute == "python-interpreter":
                     #inkex.utils.debug(group.get("python-interpreter"))
                     customPythonInterpreter = group.get("python-interpreter")
-        
         if os.name=="nt": #we want to omit using the python executable delivered by inkscape. we use our own installation from %PATH%
             pathlist=list(reversed(os.environ["PATH"].split(os.pathsep)))
             for path in pathlist:
