@@ -100,6 +100,7 @@ cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d'
 
 ```
 sudo apt install python3-venv python3-full
+cd  ~/.config/inkscape/extensions/
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 python3 -m venv ~/.config/inkscape/extensions/mightyscape-1.2/venv
 ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir -r ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
@@ -115,6 +116,8 @@ git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 cd %AppData%\..\Local\Programs\Python\Python312\Scripts
 python -m pip install --upgrade pip #upgrade pip first
 pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
+#use this in case the previous command failed (skip errors)
+FOR /F %k in (requirements.txt) DO ( if NOT # == %k ( pip install %k ) )
 ```
 
 **Note about git handling**: You can also download the whole git project as .zip or .tar.gz bundled archive and then place it to your target directory. This way you can ignore installing git on your system yet. You can convert that directory to the git-way using the [upgrade extension](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/about_upgrade_mightyscape)) later on.
