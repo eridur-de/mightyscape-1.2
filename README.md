@@ -59,9 +59,13 @@ Please read this first before opening issues! This documentation does not mainta
   - portable
   - regular installation with MSI Setup
 - Linux
-  - regular installation from package manager like dnf/yum or apt
-    `sudo apt install inkscape #Ubuntu/Kubuntu (you might need to add PPA first to install the latest version. Do this by sudo add-apt-repository ppa:inkscape.dev/stable)`
-    `sudo dnf install inkscape #Fedora/CentOS`
+  - regular installation from package manager like dnf/yum or apt (see https://wiki.inkscape.org/wiki/Installing_Inkscape)
+    - Ubuntu/Kubuntu
+      - `sudo add-apt-repository universe`
+      - `sudo add-apt-repository ppa:inkscape.dev/stable` for stable releases or `sudo add-apt-repository ppa:inkscape.dev/trunk` for develop trunk
+      - `sudo apt install inkscape`
+    - Fedora/CentOS
+      - `sudo dnf install inkscape` 
 - MacOS
   - this was never tested. We are sorry!
 
