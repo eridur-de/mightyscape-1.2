@@ -1,5 +1,6 @@
 debugpy
 lxml
+matplotlib
 moderngl
 numpy
 networkx 
