@@ -117,11 +117,15 @@ cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d'
 ```
 cd %AppData%\inkscape\extensions\
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
-cd %AppData%\..\Local\Programs\Python\Python312\Scripts
 python -m pip install --upgrade pip #upgrade pip first
-pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
+python -m pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
 #use this in case the previous command failed (skip errors)
-FOR /F %k in (requirements.txt) DO ( if NOT # == %k ( pip install %k ) )
+FOR /F %k in (requirements.txt) DO ( if NOT # == %k ( python -m pip install %k ) )
+```
+
+Python might be installed by default to:
+```
+cd %AppData%\..\Local\Programs\Python\Python312\Scripts
 ```
 
 **Note about git handling**: You can also download the whole git project as .zip or .tar.gz bundled archive and then place it to your target directory. This way you can ignore installing git on your system yet. You can convert that directory to the git-way using the [upgrade extension](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/about_upgrade_mightyscape)) later on.
