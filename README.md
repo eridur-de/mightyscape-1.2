@@ -90,6 +90,11 @@ The following extra libraries are required for some of the extensions within the
 
 **On Fedora/CentOS Linux this might look like:**
 
+Some preparations to install openmesh library later on ...
+```
+sudo dnf install cmake g++ python3-devel
+```
+
 ```
 sudo dnf install python3-venv python3-devel
 cd  ~/.config/inkscape/extensions/
@@ -101,6 +106,11 @@ cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d'
 ```
 
 **On Ubuntu/Kubuntu Linux this might look like:**
+
+Some preparations to install openmesh library later on ...
+```
+sudo apt install cmake g++ python3-dev
+```
 
 ```
 sudo apt install python3-venv python3-full
