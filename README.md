@@ -100,7 +100,9 @@ sudo dnf install python3-venv python3-devel
 cd  ~/.config/inkscape/extensions/
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 python3 -m venv ~/.config/inkscape/extensions/mightyscape-1.2/venv
+
 ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir -r ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
+
 #use this in case the previous command failed (skip errors)
 cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir
 ```
@@ -117,7 +119,9 @@ sudo apt install python3-venv python3-full
 cd  ~/.config/inkscape/extensions/
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 python3 -m venv ~/.config/inkscape/extensions/mightyscape-1.2/venv
+
 ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir -r ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
+
 #use this in case the previous command failed (skip errors)
 cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir
 ```
@@ -131,10 +135,14 @@ cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d'
 py -m ensurepip --upgrade
 cd %AppData%\inkscape\extensions\
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
+
 : upgrade pip first
 python -m pip install --upgrade pip
+
 python -m pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
+
 : use this in case the previous command failed (skip errors)
+cd %AppData%\inkscape\extensions\mightyscape-1.2\
 FOR /F %k in (requirements.txt) DO ( if NOT # == %k ( python -m pip install %k ) )
 ```
 
