@@ -173,7 +173,7 @@ vim ~/.config/inkscape/preferences.xml
 ```
   <group
      id="extensions"
-     python-interpreter="~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip"
+     python-interpreter="~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3"
 ```
 
 **On Windows this might look like:**
