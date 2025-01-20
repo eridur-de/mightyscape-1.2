@@ -38,17 +38,17 @@ class ApplyTransformations(inkex.EffectExtension):
 
         return element
 
-    def scaleStrokeWidth(self, element, transf):
+    def scaleStyleAttrib(self, element, transf, attrib):
         if 'style' in element.attrib:
             style = element.attrib.get('style')
             style = dict(Style.parse_str(style))
             update = False
 
-            if 'stroke-width' in style:
+            if attrib in style:
                 try:
-                    stroke_width = self.svg.unittouu(style.get('stroke-width')) / self.svg.unittouu("1px")
-                    stroke_width *= math.sqrt(abs(transf.a * transf.d - transf.b * transf.c))
-                    style['stroke-width'] = str(stroke_width)
+                    style_attrib = self.svg.unittouu(style.get(attrib)) / self.svg.unittouu("1px")
+                    style_attrib *= math.sqrt(abs(transf.a * transf.d - transf.b * transf.c))
+                    style[attrib] = str(style_attrib)
                     update = True
                 except AttributeError as e:
                     pass
@@ -68,19 +68,26 @@ class ApplyTransformations(inkex.EffectExtension):
             except AttributeError as e:
                 pass
 
-    def transformRectangle(self, node, transf: Transform):
-        x = float(node.get('x', '0'))
-        y = float(node.get('y', '0'))
-        width = float(node.get('width', '0'))
-        height = float(node.get('height', '0'))
-        rx = float(node.get('rx', '0'))
-        ry = float(node.get('ry', '0'))
+    def scaleMultiple(self, string, factor):
+        array = string.strip().split(' ')
+        for k, p in enumerate(array):
+            if p != '0':
+                array[k] = str(float(p) * factor)
+        return ' '.join(array)
+
+    def transformRectangle(self, element, transf: Transform):
+        x = float(element.get('x', '0'))
+        y = float(element.get('y', '0'))
+        width = float(element.get('width', '0'))
+        height = float(element.get('height', '0'))
+        rx = float(element.get('rx', '0'))
+        ry = float(element.get('ry', '0'))
 
         # Extract translation, scaling and rotation
         a, b, c, d = transf.a, transf.b, transf.c, transf.d
         tx, ty = transf.e, transf.f
-        sx = math.sqrt(a**2 + c**2)
-        sy = math.sqrt(b**2 + d**2)
+        sx = math.sqrt(a**2 + b**2)
+        sy = math.sqrt(c**2 + d**2)
         angle = math.degrees(math.atan2(b, a))
 
         # Calculate the center of the rectangle
@@ -93,21 +100,74 @@ class ApplyTransformations(inkex.EffectExtension):
         new_y = new_cy - (height * sy) / 2
 
         # Update rectangle attributes
-        node.set('x', str(new_x))
-        node.set('y', str(new_y))
-        node.set('width', str(width * sx))
-        node.set('height', str(height * sy))
+        element.set('x', str(new_x))
+        element.set('y', str(new_y))
+        element.set('width', str(width * sx))
+        element.set('height', str(height * sy))
 
         # Apply scale to rx and ry if they exist
         if rx > 0:
-            node.set('rx', str(rx * sx))
+            element.set('rx', str(rx * sx))
         if ry > 0:
-            node.set('ry', str(ry * sy))
+            element.set('ry', str(ry * sy))
 
         # Add rotation if it exists
         if abs(angle) > 1e-6:
             tr = Transform(f"rotate({angle:.6f},{new_cx:.6f},{new_cy:.6f})")
-            node.set('transform',tr)
+            element.attrib['transform'] = str(f"rotate({angle:.3f} {new_x:.3f} {new_y:.3f})")
+
+    def transformText(self, element, transf: Transform):
+        x = float(element.get('x', '0'))
+        y = float(element.get('y', '0'))
+        new_x, new_y = transf.apply_to_point((x, y))
+
+        element.set("x", str(new_x))
+        element.set("y", str(new_y))
+
+        # Extract translation, scaling and rotation
+        a, b, c, d = transf.a, transf.b, transf.c, transf.d
+        sx = math.sqrt(a**2 + b**2)
+        sy = math.sqrt(c**2 + d**2)
+        angle = math.degrees(math.atan2(b, a))
+
+        if 'dx' in element.attrib:
+            element.set('dx', self.scaleMultiple(element.get('dx'), sx))
+
+        if 'dy' in element.attrib:
+            element.set('dy', self.scaleMultiple(element.get('dy'), sy))
+
+        # Add rotation if it exists
+        if abs(angle) > 1e-6:
+            tr = str(f"rotate({angle:.3f} {new_x:.3f} {new_y:.3f})")
+            element.set('transform',tr)
+
+    def transformTspan(self, element, transf: Transform):
+        x = float(element.get('x', '0'))
+        y = float(element.get('y', '0'))
+
+        # Extract translation, scaling, rotation and parent xy
+        a, b, c, d = transf.a, transf.b, transf.c, transf.d
+        sx = math.sqrt(a**2 + c**2)
+        sy = math.sqrt(b**2 + d**2)
+        angle = math.degrees(math.atan2(b, a))
+        parentx = element.getparent().get('x', '0')
+        parenty = element.getparent().get('y', '0')
+
+        if 'x' not in element.attrib or x == 0:
+            element.set('x', parentx)
+        else:
+            element.set('x', str(float(parentx) + x * sx))
+
+        if 'y' not in element.attrib or y == 0:
+            element.set('y', parenty)
+        else:
+            element.set('y', str(float(parenty) + y * sy))
+
+        if 'dx' in element.attrib:
+            element.set('dx', self.scaleMultiple(element.get('dx'), sx))
+
+        if 'dy' in element.attrib:
+            element.set('dy', self.scaleMultiple(element.get('dy'), sy))
 
     def recursiveFuseTransform(self, element, transf=[[1.0, 0.0, 0.0], [0.0, 1.0, 0.0]]):
 
@@ -128,7 +188,7 @@ class ApplyTransformations(inkex.EffectExtension):
             p = Path(p).to_absolute().transform(transf, True)
             element.set('d', str(Path(CubicSuperPath(p).to_path())))
 
-            self.scaleStrokeWidth(element, transf)
+            self.scaleStyleAttrib(element, transf, 'stroke-width')
 
         elif element.tag in [inkex.addNS('polygon', 'svg'),
                           inkex.addNS('polyline', 'svg')]:
@@ -145,7 +205,7 @@ class ApplyTransformations(inkex.EffectExtension):
             points = ' '.join(points)
             element.set('points', points)
 
-            self.scaleStrokeWidth(element, transf)
+            self.scaleStyleAttrib(element, transf, 'stroke-width')
 
         elif element.tag in [inkex.addNS("ellipse", "svg"), inkex.addNS("circle", "svg")]:
 
@@ -182,7 +242,7 @@ class ApplyTransformations(inkex.EffectExtension):
                 or not isequal(newxy2[0], newxy3[0])
                 or not isequal(newxy1[1], newxy2[1])
             ):
-                inkex.utils.errormsg(f"Warning: Shape {node.TAG} ({node.get('id')}) is approximate only, try Object to path first for better results")
+                inkex.utils.errormsg(f"Warning: Shape {element.TAG} ({element.get('id')}) is approximate only, try Object to path first for better results")
 
             if element.TAG == "ellipse":
                 element.set("rx", edgex / 2)
@@ -240,17 +300,24 @@ class ApplyTransformations(inkex.EffectExtension):
 
         elif element.tag == inkex.addNS('rect', 'svg'):
             self.transformRectangle(element, transf)
-            self.scaleStrokeWidth(element, transf)
+            self.scaleStyleAttrib(element, transf, 'stroke-width')
 
-        elif element.tag in [inkex.addNS('text', 'svg'),
-                          inkex.addNS('image', 'svg'),
+        elif element.tag in [inkex.addNS('text', 'svg')]:
+            self.transformText(element, transf)
+            self.scaleStyleAttrib(element, transf, 'font-size')
+
+        elif element.tag in [inkex.addNS('tspan', 'svg')]:
+            self.transformTspan(element, transf)
+            self.scaleStyleAttrib(element, transf, 'font-size')
+
+        elif element.tag in [inkex.addNS('image', 'svg'),
                           inkex.addNS('use', 'svg')]:
 
             element.attrib['transform'] = str(transf)
             inkex.utils.errormsg(f"Shape {element.TAG} ({element.get('id')}) not yet supported. Not all transforms will be applied. Try Object to path first")
         else:
             # e.g. <g style="...">
-            self.scaleStrokeWidth(element, transf)
+            self.scaleStyleAttrib(element, transf, 'stroke-width')
 
         for child in element.getchildren():
             self.recursiveFuseTransform(child, transf)
