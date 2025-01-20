@@ -39,7 +39,7 @@
 <param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
 <param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
 <param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
-<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100.0</param>
 <param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
 <option value="loop">loop</option>
 <option value="corner">corner</option>
@@ -47,8 +47,7 @@
     </param>
 <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
 </page>
-<page name="tab_2" gui-text="Finger Joints"><param name="FingerJoint_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
-<param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+<page name="tab_2" gui-text="Finger Joints"><param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
 <option value="rectangular">rectangular</option>
 <option value="springs">springs</option>
 <option value="barbs">barbs</option>
@@ -91,8 +90,7 @@
 <param name="CabinetHinge_play" type="float" precision="2" max="9999" gui-text="play" gui-description="space between eyes (multiples of thickness)">0.05</param>
 <param name="CabinetHinge_spacing" type="float" precision="2" max="9999" gui-text="spacing" gui-description="minimum space around the hinge (multiples of thickness)">2.0</param>
 </page>
-<page name="tab_6" gui-text="Slide-on Lids"><param name="SlideOnLid_angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="angle">90.0</param>
-<param name="SlideOnLid_hole_width" type="int" max="9999" gui-text="hole_width" gui-description='width of the "finger hole" in mm'>0</param>
+<page name="tab_6" gui-text="Slide-on Lids"><param name="SlideOnLid_hole_width" type="int" max="9999" gui-text="hole_width" gui-description='width of the "finger hole" in mm'>0</param>
 <param name="SlideOnLid_second_pin" type="bool" gui-text="second_pin" gui-description="additional pin for better positioning">true</param>
 <param name="SlideOnLid_spring" type="optiongroup" appearance="combo" gui-text="spring" gui-description="position(s) of the extra locking springs in the lid">
 <option value="both">both</option>

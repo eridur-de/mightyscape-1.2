@@ -64,6 +64,9 @@ class Boxes2INX:
                 t = '"bool"'
                 default = str(a.default).lower()
 
+            elif isinstance(a.type, argparse.FileType):
+                t = '"path" mode="file"'
+
             elif a.type is boxes.argparseSections:
                 t = '"string"'
 
@@ -72,7 +75,7 @@ class Boxes2INX:
                      float: '"float" precision="2"',
                      str: '"string"',
                      }.get(a.type, '"string"')
-
+                
             if t == '"int"' or t == '"float" precision="2"':
                 return f'''<param name="{name}" type={t} max="9999" gui-text="{viewname}" gui-description={quoteattr(a.help or viewname)}>{default}</param>\n'''
 

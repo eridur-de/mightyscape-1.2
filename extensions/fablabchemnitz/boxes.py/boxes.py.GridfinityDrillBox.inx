@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>GridfinityDrillBox</name>
+<id>info.festi.boxes.py.GridfinityDrillBox</id>
+<param name="generator" type="string" gui-hidden="true">gridfinitydrillbox</param>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="GridfinityDrillBox"><param name="nx" type="int" max="9999" gui-text="nx" gui-description="number of gridfinity grids in X direction">3</param>
+<param name="ny" type="int" max="9999" gui-text="ny" gui-description="number of gridfinity grids in Y direction">2</param>
+<param name="margin" type="float" precision="2" max="9999" gui-text="margin" gui-description="Leave this much total margin on the outside, in mm">0.75</param>
+        <param name="top_edge" type="optiongroup" appearance="combo" gui-text="top_edge" gui-description="edge type for top edge">
+            <option value="e">e Straight Edge</option>
+            <option value="S">S Stackable (top)</option>
+            <option value="t">t Triangle for handle</option>
+            <option value="G">G Edge with pear shaped mounting holes</option>
+      </param>
+<param name="sh" type="string" gui-text="sh" gui-description="sections bottom to top in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">5:25:10</param>
+</page>
+<page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+<param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+<param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
+<param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+<param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100.0</param>
+<param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+<option value="loop">loop</option>
+<option value="corner">corner</option>
+<option value="backarc">backarc</option>
+    </param>
+<param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+</page>
+<page name="tab_2" gui-text="Finger Joints"><param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+<option value="rectangular">rectangular</option>
+<option value="springs">springs</option>
+<option value="barbs">barbs</option>
+<option value="snap">snap</option>
+    </param>
+<param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="space at the start and end in multiple of normal spaces">1.0</param>
+<param name="FingerJoint_bottom_lip" type="float" precision="2" max="9999" gui-text="bottom_lip" gui-description="height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!">0.0</param>
+<param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+<param name="FingerJoint_extra_length" type="float" precision="2" max="9999" gui-text="extra_length" gui-description="extra material to grind away burn marks (multiples of thickness)">0.0</param>
+<param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers (multiples of thickness)">3.0</param>
+<param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out (multiples of thickness)">0.0</param>
+<param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">3.0</param>
+<param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
+</page>
+<page name="tab_3" gui-text="RoundedTriangleEdge"><param name="RoundedTriangleEdge_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height above the wall">50.0</param>
+<param name="RoundedTriangleEdge_r_hole" type="float" precision="2" max="9999" gui-text="r_hole" gui-description="radius of hole">2.0</param>
+<param name="RoundedTriangleEdge_radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="radius of top corner">30.0</param>
+<param name="RoundedTriangleEdge_outset" type="float" precision="2" max="9999" gui-text="outset" gui-description="extend the triangle along the length of the edge (multiples of thickness)">1.0</param>
+</page>
+<page name="tab_4" gui-text="Stackable Edges"><param name="Stackable_angle" type="int" max="9999" gui-text="angle" gui-description="inside angle of the feet">60</param>
+<param name="Stackable_bottom_stabilizers" type="float" precision="2" max="9999" gui-text="bottom_stabilizers" gui-description="height of strips to be glued to the inside of bottom edges (multiples of thickness)">0.0</param>
+<param name="Stackable_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the feet (multiples of thickness)">2.0</param>
+<param name="Stackable_holedistance" type="float" precision="2" max="9999" gui-text="holedistance" gui-description="distance from finger holes to bottom edge (multiples of thickness)">1.0</param>
+<param name="Stackable_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of the feet (multiples of thickness)">4.0</param>
+</page>
+<page name="tab_5" gui-text="Mounting Edge"><param name="Mounting_d_head" type="float" precision="2" max="9999" gui-text="d_head" gui-description="head diameter of mounting screw (in mm)">6.5</param>
+<param name="Mounting_d_shaft" type="float" precision="2" max="9999" gui-text="d_shaft" gui-description="shaft diameter of mounting screw (in mm)">3.0</param>
+<param name="Mounting_margin" type="float" precision="2" max="9999" gui-text="margin" gui-description="minimum space left and right without holes (fraction of the edge length)">0.125</param>
+<param name="Mounting_num" type="int" max="9999" gui-text="num" gui-description="number of mounting holes (integer)">2</param>
+<param name="Mounting_side" type="optiongroup" appearance="combo" gui-text="side" gui-description="side of box (not all valid configurations make sense...)">
+<option value="back">back</option>
+<option value="left">left</option>
+<option value="right">right</option>
+<option value="front">front</option>
+    </param>
+<param name="Mounting_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="edge style">
+<option value="straight edge, within">straight edge, within</option>
+<option value="straight edge, extended">straight edge, extended</option>
+<option value="mounting tab">mounting tab</option>
+    </param>
+</page>
+<page name="tab_6" gui-text="the Lid"><param name="Lid_handle" type="optiongroup" appearance="combo" gui-text="handle" gui-description="type of handle">
+<option value="none">none</option>
+<option value="long_rounded">long_rounded</option>
+<option value="long_trapezoid">long_trapezoid</option>
+<option value="long_doublerounded">long_doublerounded</option>
+<option value="knob">knob</option>
+    </param>
+<param name="Lid_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="type of lid to create">
+<option value="none">none</option>
+<option value="flat">flat</option>
+<option value="chest">chest</option>
+<option value="overthetop">overthetop</option>
+<option value="ontop">ontop</option>
+    </param>
+<param name="Lid_handle_height" type="float" precision="2" max="9999" gui-text="handle_height" gui-description="height of the handle (if applicable)">8.0</param>
+<param name="Lid_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the brim (if any)">4.0</param>
+<param name="Lid_play" type="float" precision="2" max="9999" gui-text="play" gui-description="play when sliding the lid on (if applicable)">0.1</param>
+</page>
+<page name="tab_7" gui-text="Example">
+<image>./GridfinityDrillBox-thumb.jpg</image>
+</page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/GridfinityDrillBox</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Trays and Drawer Inserts"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

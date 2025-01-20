@@ -237,8 +237,7 @@ class TypeTray(_TopEdge):
         if hasattr(self, "label_text"):
             self.textcontent = self.label_text.split("\r\n")
         else:
-            with open(self.label_file) as f:
-                self.textcontent = f.readlines()
+            self.textcontent = self.label_file.readlines()
         self.textnumber = 0
 
         # x sides

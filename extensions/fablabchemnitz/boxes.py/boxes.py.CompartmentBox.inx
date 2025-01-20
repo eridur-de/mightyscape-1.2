@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>CompartmentBox</name>
+<id>info.festi.boxes.py.CompartmentBox</id>
+<param name="generator" type="string" gui-hidden="true">compartmentbox</param>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="CompartmentBox"><param name="sx" type="string" gui-text="sx" gui-description="sections left to right in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">50*3</param>
+<param name="sy" type="string" gui-text="sy" gui-description="sections back to front in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">50*3</param>
+<param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="inner height in mm (unless outside selected)">100.0</param>
+<param name="outside" type="bool" gui-text="outside" gui-description="treat sizes as outside measurements [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#outside)">true</param>
+        <param name="bottom_edge" type="optiongroup" appearance="combo" gui-text="bottom_edge" gui-description="edge type for bottom edge">
+            <option value="F">F Finger Joint (opposing side)</option>
+            <option value="h">h Edge (parallel Finger Joint Holes)</option>
+            <option value="s">s Stackable (bottom, finger joint holes)</option>
+            <option value="e">e Straight Edge</option>
+      </param>
+<param name="handle" type="optiongroup" appearance="combo" gui-text="handle" gui-description="how to grab the lid to remove">
+<option value="hole">hole</option>
+<option value="lip">lip</option>
+<option value="none">none</option>
+    </param>
+<param name="radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="radius of the grip hole in mm">10</param>
+<param name="holes" type="string" gui-text="holes" gui-description="width of hole(s) in percentage of maximum hole width">70</param>
+<param name="margin_t" type="float" precision="2" max="9999" gui-text="margin_t" gui-description="vertical margin for sliding lid (multiples of thickness)">0.1</param>
+<param name="margin_s" type="float" precision="2" max="9999" gui-text="margin_s" gui-description="margin to add at both sides of sliding lid (multiples of thickness)">0.05</param>
+<param name="split_lip" type="bool" gui-text="split_lip" gui-description="create two strips to reduce waste material">true</param>
+</page>
+<page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+<param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+<param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
+<param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+<param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100.0</param>
+<param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+<option value="loop">loop</option>
+<option value="corner">corner</option>
+<option value="backarc">backarc</option>
+    </param>
+<param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+</page>
+<page name="tab_2" gui-text="Stackable Edges"><param name="Stackable_angle" type="int" max="9999" gui-text="angle" gui-description="inside angle of the feet">60</param>
+<param name="Stackable_bottom_stabilizers" type="float" precision="2" max="9999" gui-text="bottom_stabilizers" gui-description="height of strips to be glued to the inside of bottom edges (multiples of thickness)">0.0</param>
+<param name="Stackable_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the feet (multiples of thickness)">2.0</param>
+<param name="Stackable_holedistance" type="float" precision="2" max="9999" gui-text="holedistance" gui-description="distance from finger holes to bottom edge (multiples of thickness)">1.0</param>
+<param name="Stackable_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of the feet (multiples of thickness)">4.0</param>
+</page>
+<page name="tab_3" gui-text="Example">
+<image>./CompartmentBox-thumb.jpg</image>
+</page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/CompartmentBox</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Trays and Drawer Inserts"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

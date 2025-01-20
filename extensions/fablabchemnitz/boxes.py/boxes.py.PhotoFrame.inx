@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>PhotoFrame</name>
+<id>info.festi.boxes.py.PhotoFrame</id>
+<param name="generator" type="string" gui-hidden="true">photoframe</param>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="PhotoFrame"><param name="x" type="float" precision="2" max="9999" gui-text="x" gui-description="Width of the photo, not including any border">100</param>
+<param name="y" type="float" precision="2" max="9999" gui-text="y" gui-description="Height of the photo, not including any border">150</param>
+<param name="golden_mat" type="bool" gui-text="golden_mat" gui-description="Use golden ratio to calculate matting width">true</param>
+<param name="matting_w" type="float" precision="2" max="9999" gui-text="matting_w" gui-description="Width of the matting border around the sides of the photo">0</param>
+<param name="matting_h" type="float" precision="2" max="9999" gui-text="matting_h" gui-description="Width of the matting border around top/bottom of the photo">0</param>
+<param name="matting_overlap" type="float" precision="2" max="9999" gui-text="matting_overlap" gui-description="Matting overlap of the photo, e.g. 2mm if photo has border, 5mm if not">2</param>
+<param name="glass_w" type="float" precision="2" max="9999" gui-text="glass_w" gui-description="Width of the pre-cut glass or acrylic">0</param>
+<param name="glass_h" type="float" precision="2" max="9999" gui-text="glass_h" gui-description="Height of the pre-cut glass or acrylic">0</param>
+<param name="frame_w" type="float" precision="2" max="9999" gui-text="frame_w" gui-description="Width of the frame border around the matting">20.0</param>
+<param name="guide_fudge" type="float" precision="2" max="9999" gui-text="guide_fudge" gui-description="Clearance in the guide pocket to help slide the matting/glass in">2.0</param>
+<param name="frame_overlap" type="float" precision="2" max="9999" gui-text="frame_overlap" gui-description="Frame overlap to hold the matting/glass in place">5.0</param>
+<param name="split_front" type="bool" gui-text="split_front" gui-description="Split front into thin rectangles to save material">true</param>
+</page>
+<page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+<param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+<param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
+<param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+<param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100.0</param>
+<param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+<option value="loop">loop</option>
+<option value="corner">corner</option>
+<option value="backarc">backarc</option>
+    </param>
+<param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+</page>
+<page name="tab_2" gui-text="Mounting Edge"><param name="Mounting_d_head" type="float" precision="2" max="9999" gui-text="d_head" gui-description="head diameter of mounting screw (in mm)">8.0</param>
+<param name="Mounting_d_shaft" type="float" precision="2" max="9999" gui-text="d_shaft" gui-description="shaft diameter of mounting screw (in mm)">4.0</param>
+<param name="Mounting_margin" type="float" precision="2" max="9999" gui-text="margin" gui-description="minimum space left and right without holes (fraction of the edge length)">0.125</param>
+<param name="Mounting_num" type="int" max="9999" gui-text="num" gui-description="number of mounting holes (integer)">3</param>
+<param name="Mounting_side" type="optiongroup" appearance="combo" gui-text="side" gui-description="side of box (not all valid configurations make sense...)">
+<option value="back">back</option>
+<option value="left">left</option>
+<option value="right">right</option>
+<option value="front">front</option>
+    </param>
+<param name="Mounting_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="edge style">
+<option value="straight edge, within">straight edge, within</option>
+<option value="straight edge, extended">straight edge, extended</option>
+<option value="mounting tab">mounting tab</option>
+    </param>
+</page>
+<page name="tab_3" gui-text="Dove Tail Joints"><param name="DoveTail_angle" type="int" max="9999" gui-text="angle" gui-description="how much should fingers widen (-80 to 80)">50</param>
+<param name="DoveTail_depth" type="float" precision="2" max="9999" gui-text="depth" gui-description="how far the dove tails stick out of/into the edge (multiples of thickness)">1.0</param>
+<param name="DoveTail_radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="radius used on all four corners (multiples of thickness)">0.2</param>
+<param name="DoveTail_size" type="int" max="9999" gui-text="size" gui-description="from one middle of a dove tail to another (multiples of thickness)">2</param>
+</page>
+<page name="tab_4" gui-text="Example">
+<image>./PhotoFrame-thumb.jpg</image>
+</page>
+</param>
+<label appearance="url">https://www.festi.info/boxes.py/PhotoFrame</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Misc"/>
+        </submenu>
+    </effects-menu>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>
