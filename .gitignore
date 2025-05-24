@@ -13,3 +13,5 @@ extensions/.pydevproject
 extensions/.settings/org.eclipse.core.resources.prefs
 extensions/000_Inkscape_Gallery
 venv/
+.venv
+!**/tests/**/*.out
