@@ -1,0 +1,35 @@
+<svg xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="210mm" height="297mm" id="mydoc" version="1.1">
+  <defs>
+    <path d="M 0 0 L 10 10 Z" id="path1"/>
+    <pattern patternTransform="scale(2.0, 1.0)"/>
+  </defs>
+  <sodipodi:namedview id="base" pagecolor="#ffffff" bordercolor="#666666" borderopacity="1.0" inkscape:pageopacity="0.0" inkscape:pageshadow="2" inkscape:zoom="1.9494022" inkscape:cx="337.21073" inkscape:cy="650.51398" inkscape:document-units="px" inkscape:current-layer="layer1" showgrid="false" inkscape:window-width="3060" inkscape:window-height="1685" inkscape:window-x="140" inkscape:window-y="41" inkscape:window-maximized="1"/>
+  <metadata id="metadata7">
+    <rdf:RDF>
+      <cc:Work rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <dc:title/>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+    <g style="fill:#fff;stroke:#d88;" id="A" inkscape:groupmode="layer">
+      <g style="fill:#eee;joker:url(#path1)" id="B">
+        <!-- This is a comment to test svg.selection.get() -->
+        <g style="fill:#ddd;" id="C">
+          <path id="D" fill="#C00" opacity="0.2" d="M -264.396 538.746 L -234.05 509.426 L -249.56 504.858 L -208.426 504.221 L -187.522 523.13 L -203.031 518.562 L -233.377 547.882"/>
+          <rect y="437.688703382127" x="29.659335833368132" height="140.2580259876124" width="162.0250958819647" style="fill:#0000ff;stroke-width:1.4063574953520488" id="E" transform="rotate(-30.090 29.659 437.689)"/>
+          <circle cx="-285.97346946816697" cy="481.3807944531498" r="70.32628223735216" style="stroke:#f00;" id="F"/>
+          <path d="M -542.22 533.433 L -516.596 528.228 Z" id="G"/>
+    <line x1="0" y1="80" x2="100" y2="20" id="H"/>
+          <polyline points="-387.12457447816695,579.1130708441498 -452.8707462771189,495.98706346380476 -375.32293007448425,518.8269762537014 -441.0691018734361,435.7009688733564" id="I"/>
+          <polygon points="-387.12457447816695,579.1130708441498 -452.8707462771189,495.98706346380476 -375.32293007448425,518.8269762537014 -441.0691018734361,435.7009688733564" id="J"/>
+        </g>
+      </g>
+      <g id="K" inkscape:label="Key">
+        <g id="L" inkscape:label="Elm">
+          <line x1="5" y1="5" x2="5.5" y2="10" id="M" inkscape:label="Mine"/>
+        </g>
+      </g>
+    </g>
+</svg>
