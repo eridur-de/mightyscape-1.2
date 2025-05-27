@@ -17,6 +17,7 @@
             <submenu name="Puzzles/Mazes/Nests"/>
         </submenu>
       </effects-menu>
+      <icon>icon.svg</icon>
    </effect>
    <script>
       <command location="inx" interpreter="python">affine_spirals.py</command>
