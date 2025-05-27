@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-#M 60.403,71.0937 V 89.268022 135.773
-
 """
 Extension for InkScape 1.X
 
@@ -15,7 +13,7 @@ to:   M 60.403 71.0937 L 60.403 89.268 L 60.403 135.773
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 23.08.2020
-Last patch: 23.08.2020
+Last patch: 27.05.2025
 License: GNU GPL v3
 """
 
@@ -40,10 +38,9 @@ class ConvertVerticalHorizontalToLine(inkex.EffectExtension):
     			
                 seg = []
                 for simpath in subpaths:
+                    pathClosed = False
                     if simpath[-1][0] == 'Z':
-                        simpath[-1][0] = 'L'
-                        if simpath[-2][0] == 'L': simpath[-1][1] = simpath[0][1]
-                        else: simpath.pop()
+                        pathClosed = True
                     for i in range(len(simpath)):
                         if simpath[i][0] == 'V': # vertical and horizontal lines only have one point in args, but 2 are required
                             #inkex.utils.debug(simpath[i][0])
@@ -57,6 +54,8 @@ class ConvertVerticalHorizontalToLine(inkex.EffectExtension):
                             simpath[i][1].append(simpath[i-1][1][1]) #add the second (missing) argument by taking argument from previous segment				
                         #inkex.utils.debug(simpath[i])
                         seg.append(simpath[i])
+                    if pathClosed is True and simpath[-1][0] != 'Z':
+                        seg.append(['Z', []])
                 curr.set("d", Path(seg))
             else:
                 inkex.utils.debug("Object " + obj.get('id') + " is not a path. Please convert it to a path first.")
