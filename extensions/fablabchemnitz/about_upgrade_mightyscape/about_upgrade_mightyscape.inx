@@ -44,6 +44,8 @@
         <effects-menu>
             <submenu name="FabLab Chemnitz"/>
         </effects-menu>
+       <icon>icon.svg</icon>
+       <menu-tip>Upgrade MightyScape extensions with a few mouse clicks.</menu-tip>
     </effect>
     <script>
         <command location="inx" interpreter="python">about_upgrade_mightyscape.py</command>
