@@ -17,7 +17,7 @@
         <page name="tab_about" gui-text="About">
             <label appearance="header">Move Path Node</label>
             <label>Extension to change starting / end node of a path and visualize it by dots and numbers. You can also use this extension as a trimmer for open paths.</label>
-            <label>2021 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <label>2021 - 2025 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer />
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/movepathnode</label>
