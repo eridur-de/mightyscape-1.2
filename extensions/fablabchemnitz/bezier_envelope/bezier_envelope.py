@@ -102,14 +102,14 @@ class BezierEnvelope(inkex.EffectExtension):
                 inkex.errormsg("axis[%i] is None. Check if envelope has at least 4 nodes (closed path) or 5 nodes (open path)." % i)
                 exit() 
         # morph the enveloped element according to the axes
-        morph_element( letterElement, envelopeElement, axes );
+        morph_element( letterElement, axes );
 
 
-def morph_element( letterElement, envelopeElement, axes ):
+def morph_element( letterElement, axes ):
+
     path = Path( letterElement.get('d') ).to_arrays()
     morphedPath = morphPath( path, axes )
     letterElement.set("d", str(Path(morphedPath)))
-
 
 # Morphs a path into a new path, according to cubic curved bounding axes.
 def morphPath(path, axes):
@@ -379,7 +379,10 @@ def match( p1, p2, a1, a2 ):
     rp = math.hypot( dp[x], dp[y] )
     ra = math.hypot( da[x], da[y] )
     # scale
-    scale = ra / rp
+    try:
+        scale = ra / rp
+    except:
+        scale = 0
     # transforms in the order they are applied
     t1 = Transform( "translate(%f,%f)"%(-p1[x],-p1[y]) ).matrix
     #t2 = Transform( "rotate(%f)"%(-angle_p) ).matrix
