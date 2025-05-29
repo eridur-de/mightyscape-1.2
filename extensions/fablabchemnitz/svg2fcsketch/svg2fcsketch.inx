@@ -13,9 +13,9 @@
         </page>
     </param>
     <output>
-        <extension>.fcstd</extension>
+        <extension>.FCStd</extension>
         <mimetype>text/plain</mimetype>
-        <filetypename>FreeCAD-0.20 Sketch (*.fcstd)</filetypename>
+        <filetypename>FreeCAD-0.21 Sketch (*.FCStd)</filetypename>
         <filetypetooltip>Export path objects to a FreeCAD sketch file</filetypetooltip>
         <dataloss>true</dataloss>
     </output>
