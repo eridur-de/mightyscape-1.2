@@ -64,13 +64,12 @@ import sys
 import math
 sys_platform = sys.platform.lower()
 if sys_platform.startswith('win'):
-  sys.path.append('C:\Program Files\Inkscape\share\extensions')
+  sys.path.append('C:\\Program Files\\Inkscape\\share\\extensions')
 elif sys_platform.startswith('darwin'):
   sys.path.append('~/.config/inkscape/extensions')
 else:   # Linux
   sys.path.append('/usr/share/inkscape/extensions/')
-sys.path.append('/usr/lib64/freecad-daily/lib64/')  # prefer daily over normal.
-sys.path.append('/usr/lib64/freecad/lib64/')
+  sys.path.append('/usr/lib/freecad-python3/lib/')
 
 verbose=-1       # -1=quiet, 0=normal, 1=babble
 epsilon = 0.00001
@@ -89,7 +88,6 @@ if verbose <= 0:
   os.dup2(99,1)         # back in cansas.
 
 import Part, Sketcher   # causes SEGV if Base is not yet imported from FreeCAD
-import ProfileLib.RegularPolygon as Poly
 import gettext
 import re
 import inkex
@@ -325,7 +323,7 @@ class InkSvg():
         selectors = []
         classes = node.get('class', '')         # classes == None can happen here.
         if classes is not None and classes != '':
-            selectors = ["."+cls for cls in re.split('[\s,]+', classes)]
+            selectors = ["."+cls for cls in re.split(r'[\s,]+', classes)]
             selectors += [node.tag+sel for sel in selectors]
         node_id = node.get('id', '')
         if node_id is not None and node_id != '':
@@ -474,19 +472,19 @@ class InkSvg():
         Represent css cdata as a hash in css_dict.
         Implements what is seen on: http://www.blooberry.com/indexdot/css/examples/cssembedded.htm
         """
-        text=re.sub('^\s*(<!--)?\s*', '', text)
+        text=re.sub(r'^\s*(<!--)?\s*', '', text)
         while True:
             try:
                 (keys, rest) = text.split('{', 1)
             except:
                 break
-            keys = re.sub('/\*.*?\*/', ' ', keys)   # replace comments with whitespace
-            keys = re.split('[\s,]+', keys)         # convert to list
+            keys = re.sub(r'/\*.*?\*/', ' ', keys)   # replace comments with whitespace
+            keys = re.split(r'[\s,]+', keys)         # convert to list
             while '' in keys:
                 keys.remove('')                     # remove empty elements (at start or end)
             (val,text) = rest.split('}', 1)
-            val = re.sub('/\*.*?\*/', '', val)      # replace comments nothing in values
-            val = re.sub('\s+', ' ', val).strip()   # normalize whitespace
+            val = re.sub(r'/\*.*?\*/', '', val)      # replace comments nothing in values
+            val = re.sub(r'\s+', ' ', val).strip()   # normalize whitespace
             for k in keys:
                 if not k in self.css_dict:
                     self.css_dict[k] = val
@@ -1130,7 +1128,7 @@ class InkSvg():
             return self.docTransform
 
 parser = OptionParser(usage="\n    %prog [options] SVGFILE [OUTFILE]\n\nTry --help for details.")
-parser.add_option("-o", "--outfile", dest="outfile", help="write fcstd to OUTPUT. Default: stdout (unless it is a tty)", metavar="OUTPUT")
+parser.add_option("-o", "--outfile", dest="outfile", help="write FCStd to OUTPUT. Default: stdout (unless it is a tty)", metavar="OUTPUT")
 parser.add_option("-i", "--id", "--ids", dest="ids", action="append", type="string", default=[], help="Select svg object(s) by id attribute. Use multiple times or combine with comma. Default: root object, aka all")
 parser.add_option("--tab", dest="tab", type="string")
 parser.add_option("--selected-nodes", dest="selected_nodes", action="append", type="string", default=[], help="id:subpath:position of selected nodes, if any") # TODO: check if inkscape is really passing us these
@@ -1159,9 +1157,9 @@ else:
   if options.outfile:
     fcstdfile = options.outfile
   else:
-    fcstdfile = re.sub('\.svg$', '.fcstd', svgfile, re.I)
-docname = re.sub('\.fcstd$', '', fcstdfile, re.I)
-docname = re.sub('^.*/', '', docname)
+    fcstdfile = re.sub(r'\.svg$', '.FCStd', svgfile, re.I)
+docname = re.sub(r'\.fcstd$', '', fcstdfile, re.I)
+docname = re.sub(r'^.*/', '', docname)
 
 if not options.outfile:
   if sys.stdout.isatty():
@@ -1871,7 +1869,7 @@ if verbose >= 0:
 
 if not options.outfile:
   import tempfile
-  fcstdfile = tempfile.mktemp(prefix=docname, suffix='.fcstd')
+  fcstdfile = tempfile.mktemp(prefix=docname, suffix='.FCStd')
 
 fcdoc.saveAs(fcstdfile)
 ## Add GuiDocument.xml to the zip archive of fcstdfile
