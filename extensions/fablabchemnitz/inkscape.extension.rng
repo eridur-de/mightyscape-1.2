@@ -4,6 +4,10 @@
 <!-- START EXTENSION DESCRIPTION (uses defines below) -->
   <start>
     <element name="inkscape-extension">
+      <optional>
+        <attribute name="translationdomain"/>
+      </optional>
+
       <element name="name">
         <text/>
       </element>
@@ -16,7 +20,12 @@
       </zeroOrMore>
 
       <zeroOrMore>
-        <element name="category"><text/></element>
+        <element name="category">
+          <text/>
+          <optional>
+            <attribute name="context"/>
+          </optional>
+        </element>
       </zeroOrMore>
 
       <zeroOrMore>
@@ -147,9 +156,9 @@
         </element>
       </optional>
       <optional>
-        <attribute name="savecopyonly">
+        <element name="savecopyonly">
           <ref name="data_type_boolean_strict"/>
-        </attribute>
+        </element>
       </optional>
     </element>
   </define>
@@ -192,6 +201,11 @@
       </optional>
       <optional>
         <attribute name="implements-custom-gui">
+          <ref name="data_type_boolean_strict"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="show-stderr">
           <ref name="data_type_boolean_strict"/>
         </attribute>
       </optional>
@@ -500,6 +514,11 @@
             <oneOrMore>
               <ref name="inx.widget"/>
             </oneOrMore>
+            <optional>
+              <attribute name="translatable">
+                <ref name="data_type_boolean_yes_no"/>
+              </attribute>
+            </optional>
           </element>
         </oneOrMore>
       </group>
