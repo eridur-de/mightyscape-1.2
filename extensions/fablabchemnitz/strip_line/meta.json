@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 manually by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/strip_line",
     "fork_url": "https://github.com/miffysora/Inkscape",
-    "documentation_url": "",
+    "documentation_url": "https://y.stadtfabrikanten.org/strip-line",
     "inkscape_gallery_url": null,
     "contributors": [
       "github.com/miffysora",

@@ -11,7 +11,7 @@
     "comment": "",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/visicut",
     "fork_url": "https://github.com/t-oster/VisiCut/tree/master/tools/inkscape_extension",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Open+in+VisiCut",
+    "documentation_url": "https://y.stadtfabrikanten.org/open-in-visicut",
     "inkscape_gallery_url": null,
     "contributors": [
       "github.com/t-oster",

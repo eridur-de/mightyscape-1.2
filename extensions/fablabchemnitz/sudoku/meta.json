@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/sudoku",
     "fork_url": "https://github.com/neocogent/inkscape-sudoku",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Sudoku",
+    "documentation_url": "https://y.stadtfabrikanten.org/sudoku",
     "inkscape_gallery_url": null,
     "contributors": [
       "github.com/neocogent",

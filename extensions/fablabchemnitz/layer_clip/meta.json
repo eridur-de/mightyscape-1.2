@@ -11,7 +11,7 @@
     "comment": "Fixed and ported to Inkscape 1.2+ by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/layer_clip",
     "fork_url": "https://gitlab.com/jczapla79/inkscape-extension-layer-clip",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Layer+Clip",
+    "documentation_url": "https://y.stadtfabrikanten.org/layer-clip",
     "inkscape_gallery_url": null,
     "contributors": [
       "pernsteiger.org/Stuart Pernsteiner",

@@ -37,10 +37,10 @@
             <label>2020 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
-            <label appearance="url">https://y.stadtfabrikanten.org/cleanupstyles</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/cleanup-styles</label>
             <spacer/>
             <label appearance="header">Contributing</label>
-            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2</label>
             <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
             <spacer/>
             <label appearance="header">MightyScape Extension Collection</label>

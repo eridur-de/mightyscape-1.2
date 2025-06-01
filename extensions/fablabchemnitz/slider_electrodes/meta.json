@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/slider_electrodes",
     "fork_url": "https://github.com/henningpohl/Inkscape-Slider-Electrode-Generator",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Slider+Electrodes",
+    "documentation_url": "https://y.stadtfabrikanten.org/slider-electrodes",
     "inkscape_gallery_url": null, 
     "contributors": [
       "github.com/henningpohl",

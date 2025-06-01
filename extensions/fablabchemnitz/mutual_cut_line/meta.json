@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/mutual_cut_line",
     "fork_url": "https://github.com/garykac/pathmonkey",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Mutual+Cut+Line",
+    "documentation_url": "https://y.stadtfabrikanten.org/mutual-cut-line",
     "inkscape_gallery_url": null,
     "contributors": [
       "github.com/garykac",

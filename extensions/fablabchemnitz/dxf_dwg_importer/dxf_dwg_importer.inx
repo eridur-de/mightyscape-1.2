@@ -150,14 +150,14 @@
         </page>
         <page name="tab_about" gui-text="About">
             <label appearance="header">DXF/DWG Importer</label>
-            <label>A strange looking ODA File Converter/sk1 UniConverter/ezdxf tool chain. But it works! The most versatile tool to import much hated AutoCAD data for InkScape yet.</label>
+            <label>A strange looking ODA File Converter/sk1 UniConverter/ezdxf tool chain. But it works! The most versatile tool to import much hated AutoCAD data for Inkscape yet.</label>
             <label>2020 - 2024 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/dxfdwgimporter</label>
             <spacer/>
             <label appearance="header">Contributing</label>
-            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2</label>
             <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
             <spacer/>
             <label appearance="header">Third Party Modules</label>

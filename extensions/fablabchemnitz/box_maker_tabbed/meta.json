@@ -18,8 +18,8 @@
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/boxmaker_tabbed",
     "fork_url": "https://github.com/paulh-rnd/TabbedBoxMaker",
     "documentation_url": [
-      "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Schroff",
-      "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Tabbed"
+      "https://y.stadtfabrikanten.org/box-maker-schroff",
+      "https://y.stadtfabrikanten.org/box-maker-tabbed"
         ],
     "inkscape_gallery_url": null,
     "contributors": [

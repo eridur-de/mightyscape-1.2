@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 manually by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/pixel2svg",
     "fork_url": "https://gitlab.com/su-v/inx-pixel2svg",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Pixel2SVG",
+    "documentation_url": "https://y.stadtfabrikanten.org/pixel2svg",
     "inkscape_gallery_url": null,
     "contributors": [
       "gitlab.com/su-v",

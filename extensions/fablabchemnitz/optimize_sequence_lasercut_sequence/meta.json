@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/optimize_sequence_lasercut_sequence",
     "fork_url": "https://github.com/L0laapk3/inkscape-laser-sequence-extension",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Optimize+Sequence%3A+Small+Holes+First",
+    "documentation_url": "https://y.stadtfabrikanten.org/optimize-sequence-small-holes-first",
     "inkscape_gallery_url": null,
     "contributors": [
       "github.com/L0laapk3",

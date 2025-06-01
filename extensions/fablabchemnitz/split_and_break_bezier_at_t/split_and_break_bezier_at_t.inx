@@ -32,7 +32,7 @@ Applies independently for each sub path in selection. Use 'Path > Reverse' to ch
             <label appearance="url">https://y.stadtfabrikanten.org/splitandbreakbezieratt</label>
             <spacer/>
             <label appearance="header">Contributing</label>
-            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2</label>
             <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
             <spacer/>
             <label appearance="header">MightyScape Extension Collection</label>

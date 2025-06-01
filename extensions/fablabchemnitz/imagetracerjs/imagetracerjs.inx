@@ -58,7 +58,7 @@
             <label appearance="url">https://y.stadtfabrikanten.org/imagetracerjs</label>
             <spacer/>
             <label appearance="header">Contributing</label>
-            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.X</label>
+            <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2</label>
             <label appearance="url">mailto:mario.voigt@stadtfabrikanten.org</label>
             <spacer/>
             <label appearance="header">Third Party Modules</label>

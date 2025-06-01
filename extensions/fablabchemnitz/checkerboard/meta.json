@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/checkerboard",
     "fork_url": "https://github.com/jeffkayser/inkscape-checkerboard",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Checkerboard",
+    "documentation_url": "https://y.stadtfabrikanten.org/checkerboard",
     "inkscape_gallery_url": null,
     "contributors": [
       "github.com/jeffkayser",

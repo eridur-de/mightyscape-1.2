@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/perspective_grid",
     "fork_url": "https://github.com/cds4/inkscape-grids",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Perspective+Grid",
+    "documentation_url": "https://y.stadtfabrikanten.org/perspective-grid",
     "inkscape_gallery_url": null,
     "contributors": [
       "github.com/cds4",

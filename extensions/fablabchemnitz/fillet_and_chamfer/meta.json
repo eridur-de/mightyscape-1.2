@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/fillet_and_chamfer",
     "fork_url": "https://github.com/taoari/inkscape-filletandchamfer",
-    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55019889",
+    "documentation_url": "https://y.stadtfabrikanten.org/fillet-and-chamfer",
     "inkscape_gallery_url": null,
     "contributors": [
       "github.com/taoari",  

@@ -11,11 +11,7 @@
     "comment": "",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/cutcraft",
     "fork_url": "https://github.com/m-matthews/cut-craft",
-    "documentation_url": [
-      "https://stadtfabrikanten.org/display/IFM/Cut-Craft+Boxes",
-      "https://stadtfabrikanten.org/display/IFM/Cut-Craft+Cylinder",
-      "https://stadtfabrikanten.org/display/IFM/Cut-Craft+RollerBot"
-      ],
+    "documentation_url": "https://y.stadtfabrikanten.org/cutcraft",
     "inkscape_gallery_url": null,
     "contributors": [
       "github.com/m-matthews",

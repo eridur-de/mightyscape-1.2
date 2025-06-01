@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/scale_to_real",
     "fork_url": "https://gitlab.com/Moini/inkscape-realscale-extension",
-    "documentation_url": "",
+    "documentation_url": "https://y.stadtfabrikanten.org/scale-to-real",
     "inkscape_gallery_url": null,
     "contributors": [
       "gitlab.com/Moini",  

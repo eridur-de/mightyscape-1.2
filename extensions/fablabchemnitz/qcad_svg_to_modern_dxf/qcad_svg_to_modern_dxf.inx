@@ -32,7 +32,7 @@
             <label>2024 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
-            <label appearance="url">https://y.stadtfabrikanten.org/qcad_svg_to_modern_dxf</label>
+            <label appearance="url">https://y.stadtfabrikanten.org/qcad-svg-to-modern-dxf</label>
             <spacer/>
             <label appearance="header">Contributing</label>
             <label appearance="url">https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2</label>

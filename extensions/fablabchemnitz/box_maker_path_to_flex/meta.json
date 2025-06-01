@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/box_maker_path_to_flex",
     "fork_url": "https://github.com/thierry7100/Path2flex",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Box+Maker+-+Path+To+Flex",
+    "documentation_url": "https://y.stadtfabrikanten.org/box-maker-path-to-flex",
     "inkscape_gallery_url": null,
     "contributors": [
       "github.com/thierry7100",

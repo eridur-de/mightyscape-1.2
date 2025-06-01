@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 manually by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/import_attributes",
     "fork_url": "https://inkscape.org/~MatheM/%E2%98%85simple-attribute-editor+1",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Import+Attributes",
+    "documentation_url": "https://y.stadtfabrikanten.org/import-attributes",
     "inkscape_gallery_url": null,
     "contributors": [
       "inkscape.org/MatheM",

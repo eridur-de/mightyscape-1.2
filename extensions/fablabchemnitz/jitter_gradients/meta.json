@@ -11,7 +11,7 @@
     "comment": "ported to Inkscape v1 manually by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/jitter_gradients",
     "fork_url": "https://inkscape.org/~vermette/%E2%98%85jitter-gradients",
-    "documentation_url": "https://stadtfabrikanten.org/display/IFM/Jitter+Gradients",
+    "documentation_url": "https://y.stadtfabrikanten.org/jitter-gradients",
     "inkscape_gallery_url": null,
     "contributors": [
       "inkscape.org/vermette",

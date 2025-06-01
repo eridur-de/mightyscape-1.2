@@ -11,7 +11,7 @@
     "comment": "bugfixed and ported to Inkscape v1 manually by Mario Voigt",
     "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/ellipse_by_five_points",
     "fork_url": "http://www.pernsteiner.org/inkscape/ellipse_5pts/",
-    "documentation_url": "https://stadtfabrikanten.org/pages/viewpage.action?pageId=55019659",
+    "documentation_url": "https://y.stadtfabrikanten.org/ellipse-by-five-points",
     "inkscape_gallery_url": null,
     "contributors": [
       "pernsteiner.org/Stuart Pernsteiner",
