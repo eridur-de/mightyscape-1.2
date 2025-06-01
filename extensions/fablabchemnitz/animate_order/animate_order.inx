@@ -57,8 +57,8 @@
             <submenu name="Animation"/>
          </submenu>
 		</effects-menu>
-       <icon>icon.svg</icon>
        <menu-tip>Create animated SVG preview file and show it in browser. Helps to quickly evaluate line order for cutting processes.</menu-tip>
+       <icon>icon.svg</icon>
     </effect>
     <script>
         <command location="inx" interpreter="python">animate_order.py</command>
