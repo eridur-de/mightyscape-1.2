@@ -1,20 +1,20 @@
-# MightyScape for Inkscape 1.2
+# MightyScape for Inkscape
 
 <img title="" src="./extensions/fablabchemnitz/000_Mightyscape.svg" alt="" data-align="left">
 
-In short: A maintained extension collection for Inkscape 1.2 (and newer), working on Windows and Linux. There are **239 extension folders** with **459 .inx files** inside. We also take part at https://inkscape.org/gallery/=extension/ (with single extension uploads).
+In short: A maintained extension collection for Inkscape. There are **239 extension folders** with **469 .inx files** inside. We also take part at https://inkscape.org/gallery/=extension/ (with single extension uploads).
 
 # About MightyScape
 
-Looking to get more productive we started using some more special Inkscape extensions. We love Inkscape. And we love things like 3d printing, laser cutting, vinyl cutting, pen plotting, maths, physics, geometry, patterns, 2D drawings, 3D CAD , embroidery and more stuff. All this you can do with Inkscape! We recognized that there is no good source to pull extensions in a quick and clean way. Each developer puts his own code on his hidden/unknown repository and often without enough documentation or visible results for common understanding. Many plugins are completely unknown that way, and a lot of extensions are forked x times or are unmaintained. So many of them do not work with recent Inkscape or were never tested with newer versions so far.
+Looking to get more productive we started using some more special Inkscape extensions. We love Inkscape. And we love things like 3d printing, laser cutting, vinyl cutting, pen plotting, maths, physics, geometry, patterns, 2D drawings, 3D CAD, embroidery and more stuff. All this you can do with Inkscape! We recognized that there is no good source to pull extensions in a quick and clean way. Each developer puts his own code on his hidden/unknown repository and often without enough documentation or visible results for common understanding. Many plugins are completely unknown that way, and a lot of extensions are forked x times or are unmaintained. So many of them do not work with recent Inkscape or were never tested with newer versions so far.
 
 # What and why?
 
-This is a one-to-bundle-them-all collection of hundreds of additional functions to Inkscape (extensions) for the new Python 3 based version 1.X including documentation, made  for makers and artists. All plugins where sorted into custom categories  (to avoid overloading the standard extension menu of Inkscape). You can find most of them in sub menu "FabLab Chemnitz". We renamed and cleaned a lot of *.inx files and *.py files. We applied some function renamings, id changes (for preferences.xml clean-keeping), spelling fixes, formattings and parameter corrections.
+This is a one-to-bundle-them-all collection of hundreds of additional functions to Inkscape (extensions) for the new Python 3 based version 1.X including documentation, made for makers and artists. All plugins where sorted into custom categories  (to avoid overloading the standard extension menu of Inkscape). You can find most of them in sub menu "FabLab Chemnitz". We renamed and cleaned a lot of *.inx files and *.py files. We applied some function renamings, id changes (for preferences.xml clean-keeping), spelling fixes, formattings and parameter corrections.
 
 It took years to search and find all them on the web (so much different possible sources where to find!), to read, to comment (report issues), to fix problems, to test, to document and to provide them online. Many extensions were nearly lost in translation.
 
-At least this repo will help to bring alife some good things and will show hidden gold. It meshes things together in a fresh and bundled way - with ease of use and minimum installation stress. A lot of code is not at the optimum. A mass of bugs has to be fixed and different tools should be improved in usage generally. This package will show errors more quickly. So hopefully a lot of new code fixes is result from this package. Maybe some people help to make all the stuff compatible with Inkscape 1.2 and newer.
+At least this repo will help to bring alife some good things and will show hidden gold. It meshes things together in a fresh and bundled way - with ease of use and minimum installation stress. A lot of code is not at the optimum. A mass of bugs has to be fixed and different tools should be improved in usage generally. This package will show errors more quickly. So hopefully a lot of new code fixes is result from this package. Maybe some people help to make all the stuff compatible with the most recent Inkscape.
 
 # Licensing and credits
 
@@ -24,17 +24,23 @@ At least this repo will help to bring alife some good things and will show hidde
 * A mass of plugins were fixed by ourselves in countless hours
 * Credits for creation of the MightyScape project: Mario Voigt / FabLab Chemnitz
 
-# Tested environment
+# Tested environments
 
 * tested with Inkscape
-  * Fedora 40: Inkscape 1.3.2 (091e20ef0f, 2024-04-26)
-  * Kubuntu 40: Inkscape 1.3.2 (091e20ef0f, 2024-04-26)
+  * Kubuntu 40: Inkscape 1.4.2 (1:1.4.2+202505120737+ebf0e940d0)
   * Windows 10 (@KVM/QEMU): Inkscape 1.3.2 (091e20ef0f, 2024-04-26)
 * tested using Python 3.13 64 Bit
 
+```
+cat /etc/os-release
+inkscape --version
+python --version
+python -m pip list
+```
+
 # Structure
 
-The structure of this repo is intended the be easy. MightyScape does not work with any releases or feature branches. Just copy the complete MightyScape folder (or the particular folders you want) to your Inkscape's extension directory. You will find redundancies in this repo like node.exe (NodeJS). We did it this way to give easy possibilty to only pick the extensions you want.
+The structure of this repo is intended to be easy. MightyScape does not work with any releases or feature branches. Just copy the complete MightyScape folder (or the particular folders you want) to your Inkscape's extension directory. You will find redundancies in this repo like node.exe (NodeJS). We did it this way to give easy possibilty to only pick the extensions you want.
 
 # Installation
 
@@ -43,7 +49,7 @@ Please read this first before opening issues! This documentation does not mainta
 ## Unsupported Inkscape versions
 
 - Linux
-  - MightyScape **does not support the snap version** and also **no** **[AppImage]([https://inkscape.org/release/inkscape-dev/gnulinux/appimage/dl](https://inkscape.org/release/inkscape-dev/gnulinux/appimage/dl/))** version of Inkscape. The snap edition comes with restrictions, letting a lot of extensions fail to work. The reason is missing access to external python interpreters. Libraries like `openmesh` or `pyclipper` cannot be used this way. The AppImage version will fail for a lot extension too, because subprocesses from the AppImage have no acccess to `/tmp` directory. You can still install MightyScape with snap or AppImage version but beware to get different errors. Feel free to contribute solutions to fix these issues.
+  - MightyScape **does not support the snap version** and also **no** **[AppImage]([https://inkscape.org/release/inkscape-dev/gnulinux/appimage/dl](https://inkscape.org/release/inkscape-dev/gnulinux/appimage/dl/))** version of Inkscape. The snap edition comes with restrictions, letting a lot of extensions fail to work. The reason is missing access to external python interpreters. Libraries like `openmesh` or `pyclipper` cannot be used this way. The AppImage version will fail for a lot extension too, because subprocesses from the AppImage have no acccess to `/tmp` directory. You can still install MightyScape with snap or AppImage version but beware to get different errors. Feel free to contribute solutions to fix these issues. Flatpak is not tested at all. Possible permission fixed might be obercome with [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal).
 - Windows
   - Windows App Store (this was not tested yet)
 
@@ -250,5 +256,7 @@ You like our work and want to support us? You can donate to our non-profit organ
 [https://y.stadtfabrikanten.org/donate](https://y.stadtfabrikanten.org/donate)
 
 Each penny helps us to keep this project alive.
+
+Please also support the [Inkscape developers](https://inkscape.org/support-us/donate/) as well!
 
 **Thanks for using our extension and helping us!**

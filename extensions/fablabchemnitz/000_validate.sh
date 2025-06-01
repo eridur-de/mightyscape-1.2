@@ -1,6 +1,8 @@
 #!/bin/bash
 clear
 
+#update inkscape.extension.rng from master
+curl --silent https://gitlab.com/inkscape/extensions/-/raw/master/inkex/tester/inkscape.extension.rng?ref_type=heads -o inkscape.extension.rng
 
 echo "--> Validating inx files with xmllint. Only errors are printed to console"
 for folder in */ ; do 
@@ -75,7 +77,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     for EXTENSION in */; do
         EXTENSION="${EXTENSION%/}" #strip trailing slash
         EXTRA=""
-        DEPS=$(jq -r 'try .[]|.dependent_extensions|.[]' ${EXTENSION}/meta.json)
+        DEPS=$(jq -r '.[]|.dependent_extensions|try .[]' ${EXTENSION}/meta.json)
         DEPS=$(echo $DEPS|tr -d '\n')
         #if dependencies are not empty, then ...
         if [[ ! -z $DEPS ]]; then
@@ -100,7 +102,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 	for GALLERY_EXTENSION in ${GALLERY_EXTENSIONS}; do
 		EXTENSION="$(echo ${AGGLOMERATED_JSON} | jq -r '.[]|select(.inkscape_gallery_url=="'$GALLERY_EXTENSION'")|{path}|.[]')"
         EXTRA=""
-        DEPS=$(jq -r 'try .[]|.dependent_extensions|.[]' ${EXTENSION}/meta.json)
+        DEPS=$(jq -r '.[]|.dependent_extensions|try .[]' ${EXTENSION}/meta.json)
         DEPS=$(echo $DEPS|tr -d '\n')
         #if dependencies are not empty, then ...
         if [[ ! -z $DEPS ]]; then
