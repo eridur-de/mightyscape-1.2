@@ -94,7 +94,7 @@ read -p "Build local gallery extension zip files?" -n 1 -r
 echo
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo "Building Inkscape gallery extension zip files"
-    TARGETDIR="../000_Inkscape_Gallery"
+    TARGETDIR="../../../000_Inkscape_Gallery"
     mkdir -p $TARGETDIR > /dev/null 2>&1
  
 	#show extensions which are in gallery
