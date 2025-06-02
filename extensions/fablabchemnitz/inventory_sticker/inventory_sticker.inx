@@ -55,6 +55,8 @@
                 <submenu name="Cutting/Plotting/Printing"/>
             </submenu>
         </effects-menu>
+       <menu-tip>This extension generates inventory stickers for thermo printers (we use Brother QL-720NW) from a provided web server *.csv file</menu-tip>
+       <icon>icon.svg</icon>
     </effect>
     <script>
         <command location="inx" interpreter="python">inventory_sticker.py</command>
