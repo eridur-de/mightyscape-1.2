@@ -39,7 +39,7 @@
 		<page name="tab_about" gui-text="About">
 			<label appearance="header">DXF 2 Papercraft</label>
 			<label>Unfold and import DXF into InkScape using dxf2papercraft. This is some kind of wrapper extension utilizing kabeja to convert the dxf output from dxf2papercraft into SVG. To make it work you need to install at least java.</label>
-			<label>2020 - 2023 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+			<label>2020 - 2025 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
 			<spacer/>
 			<label appearance="header">Online Documentation</label>
 			<label appearance="url">https://y.stadtfabrikanten.org/dxf2papercraft</label>
@@ -74,6 +74,8 @@
 				<submenu name="Papercraft Flatteners"/>
 			</submenu>
         </effects-menu>
+       <menu-tip>A small Inkscape wrapper for dxf2papercraft, which is is an open source flattener, available at https://sourceforge.net/projects/dxf2papercraft/files</menu-tip>
+       <icon>icon.svg</icon>
     </effect>
     <script>
         <command location="inx" interpreter="python">dxf2papercraft.py</command>
