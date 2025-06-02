@@ -65,6 +65,8 @@
                 <submenu name="Colors/Gradients/Filters"/>
             </submenu>
         </effects-menu>
+       <menu-tip>Adjust stroke width opacity and colors of large groups.</menu-tip>
+       <icon>icon.svg</icon>
     </effect>
     <script>
         <command location="inx" interpreter="python">cleanup_styles.py</command>
