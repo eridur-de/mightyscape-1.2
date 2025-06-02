@@ -9,6 +9,8 @@
                 <submenu name="Groups and Layers"/>
             </submenu>
         </effects-menu>
+       <menu-tip>It will just clean the whole document from groups without content (dangling groups). Also applies for layers.</menu-tip>
+       <icon>icon.svg</icon>
     </effect>
     <script>
         <command location="inx" interpreter="python">remove_empty_groups.py</command>
