@@ -231,6 +231,11 @@
           <text/>
         </element>
       </optional>
+	  <optional>
+        <element name="icon">
+          <text/>
+        </element>
+      </optional>
     </element>
   </define>
 
