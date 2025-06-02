@@ -227,7 +227,8 @@ class SlicerSTLInput(inkex.EffectExtension):
         # e.attrib['{http://www.inkscape.org/namespaces/inkscape}document-units'] = "mm"
             
         totalPolygoncount = 0
-        for e in doc.iterfind('//{*}polygon'):
+        
+        for e in doc.iterfind('.//{*}polygon'):
             totalPolygoncount += 1
             
         polygoncount = 0
@@ -237,7 +238,7 @@ class SlicerSTLInput(inkex.EffectExtension):
         else:
             fill = args.fill_color
         
-        for e in doc.iterfind('//{*}polygon'):
+        for e in doc.iterfind('.//{*}polygon'):
             polygoncount += 1
             if args.diffuse_fill_opacity == "front_to_back":
                 fill_opacity =  (args.max_fill_opacity - (polygoncount / totalPolygoncount) * (args.max_fill_opacity - args.min_fill_opacity)) + args.min_fill_opacity
@@ -302,7 +303,7 @@ class SlicerSTLInput(inkex.EffectExtension):
                 del e.attrib['{http://slic3r.org/namespaces/slic3r}type']
         
         layercount = 0
-        for e in doc.iterfind('//{*}g'):
+        for e in doc.iterfind('.//{*}g'):
             if e.attrib['{http://slic3r.org/namespaces/slic3r}z'] and e.attrib['id']:
                 layercount+=1
                 e.attrib['{http://www.inkscape.org/namespaces/inkscape}label'] = \
