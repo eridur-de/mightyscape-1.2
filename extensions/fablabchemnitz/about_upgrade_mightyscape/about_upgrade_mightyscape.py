@@ -32,7 +32,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
     restart = False
 
     def install_requirements(self):
-        requirements = inkex.utils.debug(os.path.abspath(os.path.join(self.ext_path()) + "/../../../requirements.txt"))
+        requirements = os.path.abspath(os.path.join(self.ext_path()) + "/../../../requirements.txt")
         if not os.path.exists(requirements):
             inkex.utils.debug("requirements.txt could not be found.")
             exit(1)
@@ -41,13 +41,16 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
             python_venv = os.path.abspath(os.path.join(os.path.dirname(git.__file__), '../', '../', '../', '../', 'venv', 'Scripts', 'python.exe'))
         else: #Linux/MacOS
             python_venv = os.path.abspath(os.path.join(os.path.dirname(git.__file__), '../', '../', '../', '../', 'bin', 'python'))
-
-        command = ["{} -m pip install --upgrade --quiet --no-cache-dir -r ".format(python_venv) + requirements]
-        inkex.utils.debug("Executing: {}".format(command[0]))
-        proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
+        command = "{} -m pip install --upgrade --no-cache-dir -r {}".format(python_venv, requirements)
+        inkex.utils.debug("Executing: {}".format(command))
+        proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE, encoding="UTF-8")
         stdout, stderr = proc.communicate()
-        inkex.utils.debug(stdout.decode('UTF-8'))
-        inkex.utils.debug(stderr.decode('UTF-8'))
+        try:
+            inkex.utils.debug(stdout)
+            inkex.utils.debug(stderr)
+        except:
+            pass
+        
         proc.wait()
 
     def update(self, local_repo, remote, localCommitCount):

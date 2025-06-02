@@ -145,17 +145,18 @@ cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d'
 : %AppData%\..\Local\Programs\Python\Python313\Scripts
 : The python executable should be available with command "py" (or "python" or "python.exe")
 
-: we also install and upgrade pip package manager, if not already done
-py -m ensurepip --upgrade
-py -m pip install --upgrade pip
-
 py -m venv %AppData%\inkscape\extensions\mightyscape-1.2\venv
 
 : then we clone MightyScape project into extension directory
 cd %AppData%\inkscape\extensions\
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 
-%AppData%\inkscape\extensions\mightyscape-1.2\venv\python3 -m pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
+: we also install and upgrade pip package manager, if not already done
+%AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m ensurepip --upgrade
+%AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m pip install --upgrade pip
+
+: install modules
+%AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
 
 : use this in case the previous command failed to continue by just skipping errors (less clean installation)
 cd %AppData%\inkscape\extensions\mightyscape-1.2\

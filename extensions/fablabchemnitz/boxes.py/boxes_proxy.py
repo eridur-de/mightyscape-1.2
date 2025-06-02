@@ -95,7 +95,7 @@ class boxesPyWrapper(inkex.GenerateExtension):
         stdout, stderr = proc.communicate()
         if stderr.decode('utf-8') != "":
             inkex.utils.debug("stderr: {}".format(stderr.decode('utf-8')))
-            exit(1)
+            sys.exit(1)
         
         # check output existence
         try:
@@ -103,7 +103,7 @@ class boxesPyWrapper(inkex.GenerateExtension):
         except FileNotFoundError as e:
             inkex.utils.debug("There was no " + box_file + " output generated. Cannot continue. Command was:")
             inkex.utils.debug(str(cmd))
-            exit(1)
+            sys.exit(1)
             
         # write the generated SVG into Inkscape's canvas
         p = etree.XMLParser(huge_tree=True)
