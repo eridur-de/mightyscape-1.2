@@ -60,6 +60,8 @@
                 <submenu name="Groups and Layers"/>
             </submenu>
         </effects-menu>
+       <menu-tip>Re-layer your selected items or the whole document according to their color (stroke or fill). Each style will be put onto it's own layer. This way you can devide elements by their colors with ease.</menu-tip>
+       <icon>icon.svg</icon>
     </effect>
     <script>
         <command location="inx" interpreter="python">styles_to_layers.py</command>
