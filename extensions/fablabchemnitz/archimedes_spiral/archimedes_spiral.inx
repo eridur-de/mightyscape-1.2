@@ -48,6 +48,8 @@
             <submenu name="Shape/Pattern from Generator"/>
          </submenu>
       </effects-menu>
+       <menu-tip>The extension draws a spiral by a lot of fine-grained line segments.</menu-tip>
+       <icon>icon.svg</icon>
    </effect>
    <script>
       <command location="inx" interpreter="python">archimedes_spiral.py</command>
