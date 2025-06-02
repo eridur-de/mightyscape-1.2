@@ -36,8 +36,15 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
         if not os.path.exists(requirements):
             inkex.utils.debug("requirements.txt could not be found.")
             exit(1)
-        command = ["python3 -m pip install --upgrade --quiet --no-cache-dir -r " + requirements]
-        inkex.utils.debug("Executing: {}".format(command))
+
+        if os.name=="nt":
+            PYTHONBIN = "pythonw.exe"
+        else: #Linux/MacOS
+            PYTHONBIN = "python"
+
+        python_venv = os.path.abspath(os.path.join(os.path.dirname(git.__file__), '../', '../', '../', '../', 'bin', PYTHONBIN))
+        command = ["{} -m pip install --upgrade --quiet --no-cache-dir -r ".format(python_venv) + requirements]
+        inkex.utils.debug("Executing: {}".format(command[0]))
         proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
         stdout, stderr = proc.communicate()
         inkex.utils.debug(stdout.decode('UTF-8'))
