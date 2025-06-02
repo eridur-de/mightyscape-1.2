@@ -207,7 +207,7 @@ notepad %appdata%\inkscape\preferences.xml
 ```
   <group
      id="extensions"
-     python-interpreter="C:\Users\youruser\AppData\Local\Programs\Python\Python310\pythonw.exe"
+     python-interpreter="C:\Users\youruser\AppData\Roaming\inkscape\extensions\mightyscape-1.2\venv\Scripts\pythonw.exe"
 ```
 
 If in Inkscape you get a nasty popup window each time you are executing an extension, please double check if you really use `pythonw.exe`. Do not use `python.exe`.
