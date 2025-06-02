@@ -73,6 +73,8 @@
 				<submenu name="Shape/Pattern from existing Path(s)"/>
 			</submenu>
         </effects-menu>
+       <menu-tip>Create offset for open or closed paths from non-bezier paths (destructive method).</menu-tip>
+       <icon>icon.svg</icon>
     </effect>
     <script>
         <command location="inx" interpreter="python">offset_paths.py</command>
