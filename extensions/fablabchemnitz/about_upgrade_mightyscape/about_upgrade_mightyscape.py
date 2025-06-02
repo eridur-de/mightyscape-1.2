@@ -38,11 +38,10 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
             exit(1)
 
         if os.name=="nt":
-            PYTHONBIN = "pythonw.exe"
+            python_venv = os.path.abspath(os.path.join(os.path.dirname(git.__file__), '../', '../', '../', '../', 'venv', 'Scripts', 'python.exe'))
         else: #Linux/MacOS
-            PYTHONBIN = "python"
+            python_venv = os.path.abspath(os.path.join(os.path.dirname(git.__file__), '../', '../', '../', '../', 'bin', 'python'))
 
-        python_venv = os.path.abspath(os.path.join(os.path.dirname(git.__file__), '../', '../', '../', '../', 'bin', PYTHONBIN))
         command = ["{} -m pip install --upgrade --quiet --no-cache-dir -r ".format(python_venv) + requirements]
         inkex.utils.debug("Executing: {}".format(command[0]))
         proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
