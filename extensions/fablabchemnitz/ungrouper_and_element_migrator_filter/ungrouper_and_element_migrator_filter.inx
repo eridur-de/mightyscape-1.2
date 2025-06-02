@@ -130,6 +130,8 @@
                 <submenu name="Groups and Layers"/>
             </submenu>
         </effects-menu>
+       <menu-tip>Parses selection and puts all elements into single group. If you have a cluster with lots of groups and elements you will clean up this way (one top level group, all elements below it). You can also use it to filter unwanted SVG elements.</menu-tip>
+       <icon>icon.svg</icon>
     </effect>
     <script>
         <command location="inx" interpreter="python">ungrouper_and_element_migrator_filter.py</command>
