@@ -50,8 +50,8 @@ class BoundingBox(inkex.EffectExtension):
                 for element in self.svg.selected.values():
                     self.drawBBox(element.bounding_box())
             else: #combined bbox
-                #self.drawBBox(self.svg.get_selected_bbox()) #works for InkScape (1:1.0+devel+202008292235+eff2292935) @ Linux and for Windows (but with deprecation)
-                #self.drawBBox(self.svg.selection.bounding_box()) #works for InkScape 1.1dev (9b1fc87, 2020-08-27)) @ Windows
+                #self.drawBBox(self.svg.get_selected_bbox()) #works for Inkscape (1:1.0+devel+202008292235+eff2292935) @ Linux and for Windows (but with deprecation)
+                #self.drawBBox(self.svg.selection.bounding_box()) #works for Inkscape 1.1dev (9b1fc87, 2020-08-27)) @ Windows
                 bbox = inkex.BoundingBox()
                 for element in self.svg.selected.values():
                     if isinstance (element, inkex.ShapeElement) and element.tag != inkex.addNS('use','svg') and element.get('inkscape:groupmode') != 'layer': #bbox fails for svg:use elements and layers:

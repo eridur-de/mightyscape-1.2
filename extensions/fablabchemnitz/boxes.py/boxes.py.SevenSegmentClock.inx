@@ -39,7 +39,7 @@
 <image>./SevenSegmentClock-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/SevenSegmentClock</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/SevenSegmentClock</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -47,6 +47,7 @@
             <submenu name="Unstable"/>
         </submenu>
     </effects-menu>
+    <icon>SevenSegmentClock-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

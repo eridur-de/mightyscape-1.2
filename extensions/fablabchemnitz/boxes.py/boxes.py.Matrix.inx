@@ -50,7 +50,7 @@
 <image>./Matrix-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/Matrix</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/Matrix</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -58,6 +58,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>Matrix-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

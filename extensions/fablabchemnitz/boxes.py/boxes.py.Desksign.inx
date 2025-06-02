@@ -6,10 +6,12 @@
 <param name="tab" type="notebook"><page name="tab_0" gui-text="Desksign"><param name="width" type="float" precision="2" max="9999" gui-text="width" gui-description="plate width in mm (excluding holes)">150</param>
 <param name="height" type="float" precision="2" max="9999" gui-text="height" gui-description="plate height in mm">80</param>
 <param name="angle" type="float" precision="2" max="9999" gui-text="angle" gui-description="plate angle in degrees (90 is vertical)">60</param>
-<param name="label" type="string" gui-text="label" gui-description="optional text to engrave (leave blank to omit)"></param>
+<param name="label" type="string" gui-text="label" gui-description="optional text to engrave (leave blank to omit)">DeskSign
+Boxes.py</param>
 <param name="fontsize" type="float" precision="2" max="9999" gui-text="fontsize" gui-description="height of text">20</param>
 <param name="feet" type="bool" gui-text="feet" gui-description="add raised feet">false</param>
 <param name="mirror" type="bool" gui-text="mirror" gui-description="mirrors one of the stand so the same side of the material can be placed on the outside">true</param>
+<param name="verticaltextoffset" type="float" precision="2" max="9999" gui-text="verticaltextoffset" gui-description="vertical offset of text in mm from the default centered location">0</param>
 </page>
 <page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
 <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
@@ -49,7 +51,7 @@
 <image>./Desksign-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/Desksign</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/Desksign</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -57,6 +59,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>Desksign-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

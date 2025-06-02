@@ -62,7 +62,7 @@
 <image>./CardHolder-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/CardHolder</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/CardHolder</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -70,6 +70,7 @@
             <submenu name="Shelves"/>
         </submenu>
     </effects-menu>
+    <icon>CardHolder-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

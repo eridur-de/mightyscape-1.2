@@ -11,7 +11,7 @@
 			<param name="plugin_deduplicate_keepseparatelayer" gui-text="Put duplicate lines to separate layer" type="bool">false</param>
 		</page>
 		<page name="tab_settings_general" gui-text="General Settings">
-			<label appearance="header">Input (InkScape to vpype)</label>
+			<label appearance="header">Input (Inkscape to vpype)</label>
 			<param name="input_handling" type="optiongroup" appearance="radio" gui-text="Input/Layer handling">
 			   <option value="layers">Multilayer/document (all layers/complete document)</option>
 			   <option value="paths">Singlelayer/paths (a single layer/paths in selection or all paths in document)</option>
@@ -23,11 +23,11 @@
 			<param name="parallel" type="bool" gui-text="Parallelize Simplify geometry" gui-description="Enables multiprocessing for the SVG conversion. This is recommended ONLY when using 'Simplify geometry' on large SVG files with many curved elements. Does not work for 'Singlelayer/paths'">false</param>			
 			<spacer/>
 			<label appearance="header">Validation (vpype pipeline)</label>
-		 	<param name="output_show" type="bool" gui-text="Preview only (debug output)" gui-description="This will open a separate window showing the finished SVG data. If enabled output, is not applied to InkScape canvas (only for preview)!">false</param>
+		 	<param name="output_show" type="bool" gui-text="Preview only (debug output)" gui-description="This will open a separate window showing the finished SVG data. If enabled output, is not applied to Inkscape canvas (only for preview)!">false</param>
 		 	<param name="output_show_points" type="bool" gui-text="Enable point display in viewer">false</param>
 		 	<param name="output_stats" type="bool" gui-text="Show conversion statistics" gui-description="Show output statistics before/after conversion. Helps to find out length savings.">false</param>
 			<spacer/>
-			<label appearance="header">Output (vpype to InkScape)</label>
+			<label appearance="header">Output (vpype to Inkscape)</label>
 		 	<param name="output_trajectories" type="bool" gui-text="Import travel trajectories" gui-description="Add paths for the travel trajectories">false</param>
 		 	<param name="keep_objects" type="bool" gui-text="Keep original objects" gui-description="If false, original (selected) objects will be removed">false</param>
 		 	<param name="strokes_to_paths" type="bool" gui-text="Auto-convert low-level strokes to paths" gui-description="Recommended option. Performs 'Path' > 'Stroke to Path' (CTRL + ALT + C) to convert vpype converted lines back to regular path objects. Warning: increases import time significantly.">true</param>

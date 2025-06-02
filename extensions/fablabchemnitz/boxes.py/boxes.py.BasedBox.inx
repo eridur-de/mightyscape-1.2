@@ -40,7 +40,7 @@
 <image>./BasedBox-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/BasedBox</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/BasedBox</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -48,6 +48,7 @@
             <submenu name="Boxes"/>
         </submenu>
     </effects-menu>
+    <icon>BasedBox-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

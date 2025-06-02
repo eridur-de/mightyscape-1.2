@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Extension for InkScape 1.3.2
+Extension for Inkscape 1.3.2
 
 This extension parses the selection and will put all elements into one single group. If you have a cluster with lots of groups and elements you will clean up this way (one top level group, all elements below it). If you select a single element or a set of elements you just wrap it like using CTRL + G (like making a usual group). You can also use this extension to filter out unwanted SVG elements at all.
  
@@ -108,7 +108,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
                 self.msg("{} tails/texts were removed during nodes while migration.".format(tails))
                 
         namespace = [] #a list of selected types we are going to process for filtering (dropping items)
-        #namespace.append("{http://www.w3.org/2000/svg}sodipodi")       if so.sodipodi       else "" #do not do this. it will crash InkScape
+        #namespace.append("{http://www.w3.org/2000/svg}sodipodi")       if so.sodipodi       else "" #do not do this. it will crash Inkscape
         #namespace.append("{http://www.w3.org/2000/svg}svg")            if so.svg            else "" #we handle svg:svg the same type like svg:g
         namespace.append("{http://www.w3.org/2000/svg}circle")                        if so.circle         else ""
         namespace.append("{http://www.w3.org/2000/svg}clipPath")                      if so.clipPath       else ""
@@ -196,7 +196,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
             applyTransformationsAvailable = True
         except Exception as e:
             # self.msg(e)
-            self.msg("Calling 'Apply Transformations' extension failed. Maybe the extension is not installed. You can download it from official InkScape Gallery. Skipping ...")
+            self.msg("Calling 'Apply Transformations' extension failed. Maybe the extension is not installed. You can download it from official Inkscape Gallery. Skipping ...")
              
         if so.apply_transformations is True and applyTransformationsAvailable is True:
             apply_transformations.ApplyTransformations().recursiveFuseTransform(self.document.getroot()) 
@@ -244,7 +244,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         if so.operationmode == "filter_only" or so.operationmode == "ungroup_and_filter":
             if so.showdroplist:
                 self.msg("{} elements were removed during nodes while migration.".format(len(self.allDrops)))
-                if len(self.allDrops) > 100: #if we print too much to the output stream we will freeze InkScape forever wihtout any visual error message. So we write to file instead
+                if len(self.allDrops) > 100: #if we print too much to the output stream we will freeze Inkscape forever wihtout any visual error message. So we write to file instead
                     migrate_log_file = open('migrategroups.log', 'w')
                 else:
                     migrate_log_file = None
@@ -296,7 +296,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
                 import remove_empty_groups
                 remove_empty_groups.RemoveEmptyGroups.effect(self)
             except:
-                self.msg("Calling 'Remove Empty Groups' extension failed. Maybe the extension is not installed. You can download it from official InkScape Gallery.")
+                self.msg("Calling 'Remove Empty Groups' extension failed. Maybe the extension is not installed. You can download it from official Inkscape Gallery.")
          
 if __name__ == '__main__':
     UngrouperAndElementMigratorFilter().run()

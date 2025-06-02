@@ -7,7 +7,7 @@ More usesless and/or redundant filters for removing duplicate nodes and segments
 - https://stadtfabrikanten.org/display/IFM/Purge+Duplicate+Path+Segments
 - https://stadtfabrikanten.org/display/IFM/Purge+Duplicate+Path+Nodes
 
-Extension for InkScape 1.X
+Extension for Inkscape 1.X
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 21.04.2021

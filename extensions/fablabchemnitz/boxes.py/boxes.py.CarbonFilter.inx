@@ -41,7 +41,7 @@
 <image>./CarbonFilter-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/CarbonFilter</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/CarbonFilter</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -49,6 +49,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>CarbonFilter-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

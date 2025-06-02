@@ -41,7 +41,7 @@
 <image>./DisplayCase-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/DisplayCase</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/DisplayCase</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -49,6 +49,7 @@
             <submenu name="Boxes"/>
         </submenu>
     </effects-menu>
+    <icon>DisplayCase-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

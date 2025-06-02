@@ -11,7 +11,7 @@
                 <option value="ezdxf">ezdxf (higher quality, many single nodes)</option>
                 <option value="kabeja">kabeja (Java library)</option>
                 <option value="vpype_dxf">vpype-dxf (Note: DXF to SVG 'Filter entities with ezdxf' disabled)</option>
-                <option value="legacy">legacy InkScape importer</option>
+                <option value="legacy">legacy Inkscape importer</option>
             </param>
             <param name="resizetoimport" type="bool" gui-text="Resize the canvas to the imported drawing's bounding box">true</param>
             <param name="extraborder" type="float" precision="3" gui-text="Add extra border around fitted canvas">0.0</param>

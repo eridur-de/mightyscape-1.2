@@ -9,9 +9,9 @@
 <param name="radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="Radius of the corners in mm">15</param>
 <param name="wallpieces" type="int" max="9999" gui-text="wallpieces" gui-description="number of pieces for outer wall (0 for one per side)">0</param>
 <param name="top" type="optiongroup" appearance="combo" gui-text="top" gui-description="style of the top and lid">
-<option value="closed">closed</option>
 <option value="hole">hole</option>
 <option value="lid">lid</option>
+<option value="closed">closed</option>
     </param>
 </page>
 <page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
@@ -56,7 +56,7 @@
 <image>./RoundedRegularBox-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/RoundedRegularBox</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/RoundedRegularBox</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -64,6 +64,7 @@
             <submenu name="Boxes with flex"/>
         </submenu>
     </effects-menu>
+    <icon>RoundedRegularBox-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

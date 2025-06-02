@@ -2,7 +2,7 @@
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
   <name>Path Intersections</name>
   <id>fablabchemnitz.de.path_intersections</id>
-  <label>This plugin - initially called "Precut" - was found deeply on web and was nearly lost in translation. Ported to Python 3.0 for InkScape 1.0. This tool finds path intersections within the complete SVG document. Intersections are going to be marked with little squares.</label>
+  <label>This plugin - initially called "Precut" - was found deeply on web and was nearly lost in translation. Ported to Python 3.0 for Inkscape 1.0. This tool finds path intersections within the complete SVG document. Intersections are going to be marked with little squares.</label>
   <param name="color" type="color" appearance="colorbutton" gui-text="Error highlight color?">4012452351</param>
   <effect>
     <object-type>all</object-type>

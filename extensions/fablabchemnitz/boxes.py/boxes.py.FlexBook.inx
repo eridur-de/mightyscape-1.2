@@ -46,7 +46,7 @@
 <image>./FlexBook-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/FlexBook</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/FlexBook</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -54,6 +54,7 @@
             <submenu name="Boxes with flex"/>
         </submenu>
     </effects-menu>
+    <icon>FlexBook-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

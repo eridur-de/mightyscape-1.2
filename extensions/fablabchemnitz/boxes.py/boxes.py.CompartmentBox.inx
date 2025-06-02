@@ -14,8 +14,8 @@
             <option value="e">e Straight Edge</option>
       </param>
 <param name="handle" type="optiongroup" appearance="combo" gui-text="handle" gui-description="how to grab the lid to remove">
-<option value="hole">hole</option>
 <option value="lip">lip</option>
+<option value="hole">hole</option>
 <option value="none">none</option>
     </param>
 <param name="radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="radius of the grip hole in mm">10</param>
@@ -47,7 +47,7 @@
 <image>./CompartmentBox-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/CompartmentBox</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/CompartmentBox</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -55,6 +55,7 @@
             <submenu name="Trays and Drawer Inserts"/>
         </submenu>
     </effects-menu>
+    <icon>CompartmentBox-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

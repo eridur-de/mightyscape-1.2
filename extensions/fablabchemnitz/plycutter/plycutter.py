@@ -83,7 +83,7 @@ class PlyCutter(inkex.EffectExtension):
                 str(stderr.decode('UTF-8')).replace('\\n', '\n').replace('\\t', '\t'))
                 )
 
-        # Write the generated SVG into InkScape's canvas
+        # Write the generated SVG into Inkscape's canvas
         try:
             stream = open(svg_output, 'r')
         except FileNotFoundError as e:

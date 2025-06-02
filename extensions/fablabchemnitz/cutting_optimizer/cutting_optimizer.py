@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Extension for InkScape 1.2
+Extension for Inkscape 1.2
 
 CutOptim OS Wrapper script to make CutOptim work on Windows and Linux systems without duplicating .inx files
 

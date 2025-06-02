@@ -3,13 +3,19 @@
 <name>GridfinityTrayLayout</name>
 <id>info.festi.boxes.py.GridfinityTrayLayout</id>
 <param name="generator" type="string" gui-hidden="true">gridfinitytraylayout</param>
-<param name="tab" type="notebook"><page name="tab_0" gui-text="GridfinityTrayLayout"><param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="inner height in mm">50</param>
-<param name="hi" type="float" precision="2" max="9999" gui-text="hi" gui-description="inner height of inner walls in mm (leave to zero for same as outer walls)">0</param>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="GridfinityTrayLayout"><param name="h" type="string" gui-text="h" gui-description="height in mm or add 'u' at the end for Gridfinity units">50</param>
+<param name="hi" type="float" precision="2" max="9999" gui-text="hi" gui-description="inner height of inner walls in mm (leave to zero for same as outer walls with optional reduction for stacking)">0</param>
 <param name="nx" type="int" max="9999" gui-text="nx" gui-description="number of gridfinity grids in X direction">3</param>
 <param name="ny" type="int" max="9999" gui-text="ny" gui-description="number of gridfinity grids in Y direction">2</param>
 <param name="countx" type="int" max="9999" gui-text="countx" gui-description="split x into this many grid sections.  0 means same as --nx">5</param>
 <param name="county" type="int" max="9999" gui-text="county" gui-description="split y into this many grid sections.  0 means same as --ny">3</param>
 <param name="margin" type="float" precision="2" max="9999" gui-text="margin" gui-description="Leave this much total margin on the outside, in mm">0.75</param>
+<param name="stacking" type="bool" gui-text="stacking" gui-description="support gridfinity compatible stacking">false</param>
+<param name="gen_pads" type="bool" gui-text="gen_pads" gui-description="generate pads to be used on the bottom of the box">true</param>
+<param name="pad_radius" type="float" precision="2" max="9999" gui-text="pad_radius" gui-description="The corner radius for each grid opening.  Typical is 0.8,">0.8</param>
+<param name="cut_pads_mag_diameter" type="float" precision="2" max="9999" gui-text="cut_pads_mag_diameter" gui-description="if pads are cut add holes for magnets. Typical is 6.5, zero to disable,">6.5</param>
+<param name="cut_pads_mag_offset" type="float" precision="2" max="9999" gui-text="cut_pads_mag_offset" gui-description="if magnet hole offset from pitch corners.  Typical is 7.75.">7.75</param>
+<param name="base_thickness" type="float" precision="2" max="9999" gui-text="base_thickness" gui-description="the thickness of base the box will sit upon.  0 to use the material thickness, 4.65 for a standard Gridfinity 3D printed base">0.0</param>
 </page>
 <page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
 <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
@@ -61,7 +67,7 @@
 <image>./GridfinityTrayLayout-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/GridfinityTrayLayout</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/GridfinityTrayLayout</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -69,6 +75,7 @@
             <submenu name="Trays and Drawer Inserts"/>
         </submenu>
     </effects-menu>
+    <icon>GridfinityTrayLayout-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

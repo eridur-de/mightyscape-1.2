@@ -24,7 +24,7 @@ Migrator: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 13.08.2020
 
-This plugin - initially called "Precut" - was found deeply on web and was nearly lost in translation. Ported to Python 3.0 for InkScape 1.0. This tool finds path intersections within the complete SVG document. Intersections are going to be marked with little squares.
+This plugin - initially called "Precut" - was found deeply on web and was nearly lost in translation. Ported to Python 3.0 for Inkscape 1.0. This tool finds path intersections within the complete SVG document. Intersections are going to be marked with little squares.
 """
 
 """

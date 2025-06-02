@@ -61,7 +61,7 @@
 <image>./MagazineFile-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/MagazineFile</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/MagazineFile</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -69,6 +69,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>MagazineFile-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

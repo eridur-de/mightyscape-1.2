@@ -38,7 +38,7 @@
 <image>./SevenSegmentPattern-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/SevenSegmentPattern</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/SevenSegmentPattern</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -46,6 +46,7 @@
             <submenu name="Hole patterns"/>
         </submenu>
     </effects-menu>
+    <icon>SevenSegmentPattern-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

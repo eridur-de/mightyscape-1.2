@@ -30,7 +30,7 @@
 # v1.3, 2020-12-12, jw  - minimalistic compatibility layer for inkscape 0.92.4 done. It now works in both, 1.0 and 0.92!
 # v1.4, 2020-12-15, jw  - find_roundable_nodes() added for auto selecting nodes, if none were selected.
 #                         And fix https://github.com/jnweiger/inkscape-round-corners/issues/2
-# 2021-01-15, Mario Voigt - removed oboslete InkScape 0.92.* stuff
+# 2021-01-15, Mario Voigt - removed oboslete Inkscape 0.92.* stuff
 #
 # Bad side-effect: As the node count increases during operation, the list of
 # selected nodes is incorrect afterwards. We have no way to give inkscape an update.

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-Extension for InkScape 1.3
+Extension for Inkscape 1.3
 Features
 - This tool is a helper to adjust the document border including an offset value, which is added. 
 Sending vector data to Epilog Dashboard often results in trimmed paths. This leads to wrong geometry where the laser misses to cut them.
@@ -55,7 +55,7 @@ class EpilogDashboardBboxAdjust(inkex.EffectExtension):
             applyTransformationsAvailable = True
         except Exception as e:
             # self.msg(e)
-            self.msg("Calling 'Apply Transformations' extension failed. Maybe the extension is not installed. You can download it from official InkScape Gallery. Skipping ...")
+            self.msg("Calling 'Apply Transformations' extension failed. Maybe the extension is not installed. You can download it from official Inkscape Gallery. Skipping ...")
              
         if self.options.apply_transformations is True and applyTransformationsAvailable is True:
             apply_transformations.ApplyTransformations().recursiveFuseTransform(self.document.getroot()) 

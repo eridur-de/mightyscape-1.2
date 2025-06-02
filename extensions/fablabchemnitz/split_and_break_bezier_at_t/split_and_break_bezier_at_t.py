@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Extension for InkScape 1.0
+Extension for Inkscape 1.0
 
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org

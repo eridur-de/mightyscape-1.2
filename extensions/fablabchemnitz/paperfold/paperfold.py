@@ -11,7 +11,7 @@ from lxml import etree
 import copy
 
 """
-Extension for InkScape 1.0
+Extension for Inkscape 1.0
 
 Paperfold is another flattener for triangle mesh files, heavily based on paperfoldmodels by Felix Scholz aka felixfeliz.
 

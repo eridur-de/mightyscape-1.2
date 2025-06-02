@@ -7,6 +7,8 @@
 <param name="sy" type="string" gui-text="sy" gui-description="sections back to front in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">50*3</param>
 <param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="inner height in mm (unless outside selected)">100.0</param>
 <param name="outside" type="bool" gui-text="outside" gui-description="treat sizes as outside measurements [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#outside)">true</param>
+<param name="x" type="float" precision="2" max="9999" gui-text="x" gui-description="X dimension of tray/box that this fits into">-1</param>
+<param name="y" type="float" precision="2" max="9999" gui-text="y" gui-description="Y dimension of tray/box that this fits into.  ">-1</param>
 </page>
 <page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
 <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
@@ -25,7 +27,7 @@
 <image>./TrayInsert-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/TrayInsert</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/TrayInsert</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -33,6 +35,7 @@
             <submenu name="Trays and Drawer Inserts"/>
         </submenu>
     </effects-menu>
+    <icon>TrayInsert-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

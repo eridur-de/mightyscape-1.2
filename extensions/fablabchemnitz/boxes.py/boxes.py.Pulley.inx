@@ -42,7 +42,7 @@
 <image>./Pulley-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/Pulley</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/Pulley</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -50,6 +50,7 @@
             <submenu name="Parts and Samples"/>
         </submenu>
     </effects-menu>
+    <icon>Pulley-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

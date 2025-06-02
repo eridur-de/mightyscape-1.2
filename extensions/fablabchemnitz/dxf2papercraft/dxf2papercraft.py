@@ -9,9 +9,9 @@ from lxml import etree
 from inkex import Transform
 
 """
-Extension for InkScape 1.0
+Extension for Inkscape 1.0
 
-Unfold and import DXF into InkScape using dxf2papercraft. This is some kind of wrapper extension utilizing kabeja to convert the dxf output from dxf2papercraft into SVG.
+Unfold and import DXF into Inkscape using dxf2papercraft. This is some kind of wrapper extension utilizing kabeja to convert the dxf output from dxf2papercraft into SVG.
 To make it work you need to install at least java.
 
 Author: Mario Voigt / FabLab Chemnitz
@@ -113,7 +113,7 @@ class DXF2Papercraft(inkex.EffectExtension):
         if proc.returncode != 0: 
            inkex.errormsg("kabeja failed: %d %s %s" % (proc.returncode, stdout, stderr))  
 
-        # Write the generated SVG into InkScape's canvas
+        # Write the generated SVG into Inkscape's canvas
         try:
             stream = open(svg_output, 'r')
         except FileNotFoundError as e:

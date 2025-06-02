@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Extension for InkScape 1.2
+Extension for Inkscape 1.2
 
 boxes.py wrapper script to make it work on Windows and Linux systems
 
@@ -12,6 +12,7 @@ Last patch: 05.07.2024
 License: GNU GPL v3
 
 """
+import boxes
 import inkex
 import sys
 import subprocess
@@ -37,8 +38,9 @@ class boxesPyWrapper(inkex.GenerateExtension):
         if os.path.exists(box_file):
             os.remove(box_file) #remove previously generated box file at the beginning
 
-        boxes_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'boxes', 'scripts')
-        
+        boxes_dir = os.path.join(os.path.dirname(boxes.__file__), 'scripts')
+        boxes_executable = 'boxes_main.py'
+                
         #get the correct python executable. If Inkscape has a custom interpreter in preferences.xml, we should honor it
         preferencesPath = os.environ["INKSCAPE_PROFILE_DIR"]
         preferencesXml = os.path.join(preferencesPath, "preferences.xml")
@@ -66,7 +68,7 @@ class boxesPyWrapper(inkex.GenerateExtension):
         if customPythonInterpreter is not None:
             PYTHONBIN = customPythonInterpreter
                                           
-        cmd = PYTHONBIN + ' ' + os.path.join(boxes_dir, 'boxes') #the boxes python file (without .py ending) - we add python at the beginning to support Windows too    
+        cmd = PYTHONBIN + ' ' + os.path.join(boxes_dir, boxes_executable) #the boxes python file (without .py ending) - we add python at the beginning to support Windows too    
         for arg in vars(self.options):
             if arg not in ("output", "ids", "selected_nodes"):
                 #inkex.utils.debug(str(arg) + " = " + str(getattr(self.options, arg)))
@@ -79,7 +81,7 @@ class boxesPyWrapper(inkex.GenerateExtension):
                     cmd += ' --' + arg + ' "' + str(getattr(self.options, arg)) + '"'
                     #cmd += ' --' + arg + '="' + str(getattr(self.options, arg)) + '"'
         cmd += " --output=" + box_file + " "
-        cmd = cmd.replace("boxes --generator", "boxes")
+        cmd = cmd.replace("{} --generator".format(boxes_executable), boxes_executable)
         
         # run boxes with the parameters provided
         #with os.popen(cmd, "r") as boxes:

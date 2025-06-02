@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Extension for InkScape 1.3
+Extension for Inkscape 1.3
 
 Import any DWG or DXF file using ODA File Converter, sk1 UniConvertor, ezdxf and more tools.
 
@@ -398,7 +398,7 @@ class DXFDWGImport(inkex.EffectExtension):
             self.msg("undefined parser")
             exit(1)
         
-        # Write the generated SVG into InkScape's canvas
+        # Write the generated SVG into Inkscape's canvas
         try:
             stream = open(svg_file, 'r')
         except FileNotFoundError as e:

@@ -58,7 +58,7 @@
 <image>./Rack19Box-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/Rack19Box</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/Rack19Box</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -66,6 +66,7 @@
             <submenu name="Boxes"/>
         </submenu>
     </effects-menu>
+    <icon>Rack19Box-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

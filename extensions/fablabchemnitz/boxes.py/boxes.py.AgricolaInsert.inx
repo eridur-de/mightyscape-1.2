@@ -35,7 +35,7 @@
 <image>./AgricolaInsert-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/AgricolaInsert</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/AgricolaInsert</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -43,6 +43,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>AgricolaInsert-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

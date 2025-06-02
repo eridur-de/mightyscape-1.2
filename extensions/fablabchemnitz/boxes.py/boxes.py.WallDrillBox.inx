@@ -9,6 +9,7 @@
 <option value="slatwall">slatwall</option>
 <option value="dinrail">dinrail</option>
 <option value="french cleat">french cleat</option>
+<option value="skadis">skadis</option>
     </param>
 <param name="sx" type="string" gui-text="sx" gui-description="sections left to right in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">25*6</param>
 <param name="sy" type="string" gui-text="sy" gui-description="sections back to front in mm [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#section-parameters)">10:20:30</param>
@@ -76,17 +77,25 @@
 <param name="FrenchCleat_spacing" type="float" precision="2" max="9999" gui-text="spacing" gui-description="distance of the cleats in mm (for bottom hook)">200.0</param>
 <param name="FrenchCleat_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
 </page>
-<page name="tab_7" gui-text="Stackable Edges"><param name="Stackable_angle" type="int" max="9999" gui-text="angle" gui-description="inside angle of the feet">60</param>
+<page name="tab_7" gui-text="SkadisEdges"><param name="Skadis_board_thickness" type="float" precision="2" max="9999" gui-text="board_thickness" gui-description="Thickness of the Skandis board">5.1</param>
+<param name="Skadis_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="How to hook into the wall">
+<option value="hooks">hooks</option>
+<option value="hook+stud">hook+stud</option>
+<option value="single">single</option>
+    </param>
+<param name="Skadis_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="edge_width">1.0</param>
+</page>
+<page name="tab_8" gui-text="Stackable Edges"><param name="Stackable_angle" type="int" max="9999" gui-text="angle" gui-description="inside angle of the feet">60</param>
 <param name="Stackable_bottom_stabilizers" type="float" precision="2" max="9999" gui-text="bottom_stabilizers" gui-description="height of strips to be glued to the inside of bottom edges (multiples of thickness)">0.0</param>
 <param name="Stackable_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the feet (multiples of thickness)">1.0</param>
 <param name="Stackable_holedistance" type="float" precision="2" max="9999" gui-text="holedistance" gui-description="distance from finger holes to bottom edge (multiples of thickness)">1.0</param>
 <param name="Stackable_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of the feet (multiples of thickness)">3.0</param>
 </page>
-<page name="tab_8" gui-text="Example">
+<page name="tab_9" gui-text="Example">
 <image>./WallDrillBox-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/WallDrillBox</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/WallDrillBox</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -94,6 +103,7 @@
             <submenu name="WallMounted"/>
         </submenu>
     </effects-menu>
+    <icon>WallDrillBox-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

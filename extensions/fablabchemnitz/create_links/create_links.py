@@ -23,7 +23,7 @@ It is a modification of the file addelements.py
 It is a modification of the file convert2dash.py
 Extension to convert paths into dash-array line
 
-Extension for InkScape 1.X
+Extension for Inkscape 1.X
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 09.04.2021

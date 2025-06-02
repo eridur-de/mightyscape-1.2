@@ -10,7 +10,7 @@ from io import BytesIO
 from lxml import etree
 
 """
-Extension for InkScape 1.X
+Extension for Inkscape 1.X
 Features
  - will vectorize your beautiful image into a more beautiful SVG trace with separated infills(break apart into single surfaces like a puzzle)
  

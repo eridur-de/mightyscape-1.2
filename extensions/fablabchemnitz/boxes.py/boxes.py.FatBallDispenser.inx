@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>FatBallDispenser</name>
+<id>info.festi.boxes.py.FatBallDispenser</id>
+<param name="generator" type="string" gui-hidden="true">fatballdispenser</param>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="FatBallDispenser"><param name="sides" type="int" max="9999" gui-text="sides" gui-description="The number of sides of the floor plan.">6</param>
+<param name="pole_diameter" type="float" precision="2" max="9999" gui-text="pole_diameter" gui-description="The diameter of the poles.">8.0</param>
+<param name="ball_diameter" type="float" precision="2" max="9999" gui-text="ball_diameter" gui-description="The diameter of the fat balls. Give some extra mm to make it a loose fit">75.0</param>
+<param name="balcony_width" type="float" precision="2" max="9999" gui-text="balcony_width" gui-description="The width of the area outside of the poles.">15.0</param>
+<param name="balcony_height" type="float" precision="2" max="9999" gui-text="balcony_height" gui-description="The height of the balcony in mm. Set to 0 if no walls are needed.">20.0</param>
+<param name="drain_hole_diameter" type="float" precision="2" max="9999" gui-text="drain_hole_diameter" gui-description="The diameter of the hole of the floor (to drain rainwater)&#10;                    in mm. Set to 0 if you don't need it.">5.0</param>
+<param name="pole_clearance" type="float" precision="2" max="9999" gui-text="pole_clearance" gui-description="The minimum distance between a pole and the central&#10;                    refill hole in the ceiling in mm.">9.0</param>
+<param name="slide_clearance" type="float" precision="2" max="9999" gui-text="slide_clearance" gui-description="The gap between the parts that slide into each other&#10;                    in the locking mechanism in mm.">1.0</param>
+<param name="spacer_width" type="float" precision="2" max="9999" gui-text="spacer_width" gui-description="The width of the spacer (part of the locking mechanism) in mm.">15.0</param>
+<param name="pole_clearance_factor" type="float" precision="2" max="9999" gui-text="pole_clearance_factor" gui-description="The fraction of the pole clearance which is being used for&#10;                    the locking mechanism.">0.9</param>
+<param name="roof_overhang" type="float" precision="2" max="9999" gui-text="roof_overhang" gui-description="Defines how much wider than the bottom floor the roof is.">20.0</param>
+<param name="roof_height" type="float" precision="2" max="9999" gui-text="roof_height" gui-description="The height of the roof in mm.">50.0</param>
+<param name="roof_hole_diameter" type="float" precision="2" max="9999" gui-text="roof_hole_diameter" gui-description="The diameter of the hole of the roof in mm.&#10;                    Set to 0 if you don't want to attach a hanger.">5.0</param>
+<param name="roof_maintenance_clearance" type="float" precision="2" max="9999" gui-text="roof_maintenance_clearance" gui-description="The distance from on bottom corner of the roof to the maintenance hole in mm.">20.0</param>
+<param name="roof_support_fraction" type="float" precision="2" max="9999" gui-text="roof_support_fraction" gui-description="The radius of the roof support part as a fraction of the roof radius.">0.3</param>
+</page>
+<page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+<param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+<param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
+<param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+<param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100.0</param>
+<param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+<option value="loop">loop</option>
+<option value="corner">corner</option>
+<option value="backarc">backarc</option>
+    </param>
+<param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+</page>
+<page name="tab_2" gui-text="Example">
+<image>./FatBallDispenser-thumb.jpg</image>
+</page>
+</param>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/FatBallDispenser</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Misc"/>
+        </submenu>
+    </effects-menu>
+    <icon>FatBallDispenser-thumb.svg</icon>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-Extension for InkScape 1.0+
+Extension for Inkscape 1.0+
 
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
@@ -118,7 +118,7 @@ class FilterByLengthArea(inkex.EffectExtension):
             applyTransformationsAvailable = True
         except Exception as e:
             # self.msg(e)
-            self.msg("Calling 'Apply Transformations' extension failed. Maybe the extension is not installed. You can download it from official InkScape Gallery. Skipping ...")           
+            self.msg("Calling 'Apply Transformations' extension failed. Maybe the extension is not installed. You can download it from official Inkscape Gallery. Skipping ...")           
        
         so.min_threshold = self.svg.unittouu(str(so.min_threshold) + self.svg.unit)
         so.max_threshold = self.svg.unittouu(str(so.max_threshold) + self.svg.unit)
@@ -269,7 +269,7 @@ class FilterByLengthArea(inkex.EffectExtension):
                 import remove_empty_groups
                 remove_empty_groups.RemoveEmptyGroups.effect(self)
             except:
-                self.msg("Calling 'Remove Empty Groups' extension failed. Maybe the extension is not installed. You can download it from official InkScape Gallery. Skipping ...")
+                self.msg("Calling 'Remove Empty Groups' extension failed. Maybe the extension is not installed. You can download it from official Inkscape Gallery. Skipping ...")
 
 if __name__ == '__main__':
     FilterByLengthArea().run()

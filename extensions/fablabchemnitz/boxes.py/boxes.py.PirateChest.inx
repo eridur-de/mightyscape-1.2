@@ -40,10 +40,6 @@
 <page name="tab_3" gui-text="Hinges and HingePins"><param name="Hinge_grip_percentage" type="int" max="9999" gui-text="grip_percentage" gui-description="grip_percentage">0</param>
 <param name="Hinge_outset" type="bool" gui-text="outset" gui-description="have lid overlap at the sides (similar to OutSetEdge)">false</param>
 <param name="Hinge_pinwidth" type="float" precision="2" max="9999" gui-text="pinwidth" gui-description="set to lower value to get disks surrounding the pins">0.5</param>
-<param name="Hinge_style" type="optiongroup" appearance="combo" gui-text="style" gui-description='"outset" or "flush"'>
-<option value="outset">outset</option>
-<option value="flush">flush</option>
-    </param>
 <param name="Hinge_axle" type="float" precision="2" max="9999" gui-text="axle" gui-description="diameter of the pin hole (multiples of thickness)">2.0</param>
 <param name="Hinge_grip_length" type="int" max="9999" gui-text="grip_length" gui-description="fixed length of the grips on he lids (multiples of thickness)">0</param>
 <param name="Hinge_hingestrength" type="int" max="9999" gui-text="hingestrength" gui-description="thickness of the arc holding the pin in place (multiples of thickness)">1</param>
@@ -52,7 +48,7 @@
 <image>./PirateChest-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/PirateChest</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/PirateChest</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -60,6 +56,7 @@
             <submenu name="Boxes"/>
         </submenu>
     </effects-menu>
+    <icon>PirateChest-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

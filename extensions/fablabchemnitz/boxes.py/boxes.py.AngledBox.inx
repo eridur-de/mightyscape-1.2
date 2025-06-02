@@ -53,7 +53,7 @@
 <image>./AngledBox-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/AngledBox</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/AngledBox</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -61,6 +61,7 @@
             <submenu name="Boxes"/>
         </submenu>
     </effects-menu>
+    <icon>AngledBox-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

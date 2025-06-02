@@ -11,7 +11,7 @@ from lxml import etree
 from inkex import Color
 
 """
-Extension for InkScape 1.X
+Extension for Inkscape 1.X
 Features
  - Primitive - Reproducing images with geometric primitives written in Go.
 

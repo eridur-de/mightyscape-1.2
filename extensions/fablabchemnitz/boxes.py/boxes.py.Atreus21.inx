@@ -27,7 +27,7 @@
 <image>./Atreus21-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/Atreus21</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/Atreus21</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -35,6 +35,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>Atreus21-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

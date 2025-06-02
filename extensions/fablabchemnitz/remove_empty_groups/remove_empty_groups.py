@@ -3,7 +3,7 @@
 import inkex
 
 """
-Extension for InkScape 1.0
+Extension for Inkscape 1.0
 
 This extension is totally minimal. It will just clean the whole document from groups without content (dangling groups). That usually happens if you have a group but remove its paths for example. The group will possibly stay in the XML tree. This also applies for layers because layers are just special types of groups. This effect applies to the whole document ONLY!
  

@@ -6,6 +6,7 @@
 <param name="tab" type="notebook"><page name="tab_0" gui-text="SlidingDrawer"><param name="x" type="float" precision="2" max="9999" gui-text="x" gui-description="inner width in mm (unless outside selected)">60</param>
 <param name="y" type="float" precision="2" max="9999" gui-text="y" gui-description="inner depth in mm (unless outside selected)">100</param>
 <param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="inner height in mm (unless outside selected)">30</param>
+<param name="hi" type="float" precision="2" max="9999" gui-text="hi" gui-description="inner height of inner walls in mm (unless outside selected)(leave to zero for same as outer walls)">0</param>
 <param name="outside" type="bool" gui-text="outside" gui-description="treat sizes as outside measurements [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#outside)">true</param>
 <param name="play" type="float" precision="2" max="9999" gui-text="play" gui-description="play between the two parts as multiple of the wall thickness">0.15</param>
 </page>
@@ -55,7 +56,7 @@
 <image>./SlidingDrawer-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/SlidingDrawer</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/SlidingDrawer</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -63,6 +64,7 @@
             <submenu name="Boxes"/>
         </submenu>
     </effects-menu>
+    <icon>SlidingDrawer-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

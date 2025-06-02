@@ -3,8 +3,10 @@
 <name>GridfinityBase</name>
 <id>info.festi.boxes.py.GridfinityBase</id>
 <param name="generator" type="string" gui-hidden="true">gridfinitybase</param>
-<param name="tab" type="notebook"><page name="tab_0" gui-text="GridfinityBase"><param name="x" type="int" max="9999" gui-text="x" gui-description="number of grids in X direction">3</param>
-<param name="y" type="int" max="9999" gui-text="y" gui-description="number of grids in Y direction">2</param>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="GridfinityBase"><param name="size_x" type="int" max="9999" gui-text="size_x" gui-description="size of base in X direction (0=auto)">0</param>
+<param name="size_y" type="int" max="9999" gui-text="size_y" gui-description="size of base in Y direction (0=auto)">0</param>
+<param name="x" type="int" max="9999" gui-text="x" gui-description="number of grids in X direction (0=auto)">3</param>
+<param name="y" type="int" max="9999" gui-text="y" gui-description="number of grids in Y direction (0=auto)">2</param>
 <param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="height of sidewalls of the tray (mm)">21</param>
 <param name="m" type="float" precision="2" max="9999" gui-text="m" gui-description="Extra margin around the gridfinity base to allow it to drop into the carrier (mm)">0.5</param>
         <param name="bottom_edge" type="optiongroup" appearance="combo" gui-text="bottom_edge" gui-description="edge type for bottom edge">
@@ -13,8 +15,19 @@
             <option value="s">s Stackable (bottom, finger joint holes)</option>
             <option value="e">e Straight Edge</option>
       </param>
+        <param name="panel_edge" type="optiongroup" appearance="combo" gui-text="panel_edge" gui-description="edge type for sub panels">
+            <option value="D">D Dove Tail Joint (opposing side)</option>
+            <option value="e">e Straight Edge</option>
+      </param>
 <param name="pitch" type="int" max="9999" gui-text="pitch" gui-description="The Gridfinity pitch, in mm.  Should always be 42.">42</param>
 <param name="opening" type="int" max="9999" gui-text="opening" gui-description="The cutout for each grid opening.  Typical is 38.">38</param>
+<param name="radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="The corner radius for each grid opening.  Typical is 1.6.">1.6</param>
+<param name="cut_pads" type="bool" gui-text="cut_pads" gui-description="cut pads to be used for gridinity boxes from the grid openings">false</param>
+<param name="cut_pads_mag_diameter" type="float" precision="2" max="9999" gui-text="cut_pads_mag_diameter" gui-description="if pads are cut add holes for magnets. Typical is 6.5, zero to disable,">6.5</param>
+<param name="cut_pads_mag_offset" type="float" precision="2" max="9999" gui-text="cut_pads_mag_offset" gui-description="if magnet hole offset from pitch corners.  Typical is 7.75.">7.75</param>
+<param name="pad_radius" type="float" precision="2" max="9999" gui-text="pad_radius" gui-description="The corner radius for each grid opening.  Typical is 0.8,">0.8</param>
+<param name="panel_x" type="int" max="9999" gui-text="panel_x" gui-description="the maximum sized panel that can be cut in x direction">0</param>
+<param name="panel_y" type="int" max="9999" gui-text="panel_y" gui-description="the maximum sized panel that can be cut in y direction">0</param>
 </page>
 <page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
 <param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
@@ -29,7 +42,12 @@
     </param>
 <param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
 </page>
-<page name="tab_2" gui-text="Finger Joints"><param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+<page name="tab_2" gui-text="Dove Tail Joints"><param name="DoveTail_angle" type="int" max="9999" gui-text="angle" gui-description="how much should fingers widen (-80 to 80)">40</param>
+<param name="DoveTail_depth" type="float" precision="2" max="9999" gui-text="depth" gui-description="how far the dove tails stick out of/into the edge (multiples of thickness)">0.3</param>
+<param name="DoveTail_radius" type="float" precision="2" max="9999" gui-text="radius" gui-description="radius used on all four corners (multiples of thickness)">0.05</param>
+<param name="DoveTail_size" type="int" max="9999" gui-text="size" gui-description="from one middle of a dove tail to another (multiples of thickness)">3</param>
+</page>
+<page name="tab_3" gui-text="Finger Joints"><param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
 <option value="rectangular">rectangular</option>
 <option value="springs">springs</option>
 <option value="barbs">barbs</option>
@@ -44,7 +62,7 @@
 <param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">4.0</param>
 <param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
 </page>
-<page name="tab_3" gui-text="the Lid"><param name="Lid_handle" type="optiongroup" appearance="combo" gui-text="handle" gui-description="type of handle">
+<page name="tab_4" gui-text="the Lid"><param name="Lid_handle" type="optiongroup" appearance="combo" gui-text="handle" gui-description="type of handle">
 <option value="none">none</option>
 <option value="long_rounded">long_rounded</option>
 <option value="long_trapezoid">long_trapezoid</option>
@@ -62,11 +80,11 @@
 <param name="Lid_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the brim (if any)">4.0</param>
 <param name="Lid_play" type="float" precision="2" max="9999" gui-text="play" gui-description="play when sliding the lid on (if applicable)">0.1</param>
 </page>
-<page name="tab_4" gui-text="Example">
+<page name="tab_5" gui-text="Example">
 <image>./GridfinityBase-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/GridfinityBase</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/GridfinityBase</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -74,6 +92,7 @@
             <submenu name="Trays and Drawer Inserts"/>
         </submenu>
     </effects-menu>
+    <icon>GridfinityBase-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

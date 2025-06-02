@@ -26,15 +26,15 @@ import warnings # we import this to suppress moderngl warnings from vpype_viewer
 from shapely.geometry import LineString, Point
 
 """
-Extension for InkScape 1.X
+Extension for Inkscape 1.X
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 02.04.2021
 Last patch: 06.06.2021
 License: GNU GPL v3
 
-This piece of spaghetti-code, called "vpypetools", is a wrapper to pass (pipe) line elements from InkScape selection (or complete canvas) to vpype. 
-It allows to run basic commands on the geometry. The converted lines are getting pushed back into InkScape. 
+This piece of spaghetti-code, called "vpypetools", is a wrapper to pass (pipe) line elements from Inkscape selection (or complete canvas) to vpype. 
+It allows to run basic commands on the geometry. The converted lines are getting pushed back into Inkscape. 
 vpypetools allows to enable some important adjusters and debugging settings to get the best out of it.
 
 vpypetools is based on 
@@ -124,7 +124,7 @@ class vpypetools (inkex.EffectExtension):
         pars.add_argument("--decimals", type=int, default=3, help="Accuracy for imported lines' coordinates into vpype. Does not work for 'Multilayer/document'")
         pars.add_argument("--simplify", type=inkex.Boolean, default=False, help="Reduces significantly the number of segments used to approximate the curve while still guaranteeing an accurate conversion, but may increase the execution time. Does not work for 'Singlelayer/paths'")
         pars.add_argument("--parallel", type=inkex.Boolean, default=False, help="Enables multiprocessing for the SVG conversion. This is recommended ONLY when using 'Simplify geometry' on large SVG files with many curved elements. Does not work for 'Singlelayer/paths'")
-        pars.add_argument("--output_show", type=inkex.Boolean, default=False, help="This will open a separate window showing the finished SVG data. If enabled, output is not applied to InkScape canvas (only for preview)!")
+        pars.add_argument("--output_show", type=inkex.Boolean, default=False, help="This will open a separate window showing the finished SVG data. If enabled, output is not applied to Inkscape canvas (only for preview)!")
         pars.add_argument("--output_show_points", type=inkex.Boolean, default=False, help="Enable point display in viewer")
         pars.add_argument("--output_stats", type=inkex.Boolean, default=False, help="Show output statistics before/after conversion")
         pars.add_argument("--output_trajectories", type=inkex.Boolean, default=False, help="Add paths for the travel trajectories")

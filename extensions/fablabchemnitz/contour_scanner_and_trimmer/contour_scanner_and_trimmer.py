@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 '''
-Extension for InkScape 1.0+
+Extension for Inkscape 1.0+
  - ToDo: 
     - add more comments
     - add more debug output

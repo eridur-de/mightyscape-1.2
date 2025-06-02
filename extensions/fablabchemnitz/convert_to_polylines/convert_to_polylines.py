@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Extension for InkScape 1.0
+Extension for Inkscape 1.0
 
 Converts curves to polylines - a quick and dirty helper for a lot of elements. Basically the same functionality can be done with default UI featureset but with a lot more mouse clicks
 

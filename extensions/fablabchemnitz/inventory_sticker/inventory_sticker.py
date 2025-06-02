@@ -6,7 +6,7 @@
 #
 # Made by FabLab Chemnitz / Stadtfabrikanten e.V. - Developer: Mario Voigt (year 2021)
 #
-# This extension is based on the "original" barcode extension included in default InkScape Extension Set, which is licensed by the following:
+# This extension is based on the "original" barcode extension included in default Inkscape Extension Set, which is licensed by the following:
 #
 # Copyright (C) 2009 John Beard john.j.beard@gmail.com
 #
@@ -489,7 +489,7 @@ class InventorySticker(inkex.Effect):
                             {
                                 "font-size": str(objectNameFontSize) + "px",
                                 "x": str(x_pos) + "px",
-                                #"xml:space": "preserve", #we cannot add this here because InkScape throws an error
+                                #"xml:space": "preserve", #we cannot add this here because Inkscape throws an error
                                 "y": str(objectNameFontSize) + "px",
                                 "text-align" : "left", 
                                 "text-anchor": "left", 

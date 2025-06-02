@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+<name>NightLightBox</name>
+<id>info.festi.boxes.py.NightLightBox</id>
+<param name="generator" type="string" gui-hidden="true">nightlightbox</param>
+<param name="tab" type="notebook"><page name="tab_0" gui-text="NightLightBox"><param name="BoxStyle" type="optiongroup" appearance="combo" gui-text="BoxStyle" gui-description="style of the front lock">
+<option value="minimalist">minimalist</option>
+<option value="large face">large face</option>
+<option value="extra customizable face">extra customizable face</option>
+    </param>
+<param name="PlateVisibleWidth" type="float" precision="2" max="9999" gui-text="PlateVisibleWidth" gui-description="width of the window in the front panel in mm">150.0</param>
+<param name="PlateVisibleHeight" type="float" precision="2" max="9999" gui-text="PlateVisibleHeight" gui-description="height of the window in the front panel in mm">75.0</param>
+<param name="WoodPlatesCount" type="int" max="9999" gui-text="WoodPlatesCount" gui-description="Number of decorative wood plates">3</param>
+<param name="WoodPlateThickness" type="float" precision="2" max="9999" gui-text="WoodPlateThickness" gui-description="Thickness of the wood plates in mm">5.0</param>
+<param name="DiffuserPlateThickness" type="float" precision="2" max="9999" gui-text="DiffuserPlateThickness" gui-description="Thickness of the background acrylic diffuser plate in mm">5.0</param>
+<param name="BackgroundDepth" type="float" precision="2" max="9999" gui-text="BackgroundDepth" gui-description="Depth of the background zone for the electronics and LEDs in mm">40.0</param>
+<param name="InterPlateSpacing" type="float" precision="2" max="9999" gui-text="InterPlateSpacing" gui-description="Space between the decorative plates in mm">10</param>
+<param name="hooks" type="bool" gui-text="hooks" gui-description="add hooks to decorative plates (allowing one sides plates)">false</param>
+<param name="Margin" type="float" precision="2" max="9999" gui-text="Margin" gui-description="Margin for moving parts in mm">0.5</param>
+</page>
+<page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
+<param name="tabs" type="float" precision="2" max="9999" gui-text="tabs" gui-description="width of tabs holding the parts in place (in mm)(not supported everywhere) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#tabs)">0.0</param>
+<param name="qr_code" type="bool" gui-text="qr_code" gui-description="Add a QR Code with link or command line to the generated output">false</param>
+<param name="debug" type="bool" gui-text="debug" gui-description="print surrounding boxes for some structures [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#debug)">false</param>
+<param name="labels" type="bool" gui-text="labels" gui-description="label the parts (where available)">true</param>
+<param name="reference" type="float" precision="2" max="9999" gui-text="reference" gui-description="print reference rectangle with given length (in mm)(zero to disable) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#reference)">100.0</param>
+<param name="inner_corners" type="optiongroup" appearance="combo" gui-text="inner_corners" gui-description="style for inner corners [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#inner-corners)">
+<option value="loop">loop</option>
+<option value="corner">corner</option>
+<option value="backarc">backarc</option>
+    </param>
+<param name="burn" type="float" precision="2" max="9999" gui-text="burn" gui-description="burn correction (in mm)(bigger values for tighter fit) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#burn)">0.1</param>
+</page>
+<page name="tab_2" gui-text="Finger Joints"><param name="FingerJoint_style" type="optiongroup" appearance="combo" gui-text="style" gui-description="style of the fingers">
+<option value="rectangular">rectangular</option>
+<option value="springs">springs</option>
+<option value="barbs">barbs</option>
+<option value="snap">snap</option>
+    </param>
+<param name="FingerJoint_surroundingspaces" type="float" precision="2" max="9999" gui-text="surroundingspaces" gui-description="space at the start and end in multiple of normal spaces">1.0</param>
+<param name="FingerJoint_bottom_lip" type="float" precision="2" max="9999" gui-text="bottom_lip" gui-description="height of the bottom lips sticking out  (multiples of thickness) FingerHoleEdge only!">0.0</param>
+<param name="FingerJoint_edge_width" type="float" precision="2" max="9999" gui-text="edge_width" gui-description="space below holes of FingerHoleEdge (multiples of thickness)">1.0</param>
+<param name="FingerJoint_extra_length" type="float" precision="2" max="9999" gui-text="extra_length" gui-description="extra material to grind away burn marks (multiples of thickness)">0.0</param>
+<param name="FingerJoint_finger" type="float" precision="2" max="9999" gui-text="finger" gui-description="width of the fingers (multiples of thickness)">2.0</param>
+<param name="FingerJoint_play" type="float" precision="2" max="9999" gui-text="play" gui-description="extra space to allow finger move in and out (multiples of thickness)">0.0</param>
+<param name="FingerJoint_space" type="float" precision="2" max="9999" gui-text="space" gui-description="space between fingers (multiples of thickness)">2.0</param>
+<param name="FingerJoint_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of finger holes (multiples of thickness)">1.0</param>
+</page>
+<page name="tab_3" gui-text="Stackable Edges"><param name="Stackable_angle" type="int" max="9999" gui-text="angle" gui-description="inside angle of the feet">60</param>
+<param name="Stackable_bottom_stabilizers" type="float" precision="2" max="9999" gui-text="bottom_stabilizers" gui-description="height of strips to be glued to the inside of bottom edges (multiples of thickness)">0.0</param>
+<param name="Stackable_height" type="float" precision="2" max="9999" gui-text="height" gui-description="height of the feet (multiples of thickness)">2.0</param>
+<param name="Stackable_holedistance" type="float" precision="2" max="9999" gui-text="holedistance" gui-description="distance from finger holes to bottom edge (multiples of thickness)">1.0</param>
+<param name="Stackable_width" type="float" precision="2" max="9999" gui-text="width" gui-description="width of the feet (multiples of thickness)">4.0</param>
+</page>
+<page name="tab_4" gui-text="Hinges and HingePins"><param name="Hinge_grip_percentage" type="int" max="9999" gui-text="grip_percentage" gui-description="grip_percentage">0</param>
+<param name="Hinge_outset" type="bool" gui-text="outset" gui-description="have lid overlap at the sides (similar to OutSetEdge)">true</param>
+<param name="Hinge_pinwidth" type="float" precision="2" max="9999" gui-text="pinwidth" gui-description="set to lower value to get disks surrounding the pins">0.4</param>
+<param name="Hinge_axle" type="float" precision="2" max="9999" gui-text="axle" gui-description="diameter of the pin hole (multiples of thickness)">2.5</param>
+<param name="Hinge_grip_length" type="int" max="9999" gui-text="grip_length" gui-description="fixed length of the grips on he lids (multiples of thickness)">0</param>
+<param name="Hinge_hingestrength" type="int" max="9999" gui-text="hingestrength" gui-description="thickness of the arc holding the pin in place (multiples of thickness)">1</param>
+</page>
+<page name="tab_5" gui-text="Night lightbox diffuser plate lock to prevent unwanted access to the electronics"><param name="DiffuserPlateTLockScrewDiameter" type="float" precision="2" max="9999" gui-text="DiffuserPlateTLockScrewDiameter" gui-description="Diameter of the background acrylic diffuser plate locking screw hole in mm">3.0</param>
+<param name="DiffuserPlateTLockScrewLength" type="float" precision="2" max="9999" gui-text="DiffuserPlateTLockScrewLength" gui-description="Length of the background acrylic diffuser plate locking screw in mm">20.0</param>
+<param name="DiffuserPlateTLockNutThickness" type="float" precision="2" max="9999" gui-text="DiffuserPlateTLockNutThickness" gui-description="Thickness of the background acrylic diffuser plate locking nut in mm">2.1</param>
+<param name="DiffuserPlateTLockNutWidth" type="float" precision="2" max="9999" gui-text="DiffuserPlateTLockNutWidth" gui-description="Width of the background acrylic diffuser plate locking nut in mm">5.1</param>
+</page>
+<page name="tab_6" gui-text="Night lightbox options for the back side (holes for connectors, marking)"><param name="BackExtraHoles" type="string" gui-text="BackExtraHoles" gui-description="extra holes for connectors or buttons ; enter one line per hole ; first parameter chould be R for rectangle or C for circle ; then X and Y position for the center of the hole, and then the X and Y size of the rectangle or the circle diameter, all in mm ; parameters should be separated by spaces">R 20 15 11.5 8
+C 11.58 15 3
+C 28.42 15 3</param>
+</page>
+<page name="tab_7" gui-text="Example">
+<image>./NightLightBox-thumb.jpg</image>
+</page>
+</param>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/NightLightBox</label>
+<effect>
+    <object-type>all</object-type>
+    <effects-menu>
+        <submenu name="FabLab Chemnitz Boxes.py">
+            <submenu name="Misc"/>
+        </submenu>
+    </effects-menu>
+    <icon>NightLightBox-thumb.svg</icon>
+</effect>
+<script>
+    <command location="inx" interpreter="python">boxes_proxy.py</command>
+</script>
+</inkscape-extension>

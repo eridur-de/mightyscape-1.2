@@ -7,6 +7,7 @@
 <param name="y" type="float" precision="2" max="9999" gui-text="y" gui-description="inner depth in mm">100</param>
 <param name="h" type="float" precision="2" max="9999" gui-text="h" gui-description="inner height in mm">100</param>
 <param name="slotheight" type="float" precision="2" max="9999" gui-text="slotheight" gui-description="height of the dispenser slot / items (in mm)">10.0</param>
+<param name="viewingwidth" type="float" precision="2" max="9999" gui-text="viewingwidth" gui-description="width of the viewing slot as part of total width (0 for closed front)">0.333333</param>
 <param name="bottomheight" type="float" precision="2" max="9999" gui-text="bottomheight" gui-description="height underneath the dispenser (in mm)">0.0</param>
         <param name="sideedges" type="optiongroup" appearance="combo" gui-text="sideedges" gui-description="edges used for holding the front panels and back">
             <option value="F">F Finger Joint (opposing side)</option>
@@ -51,7 +52,7 @@
 <image>./Dispenser-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/Dispenser</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/Dispenser</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -59,6 +60,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>Dispenser-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

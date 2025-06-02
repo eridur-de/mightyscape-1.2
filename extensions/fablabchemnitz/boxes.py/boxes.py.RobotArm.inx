@@ -111,7 +111,7 @@
 <image>./RobotArm-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/RobotArm</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/RobotArm</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -119,6 +119,7 @@
             <submenu name="Parts and Samples"/>
         </submenu>
     </effects-menu>
+    <icon>RobotArm-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

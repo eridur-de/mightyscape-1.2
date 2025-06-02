@@ -5,6 +5,8 @@
 <param name="generator" type="string" gui-hidden="true">coffeecapsuleholder</param>
 <param name="tab" type="notebook"><page name="tab_0" gui-text="CoffeeCapsuleHolder"><param name="columns" type="int" max="9999" gui-text="columns" gui-description="Number of columns of capsules.">4</param>
 <param name="rows" type="int" max="9999" gui-text="rows" gui-description="Number of capsules by columns.">5</param>
+<param name="lid_size" type="float" precision="2" max="9999" gui-text="lid_size" gui-description="diameter of the cup lids (in mm)">37</param>
+<param name="body_size" type="float" precision="2" max="9999" gui-text="body_size" gui-description="width of the body of the cups at the top (in mm)">30</param>
 <param name="backplate" type="bool" gui-text="backplate" gui-description="True if a backplate should be generated.">true</param>
 </page>
 <page name="tab_1" gui-text="Default"><param name="thickness" type="float" precision="2" max="9999" gui-text="thickness" gui-description="thickness of the material (in mm) [🛈](https://florianfesti.github.io/boxes/html/usermanual.html#thickness)">3.0</param>
@@ -24,7 +26,7 @@
 <image>./CoffeeCapsuleHolder-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/CoffeeCapsuleHolder</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/CoffeeCapsuleHolder</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -32,6 +34,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>CoffeeCapsuleHolder-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

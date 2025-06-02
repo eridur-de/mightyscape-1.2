@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Extension for InkScape 1.0
+Extension for Inkscape 1.0
 Features
  - filters the current selection or the whole document for fill or stroke style. Each style will be put onto it's own layer. This way you can devide elements by their colors.
  
@@ -73,7 +73,7 @@ class StylesToLayers(inkex.EffectExtension):
             applyTransformationsAvailable = True
         except Exception as e:
             # self.msg(e)
-            self.msg("Calling 'Apply Transformations' extension failed. Maybe the extension is not installed. You can download it from official InkScape Gallery. Skipping ...")
+            self.msg("Calling 'Apply Transformations' extension failed. Maybe the extension is not installed. You can download it from official Inkscape Gallery. Skipping ...")
              
         layer_name = None
         layerNodeList = [] #list with layer, neutral_value, element and self.options.separateby type
@@ -91,7 +91,7 @@ class StylesToLayers(inkex.EffectExtension):
             if self.options.apply_transformations is True and applyTransformationsAvailable is True:
                 apply_transformations.ApplyTransformations().recursiveFuseTransform(element) 
         
-            if isinstance(element, inkex.ShapeElement): # Elements which have a visible representation on the canvas (even without a style attribute but by their type); if we do not use that ifInstance Filter we provokate unkown InkScape fatal crashes
+            if isinstance(element, inkex.ShapeElement): # Elements which have a visible representation on the canvas (even without a style attribute but by their type); if we do not use that ifInstance Filter we provokate unkown Inkscape fatal crashes
                            
                 style = element.style
                 if style is not None:
@@ -302,7 +302,7 @@ class StylesToLayers(inkex.EffectExtension):
                 import remove_empty_groups
                 remove_empty_groups.RemoveEmptyGroups.effect(self)
             except:
-                self.msg("Calling 'Remove Empty Groups' extension failed. Maybe the extension is not installed. You can download it from official InkScape Gallery. Skipping ...")
+                self.msg("Calling 'Remove Empty Groups' extension failed. Maybe the extension is not installed. You can download it from official Inkscape Gallery. Skipping ...")
                 
 if __name__ == '__main__':
     StylesToLayers().run()

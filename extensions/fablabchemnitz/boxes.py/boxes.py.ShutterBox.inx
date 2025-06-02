@@ -49,7 +49,7 @@
 <image>./ShutterBox-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/ShutterBox</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/ShutterBox</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -57,6 +57,7 @@
             <submenu name="Boxes with flex"/>
         </submenu>
     </effects-menu>
+    <icon>ShutterBox-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

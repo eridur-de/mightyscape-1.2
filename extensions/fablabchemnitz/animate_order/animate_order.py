@@ -9,7 +9,7 @@ from lxml import etree
 import warnings
 
 """
-Extension for InkScape 1.X
+Extension for Inkscape 1.X
 Features
  - Create SVG preview file and show it in browser. Helps to quickly evaluate line order for cutting processes
  

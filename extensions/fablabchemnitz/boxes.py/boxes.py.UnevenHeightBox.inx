@@ -16,7 +16,7 @@
 <param name="height1" type="float" precision="2" max="9999" gui-text="height1" gui-description="height of the front right corner in mm">50</param>
 <param name="height2" type="float" precision="2" max="9999" gui-text="height2" gui-description="height of the right back corner in mm">100</param>
 <param name="height3" type="float" precision="2" max="9999" gui-text="height3" gui-description="height of the left back corner in mm">100</param>
-<param name="lid" type="bool" gui-text="lid" gui-description="add a lid (works best with high corners opposing each other)">false</param>
+<param name="add_lid" type="bool" gui-text="add_lid" gui-description="add a lid (works best with high corners opposing each other)">true</param>
 <param name="lid_height" type="float" precision="2" max="9999" gui-text="lid_height" gui-description="additional height of the lid">0</param>
 <param name="edge_types" type="string" gui-text="edge_types" gui-description="which edges are flat (e) or grooved (z,Z), counter-clockwise from the front">eeee</param>
 </page>
@@ -66,7 +66,7 @@
 <image>./UnevenHeightBox-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/UnevenHeightBox</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/UnevenHeightBox</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -74,6 +74,7 @@
             <submenu name="Boxes"/>
         </submenu>
     </effects-menu>
+    <icon>UnevenHeightBox-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

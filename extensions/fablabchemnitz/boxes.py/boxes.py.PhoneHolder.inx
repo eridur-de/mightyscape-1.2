@@ -43,7 +43,7 @@
 <image>./PhoneHolder-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/PhoneHolder</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/PhoneHolder</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -51,6 +51,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>PhoneHolder-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

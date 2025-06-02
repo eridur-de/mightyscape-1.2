@@ -82,7 +82,7 @@
 <image>./DividerTray-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/DividerTray</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/DividerTray</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -90,6 +90,7 @@
             <submenu name="Trays and Drawer Inserts"/>
         </submenu>
     </effects-menu>
+    <icon>DividerTray-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

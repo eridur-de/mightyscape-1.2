@@ -56,7 +56,7 @@
 <image>./SBCMicroRack-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/SBCMicroRack</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/SBCMicroRack</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -64,6 +64,7 @@
             <submenu name="Shelves"/>
         </submenu>
     </effects-menu>
+    <icon>SBCMicroRack-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

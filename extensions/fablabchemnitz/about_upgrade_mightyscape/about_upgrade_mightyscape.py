@@ -3,7 +3,7 @@
 """
 Upgrade MightyScape from Inkscape Extension Dialog. Made for end users
 
-Extension for InkScape 1.3.2
+Extension for Inkscape 1.3.2
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 14.01.2024

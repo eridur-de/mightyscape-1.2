@@ -42,7 +42,7 @@
 <image>./TrafficLight-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/TrafficLight</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/TrafficLight</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -50,6 +50,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>TrafficLight-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

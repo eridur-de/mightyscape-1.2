@@ -60,7 +60,7 @@
 <image>./KeyHolder-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/KeyHolder</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/KeyHolder</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -68,6 +68,7 @@
             <submenu name="WallMounted"/>
         </submenu>
     </effects-menu>
+    <icon>KeyHolder-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

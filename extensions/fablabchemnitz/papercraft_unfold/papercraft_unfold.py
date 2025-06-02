@@ -15,7 +15,7 @@ import d3.model.tools as mt
 from d3.model.basemodel import Vector
 
 """
-Extension for InkScape 1.0
+Extension for Inkscape 1.0
 
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
@@ -173,7 +173,7 @@ class PapercraftUnfold(inkex.EffectExtension):
             p = Popen(fstl_cmd, shell=True)
             p.wait()
                
-        # Write the generated SVG into InkScape's canvas
+        # Write the generated SVG into Inkscape's canvas
         try:
             stream = open(converted_flattenfile, 'r')
         except FileNotFoundError as e:

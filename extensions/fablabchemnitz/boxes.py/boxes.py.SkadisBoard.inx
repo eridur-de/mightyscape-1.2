@@ -23,14 +23,15 @@
 <image>./SkadisBoard-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/SkadisBoard</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/SkadisBoard</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
         <submenu name="FabLab Chemnitz Boxes.py">
-            <submenu name="Misc"/>
+            <submenu name="WallMounted"/>
         </submenu>
     </effects-menu>
+    <icon>SkadisBoard-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

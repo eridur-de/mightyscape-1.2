@@ -25,7 +25,7 @@
 <image>./Display-thumb.jpg</image>
 </page>
 </param>
-<label appearance="url">https://www.festi.info/boxes.py/Display</label>
+<label appearance="url">https://boxes.hackerspace-bamberg.de/Display</label>
 <effect>
     <object-type>all</object-type>
     <effects-menu>
@@ -33,6 +33,7 @@
             <submenu name="Misc"/>
         </submenu>
     </effects-menu>
+    <icon>Display-thumb.svg</icon>
 </effect>
 <script>
     <command location="inx" interpreter="python">boxes_proxy.py</command>

@@ -8,7 +8,7 @@ from lxml import etree
 
 #TODOS
 '''
-since InkScape 1.0 / Python 3 adjustments are required to fix "TypeError: '<' not supported between instances of 'Pier' and 'Pier'". A __lt__ method has to be implemented
+since Inkscape 1.0 / Python 3 adjustments are required to fix "TypeError: '<' not supported between instances of 'Pier' and 'Pier'". A __lt__ method has to be implemented
 "for this reasion items = sorted([(p[0].area(),p[0]) for p in shape.parts], reverse=True)" was commented out
 '''
 

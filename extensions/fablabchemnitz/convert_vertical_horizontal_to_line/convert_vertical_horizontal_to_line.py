@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 """
-Extension for InkScape 1.X
+Extension for Inkscape 1.X
 
 This extension converts an SVG path's d attribute the following way: find each V (vertical line) and each H (horizontal line) and replace it by a generic line (L type). 
 A lot of extensions do not work with V and H, but with L commands. So this is just a helper extension for other extensions :-)
