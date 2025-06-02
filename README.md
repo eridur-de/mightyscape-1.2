@@ -2,7 +2,7 @@
 
 <img title="" src="./extensions/fablabchemnitz/000_Mightyscape.svg" alt="" data-align="left">
 
-In short: A maintained extension collection for Inkscape. There are **239 extension folders** with **469 .inx files** inside. We also take part at https://inkscape.org/gallery/=extension/ (with single extension uploads).
+In short: A maintained extension collection for Inkscape. There are **239 extension folders** with **477 .inx files** inside. We also take part at https://inkscape.org/gallery/=extension/ (with single extension uploads).
 
 # About MightyScape
 
@@ -100,7 +100,6 @@ The following extra libraries are required for some of the extensions within the
 
 **Note:** if `openmesh` fails to install, please see [Paperfold](https://stadtfabrikanten.org/display/IFM/Paperfold) for more details about installing it.
 
-
 **On Fedora/CentOS Linux this might look like:**
 
 Some preparations to install openmesh library later on ...
@@ -150,15 +149,17 @@ cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d'
 py -m ensurepip --upgrade
 py -m pip install --upgrade pip
 
+py -m venv %AppData%\inkscape\extensions\mightyscape-1.2\venv
+
 : then we clone MightyScape project into extension directory
 cd %AppData%\inkscape\extensions\
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 
-py -m pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
+%AppData%\inkscape\extensions\mightyscape-1.2\venv\python3 -m pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
 
 : use this in case the previous command failed to continue by just skipping errors (less clean installation)
 cd %AppData%\inkscape\extensions\mightyscape-1.2\
-FOR /F %k in ('findstr /V "#" requirements.txt') DO ( py -m pip install %k )                                
+FOR /F %k in ('findstr /V "#" requirements.txt') DO ( %AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m pip install %k )                             
 ```
 
 ## Installation of MightyScape - way 2: with zip archives (mirrors)

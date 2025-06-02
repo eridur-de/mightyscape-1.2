@@ -41,4 +41,4 @@ git+https://github.com/LoicGoulefert/deduplicate.git#egg=deduplicate
 git+https://github.com/tjltjl/plycutter.git
 
 #boxes.py
-git+https://github.com/florianfesti/boxes.git
+git+https://github.com/florianfesti/boxes.git@116a5e06792d41370de1680535e016bec26a56e4
