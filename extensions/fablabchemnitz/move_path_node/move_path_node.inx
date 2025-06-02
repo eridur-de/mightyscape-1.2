@@ -48,6 +48,8 @@
                 <submenu name="Paths - Join/Order" />
             </submenu>
         </effects-menu>
+       <menu-tip>Change starting / end node of a path and visualize it by dots and numbers. You can also use this extension as a trimmer for open paths.</menu-tip>
+       <icon>icon.svg</icon>
     </effect>
     <script>
         <command location="inx" interpreter="python">move_path_node.py</command>

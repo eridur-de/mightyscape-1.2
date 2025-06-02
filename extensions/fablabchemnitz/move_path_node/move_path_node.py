@@ -154,14 +154,14 @@ class MovePathNode(inkex.EffectExtension):
                             inkex.utils.debug("More moves entered than possible to apply. Path result would be a point, not a line")
                         #return
                 
-                composedPath = inkex.Path()
-                for newSubpath in newSubpaths:
-                    composedPath.extend(newSubpath)
-                    
-                if self.options.debug is True:
-                    inkex.utils.debug("Composed path = " + str(composedPath))
+        composedPath = inkex.Path()
+        for newSubpath in newSubpaths:
+            composedPath.extend(newSubpath)
             
-                element.path = composedPath
+        if self.options.debug is True:
+            inkex.utils.debug("Composed path = " + str(composedPath))
+    
+        element.path = composedPath
     
     def visualizeFirstTwo(self, element):
         """Add a dot label for this path element"""
