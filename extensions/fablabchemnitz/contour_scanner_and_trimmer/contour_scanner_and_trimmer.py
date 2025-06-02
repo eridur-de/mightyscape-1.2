@@ -70,9 +70,6 @@ from inkex.bezier import csplength
 from inkex.paths import Path, CubicSuperPath
 from shapely.geometry import LineString, Point, MultiPoint
 from shapely.ops import snap, split
-from shapely import speedups
-if speedups.available:
-    speedups.enable()
 
 idPrefixSubSplit = "subsplit"
 idPrefixTrimming = "trimmed"
