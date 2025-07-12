@@ -35,6 +35,7 @@ class InsertPaperTemplate(inkex.EffectExtension):
 		self.Group = etree.SubElement(self.svg.get_current_layer(), inkex.addNS('g','svg'), {} )
 
 		papertypes = {}
+		papertypes["A7"] = (74,  105, "#7f7f7f") # grey
 		papertypes["A6"] = (105, 148, "#00ffff") # cyan
 		papertypes["A5"] = (148, 210, "#ffeeaa") # yellow
 		papertypes["A4"] = (210, 297, "#ffccaa") # orange

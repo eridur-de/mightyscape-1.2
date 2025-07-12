@@ -3,6 +3,7 @@
     <name>Insert Paper Template</name>
     <id>fablabchemnitz.de.insert_paper_template</id>
     <param name="papertype" type="optiongroup" appearance="combo" gui-text="Box type">
+        <option value="A7">A7</option>
         <option value="A6">A6</option>
         <option value="A5">A5</option>
         <option value="A4">A4</option>
