@@ -141,19 +141,18 @@ cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d'
 ```
 
 **On Windows this might look like:**
-
 ```
+: We clone MightyScape project into extension directory
+cd %AppData%\inkscape\extensions\
+git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
+
 : Python might be installed by default to:
 : %AppData%\..\Local\Programs\Python\Python313\Scripts
 : The python executable should be available with command "py" (or "python" or "python.exe")
 
 py -m venv %AppData%\inkscape\extensions\mightyscape-1.2\venv
 
-: then we clone MightyScape project into extension directory
-cd %AppData%\inkscape\extensions\
-git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
-
-: we also install and upgrade pip package manager, if not already done
+: We also install and upgrade pip package manager, if not already done
 %AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m ensurepip --upgrade
 %AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m pip install --upgrade pip
 
@@ -164,6 +163,7 @@ git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
 cd %AppData%\inkscape\extensions\mightyscape-1.2\
 FOR /F %k in ('findstr /V "#" requirements.txt') DO ( %AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m pip install %k )                             
 ```
+
 
 ## Installation of MightyScape - way 2: with zip archives (mirrors)
 
