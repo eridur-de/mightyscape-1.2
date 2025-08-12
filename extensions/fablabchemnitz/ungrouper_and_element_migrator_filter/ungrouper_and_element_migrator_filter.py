@@ -276,13 +276,21 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
                     newGroup.insert(index, element) #we do not copy any elements. we just rearrange them by moving to another place (group index)
                     index += 1 #we must count up the index or we would overwrite each previous element
     
-       # remove the stuff from drop list list. this has to be done before we drop the groups where they are located in
+       # remove the stuff from drop list. this has to be done before we drop the groups where they are located in
         if so.operationmode == "filter_only" or so.operationmode == "ungroup_and_filter":
             if len(self.allDrops) > 0:
                 for dropElement in self.allDrops:
                     if dropElement.getparent() is not None:
                         dropElement.getparent().remove(dropElement)
               
+        # remove attributes which make problems in other items
+        if so.clipPath is False:
+            for element in self.document.getroot().iter(tag=etree.Element):
+                if element != self.document.getroot():
+                    if element.attrib.has_key('clip-path'):
+                        #inkex.utils.debug(element.attrib['clip-path'])
+                        del element.attrib['clip-path']
+
         # remove all the obsolete groups which are left over from ungrouping (flattening)
         if so.operationmode == "ungroup_only" or so.operationmode == "ungroup_and_filter":
             if len(self.allGroups) > 0:        
