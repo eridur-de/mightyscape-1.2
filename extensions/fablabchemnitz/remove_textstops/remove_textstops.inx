@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Remove Text Stops</name>
+    <id>fablabchemnitz.de.remove_textstops</id>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Text"/>
+            </submenu>
+        </effects-menu>
+       <menu-tip>Remove dx attributes from selected text.</menu-tip>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">remove_textstops.py</command>
+    </script>
+</inkscape-extension>
