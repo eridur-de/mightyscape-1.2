@@ -3,6 +3,7 @@
 import os
 import inkex
 from lxml import etree
+import mimetypes
 
 class Reload(inkex.EffectExtension):
 
@@ -25,6 +26,11 @@ class Reload(inkex.EffectExtension):
 
         if not os.path.exists(currentDoc):
             self.msg("The input file does not exist (anymore). Please check and try again.")
+            exit(1)
+
+        mime_type, encoding = mimetypes.guess_type(currentDoc)
+        if mime_type != "image/svg+xml":
+            inkex.utils.debug("Wrong MIME type: {}".format(mime_type))
             exit(1)
 
         with open(currentDoc, 'r') as stream:
