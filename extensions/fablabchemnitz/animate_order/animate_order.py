@@ -7,6 +7,7 @@ import os
 import sys
 from lxml import etree
 import warnings
+import tempfile
 
 """
 Extension for Inkscape 1.X
@@ -16,7 +17,7 @@ Features
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 21.04.2021
-Last patch: 07.05.2021
+Last patch: 23.08.2025
 License: GNU GPL v3
 
 Used version of Vivus JS library: https://github.com/maxwellito/vivus/releases/tag/v0.4.6 - MIT License
@@ -58,7 +59,8 @@ class AnimateOrder(inkex.EffectExtension):
         extension_dir = os.path.dirname(os.path.realpath(__file__))
         shutil.copy2(self.options.input_file, os.path.join(extension_dir, inFile))
 
-        target_html = os.path.join(extension_dir, "animate_order.html")
+        tmp = tempfile.gettempdir()
+        target_html = os.path.join(tmp, "animate_order.html")
         
         docTitle = self.document.getroot().get("{http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd}docname")
         animateId = self.document.getroot().get('id')
@@ -67,7 +69,9 @@ class AnimateOrder(inkex.EffectExtension):
         else:
             title = "Animate Order - " + docTitle
         vivus_include = "./vivus-0.4.6/dist/vivus.js"
-        
+        vivus_tgt = os.path.join(tmp, "vivus.js")
+        shutil.copy(vivus_include, tmp)
+
         duration = self.options.time  * self.options.fps # we guess we have 20 ... 60 fps. depends on performance of the machine
         frames_per_second = self.options.fps
         type = self.options.sequence_type
@@ -97,7 +101,7 @@ class AnimateOrder(inkex.EffectExtension):
             print( '    <br/>'                                                                      , file=text_file)                                                 
             #print(f'    <object id="animate_order" type="image/svg+xml" data="{inFile}"></object>'  , file=text_file)
             print(svgContent                                                                        , file=text_file) 
-            print(f'    <script src="{vivus_include}"></script>'                                    , file=text_file)
+            print(f'    <script src="{vivus_tgt}"></script>'                                        , file=text_file)
             print( '    <script>'                                                                   , file=text_file)
             print( "         var vi = new Vivus('" + f'{animateId}' + "', {type: '" + f'{type}' + "', \
 duration:" + f'{duration}' + ", reverseStack:" + f'{reverse}' + "});" , file=text_file)
