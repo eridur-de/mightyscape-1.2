@@ -75,10 +75,10 @@ Please read this first before opening issues! This documentation does not mainta
 
 There are two places where Inkscape extensions can be located by default, either install (global) directory or user directory. We usually put the extensions in the user's data directory, because if we would put it to the installation folder of Inkscape, we would risk deletion by upgrading. If we put them to the user directory we do not lose them.
 
-| OS                     | user directory                   | global directory                        |
-| ---------------------- | -------------------------------- | --------------------------------------- |
-| Linux (Ubuntu, Fedora) | `~/.config/inkscape/extensions/` | `/usr/share/inkscape/extensions/`       |
-| Windows                | `%AppData%\inkscape\extensions\` | `C:\Program Files\inkscape\extensions\` |
+| OS                     | user directory                                 | global directory                        |
+| ---------------------- | ---------------------------------------------- | --------------------------------------- |
+| Linux (Ubuntu, Fedora) | `/home/$(whoami)/.config/inkscape/extensions/` | `/usr/share/inkscape/extensions/`       |
+| Windows                | `%AppData%\inkscape\extensions\`               | `C:\Program Files\inkscape\extensions\` |
 
 Please also refer to the [official documentation](https://inkscape-manuals.readthedocs.io/en/latest/extensions.html#installing-extensions).
 
@@ -111,14 +111,14 @@ sudo dnf install cmake g++ python3-devel
 
 ```
 sudo dnf install python3-venv python3-devel
-cd  ~/.config/inkscape/extensions/
+cd  /home/$(whoami)/.config/inkscape/extensions/
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
-python3 -m venv ~/.config/inkscape/extensions/mightyscape-1.2/venv
+python3 -m venv /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv
 
-~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir -r ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
+/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir -r /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
 
 #use this in case the previous command failed (skip errors)
-cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir
+cat /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir
 ```
 
 **On Ubuntu/Kubuntu Linux this might look like:**
@@ -130,14 +130,14 @@ sudo apt install cmake g++ python3-dev
 
 ```
 sudo apt install python3-venv python3-full
-cd  ~/.config/inkscape/extensions/
+cd  /home/$(whoami)/.config/inkscape/extensions/
 git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
-python3 -m venv ~/.config/inkscape/extensions/mightyscape-1.2/venv
+python3 -m venv /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv
 
-~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir -r ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
+/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir -r /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
 
 #use this in case the previous command failed (skip errors)
-cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir
+cat /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir
 ```
 
 **On Windows this might look like:**
@@ -192,13 +192,34 @@ As we use non-default python, need to adjust the main configuration of inkscape 
 **On Linux this might look like:**
 
 ```
-vim ~/.config/inkscape/preferences.xml
+vim /home/$(whoami)/.config/inkscape/preferences.xml
 ```
 
 ```
   <group
      id="extensions"
-     python-interpreter="~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3"
+     python-interpreter="/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3"
+```
+
+or automatically done by script:
+```
+sudo apt install xmlstarlet
+```
+
+```
+#!/bin/bash
+PREFERENCES="$(inkscape --user-data-directory)/preferences.xml"
+TGT_NODE="/inkscape/group[@id=\"extensions\"]"
+TGT_ATTRIB="python-interpreter"
+VALUE="/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3"
+grep "python-interpreter" $PREFERENCES
+if [ $? == 0 ]; then
+    echo "Replacing $TGT_ATTRIB"
+    xmlstarlet edit --inplace --ps --pf --update $TGT_NODE/@$TGT_ATTRIB --value $VALUE $PREFERENCES
+else
+    echo "Inserting $TGT_ATTRIB"
+    xmlstarlet edit --inplace --ps --pf --insert $TGT_NODE --type attr -n $TGT_ATTRIB --value $VALUE $PREFERENCES
+fi
 ```
 
 **On Windows this might look like:**
@@ -214,6 +235,26 @@ notepad %appdata%\inkscape\preferences.xml
 ```
 
 If in Inkscape you get a nasty popup window each time you are executing an extension, please double check if you really use `pythonw.exe`. Do not use `python.exe`.
+
+or automatically done by script:
+```
+rem start powershell as privileged admin
+powershell
+```
+
+```
+Set-ExecutionPolicy Bypass -Scope Process -Force
+[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
+iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+```
+
+```
+choco install xmlstarlet
+```
+
+```
+TODO
+```
 
 ## Upgrading MightyScape
 
@@ -233,10 +274,10 @@ Sometimes it can help to upgrade python modules. This section shows some useful 
 
 ```
 #Linux: 
-~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install -U
+/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install -U
 
 #Windows: 
-for /F "delims= " %i in ('pip list --outdated') do ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install -U %i
+for /F "delims= " %i in ('pip list --outdated') do /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install -U %i
 ```
 
 # Issues, questions, documentation, examples
