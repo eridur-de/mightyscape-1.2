@@ -7,6 +7,8 @@
             <label appearance="header">Warning!</label>
             <label>Do not use "-inkscape-stroke:hairline" attribute for your paths. It will not render. Your page might be blank!</label>
             <spacer/>
+            <label>Please save the document again to apply recent changes in your animation!</label>
+            <spacer/>
             <param name="time" type="float" min="0.000" max="9999999.999" precision="3" gui-text="Duration (frames)">5.0</param>
             <param name="fps" type="int" min="1" max="100" gui-text="Frame per second (fps)">60</param>
             <param name="sequence_type" type="optiongroup" appearance="combo" gui-text="Sequence type">
@@ -23,7 +25,10 @@
         <page name="tab_about" gui-text="About">
             <label appearance="header">Animate Order</label>
             <label>Create SVG preview file and show it in browser. Helps to quickly evaluate line order for cutting processes.</label>
-            <label>2021 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <spacer />
+            <label>Please save your document again first to reflect all changes when applying animate_order extension!</label>
+            <spacer />
+            <label>2021 - 2025 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/animateorder</label>
