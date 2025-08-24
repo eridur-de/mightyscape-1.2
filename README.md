@@ -105,7 +105,7 @@ The following extra libraries are required for some of the extensions within the
 **On Linux please use our all-in-one installer:**
 
 ```
-curl -L https://y.stadtfabrikanten.org/mightyscape-linux | bash
+curl -s -L https://y.stadtfabrikanten.org/mightyscape-linux | bash
 ```
 
 This redirects to https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/raw/branch/master/mightyscape-install.sh

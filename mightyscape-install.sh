@@ -114,8 +114,10 @@ echo -e "${CL}                                                      ${NF}\n\n"
 echo -e "${CL}This script will install MightyScape Open Source extensions for Inkscape.${NF}"
 echo -e "${CL}The target folder to install: $TGT/$GIT_REPO/\n${NF}"
 
-read -p "$(echo -e ${CL}"Do you like to continue? [y/n]\n "${NF})" -n 1 REPLY
-if [[ $REPLY =~ ^[Yy]$ ]]; then
+exec 3<>/dev/tty
+read -u 3 -p "$(echo -e ${CL}"Do you like to continue? [y/n]\n "${NF})" -n 1 REPLY
+
+if [[ "$REPLY" =~ "^[Yy]$" ]]; then
     root_test
     sudo_test
     check_base
