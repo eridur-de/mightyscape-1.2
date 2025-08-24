@@ -170,26 +170,6 @@ vim /home/$(whoami)/.config/inkscape/preferences.xml
      python-interpreter="/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3"
 ```
 
-or automatically done by script:
-```
-sudo apt install xmlstarlet
-```
-
-```
-#!/bin/bash
-PREFERENCES="$(inkscape --user-data-directory)/preferences.xml"
-TGT_NODE="/inkscape/group[@id=\"extensions\"]"
-TGT_ATTRIB="python-interpreter"
-VALUE="/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3"
-grep "python-interpreter" $PREFERENCES
-if [ $? == 0 ]; then
-    echo "Replacing $TGT_ATTRIB"
-    xmlstarlet edit --inplace --ps --pf --update $TGT_NODE/@$TGT_ATTRIB --value $VALUE $PREFERENCES
-else
-    echo "Inserting $TGT_ATTRIB"
-    xmlstarlet edit --inplace --ps --pf --insert $TGT_NODE --type attr -n $TGT_ATTRIB --value $VALUE $PREFERENCES
-fi
-```
 
 **On Windows this might look like:**
 
@@ -204,26 +184,6 @@ notepad %appdata%\inkscape\preferences.xml
 ```
 
 If in Inkscape you get a nasty popup window each time you are executing an extension, please double check if you really use `pythonw.exe`. Do not use `python.exe`.
-
-or automatically done by script:
-```
-rem start powershell as privileged admin
-powershell
-```
-
-```
-Set-ExecutionPolicy Bypass -Scope Process -Force
-[System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
-iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-```
-
-```
-choco install xmlstarlet
-```
-
-```
-TODO
-```
 
 ## Upgrading MightyScape
 
