@@ -102,43 +102,13 @@ The following extra libraries are required for some of the extensions within the
 
 **Note:** if `openmesh` fails to install, please see [Paperfold](https://stadtfabrikanten.org/display/IFM/Paperfold) for more details about installing it.
 
-**On Fedora/CentOS Linux this might look like:**
-
-Some preparations to install openmesh library later on ...
-```
-sudo dnf install cmake g++ python3-devel
-```
+**On Linux please use our all-in-one installer:**
 
 ```
-sudo dnf install python3-venv python3-devel
-cd  /home/$(whoami)/.config/inkscape/extensions/
-git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
-python3 -m venv /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv
-
-/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir -r /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
-
-#use this in case the previous command failed (skip errors)
-cat /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir
+curl -L https://y.stadtfabrikanten.org/mightyscape-linux | bash
 ```
 
-**On Ubuntu/Kubuntu Linux this might look like:**
-
-Some preparations to install openmesh library later on ...
-```
-sudo apt install cmake g++ python3-dev
-```
-
-```
-sudo apt install python3-venv python3-full
-cd  /home/$(whoami)/.config/inkscape/extensions/
-git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
-python3 -m venv /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv
-
-/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir -r /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt
-
-#use this in case the previous command failed (skip errors)
-cat /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade --quiet --no-cache-dir
-```
+This redirects to https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/raw/branch/master/mightyscape-install.sh
 
 **On Windows this might look like:**
 ```
@@ -163,7 +133,6 @@ py -m venv %AppData%\inkscape\extensions\mightyscape-1.2\venv
 cd %AppData%\inkscape\extensions\mightyscape-1.2\
 FOR /F %k in ('findstr /V "#" requirements.txt') DO ( %AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m pip install %k )                             
 ```
-
 
 ## Installation of MightyScape - way 2: with zip archives (mirrors)
 
