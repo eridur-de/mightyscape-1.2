@@ -23,7 +23,13 @@ class RemoveTextStops(inkex.EffectExtension):
         if element.tag == inkex.addNS('tspan','svg'):
             if element.attrib.has_key('dx'):
                 del element.attrib['dx']
-
+            
+            # this usually destroys proper line distance if text goes on more than 1 line
+            # y attributes are stored in text attribute. We do not need it again in tspan
+            # (it will be automatically calculated if missing)
+            # We must keep x attribute, because it behaves DIFFERENT!
+            if element.attrib.has_key('y'):
+                del element.attrib['y']
     def effect(self):
 
         elements = self.svg.selection.values()
