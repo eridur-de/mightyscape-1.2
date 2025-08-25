@@ -7,7 +7,7 @@ Extension for Inkscape 1.3.2
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 14.01.2024
-Last patch: 07.11.2024
+Last patch: 25.08.2025
 License: GNU GPL v3
 
 ToDo
@@ -20,6 +20,22 @@ import subprocess
 from subprocess import Popen, PIPE
 import warnings
 from datetime import datetime, timezone
+from lxml import etree
+
+prefs = os.path.join(os.environ['INKSCAPE_PROFILE_DIR'], "preferences.xml")
+doc = etree.parse(prefs)
+for element in doc.xpath("//inkscape/group[@id=\"extensions\"]/@python-interpreter", namespaces=inkex.NSS):
+    python_interpreter = element
+    break
+inkex.utils.debug("Your config file: {}\n".format(prefs))
+inkex.utils.debug("Configured attribute 'python-interpreter': {}\n".format(python_interpreter))
+python_interpreter_abs = os.path.isabs(python_interpreter)
+if python_interpreter_abs is False:
+    inkex.utils.debug("Warning: python-interpreter path is not absolute. \
+This might lead to failure of extension execution! Please do not use \
+relative paths like '~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3'. \
+Instead use '/home/YOURUSER/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3'\n")
+
 try:
     import git
     from git import Repo #requires GitPython lib

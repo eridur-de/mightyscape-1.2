@@ -155,7 +155,7 @@ You should put the extracted files into your global Inkscape extension directory
 
 ## Adjusting the python interpreter of Inkscape (required)
 
-As we use non-default python, need to adjust the main configuration of inkscape to apply this change by adding a custom `python-interpreter` command in Inkscape default configuration (`preferences.xml`).
+As we use non-default python, need to adjust the main configuration of inkscape to apply this change by adding a custom `python-interpreter` command in Inkscape default configuration (`preferences.xml`). The interpreter's path **must be absolute**. Relative paths will fail!
 **Note:** Using a custom Python environment on Windows wil make the official Inkscape Extensions Manager impossible to run. The reason is the library `pygobject`.
 
 **On Linux this might look like:**
