@@ -5,31 +5,36 @@ from inkex import Transform
 from lxml import etree
 
 class NormalizeDrawingScale(inkex.EffectExtension):
-    
+
     def add_arguments(self, pars):
         pars.add_argument('--target_scale', type=float, default=100.0)
-    
+
     def effect(self):
         format_units = inkex.units.parse_unit(self.svg.get('width'))[1] #get the "Format:" unit at "Display tab"
         namedView = self.document.getroot().find(inkex.addNS('namedview', 'sodipodi'))
-        display_units = namedView.get(inkex.addNS('document-units', 'inkscape')) #means the "Display units:" at "Display tab"
+        display_units = namedView.get('inkscape:document-units') #means the "Display units:" at "Display tab"
         docScale = self.svg.scale
         inkscapeScale = self.svg.inkscape_scale #this is the "Scale:" value at "Display tab"
-   
+
         docWidth = self.svg.get('width')
         docHeight = self.svg.get('height')
-        
+
         docWidth_fin = inkex.units.parse_unit(docWidth)[0]
         docHeight_fin = inkex.units.parse_unit(docHeight)[0]
 
         vxMin, vyMin, vxMax, vyMax = self.svg.get_viewbox()
         vxTotal = vxMax - vxMin
-        targetScale = self.options.target_scale / 100       
+        targetScale = self.options.target_scale / 100
+
+        if display_units is None:
+            display_units = format_units #assume same unit ad format_units if "inkscape:document-units" does not exist
+            namedView.set('inkscape:document-units', format_units)
+
         visualScaleX = self.svg.unittouu(str(vxTotal / self.svg.viewport_width) + display_units)
         formatScaleX = self.svg.unittouu(str(vxTotal / self.svg.viewport_width) + format_units)
-        
+
         docWidth_new = docWidth_fin * visualScaleX * inkscapeScale
-        docHeight_new = docHeight_fin * visualScaleX * inkscapeScale    
+        docHeight_new = docHeight_fin * visualScaleX * inkscapeScale
 
         docWidth_new = docWidth_fin * targetScale / inkscapeScale
         docHeight_new = docHeight_fin * targetScale / inkscapeScale
@@ -46,16 +51,16 @@ class NormalizeDrawingScale(inkex.EffectExtension):
         #inkex.errormsg("targetScale: {:0.6f}".format(targetScale))
         #inkex.errormsg("visualScaleX: {:0.6f}".format(visualScaleX))
         #inkex.errormsg("formatScaleX: {:0.6f}".format(formatScaleX))
-   
+
         #if inkscapeScale == targetScale: #strange rule. might break sth.
         #    inkex.utils.debug("Nothing to do. Scale is already 100%")
-        #    return  
-        
+        #    return
+
         if visualScaleX == 0.0: #seems there is no viewBox attribute, then ...
             #inkex.errormsg("viewBox attribute is missing in svg:svg. Applying new one ...")
             visualScaleX = 1.0 #this is the case we deal with px as display unit and we removed the viewBox
             self.svg.set('viewBox', '0 0 {} {}'.format(targetScale * docWidth_fin, targetScale * docHeight_fin))
-        if round(visualScaleX, 5) != targetScale or self.options.remove_viewbox is True:
+        if inkscapeScale != targetScale:
             #set scale to 100% (we adjust viewBox)
             sc = (1 / (targetScale / inkscapeScale))
             viewBoxNew = '0 0 {} {}'.format(docWidth_fin / targetScale, docHeight_fin / targetScale)
@@ -66,7 +71,6 @@ class NormalizeDrawingScale(inkex.EffectExtension):
             self.svg.set('width', "{}{}".format(docWidth_fin, format_units))
             self.svg.set('height', "{}{}".format(docHeight_fin, format_units))
 
-                
             translation_matrix = [[sc, 0.0, 0.0], [0.0, sc, 0.0]]
             #select each top layer and apply the transformation to scale
             processed = []
@@ -84,9 +88,9 @@ class NormalizeDrawingScale(inkex.EffectExtension):
                     element.transform = Transform(translation_matrix) @ element.composed_transform()
 
         else:
-            inkex.utils.debug("Nothing to do. Scale is already 100%")
+            inkex.utils.debug("Nothing to do. Scale is already {:.3f}%".format(self.options.target_scale))
             return
-   
-                             
+
+
 if __name__ == '__main__':
     NormalizeDrawingScale().run()
