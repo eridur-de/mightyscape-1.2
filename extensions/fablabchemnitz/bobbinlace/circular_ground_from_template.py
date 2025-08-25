@@ -389,7 +389,7 @@ class CircularGroundFromTemplate(inkex.EffectExtension):
 
     def add_arguments(self, pars):
         pars.add_argument('--file')
-        pars.add_argument('--angle', type=int)
+        pars.add_argument('--angle', type=float)
         pars.add_argument('--cols', type=int)
         pars.add_argument('--diameter', type=float)
         pars.add_argument('--diamunits')
