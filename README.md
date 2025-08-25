@@ -100,7 +100,7 @@ The following extra libraries are required for some of the extensions within the
 
 ## Installation of MightyScape - way 1: with git dependencies (preferred way)
 
-**Note:** if `openmesh` fails to install, please see [Paperfold](https://stadtfabrikanten.org/display/IFM/Paperfold) for more details about installing it.
+**Note:** if `openmesh` fails to install, please see [Paperfold](y.stadtfabrikanten.org/paperfold) for more details about installing it.
 
 **On Linux please use our all-in-one installer:**
 

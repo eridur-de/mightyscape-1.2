@@ -1,44 +1,41 @@
+#affine, qrcode required by boxes.py extension
+affine
+#brother_ql required by iventory_sticker extension
+brother_ql
+#boxes.py
+git+https://github.com/florianfesti/boxes.git@116a5e06792d41370de1680535e016bec26a56e4
+cairosvg
+#cssselect required by boxes.py and mightyscape updater extension
+cssselect
 debugpy
+#vpype deduplicate plugin setup
+git+https://github.com/LoicGoulefert/deduplicate.git#egg=deduplicate
+#GitPython required by mightyscape updater extension
+GitPython
 lxml
 matplotlib
 moderngl
 numpy
-networkx 
-opencv-python
-pyclipper
-pillow 
-scipy 
-scour 
-shapely 
-svg-to-gcode 
-svgpathtools 
-vpype 
-vpype-dxf 
-#GitPython required by mightyscape updater extension
-GitPython
-wheel 
-pytesseract
-cairosvg
-PyQt5
-PySide6
-#brother_ql required by iventory_sticker extension
-brother_ql 
-#cssselect required by boxes.py and mightyscape updater extension
-cssselect
-#affine, qrcode required by boxes.py extension
-affine
-qrcode
-openmesh
-
+networkx
 #vpype occult plugin setup
 git+https://github.com/abey79/occult.git#egg=occult
-
-#vpype deduplicate plugin setup
-tqdm
-git+https://github.com/LoicGoulefert/deduplicate.git#egg=deduplicate
-
+opencv-python
+openmesh
+pyclipper
+pillow
 #plycutter
 git+https://github.com/tjltjl/plycutter.git
-
-#boxes.py
-git+https://github.com/florianfesti/boxes.git@116a5e06792d41370de1680535e016bec26a56e4
+pybind11
+PySide6
+pytesseract
+PyQt5
+scipy
+scour
+shapely
+svg-to-gcode
+svgpathtools
+tqdm
+vpype
+vpype-dxf
+wheel
+qrcode
