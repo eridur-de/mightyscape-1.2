@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Remove Text Stops",
+    "id": "fablabchemnitz.de.text_replace",
+    "path": "text_replace",
+    "dependent_extensions": [],
+    "original_name": "Replace Text",
+    "original_id": "fablabchemnitz.de.text_replace",
+    "license": "GNU GPL v3",
+    "license_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/LICENSE",
+    "comment": "Created by Mario Voigt",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/text_replace",
+    "fork_url": null,
+    "documentation_url": "https://y.stadtfabrikanten.org/text_replace",
+    "inkscape_gallery_url": "",
+    "contributors": [
+      "github.com/eridur-de"
+    ]
+  }
+]

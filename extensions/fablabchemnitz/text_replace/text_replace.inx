@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+    <name>Replace Text</name>
+    <id>fablabchemnitz.de.text_replace</id>
+    <param name="replacewith" type="string" gui-text="New content to insert">lorem ipsum</param>
+    <effect>
+        <object-type>all</object-type>
+        <effects-menu>
+            <submenu name="FabLab Chemnitz">
+                <submenu name="Text"/>
+            </submenu>
+        </effects-menu>
+       <menu-tip>Replace text elements with generic content.</menu-tip>
+    </effect>
+    <script>
+        <command location="inx" interpreter="python">text_replace.py</command>
+    </script>
+</inkscape-extension>

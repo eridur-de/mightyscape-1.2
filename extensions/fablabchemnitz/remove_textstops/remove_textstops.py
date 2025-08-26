@@ -19,7 +19,7 @@ from lxml import etree
 
 class RemoveTextStops(inkex.EffectExtension):
     
-    def parse(self, element):
+    def adjust(self, element):
         if element.tag == inkex.addNS('tspan','svg'):
             if element.attrib.has_key('dx'):
                 del element.attrib['dx']
@@ -30,10 +30,18 @@ class RemoveTextStops(inkex.EffectExtension):
             # We must keep x attribute, because it behaves DIFFERENT!
             if element.attrib.has_key('y'):
                 del element.attrib['y']
-    def effect(self):
 
+    def parse(self, element):
+        self.adjust(element)
+        children = element.getchildren()
+        if children is not None:
+            for child in children:
+                self.adjust(element)
+                self.parse(child)
+
+    def effect(self):
         elements = self.svg.selection.values()
-        if len(elements) == 0:
+        if len(elements) > 0:
             for element in elements:
                 self.parse(element)
         else:
