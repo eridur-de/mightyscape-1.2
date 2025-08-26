@@ -3,6 +3,7 @@
     <name>Replace Text</name>
     <id>fablabchemnitz.de.text_replace</id>
     <param name="replacewith" type="string" gui-text="New content to insert">lorem ipsum</param>
+    <param name="tspan_merge" type="bool" gui-text="Merge tspan elements">true</param>
     <effect>
         <object-type>all</object-type>
         <effects-menu>
