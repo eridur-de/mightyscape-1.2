@@ -3,11 +3,11 @@
 """
 Upgrade MightyScape from Inkscape Extension Dialog. Made for end users
 
-Extension for Inkscape 1.3.2
+Extension for Inkscape 1.4.2
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 14.01.2024
-Last patch: 25.08.2025
+Last patch: 26.08.2025
 License: GNU GPL v3
 
 ToDo
@@ -15,6 +15,7 @@ ToDo
 """
 
 import inkex
+import sys
 import os
 import subprocess
 from subprocess import Popen, PIPE
@@ -35,6 +36,8 @@ if python_interpreter_abs is False:
 This might lead to failure of extension execution! Please do not use \
 relative paths like '~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3'. \
 Instead use '/home/YOURUSER/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3'\n")
+
+inkex.utils.debug("Python version: {}\n".format(sys.version))
 
 try:
     import git
