@@ -88,11 +88,8 @@ class Sudoku(inkex.EffectExtension):
 
     def effect(self):
         extension_dir = os.path.dirname(os.path.realpath(__file__))
-        if os.name == "nt":
-            qqwing = os.path.join(extension_dir, "qqwing.exe")
-        else:
-            qqwing = os.path.join(extension_dir, "qqwing")
-        args = [qqwing, "--one-line", "--generate", str(self.options.rows * self.options.cols)]
+        qqwing = os.path.join(extension_dir, "qqwing-1.3.4.jar")
+        args = ["java", "-jar", qqwing, "--one-line", "--generate", str(self.options.rows * self.options.cols)]
         if self.options.difficulty != 'mixed':
             args.extend(["--difficulty", self.options.difficulty])
         with subprocess.Popen(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE) as qqwing_process:
