@@ -57,9 +57,9 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
             exit(1)
 
         if os.name=="nt":
-            python_venv = os.path.abspath(os.path.join(os.path.dirname(git.__file__), '../', '../', '../', '../', 'venv', 'Scripts', 'python.exe'))
+            python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'venv', 'Scripts', 'python.exe'))
         else: #Linux/MacOS
-            python_venv = os.path.abspath(os.path.join(os.path.dirname(git.__file__), '../', '../', '../', '../', 'bin', 'python'))
+            python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'venv', 'bin', 'python'))
         command = "{} -m pip install --upgrade --no-cache-dir -r {}".format(python_venv, requirements)
         inkex.utils.debug("Executing: {}".format(command))
         proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE, encoding="UTF-8")
@@ -124,7 +124,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
         if so.install_requirements is True:
             self.install_requirements()
 
-        #get the directory of mightyscape
+        #get the directory of MightyScape
         extension_dir = os.path.abspath(os.path.join(os.path.abspath(os.path.dirname(__file__)), '../')) #go up to main dir /home/<user>/.config/inkscape/extensions/mightyscape-1.2/
         main_dir = os.path.abspath(os.path.join(extension_dir, '../../')) #go up to main dir /home/<user>/.config/inkscape/extensions/mightyscape-1.2/
 
