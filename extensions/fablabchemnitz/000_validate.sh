@@ -64,7 +64,7 @@ sed -i 's/\*\* with .* \.inx files\*\*/\*\* with \*\*'${INX}' \.inx files\*\*/g'
 
 
 echo "Removing unrequired pyc cache files"
-find . -type d -name "__pycache__" -exec rm -rf {} \; > /dev/null
+find . -type d -name "__pycache__" -exec rm -rf {} \; > /dev/null 2>&1
 
 
 read -p "Update zip files for zipmirror?" -n 1 -r

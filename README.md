@@ -2,7 +2,7 @@
 
 <img title="" src="./extensions/fablabchemnitz/000_Mightyscape.svg" alt="" data-align="left">
 
-In short: A maintained extension collection for Inkscape. There are **239 extension folders** with **477 .inx files** inside. We also take part at https://inkscape.org/gallery/=extension/ (with single extension uploads).
+In short: A maintained extension collection for Inkscape. There are **241 extension folders** with **479 .inx files** inside. We also take part at https://inkscape.org/gallery/=extension/ (with single extension uploads).
 
 # About MightyScape
 
@@ -90,7 +90,7 @@ On Linux, git usually defaults to be installed. On Windows we need to install it
 
 ### Python
 
-MightyScape relies on a Python interpreter. As we need to install some external dependencies (python modules, partially with C bindings), we cannot rely on the bundled Python version, which comes with Inkscape. So we need to use a virtualenv on Linux or Python Setup on Windows.
+MightyScape relies on a Python interpreter. As we need to install some external dependencies (python modules, partially with C bindings), we cannot rely on the bundled msys2 Python version, which comes with Inkscape. So we need to use a virtualenv on Linux or Python Setup on Windows. [Here](https://gitlab.com/inkscape/inkscape/-/blob/master/buildtools/msys2installdeps.sh?ref_type=heads) you can find a list of default modules Inkscape is shipped with.
 
 On Linux, Python is installed by default, so you don't have to do anything special except setting up a virtuanenv (see next chapter). On Windows we need to install separately. You can download it from https://www.python.org/downloads/windows/. After installation please review for correct environment variable adjustments. The command `py` or `python` has to be in `%PATH%` to be called by cmd (terminal).
 
