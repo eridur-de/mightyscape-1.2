@@ -2,6 +2,7 @@
 <inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
     <name>Replace Text</name>
     <id>fablabchemnitz.de.text_replace</id>
+    <param name="replace" type="bool" gui-text="Enable replacement">true</param>
     <param name="replacewith" type="string" gui-text="New content to insert">lorem ipsum</param>
     <param name="tspan_merge" type="bool" gui-text="Merge tspan elements">true</param>
     <effect>
