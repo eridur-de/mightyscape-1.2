@@ -1,22 +1,24 @@
-#affine, qrcode required by boxes.py extension
+#REQUIRED BY: boxes.py extension
 affine
 appdirs
 beautifulsoup4
-#brother_ql required by iventory_sticker extension
+#REQUIRED BY:iventory_sticker extension
 brother_ql
-#boxes.py
+#REQUIRED BY: boxes.py extension
 git+https://github.com/florianfesti/boxes.git@116a5e06792d41370de1680535e016bec26a56e4
 CacheControl
+#REQUIRED BY: ocr extension
 cairosvg
 chardet
 coverage
-#cssselect required by boxes.py and mightyscape updater extension
+#REQUIRED BY: boxes.py and about_upgrade_mightyscape extension
 cssselect
 debugpy
+ezdxf
 filelock
-#vpype deduplicate plugin setup
+#REQUIRED BY: vpypetools extension
 git+https://github.com/LoicGoulefert/deduplicate.git#egg=deduplicate
-#GitPython required by mightyscape updater extension
+#REQUIRED BY: about_upgrade_mightyscape extension
 GitPython
 lxml
 matplotlib
@@ -24,29 +26,33 @@ moderngl
 msgpack
 numpy
 networkx
-#vpype occult plugin setup
+#REQUIRED BY: vpypetools extension
 git+https://github.com/abey79/occult.git#egg=occult
 opencv-python
 openmesh
 pyclipper
 pillow
-#plycutter
+#REQUIRED BY: plycutter extension
 git+https://github.com/tjltjl/plycutter.git
 pybind11
 pycairo
 PyGObject
 pyserial
 PySide6
+#REQUIRED BY: ocr extension
 pytesseract
+#REQUIRED BY: output_pro extension
 PyQt5
 scipy
 scour
 shapely
+#REQUIRED BY: j_tech_photonics_laser_tool extension
 svg-to-gcode
 svgpathtools
 tqdm
 vpype
 vpype-dxf
 wheel
+#REQUIRED BY: boxes.py extension
 qrcode
 zstandard
