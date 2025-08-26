@@ -62,7 +62,7 @@ preflight () {
 packages () {
     echo -e "${CL}Installing system packages ...${NF}"
     if [ $PACKMAN == "apt" ]; then
-        sudo apt install -y git cmake g++ python3-full python3-dev   python3-venv xmlstarlet
+        sudo apt install -y git cmake g++ python3-full python3-dev   python3-venv xmlstarlet libgirepository-2.0-dev
     fi
     if [ $PACKMAN == "dnf" ]; then
         sudo dnf install    git cmake g++              python3-devel python3-venv xmlstarlet

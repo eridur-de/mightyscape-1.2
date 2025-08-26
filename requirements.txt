@@ -1,13 +1,19 @@
 #affine, qrcode required by boxes.py extension
 affine
+appdirs
+beautifulsoup4
 #brother_ql required by iventory_sticker extension
 brother_ql
 #boxes.py
 git+https://github.com/florianfesti/boxes.git@116a5e06792d41370de1680535e016bec26a56e4
+CacheControl
 cairosvg
+chardet
+coverage
 #cssselect required by boxes.py and mightyscape updater extension
 cssselect
 debugpy
+filelock
 #vpype deduplicate plugin setup
 git+https://github.com/LoicGoulefert/deduplicate.git#egg=deduplicate
 #GitPython required by mightyscape updater extension
@@ -15,6 +21,7 @@ GitPython
 lxml
 matplotlib
 moderngl
+msgpack
 numpy
 networkx
 #vpype occult plugin setup
@@ -26,6 +33,9 @@ pillow
 #plycutter
 git+https://github.com/tjltjl/plycutter.git
 pybind11
+pycairo
+PyGObject
+pyserial
 PySide6
 pytesseract
 PyQt5
@@ -39,3 +49,4 @@ vpype
 vpype-dxf
 wheel
 qrcode
+zstandard
