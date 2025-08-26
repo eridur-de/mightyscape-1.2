@@ -15,6 +15,7 @@ import inkex
 import os
 import sys
 from lxml import etree
+import re
 
 class ReplaceText(inkex.EffectExtension):
     
@@ -22,10 +23,19 @@ class ReplaceText(inkex.EffectExtension):
         pars.add_argument("--replace", default=True, type=inkex.Boolean, help="Enable replacement")
         pars.add_argument("--replacewith", default='lorem ipsum', help="New content to insert")
         pars.add_argument("--tspan_merge", default=True, type=inkex.Boolean, help="Merge tspan elements")
+        pars.add_argument("--clean", default=True, type=inkex.Boolean, help="Trim whitespaces")
 
     def replace(self, element):
         if element.tag == inkex.addNS('tspan','svg'):
             element.text = self.options.replacewith
+
+    def clean(self, element):
+        string = str(element.text).strip()
+        string = re.compile(r"(?a:\s+)").sub(" ", string)
+        string = re.compile(r"(?a:^\s+|\s+$)").sub("", string)
+        if string == "None":
+            string = ""
+        element.text = string
 
     def mergeTspans(self, element):
         tspans = []
@@ -37,22 +47,29 @@ class ReplaceText(inkex.EffectExtension):
                     if child.tag == inkex.addNS('tspan','svg'):
                         tspans.append(child)
         for tspan in tspans:
-            merged_text = "{} {}".format(merged_text, tspan.text)
+            merge = tspan.text
+            if merge is None:
+                merge = ""
+            merged_text = "{} {}".format(merged_text, merge)
         if len (tspans) > 0:
             tspans[0].text = merged_text
             for k in range(1, len(tspans)):
                 tspans[k].getparent().remove(tspans[k])
 
-    def parse(self, element):
+    def work(self, element):
         if self.options.tspan_merge is True:
             self.mergeTspans(element)
         if self.options.replace is True:    
             self.replace(element)
+        if self.options.clean is True:    
+            self.clean(element)
+
+    def parse(self, element):
+        self.work(element)
         children = element.getchildren()
         if children is not None:
             for child in children:
-                if self.options.replace is True:    
-                    self.replace(element)
+                self.work(element)
                 self.parse(child)
 
     def effect(self):

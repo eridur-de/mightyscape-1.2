@@ -5,6 +5,7 @@
     <param name="replace" type="bool" gui-text="Enable replacement">true</param>
     <param name="replacewith" type="string" gui-text="New content to insert">lorem ipsum</param>
     <param name="tspan_merge" type="bool" gui-text="Merge tspan elements">true</param>
+    <param name="clean" type="bool" gui-text="Trim whitespaces">true</param>
     <effect>
         <object-type>all</object-type>
         <effects-menu>
