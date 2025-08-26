@@ -43,8 +43,13 @@ class PlyCutter(inkex.EffectExtension):
             except OSError as e: 
                 inkex.utils.debug("Error while deleting previously generated output file " + stl_input)
 
+        if os.name=="nt":
+            plycutter = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'venv', 'Scripts', 'plycutter.exe'))
+        else: #Linux/MacOS
+            plycutter = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'venv', 'bin', 'plycutter'))
+
         # Run PlyCutter
-        plycutter_cmd = "plycutter "
+        plycutter_cmd = "{} ".format(plycutter)
         plycutter_cmd += "--thickness " + str(self.options.thickness) + " "
         if self.options.debug == True: plycutter_cmd += "--debug "
         plycutter_cmd += "--min_finger_width " + str(self.options.min_finger_width) + " "
