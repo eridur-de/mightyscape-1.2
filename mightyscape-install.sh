@@ -3,7 +3,7 @@ clear
 
 NF="\033[0m"
 CL="\033[38;5;45m"
-INKSCAPE_USER_DIR="/home/$(whoami)/.config/inkscape"
+INKSCAPE_USER_DIR=$(inkscape --user-data-directory)
 TGT="$INKSCAPE_USER_DIR/extensions"
 VENV="venv"
 GIT_SERVER="github.com"
@@ -86,12 +86,13 @@ setup () {
 
     echo -e "${CL}Enrolling Python3 virtual environment + required packages ...${NF}"
     python3 -m venv $TGT/$GIT_REPO/$VENV
+    $TGT/$GIT_REPO/$VENV/bin/pip install --upgrade pip
     cat $TGT/$GIT_REPO/requirements.txt | sed '/^#/d' | xargs -n 1 $TGT/$GIT_REPO/$VENV/bin/pip install --upgrade
 }
 
 adjust_preferences () {
     echo -e "${CL}Adjusting/inserting attribute value \"python-interpreter\" in \"$INKSCAPE_USER_DIR/preferences.xml\"...${NF}"
-    PREF_FILE="$(inkscape --user-data-directory)/preferences.xml"
+    PREF_FILE="$INKSCAPE_USER_DIR/preferences.xml"
     PREF_NODE="/inkscape/group[@id=\"extensions\"]"
     PREF_ATTRIB="python-interpreter"
     PREF_VALUE="$TGT/$GIT_REPO/$VENV/bin/python3"
