@@ -57,9 +57,9 @@ The structure of this repo is intended to be easy. MightyScape does not work wit
 # Installation
 
 > [!WARNING]
-> Please read this first before opening issues! 
-
-This documentation does not maintain any progressive information about installing or handling Inkscape itself.
+> Please read this first before opening issues!
+> This documentation does not maintain any progressive information about installing or handling Inkscape itself.
+> Depending to the operating system and the installed modules the all-over size of MightyScape is around 2 GB (which is sadly very much).
 
 ## Unsupported Inkscape versions
 
@@ -120,44 +120,30 @@ MightyScape heavily relies on a Python interpreter. As we need to install extern
 
 The following extra libraries are required for some of the extensions within the MightyScape package. Those are listed in our [requirements.txt](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/requirements.txt) file. We are installing them together with MightyScape in the next section.
 
-## Installation of MightyScape - way 1: with git dependencies (preferred way)
+## Installation of MightyScape - way 1: installer (preferred way)
 
-> [!NOTE]
-> **Note:** if `openmesh` fails to install, please see [Paperfold](https://y.stadtfabrikanten.org/paperfold) for more details about installing it.
+> [!TIP]
+> **New:** We provide an all-in-one installer for Linux and Windows. Just use the following commands.
 
-**On Linux please use our all-in-one installer:**
-
+**Linux**
 ```
 curl -s -L https://y.stadtfabrikanten.org/mightyscape-linux | bash
 ```
 
 This redirects to https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/raw/branch/master/mightyscape-install.sh
 
-**On Windows this might look like:**
+**Windows**
 ```
-: We clone MightyScape project into extension directory
-cd %AppData%\inkscape\extensions\
-git clone https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2.git
-
-: Python might be installed by default to:
-: %AppData%\..\Local\Programs\Python\Python313\Scripts
-: The python executable should be available with command "py" (or "python" or "python.exe")
-
-py -m venv %AppData%\inkscape\extensions\mightyscape-1.2\venv
-
-: We also install and upgrade pip package manager, if not already done
-%AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m ensurepip --upgrade
-%AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m pip install --upgrade pip
-
-: install modules
-%AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m pip install --upgrade --quiet --no-cache-dir -r %AppData%\inkscape\extensions\mightyscape-1.2\requirements.txt
-
-: use this in case the previous command failed to continue by just skipping errors (less clean installation)
-cd %AppData%\inkscape\extensions\mightyscape-1.2\
-FOR /F %k in ('findstr /V "#" requirements.txt') DO ( %AppData%\inkscape\extensions\mightyscape-1.2\venv\Scripts\python.exe -m pip install %k )                             
+curl -s -L https://y.stadtfabrikanten.org/mightyscape-windows > %TEMP&\mightyscape-install.cmd & %TEMP&\mightyscape-install.cmd
 ```
 
-## Installation of MightyScape - way 2: with zip archives (mirrors)
+> [!NOTE]
+> **Note:** The installer might prompt for system reboot. In this case please re-run the installer to continue.
+
+> [!NOTE]
+> **Note:** if `openmesh` fails to install on Windows, please see [here](https://github.com/eridur-de/mightyscape-1.2/issues/131).
+
+## Installation of MightyScape - way 2: zip archives (mirrors)
 
 You can also download the whole git project as `.zip` or `.tar.gz` bundled archive from https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2. You can convert that directory to work with git later on, using our central [upgrade extension](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/about_upgrade_mightyscape).
 
@@ -179,7 +165,10 @@ You should put the extracted files into your Inkscape user extension directory (
 
 ## Adjusting the Python interpreter of Inkscape (required)
 
-As we use non-default Python, we need to adjust the main configuration of Inkscape to apply this change by adding a custom `python-interpreter` command in Inkscape default configuration (`preferences.xml`). 
+As we use non-default Python, we need to adjust the main configuration of Inkscape to apply this change by adding a custom `python-interpreter` command in Inkscape default configuration (`preferences.xml`).
+
+> [!INFO]
+> Our installer script applies this change for you automatically! But you can dot it manually!
 
 > [!WARNING]
 > The interpreter's path **must be absolute**. Relative paths will fail!
@@ -189,7 +178,6 @@ As we use non-default Python, we need to adjust the main configuration of Inksca
 ```
 vim /home/$(whoami)/.config/inkscape/preferences.xml
 ```
-
 ```
   <group
      id="extensions"
@@ -202,7 +190,6 @@ vim /home/$(whoami)/.config/inkscape/preferences.xml
 ```
 notepad %appdata%\inkscape\preferences.xml
 ```
-
 ```
   <group
      id="extensions"
@@ -211,6 +198,11 @@ notepad %appdata%\inkscape\preferences.xml
 
 > [!TIP]
 > If you get a nasty popup window within Inkscape each time you are executing an extension, please double check if you really use `pythonw.exe`. Do **not** use `python.exe`.
+
+> [!WARNING]
+> Our custom Python environment on Windows will make the official Inkscape Extensions Manager impossible to run. The reason is the library `pygobject`.
+
+# Upgrading 
 
 ## Upgrading MightyScape
 
@@ -223,7 +215,7 @@ There are two ways to upgrade MightyScape. Choose from:
 
 ## Upgrading Python modules
 
-Sometimes it can be helpful to upgrade Python modules. This section shows some useful shell lines (**but be warned to use them on your own risk**):
+Sometimes it can be helpful to upgrade Python modules. You can use our `About/Upgrade MightyScape` extension to do this, or just execute manually:
 
 **Linux**
 ```

@@ -128,6 +128,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     adjust_preferences
 
     echo -e "${CL}Installation done! ${NF}"
+    du -sh $(pwd)
 else
     echo -e "${CL}kk thx bye! ${NF}"
 fi

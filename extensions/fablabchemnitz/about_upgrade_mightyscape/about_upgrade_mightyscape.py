@@ -60,6 +60,19 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
             python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'venv', 'Scripts', 'python.exe'))
         else: #Linux/MacOS
             python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'venv', 'bin', 'python'))
+
+        # Upgrade pip first
+        command = "{} -m pip install pip --upgrade".format(python_venv)
+        inkex.utils.debug("Executing: {}".format(command))
+        proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE, encoding="UTF-8")
+        stdout, stderr = proc.communicate()
+        try:
+            inkex.utils.debug(stdout)
+            inkex.utils.debug(stderr)
+        except:
+            pass
+
+        # Then upgrade modules
         command = "{} -m pip install --upgrade --no-cache-dir -r {}".format(python_venv, requirements)
         inkex.utils.debug("Executing: {}".format(command))
         proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE, encoding="UTF-8")
