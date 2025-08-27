@@ -134,8 +134,10 @@ This redirects to https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.
 
 **Windows**
 ```
-curl -s -L https://y.stadtfabrikanten.org/mightyscape-windows > %TEMP&\mightyscape-install.cmd & %TEMP&\mightyscape-install.cmd
+curl -s -L https://y.stadtfabrikanten.org/mightyscape-windows > %TEMP%\mightyscape-install.cmd & %TEMP%\mightyscape-install.cmd
 ```
+
+This redirects to https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/raw/branch/master/mightyscape-install.cmd
 
 > [!NOTE]
 > **Note:** The installer might prompt for system reboot. In this case please re-run the installer to continue.
