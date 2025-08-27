@@ -7,6 +7,7 @@ SET VENV=venv
 SET GIT_SERVER=github.com
 SET GIT_MAINTAINER=eridur-de
 SET GIT_REPO=mightyscape-1.2
+SET PYTHON_VERSION=3.13.5
 
 COLOR 03
 
@@ -37,9 +38,16 @@ goto :entry
 :quit
 echo.kk thx bye!
 pause
-exit
+exit 0
 
 :preflight
+echo.Checking for having Inkscape :-) ...
+if not exist %INKSCAPE_USER_DIR%\ (
+	echo.Inkscape not installed! Hmm....
+	pause
+	exit 1
+	)
+
 echo.Checking for running Inkscape instances ...
 tasklist /fi "ImageName eq inkscape.exe" /fo csv 2>NUL | find /I "inkscape.exe">NUL
 if %ERRORLEVEL% EQU 0 (
@@ -50,16 +58,19 @@ if %ERRORLEVEL% EQU 0 (
 goto :packages
 
 :packages
+echo.Installing system packages ...
 :: Install chocolatey
 powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
 
-:: Now use chocolatey to install basic requirements
-choco install -y xmlstarlet
-choco install -y python --version=3.13.5 --params "'/quiet InstallAllUsers=1 PrependPath=1'"
-choco install -y git.install --params "'/GitAndUnixToolsOnPath /WindowsTerminal /NoAutoCrlf'"
-choco install -y cmake
-choco install -y mingw
-choco install -y jq
+:: Now use chocolatey to install basic requirements, if not already existing (we don't want to mess with duplicate installations)
+where curl   >NUL 2>NUL && if NOT ERRORLEVEL 0 (choco install -y curl)
+where xml    >NUL 2>NUL && if NOT ERRORLEVEL 0 (choco install -y xmlstarlet)
+where python >NUL 2>NUL && if NOT ERRORLEVEL 0 (choco install -y python --version=%PYTHON_VERSION% --params "'/quiet InstallAllUsers=1 PrependPath=1'")
+where git    >NUL 2>NUL && if NOT ERRORLEVEL 0 (choco install -y git.install --params "'/GitAndUnixToolsOnPath /WindowsTerminal /NoAutoCrlf'")
+where cmake  >NUL 2>NUL && if NOT ERRORLEVEL 0 (choco install -y cmake)
+where gcc    >NUL 2>NUL && if NOT ERRORLEVEL 0 (choco install -y mingw)
+where jq     >NUL 2>NUL && if NOT ERRORLEVEL 0 (choco install -y jq)
+
 goto :setup
 
 :setup
@@ -72,7 +83,7 @@ echo.Repository size is approx. %SIZE_MB% MB
 cd  %TGT%\
 if %ERRORLEVEL% NEQ 0 (
 	echo.Extensions directory "%TGT%" could not be found!
-	pause	
+	pause
 	exit 1
 	)
 
@@ -105,4 +116,4 @@ if %ERRORLEVEL% EQU 0 (
 
 echo.Installation done!
 pause
-exit
+exit 0
