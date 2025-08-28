@@ -217,15 +217,15 @@ There are two ways to upgrade MightyScape. Choose from:
 
 ## Upgrading Python modules
 
-Sometimes it can be helpful to upgrade Python modules. You can use our `About/Upgrade MightyScape` extension to do this, or just execute manually:
+Sometimes it can be helpful to install missing or upgrade Python modules. You can use our `About/Upgrade MightyScape` extension to do this, or just execute manually:
 
 **Linux**
 ```
-/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install -U
+cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade
 ```
 **Windows**
 ```
-for /F "delims= " %i in ('pip list --outdated') do /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install -U %i
+cd %AppData%\inkscape\extensions\mightyscape-1.2\ & FOR /F %k in ('findstr /V "#" requirements.txt') DO ( py -m pip install --upgrade %k )
 ```
 
 # Issues, questions, documentation, examples
