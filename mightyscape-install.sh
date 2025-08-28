@@ -62,10 +62,10 @@ preflight () {
 packages () {
     echo -e "${CL}Installing system packages ...${NF}"
     if [ $PACKMAN == "apt" ]; then
-        sudo apt install -y curl git cmake g++ python3-full python3-dev   python3-venv xmlstarlet libgirepository-2.0-dev
+        sudo apt install -y curl git cmake g++ python3-full python3-dev   python3-venv xmlstarlet libgirepository-2.0-dev libcairo2-dev
     fi
     if [ $PACKMAN == "dnf" ]; then
-        sudo dnf install    curl git cmake g++              python3-devel python3-venv xmlstarlet
+        sudo dnf install    curl git cmake g++              python3-devel python3-venv xmlstarlet                         cairo-devel
     fi
 }
 

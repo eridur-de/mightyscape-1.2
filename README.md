@@ -221,7 +221,7 @@ Sometimes it can be helpful to install missing or upgrade Python modules. You ca
 
 **Linux**
 ```
-cat ~/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | sed '/^#/d' | xargs -n 1 ~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade
+sed '/^#/d' /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | xargs -n 1 /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade
 ```
 **Windows**
 ```
