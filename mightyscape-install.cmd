@@ -141,6 +141,8 @@ if not %ERRORLEVEL%==0 (
 	choco install -y python --version=%PYTHON_VERSION% --params "'/quiet InstallAllUsers=1 PrependPath=1'"
 	if !ERRORLEVEL!==350 goto :reboot
 	)
+:: refresh environment variables after installing new commands to make them available on PATH
+refreshenv
 goto :setup
 
 :reboot
