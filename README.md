@@ -130,14 +130,14 @@ The following extra libraries are required for some of the extensions within the
 curl -s -L https://y.stadtfabrikanten.org/mightyscape-linux | bash
 ```
 
-This redirects to https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/raw/branch/master/mightyscape-install.sh
+This redirects to https://raw.githubusercontent.com/eridur-de/mightyscape-1.2/refs/heads/master/mightyscape-install.sh
 
 **Windows**
 ```
 curl -s -L https://y.stadtfabrikanten.org/mightyscape-windows > %TEMP%\mightyscape-install.cmd & %TEMP%\mightyscape-install.cmd
 ```
 
-This redirects to https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/raw/branch/master/mightyscape-install.cmd
+This redirects to https://raw.githubusercontent.com/eridur-de/mightyscape-1.2/refs/heads/master/mightyscape-install.cmd
 
 > [!NOTE]
 > **Note:** The installer might prompt for system reboot. In this case please re-run the installer to continue.
