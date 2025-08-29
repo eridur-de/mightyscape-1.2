@@ -142,7 +142,7 @@ if not %ERRORLEVEL%==0 (
 	if !ERRORLEVEL!==350 goto :reboot
 	)
 :: refresh environment variables after installing new commands to make them available on PATH
-refreshenv
+call refreshenv
 goto :setup
 
 :reboot
