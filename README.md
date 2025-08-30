@@ -183,7 +183,7 @@ vim /home/$(whoami)/.config/inkscape/preferences.xml
 ```
   <group
      id="extensions"
-     python-interpreter="/home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3"
+     python-interpreter="/home/youruser/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3"
 ```
 
 
