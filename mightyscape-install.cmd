@@ -181,7 +181,7 @@ goto :adjust_preferences
 :adjust_preferences
 echo.Adjusting/inserting attribute value "python-interpreter" in "%INKSCAPE_USER_DIR%\preferences.xml"...
 set PREF_FILE=%INKSCAPE_USER_DIR%\preferences.xml
-set PREF_NODE=/inkscape/group[@id="extensions"]
+set PREF_NODE=/inkscape/group[@id="\extensions\"]
 set PREF_ATTRIB="python-interpreter"
 set PREF_VALUE=%TGT%\%GIT_REPO%\%VENV%\Scripts\pythonw.exe
 findstr /I "python-interpreter" %PREF_FILE%>NUL
