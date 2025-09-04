@@ -27,10 +27,10 @@ root_test () {
 }
 
 check_base () {
-    if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release)" ]; then
+    if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release 2>&1)" ]; then
         PACKMAN="apt"
     fi
-    if [ "$(grep -Ei 'fedora|redhat' /etc/*release)" ]; then
+    if [ "$(grep -Ei 'fedora|redhat' /etc/*release 2>&1)" ]; then
         PACKMAN="dnf"
     fi
     echo -e "${CL}Having a look for your local package manager ... It is: $PACKMAN ${NF}"
