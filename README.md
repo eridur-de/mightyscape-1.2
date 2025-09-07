@@ -104,17 +104,23 @@ Please also refer to the [official documentation](https://inkscape-manuals.readt
 
 ### Git
 
-On Linux, git usually defaults to be installed. On Windows we need to install it. Git is required to install some of the required Python modules. Please visit https://git-scm.com/downloads/win.
+Git is required to install some of the required Python modules (and repo cloning). On Linux, git usually defaults to be installed. On Windows we need to install it. Please visit https://git-scm.com/downloads/win or use chocolatey. 
+
+> [!TIP]
+> **Info:** You can ignore this step if you use our bundled installer script (way 1)!
 
 ### Python
 
 MightyScape heavily relies on a Python interpreter. As we need to install external dependencies (Python modules, partially with C bindings), we cannot stick to the bundled msys2 Python version, which comes with Inkscape. So we need to use a **virtualenv** on Linux or Windows. [Here](https://gitlab.com/inkscape/inkscape/-/blob/master/buildtools/msys2installdeps.sh?ref_type=heads) you can find a list of default modules Inkscape is shipped with.
 
 > [!NOTE]
-> **Linux**: Python is installed by default, so you don't have to do anything special except setting up a virtualenv (see next chapter). 
+> **Linux**: Python is installed by default, so you don't have to do anything special except setting up a virtualenv (see next chapter).
 
 > [!NOTE]
 > **Windows**: We need to install Pyhon separately. You can download it from https://www.python.org/downloads/windows/. After installation please review for correct environment variable adjustments. The command `py` or `python` has to be in `%PATH%` to be called by cmd (terminal).
+
+> [!TIP]
+> **Info:** You can ignore this step if you use our bundled installer script (way 1)!
 
 ### Additional Python modules
 
