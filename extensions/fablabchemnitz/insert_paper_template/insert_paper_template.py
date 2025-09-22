@@ -60,25 +60,34 @@ class InsertPaperTemplate(inkex.EffectExtension):
 			raise Exception("Paper type '{0}' is undefined".format(self.options.papertype))
 
 	def CreateTemplate(self, label, width, height, color):
+		if self.svg.inkscape_scale != 1.0:
+			sf = 1 / (self.svg.scale ** 2 / self.svg.inkscape_scale)
+		else:
+			sf = 1 / (self.svg.scale)
+		width = self.svg.unittouu(str(width) + "mm") * sf
+		height = self.svg.unittouu(str(height) + "mm") * sf
 		x = 0
 		y = 0
-		self._CreateRectangleInMillimetres(width, height, x, y, color)
+		self._CreateRectangleInMillimetres(width, height, x, y, color, sf)
 		if self.options.show_type is True:
-			self._CreateText(label, x + width/2 , y + height/2)
+			self._CreateText(label, x + width/2 , y + height/2, sf)
 
-	def _CreateText(self, labelText, x, y):
-		style = {'stroke': '#000000',
-			'stroke-width': '0.25',
+	def _CreateText(self, labelText, x, y, sf):
+		if self.svg.inkscape_scale != 1.0:
+			fs = self.svg.unittouu("30px") / self.svg.inkscape_scale
+		else:
+			fs = self.svg.unittouu("30px") * self.svg.scale
+		style = {
 			'fill' : '#000000',
-			'font-size' : "11px",
+			'font-size' :fs ,
 			'text-align' : 'center',
 			'text-anchor' : 'middle'
 			}
 
 		attribs = {
 			'style': str(inkex.Style(style)), 
-			'x': "{}".format(x), 
-			'y': "{}".format(y)
+			'x': "{}mm".format(x), 
+			'y': "{}mm".format(y)
 			}
 
 		text = etree.Element(inkex.addNS('text','svg'), attribs)
@@ -86,18 +95,18 @@ class InsertPaperTemplate(inkex.EffectExtension):
 
 		self.Group.append(text)
 
-	def _CreateRectangleInMillimetres(self, width, height, x, y, color):
+	def _CreateRectangleInMillimetres(self, width, height, x, y, color, sf):
 		style = {
 			'stroke': '#000000', 
-			'stroke-width': '0.25', 
+			'stroke-width': self.svg.unittouu("1px") * sf,
 			'fill' : color
 			}
 		attribs = {
 			'style': str(inkex.Style(style)), 
-			'height': "{}".format(height), 
-			'width': "{}".format(width), 
-			'x': "{}".format(x), 
-			'y': "{}".format(y)
+			'height': "{}mm".format(height), 
+			'width': "{}mm".format(width), 
+			'x': "{}mm".format(x), 
+			'y': "{}mm".format(y)
 			}
 		etree.SubElement(self.Group, inkex.addNS('rect','svg'), attribs )
 

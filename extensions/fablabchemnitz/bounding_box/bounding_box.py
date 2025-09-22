@@ -41,10 +41,7 @@ class BoundingBox(inkex.EffectExtension):
                 etree.SubElement(self.svg.get_current_layer(), inkex.addNS('circle','svg'), attribs)
      
       
-    def effect(self):
-        
-        scale_factor = self.svg.unittouu("1px")
-        
+    def effect(self):        
         if len(self.svg.selected) > 0:
             if self.options.split is False:
                 for element in self.svg.selected.values():
