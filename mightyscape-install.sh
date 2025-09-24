@@ -10,6 +10,16 @@ GIT_SERVER="github.com"
 GIT_MAINTAINER="eridur-de"
 GIT_REPO="mightyscape-1.2"
 
+bye () {
+    echo -e "${CL}kk thx bye! ${NF}"
+    exit 0
+}
+
+goon () {
+    exec 3<>/dev/tty
+    read -u 3 -p "$(echo -e ${CL}"Do you like to continue? [y/n]\n "${NF})" -n 1 REPLY
+}
+
 sudo_test () {
     echo -e "${CL}Check if user can sudo ...${NF}"
     IS_SUDO=$(grep "sudo" <<< $(groups $(whoami)) > /dev/null; echo $?)
@@ -22,7 +32,7 @@ sudo_test () {
 root_test () {
     if [ $EUID == 0 ]; then
         echo -e "${CL}Please do not run as root! ${NF}"
-    exit
+    exit 1
     fi
 }
 
@@ -81,13 +91,18 @@ setup () {
     git clone https://$GIT_SERVER/$GIT_MAINTAINER/$GIT_REPO.git
     if [ $? != 0 ]; then
         echo -e "${CL}Error while cloning. Check if the directory exists and if correct permissions are set! ${NF}"
+        goon
+        if [[ $REPLY =~ ^[Yy]$ ]]; then
+            echo -e "${CL}Enrolling Python3 virtual environment + required packages ...${NF}"
+            python3 -m venv $TGT/$GIT_REPO/$VENV
+            $TGT/$GIT_REPO/$VENV/bin/pip install --upgrade pip
+            cat $TGT/$GIT_REPO/requirements.txt | sed '/^#/d' | xargs -n 1 $TGT/$GIT_REPO/$VENV/bin/pip install --upgrade
+        else
+            bye
+        fi
+    else
         exit 1
     fi
-
-    echo -e "${CL}Enrolling Python3 virtual environment + required packages ...${NF}"
-    python3 -m venv $TGT/$GIT_REPO/$VENV
-    $TGT/$GIT_REPO/$VENV/bin/pip install --upgrade pip
-    cat $TGT/$GIT_REPO/requirements.txt | sed '/^#/d' | xargs -n 1 $TGT/$GIT_REPO/$VENV/bin/pip install --upgrade
 }
 
 adjust_preferences () {
@@ -115,9 +130,7 @@ echo -e "${CL}                                                      ${NF}\n\n"
 echo -e "${CL}This script will install MightyScape Open Source extensions for Inkscape.${NF}"
 echo -e "${CL}The target folder to install: $TGT/$GIT_REPO/\n${NF}"
 
-exec 3<>/dev/tty
-read -u 3 -p "$(echo -e ${CL}"Do you like to continue? [y/n]\n "${NF})" -n 1 REPLY
-
+goon
 if [[ $REPLY =~ ^[Yy]$ ]]; then
     root_test
     sudo_test
@@ -130,5 +143,5 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     echo -e "${CL}Installation done! ${NF}"
     du -sh $(pwd)
 else
-    echo -e "${CL}kk thx bye! ${NF}"
+    bye
 fi
