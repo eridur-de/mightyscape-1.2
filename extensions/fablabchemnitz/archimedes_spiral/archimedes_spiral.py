@@ -28,12 +28,13 @@ class Archimedes(inkex.EffectExtension):
         pars.add_argument('--trl', default = '1')
         pars.add_argument('--turns', type = float, default = '5')
         pars.add_argument('--length', type = float, default = '500')
+        pars.add_argument('--modifier', type = float, default = '0')
 		
     def effect(self):
-        #th = pi / 1
         th = self.options.th / 360 * pi * 2
         a = self.options.a
         r = self.options.r
+        modifier = self.options.modifier
 		
         length = self.options.length
         if length > 0:
@@ -48,18 +49,20 @@ class Archimedes(inkex.EffectExtension):
         
         layer = etree.SubElement(self.document.getroot(),'g')
         path = etree.Element(inkex.addNS('path','svg'))
-        path.set('d', self.built(r, step, a, turns, th))
+        path.set('d', self.built(r, step, a, turns, th, modifier))
         path.set('style',"fill:none;stroke:#000000;stroke-width:1px;stroke-opacity:1")
         layer.append(path)
 
-    def built(self, r0, st, a, k, th):
+    def built(self, r0, st, a, k, th, modifier):
         step = 2 * pi / st
         s = "M " + str(r0 * cos(th)) + ", " + str(-r0 * sin(th))
         for i in range(0, int(k * (abs(st)))):
             prin = th + i * step
             meta = th + (i + 1) * step
-            rp = r0 + abs(a * prin)# instead we put the absolute value the spiral will drift inwards
-            rm = r0 + abs(a * meta)# at the absolute price closes outwards
+            meta = meta + i * modifier
+            prin = prin + i * modifier
+            rp = r0 + abs(a * prin) # instead we put the absolute value the spiral will drift inwards
+            rm = r0 + abs(a * meta) # at the absolute price closes outwards
   
             s += "a " + str(rm) + "," + str(rm) + " 0 0," + self.options.trl + " " + str(-rp * cos(prin) + rm * cos(meta)) + "," + str(rp * sin(prin) -rm * sin(meta))       
         return s
