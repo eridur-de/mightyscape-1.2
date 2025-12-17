@@ -21,6 +21,7 @@ class Archimedes(inkex.EffectExtension):
     
     def add_arguments(self, pars):
         pars.add_argument('--tab')
+        pars.add_argument('--th', type = float, default = '0')
         pars.add_argument('--r', type = int, default = '50')
         pars.add_argument('--a', type = float, default = '3')
         pars.add_argument('--step', type = int, default = '50')
@@ -29,7 +30,8 @@ class Archimedes(inkex.EffectExtension):
         pars.add_argument('--length', type = float, default = '500')
 		
     def effect(self):
-        th = pi / 3
+        #th = pi / 1
+        th = self.options.th / 360 * pi * 2
         a = self.options.a
         r = self.options.r
 		
@@ -46,14 +48,13 @@ class Archimedes(inkex.EffectExtension):
         
         layer = etree.SubElement(self.document.getroot(),'g')
         path = etree.Element(inkex.addNS('path','svg'))
-        path.set('d', self.built(r, step, a, turns))
+        path.set('d', self.built(r, step, a, turns, th))
         path.set('style',"fill:none;stroke:#000000;stroke-width:1px;stroke-opacity:1")
         layer.append(path)
 
-    def built(self, r0, st = 4, a = 4, k = 1, th = 0):
+    def built(self, r0, st, a, k, th):
         step = 2 * pi / st
-        r = r0
-        s = "M " + str(r * cos(th)) + ", " + str(-r * sin(th))
+        s = "M " + str(r0 * cos(th)) + ", " + str(-r0 * sin(th))
         for i in range(0, int(k * (abs(st)))):
             prin = th + i * step
             meta = th + (i + 1) * step
