@@ -114,7 +114,7 @@ Git is required to install some of the required Python modules (and repo cloning
 MightyScape heavily relies on a Python interpreter. As we need to install external dependencies (Python modules, partially with C bindings), we cannot stick to the bundled msys2 Python version, which comes with Inkscape. So we need to use a **virtualenv** on Linux or Windows. [Here](https://gitlab.com/inkscape/inkscape/-/blob/master/buildtools/msys2installdeps.sh?ref_type=heads) you can find a list of default modules Inkscape is shipped with.
 
 > [!NOTE]
-> **Linux**: Python is installed by default, so you don't have to do anything special except setting up a virtualenv (see next chapter).
+> **Linux**: Python is usually installed by default, so you don't have to do anything special except setting up a virtualenv (see next chapter). In case the installer below does not finish in one run, execute it again and it should work (because if python has to be installed first, the command palette is not available in the session yet).
 
 > [!NOTE]
 > **Windows**: We need to install Pyhon separately. You can download it from https://www.python.org/downloads/windows/. After installation please review for correct environment variable adjustments. The command `py` or `python` has to be in `%PATH%` to be called by cmd (terminal).
