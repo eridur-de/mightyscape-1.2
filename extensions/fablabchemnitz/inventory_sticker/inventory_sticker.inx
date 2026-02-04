@@ -19,6 +19,7 @@
             <param name="export_png" type="bool" gui-text="Export PNG">false</param>
             <param name="print_png" type="int" gui-text="Print PNG to Brother QL-720NW (count)" gui-description="Enter desired amount of stickers to print for each Id">0</param>
             <param name="print_device" type="string" gui-text="Printer interface (USB)" gui-description="[VendorID:ProductID], Example: 04f9:2044">04f9:2044</param>
+            <param name="brother_ql" type="path" gui-text="brother_ql command" gui-description="The path of brother_ql executable" mode="file">/home/myprofile/venv/bin/brother_ql</param>
             <param name="preview" type="bool" gui-text="Generate preview only" gui-description="If enabled stickers will not be exported. Just generate sticker for the first given Id">false</param>
         </page>
         <page name="tab_about" gui-text="About">
@@ -40,7 +41,7 @@
         <page name="tab_donate" gui-text="Donate">
             <label appearance="header">Coffee + Pizza</label>
             <label>We are the Stadtfabrikanten, running the FabLab Chemnitz since 2016. A FabLab is an open workshop that gives people access to machines and digital tools like 3D printers, laser cutters and CNC milling machines.</label>
-            <spacer/>           
+            <spacer/>
             <label>You like our work and want to support us? You can donate to our non-profit organization by different ways:</label>
             <label appearance="url">https://y.stadtfabrikanten.org/donate</label>
             <spacer/>
@@ -55,8 +56,8 @@
                 <submenu name="Cutting/Plotting/Printing"/>
             </submenu>
         </effects-menu>
-       <menu-tip>This extension generates inventory stickers for thermo printers (we use Brother QL-720NW) from a provided web server *.csv file</menu-tip>
-       <icon>icon.svg</icon>
+        <menu-tip>This extension generates inventory stickers for thermo printers (we use Brother QL-720NW) from a provided web server *.csv file</menu-tip>
+        <icon>icon.svg</icon>
     </effect>
     <script>
         <command location="inx" interpreter="python">inventory_sticker.py</command>

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 #
-# An extension to generate SVG/PNG labels (stickers) for use with our item inventory system. 
+# An extension to generate SVG/PNG labels (stickers) for use with our item inventory system.
 # It pulls a .csv file from a server URL (protected by basic auth) and exports and prints the labels to a Brother QL-720NW label printer
 # Documentation: https://wiki.fablabchemnitz.de/display/TEED/Werkstattorientierung+im+FabLab+-+Digtales+Inventar
 #
@@ -357,7 +357,7 @@ def splitAt(string, length):
     return ' '.join(string[i:i+length] for i in range(0,len(string),length))
 
 class InventorySticker(inkex.Effect):
-    
+
     def add_arguments(self, pars):
         pars.add_argument("--tab")
         pars.add_argument("--server_address", default="https://the.domain.de/items.csv")
@@ -371,9 +371,10 @@ class InventorySticker(inkex.Effect):
         pars.add_argument("--preview", type=inkex.Boolean, default=False)
         pars.add_argument("--export_svg", type=inkex.Boolean, default=True)
         pars.add_argument("--export_png", type=inkex.Boolean, default=False)
-        pars.add_argument("--print_png", type=int, default=0)     
-        pars.add_argument("--print_device", default="04f9:2044")     
-        
+        pars.add_argument("--print_png", type=int, default=0)
+        pars.add_argument("--print_device", default="04f9:2044")
+        pars.add_argument("--brother_ql", default="/home/myprofile/venv/bin/brother_ql")
+
     def effect(self):
         globalFont = "Miso"
         misoAvailable = False
@@ -384,12 +385,12 @@ class InventorySticker(inkex.Effect):
                 break
         if misoAvailable is False:
             inkex.errormsg("Warning: " + globalFont + " Font could not be found. Did you properly install the font? Please note: Stickers will look malformed!")
-        
+
         # Adjust the document view for the desired sticker size
         root = self.svg.getElement("//svg:svg")
 
         subline_fontsize = 40 #px; one line of bottom text (id and owner) creates a box of that height
-          
+
         #our DataMatrix has size 16x16, each cube is sized by 16x16px -> total size is 256x256px. We use 4px padding for all directions
         DataMatrix_xy = 16
         DataMatrix_height = 16 * DataMatrix_xy
@@ -397,12 +398,12 @@ class InventorySticker(inkex.Effect):
         sticker_padding = 4
         sticker_height = DataMatrix_height + subline_fontsize + 3 * sticker_padding
         sticker_width = 696
-        
+
         #configure font sizes and box heights to define how large the font size may be at maximum (to omit overflow)
         objectNameMaxHeight = sticker_height - 2 * subline_fontsize - 4 * sticker_padding
         objectNameMaxLines = 5
         objectNameFontSize = objectNameMaxHeight / objectNameMaxLines #px; generate main font size from lines and box size
-    
+
         root.set("width", str(sticker_width) + "px")
         root.set("height", str(sticker_height) + "px")
         root.set("viewBox", "%f %f %f %f" % (0, 0, sticker_width, sticker_height))
@@ -411,7 +412,7 @@ class InventorySticker(inkex.Effect):
         for node in self.document.xpath('//*', namespaces=inkex.NSS):
             if node.TAG not in ('svg', 'defs', 'namedview'):
                 node.delete()
-            
+
         #set the document units
         self.document.getroot().find(inkex.addNS("namedview", "sodipodi")).set("inkscape:document-units", "px")
 
@@ -420,33 +421,33 @@ class InventorySticker(inkex.Effect):
         password_mgr.add_password(None, self.options.server_address, self.options.htuser, self.options.htpassword)
         handler = urllib.request.HTTPBasicAuthHandler(password_mgr)
         opener = urllib.request.build_opener(handler)
-               
+
         try:
             inventoryData = opener.open(self.options.server_address).read().decode("utf-8")
             urllib.request.install_opener(opener)
-        
-            inventoryCSVParent = os.path.join(self.options.export_dir, "InventorySticker")       
-            inventoryCSV = os.path.join(inventoryCSVParent, "inventory.csv")    
-           
+
+            inventoryCSVParent = os.path.join(self.options.export_dir, "InventorySticker")
+            inventoryCSV = os.path.join(inventoryCSVParent, "inventory.csv")
+
             # To avoid messing with old stickers we remove the directory on Client before doing something new
             shutil.rmtree(inventoryCSVParent, ignore_errors=True) #remove the output directory before doing new job
-                      
-            # we are going to write the imported Server CSV file temporarily. Otherwise CSV reader seems to mess with the file if passed directly        
+
+            # we are going to write the imported Server CSV file temporarily. Otherwise CSV reader seems to mess with the file if passed directly
             if not os.path.exists(inventoryCSVParent):
                 os.mkdir(inventoryCSVParent)
             with open(inventoryCSV, 'w', encoding="utf-8") as f:
                 f.write(inventoryData)
                 f.close()
-    
+
             #parse sticker Ids from user input
             if self.options.sticker_ids != "*":
                 sticker_ids = self.options.sticker_ids.split(",")
             else:
                 sticker_ids = None
-            
+
             with open(inventoryCSV, 'r', encoding="utf-8") as csv_file:
                 csv_reader = csv.reader(csv_file, delimiter=",")
-                
+
                 totalOutputs = 0
                 for row in csv_reader:
                     internal_id = row[0]
@@ -454,7 +455,7 @@ class InventorySticker(inkex.Effect):
                     sticker_id  = row[2]
                     level       = row[3]
                     zone        = row[4]
-                    
+
                     if sticker_ids is None or sticker_id in sticker_ids:
                         totalOutputs += 1
                         #create new sub directories for each non-existent FabLab zone (if flat export is disabled)
@@ -467,23 +468,23 @@ class InventorySticker(inkex.Effect):
                                 os.mkdir(zoneDir)
                         else:
                             zoneDir = inventoryCSVParent #use top directory
-    
+
                         #Generate the recent sticker content
                         stickerGroup = self.document.getroot().add(inkex.Group(id="InventorySticker_Id" + sticker_id)) #make a new group at root level
                         DataMatrixStyle = inkex.Style({"stroke": "none", "stroke-width": "1", "fill": "#000000"})
                         DataMatrixAttribs = {"style": str(DataMatrixStyle), "height": str(DataMatrix_xy) + "px", "width": str(DataMatrix_xy) + "px"}
-                        
+
                         # 1 - create DataMatrix (create a 2d list corresponding to the 1"s and 0s of the DataMatrix)
                         encoded = self.encode(self.options.target_url + "/" + sticker_id)
                         DataMatrixGroup = stickerGroup.add(inkex.Group(id="DataMatrix_Id" + sticker_id)) #make a new group at root level
                         for x, y in self.render_data_matrix(encoded, DataMatrix_xy):
                             DataMatrixAttribs.update({"x": str(x + sticker_padding), "y": str(y + sticker_padding)})
                             etree.SubElement(DataMatrixGroup, inkex.addNS("rect","svg"), DataMatrixAttribs)
-                        
-                        inline_size = sticker_width - DataMatrix_width - 3 * sticker_padding #remaining width for objects next to the DataMatrix  
+
+                        inline_size = sticker_width - DataMatrix_width - 3 * sticker_padding #remaining width for objects next to the DataMatrix
                         x_pos = DataMatrix_width + 2 * sticker_padding
-                    
-                        # 2 - Add Object Name Text                      
+
+                        # 2 - Add Object Name Text
                         objectName = etree.SubElement(stickerGroup,
                             inkex.addNS("text", "svg"),
                             {
@@ -491,18 +492,18 @@ class InventorySticker(inkex.Effect):
                                 "x": str(x_pos) + "px",
                                 #"xml:space": "preserve", #we cannot add this here because Inkscape throws an error
                                 "y": str(objectNameFontSize) + "px",
-                                "text-align" : "left", 
-                                "text-anchor": "left", 
+                                "text-align" : "left",
+                                "text-anchor": "left",
                                 "vertical-align" : "bottom",
                                 #style: inline-size required for text wrapping inside box; letter spacing is required to remove the additional whitespaces. The letter spacing depends to the selected font family (Miso)
-                                "style": str(inkex.Style({"fill": "#000000", "writing-mode": "horizontal-tb", "inline-size": str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "bold", "letter-spacing": "-3.66px"})) 
+                                "style": str(inkex.Style({"fill": "#000000", "writing-mode": "horizontal-tb", "inline-size": str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "bold", "letter-spacing": "-3.66px"}))
                             }
                         )
                         objectName.set("id", "objectName_Id" + sticker_id)
                         objectName.set("xml:space", "preserve") #so we add it here instead .. if multiple whitespaces in text are coming after each other just render them (preserve!)
                         objectNameTextSpan = etree.SubElement(objectName, inkex.addNS("tspan", "svg"), {})
                         objectNameTextSpan.text = splitAt(doc_title, 1) #add 1 whitespace after each chacter. So we can simulate a in-word line break (break by char instead by word)
-                    
+
                         # 3 - Add Object Id Text - use the same position but revert text anchors/align
                         objectId = etree.SubElement(stickerGroup,
                             inkex.addNS("text", "svg"),
@@ -511,8 +512,8 @@ class InventorySticker(inkex.Effect):
                                 "x": str(sticker_padding) + "px",
                                 "y": "30px",
                                 "transform": "translate(0," + str(sticker_height - subline_fontsize) + ")",
-                                "text-align" : "left", 
-                                "text-anchor": "left", 
+                                "text-align" : "left",
+                                "text-anchor": "left",
                                 "vertical-align" : "bottom",
                                 "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "bold"})) #inline-size required for text wrapping
                             }
@@ -520,7 +521,7 @@ class InventorySticker(inkex.Effect):
                         objectId.set("id", "objectId_Id" + sticker_id)
                         objectIdTextSpan = etree.SubElement(objectId, inkex.addNS("tspan", "svg"), {})
                         objectIdTextSpan.text = "Thing #" + sticker_id
-          
+
                         # 4 - Add Owner Text
                         owner = etree.SubElement(stickerGroup,
                             inkex.addNS("text", "svg"),
@@ -529,8 +530,8 @@ class InventorySticker(inkex.Effect):
                                 "x": str(x_pos) + "px",
                                 "y": "30px",
                                 "transform": "translate(0," + str(sticker_height - subline_fontsize) + ")",
-                                "text-align" : "right", 
-                                "text-anchor": "right", 
+                                "text-align" : "right",
+                                "text-anchor": "right",
                                 "vertical-align" : "bottom",
                                 "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "300"})) #inline-size required for text wrapping
                             }
@@ -547,8 +548,8 @@ class InventorySticker(inkex.Effect):
                                 "x": str(x_pos) + "px",
                                 "y": "30px",
                                 "transform": "translate(0," + str(sticker_height - subline_fontsize - subline_fontsize) + ")",
-                                "text-align" : "right", 
-                                "text-anchor": "right", 
+                                "text-align" : "right",
+                                "text-anchor": "right",
                                 "vertical-align" : "bottom",
                                 "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "bold"})) #inline-size required for text wrapping
                             }
@@ -556,7 +557,7 @@ class InventorySticker(inkex.Effect):
                         levelText.set("id", "level_Id" + sticker_id)
                         levelTextTextSpan = etree.SubElement(levelText, inkex.addNS("tspan", "svg"), {})
                         levelTextTextSpan.text = level
-                   
+
                         # 6 - Add horizontal divider line
                         line_thickness = 2 #px
                         line_x_pos = 350 #px; start of the line (left coord)
@@ -569,24 +570,24 @@ class InventorySticker(inkex.Effect):
                             }
                         )
                         divider.set("id", "divider_Id" + sticker_id)
-                    
+
                         if self.options.preview == False:
                             export_file_name = sticker_id + "_" + get_valid_filename(doc_title)
                             export_file_path = os.path.join(zoneDir, export_file_name)
-                           
+
                             #"Export" as SVG by just copying the recent SVG document to the target directory. We need to remove special characters to have valid file names on Windows/Linux
                             export_file_svg = open(export_file_path + ".svg", "w", encoding="utf-8")
                             export_file_svg.write(str(etree.tostring(self.document), "utf-8"))
-                            export_file_svg.close() 
-                                
+                            export_file_svg.close()
+
                             if self.options.export_png == False and self.options.export_svg == False:
                                 inkex.errormsg("Nothing to export. Generating preview only ...")
                                 break
-                                
+
                             if self.options.export_png == True: #we need to generate SVG before to get PNG. But if user selected PNG only we need to remove SVG afterwards
-                                #Make PNG from SVG (slow because each file is picked up separately. Takes about 10 minutes for 600 files                        
+                                #Make PNG from SVG (slow because each file is picked up separately. Takes about 10 minutes for 600 files
                                 inkscape(export_file_path + ".svg", actions="export-dpi:96;export-background:white;export-filename:{file_name};export-do;FileClose".format(file_name=export_file_path + ".png"))
-      
+
                             #fix for "usb.core.USBError: [Errno 13] Access denied (insufficient permissions)"
                             #echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="04f9", ATTR{idProduct}=="2044", MODE="666"' > /etc/udev/rules.d/99-garmin.rules && sudo udevadm trigger
                             if self.options.print_png > 0:
@@ -594,7 +595,7 @@ class InventorySticker(inkex.Effect):
                                     inkex.errormsg("No file output for printing. Please set 'Export PNG' to true first.")
                                 else:
                                     for x in range(self.options.print_png):
-                                        command = "brother_ql -m QL-720NW --backend pyusb --printer usb://" + self.options.print_device + " print -l 62 --600dpi -r auto " + export_file_path + ".png"
+                                        command = self.options.brother_ql + " -m QL-720NW --backend pyusb --printer usb://" + self.options.print_device + " print -l 62 --600dpi -r auto " + export_file_path + ".png"
                                         p = Popen(command, shell=True, stdout=PIPE, stderr=PIPE) #forr Windows: shell=False
                                         stdout, stderr = p.communicate()
                                         p.wait()
@@ -608,11 +609,11 @@ class InventorySticker(inkex.Effect):
 
                             if self.options.export_svg != True: #If user selected PNG only we need to remove SVG again
                                 os.remove(export_file_path + ".svg")
-                             
+
                             self.document.getroot().remove(stickerGroup) #remove the stickerGroup again
                         else: #create preview by just breaking the for loop without executing remove(stickerGroup)
                             break
-                csv_file.close() 
+                csv_file.close()
                 if totalOutputs == 0:
                     self.msg("No output was generated. Check if your entered IDs are valid!")
         except Exception as e:
