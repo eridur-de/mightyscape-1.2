@@ -85,6 +85,7 @@ The structure of this repo is intended to be easy. MightyScape does not work wit
   - **Ubuntu/Kubuntu**
     - `sudo add-apt-repository universe`
     - `sudo add-apt-repository ppa:inkscape.dev/stable` for stable releases or `sudo add-apt-repository ppa:inkscape.dev/trunk` for develop trunk
+    - `sudo apt update`
     - `sudo apt install inkscape`
   - **Fedora/CentOS**
     - `sudo dnf install inkscape`

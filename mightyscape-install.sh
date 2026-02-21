@@ -37,10 +37,10 @@ root_test () {
 }
 
 check_base () {
-    if [ "$(grep -Ei 'debian|buntu|mint' /etc/*release 2>&1)" ]; then
+    if [ "$(grep -Ei --exlude-dir=* 'debian|buntu|mint' /etc/*release 2>&1)" ]; then
         PACKMAN="apt"
     fi
-    if [ "$(grep -Ei 'fedora|redhat' /etc/*release 2>&1)" ]; then
+    if [ "$(grep -Ei  --exlude-dir=* 'fedora|redhat' /etc/*release 2>&1)" ]; then
         PACKMAN="dnf"
     fi
     echo -e "${CL}Having a look for your local package manager ... It is: $PACKMAN ${NF}"
@@ -72,10 +72,10 @@ preflight () {
 packages () {
     echo -e "${CL}Installing system packages ...${NF}"
     if [ $PACKMAN == "apt" ]; then
-        sudo apt install -y curl git cmake g++ python3-full python3-dev   python3-venv xmlstarlet libgirepository-2.0-dev libcairo2-dev
+        sudo apt install -y curl git cmake jq g++ python3-full python3-dev   python3-venv xmlstarlet libgirepository-2.0-dev libcairo2-dev
     fi
     if [ $PACKMAN == "dnf" ]; then
-        sudo dnf install    curl git cmake g++              python3-devel python3-venv xmlstarlet                         cairo-devel
+        sudo dnf install    curl git cmake jq g++              python3-devel python3-venv xmlstarlet                         cairo-devel
     fi
 }
 
