@@ -37,10 +37,10 @@ root_test () {
 }
 
 check_base () {
-    if [ "$(grep -Ei --exlude-dir=* 'debian|buntu|mint' /etc/*release 2>&1)" ]; then
+    if [ "$(grep -Ei --exclude-dir=* 'debian|buntu|mint' /etc/*release 2>&1)" ]; then
         PACKMAN="apt"
     fi
-    if [ "$(grep -Ei  --exlude-dir=* 'fedora|redhat' /etc/*release 2>&1)" ]; then
+    if [ "$(grep -Ei  --exclude-dir=* 'fedora|redhat' /etc/*release 2>&1)" ]; then
         PACKMAN="dnf"
     fi
     echo -e "${CL}Having a look for your local package manager ... It is: $PACKMAN ${NF}"
