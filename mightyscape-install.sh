@@ -11,8 +11,8 @@ GIT_MAINTAINER="eridur-de"
 GIT_REPO="mightyscape-1.2"
 
 bye () {
-    echo -e "${CL}kk thx bye! ${NF}"
-    exit 0
+    echo -e "${CL}Installation was arborted. Please start the script again to finish installation! ${NF}"
+    exit 1
 }
 
 goon () {
@@ -101,7 +101,7 @@ setup () {
             bye
         fi
     else
-        exit 1
+        bye
     fi
 }
 
