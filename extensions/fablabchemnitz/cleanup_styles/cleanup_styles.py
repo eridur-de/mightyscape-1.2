@@ -22,7 +22,7 @@ Based on
 
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
-Last Patch: 12.04.2021
+Last Patch: 12.05.2026
 License: GNU GPL v3
 
 Notes: 
@@ -35,25 +35,14 @@ import numpy as np
 
 class CleanupStyles(inkex.EffectExtension):
 
+    #if rgba color is given, alpha channel will get cut away!
+    def hex_to_rgb(self, value):
+        value = value[0:7].lstrip('#')
+        lv = len(value)
+        return tuple(int(value[i:i + lv // 3], 16) for i in range(0, lv, lv // 3))
+
     groups = []
-    roundUpColors = []
-    roundUpColors = [
-            [  0,   0,   0], #black       | eri1
-            [  0,   0, 255], #blue        | eri2
-            [  0, 255,   0], #green       | eri3
-            [255,   0,   0], #red         | eri4
-            [255,   0, 255], #magenta     | eri5
-            [  0, 255, 255], #cyan        | eri6
-            [255, 255,   0], #yellow      | eri7
-            #half tones
-            [128,   0, 255], #violet      | eri8
-            [0  , 128, 255], #light blue  | eri9
-            [255, 128,   0], #orange      | eri10
-            [255,   0, 128], #pink        | eri11
-            [128, 255,   0], #light green | eri12
-            [0  , 255, 128], #mint        | eri13 
-        ]
-    
+
     def add_arguments(self, pars):
         pars.add_argument("--tab")
         pars.add_argument("--mode", default="Lines", help="Join paths with lines or polygons")
@@ -71,6 +60,7 @@ class CleanupStyles(inkex.EffectExtension):
         pars.add_argument("--remove_group_styles", type=inkex.Boolean, default=False, help="Remove styles from groups")
         pars.add_argument("--harmonize_colors", type=inkex.Boolean, default=False, help="Round up colors to the next 'full color'. Example: make rgb(253,0,0) to rgb(255,0,0) to receive clear red color.")
         pars.add_argument("--allow_half_tones", type=inkex.Boolean, default=False, help="Allow rounding up to half-tone colors")
+        pars.add_argument("--custom_colors", default="", help="Allow rounding up to half-tone colors")
  
     
     def closestColor(self, colors, color):
@@ -103,7 +93,11 @@ class CleanupStyles(inkex.EffectExtension):
             [0  , 255, 128], #mint        | eri15 
             [128, 128, 128], #grey        | eri16
         ])
-        
+
+            text = re.sub(' {1,}', ' ', self.options.custom_colors).strip().replace(',', '')
+            for col in text.split(" "):
+                self.roundUpColors.append(self.hex_to_rgb(col))
+
         if len(self.svg.selected) == 0:
             self.getAttribs(self.document.getroot())
         else:
