@@ -104,8 +104,8 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
                 if element.tail is not None:
                     element.tail = element.tail.strip()
                     tails += 1
-            if tails > 0:
-                self.msg("{} tails/texts were removed during nodes while migration.".format(tails))
+            if tails > 0 and so.showdroplist:
+                self.msg("{} tails/texts were dropped.".format(tails))
                 
         namespace = [] #a list of selected types we are going to process for filtering (dropping items)
         #namespace.append("{http://www.w3.org/2000/svg}sodipodi")       if so.sodipodi       else "" #do not do this. it will crash Inkscape
@@ -243,7 +243,7 @@ class UngrouperAndElementMigratorFilter(inkex.EffectExtension):
         # show a list with items to delete. For ungroup mode it does not apply because we are not going to remove anything
         if so.operationmode == "filter_only" or so.operationmode == "ungroup_and_filter":
             if so.showdroplist:
-                self.msg("{} elements were removed during nodes while migration.".format(len(self.allDrops)))
+                self.msg("{} elements were dropped.".format(len(self.allDrops)))
                 if len(self.allDrops) > 100: #if we print too much to the output stream we will freeze Inkscape forever wihtout any visual error message. So we write to file instead
                     migrate_log_file = open('migrategroups.log', 'w')
                 else:
