@@ -1,0 +1,6 @@
+[project]
+name= "MightyScape"
+version = "1.2"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
