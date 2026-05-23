@@ -3,11 +3,11 @@
 """
 Upgrade MightyScape from Inkscape Extension Dialog. Made for end users
 
-Extension for Inkscape 1.4.2
+Extension for Inkscape 1.4.4
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 14.01.2024
-Last patch: 26.08.2025
+Last patch: 23.05.2026
 License: GNU GPL v3
 
 ToDo
@@ -34,8 +34,8 @@ python_interpreter_abs = os.path.isabs(python_interpreter)
 if python_interpreter_abs is False:
     inkex.utils.debug("Warning: python-interpreter path is not absolute. \
 This might lead to failure of extension execution! Please do not use \
-relative paths like '~/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3'. \
-Instead use '/home/YOURUSER/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3'\n")
+relative paths like '~/.config/inkscape/extensions/mightyscape-1.2/bin/python3'. \
+Instead use '/home/YOURUSER/.config/inkscape/extensions/mightyscape-1.2/bin/python3'\n")
 
 inkex.utils.debug("Python version: {}\n".format(sys.version))
 
@@ -59,7 +59,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
         if os.name=="nt":
             python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'venv', 'Scripts', 'python.exe'))
         else: #Linux/MacOS
-            python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'venv', 'bin', 'python'))
+            python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'bin', 'python'))
 
         # Upgrade pip first
         command = "{} -m pip install pip --upgrade".format(python_venv)
