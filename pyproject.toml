@@ -1,6 +1,7 @@
 [project]
 name= "MightyScape"
 version = "1.2"
+requires-python=">=3.10,<3.11"
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
