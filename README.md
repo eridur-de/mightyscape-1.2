@@ -36,10 +36,11 @@ At least this repo will help to bring alife some good things and will show hidde
 
 # Tested environments
 
-- Kubuntu 42: Inkscape 1.4.2 (1:1.4.2+202505120737+ebf0e940d0) @ Python 3.12.3 (main, Aug 14 2025, 17:47:21) [GCC 13.3.0]
+- Tuxedo OS 24.04.4 LTS: Inkscape 1.4.4 (dcaf3e7d9e, 2026-05-05) @ Python 3.10.20 (main, May 10 2026, 19:27:29) [Clang 22.1.3 ]
 - Windows 11 (@KVM/QEMU): Inkscape 1.3.2 (091e20ef0f, 2024-04-26) @ 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
 
 Some commands to get versions:
+
 ```
 cat /etc/os-release
 inkscape --version
@@ -63,13 +64,6 @@ The structure of this repo is intended to be easy. MightyScape does not work wit
 
 ## Unsupported Inkscape versions
 
-- **Linux**
-  - MightyScape does not support the snap version and also no [AppImage]([https://inkscape.org/release/inkscape-dev/gnulinux/appimage/dl](https://inkscape.org/release/inkscape-dev/gnulinux/appimage/dl/)) version of Inkscape. 
-    - The **snap** edition comes with restrictions, letting a lot of extensions fail to work. The reason is missing access to external Python interpreters. Libraries like `openmesh` or `pyclipper` cannot be used this way. 
-    - The **AppImage** version will fail for a lot extension too, because subprocesses from the AppImage have no acccess to `/tmp` directory. 
-    - **Flatpak** is not tested at all. Possible permission fixed might be obercome with [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal).
-    - You can still install MightyScape with snap or AppImage version but beware to get different errors.
-    - Feel free to contribute solutions to address these issues. 
 - **Windows**
   - Windows App Store (this was not tested yet)
 - **MacOS**
@@ -82,6 +76,9 @@ The structure of this repo is intended to be easy. MightyScape does not work wit
   - regular installation with MSI Setup
 - **Linux**
   - regular installation from package manager like dnf/yum or apt (see [here](https://wiki.inkscape.org/wiki/Installing_Inkscape))
+  - **snap** package. **Important**: has to be installed with `--dev-mode` due to permission restrictions in default mode
+  - **Flatpak** package. Possible permission fixed might be overcome with [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal)
+  - **AppImage** - put it somewhere on your system
   - **Ubuntu/Kubuntu**
     - `sudo add-apt-repository universe`
     - `sudo add-apt-repository ppa:inkscape.dev/stable` for stable releases or `sudo add-apt-repository ppa:inkscape.dev/trunk` for develop trunk
@@ -94,10 +91,11 @@ The structure of this repo is intended to be easy. MightyScape does not work wit
 
 There are two places where Inkscape extensions can be located by default, either install (global) directory or user directory. We usually put the extensions in the user's data directory, because if we would put it to the installation folder of Inkscape, we would risk deletion by upgrading. If we put them to the user directory we do not lose them.
 
-| OS                     | user directory                                 | global directory                        |
-| ---------------------- | ---------------------------------------------- | --------------------------------------- |
-| Linux (Ubuntu, Fedora) | `/home/$(whoami)/.config/inkscape/extensions/` | `/usr/share/inkscape/extensions/`       |
-| Windows                | `%AppData%\inkscape\extensions\`               | `C:\Program Files\inkscape\extensions\` |
+| OS                                        | user directory                                   | global directory                                   |
+| ----------------------------------------- | ------------------------------------------------ | -------------------------------------------------- |
+| Linux (Ubuntu, Fedora), Flatpak, AppImage | `/home/$(whoami)/.config/inkscape/extensions/`   | `/usr/share/inkscape/extensions/`                  |
+| Snap                                      | `/home/zypresse/snap/inkscape/common/extensions` | `/snap/inkscape/current/share/inkscape/extensions` |
+| Windows                                   | `%AppData%\inkscape\extensions\`                 | `C:\Program Files\inkscape\extensions\`            |
 
 Please also refer to the [official documentation](https://inkscape-manuals.readthedocs.io/en/latest/extensions.html#installing-extensions).
 
@@ -112,27 +110,33 @@ Git is required to install some of the required Python modules (and repo cloning
 
 ### Python
 
-MightyScape heavily relies on a Python interpreter. As we need to install external dependencies (Python modules, partially with C bindings), we cannot stick to the bundled msys2 Python version, which comes with Inkscape. So we need to use a **virtualenv** on Linux or Windows. [Here](https://gitlab.com/inkscape/inkscape/-/blob/master/buildtools/msys2installdeps.sh?ref_type=heads) you can find a list of default modules Inkscape is shipped with.
+MightyScape heavily relies on a Python interpreter. As we need to install external dependencies (Python modules, partially with C bindings), we cannot stick to the bundled msys2 Python version, which comes with Inkscape. So we need to use a **virtualenv** on Linux or Windows. To speedup the process, we use the [uv](https://docs.astral.sh/uv) tool from Astral for this.
+
+[Here](https://gitlab.com/inkscape/inkscape/-/blob/master/buildtools/msys2installdeps.sh?ref_type=heads) you can find a list of default modules Inkscape is shipped with.
 
 > [!NOTE]
 > **Linux**: Python is usually installed by default, so you don't have to do anything special except setting up a virtualenv (see next chapter). In case the installer below does not finish in one run, execute it again and it should work (because if python has to be installed first, the command palette is not available in the session yet).
 
 > [!NOTE]
-> **Windows**: We need to install Pyhon separately. You can download it from https://www.python.org/downloads/windows/. After installation please review for correct environment variable adjustments. The command `py` or `python` has to be in `%PATH%` to be called by cmd (terminal).
+> **Windows**: We need to install Python separately. You can download it from https://www.python.org/downloads/windows/. After installation please review for correct environment variable adjustments. The command `py` or `python` has to be in `%PATH%` to be called by cmd (terminal).
 
 > [!TIP]
 > **Info:** You can ignore this step if you use our bundled installer script (way 1)!
 
 ### Additional Python modules
 
-The following extra libraries are required for some of the extensions within the MightyScape package. Those are listed in our [requirements.txt](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/requirements.txt) file. We are installing them together with MightyScape in the next section.
+The following extra libraries are required for some of the extensions within the MightyScape package. Those are listed in our [requirements.txt](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/requirements.txt) file (and tied into [pyproject.toml](https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/pyproject.toml) and used by uv). We are installing them together with MightyScape in the next section.
 
 ## Installation of MightyScape - way 1: installer (preferred way)
 
 > [!TIP]
 > **New:** We provide an all-in-one installer for Linux and Windows. Just use the following commands.
 
+> [!WARNING]
+> The installer is able to install MightyScape for several installations in parallel. However, this is not a good idea. It could mess around with the **preferences.xml** file and might invalidate some of the other installation's configuration. Be careful!
+
 **Linux**
+
 ```
 curl -s -L https://y.stadtfabrikanten.org/mightyscape-linux | bash
 ```
@@ -140,6 +144,7 @@ curl -s -L https://y.stadtfabrikanten.org/mightyscape-linux | bash
 This redirects to https://raw.githubusercontent.com/eridur-de/mightyscape-1.2/refs/heads/master/mightyscape-install.sh
 
 **Windows**
+
 ```
 curl -s -L https://y.stadtfabrikanten.org/mightyscape-windows > %TEMP%\mightyscape-install.cmd & %TEMP%\mightyscape-install.cmd
 ```
@@ -161,7 +166,7 @@ You can also download the whole git project as `.zip` or `.tar.gz` bundled archi
 
 The **Download** buttons can be found here:
 
- <img title="" src="./docs/images/zip-download.png" alt="" data-align="left">
+<img title="" src="./docs/images/zip-download.png" alt="" data-align="left">
 
 ## Installation of MightyScape - way 3: only some parts
 
@@ -187,18 +192,19 @@ As we use non-default Python, we need to adjust the main configuration of Inksca
 ```
 vim /home/$(whoami)/.config/inkscape/preferences.xml
 ```
+
 ```
   <group
      id="extensions"
-     python-interpreter="/home/youruser/.config/inkscape/extensions/mightyscape-1.2/venv/bin/python3"
+     python-interpreter="/home/youruser/.config/inkscape/extensions/mightyscape-1.2/bin/python3"
 ```
-
 
 **On Windows this might look like:**
 
 ```
 notepad %appdata%\inkscape\preferences.xml
 ```
+
 ```
   <group
      id="extensions"
@@ -211,14 +217,15 @@ notepad %appdata%\inkscape\preferences.xml
 > [!WARNING]
 > Our custom Python environment on Windows will make the official Inkscape Extensions Manager impossible to run. The reason is the library `pygobject`.
 
-# Upgrading 
+# Upgrading
 
 ## Upgrading MightyScape
 
 There are two ways to upgrade MightyScape. Choose from:
 
 1. If you installed MightyScape using `git clone`, just go to the git directory and run `git pull` or use the extension `About/Upgrade MightyScape`, which can be found in `Extensions` → `FabLab Chemnitz`:
-<img title="" src="./docs/images/upgrade-extension.png" alt="" data-align="left">
+   
+   <img title="" src="./docs/images/upgrade-extension.png" alt="" data-align="left">
 
 2. If you previously downloaded a bulk zip file from github or gitea, just replace the content of the containing folder with the new files.
 
@@ -227,10 +234,13 @@ There are two ways to upgrade MightyScape. Choose from:
 Sometimes it can be helpful to install missing or upgrade Python modules. You can use our `About/Upgrade MightyScape` extension to do this, or just execute manually:
 
 **Linux**
+
 ```
-sed '/^#/d' /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | xargs -n 1 /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/venv/bin/pip install --upgrade
+sed '/^#/d' /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/requirements.txt | xargs -n 1 /home/$(whoami)/.config/inkscape/extensions/mightyscape-1.2/bin/pip install --upgrade
 ```
+
 **Windows**
+
 ```
 cd %AppData%\inkscape\extensions\mightyscape-1.2\ & FOR /F %k in ('findstr /V "#" requirements.txt') DO ( py -m pip install --upgrade %k )
 ```
@@ -256,6 +266,7 @@ We are the [Stadtfabrikanten e.V.](https://stadtfabrikanten.org), running the Fa
 You like our work and want to support us? Each penny helps us to keep this project alive. You can donate to our non-profit organization by [different ways](https://y.stadtfabrikanten.org/donate).
 
 You can also directly support the developers:
+
 - [buymeacoffee.com/vmario89](https://buymeacoffee.com/vmario89)
 - [github.com/sponsors/vmario89](https://github.com/sponsors/vmario89)
 - [ko-fi.com/vmario89](https://ko-fi.com/vmario89)
