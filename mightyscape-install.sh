@@ -21,7 +21,7 @@ goon () {
 
 appimage () {
     exec 3<>/dev/tty
-    read -u 3 -p "$(echo -e ${CL}"Please enter the path of your Inkscape-1.?.?.AppImage\n "${NF})" INKSCAPE_APPIMAGE
+    read -u 3 -p "$(echo -e ${CL}"Please enter the path of your Inkscape-1.?.?.AppImage. If you leave empty, default values for configuration are used.\n "${NF})" INKSCAPE_APPIMAGE
 }
 
 instance_choice () {
@@ -112,8 +112,10 @@ get_installations () {
             INKSCAPE_USER_DIR="$($INKSCAPE_CMD --user-data-directory 2> /dev/null | tail -n 1)"
             INKSCAPE_EXTENSIONS_DIR="$INKSCAPE_USER_DIR/extensions"
         else
-            echo -e "${CR}Error: path seems not to exist!\n${NF}"
-            bye
+            echo -e "${CR}Error: path seems not to exist. Using default values.\n${NF}"
+            INKSCAPE_CMD="no-appimage-provided"
+            INKSCAPE_USER_DIR="$HOME/.config/inkscape"
+            INKSCAPE_EXTENSIONS_DIR="$INKSCAPE_USER_DIR/extensions"
         fi
         ;;
     *)
