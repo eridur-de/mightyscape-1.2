@@ -72,6 +72,7 @@ test_can_sudo () {
 }
 
 uv_setup () {
+	echo -e "${CL}Checking for Python UV existence ...${NF}"
     if [[ ! $(type -P "uv") ]]; then
         curl -LsSf https://astral.sh/uv/install.sh | sh
         source $HOME/.local/bin/env
