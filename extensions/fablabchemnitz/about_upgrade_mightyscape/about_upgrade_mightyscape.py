@@ -57,7 +57,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
             exit(1)
 
         if os.name=="nt":
-            python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'venv', 'Scripts', 'python.exe'))
+            python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'Scripts', 'python.exe'))
         else: #Linux/MacOS
             python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'bin', 'python'))
 

@@ -208,7 +208,7 @@ notepad %appdata%\inkscape\preferences.xml
 ```
   <group
      id="extensions"
-     python-interpreter="C:\Users\youruser\AppData\Roaming\inkscape\extensions\mightyscape-1.2\venv\Scripts\pythonw.exe"
+     python-interpreter="C:\Users\youruser\AppData\Roaming\inkscape\extensions\mightyscape-1.2\Scripts\pythonw.exe"
 ```
 
 > [!TIP]
