@@ -7,7 +7,7 @@ Extension for Inkscape 1.4.4
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 14.01.2024
-Last patch: 23.05.2026
+Last patch: 27.05.2026
 License: GNU GPL v3
 
 ToDo
@@ -61,29 +61,20 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
         else: #Linux/MacOS
             python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'bin', 'python'))
 
-        # Upgrade pip first
-        command = "{} -m pip install pip --upgrade".format(python_venv)
-        inkex.utils.debug("Executing: {}".format(command))
-        proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE, encoding="UTF-8")
-        stdout, stderr = proc.communicate()
-        try:
-            inkex.utils.debug(stdout)
-            inkex.utils.debug(stderr)
-        except:
-            pass
-
-        # Then upgrade modules
-        command = "{} -m pip install --upgrade --no-cache-dir -r {}".format(python_venv, requirements)
-        inkex.utils.debug("Executing: {}".format(command))
-        proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE, encoding="UTF-8")
-        stdout, stderr = proc.communicate()
-        try:
-            inkex.utils.debug(stdout)
-            inkex.utils.debug(stderr)
-        except:
-            pass
-        
-        proc.wait()
+        commands = []
+        commands.append("uv add -r requirements.txt")
+        commands.append("uv self update")
+        commands.append("uv pip install --upgrade -r {}".format(requirements))
+        for command in commands:
+            inkex.utils.debug("Executing: {}".format(command))
+            proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE, encoding="UTF-8")
+            stdout, stderr = proc.communicate()
+            try:
+                inkex.utils.debug(stdout)
+                inkex.utils.debug(stderr)
+            except:
+                pass
+            proc.wait()
 
     def update(self, local_repo, remote, localCommitCount):
         inkex.utils.debug("Chosen remote is: {}".format(remote))

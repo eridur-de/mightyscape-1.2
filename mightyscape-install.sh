@@ -142,11 +142,19 @@ test_is_running () {
 install_system_packages () {
     echo -e "${CL}Installing system packages ...${NF}"
     if [ $PACKMAN == "apt" ] &&  [ $SELECTION == 2 ]; then
+        sudo apt update && sudo apt upgrade -y
         sudo apt install -y curl git cmake jq g++ python3-full python3-dev python3-venv xmlstarlet libgirepository-2.0-dev libcairo2-dev
     fi
     if [ $PACKMAN == "dnf" ] && [ $SELECTION == 3 ]; then
+        sudo dnf update
         sudo dnf install curl git cmake jq g++ python3-devel python3-venv xmlstarlet cairo-devel
     fi
+}
+
+git_update () {
+    echo -e "${CL}MightyScape repo ...${NF}"
+    git stash
+    git pull
 }
 
 setup_mightyscape () {
@@ -169,9 +177,20 @@ setup_mightyscape () {
         fi
     fi
 
-    git clone https://$GIT_SERVER/$GIT_MAINTAINER/$GIT_REPO.git
-    if [ $? != 0 ]; then
-        echo -e "${CR}Error while cloning. Maybe the directory already exists.${NF}"
+    if [[ -e $INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/ ]]; then
+            echo -e "${CL}Target directory already exists. Checking if it's git project ...'${NF}"
+            if [[ -e $INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/.git ]]; then
+                echo -e "${CL}Target directory is git. Update the repo?'${NF}"
+                if [[ $REPLY =~ ^[Yy]$ ]]; then
+                    git_update
+                fi
+            fi
+    else
+        git clone https://$GIT_SERVER/$GIT_MAINTAINER/$GIT_REPO.git
+        if [ $? != 0 ]; then
+            echo -e "${CR}Error while cloning.${NF}"
+            bye
+        fi
     fi
     goon
     if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -179,8 +198,10 @@ setup_mightyscape () {
         uv_setup
         cd $INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/
         export UV_PROJECT_ENVIRONMENT=$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO
+        uv self update
         uv venv --allow-existing $INKSCAPE_EXTENSIONS_DIR/$GIT_REPO
         uv add -r requirements.txt
+        uv pip install --upgrade -r requirements.txt
         echo -e "${CL}Total size of installation: $(du -sh $(pwd) | awk '{print $1}') ...${NF}"
     else
         bye

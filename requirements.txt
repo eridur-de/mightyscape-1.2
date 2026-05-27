@@ -36,7 +36,7 @@ pillow
 git+https://github.com/tjltjl/plycutter.git
 pybind11
 pycairo
-PyGObject
+pyqt5-qt5<=5.15.2
 pyserial
 PySide6
 #REQUIRED BY: ocr extension
