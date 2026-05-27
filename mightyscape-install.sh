@@ -160,11 +160,8 @@ git_update () {
 setup_mightyscape () {
     echo -e "${CL}Cloning MightyScape ...${NF}"
     GIT_REPO_SIZE=$(curl -s -k https://api.${GIT_SERVER}/repos/${GIT_MAINTAINER}/${GIT_REPO})
-    if [[ $? == 0 ]]; then
+    if [[ "$GIT_REPO_SIZE" =~ ^[0-9]+$ ]] && [[ $GIT_REPO_SIZE -gt 0 ]]; then
         echo -e "${CL}Repository size is approx. $(( $(echo ${GIT_REPO_SIZE} | jq '.size') / 1000 )) MB.${NF}"
-    else
-        echo -e "${CR}Error. Git repository https://${GIT_SERVER}/${GIT_MAINTAINER}/${GIT_REPO} not available.${NF}"
-        bye
     fi
     cd $INKSCAPE_EXTENSIONS_DIR/
     if [ $? != 0 ]; then
