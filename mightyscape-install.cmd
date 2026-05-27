@@ -108,11 +108,12 @@ if not %ERRORLEVEL%==0 (
 uv --version >NUL 2>NUL
 if not %ERRORLEVEL%==0 (
 	echo.Installing Python UV ...
-	powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
+	choco install -y uv
 	if !ERRORLEVEL!==350 goto :reboot
 	)
 :: refresh environment variables after installing new commands to make them available on PATH
 call refreshenv
+choco upgrade -y chocolatey curl git jq vcredist140 vcredist2015 xmlstarlet
 goto :setup_mightyscape
 
 :reboot
