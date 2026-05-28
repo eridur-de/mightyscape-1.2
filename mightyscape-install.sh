@@ -142,8 +142,9 @@ test_is_running () {
 install_system_packages () {
     echo -e "${CL}Installing system packages ...${NF}"
     if [ $PACKMAN == "apt" ] &&  [ $SELECTION == 2 ]; then
-        sudo apt update && sudo apt upgrade -y
-        sudo apt install -y curl git cmake jq g++ python3-full python3-dev python3-venv xmlstarlet libgirepository-2.0-dev libcairo2-dev
+        APT_PACKAGES="git cmake jq g++ python3-full python3-dev python3-venv xmlstarlet libgirepository-2.0-dev libcairo2-dev"
+        sudo apt install -y $APT_PACKAGES
+        sudo apt update && sudo apt upgrade -y $APT_PACKAGES
     fi
     if [ $PACKMAN == "dnf" ] && [ $SELECTION == 3 ]; then
         sudo dnf update
