@@ -49,7 +49,12 @@ instance_choice () {
             rpm -q $PKG > /dev/null 2>&1; if [ $? == 0 ]; then echo -e "${CL} - dnf package \"$PKG\" installed (3)${NF}"; fi
         done
     fi
-    echo -e "${CL} - AppImage (maybe existent?) (4)${NF}"
+    if [[ $PACKMAN == "apt" ]] || [[ $PACKMAN == "dnf" ]]; then
+        echo -e "${CL} - AppImage (maybe existent?) (4)${NF}"
+    fi
+    if [[ $(type -P "mdfind") ]]; then
+        if [[ $(mdfind -name 'Inkscape' -onlyin /opt/local/var/macports/sources/rsync.macports.org/macports/release/tarballs/ports/aqua/inkscape-app) ]]; then echo -e "${CL} - dmg package \"Inkscape.app\" installed (5)${NF}"; fi
+    fi
 
     exec 3<>/dev/tty
     read -u 3 -p "$(echo -e ${CL}"Choose an Inkscape instance where to install and configure MightyScape:\n "${NF})" -n 1 SELECTION
@@ -64,10 +69,15 @@ test_is_root () {
 
 test_can_sudo () {
     echo -e "${CL}Check if user can sudo ...${NF}"
-    IS_SUDO=$(grep "sudo" <<< $(groups $(whoami)) > /dev/null; echo $?)
-    if [ $IS_SUDO != 0 ]; then
-        echo -e "${CR}The current user is not allowed for sudo. Cannot continue ...${NF}"
-        bye
+    local prompt
+    prompt=$(sudo -nv 2>&1)
+    if [ $? -eq 0 ]; then
+		:
+    elif echo $prompt | grep -q '^sudo:'; then
+		:
+    else
+		echo -e "${CR}The current user is not allowed for sudo. Cannot continue ...${NF}"
+		bye
     fi
 }
 
@@ -119,10 +129,20 @@ get_installations () {
             INKSCAPE_EXTENSIONS_DIR="$INKSCAPE_USER_DIR/extensions"
         fi
         ;;
+    5)
+        INKSCAPE_CMD="/Applications/Inkscape.app/Contents/MacOS/inkscape"
+        INKSCAPE_USER_DIR="$($INKSCAPE_CMD --user-data-directory)"
+        INKSCAPE_EXTENSIONS_DIR="$INKSCAPE_USER_DIR/extensions"
+        ;;
     *)
         bye
         ;;
     esac
+
+    if [[ ! -e "$INKSCAPE_USER_DIR" ]]; then
+        echo -e "${CR}Error: Inkscape user directory ${INKSCAPE_USER_DIR} does not exist!${NF}"
+        bye
+    fi
 
     echo -e "\n${CL}Inkscape user directory: ${INKSCAPE_USER_DIR}${NF}"
     echo -e "${CL}Inkscape extension directory: ${INKSCAPE_EXTENSIONS_DIR}${NF}"
@@ -150,6 +170,19 @@ install_system_packages () {
         sudo dnf update
         sudo dnf install curl git cmake jq g++ python3-devel python3-venv xmlstarlet cairo-devel
     fi
+    if [ $SELECTION == 5 ]; then
+        if [[ ! $(type -P "port") ]]; then
+            echo -e "${CL}Installing MacPorts ...${NF}"
+            xcode-select --install
+        else
+            echo -e "${CL}Upgrading MacPorts tree first (might take a while) ...${NF}"
+        fi
+        sudo port selfupdate
+        echo -e "${CL}Installing system packages ...${NF}"
+        PACKAGES="git jq libiconv xmlstarlet"
+        sudo port install $PACKAGES
+        sudo port upgrade outdated
+    fi
 }
 
 git_update () {
@@ -164,20 +197,20 @@ setup_mightyscape () {
     if [[ "$GIT_REPO_SIZE" =~ ^[0-9]+$ ]] && [[ $GIT_REPO_SIZE -gt 0 ]]; then
         echo -e "${CL}Repository size is approx. $(( $(echo ${GIT_REPO_SIZE} | jq '.size') / 1000 )) MB.${NF}"
     fi
-    cd $INKSCAPE_EXTENSIONS_DIR/
+    cd "$INKSCAPE_EXTENSIONS_DIR/"
     if [ $? != 0 ]; then
         echo -e "${CL}Extensions directory \"$INKSCAPE_EXTENSIONS_DIR\" could not be found. Trying to create!${NF}"
-        mkdir -p $INKSCAPE_EXTENSIONS_DIR
-        cd $INKSCAPE_EXTENSIONS_DIR/
+        mkdir -p "$INKSCAPE_EXTENSIONS_DIR"
+        cd "$INKSCAPE_EXTENSIONS_DIR/"
         if [ $? != 0 ]; then
             echo -e "${CL}Error: Extensions directory \"$INKSCAPE_EXTENSIONS_DIR\" could not be created. Please check your Inkscape installation!${NF}"
             bye
         fi
     fi
 
-    if [[ -e $INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/ ]]; then
+    if [[ -e "$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/" ]]; then
             echo -e "${CL}Target directory already exists. Checking if it's git project ...'${NF}"
-            if [[ -e $INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/.git ]]; then
+            if [[ -e "$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/.git" ]]; then
                 echo -e "${CL}Target directory is git. Update the repo?'${NF}"
                 if [[ $REPLY =~ ^[Yy]$ ]]; then
                     git_update
@@ -194,10 +227,10 @@ setup_mightyscape () {
     if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo -e "${CL}Enrolling Python3 virtual environment + required packages ...${NF}"
         uv_setup
-        cd $INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/
-        export UV_PROJECT_ENVIRONMENT=$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO
+        cd "$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/"
+        export UV_PROJECT_ENVIRONMENT="$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO"
         uv self update
-        uv venv --allow-existing $INKSCAPE_EXTENSIONS_DIR/$GIT_REPO
+        uv venv --allow-existing "$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO"
         uv add -r requirements.txt
         uv pip install --upgrade -r requirements.txt
         echo -e "${CL}Total size of installation: $(du -sh $(pwd) | awk '{print $1}') ...${NF}"
