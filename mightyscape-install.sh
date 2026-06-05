@@ -186,7 +186,7 @@ install_system_packages () {
 }
 
 git_update () {
-    echo -e "${CL}MightyScape repo ...${NF}"
+    echo -e "${CL}Updating MightyScape repo ...${NF}"
     git stash
     git pull
 }
