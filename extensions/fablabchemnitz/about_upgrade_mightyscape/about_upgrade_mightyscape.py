@@ -7,7 +7,7 @@ Extension for Inkscape 1.4.4
 Author: Mario Voigt / FabLab Chemnitz
 Mail: mario.voigt@stadtfabrikanten.org
 Date: 14.01.2024
-Last patch: 27.05.2026
+Last patch: 05.06.2026
 License: GNU GPL v3
 
 ToDo
@@ -62,7 +62,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
             python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'bin', 'python'))
 
         commands = []
-        commands.append("uv add -r requirements.txt")
+        commands.append("uv add --frozen -r requirements.txt")
         commands.append("uv self update")
         commands.append("uv pip install --upgrade -r {}".format(requirements))
         for command in commands:
