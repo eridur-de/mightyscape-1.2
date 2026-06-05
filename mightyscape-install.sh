@@ -232,8 +232,8 @@ setup_mightyscape () {
         export UV_PROJECT_ENVIRONMENT="$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO"
         uv self update
         uv venv --allow-existing "$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO"
-        uv add --frozen -r requirements.txt
-        uv pip install --upgrade -r requirements.txt
+		find . -name "requirements.txt" -exec sh -c 'uv add --frozen -r "$1" 2>/dev/null || echo "Failed to install dependencies for: $1"' _ {} \;
+		find . -name "requirements.txt" -exec sh -c 'uv pip install --upgrade -r "$1" 2>/dev/null || echo "Failed to upgrade dependencies for: $1"' _ {} \;
         echo -e "\n${CL}Total size of installation: $(du -sh "$(pwd)" | awk '{print $1}') ...${NF}"
     else
         bye

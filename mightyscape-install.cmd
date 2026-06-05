@@ -195,7 +195,7 @@ goto :entry_git_update
 :git_update
 echo.Updating MightyScape repo ...
 cd %INKSCAPE_EXTENSIONS_DIR%\%GIT_REPO%\
-rem git stash
+git stash
 git pull
 goto :install_python_env
 
@@ -205,8 +205,22 @@ cd %INKSCAPE_EXTENSIONS_DIR%/%GIT_REPO%/
 set UV_PROJECT_ENVIRONMENT=%INKSCAPE_EXTENSIONS_DIR%/%GIT_REPO%
 uv self update
 uv venv --allow-existing %INKSCAPE_EXTENSIONS_DIR%/%GIT_REPO%
-uv add --frozen -r requirements.txt
-uv pip install --upgrade -r requirements.txt
+for /r %%G in (requirements.txt) do (
+    if exist "%%G" (
+        uv add --frozen -r "%%G" 2>nul
+        if errorlevel 1 (
+            echo.Failed to install dependencies for: %%G
+        )
+    )
+)
+for /r %%G in (requirements.txt) do (
+    if exist "%%G" (
+        uv pip install --upgrade -r "%%G" 2>nul
+        if errorlevel 1 (
+            echo.Failed to upgrade dependencies for: %%G
+        )
+    )
+)
 echo.Total size of installation:
 powershell -command "$fso = new-object -com Scripting.FileSystemObject; gci -Directory | select @{l='Size'; e={$fso.GetFolder($_.FullName).Size}},FullName | sort Size -Descending | ft @{l='Size [MB]'; e={'{0:N2}' -f ($_.Size / 1MB)}},FullName"
 goto :adjust_preferences
@@ -230,7 +244,7 @@ if /I "%INSTANCE_CHOICE%" EQU "0" (
 	echo.Calling Inkscape without About Extension: !INKSCAPE_CMD!
 	echo.If Inkscape is installed by MS Store, we cannot pass cli attributes! Please manually test by starting About Extension
 	start "" %INKSCAPE_CMD%
-	
+
 ) else (
 	set CALL=%INKSCAPE_CMD% --with-gui --actions="fablabchemnitz.de.about-upgrade-mightyscape"
 	echo.Calling About Extension to test installation: !CALL!

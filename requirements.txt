@@ -28,8 +28,6 @@ numpy
 networkx
 #REQUIRED BY: vpypetools extension
 git+https://github.com/abey79/occult.git#egg=occult
-opencv-python
-openmesh
 pyclipper
 pillow
 #REQUIRED BY: plycutter extension
