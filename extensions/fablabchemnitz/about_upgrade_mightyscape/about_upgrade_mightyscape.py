@@ -62,7 +62,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
             python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'bin', 'python'))
 
         commands = []
-        commands.append("uv add --frozen -r requirements.txt")
+        commands.append("uv add --frozen -r {}".format(requirements))
         commands.append("uv self update")
         commands.append("uv pip install --upgrade -r {}".format(requirements))
         for command in commands:
