@@ -166,8 +166,9 @@ install_system_packages () {
         sudo apt update && sudo apt upgrade -y $APT_PACKAGES
     fi
     if [[ $PACKMAN == "dnf" ]] && [[ $SELECTION == 3 ]]; then
-        sudo dnf update
-        sudo dnf install curl git cmake jq g++ python3-devel python3-venv xmlstarlet cairo-devel
+        DNF_PACKAGES="curl git cmake jq g++ python3-devel python3-venv xmlstarlet cairo-devel"
+        sudo dnf install $DNF_PACKAGES
+        sudo dnf update $DNF_PACKAGES
     fi
     if [[ $SELECTION == 5 ]]; then
         if [[ ! $(type -P "port") ]]; then
