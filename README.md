@@ -34,20 +34,6 @@ At least this repo will help to bring alife some good things and will show hidde
 - A mass of plugins were fixed by ourselves in countless hours
 - Credits for creation of the MightyScape project: Mario Voigt / FabLab Chemnitz
 
-# Tested environments
-
-- Tuxedo OS 24.04.4 LTS: Inkscape 1.4.4 (dcaf3e7d9e, 2026-05-05) @ Python 3.10.20 (main, May 10 2026, 19:27:29) [Clang 22.1.3 ]
-- Windows 11 (@KVM/QEMU): Inkscape 1.3.2 (091e20ef0f, 2024-04-26) @ 3.13.5 (tags/v3.13.5:6cb20a2, Jun 11 2025, 16:15:46) [MSC v.1943 64 bit (AMD64)]
-
-Some commands to get versions:
-
-```
-cat /etc/os-release
-inkscape --version
-python --version
-python -m pip list
-```
-
 # Structure
 
 The structure of this repo is intended to be easy. MightyScape does not work with any releases or feature branches. Just copy the complete MightyScape folder (or the particular folders you want) to your Inkscape's extension directory. 
@@ -62,19 +48,22 @@ The structure of this repo is intended to be easy. MightyScape does not work wit
 > This documentation does not maintain any progressive information about installing or handling Inkscape itself.
 > Depending to the operating system and the installed modules the all-over size of MightyScape is around 2 GB (which is sadly very much).
 
-## Unsupported Inkscape versions
+## Compability
 
-- **Windows**
-  - Windows App Store (this was not tested yet)
-- **MacOS**
-  - this was never tested. We are sorry!
+ MightyScape was tested to be compatible with Inkscape 1.4.4 (dcaf3e7d, 2026-05-05)
 
 ## Supported Inkscape versions
 
 - **Windows**
-  - portable
-  - regular installation with MSI Setup
+
+- - regular installation with Setup (*.msi / *.exe)
+  - portable (compressed archive)
+  - Windows App Store
+  - WinGet (`winget install -e --id Inkscape.Inkscape`)
+  - Chocolatey (`choco install inkscape`)
+
 - **Linux**
+  
   - regular installation from package manager like dnf/yum or apt (see [here](https://wiki.inkscape.org/wiki/Installing_Inkscape))
   - **snap** package. **Important**: has to be installed with `--dev-mode` due to permission restrictions in default mode
   - **Flatpak** package. Possible permission fixed might be overcome with [Flatseal](https://flathub.org/apps/com.github.tchx84.Flatseal)
@@ -87,15 +76,27 @@ The structure of this repo is intended to be easy. MightyScape does not work wit
   - **Fedora/CentOS**
     - `sudo dnf install inkscape`
 
+- **macOS**
+  
+  - regular installation by *.dmg file
+
+Installation
+
+> [!WARNING]
+> Please read this first before opening issues!
+> This documentation does not maintain any progressive information about installing or handling Inkscape itself.
+> Depending to the operating system and the installed modules the all-over size of MightyScape is around 2 GB (which is sadly very much).
+
 ## Installation dirs (overview)
 
 There are two places where Inkscape extensions can be located by default, either install (global) directory or user directory. We usually put the extensions in the user's data directory, because if we would put it to the installation folder of Inkscape, we would risk deletion by upgrading. If we put them to the user directory we do not lose them.
 
-| OS                                        | user directory                           | global directory                                   |
-| ----------------------------------------- | ---------------------------------------- | -------------------------------------------------- |
-| Linux (Ubuntu, Fedora), Flatpak, AppImage | `/$HOME/.config/inkscape/extensions/`    | `/usr/share/inkscape/extensions/`                  |
-| Snap                                      | `/$HOME/snap/inkscape/common/extensions` | `/snap/inkscape/current/share/inkscape/extensions` |
-| Windows                                   | `%AppData%\inkscape\extensions\`         | `C:\Program Files\inkscape\extensions\`            |
+| OS                                        | user directory                           | global directory                                                                                                    |
+| ----------------------------------------- | ---------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Linux (Ubuntu, Fedora), Flatpak, AppImage | `/$HOME/.config/inkscape/extensions/`    | `/usr/share/inkscape/extensions/`                                                                                   |
+| Snap                                      | `/$HOME/snap/inkscape/common/extensions` | `/snap/inkscape/current/share/inkscape/extensions`                                                                  |
+| Windows *.msi/*.exe Setup                 | `%AppData%\inkscape\extensions\`         | `C:\Program Files\inkscape\extensions\`                                                                             |
+| Windows App Store                         | `%AppData%\inkscape\extensions\`         | `C:\Program Files\WindowsApps\25415Inkscape.Inkscape_%VERSION%_x64__9waqn51p1ttv2\VFS\AppData\inkscape\extensions\` |
 
 Please also refer to the [official documentation](https://inkscape-manuals.readthedocs.io/en/latest/extensions.html#installing-extensions).
 
@@ -145,7 +146,7 @@ curl -s -L https://y.stadtfabrikanten.org/mightyscape-windows > %TEMP%\mightysca
 This redirects to https://raw.githubusercontent.com/eridur-de/mightyscape-1.2/refs/heads/master/mightyscape-install.cmd
 
 > [!NOTE]
-> **Note:** The installer might prompt for system reboot. In this case please re-run the installer to continue.
+> **Note:** The installer might prompt for system reboot. In this case please re-run the installer to continue. The installer makes use of Chocolatey. Due to some missing packets (like xmlstartlet) we did not make use of winget.
 
 > [!NOTE]
 > **Note:** if `openmesh` fails to install on Windows, please see [here](https://github.com/eridur-de/mightyscape-1.2/issues/131).
