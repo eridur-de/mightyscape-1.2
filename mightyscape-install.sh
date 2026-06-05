@@ -213,6 +213,7 @@ setup_mightyscape () {
             if [[ -e "$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/.git" ]]; then
                 echo -e "${CL}Target directory is git. Update the repo?'${NF}"
                 if [[ $REPLY =~ ^[Yy]$ ]]; then
+                    cd "$INKSCAPE_EXTENSIONS_DIR/$GIT_REPO/"
                     git_update
                 fi
             fi
