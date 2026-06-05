@@ -1,13 +1,12 @@
 @echo off
 setlocal ENABLEDELAYEDEXPANSION
-net session>NUL 2>&1 && goto :elevated
+net session>nul 2>&1 && goto :elevated
 set ELEVATE_CMDLINE=cd /d "%~dp0" ^& "%~f0" %*
 powershell.exe -noprofile -c Start-Process -WindowStyle Maximized -Verb RunAs cmd.exe \"/k $env:ELEVATE_CMDLINE\"
 exit /b %ERRORLEVEL%
 
 :elevated
-set INKSCAPE_USER_DIR=%AppData%\inkscape
-set INKSCAPE_EXTENSIONS_DIR=%INKSCAPE_USER_DIR%\extensions
+cls
 set GIT_SERVER=github.com
 set GIT_MAINTAINER=eridur-de
 set GIT_REPO=mightyscape-1.2
@@ -21,20 +20,9 @@ echo.         /___/         /___/            /_/
 echo.
 echo.This script will install MightyScape Open Source extensions for Inkscape.
 
-:entry
-set /P c=Do you like to continue [y/n]?
-if /I "%c%" EQU "y" goto :test_is_running
-if /I "%c%" EQU "n" goto :quit
-goto :entry
-
-:quit
-echo.kk thx bye!
-pause
-exit 0
-
 :test_is_running
 echo.Checking for running Inkscape instances ...
-tasklist /fi "ImageName eq inkscape.exe" /fo csv 2>NUL | find /I "inkscape.exe">NUL
+tasklist /fi "ImageName eq inkscape.exe" /fo csv 2>nul | find /I "inkscape.exe">nul
 if %ERRORLEVEL% EQU 0 (
 	echo.Error: Inkscape is running right now. Please quit and try again!
 	pause
@@ -44,14 +32,65 @@ goto :get_installations
 
 :get_installations
 echo.Checking for having Inkscape :-) ...
-for /f "delims=" %%A in ('wmic product where "Name='Inkscape'" get InstallLocation ^| find "\"') do set INKSCAPE_CMD=%%A
-set INKSCAPE_CMD=%INKSCAPE_CMD:~0,-4%\bin\inkscape.exe
-if not exist "%INKSCAPE_CMD%" (
-	echo.Inkscape not installed! Hmm....
+where winget >nul 2>nul
+if not %ERRORLEVEL%==0 (
+	powershell -NoP -NoLogo -NonI -Command "Install-Script winget-install -Force"
+	call refreshenv && powershell -NoP -NoLogo -NonI -ExecutionPolicy ByPass -Command "winget-install"
+)
+for /F "delims=" %%A in ('powershell -Command "$OldLog = Get-WinUserLanguageList; Set-WinUserLanguageList -LanguageList en-US -Force; $Path = ((winget list Inkscape --details | Select-String """Installed Location:""").Line); Set-WinUserLanguageList -LanguageList $OldLog -Force; $Path -replace """Installed Location: """, """""" "') do (
+	set "PKG=%%A"
+		if exist "!PKG!\VFS\ProgramFilesX64\Inkscape\bin\inkscape.exe" (
+		set PKG_MSSTORE="!PKG!\VFS\ProgramFilesX64\Inkscape\bin\inkscape.exe"
+	)
+	if exist "!PKG!\bin\inkscape.exe" (
+		set PKG_MSI="!PKG!\bin\inkscape.exe"
+	)
+)
+if defined PKG_MSSTORE (
+	echo. - Microsoft Store package installed (0^)
+	)
+if defined PKG_MSI (
+	echo. - Regular Inkscape *.msi/*.exe setup installed (1^)
+	)
+echo. - portable executable (maybe existent?) (2)
+goto :instance_choice
+
+:instance_choice
+set /P INSTANCE_CHOICE=Choose an Inkscape instance where to install and configure MightyScape: [0/1/2]?
+if /I "%INSTANCE_CHOICE%" EQU "0" (
+	setlocal DISABLEDELAYEDEXPANSION
+	set "INKSCAPE_CMD=shell:AppsFolder\25415Inkscape.Inkscape_9waqn51p1ttv2^^!INKSCAPE"
+	setlocal ENABLEDELAYEDEXPANSION
+	set INKSCAPE_USER_DIR=%AppData%\inkscape
+	)
+if /I "%INSTANCE_CHOICE%" EQU "1" (
+	set INKSCAPE_CMD=%PKG_MSI%
+	rem set INKSCAPE_USER_DIR=%AppData%\inkscape
+	for /F "delims=" %%A in ('%PKG_MSI% --user-data-directory') do (set INKSCAPE_USER_DIR=%%A)
+	)
+if /I "%INSTANCE_CHOICE%" EQU "2" (
+	set /P PKG_PORTABLE=Please enter the path of your portable installation's Inkscape.exe. If you leave empty, default values for configuration are used.
+	if not exist "%PKG_PORTABLE%" (
+		echo.Error: path seems not to exist. Using default values
+			set INKSCAPE_CMD=no-portable-provided
+	) else (
+		set INKSCAPE_CMD=%PKG_PORTABLE%
+	)
+	set INKSCAPE_USER_DIR=%AppData%\inkscape
+	)
+goto :proceed_setup
+
+:proceed_setup
+
+echo.Inkscape user directory: %INKSCAPE_USER_DIR%
+if not exist "%INKSCAPE_USER_DIR%" (
+	echo.Error: Inkscape user directory %INKSCAPE_USER_DIR% does not exist!
 	pause
 	exit 1
-	)
-if not exist "%INKSCAPE_USER_DIR%" (
+)
+set INKSCAPE_EXTENSIONS_DIR=%INKSCAPE_USER_DIR%\extensions
+echo.Inkscape extension directory: %INKSCAPE_EXTENSIONS_DIR%
+if not exist "%INKSCAPE_EXTENSIONS_DIR%" (
 	echo.Extensions directory "%INKSCAPE_EXTENSIONS_DIR%" could not be found. Trying to create!
 	mkdir %INKSCAPE_USER_DIR%
 	)
@@ -59,61 +98,59 @@ goto :install_system_packages
 
 :install_system_packages
 echo.Installing system packages ...
-where choco >NUL 2>NUL
+where choco >nul 2>nul
 if not %ERRORLEVEL%==0 (
 	echo.Installing choco
 	powershell -Command "Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))"
 	if !ERRORLEVEL!==350 goto :reboot
 	)
-choco feature | find /I "[x] exitOnRebootDetected" >NUL 2>NUL
+choco feature | find /I "[x] exitOnRebootDetected" >nul 2>nul
 if not %ERRORLEVEL%==0 (
 	choco feature enable --name="exitOnRebootDetected"
 	)
-where curl >NUL 2>NUL
+where curl >nul 2>nul
 if not %ERRORLEVEL%==0 (
 	echo.Installing curl
 	choco install -y curl
 	if !ERRORLEVEL!==350 goto :reboot
 	)
-where jq >NUL 2>NUL
+where jq >nul 2>nul
 if not %ERRORLEVEL%==0 (
 	echo.Installing jq
 	choco install -y jq
 	if !ERRORLEVEL!==350 goto :reboot
 	)
-where xml >NUL 2>NUL
+where xml >nul 2>nul
 if not %ERRORLEVEL%==0 (
 	echo.Installing xmlstarlet
 	choco install -y xmlstarlet
 	if !ERRORLEVEL!==350 goto :reboot
 	)
-where git >NUL 2>NUL
+where git >nul 2>nul
 if not %ERRORLEVEL%==0 (
 	echo.Installing git
 	choco install -y git.install --params "'/GitAndUnixToolsOnPath /WindowsTerminal /NoAutoCrlf'"
 	if !ERRORLEVEL!==350 goto :reboot
 	)
-choco list --lo --limit-output -e vcredist140 | find /i "vcredist140" >NUL 2>NUL
+choco list --lo --limit-output -e vcredist140 | find /i "vcredist140" >nul 2>nul
 if not %ERRORLEVEL%==0 (
 	echo.Installing vcredist140
 	choco install -y vcredist140
 	if !ERRORLEVEL!==350 goto :reboot
 	)
-choco list --lo --limit-output -e vcredist2015 | find /i "vcredist2015" >NUL 2>NUL
+choco list --lo --limit-output -e vcredist2015 | find /i "vcredist2015" >nul 2>nul
 if not %ERRORLEVEL%==0 (
 	echo.Installing vcredist2015
 	choco install -y vcredist2015
 	if !ERRORLEVEL!==350 goto :reboot
 	)
-uv --version >NUL 2>NUL
+uv --version >nul 2>nul
 if not %ERRORLEVEL%==0 (
 	echo.Installing Python UV ...
 	choco install -y uv
 	if !ERRORLEVEL!==350 goto :reboot
 	)
-:: refresh environment variables after installing new commands to make them available on PATH
-call refreshenv
-choco upgrade -y chocolatey curl git jq vcredist140 vcredist2015 xmlstarlet
+call refreshenv && choco upgrade -y chocolatey curl git jq vcredist140 vcredist2015 xmlstarlet
 goto :setup_mightyscape
 
 :reboot
@@ -124,9 +161,9 @@ exit 1
 :setup_mightyscape
 echo.Cloning MightyScape ...
 curl -s -k https://api.%GIT_SERVER%/repos/%GIT_MAINTAINER%/%GIT_REPO% > %TEMP%\size.tmp
-jq ".size" %TEMP%\size.tmp >NUL
+jq ".size" %TEMP%\size.tmp >nul
 for /f "delims=" %%A in ('jq ".size" %TEMP%\size.tmp') do set SIZE_KB=%%A
-set /a SIZE_MB=%SIZE_KB%/1000>NUL
+set /a SIZE_MB=%SIZE_KB%/1000>nul
 echo.Repository size is approx. %SIZE_MB% MB
 if not exist %INKSCAPE_EXTENSIONS_DIR% (
 	echo.Extensions directory "%INKSCAPE_EXTENSIONS_DIR%" could not be found!
@@ -157,8 +194,9 @@ goto :entry_git_update
 
 :git_update
 echo.Updating MightyScape repo ...
+cd %INKSCAPE_EXTENSIONS_DIR%\%GIT_REPO%\
+rem git stash
 git pull
-git stash
 goto :install_python_env
 
 :install_python_env
@@ -167,7 +205,7 @@ cd %INKSCAPE_EXTENSIONS_DIR%/%GIT_REPO%/
 set UV_PROJECT_ENVIRONMENT=%INKSCAPE_EXTENSIONS_DIR%/%GIT_REPO%
 uv self update
 uv venv --allow-existing %INKSCAPE_EXTENSIONS_DIR%/%GIT_REPO%
-uv add -r requirements.txt
+uv add --frozen -r requirements.txt
 uv pip install --upgrade -r requirements.txt
 echo.Total size of installation:
 powershell -command "$fso = new-object -com Scripting.FileSystemObject; gci -Directory | select @{l='Size'; e={$fso.GetFolder($_.FullName).Size}},FullName | sort Size -Descending | ft @{l='Size [MB]'; e={'{0:N2}' -f ($_.Size / 1MB)}},FullName"
@@ -179,7 +217,7 @@ set PREF_FILE=%INKSCAPE_USER_DIR%\preferences.xml
 set PREF_NODE=/inkscape/group[@id=\"extensions\"]
 set PREF_ATTRIB="python-interpreter"
 set PREF_VALUE=%INKSCAPE_EXTENSIONS_DIR%\%GIT_REPO%\Scripts\pythonw.exe
-findstr /I "python-interpreter" %PREF_FILE%>NUL
+findstr /I "python-interpreter" %PREF_FILE%>nul
 if %ERRORLEVEL% EQU 0 (
 	xml edit --inplace --ps --pf --update %PREF_NODE%/@%PREF_ATTRIB% --value %PREF_VALUE% %PREF_FILE%
 	) else (
@@ -188,8 +226,15 @@ if %ERRORLEVEL% EQU 0 (
 goto :call_about_extension
 
 :call_about_extension
-set CALL="%INKSCAPE_CMD%" --with-gui --actions="fablabchemnitz.de.about-upgrade-mightyscape"
-echo.Calling About Extension to test installation: %CALL%
-call %CALL%
+if /I "%INSTANCE_CHOICE%" EQU "0" (
+	echo.Calling Inkscape without About Extension: !INKSCAPE_CMD!
+	echo.If Inkscape is installed by MS Store, we cannot pass cli attributes! Please manually test by starting About Extension
+	start "" %INKSCAPE_CMD%
+	
+) else (
+	set CALL=%INKSCAPE_CMD% --with-gui --actions="fablabchemnitz.de.about-upgrade-mightyscape"
+	echo.Calling About Extension to test installation: !CALL!
+	call !CALL!
+)
 pause
 exit 0
