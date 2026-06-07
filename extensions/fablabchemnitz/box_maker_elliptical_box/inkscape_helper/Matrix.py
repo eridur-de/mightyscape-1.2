@@ -25,7 +25,7 @@ class Matrix(object):
 
     def det(self):
         if self.rows != self.columns:
-            raise TypeError, 'Can only calculate determinant for a square matrix'
+            raise TypeError('Can only calculate determinant for a square matrix')
         if self.rows == 1:
             return self[0][0]
         if self.rows == 2:
@@ -40,10 +40,10 @@ class Matrix(object):
 
     def __add__(self, other):
         if self.rows != other.rows or self.columns != other.columns:
-            raise TypeError, 'Both matrices should have equal dimensions. Is ({} x {}) and ({} x {}).'.format(self.rows, self.columns, other.rows, other.columns)
+            raise TypeError('Both matrices should have equal dimensions. Is ({} x {}) and ({} x {}).'.format(self.rows, self.columns, other.rows, other.columns))
         return Matrix([[self[r][c] + other[r][c] for c in range(self.columns)] for r in range(self.rows)])
 
     def __mul__(self, other):
         if self.columns != other.rows:
-            raise TypeError, 'Left matrix should have same number of columns as right matrix has rows. Is ({} x {}) and ({} x {}).'.format(self.rows, self.columns, other.rows, other.columns)
+            raise TypeError('Left matrix should have same number of columns as right matrix has rows. Is ({} x {}) and ({} x {}).'.format(self.rows, self.columns, other.rows, other.columns))
         return Matrix([[sum([self[r][i] * other[i][c] for i in range(self.columns)]) for c in range(other.columns)] for r in range(self.rows)])

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 '''
 Created by Danylo Horbatenko 2018, dnkxyz@gmail.com
 Copyright (C) 2018 George Fomitchev, gf@endurancerobots.com

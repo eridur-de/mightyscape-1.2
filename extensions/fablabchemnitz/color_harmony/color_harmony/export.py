@@ -25,7 +25,7 @@ from lxml import etree as ET
 from zipfile import ZipFile, ZIP_DEFLATED
 
 
-class PaletteFile(object)
+class PaletteFile(object):
 
     def __init__(self, name, colors, filename, folder):
         self.colors = colors

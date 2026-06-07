@@ -172,7 +172,7 @@ def match_colors_(space, colors1, colors2):
             matched.append(y)
         return [space.fromCoords(x) for x in matched]
     except LinAlgError as e:
-        print e
+        print(e)
         return colors1
 
 def match_colors(space, colors1, colors2):

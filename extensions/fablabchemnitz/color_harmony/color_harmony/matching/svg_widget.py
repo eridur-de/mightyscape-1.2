@@ -71,7 +71,7 @@ class SvgTemplateWidget(QtSvg.QSvgWidget):
         self._svg_colors, self._template = svg.read_template(filename)
         print("Source SVG colors:")
         for c in self._svg_colors:
-            print str(c)
+            print(str(c))
         print("Template loaded: {}: {} bytes".format(filename, len(self._template)))
         self._need_render = True
         self._update()

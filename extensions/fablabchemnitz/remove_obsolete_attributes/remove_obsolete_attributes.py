@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 
 """
 Removes attributes sodipodi:absref, sodipodi:docbase and sodipodi:docname from all elements that contain them.

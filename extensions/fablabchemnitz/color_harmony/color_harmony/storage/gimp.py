@@ -131,7 +131,7 @@ class GimpPalette(Storage):
             do_close = True
         l = pf.readline().strip()
         if l != 'GIMP Palette':
-            raise SyntaxError, "Invalid palette file!"
+            raise SyntaxError("Invalid palette file!")
         self.palette.name = " ".join(pf.readline().strip().split()[1:])
         all_user = True
         n_colors = 0
