@@ -42,7 +42,7 @@ if not %ERRORLEVEL%==0 (
     powershell -NoP -NoLogo -NonI -Command "Install-Script winget-install -Force"
     call refreshenv && powershell -NoP -NoLogo -NonI -ExecutionPolicy ByPass -Command "winget-install"
 )
-for /F "delims=" %%A in ('powershell -Command "$OldLog = Get-WinUserLanguageList; Set-WinUserLanguageList -LanguageList en-US -Force; $Path = ((winget list Inkscape --details | Select-String """Installed Location:""").Line); Set-WinUserLanguageList -LanguageList $OldLog -Force; $Path -replace """Installed Location: """, """""" "') do (
+for /F "delims=" %%A in ('powershell -Command "$OldLog = Get-WinUserLanguageList; Set-WinUserLanguageList -LanguageList en-US -Force; Start-Sleep -Seconds 2; $Path = ((winget list Inkscape --details | Select-String 'Installed Location:').Line); Set-WinUserLanguageList -LanguageList $OldLog -Force; Start-Sleep -Seconds 1; $Path -replace 'Installed Location:\s*', ''"') do (
     set "PKG=%%A"
         if exist "!PKG!\VFS\ProgramFilesX64\Inkscape\bin\inkscape.exe" (
         set PKG_MSSTORE="!PKG!\VFS\ProgramFilesX64\Inkscape\bin\inkscape.exe"
