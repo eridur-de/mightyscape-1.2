@@ -1,0 +1,10 @@
+color
+Image
+lxml
+matching
+numpy
+palette
+Pillow
+PyQt4
+scikit_learn
+tinycss

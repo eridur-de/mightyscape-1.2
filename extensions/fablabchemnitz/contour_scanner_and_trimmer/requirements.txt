@@ -1,0 +1,4 @@
+gmpy2
+lxml
+numpy
+Shapely

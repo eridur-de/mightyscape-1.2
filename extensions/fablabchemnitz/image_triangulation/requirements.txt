@@ -1,1 +1,5 @@
-opencv-python
+lxml
+numpy
+opencv_python
+Pillow
+scipy

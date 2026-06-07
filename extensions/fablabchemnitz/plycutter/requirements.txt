@@ -1,0 +1,2 @@
+lxml
+git+https://github.com/tjltjl/plycutter.git

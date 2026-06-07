@@ -1,0 +1,5 @@
+lxml
+Shapely
+vpype
+vpype-dxf
+git+https://github.com/LoicGoulefert/deduplicate.git#egg=deduplicate

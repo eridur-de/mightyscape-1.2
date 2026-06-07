@@ -1,0 +1,4 @@
+geometry
+numpy
+Pillow
+PyOpenGL

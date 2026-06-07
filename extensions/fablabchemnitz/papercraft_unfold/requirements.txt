@@ -1,0 +1,5 @@
+lxml
+numpy
+Pillow
+pygame
+PyOpenGL

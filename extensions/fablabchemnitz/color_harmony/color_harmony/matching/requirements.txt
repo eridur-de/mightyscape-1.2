@@ -1,0 +1,4 @@
+color
+lxml
+numpy
+PyQt4

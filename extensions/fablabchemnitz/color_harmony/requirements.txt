@@ -1,0 +1,9 @@
+asposestorage
+color
+Image
+lxml
+numpy
+Pillow
+PyQt4
+scikit_learn
+tinycss
