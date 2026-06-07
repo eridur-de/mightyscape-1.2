@@ -19,6 +19,7 @@ import sys
 import os
 import subprocess
 from subprocess import Popen, PIPE
+from pathlib import Path
 import warnings
 from datetime import datetime, timezone
 from lxml import etree
@@ -51,29 +52,22 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
     restart = False
 
     def install_requirements(self):
-        requirements = os.path.abspath(os.path.join(self.ext_path()) + "/../../../requirements.txt")
-        if not os.path.exists(requirements):
-            inkex.utils.debug("requirements.txt could not be found.")
-            exit(1)
-
-        if os.name=="nt":
-            python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'Scripts', 'python.exe'))
-        else: #Linux/MacOS
-            python_venv = os.path.abspath(os.path.join(os.path.dirname(__file__), '../', '../', '../', 'bin', 'python'))
-
+        inkex.utils.debug("Installing/upgrading python requirements.")
         commands = []
-        commands.append("uv add --frozen -r {}".format(requirements))
         commands.append("uv self update")
-        commands.append("uv pip install --upgrade -r {}".format(requirements))
+        for path in Path(os.path.join(self.ext_path() + "/..")).rglob("requirements.txt"):
+            req_file = str(path)
+            commands.append("uv add --frozen -r {}".format(req_file))
+            commands.append("uv pip install --upgrade -r {}".format(req_file))
         for command in commands:
-            inkex.utils.debug("Executing: {}".format(command))
+            #inkex.utils.debug("Executing: {}".format(command))
             proc = subprocess.Popen(command, shell=True, stdout=PIPE, stderr=PIPE, encoding="UTF-8")
             stdout, stderr = proc.communicate()
-            try:
-                inkex.utils.debug(stdout)
-                inkex.utils.debug(stderr)
-            except:
-                pass
+            #try:
+            #    inkex.utils.debug(stdout)
+            #    inkex.utils.debug(stderr)
+            #except:
+            #    pass
             proc.wait()
 
     def update(self, local_repo, remote, localCommitCount):
@@ -112,7 +106,7 @@ class AboutUpgradeMightyScape(inkex.EffectExtension):
    
     def add_arguments(self, pars):
         pars.add_argument("--tab")
-        pars.add_argument("--install_requirements", type=inkex.Boolean, default=False, help="Install python requirements")
+        pars.add_argument("--install_requirements", type=inkex.Boolean, default=False, help="c")
         pars.add_argument("--convert_to_git", type=inkex.Boolean, default=False, help="If you downloaded MightyScape as .zip or .tar.gz you cannot upgrade using this extension. But you can convert your downloaded directory to a .git one by enabling this option")
         pars.add_argument("--recreate_remotes", type=inkex.Boolean, default=False, help="Update remotes in git config file (useful if you have an older version of MightyScape or if sth. changes)")
         pars.add_argument("--stash_untracked", type=inkex.Boolean, default=False, help="Stash untracked files and continue to upgrade")
