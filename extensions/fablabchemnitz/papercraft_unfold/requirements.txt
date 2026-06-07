@@ -1,5 +1,8 @@
 lxml
+basemodel
+mesh
 numpy
 Pillow
 pygame
+geometry
 PyOpenGL
