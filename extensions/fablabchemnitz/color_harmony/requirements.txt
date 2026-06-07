@@ -7,3 +7,5 @@ Pillow
 PyQt4
 scikit_learn
 tinycss
+matching
+palette
