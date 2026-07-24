@@ -5,7 +5,7 @@ var zlib = require('zlib');
 var PNG = require('./PNG');
 
 var inflate = function(data, callback){
-	return zlib.inflate(Buffer.from(data), callback);
+	return zlib.inflate(new Buffer(data), callback);
 };
 
 var slice = Array.prototype.slice;
@@ -180,7 +180,7 @@ PNGReader.prototype.decodePixels = function(callback){
 	var length = 0;
 	var i, j, k, l;
 	for (l = this.dataChunks.length; l--;) length += this.dataChunks[l].length;
-	var data = Buffer.alloc(length);
+	var data = new Buffer(length);
 	for (i = 0, k = 0, l = this.dataChunks.length; i < l; i++){
 		var chunk = this.dataChunks[i];
 		for (j = 0; j < chunk.length; j++) data[k++] = chunk[j];
@@ -214,7 +214,7 @@ PNGReader.prototype.interlaceNone = function(data){
 	// color bytes per row
 	var cpr = bpp * png.width;
 
-	var pixels = Buffer.alloc(bpp * png.width * png.height);
+	var pixels = new Buffer(bpp * png.width * png.height);
 	var scanline;
 	var offset = 0;
 
