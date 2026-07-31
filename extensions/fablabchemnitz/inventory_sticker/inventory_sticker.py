@@ -37,6 +37,7 @@ import re
 import subprocess
 from subprocess import Popen, PIPE
 from tkinter import Tk, font
+from pathlib import Path
 
 INVALID_BIT = 2
 
@@ -379,10 +380,26 @@ class InventorySticker(inkex.Effect):
         globalFont = "Miso"
         misoAvailable = False
         root = Tk()
-        for f in font.families():
-            if f.lower() == globalFont.lower():
-                misoAvailable = True
-                break
+        installed_fonts = [f.lower() for f in font.families()]
+        if globalFont.lower() in installed_fonts:
+            misoAvailable = True
+        if not misoAvailable:
+            custom_dirs = [
+                Path("/usr/local/share/fonts"),
+                Path.home() / ".config" / "inkscape" / "fonts"
+            ]
+            
+            for font_dir in custom_dirs:
+                if font_dir.exists():
+                    for ext in ("*.ttf", "*.otf", "*.TTF", "*.OTF"):
+                        for font_path in font_dir.rglob(ext):
+                            if globalFont.lower() in font_path.stem.lower():
+                                misoAvailable = True
+                                break
+                        if misoAvailable:
+                            break
+                if misoAvailable:
+                    break
         if misoAvailable is False:
             inkex.errormsg("Warning: " + globalFont + " Font could not be found. Did you properly install the font? Please note: Stickers will look malformed!")
 
