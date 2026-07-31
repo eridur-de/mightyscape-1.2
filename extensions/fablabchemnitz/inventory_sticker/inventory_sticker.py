@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 #
 # An extension to generate SVG/PNG labels (stickers) for use with our item inventory system.
-# It pulls a .csv file from a server URL (protected by basic auth) and exports and prints the labels to a Brother QL-720NW label printer
+# It pulls a .csv file from a server URL (protected by basic auth) and exports and prints the labels to a Brother label printer
 # Documentation: https://wiki.fablabchemnitz.de/display/TEED/Werkstattorientierung+im+FabLab+-+Digtales+Inventar
 #
-# Made by FabLab Chemnitz / Stadtfabrikanten e.V. - Developer: Mario Voigt (year 2021)
+# Made by FabLab Chemnitz / Stadtfabrikanten e.V. - Developer: Mario Voigt (2021 - 2026)
 #
 # This extension is based on the "original" barcode extension included in default Inkscape Extension Set, which is licensed by the following:
 #
@@ -372,14 +372,30 @@ class InventorySticker(inkex.Effect):
         pars.add_argument("--preview", type=inkex.Boolean, default=False)
         pars.add_argument("--export_svg", type=inkex.Boolean, default=True)
         pars.add_argument("--export_png", type=inkex.Boolean, default=False)
-        pars.add_argument("--print_png", type=int, default=0)
-        pars.add_argument("--print_device", default="04f9:2044")
+        pars.add_argument("--sticker_height", type=float, default=32.2)
+        pars.add_argument("--stickers", type=int, default=0)
+        pars.add_argument("--print_device", default="QL-720NW")
         pars.add_argument("--brother_ql", default="/home/myprofile/venv/bin/brother_ql")
+        pars.add_argument("--ptouch", default="/home/myprofile/venv/bin/ptouch")
 
     def effect(self):
+
+        printers = {
+            "PT-P910BT": {
+                "vendorId": "04f9",
+                "devId": "20c7",
+                "resolution": "300"
+            },
+            "QL-720NW": {
+                "vendorId": "04f9",
+                "devId": "2044",
+                "resolution": "600"
+            }
+        }
+
         globalFont = "Miso"
         misoAvailable = False
-        root = Tk()
+        Tk()
         installed_fonts = [f.lower() for f in font.families()]
         if globalFont.lower() in installed_fonts:
             misoAvailable = True
@@ -403,12 +419,7 @@ class InventorySticker(inkex.Effect):
         if misoAvailable is False:
             inkex.errormsg("Warning: " + globalFont + " Font could not be found. Did you properly install the font? Please note: Stickers will look malformed!")
 
-        # Adjust the document view for the desired sticker size
-        root = self.svg.getElement("//svg:svg")
-
-        subline_fontsize = 40 #px; one line of bottom text (id and owner) creates a box of that height
-
-        #our DataMatrix has size 16x16, each cube is sized by 16x16px -> total size is 256x256px. We use 4px padding for all directions
+        subline_fontsize = 40 
         DataMatrix_xy = 16
         DataMatrix_height = 16 * DataMatrix_xy
         DataMatrix_width = DataMatrix_height
@@ -416,22 +427,32 @@ class InventorySticker(inkex.Effect):
         sticker_height = DataMatrix_height + subline_fontsize + 3 * sticker_padding
         sticker_width = 696
 
-        #configure font sizes and box heights to define how large the font size may be at maximum (to omit overflow)
         objectNameMaxHeight = sticker_height - 2 * subline_fontsize - 4 * sticker_padding
         objectNameMaxLines = 5
-        objectNameFontSize = objectNameMaxHeight / objectNameMaxLines #px; generate main font size from lines and box size
+        objectNameFontSize = objectNameMaxHeight / objectNameMaxLines 
 
-        root.set("width", str(sticker_width) + "px")
-        root.set("height", str(sticker_height) + "px")
-        root.set("viewBox", "%f %f %f %f" % (0, 0, sticker_width, sticker_height))
+        # Calculate target physical height in mm, and scale width proportionally based on original aspect ratio
+        target_height_mm = self.options.sticker_height
+        aspect_ratio = sticker_width / sticker_height
+        target_width_mm = target_height_mm * aspect_ratio
 
-        #clean the document (make it blank) to avoid printing duplicated things
+        # Ensure root points to the SVG root element (overwriting any previous Tkinter app variable)
+        root = self.svg.getElement("//svg:svg")
+
+        # Set root SVG dimensions in mm and viewBox directly to the mm dimensions for a scale of 1
+        root.set("width", f"{target_width_mm}mm")
+        root.set("height", f"{target_height_mm}mm")
+        root.set("viewBox", f"0 0 {target_width_mm} {target_height_mm}")
+
+        # Clean the document (make it blank) to avoid printing duplicated things
         for node in self.document.xpath('//*', namespaces=inkex.NSS):
             if node.TAG not in ('svg', 'defs', 'namedview'):
                 node.delete()
 
-        #set the document units
-        self.document.getroot().find(inkex.addNS("namedview", "sodipodi")).set("inkscape:document-units", "px")
+        # Set the document units to mm
+        namedview = self.document.getroot().find(inkex.addNS("namedview", "sodipodi"))
+        if namedview is not None:
+            namedview.set("inkscape:document-units", "mm")
 
         # Download the recent inventory CSV file and parse line by line to create an inventory sticker
         password_mgr = urllib.request.HTTPPasswordMgrWithDefaultRealm()
@@ -486,14 +507,22 @@ class InventorySticker(inkex.Effect):
                         else:
                             zoneDir = inventoryCSVParent #use top directory
 
-                        #Generate the recent sticker content
-                        stickerGroup = self.document.getroot().add(inkex.Group(id="InventorySticker_Id" + sticker_id)) #make a new group at root level
+                        # Create the sticker group
+                        stickerGroup = self.document.getroot().add(inkex.Group(id="InventorySticker_Id" + sticker_id))
+                        
+                        # Scale down the native design layout to fit the target mm container exactly
+                        scale_x = target_width_mm / sticker_width
+                        scale_y = target_height_mm / sticker_height
+
+                        wrapperGroup = stickerGroup.add(inkex.Group(id="wrapper_" + sticker_id))
+                        wrapperGroup.set("transform", f"scale({scale_x}, {scale_y})")
+
                         DataMatrixStyle = inkex.Style({"stroke": "none", "stroke-width": "1", "fill": "#000000"})
                         DataMatrixAttribs = {"style": str(DataMatrixStyle), "height": str(DataMatrix_xy) + "px", "width": str(DataMatrix_xy) + "px"}
 
                         # 1 - create DataMatrix (create a 2d list corresponding to the 1"s and 0s of the DataMatrix)
                         encoded = self.encode(self.options.target_url + "/" + sticker_id)
-                        DataMatrixGroup = stickerGroup.add(inkex.Group(id="DataMatrix_Id" + sticker_id)) #make a new group at root level
+                        DataMatrixGroup = wrapperGroup.add(inkex.Group(id="DataMatrix_Id" + sticker_id)) #make a new group at root level
                         for x, y in self.render_data_matrix(encoded, DataMatrix_xy):
                             DataMatrixAttribs.update({"x": str(x + sticker_padding), "y": str(y + sticker_padding)})
                             etree.SubElement(DataMatrixGroup, inkex.addNS("rect","svg"), DataMatrixAttribs)
@@ -502,7 +531,7 @@ class InventorySticker(inkex.Effect):
                         x_pos = DataMatrix_width + 2 * sticker_padding
 
                         # 2 - Add Object Name Text
-                        objectName = etree.SubElement(stickerGroup,
+                        objectName = etree.SubElement(wrapperGroup,
                             inkex.addNS("text", "svg"),
                             {
                                 "font-size": str(objectNameFontSize) + "px",
@@ -522,7 +551,7 @@ class InventorySticker(inkex.Effect):
                         objectNameTextSpan.text = splitAt(doc_title, 1) #add 1 whitespace after each chacter. So we can simulate a in-word line break (break by char instead by word)
 
                         # 3 - Add Object Id Text - use the same position but revert text anchors/align
-                        objectId = etree.SubElement(stickerGroup,
+                        objectId = etree.SubElement(wrapperGroup,
                             inkex.addNS("text", "svg"),
                             {
                                 "font-size": str(subline_fontsize) + "px",
@@ -540,7 +569,7 @@ class InventorySticker(inkex.Effect):
                         objectIdTextSpan.text = "Thing #" + sticker_id
 
                         # 4 - Add Owner Text
-                        owner = etree.SubElement(stickerGroup,
+                        owner = etree.SubElement(wrapperGroup,
                             inkex.addNS("text", "svg"),
                             {
                                 "font-size": str(subline_fontsize) + "px",
@@ -558,7 +587,7 @@ class InventorySticker(inkex.Effect):
                         ownerTextSpan.text = self.options.target_owner
 
                         # 5 - Add Level Text
-                        levelText = etree.SubElement(stickerGroup,
+                        levelText = etree.SubElement(wrapperGroup,
                             inkex.addNS("text", "svg"),
                             {
                                 "font-size": str(subline_fontsize) + "px",
@@ -579,7 +608,7 @@ class InventorySticker(inkex.Effect):
                         line_thickness = 2 #px
                         line_x_pos = 350 #px; start of the line (left coord)
                         line_length = sticker_width - line_x_pos
-                        divider = etree.SubElement(stickerGroup,
+                        divider = etree.SubElement(wrapperGroup,
                             inkex.addNS("path", "svg"),
                             {
                                 "d": "m " + str(line_x_pos) + "," + str(sticker_height - subline_fontsize - subline_fontsize) + " h " + str(line_length) ,
@@ -603,17 +632,31 @@ class InventorySticker(inkex.Effect):
 
                             if self.options.export_png == True: #we need to generate SVG before to get PNG. But if user selected PNG only we need to remove SVG afterwards
                                 #Make PNG from SVG (slow because each file is picked up separately. Takes about 10 minutes for 600 files
-                                inkscape(export_file_path + ".svg", actions="export-dpi:96;export-background:white;export-filename:{file_name};export-do;FileClose".format(file_name=export_file_path + ".png"))
+                                inkscape(export_file_path + ".svg", actions="export-dpi:{res};export-background:white;export-filename:{file_name};export-do;FileClose".format(res=printers[self.options.print_device]["resolution"], file_name=export_file_path + ".png"))
 
                             #fix for "usb.core.USBError: [Errno 13] Access denied (insufficient permissions)"
                             #echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="04f9", ATTR{idProduct}=="2044", MODE="666"' > /etc/udev/rules.d/99-garmin.rules && sudo udevadm trigger
-                            if self.options.print_png > 0:
+                            if self.options.stickers > 0:
                                 if self.options.export_png == False:
                                     inkex.errormsg("No file output for printing. Please set 'Export PNG' to true first.")
                                 else:
-                                    for x in range(self.options.print_png):
-                                        command = self.options.brother_ql + " -m QL-720NW --backend pyusb --printer usb://" + self.options.print_device + " print -l 62 --600dpi -r auto " + export_file_path + ".png"
-                                        p = Popen(command, shell=True, stdout=PIPE, stderr=PIPE) #forr Windows: shell=False
+                                    match self.options.print_device:
+                                        case "QL-720NW":
+                                            for x in range(self.options.stickers):
+                                                command = "{cmd} -m QL-720NW --backend pyusb --printer usb://{vendor}:{device} print -l {width:.0f} --{res}dpi -r auto {file}.png".format(
+                                                    cmd=self.options.brother_ql, vendor=printers[self.options.print_device]["vendorId"], device=printers[self.options.print_device]["devId"], res=printers[self.options.print_device]["resolution"], width=target_width_mm, file=export_file_path)
+                                        case "PT-P910BT":
+                                            #high-resolution doubles width???
+                                            #command = "{cmd} --usb --printer P910BT --high-resolution --precut --full-cut --copies {copies} --width {width:.0f} --tape-width {tape_width:.0f} --image {file}.png".format(
+                                            command = "{cmd} --usb --printer P910BT --precut --full-cut --copies {copies} --width {width:.0f} --tape-width {tape_width:.0f} --image {file}.png".format(
+                                                cmd=self.options.ptouch, copies=self.options.stickers, width=target_width_mm, tape_width=self.options.sticker_height, file=export_file_path)
+                                        case _:
+                                            inkex.errormsg("Undefined printer")
+                                            command = None
+
+                                    if command:
+                                        #inkex.utils.debug(command)
+                                        p = Popen(command, shell=True, stdout=PIPE, stderr=PIPE)
                                         stdout, stderr = p.communicate()
                                         p.wait()
                                         if p.returncode != 0:
@@ -622,8 +665,8 @@ class InventorySticker(inkex.Effect):
                                             if std_err.endswith("ValueError: Device not found\n") is True:
                                                 self.msg("Printer device not found or offline. Check for power, cables and entered printer interface ID")
                                             else:
-                                                inkex.errormsg("brother_ql returned errors:\nError code {:d}\n{}\n{}".format(p.returncode, std_out, std_err))
-
+                                                inkex.errormsg("Printing returned errors:\nError code {:d}\n{}\n{}".format(p.returncode, std_out, std_err))
+                                                
                             if self.options.export_svg != True: #If user selected PNG only we need to remove SVG again
                                 os.remove(export_file_path + ".svg")
 

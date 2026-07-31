@@ -17,15 +17,23 @@
             <param name="flat_export" type="bool" gui-text="Flat export" gui-description="If enabled no sub directories are created.">false</param>
             <param name="export_svg" type="bool" gui-text="Export SVG">true</param>
             <param name="export_png" type="bool" gui-text="Export PNG">false</param>
-            <param name="print_png" type="int" gui-text="Print PNG to Brother QL-720NW (count)" gui-description="Enter desired amount of stickers to print for each Id">0</param>
-            <param name="print_device" type="string" gui-text="Printer interface (USB)" gui-description="[VendorID:ProductID], Example: 04f9:2044">04f9:2044</param>
+            <param name="sticker_height" type="optiongroup" appearance="combo" gui-text="Sticker height (mm)" gui-description="Height of the sticker (mm)">
+                <option value="24.0">24mm (Brother PT-P910BT)</option>
+                <option value="32.2">32.2mm (Brother QL-720NW)</option>
+            </param>
+            <param name="stickers" type="int" gui-text="Stickers" gui-description="Enter desired amount of stickers to print for each Id">0</param>   
+            <param name="print_device" type="optiongroup" appearance="combo" gui-text="Printer (connected by USB)">
+                <option value="QL-720NW">Brother QL-720NW (04f9:2044)</option>
+                <option value="PT-P910BT">Brother PT-P910BT (04f9:20c7)</option>
+            </param>
             <param name="brother_ql" type="path" gui-text="brother_ql command" gui-description="The path of brother_ql executable" mode="file">/home/myprofile/venv/bin/brother_ql</param>
+            <param name="ptouch" type="path" gui-text="ptouch command" gui-description="The path of ptouch executable" mode="file">/home/myprofile/venv/bin/ptouch</param>
             <param name="preview" type="bool" gui-text="Generate preview only" gui-description="If enabled stickers will not be exported. Just generate sticker for the first given Id">false</param>
         </page>
         <page name="tab_about" gui-text="About">
             <label appearance="header">Inventory Sticker</label>
-            <label>This extension generates inventory stickers for thermo printers (we use a Brother QL-720NW) from our Teedy instance. Teedy is an open source software document management system (DMS).</label>
-            <label>2021 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
+            <label>This extension generates inventory stickers for thermo printers (we use a Brother QL-720NW and a Brother PT-P910BT) from our Teedy instance. Teedy is an open source software document management system (DMS).</label>
+            <label>2021 - 2026 / written by Mario Voigt (Stadtfabrikanten e.V. / FabLab Chemnitz)</label>
             <spacer/>
             <label appearance="header">Online Documentation</label>
             <label appearance="url">https://y.stadtfabrikanten.org/inventorysticker</label>
@@ -56,7 +64,7 @@
                 <submenu name="Cutting/Plotting/Printing"/>
             </submenu>
         </effects-menu>
-        <menu-tip>This extension generates inventory stickers for thermo printers (we use Brother QL-720NW) from a provided web server *.csv file</menu-tip>
+        <menu-tip>This extension generates inventory stickers for thermo printers (we use Brother QL-720NW and a Brother PT-910BT) from a provided web server *.csv file</menu-tip>
         <icon>icon.svg</icon>
     </effect>
     <script>
