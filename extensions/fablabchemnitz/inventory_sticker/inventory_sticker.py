@@ -38,6 +38,9 @@ import subprocess
 from subprocess import Popen, PIPE
 from tkinter import Tk, font
 from pathlib import Path
+import pyphen
+import warnings
+warnings.filterwarnings("ignore", category=ResourceWarning)
 
 INVALID_BIT = 2
 
@@ -372,6 +375,7 @@ class InventorySticker(inkex.Effect):
         pars.add_argument("--preview", type=inkex.Boolean, default=False)
         pars.add_argument("--export_svg", type=inkex.Boolean, default=True)
         pars.add_argument("--export_png", type=inkex.Boolean, default=False)
+        pars.add_argument("--highresolution", type=inkex.Boolean, default=False)
         pars.add_argument("--sticker_height", type=float, default=32.2)
         pars.add_argument("--stickers", type=int, default=0)
         pars.add_argument("--print_device", default="QL-720NW")
@@ -384,6 +388,9 @@ class InventorySticker(inkex.Effect):
             "PT-P910BT": {
                 "vendorId": "04f9",
                 "devId": "20c7",
+                #the following 360/720 dpi settings do not work properly. why?
+                #Normal / Standard Mode (High Quality): 360 dpi (X/Y)
+                #High-Resolution Mode: X 360 dpi | Y 720 dpi 
                 "resolution": "300"
             },
             "QL-720NW": {
@@ -423,7 +430,7 @@ class InventorySticker(inkex.Effect):
         DataMatrix_xy = 16
         DataMatrix_height = 16 * DataMatrix_xy
         DataMatrix_width = DataMatrix_height
-        sticker_padding = 4
+        sticker_padding = 16
         sticker_height = DataMatrix_height + subline_fontsize + 3 * sticker_padding
         sticker_width = 696
 
@@ -435,6 +442,10 @@ class InventorySticker(inkex.Effect):
         target_height_mm = self.options.sticker_height
         aspect_ratio = sticker_width / sticker_height
         target_width_mm = target_height_mm * aspect_ratio
+
+        #high-resolution copy-fix for P-910BT
+        if self.options.highresolution is True:
+            target_width_mm = target_width_mm / 2
 
         # Ensure root points to the SVG root element (overwriting any previous Tkinter app variable)
         root = self.svg.getElement("//svg:svg")
@@ -531,24 +542,123 @@ class InventorySticker(inkex.Effect):
                         x_pos = DataMatrix_width + 2 * sticker_padding
 
                         # 2 - Add Object Name Text
+                        dic = pyphen.Pyphen(lang='de_DE')       
+                        cleaned_title = doc_title.replace('-', '-')
+                        cleaned_title = re.sub(r'-{2,}', '-', cleaned_title)
+
+                        # Helper to estimate accurate pixel width for any string based on font size
+                        def get_text_pixel_width(text_str, font_size):
+                            width = 0
+                            for char in text_str:
+                                if char in "MWmwÄÖÜäöüß":
+                                    width += font_size * 0.70
+                                elif char in "Iilj.,:;|'!`":
+                                    width += font_size * 0.25
+                                elif char.isupper():
+                                    width += font_size * 0.55
+                                else:
+                                    width += font_size * 0.42
+                            return width
+
+                        def get_wrapped_lines_by_pixels(text, max_pixels, font_size):
+                            words = text.split(' ')
+                            lines = []
+                            current_line_words = []
+
+                            i = 0
+                            while i < len(words):
+                                word = words[i]
+                                
+                                # Keep a number ending with a dot (e.g., "1.") bound to the next word
+                                if word.endswith('.') and word[:-1].isdigit() and i + 1 < len(words):
+                                    word = word + " " + words[i + 1]
+                                    i += 1
+
+                                # Test if adding the whole word fits in pixels
+                                test_words = current_line_words + [word]
+                                test_str = " ".join(test_words)
+                                
+                                if get_text_pixel_width(test_str, font_size) <= max_pixels:
+                                    current_line_words = test_words
+                                    i += 1
+                                    continue
+
+                                # If current line already has words, push it out first
+                                if current_line_words:
+                                    lines.append(" ".join(current_line_words))
+                                    current_line_words = []
+
+                                # Check if single word fits on its own line
+                                if get_text_pixel_width(word, font_size) <= max_pixels:
+                                    current_line_words = [word]
+                                    i += 1
+                                    continue
+
+                                # Word is too long for a full line, hyphenate it using standard hyphen character
+                                hyphenated_word = dic.inserted(word, hyphen='-')
+                                syllables = hyphenated_word.split('-')
+                                
+                                if len(syllables) == 1:
+                                    lines.append(word)
+                                    i += 1
+                                else:
+                                    part = ""
+                                    for j, syl in enumerate(syllables):
+                                        next_part = part + syl
+                                        is_last = (j == len(syllables) - 1)
+                                        suffix = "-" if not is_last else ""
+                                        
+                                        test_chunk_width = get_text_pixel_width(part + syl + suffix, font_size)
+                                        min_left_valid = len(next_part) >= 4
+                                        
+                                        if test_chunk_width <= max_pixels and (len(part) == 0 or min_left_valid):
+                                            part = next_part
+                                        else:
+                                            if part and len(part) >= 4:
+                                                lines.append(part + "-")
+                                                part = syl
+                                            else:
+                                                part = next_part
+                                    if part:
+                                        current_line_words = [part]
+                                    i += 1
+
+                            if current_line_words:
+                                lines.append(" ".join(current_line_words))
+                            return lines
+
+                        wrapped_lines = get_wrapped_lines_by_pixels(cleaned_title, inline_size, objectNameFontSize)
+                        
                         objectName = etree.SubElement(wrapperGroup,
                             inkex.addNS("text", "svg"),
                             {
                                 "font-size": str(objectNameFontSize) + "px",
                                 "x": str(x_pos) + "px",
-                                #"xml:space": "preserve", #we cannot add this here because Inkscape throws an error
                                 "y": str(objectNameFontSize) + "px",
-                                "text-align" : "left",
+                                "text-align": "left",
                                 "text-anchor": "left",
-                                "vertical-align" : "bottom",
-                                #style: inline-size required for text wrapping inside box; letter spacing is required to remove the additional whitespaces. The letter spacing depends to the selected font family (Miso)
-                                "style": str(inkex.Style({"fill": "#000000", "writing-mode": "horizontal-tb", "inline-size": str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "bold", "letter-spacing": "-3.66px"}))
+                                "vertical-align": "bottom",
+                                "style": str(inkex.Style({
+                                    "fill": "#000000", 
+                                    "writing-mode": "horizontal-tb", 
+                                    "stroke": "none", 
+                                    "font-family": globalFont, 
+                                    "font-weight": "bold"
+                                }))
                             }
                         )
                         objectName.set("id", "objectName_Id" + sticker_id)
-                        objectName.set("xml:space", "preserve") #so we add it here instead .. if multiple whitespaces in text are coming after each other just render them (preserve!)
-                        objectNameTextSpan = etree.SubElement(objectName, inkex.addNS("tspan", "svg"), {})
-                        objectNameTextSpan.text = splitAt(doc_title, 1) #add 1 whitespace after each chacter. So we can simulate a in-word line break (break by char instead by word)
+                        prev_ended_with_hyphen = False
+                        for i, line_text in enumerate(wrapped_lines):
+                            if prev_ended_with_hyphen:
+                                line_text = line_text.lstrip("-")
+                                
+                            tspan = etree.SubElement(objectName, inkex.addNS("tspan", "svg"), {
+                                "x": str(x_pos),
+                                "dy": "0" if i == 0 else "1.2em"
+                            })
+                            tspan.text = line_text
+                            prev_ended_with_hyphen = line_text.endswith("-")
 
                         # 3 - Add Object Id Text - use the same position but revert text anchors/align
                         objectId = etree.SubElement(wrapperGroup,
@@ -579,7 +689,7 @@ class InventorySticker(inkex.Effect):
                                 "text-align" : "right",
                                 "text-anchor": "right",
                                 "vertical-align" : "bottom",
-                                "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "300"})) #inline-size required for text wrapping
+                                "style": str(inkex.Style({"fill": "#000000", "inline-size":str(inline_size) + "px", "stroke": "none", "font-family": globalFont, "font-weight": "regular"})) #inline-size required for text wrapping
                             }
                         )
                         owner.set("id", "owner_Id" + sticker_id)
@@ -632,7 +742,10 @@ class InventorySticker(inkex.Effect):
 
                             if self.options.export_png == True: #we need to generate SVG before to get PNG. But if user selected PNG only we need to remove SVG afterwards
                                 #Make PNG from SVG (slow because each file is picked up separately. Takes about 10 minutes for 600 files
-                                inkscape(export_file_path + ".svg", actions="export-dpi:{res};export-background:white;export-filename:{file_name};export-do;FileClose".format(res=printers[self.options.print_device]["resolution"], file_name=export_file_path + ".png"))
+                                resolution = int(printers[self.options.print_device]["resolution"])
+                                #if self.options.highresolution is False:
+                                #    resolution = resolution / 2
+                                inkscape(export_file_path + ".svg", actions="export-dpi:{res};export-background:white;export-filename:{file_name};export-do;FileClose".format(res=resolution, file_name=export_file_path + ".png"))
 
                             #fix for "usb.core.USBError: [Errno 13] Access denied (insufficient permissions)"
                             #echo 'SUBSYSTEM=="usb", ATTR{idVendor}=="04f9", ATTR{idProduct}=="2044", MODE="666"' > /etc/udev/rules.d/99-garmin.rules && sudo udevadm trigger
@@ -646,10 +759,10 @@ class InventorySticker(inkex.Effect):
                                                 command = "{cmd} -m QL-720NW --backend pyusb --printer usb://{vendor}:{device} print -l {width:.0f} --{res}dpi -r auto {file}.png".format(
                                                     cmd=self.options.brother_ql, vendor=printers[self.options.print_device]["vendorId"], device=printers[self.options.print_device]["devId"], res=printers[self.options.print_device]["resolution"], width=target_width_mm, file=export_file_path)
                                         case "PT-P910BT":
-                                            #high-resolution doubles width???
-                                            #command = "{cmd} --usb --printer P910BT --high-resolution --precut --full-cut --copies {copies} --width {width:.0f} --tape-width {tape_width:.0f} --image {file}.png".format(
                                             command = "{cmd} --usb --printer P910BT --precut --full-cut --copies {copies} --width {width:.0f} --tape-width {tape_width:.0f} --image {file}.png".format(
                                                 cmd=self.options.ptouch, copies=self.options.stickers, width=target_width_mm, tape_width=self.options.sticker_height, file=export_file_path)
+                                            if self.options.highresolution is True:
+                                                command = command + " --high-resolution"
                                         case _:
                                             inkex.errormsg("Undefined printer")
                                             command = None

@@ -17,6 +17,7 @@
             <param name="flat_export" type="bool" gui-text="Flat export" gui-description="If enabled no sub directories are created.">false</param>
             <param name="export_svg" type="bool" gui-text="Export SVG">true</param>
             <param name="export_png" type="bool" gui-text="Export PNG">false</param>
+            <param name="highresolution" type="bool" gui-text="High resolution mode" gui-description="This only applies for Brother PT-P910BT usefully.">false</param>
             <param name="sticker_height" type="optiongroup" appearance="combo" gui-text="Sticker height (mm)" gui-description="Height of the sticker (mm)">
                 <option value="24.0">24mm (Brother PT-P910BT)</option>
                 <option value="32.2">32.2mm (Brother QL-720NW)</option>
