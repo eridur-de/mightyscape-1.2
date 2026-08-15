@@ -1,6 +1,5 @@
-#!/usr/bin/env python3
-
 import os
+
 from lxml import etree
 from xml.etree import ElementTree as xml_tree
 from inkex import EffectExtension, Boolean
@@ -27,15 +26,15 @@ def generate_custom_interface(laser_off_command, laser_power_command):
             super().__init__()
 
         def laser_off(self):
-            return f"{laser_off_command}"
+            return laser_off_command.replace(r'\n', '\n')
 
         def set_laser_power(self, _):
-            return f"{laser_power_command}"
+            return laser_power_command.replace(r'\n', '\n')
 
     return CustomInterface
 
 
-class JTechPhotonicsLaserTool(EffectExtension):
+class GcodeExtension(EffectExtension):
     """Inkscape Effect Extension."""
 
     def __init__(self):
@@ -309,4 +308,5 @@ class JTechPhotonicsLaserTool(EffectExtension):
 
 
 if __name__ == '__main__':
-    JTechPhotonicsLaserTool().run()
+    effect = GcodeExtension()
+    effect.run()
