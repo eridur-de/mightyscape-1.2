@@ -7,7 +7,7 @@ include_toc: true
 
 <img title="" src="./extensions/fablabchemnitz/000_Mightyscape.svg" alt="" data-align="left">
 
-In short: A maintained extension collection for Inkscape. There are **241 extension folders** with **479 .inx files** inside. We also take part at the official [Inkscape Extensions Gallery](https://inkscape.org/gallery/=extension/) (with single extension uploads).
+In short: A maintained extension collection for Inkscape. There are **242 extension folders** with **480 .inx files** inside. We also take part at the official [Inkscape Extensions Gallery](https://inkscape.org/gallery/=extension/) (with single extension uploads).
 
 # About MightyScape
 
@@ -115,6 +115,7 @@ MightyScape heavily relies on a Python interpreter. As we need to install extern
 
 [Here](https://gitlab.com/inkscape/inkscape/-/blob/master/buildtools/msys2installdeps.sh?ref_type=heads) you can find a list of default modules Inkscape is shipped with.
 
+> [!TIP]
 > **Info:** You can ignore this step if you use our bundled installer script (way 1)!
 
 ### Additional Python modules
@@ -177,7 +178,7 @@ You should put the extracted files into your Inkscape user extension directory (
 
 As we use non-default Python, we need to adjust the main configuration of Inkscape to apply this change by adding a custom `python-interpreter` command in Inkscape default configuration (`preferences.xml`).
 
-> [!INFO]
+> [!NOTE]
 > Our installer script applies this change for you automatically! But you can dot it manually!
 
 > [!WARNING]
