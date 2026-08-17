@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Plotty (GCode Generator for Pen Plotter)",
+    "id": "fablabchemnitz.de.plotty",
+    "path": "plotty",
+    "dependent_extensions": null,
+    "original_name": "Marlin based plotter G-Code Output",
+    "original_id": "com.soukupak.gcode",
+    "license": "GNU GPL v2",
+    "license_url": "https://github.com/soukupak/inkscape-unicorn-for-marlin/blob/master/LICENSE",
+    "comment": "",
+    "source_url": "https://gitea.fablabchemnitz.de/FabLab_Chemnitz/mightyscape-1.2/src/branch/master/extensions/fablabchemnitz/plotty",
+    "fork_url": "https://github.com/soukupak/inkscape-unicorn-for-marlin",
+    "documentation_url": "https://y.stadtfabrikanten.org/plotty",
+    "inkscape_gallery_url": null,
+    "contributors": [
+      "github.com/soukupak",
+      "github.com/eridur-de"
+    ]
+  }
+]

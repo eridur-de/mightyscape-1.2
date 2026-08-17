@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<inkscape-extension xmlns="http://www.inkscape.org/namespace/inkscape/extension">
+  <name>Plotty (GCode Generator for Pen Plotter)</name>
+  <id>fablabchemnitz.de.plotty</id>
+  <param name="tab" type="notebook">
+    <page name="plotter_setup" gui-text="Setup">
+      <param name="pen-up" type="string" gui-text="Pen Up Command">M340 P0 500</param>
+      <param name="pen-down" type="string" gui-text="Pen Down Command">M340 P0 1500</param>
+      <param name="delay" type="float" min="0.0" max="1000.0" gui-text="Delay before pen-up command before movement in milliseconds.">0</param>
+      <param name="xy-feedrate" type="float" min="1.0" max="10000.0" gui-text="XY feedrate in mm/min.">7000</param>
+    </page>
+    <page name="homing" gui-text="Zero Point">
+      <param name="x-home" type="float" min="-1000.00" max="1000.00" gui-text="X">0.00</param>
+      <param name="y-home" type="float" min="-1000.00" max="1000.00" gui-text="Y">0.00</param>
+    </page>
+    <page name="pen_changes" gui-text="Pen Changes">
+      <param name="pause-on-layer-change" type="boolean" gui-text="Pause on layer changes?">false</param>
+    </page>
+    <page name="help" gui-text="Help">
+      <param name="ext_help" type="description" xml:space="preserve">
+- All text must be converted to paths.
+- Curves are approximated with line segments.
+</param>
+    </page>
+  </param>
+  <output>
+    <extension>.gcode</extension>
+    <mimetype>application/x-gcode</mimetype>
+    <filetypename>Plotty G-Code (*.gcode)</filetypename>
+    <filetypetooltip>Toolpath for Plotty pen plotter</filetypetooltip>
+    <dataloss>true</dataloss>
+  </output>
+  <script>
+    <command location="inx" interpreter="python">plotty.py</command>
+  </script>
+</inkscape-extension>
