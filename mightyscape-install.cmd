@@ -37,27 +37,27 @@ goto :get_installations
 
 :get_installations
 echo.Checking for having Inkscape :-) ...
-where winget >nul 2>nul
-if not %ERRORLEVEL%==0 (
-    powershell -NoP -NoLogo -NonI -Command "Install-Script winget-install -Force"
-    call refreshenv && powershell -NoP -NoLogo -NonI -ExecutionPolicy ByPass -Command "winget-install"
+set "PKG_MSI="
+set "PKG_MSSTORE="
+if exist "C:\Program Files\Inkscape\bin\inkscape.exe" (
+    set "PKG_MSI=C:\Program Files\Inkscape\bin\inkscape.exe"
+) else if exist "%ProgramFiles%\Inkscape\bin\inkscape.exe" (
+    set "PKG_MSI=%ProgramFiles%\Inkscape\bin\inkscape.exe"
+) else for /F "tokens=2*" %%A in ('reg query "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\inkscape.exe" /ve 2^>nul') do (
+    if exist "%%B" set "PKG_MSI=%%B"
 )
-for /F "delims=" %%A in ('powershell -Command "$OldLog = Get-WinUserLanguageList; Set-WinUserLanguageList -LanguageList en-US -Force; Start-Sleep -Seconds 2; $Path = ((winget list Inkscape --details | Select-String 'Installed Location:').Line); Set-WinUserLanguageList -LanguageList $OldLog -Force; Start-Sleep -Seconds 1; $Path -replace 'Installed Location:\s*', ''"') do (
-    set "PKG=%%A"
-        if exist "!PKG!\VFS\ProgramFilesX64\Inkscape\bin\inkscape.exe" (
-        set PKG_MSSTORE="!PKG!\VFS\ProgramFilesX64\Inkscape\bin\inkscape.exe"
-    )
-    if exist "!PKG!\bin\inkscape.exe" (
-        set PKG_MSI="!PKG!\bin\inkscape.exe"
+for /F "delims=" %%A in ('powershell -NoP -NonI -Command "(Get-AppxPackage -Name *Inkscape*).InstallLocation" 2^>nul') do (
+    if exist "%%A\VFS\ProgramFilesX64\Inkscape\bin\inkscape.exe" (
+        set "PKG_MSSTORE=%%A\VFS\ProgramFilesX64\Inkscape\bin\inkscape.exe"
     )
 )
 if defined PKG_MSSTORE (
     echo. - Microsoft Store package installed (0^)
-    )
+)
 if defined PKG_MSI (
     echo. - Regular Inkscape *.msi/*.exe setup installed (1^)
-    )
-echo. - portable executable (maybe existent?) (2)
+)
+echo. - portable executable (maybe existent?) (2^)
 goto :instance_choice
 
 :instance_choice
@@ -70,8 +70,7 @@ if /I "%INSTANCE_CHOICE%" EQU "0" (
     )
 if /I "%INSTANCE_CHOICE%" EQU "1" (
     set INKSCAPE_CMD=%PKG_MSI%
-    rem set INKSCAPE_USER_DIR=%AppData%\inkscape
-    for /F "delims=" %%A in ('%PKG_MSI% --user-data-directory') do (set INKSCAPE_USER_DIR=%%A)
+    for /F "delims=" %%A in ('"%PKG_MSI%" --user-data-directory') do (set INKSCAPE_USER_DIR=%%A)
     )
 if /I "%INSTANCE_CHOICE%" EQU "2" (
     set /P PKG_PORTABLE=Please enter the path of your portable installation's Inkscape.exe. If you leave empty, default values for configuration are used.
