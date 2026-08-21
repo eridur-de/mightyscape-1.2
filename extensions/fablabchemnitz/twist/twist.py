@@ -279,8 +279,8 @@ class Twist(inkex.EffectExtension):
                 y = float(node.get('y'))
                 if (not x) or (not y):
                     pass
-                w = float(node.get('width', '0'))
-                h = float(node.get('height', '0'))
+                w = inkex.units.convert_unit(node.get('width', '0'), 'px')
+                h = inkex.units.convert_unit(node.get('height', '0'), 'px')
                 a = []
                 a.append(['M', [x, y]])
                 a.append(['l', [w, 0]])
