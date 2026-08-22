@@ -6,7 +6,7 @@
     <page name="plotter_setup" gui-text="Setup">
       <param name="pen-up" type="string" gui-text="Pen Up Command">M340 P0 500</param>
       <param name="pen-down" type="string" gui-text="Pen Down Command">M340 P0 1500</param>
-      <param name="delay" type="float" min="0.0" max="1000.0" gui-text="Delay before + after pen movement (ms).">0</param>
+      <param name="delay" type="float" min="0.0" max="1000.0" gui-text="Delay before + after pen movement (ms)">0</param>
       <param name="xy-feedrate" type="float" min="1.0" max="10000.0" gui-text="XY feedrate (mm/min)">7000</param>
     </page>
     <page name="homing" gui-text="Zero Point">
