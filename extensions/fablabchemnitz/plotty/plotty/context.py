@@ -19,6 +19,7 @@ class GCodeContext:
         "G28 X Y; Home the axes",
         "G21; metric ftw",
         "G90; absolute mode",
+        "G4 P{}; wait {}ms".format(self.delay, self.delay),
         "G1 X40; move aside to avoid collisions with magnets",
         "G4 P{}; wait {}ms".format(self.delay, self.delay),
       ]
@@ -27,6 +28,7 @@ class GCodeContext:
         "{}; pen up".format(self.pen_up),
         "G4 P{}; wait {}ms".format(self.delay, self.delay),
         "G1 X0 Y0 F{:.2f}".format(self.xy_feedrate),
+        "G4 P{}; wait {}ms".format(self.delay, self.delay),
         "G1 X{:.2f} Y{:.2f} F{:.2f}; go home".format(self.x_home, self.y_home, self.xy_feedrate),
         "{}; pen up".format(self.pen_up),
         "G4 P{}; wait {}ms".format(self.delay, self.delay),
@@ -58,7 +60,8 @@ class GCodeContext:
       else:
         if self.drawing:
             self.codes.append("G4 P{}; wait {}ms".format(self.delay, self.delay))
-            self.codes.append("{}; pen up".format(self.pen_up)) 
+            self.codes.append("{}; pen up".format(self.pen_up))
+            self.codes.append("G4 P{}; wait {}ms".format(self.delay, self.delay))
             self.drawing = False
         self.codes.append("G1 X{:.2f} Y{:.2f} F{:.2f}".format(x, y, self.xy_feedrate))
       self.last = (x,y)
@@ -68,6 +71,7 @@ class GCodeContext:
           return
       else:
         if self.drawing == False:
+            self.codes.append("G4 P{}; wait {}ms".format(self.delay, self.delay))
             self.codes.append("{}; pen down".format(self.pen_down))
             self.codes.append("G4 P{}; wait {}ms".format(self.delay, self.delay))
             self.drawing = True
